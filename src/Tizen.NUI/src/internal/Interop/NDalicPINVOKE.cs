@@ -24,6 +24,8 @@ namespace Tizen.NUI
     class NDalicPINVOKE
     {
         public const string Lib = "libdali2-csharp-binder.so";
+        public const string WidgetViewerLib = "libdali2-csharp-binder-widget-viewer-dali.so";
+
         protected class SWIGExceptionHelper
         {
             /// <since_tizen> 3 </since_tizen>

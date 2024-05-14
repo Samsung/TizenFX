@@ -55,7 +55,159 @@ namespace Tizen.NUI.BaseComponents
         private Color internalGrabHandleColor = null;
 
 
-        static TextEditor() { }
+        static TextEditor()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
+
+                TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: SetInternalTextColorProperty, defaultValueCreator: GetInternalTextColorProperty);
+
+                FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalFontFamilyProperty, defaultValueCreator: GetInternalFontFamilyProperty);
+
+                FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalFontStyleProperty, defaultValueCreator: GetInternalFontStyleProperty);
+
+                PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalPointSizeProperty, defaultValueCreator: GetInternalPointSizeProperty);
+
+                HorizontalAlignmentProperty = BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextEditor), HorizontalAlignment.Begin, propertyChanged: SetInternalHorizontalAlignmentProperty, defaultValueCreator: GetInternalHorizontalAlignmentProperty);
+
+                VerticalAlignmentProperty = BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment), typeof(TextEditor), VerticalAlignment.Bottom, propertyChanged: SetInternalVerticalAlignmentProperty, defaultValueCreator: GetInternalVerticalAlignmentProperty);
+
+                ScrollThresholdProperty = BindableProperty.Create(nameof(ScrollThreshold), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalScrollThresholdProperty, defaultValueCreator: GetInternalScrollThresholdProperty);
+
+                ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalScrollSpeedProperty, defaultValueCreator: GetInternalScrollSpeedProperty);
+
+                PrimaryCursorColorProperty = BindableProperty.Create(nameof(PrimaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: SetInternalPrimaryCursorColorProperty, defaultValueCreator: GetInternalPrimaryCursorColorProperty);
+
+                SecondaryCursorColorProperty = BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: SetInternalSecondaryCursorColorProperty, defaultValueCreator: GetInternalSecondaryCursorColorProperty);
+
+                EnableCursorBlinkProperty = BindableProperty.Create(nameof(EnableCursorBlink), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalEnableCursorBlinkProperty, defaultValueCreator: GetInternalEnableCursorBlinkProperty);
+
+                CursorBlinkIntervalProperty = BindableProperty.Create(nameof(CursorBlinkInterval), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalCursorBlinkIntervalProperty, defaultValueCreator: GetInternalCursorBlinkIntervalProperty);
+
+                CursorBlinkDurationProperty = BindableProperty.Create(nameof(CursorBlinkDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalCursorBlinkDurationProperty, defaultValueCreator: GetInternalCursorBlinkDurationProperty);
+
+                CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int), typeof(TextEditor), default(int), propertyChanged: SetInternalCursorWidthProperty, defaultValueCreator: GetInternalCursorWidthProperty);
+
+                GrabHandleImageProperty = BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalGrabHandleImageProperty, defaultValueCreator: GetInternalGrabHandleImageProperty);
+
+                GrabHandlePressedImageProperty = BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalGrabHandlePressedImageProperty, defaultValueCreator: GetInternalGrabHandlePressedImageProperty);
+
+                SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionPopupStyleProperty, defaultValueCreator: GetInternalSelectionPopupStyleProperty);
+
+                SelectionHandleImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHandleImageLeftProperty, defaultValueCreator: GetInternalSelectionHandleImageLeftProperty);
+
+                SelectionHandleImageRightProperty = BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHandleImageRightProperty, defaultValueCreator: GetInternalSelectionHandleImageRightProperty);
+
+                SelectionHandlePressedImageLeftProperty = BindableProperty.Create(nameof(SelectionHandlePressedImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHandlePressedImageLeftProperty, defaultValueCreator: GetInternalSelectionHandlePressedImageLeftProperty);
+
+                SelectionHandlePressedImageRightProperty = BindableProperty.Create(nameof(SelectionHandlePressedImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHandlePressedImageRightProperty, defaultValueCreator: GetInternalSelectionHandlePressedImageRightProperty);
+
+                SelectionHandleMarkerImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleMarkerImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHandleMarkerImageLeftProperty, defaultValueCreator: GetInternalSelectionHandleMarkerImageLeftProperty);
+
+                SelectionHandleMarkerImageRightProperty = BindableProperty.Create(nameof(SelectionHandleMarkerImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHandleMarkerImageRightProperty, defaultValueCreator: GetInternalSelectionHandleMarkerImageRightProperty);
+
+                SelectionHighlightColorProperty = BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: SetInternalSelectionHighlightColorProperty, defaultValueCreator: GetInternalSelectionHighlightColorProperty);
+
+                DecorationBoundingBoxProperty = BindableProperty.Create(nameof(DecorationBoundingBox), typeof(Rectangle), typeof(TextEditor), null, propertyChanged: SetInternalDecorationBoundingBoxProperty, defaultValueCreator: GetInternalDecorationBoundingBoxProperty);
+
+                EnableMarkupProperty = BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalEnableMarkupProperty, defaultValueCreator: GetInternalEnableMarkupProperty);
+
+                InputColorProperty = BindableProperty.Create(nameof(InputColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: SetInternalInputColorProperty, defaultValueCreator: GetInternalInputColorProperty);
+
+                InputFontFamilyProperty = BindableProperty.Create(nameof(InputFontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalInputFontFamilyProperty, defaultValueCreator: GetInternalInputFontFamilyProperty);
+
+                InputFontStyleProperty = BindableProperty.Create(nameof(InputFontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalInputFontStyleProperty, defaultValueCreator: GetInternalInputFontStyleProperty);
+
+                InputPointSizeProperty = BindableProperty.Create(nameof(InputPointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalInputPointSizeProperty, defaultValueCreator: GetInternalInputPointSizeProperty);
+
+                LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalLineSpacingProperty, defaultValueCreator: GetInternalLineSpacingProperty);
+
+                InputLineSpacingProperty = BindableProperty.Create(nameof(InputLineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalInputLineSpacingProperty, defaultValueCreator: GetInternalInputLineSpacingProperty);
+
+                RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalRelativeLineHeightProperty, defaultValueCreator: GetInternalRelativeLineHeightProperty);
+
+                UnderlineProperty = BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalUnderlineProperty, defaultValueCreator: GetInternalUnderlineProperty);
+
+                InputUnderlineProperty = BindableProperty.Create(nameof(InputUnderline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalInputUnderlineProperty, defaultValueCreator: GetInternalInputUnderlineProperty);
+
+                ShadowProperty = BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalShadowProperty, defaultValueCreator: GetInternalShadowProperty);
+
+                InputShadowProperty = BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalInputShadowProperty, defaultValueCreator: GetInternalInputShadowProperty);
+
+                EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalEmbossProperty, defaultValueCreator: GetInternalEmbossProperty);
+
+                InputEmbossProperty = BindableProperty.Create(nameof(InputEmboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalInputEmbossProperty, defaultValueCreator: GetInternalInputEmbossProperty);
+
+                OutlineProperty = BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalOutlineProperty, defaultValueCreator: GetInternalOutlineProperty);
+
+                InputOutlineProperty = BindableProperty.Create(nameof(InputOutline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalInputOutlineProperty, defaultValueCreator: GetInternalInputOutlineProperty);
+
+                SmoothScrollProperty = BindableProperty.Create(nameof(SmoothScroll), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalSmoothScrollProperty, defaultValueCreator: GetInternalSmoothScrollProperty);
+
+                SmoothScrollDurationProperty = BindableProperty.Create(nameof(SmoothScrollDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalSmoothScrollDurationProperty, defaultValueCreator: GetInternalSmoothScrollDurationProperty);
+
+                EnableScrollBarProperty = BindableProperty.Create(nameof(EnableScrollBar), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalEnableScrollBarProperty, defaultValueCreator: GetInternalEnableScrollBarProperty);
+
+                ScrollBarShowDurationProperty = BindableProperty.Create(nameof(ScrollBarShowDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalScrollBarShowDurationProperty, defaultValueCreator: GetInternalScrollBarShowDurationProperty);
+
+                ScrollBarFadeDurationProperty = BindableProperty.Create(nameof(ScrollBarFadeDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalScrollBarFadeDurationProperty, defaultValueCreator: GetInternalScrollBarFadeDurationProperty);
+
+                PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalPixelSizeProperty, defaultValueCreator: GetInternalPixelSizeProperty);
+
+                PlaceholderTextProperty = BindableProperty.Create(nameof(PlaceholderText), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalPlaceholderTextProperty, defaultValueCreator: GetInternalPlaceholderTextProperty);
+
+                PlaceholderTextColorProperty = BindableProperty.Create(nameof(PlaceholderTextColor), typeof(Color), typeof(TextEditor), null, propertyChanged: SetInternalPlaceholderTextColorProperty, defaultValueCreator: GetInternalPlaceholderTextColorProperty);
+
+                EnableSelectionProperty = BindableProperty.Create(nameof(EnableSelection), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalEnableSelectionProperty, defaultValueCreator: GetInternalEnableSelectionProperty);
+
+                PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalPlaceholderProperty, defaultValueCreator: GetInternalPlaceholderProperty);
+
+                LineWrapModeProperty = BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextEditor), LineWrapMode.Word, propertyChanged: SetInternalLineWrapModeProperty, defaultValueCreator: GetInternalLineWrapModeProperty);
+
+                EnableShiftSelectionProperty = BindableProperty.Create(nameof(TextEditor.EnableShiftSelection), typeof(bool), typeof(TextEditor), true, propertyChanged: SetInternalEnableShiftSelectionProperty, defaultValueCreator: GetInternalEnableShiftSelectionProperty);
+
+                MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(TextEditor.MatchSystemLanguageDirection), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalMatchSystemLanguageDirectionProperty, defaultValueCreator: GetInternalMatchSystemLanguageDirectionProperty);
+
+                MaxLengthProperty = BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(TextEditor), default(int), propertyChanged: SetInternalMaxLengthProperty, defaultValueCreator: GetInternalMaxLengthProperty);
+
+                FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalFontSizeScaleProperty, defaultValueCreator: GetInternalFontSizeScaleProperty);
+
+                EnableFontSizeScaleProperty = BindableProperty.Create(nameof(EnableFontSizeScale), typeof(bool), typeof(TextEditor), default(bool), propertyChanged: SetInternalEnableFontSizeScaleProperty, defaultValueCreator: GetInternalEnableFontSizeScaleProperty);
+
+                GrabHandleColorProperty = BindableProperty.Create(nameof(GrabHandleColor), typeof(Color), typeof(TextEditor), null, propertyChanged: SetInternalGrabHandleColorProperty, defaultValueCreator: GetInternalGrabHandleColorProperty);
+
+                EnableGrabHandleProperty = BindableProperty.Create(nameof(TextEditor.EnableGrabHandle), typeof(bool), typeof(TextEditor), true, propertyChanged: SetInternalEnableGrabHandleProperty, defaultValueCreator: GetInternalEnableGrabHandleProperty);
+
+                EnableGrabHandlePopupProperty = BindableProperty.Create(nameof(TextEditor.EnableGrabHandlePopup), typeof(bool), typeof(TextEditor), true, propertyChanged: SetInternalEnableGrabHandlePopupProperty, defaultValueCreator: GetInternalEnableGrabHandlePopupProperty);
+
+                InputMethodSettingsProperty = BindableProperty.Create(nameof(TextEditor.InputMethodSettings), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalInputMethodSettingsProperty, defaultValueCreator: GetInternalInputMethodSettingsProperty);
+
+                EllipsisProperty = BindableProperty.Create(nameof(TextEditor.Ellipsis), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalEllipsisProperty, defaultValueCreator: GetInternalEllipsisProperty);
+
+                EllipsisPositionProperty = BindableProperty.Create(nameof(EllipsisPosition), typeof(EllipsisPosition), typeof(TextEditor), EllipsisPosition.End, propertyChanged: SetInternalEllipsisPositionProperty, defaultValueCreator: GetInternalEllipsisPositionProperty);
+
+                MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalMinLineSizeProperty, defaultValueCreator: GetInternalMinLineSizeProperty);
+
+                TranslatableTextProperty = BindableProperty.Create(nameof(TranslatableText), typeof(string), typeof(Tizen.NUI.BaseComponents.TextEditor), string.Empty, propertyChanged: SetInternalTranslatableTextProperty, defaultValueCreator: GetInternalTranslatableTextProperty);
+
+                TranslatablePlaceholderTextProperty = BindableProperty.Create(nameof(TranslatablePlaceholderText), typeof(string), typeof(Tizen.NUI.BaseComponents.TextEditor), string.Empty, propertyChanged: SetInternalTranslatablePlaceholderTextProperty, defaultValueCreator: GetInternalTranslatablePlaceholderTextProperty);
+
+                EnableEditingProperty = BindableProperty.Create(nameof(EnableEditing), typeof(bool), typeof(Tizen.NUI.BaseComponents.TextEditor), false, propertyChanged: SetInternalEnableEditingProperty, defaultValueCreator: GetInternalEnableEditingProperty);
+
+                HorizontalScrollPositionProperty = BindableProperty.Create(nameof(HorizontalScrollPosition), typeof(int), typeof(Tizen.NUI.BaseComponents.TextEditor), 0, propertyChanged: SetInternalHorizontalScrollPositionProperty, defaultValueCreator: GetInternalHorizontalScrollPositionProperty);
+
+                VerticalScrollPositionProperty = BindableProperty.Create(nameof(VerticalScrollPosition), typeof(int), typeof(Tizen.NUI.BaseComponents.TextEditor), 0, propertyChanged: SetInternalVerticalScrollPositionProperty, defaultValueCreator: GetInternalVerticalScrollPositionProperty);
+
+                PrimaryCursorPositionProperty = BindableProperty.Create(nameof(PrimaryCursorPosition), typeof(int), typeof(Tizen.NUI.BaseComponents.TextEditor), 0, propertyChanged: SetInternalPrimaryCursorPositionProperty, defaultValueCreator: GetInternalPrimaryCursorPositionProperty);
+
+                CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalCharacterSpacingProperty, defaultValueCreator: GetInternalCharacterSpacingProperty);
+
+                RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
+
+                RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
+            }
+        }
 
         static internal new void Preload()
         {
@@ -121,11 +273,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(TranslatableTextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TranslatableTextProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTranslatableTextProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TranslatableTextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TranslatableTextProperty, value);
+                }
+                else
+                {
+                    SetInternalTranslatableTextProperty(this, null, value);
+                }
             }
         }
 
@@ -158,11 +324,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(TranslatablePlaceholderTextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TranslatablePlaceholderTextProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTranslatablePlaceholderTextProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TranslatablePlaceholderTextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TranslatablePlaceholderTextProperty, value);
+                }
+                else
+                {
+                    SetInternalTranslatablePlaceholderTextProperty(this, null, value);
+                }
             }
         }
 
@@ -193,11 +373,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(TextProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(TextProperty);
+                }
+                else
+                {
+                    return (string)GetInternalTextProperty(this);
+                }
             }
             set
             {
-                SetValue(TextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextProperty, value);
+                }
+                else
+                {
+                    SetInternalTextProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -214,12 +408,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = (Vector4)GetValue(TextColorProperty);
+                Vector4 temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Vector4)GetValue(TextColorProperty);
+                }
+                else
+                {
+                    temp = (Vector4)GetInternalTextColorProperty(this);
+                }
                 return new Vector4(OnTextColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetValue(TextColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextColorProperty, value);
+                }
+                else
+                {
+                    SetInternalTextColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -233,11 +442,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(FontFamilyProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(FontFamilyProperty);
+                }
+                else
+                {
+                    return (string)GetInternalFontFamilyProperty(this);
+                }
             }
             set
             {
-                SetValue(FontFamilyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontFamilyProperty, value);
+                }
+                else
+                {
+                    SetInternalFontFamilyProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -302,11 +525,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(FontStyleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(FontStyleProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalFontStyleProperty(this);
+                }
             }
             set
             {
-                SetValue(FontStyleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontStyleProperty, value);
+                }
+                else
+                {
+                    SetInternalFontStyleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -365,11 +602,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(PointSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(PointSizeProperty);
+                }
+                else
+                {
+                    return (float)GetInternalPointSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(PointSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PointSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalPointSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -383,11 +634,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (HorizontalAlignment)GetValue(HorizontalAlignmentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (HorizontalAlignment)GetValue(HorizontalAlignmentProperty);
+                }
+                else
+                {
+                    return (HorizontalAlignment)GetInternalHorizontalAlignmentProperty(this);
+                }
             }
             set
             {
-                SetValue(HorizontalAlignmentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HorizontalAlignmentProperty, value);
+                }
+                else
+                {
+                    SetInternalHorizontalAlignmentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -401,11 +666,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (VerticalAlignment)GetValue(VerticalAlignmentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (VerticalAlignment)GetValue(VerticalAlignmentProperty);
+                }
+                else
+                {
+                    return (VerticalAlignment)GetInternalVerticalAlignmentProperty(this);
+                }
             }
             set
             {
-                SetValue(VerticalAlignmentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(VerticalAlignmentProperty, value);
+                }
+                else
+                {
+                    SetInternalVerticalAlignmentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -419,11 +698,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(ScrollThresholdProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollThresholdProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollThresholdProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollThresholdProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollThresholdProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollThresholdProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -437,11 +730,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(ScrollSpeedProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollSpeedProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollSpeedProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollSpeedProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollSpeedProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollSpeedProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -458,12 +765,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = (Vector4)GetValue(PrimaryCursorColorProperty);
+                Vector4 temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Vector4)GetValue(PrimaryCursorColorProperty);
+                }
+                else
+                {
+                    temp = (Vector4)GetInternalPrimaryCursorColorProperty(this);
+                }
                 return new Vector4(OnPrimaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetValue(PrimaryCursorColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PrimaryCursorColorProperty, value);
+                }
+                else
+                {
+                    SetInternalPrimaryCursorColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -480,12 +802,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = (Vector4)GetValue(SecondaryCursorColorProperty);
+                Vector4 temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Vector4)GetValue(SecondaryCursorColorProperty);
+                }
+                else
+                {
+                    temp = (Vector4)GetInternalSecondaryCursorColorProperty(this);
+                }
                 return new Vector4(OnSecondaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetValue(SecondaryCursorColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SecondaryCursorColorProperty, value);
+                }
+                else
+                {
+                    SetInternalSecondaryCursorColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -499,11 +836,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableCursorBlinkProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableCursorBlinkProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableCursorBlinkProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableCursorBlinkProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableCursorBlinkProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableCursorBlinkProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -517,11 +868,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(CursorBlinkIntervalProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(CursorBlinkIntervalProperty);
+                }
+                else
+                {
+                    return (float)GetInternalCursorBlinkIntervalProperty(this);
+                }
             }
             set
             {
-                SetValue(CursorBlinkIntervalProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CursorBlinkIntervalProperty, value);
+                }
+                else
+                {
+                    SetInternalCursorBlinkIntervalProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -535,11 +900,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(CursorBlinkDurationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(CursorBlinkDurationProperty);
+                }
+                else
+                {
+                    return (float)GetInternalCursorBlinkDurationProperty(this);
+                }
             }
             set
             {
-                SetValue(CursorBlinkDurationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CursorBlinkDurationProperty, value);
+                }
+                else
+                {
+                    SetInternalCursorBlinkDurationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -552,11 +931,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(CursorWidthProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CursorWidthProperty);
+                }
+                else
+                {
+                    return (int)GetInternalCursorWidthProperty(this);
+                }
             }
             set
             {
-                SetValue(CursorWidthProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CursorWidthProperty, value);
+                }
+                else
+                {
+                    SetInternalCursorWidthProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -570,11 +963,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(GrabHandleImageProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(GrabHandleImageProperty);
+                }
+                else
+                {
+                    return (string)GetInternalGrabHandleImageProperty(this);
+                }
             }
             set
             {
-                SetValue(GrabHandleImageProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(GrabHandleImageProperty, value);
+                }
+                else
+                {
+                    SetInternalGrabHandleImageProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -588,11 +995,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(GrabHandlePressedImageProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(GrabHandlePressedImageProperty);
+                }
+                else
+                {
+                    return (string)GetInternalGrabHandlePressedImageProperty(this);
+                }
             }
             set
             {
-                SetValue(GrabHandlePressedImageProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(GrabHandlePressedImageProperty, value);
+                }
+                else
+                {
+                    SetInternalGrabHandlePressedImageProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -606,11 +1027,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionPopupStyleProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionPopupStyleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionPopupStyleProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionPopupStyleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -628,11 +1063,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionHandleImageLeftProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionHandleImageLeftProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionHandleImageLeftProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionHandleImageLeftProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHandleImageLeftProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionHandleImageLeftProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -650,11 +1099,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionHandleImageRightProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionHandleImageRightProperty);
+
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionHandleImageRightProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionHandleImageRightProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHandleImageRightProperty, value);
+
+                }
+                else
+                {
+                    SetInternalSelectionHandleImageRightProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -727,11 +1192,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionHandlePressedImageLeftProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionHandlePressedImageLeftProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHandlePressedImageLeftProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionHandlePressedImageLeftProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -749,11 +1228,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionHandlePressedImageRightProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionHandlePressedImageRightProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHandlePressedImageRightProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionHandlePressedImageRightProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -826,11 +1319,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionHandleMarkerImageLeftProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionHandleMarkerImageLeftProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHandleMarkerImageLeftProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionHandleMarkerImageLeftProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -848,11 +1355,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalSelectionHandleMarkerImageRightProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionHandleMarkerImageRightProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHandleMarkerImageRightProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionHandleMarkerImageRightProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -924,12 +1445,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = (Vector4)GetValue(SelectionHighlightColorProperty);
+                Vector4 temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Vector4)GetValue(SelectionHighlightColorProperty);
+                }
+                else
+                {
+                    temp = (Vector4)GetInternalSelectionHighlightColorProperty(this);
+                }
                 return new Vector4(OnSelectionHighlightColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetValue(SelectionHighlightColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionHighlightColorProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionHighlightColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -946,12 +1482,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Rectangle temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                Rectangle temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                }
+                else
+                {
+                    temp = (Rectangle)GetInternalDecorationBoundingBoxProperty(this);
+                }
                 return new Rectangle(OnDecorationBoundingBoxChanged, temp.X, temp.Y, temp.Width, temp.Height);
             }
             set
             {
-                SetValue(DecorationBoundingBoxProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DecorationBoundingBoxProperty, value);
+                }
+                else
+                {
+                    SetInternalDecorationBoundingBoxProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -965,11 +1516,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableMarkupProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableMarkupProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableMarkupProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableMarkupProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableMarkupProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableMarkupProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -986,12 +1551,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 temp = (Vector4)GetValue(InputColorProperty);
+                Vector4 temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Vector4)GetValue(InputColorProperty);
+                }
+                else
+                {
+                    temp = (Vector4)GetInternalInputColorProperty(this);
+                }
                 return new Vector4(OnInputColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-                SetValue(InputColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputColorProperty, value);
+                }
+                else
+                {
+                    SetInternalInputColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1005,11 +1585,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(InputFontFamilyProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(InputFontFamilyProperty);
+                }
+                else
+                {
+                    return (string)GetInternalInputFontFamilyProperty(this);
+                }
             }
             set
             {
-                SetValue(InputFontFamilyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputFontFamilyProperty, value);
+                }
+                else
+                {
+                    SetInternalInputFontFamilyProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1030,11 +1624,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(InputFontStyleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(InputFontStyleProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalInputFontStyleProperty(this);
+                }
             }
             set
             {
-                SetValue(InputFontStyleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputFontStyleProperty, value);
+                }
+                else
+                {
+                    SetInternalInputFontStyleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1093,11 +1701,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(InputPointSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(InputPointSizeProperty);
+                }
+                else
+                {
+                    return (float)GetInternalInputPointSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(InputPointSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputPointSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalInputPointSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1111,11 +1733,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(LineSpacingProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(LineSpacingProperty);
+                }
+                else
+                {
+                    return (float)GetInternalLineSpacingProperty(this);
+                }
             }
             set
             {
-                SetValue(LineSpacingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LineSpacingProperty, value);
+                }
+                else
+                {
+                    SetInternalLineSpacingProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1129,11 +1765,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(InputLineSpacingProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(InputLineSpacingProperty);
+                }
+                else
+                {
+                    return (float)GetInternalInputLineSpacingProperty(this);
+                }
             }
             set
             {
-                SetValue(InputLineSpacingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputLineSpacingProperty, value);
+                }
+                else
+                {
+                    SetInternalInputLineSpacingProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1147,11 +1797,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(RelativeLineHeightProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(RelativeLineHeightProperty);
+                }
+                else
+                {
+                    return (float)GetInternalRelativeLineHeightProperty(this);
+                }
             }
             set
             {
-                SetValue(RelativeLineHeightProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RelativeLineHeightProperty, value);
+                }
+                else
+                {
+                    SetInternalRelativeLineHeightProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1172,11 +1836,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(UnderlineProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(UnderlineProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalUnderlineProperty(this);
+                }
             }
             set
             {
-                SetValue(UnderlineProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderlineProperty, value);
+                }
+                else
+                {
+                    SetInternalUnderlineProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1234,11 +1912,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(InputUnderlineProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(InputUnderlineProperty);
+                }
+                else
+                {
+                    return (string)GetInternalInputUnderlineProperty(this);
+                }
             }
             set
             {
-                SetValue(InputUnderlineProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputUnderlineProperty, value);
+                }
+                else
+                {
+                    SetInternalInputUnderlineProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1259,11 +1951,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(ShadowProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(ShadowProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalShadowProperty(this);
+                }
             }
             set
             {
-                SetValue(ShadowProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ShadowProperty, value);
+                }
+                else
+                {
+                    SetInternalShadowProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1320,11 +2026,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(InputShadowProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(InputShadowProperty);
+                }
+                else
+                {
+                    return (string)GetInternalInputShadowProperty(this);
+                }
             }
             set
             {
-                SetValue(InputShadowProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputShadowProperty, value);
+                }
+                else
+                {
+                    SetInternalInputShadowProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1338,11 +2058,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(EmbossProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(EmbossProperty);
+                }
+                else
+                {
+                    return (string)GetInternalEmbossProperty(this);
+                }
             }
             set
             {
-                SetValue(EmbossProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EmbossProperty, value);
+                }
+                else
+                {
+                    SetInternalEmbossProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1356,11 +2090,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(InputEmbossProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(InputEmbossProperty);
+                }
+                else
+                {
+                    return (string)GetInternalInputEmbossProperty(this);
+                }
             }
             set
             {
-                SetValue(InputEmbossProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputEmbossProperty, value);
+                }
+                else
+                {
+                    SetInternalInputEmbossProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1380,11 +2128,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(OutlineProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(OutlineProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalOutlineProperty(this);
+                }
             }
             set
             {
-                SetValue(OutlineProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(OutlineProperty, value);
+                }
+                else
+                {
+                    SetInternalOutlineProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1441,11 +2203,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(InputOutlineProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(InputOutlineProperty);
+                }
+                else
+                {
+                    return (string)GetInternalInputOutlineProperty(this);
+                }
             }
             set
             {
-                SetValue(InputOutlineProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputOutlineProperty, value);
+                }
+                else
+                {
+                    SetInternalInputOutlineProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1459,11 +2235,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(SmoothScrollProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(SmoothScrollProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalSmoothScrollProperty(this);
+                }
             }
             set
             {
-                SetValue(SmoothScrollProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SmoothScrollProperty, value);
+                }
+                else
+                {
+                    SetInternalSmoothScrollProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1477,11 +2267,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(SmoothScrollDurationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(SmoothScrollDurationProperty);
+                }
+                else
+                {
+                    return (float)GetInternalSmoothScrollDurationProperty(this);
+                }
             }
             set
             {
-                SetValue(SmoothScrollDurationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SmoothScrollDurationProperty, value);
+                }
+                else
+                {
+                    SetInternalSmoothScrollDurationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1495,11 +2299,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableScrollBarProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableScrollBarProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableScrollBarProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableScrollBarProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableScrollBarProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableScrollBarProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1513,11 +2331,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(ScrollBarShowDurationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollBarShowDurationProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollBarShowDurationProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollBarShowDurationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollBarShowDurationProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollBarShowDurationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1531,11 +2363,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(ScrollBarFadeDurationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollBarFadeDurationProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollBarFadeDurationProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollBarFadeDurationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollBarFadeDurationProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollBarFadeDurationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1550,11 +2396,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(PixelSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(PixelSizeProperty);
+                }
+                else
+                {
+                    return (float)GetInternalPixelSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(PixelSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PixelSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalPixelSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1584,11 +2444,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(PlaceholderTextProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(PlaceholderTextProperty);
+                }
+                else
+                {
+                    return (string)GetInternalPlaceholderTextProperty(this);
+                }
             }
             set
             {
-                SetValue(PlaceholderTextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PlaceholderTextProperty, value);
+                }
+                else
+                {
+                    SetInternalPlaceholderTextProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1624,12 +2498,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Color temp = (Color)GetValue(PlaceholderTextColorProperty);
+                Color temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Color)GetValue(PlaceholderTextColorProperty);
+                }
+                else
+                {
+                    temp = (Color)GetInternalPlaceholderTextColorProperty(this);
+                }
                 return new Color(OnPlaceholderTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
-                SetValue(PlaceholderTextColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PlaceholderTextColorProperty, value);
+                }
+                else
+                {
+                    SetInternalPlaceholderTextColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1643,11 +2532,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableSelectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableSelectionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableSelectionProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableSelectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableSelectionProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableSelectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1701,11 +2604,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableEditingProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableEditingProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableEditingProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableEditingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableEditingProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableEditingProperty(this, null, value);
+                }
             }
         }
 
@@ -1738,11 +2655,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(HorizontalScrollPositionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(HorizontalScrollPositionProperty);
+                }
+                else
+                {
+                    return (int)GetInternalHorizontalScrollPositionProperty(this);
+                }
             }
             set
             {
-                SetValue(HorizontalScrollPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HorizontalScrollPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalHorizontalScrollPositionProperty(this, null, value);
+                }
             }
         }
 
@@ -1775,11 +2706,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(VerticalScrollPositionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(VerticalScrollPositionProperty);
+                }
+                else
+                {
+                    return (int)GetInternalVerticalScrollPositionProperty(this);
+                }
             }
             set
             {
-                SetValue(VerticalScrollPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(VerticalScrollPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalVerticalScrollPositionProperty(this, null, value);
+                }
             }
         }
 
@@ -1816,11 +2761,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(PrimaryCursorPositionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(PrimaryCursorPositionProperty);
+                }
+                else
+                {
+                    return (int)GetInternalPrimaryCursorPositionProperty(this);
+                }
             }
             set
             {
-                SetValue(PrimaryCursorPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PrimaryCursorPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalPrimaryCursorPositionProperty(this, null, value);
+                }
             }
         }
 
@@ -1856,12 +2815,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                Color temp;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    temp = (Color)GetValue(GrabHandleColorProperty);
+                }
+                else
+                {
+                    temp = (Color)GetInternalGrabHandleColorProperty(this);
+                }
                 return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
-                SetValue(GrabHandleColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(GrabHandleColorProperty, value);
+                }
+                else
+                {
+                    SetInternalGrabHandleColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2001,7 +2975,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap map = (PropertyMap)GetValue(PlaceholderProperty);
+                PropertyMap map;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    map = (PropertyMap)GetValue(PlaceholderProperty);
+                }
+                else
+                {
+                    map = (PropertyMap)GetInternalPlaceholderProperty(this);
+                }
                 string defalutText = "";
 
                 if (TextMapHelper.IsValue(map, 0))
@@ -2047,7 +3029,14 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(PlaceholderProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PlaceholderProperty, value);
+                }
+                else
+                {
+                    SetInternalPlaceholderProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2115,11 +3104,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EllipsisProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EllipsisProperty);
+
+                }
+                else
+                {
+                    return (bool)GetInternalEllipsisProperty(this);
+                }
             }
             set
             {
-                SetValue(EllipsisProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EllipsisProperty, value);
+                }
+                else
+                {
+                    SetInternalEllipsisProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2134,11 +3138,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+                }
+                else
+                {
+                    return (EllipsisPosition)GetInternalEllipsisPositionProperty(this);
+                }
             }
             set
             {
-                SetValue(EllipsisPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EllipsisPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalEllipsisPositionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2152,11 +3170,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (LineWrapMode)GetValue(LineWrapModeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (LineWrapMode)GetValue(LineWrapModeProperty);
+                }
+                else
+                {
+                    return (LineWrapMode)GetInternalLineWrapModeProperty(this);
+                }
             }
             set
             {
-                SetValue(LineWrapModeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LineWrapModeProperty, value);
+                }
+                else
+                {
+                    SetInternalLineWrapModeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2170,11 +3202,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableShiftSelectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableShiftSelectionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableShiftSelectionProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableShiftSelectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableShiftSelectionProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableShiftSelectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2187,11 +3233,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(MatchSystemLanguageDirectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(MatchSystemLanguageDirectionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalMatchSystemLanguageDirectionProperty(this);
+                }
             }
             set
             {
-                SetValue(MatchSystemLanguageDirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MatchSystemLanguageDirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalMatchSystemLanguageDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2206,11 +3266,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(MaxLengthProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(MaxLengthProperty);
+                }
+                else
+                {
+                    return (int)GetInternalMaxLengthProperty(this);
+                }
             }
             set
             {
-                SetValue(MaxLengthProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MaxLengthProperty, value);
+                }
+                else
+                {
+                    SetInternalMaxLengthProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2226,11 +3300,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(FontSizeScaleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(FontSizeScaleProperty);
+                }
+                else
+                {
+                    return (float)GetInternalFontSizeScaleProperty(this);
+                }
             }
             set
             {
-                SetValue(FontSizeScaleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontSizeScaleProperty, value);
+                }
+                else
+                {
+                    SetInternalFontSizeScaleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2289,11 +3377,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableFontSizeScaleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableFontSizeScaleProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableFontSizeScaleProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableFontSizeScaleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableFontSizeScaleProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableFontSizeScaleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2321,11 +3423,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(InputMethodSettingsProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(InputMethodSettingsProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalInputMethodSettingsProperty(this);
+                }
             }
             set
             {
-                SetValue(InputMethodSettingsProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputMethodSettingsProperty, value);
+                }
+                else
+                {
+                    SetInternalInputMethodSettingsProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2409,11 +3525,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableGrabHandleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableGrabHandleProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableGrabHandleProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableGrabHandleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableGrabHandleProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableGrabHandleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2428,11 +3558,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableGrabHandlePopupProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableGrabHandlePopupProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableGrabHandlePopupProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableGrabHandlePopupProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableGrabHandlePopupProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableGrabHandlePopupProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2447,11 +3591,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(MinLineSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MinLineSizeProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMinLineSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(MinLineSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinLineSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalMinLineSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2475,11 +3633,95 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(CharacterSpacingProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(CharacterSpacingProperty);
+                }
+                else
+                {
+                    return (float)GetInternalCharacterSpacingProperty(this);
+                }
             }
             set
             {
-                SetValue(CharacterSpacingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CharacterSpacingProperty, value);
+                }
+                else
+                {
+                    SetInternalCharacterSpacingProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The RemoveFrontInset property.<br />
+        /// This property is used when the xBearing of first glyph must not be trimmed.<br />
+        /// When set to false, The gap between (0, 0) from the first glyph's leftmost pixel is included in the width of text label.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveFrontInset
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveFrontInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveFrontInsetProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveFrontInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveFrontInsetProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The RemoveBackInset property.<br />
+        /// This property is used when the advance of last glyph must not be trimmed.<br />
+        /// When set to false, The gap between the last glyph's rightmost pixel and X coordinate that next glyph will be placed is included in the width of text label.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveBackInset
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveBackInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveBackInsetProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveBackInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveBackInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2666,7 +3908,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
-        
+
         private void RemoveSystemSettingsFontTypeChanged()
         {
             if (hasSystemFontTypeChanged)
@@ -2770,6 +4012,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
+            internal static readonly int RemoveFrontInset = Interop.TextEditor.RemoveFrontInsetGet();
+            internal static readonly int RemoveBackInset = Interop.TextEditor.RemoveBackInsetGet();
 
             internal static void Preload()
             {

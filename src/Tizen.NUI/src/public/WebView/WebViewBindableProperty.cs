@@ -26,108 +26,126 @@ namespace Tizen.NUI.BaseComponents
         /// CacheModelProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), default(CacheModel), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CacheModelProperty = null;
+
+        internal static void SetInternalCacheModelProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
             {
                 instance.InternalCacheModel = (Tizen.NUI.CacheModel)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalCacheModelProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             return instance.InternalCacheModel;
-        });
+        }
 
         /// <summary>
         /// CookieAcceptPolicyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), default(CookieAcceptPolicy), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CookieAcceptPolicyProperty = null;
+
+        internal static void SetInternalCookieAcceptPolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
             {
                 instance.InternalCookieAcceptPolicy = (Tizen.NUI.CookieAcceptPolicy)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalCookieAcceptPolicyProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             return instance.InternalCookieAcceptPolicy;
-        });
+        }
 
         /// <summary>
         /// EnableJavaScriptProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableJavaScriptProperty = null;
+
+        internal static void SetInternalEnableJavaScriptProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
             {
                 instance.InternalEnableJavaScript = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalEnableJavaScriptProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             return instance.InternalEnableJavaScript;
-        });
+        }
 
         /// <summary>
         /// LoadImagesAutomaticallyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoadImagesAutomaticallyProperty = null;
+
+        internal static void SetInternalLoadImagesAutomaticallyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
             {
                 instance.InternalLoadImagesAutomatically = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalLoadImagesAutomaticallyProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             return instance.InternalLoadImagesAutomatically;
-        });
+        }
 
         /// <summary>
         /// DefaultTextEncodingNameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DefaultTextEncodingNameProperty = null;
+
+        internal static void SetInternalDefaultTextEncodingNameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
             {
                 instance.InternalDefaultTextEncodingName = (string)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalDefaultTextEncodingNameProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             return instance.InternalDefaultTextEncodingName;
-        });
+        }
 
         /// <summary>
         /// DefaultFontSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DefaultFontSizeProperty = null;
+
+        internal static void SetInternalDefaultFontSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
             {
                 instance.InternalDefaultFontSize = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalDefaultFontSizeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             return instance.InternalDefaultFontSize;
-        });
+        }
     }
 }

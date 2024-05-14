@@ -26,84 +26,109 @@ namespace Tizen.NUI.BaseComponents
         /// ResourceURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+        public static BindableProperty ResourceURLProperty = null;
+#else
+        public static readonly BindableProperty ResourceURLProperty = null;
+#endif
+        internal static void SetInternalResourceURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             instance.InternalResourceURL = (string)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalResourceURLProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceURL;
-        });
+        }
 
         /// <summary>
         /// ResourceUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+        public static new BindableProperty ResourceUrlProperty = null;
+#else
+        public static readonly new BindableProperty ResourceUrlProperty = null;
+#endif
+        internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             instance.InternalResourceUrl = (string)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceUrl;
-        });
+        }
 
         /// <summary>
         /// RepeatCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RepeatCountProperty = BindableProperty.Create(nameof(RepeatCount), typeof(int), typeof(AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+        public static BindableProperty RepeatCountProperty = null;
+#else
+        public static readonly BindableProperty RepeatCountProperty = null;
+#endif
+        internal static void SetInternalRepeatCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalRepeatCount = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalRepeatCountProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalRepeatCount;
-        });
+        }
 
         /// <summary>
         /// CurrentFrameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+        public static new BindableProperty CurrentFrameProperty = null;
+#else
+        public static readonly new BindableProperty CurrentFrameProperty = null;
+#endif
+        internal static void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentFrame = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        }
 
         /// <summary>
         /// RepeatModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RepeatModeProperty = BindableProperty.Create(nameof(RepeatMode), typeof(RepeatModes), typeof(AnimatedVectorImageView), default(RepeatModes), propertyChanged: (bindable, oldValue, newValue) =>
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+        public static BindableProperty RepeatModeProperty = null;
+#else
+        public static readonly BindableProperty RepeatModeProperty = null;
+#endif
+        static internal void SetInternalRepeatModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalRepeatMode = (Tizen.NUI.BaseComponents.AnimatedVectorImageView.RepeatModes)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        static internal object GetInternalRepeatModeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalRepeatMode;
-        });
+        }
     }
 }

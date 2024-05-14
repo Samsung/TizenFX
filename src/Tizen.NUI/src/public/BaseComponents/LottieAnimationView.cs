@@ -20,6 +20,8 @@ using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Globalization;
+using Tizen.NUI;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -29,6 +31,27 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 7 </since_tizen>
     public partial class LottieAnimationView : ImageView
     {
+        static LottieAnimationView()
+        {
+            if(NUIApplication.IsUsingXaml)
+            {
+                URLProperty = BindableProperty.Create(nameof(URL), typeof(string), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), string.Empty, propertyChanged: SetInternalURLProperty, defaultValueCreator: GetInternalURLProperty);
+
+                CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: SetInternalCurrentFrameProperty, defaultValueCreator: GetInternalCurrentFrameProperty);
+
+                LoopingModeProperty = BindableProperty.Create(nameof(LoopingMode), typeof(LoopingModeType), typeof(LottieAnimationView), default(LoopingModeType), propertyChanged: SetInternalLoopingModeProperty, defaultValueCreator: GetInternalLoopingModeProperty);
+
+                LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: SetInternalLoopCountProperty, defaultValueCreator: GetInternalLoopCountProperty);
+
+                StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(LottieAnimationView), default(StopBehaviorType), propertyChanged: SetInternalStopBehaviorProperty, defaultValueCreator: GetInternalStopBehaviorProperty);
+
+                RedrawInScalingDownProperty = BindableProperty.Create(nameof(RedrawInScalingDown), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: SetInternalRedrawInScalingDownProperty, defaultValueCreator: GetInternalRedrawInScalingDownProperty);
+
+                EnableFrameCacheProperty = BindableProperty.Create(nameof(EnableFrameCache), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: SetInternalEnableFrameCacheProperty, defaultValueCreator: GetInternalEnableFrameCacheProperty);
+
+                NotifyAfterRasterizationProperty = BindableProperty.Create(nameof(NotifyAfterRasterization), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: SetInternalNotifyAfterRasterizationProperty, defaultValueCreator: GetInternalNotifyAfterRasterizationProperty);
+            }
+        }
 
         #region Constructor, Destructor, Dispose
         /// <summary>
@@ -62,6 +85,8 @@ namespace Tizen.NUI.BaseComponents
             currentStates.desiredWidth = 0;
             currentStates.desiredHeight = 0;
             currentStates.synchronousLoading = true;
+            currentStates.enableFrameCache = false;
+            currentStates.notifyAfterRasterization = false;
 
             // Notify to base ImageView cache that default synchronousLoading for lottie file is true.
             base.SynchronousLoading = currentStates.synchronousLoading;
@@ -123,11 +148,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(URLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(URLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(URLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(URLProperty, value);
+                }
+                else
+                {
+                    SetInternalURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -160,7 +199,6 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.framePlayRangeMin = -1;
                 currentStates.framePlayRangeMax = -1;
                 currentStates.totalFrame = -1;
-                currentStates.enableFrameCache = false;
 
                 string ret = (value == null ? "" : value);
                 currentStates.url = ret;
@@ -176,6 +214,8 @@ namespace Tizen.NUI.BaseComponents
                 using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
                 using PropertyValue redrawInScalingDown = new PropertyValue(currentStates.redrawInScalingDown);
                 using PropertyValue synchronousLoading = new PropertyValue(currentStates.synchronousLoading);
+                using PropertyValue enableFrameCache = new PropertyValue(currentStates.enableFrameCache);
+                using PropertyValue notifyAfterRasterization = new PropertyValue(currentStates.notifyAfterRasterization);
 
                 map.Add(Visual.Property.Type, type)
                     .Add(ImageVisualProperty.URL, url)
@@ -183,7 +223,9 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.StopBehavior, stopAction)
                     .Add(ImageVisualProperty.LoopingMode, loopMode)
                     .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown)
-                    .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
+                    .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading)
+                    .Add(ImageVisualProperty.EnableFrameCache, enableFrameCache)
+                    .Add(ImageVisualProperty.NotifyAfterRasterization, notifyAfterRasterization);
 
                 if (currentStates.desiredWidth > 0)
                 {
@@ -349,11 +391,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(CurrentFrameProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CurrentFrameProperty);
+                }
+                else
+                {
+                    return (int)GetInternalCurrentFrameProperty(this);
+                }
             }
             set
             {
-                SetValue(CurrentFrameProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentFrameProperty, value);
+                }
+                else
+                {
+                    SetInternalCurrentFrameProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -385,11 +441,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (LoopingModeType)GetValue(LoopingModeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (LoopingModeType)GetValue(LoopingModeProperty);
+                }
+                else
+                {
+                    return (LoopingModeType)GetInternalLoopingModeProperty(this);
+                }
             }
             set
             {
-                SetValue(LoopingModeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoopingModeProperty, value);
+                }
+                else
+                {
+                    SetInternalLoopingModeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -438,11 +508,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(LoopCountProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(LoopCountProperty);
+                }
+                else
+                {
+                    return (int)GetInternalLoopCountProperty(this);
+                }
             }
             set
             {
-                SetValue(LoopCountProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoopCountProperty, value);
+                }
+                else
+                {
+                    SetInternalLoopCountProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -476,11 +560,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (StopBehaviorType)GetValue(StopBehaviorProperty);
+                }
+                else
+                {
+                    return (StopBehaviorType)GetInternalStopBehaviorProperty(this);
+                }
             }
             set
             {
-                SetValue(StopBehaviorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(StopBehaviorProperty, value);
+                }
+                else
+                {
+                    SetInternalStopBehaviorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -518,11 +616,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RedrawInScalingDownProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RedrawInScalingDownProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRedrawInScalingDownProperty(this);
+                }
             }
             set
             {
-                SetValue(RedrawInScalingDownProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RedrawInScalingDownProperty, value);
+                }
+                else
+                {
+                    SetInternalRedrawInScalingDownProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -548,17 +660,41 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
+        /// <summary>
+        /// Whether to AnimatedVectorImageVisual fixed cache or not.
+        /// </summary>
+        /// <remarks>
+        /// If this property is true, AnimatedVectorImageVisual enable frame cache for loading and keeps loaded frame
+        /// until the visual is removed. It reduces CPU cost when the animated image will be looping.
+        /// But it can spend a lot of memory if the resource has high resolution image or many frame count.
+        ///
+        /// Inhouse API.
+        /// It is used in the AnimatedVectorImageVisual.The default is false.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableFrameCache
         {
             get
             {
-                return (bool)GetValue(EnableFrameCacheProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableFrameCacheProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableFrameCacheProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableFrameCacheProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableFrameCacheProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableFrameCacheProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -581,6 +717,66 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"EnableFrameCache get! {currentStates.enableFrameCache}");
                 return currentStates.enableFrameCache;
+            }
+        }
+
+        /// <summary>
+        /// Whether notify AnimatedVectorImageVisual to render thread after every rasterization or not.
+        /// </summary>
+        /// <remarks>
+        /// If this property is true, AnimatedVectorImageVisual send notify to render thread after every rasterization.
+        /// If false, AnimatedVectorImageVisual set Renderer's Behaviour as Continouly (mean, always update the render thread.)
+        /// This flag is useful if given resource has low fps, so we don't need to render every frame.
+        ///
+        /// Inhouse API.
+        /// It is used in the AnimatedVectorImageVisual.The default is false.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool NotifyAfterRasterization
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(NotifyAfterRasterizationProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalNotifyAfterRasterizationProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(NotifyAfterRasterizationProperty, value);
+                }
+                else
+                {
+                    SetInternalNotifyAfterRasterizationProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalNotifyAfterRasterization
+        {
+            set
+            {
+                if (currentStates.notifyAfterRasterization != value)
+                {
+                    currentStates.changed = true;
+                    currentStates.notifyAfterRasterization = value;
+
+                    NUILog.Debug($"<[{GetId()}]SET currentStates.NotifyAfterRasterization={currentStates.notifyAfterRasterization}>");
+
+                    Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.NotifyAfterRasterization, currentStates.notifyAfterRasterization);
+                }
+            }
+            get
+            {
+                NUILog.Debug($"NotifyAfterRasterization get! {currentStates.notifyAfterRasterization}");
+                return currentStates.notifyAfterRasterization;
             }
         }
         #endregion Property
@@ -898,13 +1094,15 @@ namespace Tizen.NUI.BaseComponents
             if (!imagePropertyUpdatedFlag) return;
 
             // Update currentStates properties to cachedImagePropertyMap
-            if(currentStates.changed)
+            if (currentStates.changed)
             {
                 UpdateImage(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount), false);
                 UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction), false);
                 UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode), false);
                 UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown), false);
                 UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue(currentStates.synchronousLoading), false);
+                UpdateImage(ImageVisualProperty.EnableFrameCache, new PropertyValue(currentStates.enableFrameCache), false);
+                UpdateImage(ImageVisualProperty.NotifyAfterRasterization, new PropertyValue(currentStates.notifyAfterRasterization), false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -1285,6 +1483,8 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.StopBehavior,
             ImageVisualProperty.LoopingMode,
             ImageVisualProperty.RedrawInScalingDown,
+            ImageVisualProperty.EnableFrameCache,
+            ImageVisualProperty.NotifyAfterRasterization,
         };
 
         private struct states
@@ -1305,6 +1505,7 @@ namespace Tizen.NUI.BaseComponents
             internal int desiredWidth, desiredHeight;
             internal bool synchronousLoading;
             internal bool enableFrameCache;
+            internal bool notifyAfterRasterization;
             internal bool changed;
         };
         private states currentStates;

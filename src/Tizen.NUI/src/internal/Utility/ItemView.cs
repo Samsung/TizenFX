@@ -20,6 +20,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -27,6 +28,47 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class ItemView : Scrollable
     {
+        static ItemView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.PropertyArray), typeof(ItemView), null,
+                    propertyChanged: SetInternalLayoutProperty, defaultValueCreator: GetInternalLayoutProperty);
+
+                MinimumSwipeSpeedProperty = BindableProperty.Create(nameof(MinimumSwipeSpeed), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalMinimumSwipeSpeedProperty, defaultValueCreator: GetInternalMinimumSwipeSpeedProperty);
+
+                MinimumSwipeDistanceProperty = BindableProperty.Create(nameof(MinimumSwipeDistance), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalMinimumSwipeDistanceProperty, defaultValueCreator: GetInternalMinimumSwipeDistanceProperty);
+
+                WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalWheelScrollDistanceStepProperty, defaultValueCreator: GetInternalWheelScrollDistanceStepProperty);
+
+                SnapToItemEnabledProperty = BindableProperty.Create(nameof(SnapToItemEnabled), typeof(bool), typeof(ItemView), true,
+                    propertyChanged: SetInternalSnapToItemEnabledProperty, defaultValueCreator: GetInternalSnapToItemEnabledProperty);
+
+                RefreshIntervalProperty = BindableProperty.Create(nameof(RefreshInterval), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalRefreshIntervalProperty, defaultValueCreator: GetInternalRefreshIntervalProperty);
+
+                LayoutPositionProperty = BindableProperty.Create(nameof(LayoutPosition), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalLayoutPositionProperty, defaultValueCreator: GetInternalLayoutPositionProperty);
+
+                ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalScrollSpeedProperty, defaultValueCreator: GetInternalScrollSpeedProperty);
+
+                OvershootProperty = BindableProperty.Create(nameof(Overshoot), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalOvershootProperty, defaultValueCreator: GetInternalOvershootProperty);
+
+                ScrollDirectionProperty = BindableProperty.Create(nameof(ScrollDirection), typeof(Tizen.NUI.Vector2), typeof(ItemView), null,
+                    propertyChanged: SetInternalScrollDirectionProperty, defaultValueCreator: GetInternalScrollDirectionProperty);
+
+                LayoutOrientationProperty = BindableProperty.Create(nameof(LayoutOrientation), typeof(int), typeof(ItemView), 0,
+                    propertyChanged: SetInternalLayoutOrientationProperty, defaultValueCreator: GetInternalLayoutOrientationProperty);
+
+                ScrollContentSizeProperty = BindableProperty.Create(nameof(ScrollContentSize), typeof(float), typeof(ItemView), default(float),
+                    propertyChanged: SetInternalScrollContentSizeProperty, defaultValueCreator: GetInternalScrollContentSizeProperty);
+            }
+        }
 
         internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -46,11 +88,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(LayoutProperty) as PropertyArray;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(LayoutProperty) as PropertyArray;
+                }
+                else
+                {
+                    return GetInternalLayoutProperty(this) as PropertyArray;
+                }
             }
             set
             {
-                SetValue(LayoutProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LayoutProperty, value);
+                }
+                else
+                {
+                    SetInternalLayoutProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -350,11 +406,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(MinimumSwipeSpeedProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MinimumSwipeSpeedProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMinimumSwipeSpeedProperty(this);
+                }
             }
             set
             {
-                SetValue(MinimumSwipeSpeedProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinimumSwipeSpeedProperty, value);
+                }
+                else
+                {
+                    SetInternalMinimumSwipeSpeedProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -383,11 +453,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(MinimumSwipeDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MinimumSwipeDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMinimumSwipeDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(MinimumSwipeDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinimumSwipeDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalMinimumSwipeDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -416,11 +500,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(WheelScrollDistanceStepProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(WheelScrollDistanceStepProperty);
+                }
+                else
+                {
+                    return (float)GetInternalWheelScrollDistanceStepProperty(this);
+                }
             }
             set
             {
-                SetValue(WheelScrollDistanceStepProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WheelScrollDistanceStepProperty, value);
+                }
+                else
+                {
+                    SetInternalWheelScrollDistanceStepProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -449,15 +547,30 @@ namespace Tizen.NUI
         {
             get
             {
-                return (bool)GetValue(SnapToItemEnabledProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(SnapToItemEnabledProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalSnapToItemEnabledProperty(this);
+                }
+
             }
             set
             {
-                SetValue(SnapToItemEnabledProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SnapToItemEnabledProperty, value);
+                }
+                else
+                {
+                    SetInternalSnapToItemEnabledProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private bool InternalSnapToItemEnabled
         {
             get
@@ -482,15 +595,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(RefreshIntervalProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(RefreshIntervalProperty);
+                }
+                else
+                {
+                    return (float)GetInternalRefreshIntervalProperty(this);
+                }
             }
             set
             {
-                SetValue(RefreshIntervalProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RefreshIntervalProperty, value);
+                }
+                else
+                {
+                    SetInternalRefreshIntervalProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalRefreshInterval
         {
             get
@@ -515,15 +642,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(LayoutPositionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(LayoutPositionProperty);
+                }
+                else
+                {
+                    return (float)GetInternalLayoutPositionProperty(this);
+                }
             }
             set
             {
-                SetValue(LayoutPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LayoutPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalLayoutPositionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalLayoutPosition
         {
             get
@@ -548,15 +689,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(ScrollSpeedProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollSpeedProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollSpeedProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollSpeedProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollSpeedProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollSpeedProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalScrollSpeed
         {
             get
@@ -581,15 +736,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(OvershootProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(OvershootProperty);
+                }
+                else
+                {
+                    return (float)GetInternalOvershootProperty(this);
+                }
             }
             set
             {
-                SetValue(OvershootProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(OvershootProperty, value);
+                }
+                else
+                {
+                    SetInternalOvershootProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalOvershoot
         {
             get
@@ -614,15 +783,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(ScrollDirectionProperty) as Vector2;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ScrollDirectionProperty) as Vector2;
+                }
+                else
+                {
+                    return GetInternalScrollDirectionProperty(this) as Vector2;
+                }
             }
             set
             {
-                SetValue(ScrollDirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollDirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private Vector2 InternalScrollDirection
         {
             get
@@ -647,15 +830,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (int)GetValue(LayoutOrientationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(LayoutOrientationProperty);
+                }
+                else
+                {
+                    return (int)GetInternalLayoutOrientationProperty(this);
+                }
             }
             set
             {
-                SetValue(LayoutOrientationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LayoutOrientationProperty, value);
+                }
+                else
+                {
+                    SetInternalLayoutOrientationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private int InternalLayoutOrientation
         {
             get
@@ -680,15 +877,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(ScrollContentSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollContentSizeProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollContentSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollContentSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollContentSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollContentSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalScrollContentSize
         {
             get

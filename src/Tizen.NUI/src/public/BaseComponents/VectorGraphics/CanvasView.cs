@@ -30,25 +30,33 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     {
         private List<Drawable> drawables; //The list of added drawables
 
-        static CanvasView() { }
-
         /// <summary>
         /// ViewBoxProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty ViewBoxProperty = null;
+        internal static void SetInternalViewBoxProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
             if (newValue != null)
             {
                 instance.InternalViewBox = (Tizen.NUI.Size2D)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalViewBoxProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
             return instance.InternalViewBox;
-        });
+        }
+
+        static CanvasView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null,
+                  propertyChanged: SetInternalViewBoxProperty, defaultValueCreator: GetInternalViewBoxProperty);
+            }
+        }
 
         /// <summary>
         /// Creates an initialized CanvasView.
@@ -119,11 +127,25 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             get
             {
-                return GetValue(ViewBoxProperty) as Size2D;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ViewBoxProperty) as Size2D;
+                }
+                else
+                {
+                    return GetInternalViewBoxProperty(this) as Size2D;
+                }
             }
             set
             {
-                SetValue(ViewBoxProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ViewBoxProperty, value);
+                }
+                else
+                {
+                    SetInternalViewBoxProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

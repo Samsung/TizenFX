@@ -9,6 +9,7 @@ namespace Tizen.NUI.Samples
         {
             lav = new LottieAnimationView();
             lav.SynchronousLoading = false;
+            lav.NotifyAfterRasterization = true;
             lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "a.json";
             lav.LoopCount = -1;
             lav.BackgroundColor = Color.White;

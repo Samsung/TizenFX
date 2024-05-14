@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
