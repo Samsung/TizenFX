@@ -87,6 +87,8 @@ namespace Tizen.NUI
 
         internal Assembly Assembly { get; set; }
 
+        internal NUIGadgetAssembly NUIGadgetAssembly { get; set; }
+
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
             Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);

@@ -44,12 +44,19 @@ namespace Tizen.NUI.BaseComponents
         private int widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float weight = 0.0f; // Weighting of child View in a Layout
-        private bool backgroundImageSynchronousLoading = false;
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
         private bool isThemeChanged = false;
+
+        // Collection of image-sensitive properties, and need to update C# side cache value.
+        private static readonly List<int> cachedNUIViewBackgroundImagePropertyKeyList = new List<int> {
+            ImageVisualProperty.URL,
+            ImageVisualProperty.SynchronousLoading,
+        };
+        private string backgroundImageUrl = null;
+        private bool backgroundImageSynchronousLoading = false;
 
         // List of constraints
         private Constraint widthConstraint = null;
@@ -4780,15 +4787,18 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                backgroundImageSynchronousLoading = value;
-
-                if (!string.IsNullOrEmpty(BackgroundImage))
+                if (backgroundImageSynchronousLoading != value)
                 {
-                    PropertyMap bgMap = this.Background;
-                    var temp = new PropertyValue(backgroundImageSynchronousLoading);
-                    bgMap[ImageVisualProperty.SynchronousLoading] = temp;
-                    temp.Dispose();
-                    Background = bgMap;
+                    backgroundImageSynchronousLoading = value;
+
+                    if (!string.IsNullOrEmpty(BackgroundImage))
+                    {
+                        PropertyMap bgMap = this.Background;
+                        var temp = new PropertyValue(backgroundImageSynchronousLoading);
+                        bgMap[ImageVisualProperty.SynchronousLoading] = temp;
+                        temp.Dispose();
+                        Background = bgMap;
+                    }
                 }
             }
         }

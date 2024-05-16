@@ -282,11 +282,8 @@ namespace Tizen.NUI.BaseComponents
         internal static object GetInternalBackgroundImageProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string backgroundImage = "";
 
-            Interop.View.InternalRetrievingVisualPropertyString(view.SwigCPtr, Property.BACKGROUND, ImageVisualProperty.URL, out backgroundImage);
-
-            return backgroundImage;
+            return (string)view.backgroundImageUrl;
         }
 
 
@@ -336,21 +333,31 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                var propertyValue = new PropertyValue((PropertyMap)newValue);
-                Object.SetProperty(view.SwigCPtr, Property.BACKGROUND, propertyValue);
-
-                view.backgroundExtraData = null;
+                PropertyMap map = (PropertyMap)newValue;
 
                 // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
+                view.backgroundExtraData = null;
                 view.backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-                if (view.backgroundExtraDataUpdateProcessAttachedFlag)
+
+                // Update backgroundImageUrl and backgroundImageSynchronousLoading from Map
+                foreach (int key in cachedNUIViewBackgroundImagePropertyKeyList)
                 {
-                    ProcessorController.Instance.ProcessorOnceEvent -= view.UpdateBackgroundExtraData;
-                    view.backgroundExtraDataUpdateProcessAttachedFlag = false;
+                    using PropertyValue propertyValue = map.Find(key);
+                    if (propertyValue != null)
+                    {
+                        if (key == ImageVisualProperty.URL)
+                        {
+                            propertyValue.Get(out view.backgroundImageUrl);
+                        }
+                        else if (key == ImageVisualProperty.SynchronousLoading)
+                        {
+                            propertyValue.Get(out view.backgroundImageSynchronousLoading);
+                        }
+                    }
                 }
 
-                propertyValue.Dispose();
-                propertyValue = null;
+                using var mapValue = new PropertyValue(map);
+                Object.SetProperty(view.SwigCPtr, Property.BACKGROUND, mapValue);
             }
         }
         internal static object GetInternalBackgroundProperty(BindableObject bindable)
@@ -3508,6 +3515,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
+                backgroundImageUrl = null;
+
                 var empty = new PropertyValue();
                 // Clear background
                 Object.SetProperty(SwigCPtr, Property.BACKGROUND, empty);
@@ -3521,65 +3530,56 @@ namespace Tizen.NUI.BaseComponents
                 value = value.Replace("*Resource*", resource);
             }
 
-            if (backgroundExtraData == null)
-            {
+            backgroundImageUrl = value;
 
+            // Fast return for usual cases.
+            if (backgroundExtraData == null && !backgroundImageSynchronousLoading)
+            {
                 Object.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
-                BackgroundImageSynchronousLoading = backgroundImageSynchronousLoading;
                 return;
             }
 
-            var map = new PropertyMap();
-            var url = new PropertyValue(value);
-            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            var cornerRadius = new PropertyValue(cornerRadiusValue);
-            var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-            var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            var borderlineColor = new PropertyValue(borderlineColorValue);
-            var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
-            var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
-            var npatchType = new PropertyValue((int)Visual.Type.NPatch);
-            var border = (backgroundExtraData.BackgroundImageBorder != null) ? new PropertyValue(backgroundExtraData.BackgroundImageBorder) : null;
-            var imageType = new PropertyValue((int)Visual.Type.Image);
+            using var map = new PropertyMap();
+            using var url = new PropertyValue(value);
+            using var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
 
             map.Add(ImageVisualProperty.URL, url)
-               .Add(Visual.Property.CornerRadius, cornerRadius)
-               .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
-               .Add(Visual.Property.BorderlineWidth, borderlineWidth)
-               .Add(Visual.Property.BorderlineColor, borderlineColor)
-               .Add(Visual.Property.BorderlineOffset, borderlineOffset)
                .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
 
-            if (backgroundExtraData.BackgroundImageBorder != null)
+            if ((backgroundExtraData?.BackgroundImageBorder) != null)
             {
+                using var npatchType = new PropertyValue((int)Visual.Type.NPatch);
+                using var border = new PropertyValue(backgroundExtraData.BackgroundImageBorder);
                 map.Add(Visual.Property.Type, npatchType)
                    .Add(NpatchImageVisualProperty.Border, border);
             }
             else
             {
+                using var imageType = new PropertyValue((int)Visual.Type.Image);
                 map.Add(Visual.Property.Type, imageType);
+            }
+
+            if(backgroundExtraData != null)
+            {
+                using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+                using var cornerRadius = new PropertyValue(cornerRadiusValue);
+                using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
+                using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+                using var borderlineColor = new PropertyValue(borderlineColorValue);
+                using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
+
+                map.Add(Visual.Property.CornerRadius, cornerRadius)
+                   .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
+                   .Add(Visual.Property.BorderlineWidth, borderlineWidth)
+                   .Add(Visual.Property.BorderlineColor, borderlineColor)
+                   .Add(Visual.Property.BorderlineOffset, borderlineOffset);
             }
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
-            var mapValue = new PropertyValue(map);
+            using var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
-
-            imageType?.Dispose();
-            border?.Dispose();
-            npatchType?.Dispose();
-            synchronousLoading?.Dispose();
-            borderlineOffset?.Dispose();
-            borderlineColor?.Dispose();
-            borderlineColorValue?.Dispose();
-            borderlineWidth?.Dispose();
-            cornerRadiusPolicy?.Dispose();
-            cornerRadius?.Dispose();
-            cornerRadiusValue?.Dispose();
-            url?.Dispose();
-            map?.Dispose();
-            mapValue?.Dispose();
         }
 
         private void SetBackgroundImageBorder(Rectangle value)
@@ -3638,9 +3638,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            // Background property will be Color after now. Remove background image url information.
+            backgroundImageUrl = null;
+
             if (backgroundExtraData == null)
             {
-
                 Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
                 return;
             }
