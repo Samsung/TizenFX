@@ -2465,9 +2465,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Cutout property.<br />
-        /// Whether the Cutout is enabled. (The default value is false)
+        /// The cutout property.
         /// </summary>
+        /// <remarks>
+        /// When Cutout is set to true, Elements such as background or shadow behind the text become transparent.<br />
+        /// Therefore, when you adjust the transparency of text, you can see the back through the entire TextLabel.<br />
+        /// It is recommended to set Cutout to false when Text's transparency is 1.<br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the Cutout method. <br />
+        /// Pixels in which glyph exists become transparent and the back of TextLabel become visible.<br />
+        /// <code>
+        /// TextLabel label = new TextLabel()
+        /// {
+        ///     Cutout = true,
+        ///     TextColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        /// };
+        /// </code>
+        /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Cutout
         {
