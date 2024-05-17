@@ -933,6 +933,26 @@ namespace Tizen.NUI.BaseComponents
             return instance.InternalUnderlineHeight;
         }
 
+        /// <summary>
+        /// CutoutProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CutoutProperty = null;
+        internal static void SetInternalCutoutProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout, (bool)newValue);
+            }
+        }
+        internal static object GetInternalCutoutProperty(BindableObject bindable)
+        {
+            var textLabel = (TextLabel)bindable;
+
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout);
+        }
+
         internal Selector<string> TranslatableTextSelector
         {
             get => GetSelector<string>(selectorData?.TranslatableText, TextLabel.TranslatableTextProperty);
