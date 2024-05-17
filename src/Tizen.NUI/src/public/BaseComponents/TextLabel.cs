@@ -214,6 +214,9 @@ namespace Tizen.NUI.BaseComponents
 
                 UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(TextLabel), 0.0f, 
                     propertyChanged: SetInternalUnderlineHeightProperty, defaultValueCreator: GetInternalUnderlineHeightProperty);
+
+                CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
+                    propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
             }
         }
 
@@ -2461,6 +2464,53 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The cutout property.
+        /// </summary>
+        /// <remarks>
+        /// When Cutout is set to true, Elements such as background or shadow behind the text become transparent.<br />
+        /// Therefore, when you adjust the transparency of text, you can see the back through the entire TextLabel.<br />
+        /// It is recommended to set Cutout to false when Text's transparency is 1.<br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the Cutout method. <br />
+        /// Pixels in which glyph exists become transparent and the back of TextLabel become visible.<br />
+        /// <code>
+        /// TextLabel label = new TextLabel()
+        /// {
+        ///     Cutout = true,
+        ///     TextColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Cutout
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(CutoutProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalCutoutProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CutoutProperty, value);
+                }
+                else
+                {
+                    SetInternalCutoutProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -2686,6 +2736,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AnchorClickedColor = Interop.TextLabel.AnchorClickedColorGet();
             internal static readonly int RemoveFrontInset = Interop.TextLabel.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
+            internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
 
 
             internal static void Preload()
