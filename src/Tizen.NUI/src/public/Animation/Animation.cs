@@ -529,6 +529,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the animation's ID. 0 if animation is invalid.
+        /// Read-only
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ID
+        {
+            get
+            {
+                return GetId();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use PropertyList instead")]
@@ -1590,6 +1603,19 @@ namespace Tizen.NUI
         {
             Animation.States ret = (Animation.States)Interop.Animation.GetState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal uint GetId()
+        {
+            uint ret = 0u;
+
+            if(!Disposed && !IsDisposeQueued)
+            {
+                ret = Interop.Animation.GetAnimationId(SwigCPtr);
+            }
+
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
