@@ -185,6 +185,7 @@ namespace Tizen.NUI
 
         public View GetSourceView()
         {
+            // TODO : Fix me, to avoid memory leak issue.
             View ret = new View(Interop.RenderTask.GetSourceActor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -241,6 +242,7 @@ namespace Tizen.NUI
 
         public FrameBuffer GetFrameBuffer()
         {
+            // TODO : Fix me, to avoid memory leak issue.
             FrameBuffer ret = new FrameBuffer(Interop.RenderTask.GetFrameBuffer(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -268,6 +270,7 @@ namespace Tizen.NUI
 
         public View GetScreenToFrameBufferMappingView()
         {
+            // TODO : Fix me, to avoid memory leak issue.
             View ret = new View(Interop.RenderTask.GetScreenToFrameBufferMappingActor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -366,6 +369,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public void RenderUntil(View view)
+        {
+            Interop.RenderTask.RenderUntil(SwigCPtr, View.getCPtr(view));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        public View GetStopperView()
+        {
+            // TODO : Fix me, to avoid memory leak issue.
+            View ret = new View(Interop.RenderTask.GetStopperView(SwigCPtr), true);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
         public bool WorldToViewport(Vector3 position, out float viewportX, out float viewportY)
         {
             bool ret = Interop.RenderTask.WorldToViewport(SwigCPtr, Vector3.getCPtr(position), out viewportX, out viewportY);
@@ -460,6 +477,74 @@ namespace Tizen.NUI
                 PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
                 SetProperty(RenderTask.Property.RequiresSync, setVal);
                 setVal?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Sets / gets the tag of render pass. It will be used when we want to change render pass without change shader.
+        /// Default is 0.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint RenderPassTag
+        {
+            get
+            {
+                uint ret = Interop.RenderTask.GetRenderPassTag(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
+            }
+            set
+            {
+                Interop.RenderTask.SetRenderPassTag(SwigCPtr, value);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
+        /// <summary>
+        /// Sets / gets the rendering order of render task.
+        /// </summary>
+        /// <remarks>
+        /// In the DALi, offscreen renderTasks are rendered earlier than onscreen renderTask.
+        ///  * In each category of OffScreen RenderTask and OnScreen RenderTask,
+        ///  * a RenderTask with a smaller orderIndex is rendered first.
+        ///  * The RenderTasks in RenderTaskList is always sorted as acending order of the OrderIndex.
+        ///  * The OrderIndex value is needed to be set between [-1000, 1000].
+        ///  * Default orderIndex is 0.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int OrderIndex
+        {
+            get
+            {
+                int ret = Interop.RenderTask.GetOrderIndex(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
+            }
+            set
+            {
+                Interop.RenderTask.SetOrderIndex(SwigCPtr, value);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
+        /// <summary>
+        /// Gets the render task's ID. 0 if render task is invalid.
+        /// Read-only
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ID
+        {
+            get
+            {
+                uint ret = 0u;
+
+                if(!Disposed && !IsDisposeQueued)
+                {
+                    ret = Interop.RenderTask.GetRenderTaskId(SwigCPtr);
+                }
+
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
         }
     }
