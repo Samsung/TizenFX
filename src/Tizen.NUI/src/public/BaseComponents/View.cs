@@ -2715,7 +2715,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Position2D)GetInternalPositionProperty(this);
+                    return (Position)GetInternalPositionProperty(this);
                 }
             }
             set
