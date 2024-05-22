@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="7.0" package="Tizen.AIAvatar.Example" version="1.0.0">
+<manifest xmlns="http://tizen.org/ns/packages" api-version="7.0" package="AIAvatarSample" version="1.0.0">
   <profile name="common" />
-  <ui-application appid="Tizen.AIAvatar.Example"
-                                        exec="AIAvatarExample.dll"
+  <ui-application appid="AIAvatar.Sample"
+                                        exec="AIAvatarSample.dll"
                                         type="dotnet"
                                         multiple="false"
                                         taskmanage="true"
