@@ -39,15 +39,15 @@ namespace Tizen.AIAvatar
 
         internal LipSyncer()
         {
+            vowelConverter = new VowelConverter();
+            audioPlayer = new AudioPlayer();
         }
 
         internal AudioPlayer AudioPlayer { get { return audioPlayer; } }
 
-        public void Init(Animation lipAnimation)
+        public void SetLipAnimation(Animation lipAnimation)
         {
             this.lipAnimation = lipAnimation;
-            vowelConverter = new VowelConverter();
-            audioPlayer = new AudioPlayer();
         }
 
         public void PlayAudio(byte[] audio, int sampleRate)
@@ -107,19 +107,25 @@ namespace Tizen.AIAvatar
             DestroyLipAnimation();
 
             var lipKeyframes = CreateKeyFrame(audio, CurrentAudioOptions.SampleRate);
-            var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyframes, false);
-
-            if (lipAnimation != null)
+            if (lipKeyframes != null)
             {
-                ResetLipAnimation(lipAnimation);
-                PlayLipAnimation();
+                var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyframes, false);
+
+                if (lipAnimation != null)
+                {
+                    ResetLipAnimation(lipAnimation);
+                    PlayLipAnimation();
+                    audioPlayer.Play(audio);
+                }
+                else
+                {
+                    Tizen.Log.Error(LogTag, "lipAnimation is null");
+                }
             }
             else
             {
-
-                Tizen.Log.Error(LogTag, "lipAnimation is null");
+                Tizen.Log.Error(LogTag, "lipKeyframes is null");
             }
-            audioPlayer.Play(audio);
         }
 
         private void PlayLipSync(byte[] audio, int sampleRate)
@@ -156,24 +162,6 @@ namespace Tizen.AIAvatar
 
         private void StopLipSync()
         {
-            StopLipAnimation();
-            audioPlayer.Stop();
-        }
-
-        private void PauseLipAnimation()
-        {
-            if (lipAnimation != null)
-            {
-                lipAnimation?.Pause();
-            }
-            else
-            {
-                Log.Error(LogTag, "Current Lip Animation is null");
-            }
-        }
-
-        private void StopLipAnimation()
-        {
             if (lipAnimation != null)
             {
                 DestroyLipAnimation();
@@ -188,6 +176,19 @@ namespace Tizen.AIAvatar
                 {
                     Log.Error(LogTag, "Current Lip Animation is null");
                 }
+            }
+            else
+            {
+                Log.Error(LogTag, "Current Lip Animation is null");
+            }
+            audioPlayer.Stop();
+        }
+
+        private void PauseLipAnimation()
+        {
+            if (lipAnimation != null)
+            {
+                lipAnimation?.Pause();
             }
             else
             {

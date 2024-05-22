@@ -24,6 +24,33 @@ using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
+    internal class TTSControllerEventArgs : EventArgs
+    {
+        public TTSControllerEventArgs()
+        {
+        }
+
+        public TTSControllerEventArgs(byte[] audioData, int sampleRate)
+        {
+            //AudioData = audioData;
+            AudioData = new byte[audioData.Length];
+            Buffer.BlockCopy(audioData, 0, AudioData, 0, audioData.Length);
+            SampleRate = sampleRate;
+        }
+
+        public byte[] AudioData
+        {
+            get;
+            internal set;
+        }
+
+        public int SampleRate
+        {
+            get;
+            internal set;
+        }
+    }
+
     internal class TTSController : IDisposable
     {
         private List<UtteranceText> textList;
@@ -50,7 +77,13 @@ namespace Tizen.AIAvatar
         private int audioLength;
         private bool isAsyncLipStarting;
 
+        internal event EventHandler PlayReadyCallback;
 
+        internal event EventHandler<TTSControllerEventArgs> PreparedSyncText;
+        internal event EventHandler<TTSControllerEventArgs> StoppedTTS;
+        
+        
+        internal event EventHandler<TTSControllerEventArgs> UpdatedBuffer;
 
         internal TTSController()
         {
@@ -61,14 +94,6 @@ namespace Tizen.AIAvatar
         {
             DeinitTts();
         }
-
-        internal event EventHandler PlayReadyCallback;
-
-        internal event EventHandler InitedAsyncBuffer;
-        internal event EventHandler UpdatedBuffer;
-        internal event EventHandler Prepared;
-        internal event EventHandler Stopped;
-        internal event EventHandler FinishedSynthesizedPcm;
 
         internal TtsClient TtsHandle
         {
@@ -208,9 +233,7 @@ namespace Tizen.AIAvatar
             {
                 Log.Info(LogTag, "PlayPreparedText TTS");
 
-                Prepared?.Invoke(byteList.ToArray(), EventArgs.Empty);
-                //TODO
-                //currentAvatar?.AvatarAnimator?.PlayLipSync(byteList.ToArray(), sampleRate);
+                PreparedSyncText?.Invoke(this, new TTSControllerEventArgs(byteList.ToArray(), sampleRate));
                 return true;
             }
             return false;
@@ -261,8 +284,7 @@ namespace Tizen.AIAvatar
                 return;
             }
             ttsHandle.Stop();
-            Stopped?.Invoke(null, EventArgs.Empty);
-            //currentAvatar?.AvatarAnimator?.StopLipSync();
+            StoppedTTS?.Invoke(this, new TTSControllerEventArgs());
         }
 
         internal void DeinitTts()
@@ -371,7 +393,7 @@ namespace Tizen.AIAvatar
                         audioTailLength = (int)(sampleRate * audioTailLengthFactor * audioBufferMultiflier);
                         audioTailBuffer = new byte[audioTailLength];
                         PlayReadyCallback?.Invoke(null, EventArgs.Empty);
-                        InitAsyncBuffer();
+                        //InitAsyncBuffer();
                     }
                     break;
                 case SynthesizedPcmEvent.Continue://continue
@@ -382,7 +404,7 @@ namespace Tizen.AIAvatar
                         if (recordedBuffer.Length >= desiredBufferLength)
                         {
                             Tizen.Log.Error(LogTag, "Current recordbuffer length :" + recordedBuffer.Length);
-                            UpdateBuffer(recordedBuffer, sampleRate);
+                            //UpdateBuffer(recordedBuffer, sampleRate);
 
                             Buffer.BlockCopy(recordedBuffer, recordedBuffer.Length - audioTailLength, audioTailBuffer, 0, audioTailLength);
 
@@ -403,7 +425,7 @@ namespace Tizen.AIAvatar
                         if (!isPrepared)
                         {
                             //Play voice immediately
-                            //PlayPreparedText();
+                            PlayPreparedText();
                         }
                         else
                         {
@@ -413,8 +435,8 @@ namespace Tizen.AIAvatar
                         }
                     }
                     else
-                    {
-                        FinishedSynthesizedPcm?.Invoke(null, EventArgs.Empty);
+                    {//async
+                        //FinishedSynthesizedPcm?.Invoke(null, EventArgs.Empty);
                         //lipSyncer.SetFinishAsyncLip(true);
                     }
                     break;
@@ -466,8 +488,8 @@ namespace Tizen.AIAvatar
 
         private void InitAsyncBuffer()
         {
-            InitedAsyncBuffer?.Invoke(null, EventArgs.Empty);
             /*
+            InitedAsyncBuffer?.Invoke(null, EventArgs.Empty);
             if (!lipSyncer.IsAsyncInit)
             {
                 audioLength = (int)(sampleRate * 0.16f * 2f);
@@ -482,7 +504,7 @@ namespace Tizen.AIAvatar
 
         private void UpdateBuffer(byte[] recordBuffer, int sampleRate)
         {
-            UpdatedBuffer?.Invoke(null, EventArgs.Empty);
+            UpdatedBuffer?.Invoke(this, new TTSControllerEventArgs(recordBuffer, sampleRate));
             /*
             if (lipSyncer != null)
             {

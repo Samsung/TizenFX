@@ -33,7 +33,7 @@ namespace AIAvatar
         private static readonly string EmojiAvatarResourcePath = "/models/EmojiAvatar/";
         private static readonly string DefaultMotionResourcePath = "/animation/motion/";
         private static string resourcePath = Utils.ResourcePath;
-        
+
         private const int cameraAnimationDurationMilliSeconds = 2000;
         private const int sceneTransitionDurationMilliSeconds = 1500;
 
@@ -89,7 +89,7 @@ namespace AIAvatar
             {
                 var motionData = new MotionData();
                 motionData.LoadMotionCaptureAnimation(path, true, new Vector3(0.01f, 0.01f, 0.01f), false);
-                
+
                 var animationInfo = new AnimationInfo(motionData, GetFileNameWithoutExtension(path));
                 animationInfoList.Add(animationInfo);
             }
@@ -122,13 +122,15 @@ namespace AIAvatar
 
         private void PlayLip(string source)
         {
-            var bytes = ReadAllBytes($"{resourcePath}/voice/{source}");
+            var path = $"{resourcePath}/voice/{source}";
+            var bytes = ReadAllBytes(path);
 
+            Tizen.Log.Error("AIAvatar", "audio path : " + path);
             if (lipSyncController == null)
             {
                 lipSyncController = new LipSyncController(defaultAIAvatar);
             }
-            
+
             if (bytes != null)
             {
                 lipSyncController.PlayLipSync(bytes);
@@ -136,12 +138,11 @@ namespace AIAvatar
             else
             {
                 Tizen.Log.Error("AIAvatar", "Fail to load bytes");
-
             }
         }
 
         public void StartRandomAnimation()
-        {     
+        {
             var randomIdx = new Random().Next(0, animationInfoList.Count);
             defaultAIAvatar.PlayAnimation(animationInfoList[randomIdx].MotionData);
         }
@@ -160,7 +161,7 @@ namespace AIAvatar
 
         public void EyeBlink()
         {
-            if(!isBlink)
+            if (!isBlink)
             {
                 defaultAIAvatar.StartEyeBlink();
             }
@@ -198,7 +199,7 @@ namespace AIAvatar
                 Type = VoiceType.Female,
             };
 
-            lipSyncController.PrepareTTS(Utils.TTSText, voiceInfo, (o, e)=>
+            lipSyncController.PrepareTTS(Utils.TTSText, voiceInfo, (o, e) =>
             {
                 lipSyncController.PlayPreparedTTS();
             });
@@ -206,6 +207,11 @@ namespace AIAvatar
 
         public void StopTTSTest()
         {
+            if (lipSyncController == null)
+            {
+                Tizen.Log.Error("AIAvatar", "lipSyncController is null");
+                return;
+            }
             lipSyncController.StopTTS();
         }
 
@@ -223,7 +229,7 @@ namespace AIAvatar
         public void ChangeAvatar()
         {
             DestroyAvatar();
-            if(avatarIndex + 1 <= avatarList.Count - 1)
+            if (avatarIndex + 1 <= avatarList.Count - 1)
             {
                 avatarIndex++;
             }
@@ -274,7 +280,7 @@ namespace AIAvatar
         private void SetupDefaultAvatar()
         {
             avatarList = AvatarExtension.GetDefaultAvatarList();
-            foreach(var info in avatarList)
+            foreach (var info in avatarList)
             {
                 Tizen.Log.Info("AvatarSample", $"Avatar Name :{info.Name}\n");
                 Tizen.Log.Info("AvatarSample", $"Avatar Thumbnail :{info.ThumbnailPath}\n");
@@ -288,15 +294,13 @@ namespace AIAvatar
             defaultAIAvatar = new Avatar(avatarList[avatarIndex])
             {
                 Position = new Position(0.0f, -1.70f, -2.0f),
-                Size = new Size(2.0f, 2.0f, 2.0f),
+                Size = new Size(1.0f, 1.0f, 1.0f),
                 Orientation = new Rotation(new Radian(new Degree(0.0f)), Vector3.YAxis)
             };
             //var animator = defaultAIAvatar.CurrentAnimator;
             //animator.MotionStateChanged += OnMotionStateChanged;
             //animator.LipStateChanged += OnLipStateChanged;
             Add(defaultAIAvatar);
-
-//            var tracker= new AvatarMotionTracker(defaultAIAvatar);
         }
 
         private void DestroyAvatar()

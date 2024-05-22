@@ -229,67 +229,36 @@ namespace Tizen.AIAvatar
         }
         #endregion
         
-        private Animation eyeAnimation;
         private void InitAvatar()
         {
             motionPlayer = new MotionPlayer();
             var eyeMotionData = CreateEyeBlinkMotionData(200);
-            if (eyeAnimation != null)
-            {
-                Tizen.Log.Info(LogTag, "Successed Loading eyeAnimation");
-            }
-            else
+            if (eyeMotionData == null)
             {
                 Tizen.Log.Info(LogTag, "Failed Loading eyeAnimation");
             }
+
             ResourcesLoaded += (s, e) =>
             {
-                ConnectEyeNode(eyeMotionData);
-                motionPlayer.SetBlinkAnimation(eyeAnimation);
+                var eyeAnimation = GenerateMotionDataAnimation(eyeMotionData);
+                if (eyeAnimation != null)
+                {
+                    motionPlayer.SetBlinkAnimation(eyeAnimation);
+                }
             };
         }
 
-        private void ConnectEyeNode(MotionData motionData)
-        {
-            eyeAnimation = GenerateMotionDataAnimation(motionData);
-            if (eyeAnimation == null)
-            {
-                Log.Error(LogTag, "eye Animation is null");
-            }
-
-
-        }
-
-
-
         private MotionData CreateEyeBlinkMotionData(int ms)
         {
-            Tizen.Log.Info(LogTag, "CreateEyeBlinkMotionData---1");
             var keyFrames = new KeyFrames();
             keyFrames.Add(0.1f, 0.0f);
             keyFrames.Add(0.5f, 1.0f);
             keyFrames.Add(0.9f, 0.0f);
 
-            //var headBlendShapeEyeLeft = avatarProperties.CreateBlendShapeMotionIndex(NodeType.HeadGeo, BlendShapeType.EyeBlinkLeft);
-            //var headBlendShapeEyeRight = avatarProperties.CreateBlendShapeMotionIndex(NodeType.HeadGeo, BlendShapeType.EyeBlinkRight);
-            //var eyelashBlendShapeEyeLeft = avatarProperties.CreateBlendShapeMotionIndex(NodeType.EyelashGeo, BlendShapeType.EyeBlinkLeft);
-            //var eyelashBlendShapeEyeRight = avatarProperties.CreateBlendShapeMotionIndex(NodeType.EyelashGeo, BlendShapeType.EyeBlinkRight);
-
-
             var headBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.HeadGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkLeft);
             var headBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.HeadGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkRight);
             var eyelashBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkLeft);
             var eyelashBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkRight);
-
-            //var headBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper,NodeType.HeadGeo, new PropertyKey("EyeBlink_Left"));
-            //var headBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.HeadGeo, new PropertyKey("EyeBlink_Right"));
-            //var eyelashBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, new PropertyKey("EyeBlink_Left"));
-            //var eyelashBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, new PropertyKey("EyeBlink_Right"));
-
-            Tizen.Log.Error("MYLOG", "TESTTESTRET 1 :" + headBlendShapeEyeLeft.AvatarBlendShapeType + "\n");
-            Tizen.Log.Error("MYLOG", "TESTTESTRET 2 :" + headBlendShapeEyeRight.AvatarBlendShapeType + "\n");
-            Tizen.Log.Error("MYLOG", "TESTTESTRET 3 :" + eyelashBlendShapeEyeLeft.AvatarBlendShapeType + "\n");
-            Tizen.Log.Error("MYLOG", "TESTTESTRET 4 :" + eyelashBlendShapeEyeRight.AvatarBlendShapeType + "\n");
 
             var motionData = new MotionData(ms);
             motionData.Add(headBlendShapeEyeLeft, new MotionValue(keyFrames));
@@ -297,35 +266,7 @@ namespace Tizen.AIAvatar
             motionData.Add(eyelashBlendShapeEyeLeft, new MotionValue(keyFrames));
             motionData.Add(eyelashBlendShapeEyeRight, new MotionValue(keyFrames));
 
-            Tizen.Log.Info(LogTag, "CreateEyeBlinkMotionData---2");
             return motionData;
-        }
-
-        private Animation GenerateEyeAnimation()
-        {
-            var keyFrames = new KeyFrames();
-            keyFrames.Add(0.1f, 0.0f);
-            keyFrames.Add(0.5f, 1.0f);
-            keyFrames.Add(0.9f, 0.0f);
-
-
-            var eyeMotionData = new MotionData(200);
-            if (eyeMotionData != null)
-            {
-            }
-            else
-            {
-                Tizen.Log.Error(LogTag, "eyeMotionData is null");
-            }
-
-            
-            var blinkAnimation = GenerateMotionDataAnimation(eyeMotionData);
-
-            if (blinkAnimation == null)
-            {
-                Tizen.Log.Error(LogTag, "blinkAnimation is null");
-            }
-            return blinkAnimation;
         }
     }
 }

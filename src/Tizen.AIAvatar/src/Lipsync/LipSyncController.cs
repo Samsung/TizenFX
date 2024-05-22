@@ -97,6 +97,10 @@ namespace Tizen.AIAvatar
 
         private Animation OnCreatedKeyFrameAnimation(AnimationKeyFrame animationKeyFrame, bool isMic)
         {
+            if (animationKeyFrame == null)
+            {
+                Tizen.Log.Error(LogTag, "animtionKeyFrame is null");
+            }
             var lipAnimation = CreateLipAnimation(animationKeyFrame, isMic);
             return lipAnimation;
         }
@@ -148,6 +152,9 @@ namespace Tizen.AIAvatar
                 {
                     ttsController = new TTSController();
                     //TODO : LipSync Event Connect
+                    ttsController.PreparedSyncText += OnPreparedSyncText;
+                    ttsController.StoppedTTS += OnStoppedTTS;
+                    ttsController.UpdatedBuffer += OnUpdatedBuffer;
                 }
                 catch (Exception e)
                 {
@@ -155,6 +162,40 @@ namespace Tizen.AIAvatar
                     Log.Error(LogTag, $"{e.StackTrace}");
                 }
             }
+        }
+
+        private void OnUpdatedBuffer(object sender, TTSControllerEventArgs e)
+        {
+            throw new NotImplementedException();
+            if (lipSyncer != null)
+            {
+                Log.Error(LogTag, "OnTTSBufferChanged");
+                /*
+                lipSyncer.EnqueueAnimation(recordBuffer, sampleRate, audioLength);
+                if (!isAsyncLipStarting)
+                {
+                    lipSyncer.StartAsyncLipPlayTimer();
+                    isAsyncLipStarting = true;
+                }*/
+            }
+            else
+            {
+                Log.Error(LogTag, "avatarLipSyncer is null");
+            }
+        }
+
+        private void OnStoppedTTS(object sender, TTSControllerEventArgs e)
+        {
+            lipSyncer.Stop();
+        }
+
+        private void OnPreparedSyncText(object sender, TTSControllerEventArgs e)
+        {
+            var data = e.AudioData;
+            var sampleRate = e.SampleRate;
+            
+            // Play Lipsync Animation by Audio
+            lipSyncer.PlayAudio(data, sampleRate);
         }
 
         /// <summary>  
@@ -194,8 +235,8 @@ namespace Tizen.AIAvatar
         /// The lipSyncer plays the audio using the provided byte array and sample rate.  
         /// </summary>  
         /// <param name="audio">The audio data to be played in a byte array format.</param>  
-        /// <param name="sampleRate">The sampling rate of the audio data, default value is 16000 Hz.</param>
-        public bool PlayLipSync(byte[] audio, int sampleRate = 16000)
+        /// <param name="sampleRate">The sampling rate of the audio data, default value is 24000 Hz.</param>
+        public bool PlayLipSync(byte[] audio, int sampleRate = 24000)
         {
             if (lipSyncer == null)
             {
@@ -214,7 +255,7 @@ namespace Tizen.AIAvatar
         /// </summary>  
         /// <param name="audio">The audio data to be played in a byte array format.</param>  
         /// <param name="sampleRate">The sampling rate of the audio data, default value is 16000 Hz.</param>
-        public bool PlayLipSync(string path, int sampleRate = 16000)
+        public bool PlayLipSync(string path, int sampleRate = 24000)
         {
             var audio = Utils.ReadAllBytes(path);
             if (audio == null)
