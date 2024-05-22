@@ -29,14 +29,23 @@ namespace AIAvatar
 {
     public class AvatarScene : SceneView
     {
+        private static readonly string ApplicationResourcePath = "/usr/apps/org.tizen.default-avatar-resource/shared/res/";
+        private static readonly string EmojiAvatarResourcePath = "/models/EmojiAvatar/";
+        private static readonly string DefaultMotionResourcePath = "/animation/motion/";
         private static string resourcePath = Utils.ResourcePath;
+        
         private const int cameraAnimationDurationMilliSeconds = 2000;
         private const int sceneTransitionDurationMilliSeconds = 1500;
 
         private Avatar defaultAIAvatar;
         private List<AvatarInfo> avatarList;
-        private int avatarIndex = 0;
+        private List<AnimationInfo> animationInfoList;
+        private LipSyncController lipSyncController;
 
+        private bool isBlink = false;
+        private bool isShowing = true;
+
+        private int avatarIndex = 0;
         private float iblFactor = 0.3f;
 
         public float IBLFactor
@@ -66,6 +75,24 @@ namespace AIAvatar
 
             // Setup Default Avatar Position & Orientation
             SetupDefaultAvatar();
+
+            // Load Default Animations
+            LoadDefaultAnimations();
+        }
+
+        private void LoadDefaultAnimations()
+        {
+            var motionAnimations = Directory.GetFiles(ApplicationResourcePath + DefaultMotionResourcePath, "*.bvh");
+            animationInfoList = new List<AnimationInfo>();
+
+            foreach (var path in motionAnimations)
+            {
+                var motionData = new MotionData();
+                motionData.LoadMotionCaptureAnimation(path, true, new Vector3(0.01f, 0.01f, 0.01f), false);
+                
+                var animationInfo = new AnimationInfo(motionData, GetFileNameWithoutExtension(path));
+                animationInfoList.Add(animationInfo);
+            }
         }
 
         public void SetupSceneViewIBLFactor(float value)
@@ -75,75 +102,61 @@ namespace AIAvatar
 
         public void StartAvatarTalk_1()
         {
-            //var text = "test";// editor.Text;
-            //defaultAIAvatar.Speak(text);
             PlayLip("cs-CZ-Wavenet-A.wav");
         }
 
         public void StartAvatarTalk_2()
         {
-            //var text = "test";// editor.Text;
-            //defaultAIAvatar.Speak(text);
             PlayLip("da-DK-Wavenet-A.wav");
         }
 
         public void StartAvatarTalk_3()
         {
-            //var text = "test";// editor.Text;
-            //defaultAIAvatar.Speak(text);
             PlayLip("el-GR-Wavenet-A.wav");
         }
 
         public void StartAvatarTalkByPath()
         {
-            //defaultAIAvatar.PlayLipSync($"{resourcePath}/voice/voice_0.bin");
+            PlayLip($"{resourcePath}/voice/voice_0.bin");
         }
 
-        internal static string GetFileNameWithoutExtension(string path)
+        private void PlayLip(string source)
         {
-            return System.IO.Path.GetFileNameWithoutExtension(path);
-        }
-        internal static readonly string ApplicationResourcePath = "/usr/apps/org.tizen.default-avatar-resource/shared/res/";
-        internal static readonly string EmojiAvatarResourcePath = "/models/EmojiAvatar/";
-        internal static readonly string DefaultMotionResourcePath = "/animation/motion/";
-        public void StartRandomAnimation()
-        {
-            //defaultAIAvatar.PlayRandomAnimation(3000);
-            
-            var motionAnimations = Directory.GetFiles(ApplicationResourcePath + DefaultMotionResourcePath, "*.bvh");
-            var animationInfoList = new List<AnimationInfo>();
-            MotionData motionData = new MotionData();
-                Tizen.Log.Error("MYLOG", "Path : "+motionAnimations[0]);
-            motionData.LoadMotionCaptureAnimation(motionAnimations[0], true, new Vector3(0.01f, 0.01f, 0.01f), false);
+            var bytes = ReadAllBytes($"{resourcePath}/voice/{source}");
 
-            if(motionData == null)
+            if (lipSyncController == null)
             {
-                Tizen.Log.Error("MYLOG", "MotionData is not null\n");
+                lipSyncController = new LipSyncController(defaultAIAvatar);
+            }
+            
+            if (bytes != null)
+            {
+                lipSyncController.PlayLipSync(bytes);
             }
             else
             {
+                Tizen.Log.Error("AIAvatar", "Fail to load bytes");
 
-                Tizen.Log.Error("MYLOG", "MotionData is null\n");
             }
-            defaultAIAvatar.PlayAnimation(motionData);
         }
 
-        public void InitMic()
-        {
-            //defaultAIAvatar.InitializeMicrophone();
+        public void StartRandomAnimation()
+        {     
+            var randomIdx = new Random().Next(0, animationInfoList.Count);
+            defaultAIAvatar.PlayAnimation(animationInfoList[randomIdx].MotionData);
         }
 
         public void StartMic()
         {
-            //defaultAIAvatar.StartMicrophone();
+            InitMic();
+            lipSyncController?.StartMic();
         }
 
         public void StopMic()
         {
-            //defaultAIAvatar.StopMicrophone();
+            InitMic();
+            lipSyncController?.StopMic();
         }
-
-        private bool isBlink = false;
 
         public void EyeBlink()
         {
@@ -157,8 +170,6 @@ namespace AIAvatar
             }
             isBlink = !isBlink;
         }
-
-        private bool isShowing = true;
 
         public void ShowHide()
         {
@@ -175,34 +186,27 @@ namespace AIAvatar
 
         public void InintTTsTest()
         {
-            //defaultAIAvatar.InitTTS();
+            InitTTS();
         }
 
         public void StartTTSTest()
         {
-            /*
-            defaultAIAvatar.StopTTS();
-            VoiceInfo voiceInfo;
-            voiceInfo.Lang = "en_US";
-            voiceInfo.Type = Voice.Female;
+            lipSyncController.StopTTS();
+            VoiceInfo voiceInfo = new VoiceInfo()
+            {
+                Language = "en_US",
+                Type = VoiceType.Female,
+            };
 
-            defaultAIAvatar.PrepareTTS(Utils.TTSText, voiceInfo, (o, e)=>{
-                CallSpeechBubble();
-                defaultAIAvatar.PlayPreparedTTS();
+            lipSyncController.PrepareTTS(Utils.TTSText, voiceInfo, (o, e)=>
+            {
+                lipSyncController.PlayPreparedTTS();
             });
-            */
-        }
-
-        
-        public void CallSpeechBubble()
-        {
-            //말풍선 보여주기(로그 테스트)
-            Log.Error("Tizen.AIAvatar", "Bubble Speach Test Text");
         }
 
         public void StopTTSTest()
         {
-            //defaultAIAvatar.StopTTS();
+            lipSyncController.StopTTS();
         }
 
         public void SwitchCamera()
@@ -231,18 +235,27 @@ namespace AIAvatar
 
         }
 
-        private void PlayLip(string source)
+        internal static string GetFileNameWithoutExtension(string path)
         {
-            var bytes = ReadAllBytes($"{resourcePath}/voice/{source}");
-            if (bytes != null)
-            {
-                //defaultAIAvatar.PlayLipSync(bytes);
-            }
-            else
-            {
-                Tizen.Log.Error("AIAvatar", "Fail to load bytes");
+            return System.IO.Path.GetFileNameWithoutExtension(path);
+        }
 
+        private void InitTTS()
+        {
+            if (lipSyncController == null)
+            {
+                lipSyncController = new LipSyncController(defaultAIAvatar);
             }
+            lipSyncController.InitializeTTS();
+        }
+
+        private void InitMic()
+        {
+            if (lipSyncController == null)
+            {
+                lipSyncController = new LipSyncController(defaultAIAvatar);
+            }
+            lipSyncController.InitializeMic();
         }
 
         private byte[] ReadAllBytes(string path)

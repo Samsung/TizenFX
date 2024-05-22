@@ -230,6 +230,7 @@ namespace AIAvatar
             AddControlEditor();
             AddControlButton("ChangeAvatar", "button_avatar", mainScene.ChangeAvatar);
             AddControlButton("Random Animation", "button_bvh", mainScene.StartRandomAnimation);
+            AddControlButton("EyeBlink", "button_bvh", mainScene.EyeBlink);
 
             AddControlButton("TTS Init", "button_avatar", mainScene.InintTTsTest);
             AddControlButton("TTS Start", "button_avatar", mainScene.StartTTSTest);
@@ -237,10 +238,8 @@ namespace AIAvatar
             AddControlButton("CZ", "button_avatar", mainScene.StartAvatarTalk_1);
             AddControlButton("DK", "button_avatar", mainScene.StartAvatarTalk_2);
             AddControlButton("GR", "button_avatar", mainScene.StartAvatarTalk_3);
-            AddControlButton("Init Mic", "button_bvh", mainScene.InitMic);
             AddControlButton("Start Mic", "button_bvh", mainScene.StartMic);
             AddControlButton("Stop Mic", "button_bvh", mainScene.StopMic);
-            AddControlButton("EyeBlink", "button_bvh", mainScene.EyeBlink);
             AddControlButton("Show/Hide", "button_bvh", mainScene.ShowHide);
             AddControlSlider("Camera FOV", "slider_camera_fov", 0.1f, 1.3f, mainScene.GetSelectedCamera().FieldOfView.ConvertToFloat(), mainScene.SetupSceneViewCameraFov);
             AddControlSlider("IBL intensity", "slider_ibl_factor", 0.1f, 0.8f, mainScene.IBLFactor, mainScene.SetupSceneViewIBLFactor);

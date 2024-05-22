@@ -60,11 +60,9 @@ namespace Tizen.AIAvatar
             desiredBufferLength = (int)(CurrentAudioOptions.SampleRate * desiredBufferDuration * 2);
         }
 
-
-        internal void InitMic(LipSyncer lipSyncer, uint recordingTime = 160)
+        internal void InitializeMic(LipSyncer lipSyncer, uint recordingTime = 160)
         {
             audioRecordingTimer = new Timer(recordingTime);
-            //TODO : Connection MIC
             if (lipSyncer != null)
             {
                 Tizen.Log.Error(LogTag, "LipSyncer of animator is null");
@@ -78,7 +76,7 @@ namespace Tizen.AIAvatar
         }
 
 
-        internal void DeinitMic()
+        internal void DeinitializeMic()
         {
             StopRecording();
             BufferChanged -= OnRecordBufferChanged;

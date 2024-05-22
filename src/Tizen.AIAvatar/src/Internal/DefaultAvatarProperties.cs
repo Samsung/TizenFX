@@ -34,18 +34,19 @@ namespace Tizen.AIAvatar
         {
             foreach (var indexNamePair in blendShapeList)
             {
-                defaultBlendShapeNameMapper.SetPropertyName((uint)indexNamePair.Item1, indexNamePair.Item2);
+                BlendShapeMapper.SetPropertyName((uint)indexNamePair.Item1, indexNamePair.Item2);
             }
 
             foreach (var indexNamePair in jointList)
             {
-                defaultJointMapper.SetPropertyName((uint)indexNamePair.Item1, indexNamePair.Item2);
+                JointMapper.SetPropertyName((uint)indexNamePair.Item1, indexNamePair.Item2);
             }
 
             foreach (var indexNamePair in nodeList)
             {
-                defaultNodeMapper.SetPropertyName((uint)indexNamePair.Item1, indexNamePair.Item2);
+                NodeMapper.SetPropertyName((uint)indexNamePair.Item1, indexNamePair.Item2);
             }
+
         }
 
         #region AR Emoji BlendShape name list

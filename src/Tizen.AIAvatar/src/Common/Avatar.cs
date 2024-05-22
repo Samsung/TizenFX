@@ -45,7 +45,6 @@ namespace Tizen.AIAvatar
             set
             {
                 avatarProperties = value;
-                GenerateDefaultAnimations();
             }
         }
 
@@ -116,9 +115,7 @@ namespace Tizen.AIAvatar
                 Tizen.Log.Error(LogTag, "animationInfo.MotionData is null");
                 return;
             }
-            Tizen.Log.Error(LogTag, "---------------------------------\n");
-            var motionAnimation = GenerateMotionDataAnimation(animationInfo.MotionData);
-            Tizen.Log.Error(LogTag, "---------------------------------\n");
+            motionAnimation = GenerateMotionDataAnimation(animationInfo.MotionData);
             if (motionAnimation != null)
             {
                 motionAnimation.Duration = duration;
@@ -132,6 +129,8 @@ namespace Tizen.AIAvatar
                 Tizen.Log.Error(LogTag, "motionAnimation is null");
             }
         }
+
+        Animation motionAnimation;
 
         /// <summary>  
         /// Plays the specified avatar animation with MotionData and an optional duration and loop count.  
@@ -229,23 +228,77 @@ namespace Tizen.AIAvatar
             motionPlayer?.StopEyeBlink();
         }
         #endregion
-
+        
+        private Animation eyeAnimation;
         private void InitAvatar()
         {
             motionPlayer = new MotionPlayer();
+            var eyeMotionData = CreateEyeBlinkMotionData(200);
+            if (eyeAnimation != null)
+            {
+                Tizen.Log.Info(LogTag, "Successed Loading eyeAnimation");
+            }
+            else
+            {
+                Tizen.Log.Info(LogTag, "Failed Loading eyeAnimation");
+            }
             ResourcesLoaded += (s, e) =>
             {
-                GenerateDefaultAnimations();
+                ConnectEyeNode(eyeMotionData);
+                motionPlayer.SetBlinkAnimation(eyeAnimation);
             };
         }
 
-        private void GenerateDefaultAnimations()
+        private void ConnectEyeNode(MotionData motionData)
         {
-            var eyeAnimation = GenerateEyeAnimation();
-            if (eyeAnimation != null)
+            eyeAnimation = GenerateMotionDataAnimation(motionData);
+            if (eyeAnimation == null)
             {
-                motionPlayer.SetBlinkAnimation(eyeAnimation);
+                Log.Error(LogTag, "eye Animation is null");
             }
+
+
+        }
+
+
+
+        private MotionData CreateEyeBlinkMotionData(int ms)
+        {
+            Tizen.Log.Info(LogTag, "CreateEyeBlinkMotionData---1");
+            var keyFrames = new KeyFrames();
+            keyFrames.Add(0.1f, 0.0f);
+            keyFrames.Add(0.5f, 1.0f);
+            keyFrames.Add(0.9f, 0.0f);
+
+            //var headBlendShapeEyeLeft = avatarProperties.CreateBlendShapeMotionIndex(NodeType.HeadGeo, BlendShapeType.EyeBlinkLeft);
+            //var headBlendShapeEyeRight = avatarProperties.CreateBlendShapeMotionIndex(NodeType.HeadGeo, BlendShapeType.EyeBlinkRight);
+            //var eyelashBlendShapeEyeLeft = avatarProperties.CreateBlendShapeMotionIndex(NodeType.EyelashGeo, BlendShapeType.EyeBlinkLeft);
+            //var eyelashBlendShapeEyeRight = avatarProperties.CreateBlendShapeMotionIndex(NodeType.EyelashGeo, BlendShapeType.EyeBlinkRight);
+
+
+            var headBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.HeadGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkLeft);
+            var headBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.HeadGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkRight);
+            var eyelashBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkLeft);
+            var eyelashBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, avatarProperties.BlendShapeMapper, BlendShapeType.EyeBlinkRight);
+
+            //var headBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper,NodeType.HeadGeo, new PropertyKey("EyeBlink_Left"));
+            //var headBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.HeadGeo, new PropertyKey("EyeBlink_Right"));
+            //var eyelashBlendShapeEyeLeft = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, new PropertyKey("EyeBlink_Left"));
+            //var eyelashBlendShapeEyeRight = new AvatarBlendShapeIndex(avatarProperties.NodeMapper, NodeType.EyelashGeo, new PropertyKey("EyeBlink_Right"));
+
+            Tizen.Log.Error("MYLOG", "TESTTESTRET 1 :" + headBlendShapeEyeLeft.AvatarBlendShapeType + "\n");
+            Tizen.Log.Error("MYLOG", "TESTTESTRET 2 :" + headBlendShapeEyeRight.AvatarBlendShapeType + "\n");
+            Tizen.Log.Error("MYLOG", "TESTTESTRET 3 :" + eyelashBlendShapeEyeLeft.AvatarBlendShapeType + "\n");
+            Tizen.Log.Error("MYLOG", "TESTTESTRET 4 :" + eyelashBlendShapeEyeRight.AvatarBlendShapeType + "\n");
+
+            var motionData = new MotionData(ms);
+            motionData.Add(headBlendShapeEyeLeft, new MotionValue(keyFrames));
+            motionData.Add(headBlendShapeEyeRight, new MotionValue(keyFrames));
+            motionData.Add(eyelashBlendShapeEyeLeft, new MotionValue(keyFrames));
+            motionData.Add(eyelashBlendShapeEyeRight, new MotionValue(keyFrames));
+
+            Tizen.Log.Info(LogTag, "CreateEyeBlinkMotionData---2");
+            return motionData;
         }
 
         private Animation GenerateEyeAnimation()
@@ -255,38 +308,24 @@ namespace Tizen.AIAvatar
             keyFrames.Add(0.5f, 1.0f);
             keyFrames.Add(0.9f, 0.0f);
 
-            var headBlendShapeEyeLeft = avatarProperties.CreateBlendShapeMotionIndex(NodeType.HeadGeo, BlendShapeType.EyeBlinkLeft);
 
-            var headBlendShapeEyeRight = avatarProperties.CreateBlendShapeMotionIndex(NodeType.HeadGeo, BlendShapeType.EyeBlinkRight);
-            var eyelashBlendShapeEyeLeft = avatarProperties.CreateBlendShapeMotionIndex(NodeType.EyelashGeo, BlendShapeType.EyeBlinkLeft);
-            var eyelashBlendShapeEyeRight = avatarProperties.CreateBlendShapeMotionIndex(NodeType.EyelashGeo, BlendShapeType.EyeBlinkRight);
-
-            var eyeMotionData = new MotionData(/*blinkDuration*/);
+            var eyeMotionData = new MotionData(200);
             if (eyeMotionData != null)
             {
-                if (headBlendShapeEyeLeft != null)
-                {
-                    eyeMotionData.Add(headBlendShapeEyeLeft, new MotionValue(keyFrames));
-                }
-                if (headBlendShapeEyeRight != null)
-                {
-                    eyeMotionData.Add(headBlendShapeEyeRight, new MotionValue(keyFrames));
-                }
-                if (eyelashBlendShapeEyeLeft != null)
-                {
-                    eyeMotionData.Add(eyelashBlendShapeEyeLeft, new MotionValue(keyFrames));
-                }
-                if (eyelashBlendShapeEyeRight != null)
-                {
-                    eyeMotionData.Add(eyelashBlendShapeEyeRight, new MotionValue(keyFrames));
-                }
             }
             else
             {
                 Tizen.Log.Error(LogTag, "eyeMotionData is null");
             }
 
-            return GenerateMotionDataAnimation(eyeMotionData);
+            
+            var blinkAnimation = GenerateMotionDataAnimation(eyeMotionData);
+
+            if (blinkAnimation == null)
+            {
+                Tizen.Log.Error(LogTag, "blinkAnimation is null");
+            }
+            return blinkAnimation;
         }
     }
 }

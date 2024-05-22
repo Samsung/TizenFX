@@ -114,8 +114,8 @@ namespace Tizen.AIAvatar
         /// <returns>The generated MotionIndex</returns>  
         public MotionIndex CreateBlendShapeMotionIndex(NodeType nodeType, BlendShapeType blendShapeType)
         {
-            var headBlendShapeEyeLeft = new AvatarBlendShapeIndex(NodeMapper, nodeType, BlendShapeMapper, blendShapeType);
-            return headBlendShapeEyeLeft;
+            var motionIndex = new AvatarBlendShapeIndex(NodeMapper, nodeType, BlendShapeMapper, blendShapeType);
+            return motionIndex;
         }
     }
 }

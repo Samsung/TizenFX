@@ -17,9 +17,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Tizen.NUI;
-
+using Tizen.NUI.Scene3D;
 using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
@@ -30,6 +29,9 @@ namespace Tizen.AIAvatar
 
         private VowelConverter vowelConverter;
         private AudioPlayer audioPlayer;
+        private event Func<AnimationKeyFrame, bool, Animation> TheEvent;
+
+        internal Func<AnimationKeyFrame, bool, Animation> CreatedKeyFrameAnimation;
 
         //Mic
         private Queue<string[]> vowelPools = new Queue<string[]>();
@@ -48,7 +50,7 @@ namespace Tizen.AIAvatar
             audioPlayer = new AudioPlayer();
         }
 
-        public void Play(byte[] audio, int sampleRate)
+        public void PlayAudio(byte[] audio, int sampleRate)
         {
             if (audio != null)
             {
@@ -102,9 +104,11 @@ namespace Tizen.AIAvatar
                 Tizen.Log.Error(LogTag, "audi data is null");
                 return;
             }
-
             DestroyLipAnimation();
-            var lipAnimation = CreateLipAnimation(audio, CurrentAudioOptions.SampleRate);
+
+            var lipKeyframes = CreateKeyFrame(audio, CurrentAudioOptions.SampleRate);
+            var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyframes, false);
+
             if (lipAnimation != null)
             {
                 ResetLipAnimation(lipAnimation);
@@ -121,7 +125,8 @@ namespace Tizen.AIAvatar
         private void PlayLipSync(byte[] audio, int sampleRate)
         {
             DestroyLipAnimation();
-            var lipAnimation = CreateLipAnimation(audio, sampleRate);
+            var lipKeyFrames = CreateKeyFrame(audio, sampleRate);
+            var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyFrames, false);
             if (lipAnimation != null)
             {
                 ResetLipAnimation(lipAnimation);
@@ -200,17 +205,6 @@ namespace Tizen.AIAvatar
             }
         }
 
-        private Animation CreateLipAnimation(byte[] array, int sampleRate)
-        {
-            Animation lipKeyframes = null;// CreateKeyFrame(array, sampleRate);
-            if (lipKeyframes != null)
-            {
-
-                return null;// CreateLipAnimation(lipKeyframes);
-            }
-            return null;
-        }
-
         private void EnqueueVowels(byte[] buffer, bool deleteLast = false)
         {
             var vowels = PredictVowels(buffer);
@@ -237,8 +231,10 @@ namespace Tizen.AIAvatar
                 AttachPreviousVowel(vowelPools.Dequeue(), out var newVowels);
                 Log.Info(LogTag, $"vowelRecognition: {String.Join(", ", newVowels)}");
 
-                //var lipKeyFrames = vowelConverter?.CreateKeyFrames(newVowels, sampleRate, true);
-                return null;// CreateLipAnimation(lipKeyFrames, true);
+                var lipKeyFrames = vowelConverter?.CreateKeyFrames(newVowels, sampleRate, true);
+                var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyFrames, true);
+
+                return lipAnimation;
             }
             return null;
         }
@@ -254,7 +250,7 @@ namespace Tizen.AIAvatar
 
         private string[] PredictVowels(byte[] audioData)
         {
-            string[] vowels = null;// vowelConverter?.PredictVowels(audioData);
+            string[] vowels = vowelConverter?.PredictVowels(audioData);
             return vowels;
         }
 
@@ -266,7 +262,6 @@ namespace Tizen.AIAvatar
             prevVowel = vowels[vowels.Length - 1];
         }
 
-        /*
         private AnimationKeyFrame CreateKeyFrame(byte[] audio, int sampleRate)
         {
             var keyFrames = vowelConverter?.CreateKeyFrames(audio, sampleRate);
@@ -278,44 +273,6 @@ namespace Tizen.AIAvatar
             return keyFrames;
         }
 
-        private Animation CreateLipAnimation(AnimationKeyFrame animationKeyFrames, bool isMic = false)
-        {
-            var animationTime = (int)(animationKeyFrames.AnimationTime * 1000f);
-            var lipAnimation = new Animation(animationTime);
-
-            var motionData = new MotionData(animationTime);
-            for (var i = 0; i < animationKeyFrames.NodeNames.Length; i++)
-            {
-                var nodeName = animationKeyFrames.NodeNames[i];
-                for (var j = 0; j < animationKeyFrames.BlendShapeCounts[i]; j++)
-                {
-                    var blendShapeIndex = new BlendShapeIndex(new PropertyKey(nodeName), new PropertyKey(j));
-                    var keyFrameList = animationKeyFrames.GetKeyFrames(nodeName, j);
-                    if (keyFrameList.Count == 0)
-                    {
-                        continue;
-                    }
-
-                    var keyFrames = new KeyFrames();
-                    CreateKeyTimeFrames(ref keyFrames, keyFrameList, isMic);
-
-                    motionData.Add(blendShapeIndex, new MotionValue(keyFrames));
-                    lipAnimation = avatar.GenerateMotionDataAnimation(motionData);
-                }
-            }
-            return lipAnimation;
-        }
-        private KeyFrames CreateKeyTimeFrames(ref KeyFrames keyFrames, List<KeyFrame> keyFrameList, bool isMic = false)
-        {
-            foreach (var key in keyFrameList)
-            {
-                keyFrames.Add(key.time, key.value);
-            }
-            if (!isMic) keyFrames.Add(1.0f, 0.0f);
-
-            return keyFrames;
-        }
-        */
 
         internal void OnRecordBufferChanged(byte[] recordBuffer, int sampleRate)
         {

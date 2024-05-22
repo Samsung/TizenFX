@@ -21,6 +21,9 @@ using System;
 using Tizen.Uix.Tts;
 
 using static Tizen.AIAvatar.AIAvatar;
+using Tizen.Multimedia;
+using Tizen.NUI.Scene3D;
+using Tizen.NUI;
 
 namespace Tizen.AIAvatar
 {
@@ -30,7 +33,11 @@ namespace Tizen.AIAvatar
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LipSyncController : IDisposable
     {
-        private TTSController ttsLipSyncer;
+        private TTSController ttsController;
+        private AudioRecorder audioRecorder;
+        private LipSyncer lipSyncer;
+
+        private Avatar avatar;
 
         private event EventHandler ttsReadyFinished;
         private readonly Object ttsReadyFinishedLock = new Object();
@@ -39,8 +46,59 @@ namespace Tizen.AIAvatar
         /// Initializes a new instance of the <see cref="LipSyncController"/> class.  
         /// </summary>  
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LipSyncController()
+        public LipSyncController(Avatar avatar)
         {
+            this.avatar = avatar;
+
+            audioRecorder = new AudioRecorder();
+            lipSyncer = new LipSyncer();
+
+            lipSyncer.CreatedKeyFrameAnimation += OnCreatedKeyFrameAnimation;
+        }
+
+        private Animation CreateLipAnimation(AnimationKeyFrame animationKeyFrames, bool isMic = false)
+        {
+            var animationTime = (int)(animationKeyFrames.AnimationTime * 1000f);
+            var lipAnimation = new Animation(animationTime);
+
+            var motionData = new MotionData(animationTime);
+            for (var i = 0; i < animationKeyFrames.NodeNames.Length; i++)
+            {
+                var nodeName = animationKeyFrames.NodeNames[i];
+                for (var j = 0; j < animationKeyFrames.BlendShapeCounts[i]; j++)
+                {
+                    var blendShapeIndex = new BlendShapeIndex(new PropertyKey(nodeName), new PropertyKey(j));
+                    var keyFrameList = animationKeyFrames.GetKeyFrames(nodeName, j);
+                    if (keyFrameList.Count == 0)
+                    {
+                        continue;
+                    }
+
+                    var keyFrames = new KeyFrames();
+                    CreateKeyTimeFrames(ref keyFrames, keyFrameList, isMic);
+
+                    motionData.Add(blendShapeIndex, new MotionValue(keyFrames));
+                    lipAnimation = avatar.GenerateMotionDataAnimation(motionData);
+                }
+            }
+            return lipAnimation;
+        }
+
+        private KeyFrames CreateKeyTimeFrames(ref KeyFrames keyFrames, List<KeyFrame> keyFrameList, bool isMic = false)
+        {
+            foreach (var key in keyFrameList)
+            {
+                keyFrames.Add(key.time, key.value);
+            }
+            if (!isMic) keyFrames.Add(1.0f, 0.0f);
+
+            return keyFrames;
+        }
+
+        private Animation OnCreatedKeyFrameAnimation(AnimationKeyFrame animationKeyFrame, bool isMic)
+        {
+            var lipAnimation = CreateLipAnimation(animationKeyFrame, isMic);
+            return lipAnimation;
         }
 
         /// <summary>  
@@ -76,7 +134,7 @@ namespace Tizen.AIAvatar
         /// Gets the current Text-To-Speech client associated with the Lip Sync Controller.  
         /// </summary>  
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TtsClient CurrentTTSClient => ttsLipSyncer?.TtsHandle;
+        public TtsClient CurrentTTSClient => ttsController?.TtsHandle;
 
         /// <summary>
         /// Initializes the Text-To-Speech system for use with the Lip Sync Controller.
@@ -84,11 +142,11 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void InitializeTTS()
         {
-            if (ttsLipSyncer == null)
+            if (ttsController == null)
             {
                 try
                 {
-                    ttsLipSyncer = new TTSController();
+                    ttsController = new TTSController();
                     //TODO : LipSync Event Connect
                 }
                 catch (Exception e)
@@ -105,12 +163,12 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeInitializeTTS()
         {
-            if (ttsLipSyncer != null)
+            if (ttsController != null)
             {
                 try
                 {
-                    ttsLipSyncer.DeinitTts();
-                    ttsLipSyncer = null;
+                    ttsController.DeinitTts();
+                    ttsController = null;
                 }
                 catch (Exception e)
                 {
@@ -127,7 +185,46 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public List<VoiceInfo> GetSupportedVoices()
         {
-            return ttsLipSyncer.GetSupportedVoices();
+            return ttsController.GetSupportedVoices();
+        }
+
+        /// <summary>  
+        /// Plays the given audio with LipSync and returns whether it was successful or not. 
+        /// If the lip syncer is null, logs an error and returns false.
+        /// The lipSyncer plays the audio using the provided byte array and sample rate.  
+        /// </summary>  
+        /// <param name="audio">The audio data to be played in a byte array format.</param>  
+        /// <param name="sampleRate">The sampling rate of the audio data, default value is 16000 Hz.</param>
+        public bool PlayLipSync(byte[] audio, int sampleRate = 16000)
+        {
+            if (lipSyncer == null)
+            {
+                Log.Error(LogTag, "lipSyncer is null");
+                return false;
+            }
+            lipSyncer.PlayAudio(audio, sampleRate);
+
+            return true;
+        }
+
+        /// <summary>  
+        /// Plays the given audio with LipSync and returns whether it was successful or not. 
+        /// If the lip syncer is null, logs an error and returns false.
+        /// The lipSyncer plays the audio using the provided byte array and sample rate.  
+        /// </summary>  
+        /// <param name="audio">The audio data to be played in a byte array format.</param>  
+        /// <param name="sampleRate">The sampling rate of the audio data, default value is 16000 Hz.</param>
+        public bool PlayLipSync(string path, int sampleRate = 16000)
+        {
+            var audio = Utils.ReadAllBytes(path);
+            if (audio == null)
+            {
+                Log.Error(LogTag, "audio data is null");
+                return false;
+            }
+            lipSyncer.PlayAudio(audio, sampleRate);
+
+            return true;
         }
 
         /// <summary>  
@@ -140,21 +237,21 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PrepareTTS(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
 
-            if (!ttsLipSyncer.IsSupportedVoice(voiceInfo))
+            if (!ttsController.IsSupportedVoice(voiceInfo))
             {
                 Log.Info(LogTag, $"{voiceInfo.Language} & {voiceInfo.Type} is not supported");
                 return false;
             }
 
-            Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-            if (ttsLipSyncer.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
+            Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+            if (ttsController.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
             {
                 Log.Info(LogTag, "TTS is not ready");
                 return false;
@@ -162,8 +259,8 @@ namespace Tizen.AIAvatar
 
             try
             {
-                ttsLipSyncer.AddText(text, voiceInfo);
-                ttsLipSyncer.Prepare(ttsReadyFinishedCallback);
+                ttsController.AddText(text, voiceInfo);
+                ttsController.Prepare(ttsReadyFinishedCallback);
             }
             catch (Exception e)
             {
@@ -184,28 +281,28 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PrepareTTS(string text, string lang = "ko_KR", EventHandler ttsReadyFinishedCallback = null)
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
-            if (!ttsLipSyncer.IsSupportedVoice(lang))
+            if (!ttsController.IsSupportedVoice(lang))
             {
                 Log.Error(LogTag, $"{lang} is not supported");
                 return false;
             }
 
-            Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-            if (ttsLipSyncer.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
+            Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+            if (ttsController.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
             {
                 Log.Error(LogTag, "TTS is not ready");
                 return false;
             }
             try
             {
-                ttsLipSyncer.AddText(text, lang);
-                ttsLipSyncer.Prepare(ttsReadyFinishedCallback);
+                ttsController.AddText(text, lang);
+                ttsController.Prepare(ttsReadyFinishedCallback);
             }
             catch (Exception e)
             {
@@ -223,13 +320,13 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PlayPreparedTTS()
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
-            return ttsLipSyncer.PlayPreparedText();
+            return ttsController.PlayPreparedText();
         }
 
         /// <summary>  
@@ -241,20 +338,20 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PlayTTS(string text, VoiceInfo voiceInfo)
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
-            if (!ttsLipSyncer.IsSupportedVoice(voiceInfo))
+            if (!ttsController.IsSupportedVoice(voiceInfo))
             {
                 Log.Info(LogTag, $"{voiceInfo.Language} & {voiceInfo.Type} is not supported");
                 return false;
             }
 
-            Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-            if (ttsLipSyncer.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
+            Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+            if (ttsController.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
             {
                 Log.Info(LogTag, "TTS is not ready");
                 return false;
@@ -262,8 +359,8 @@ namespace Tizen.AIAvatar
 
             try
             {
-                ttsLipSyncer.AddText(text, voiceInfo);
-                ttsLipSyncer.Play();
+                ttsController.AddText(text, voiceInfo);
+                ttsController.Play();
             }
             catch (Exception e)
             {
@@ -283,28 +380,28 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PlayTTS(string text, string lang = "ko_KR")
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
-            if (!ttsLipSyncer.IsSupportedVoice(lang))
+            if (!ttsController.IsSupportedVoice(lang))
             {
                 Log.Error(LogTag, $"{lang} is not supported");
                 return false;
             }
 
-            Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-            if (ttsLipSyncer.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
+            Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+            if (ttsController.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
             {
                 Log.Error(LogTag, "TTS is not ready");
                 return false;
             }
             try
             {
-                ttsLipSyncer.AddText(text, lang);
-                ttsLipSyncer.Play();
+                ttsController.AddText(text, lang);
+                ttsController.Play();
             }
             catch (Exception e)
             {
@@ -325,20 +422,20 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PlayTTSAsync(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
-            if (!ttsLipSyncer.IsSupportedVoice(voiceInfo))
+            if (!ttsController.IsSupportedVoice(voiceInfo))
             {
                 Log.Info(LogTag, $"{voiceInfo.Language} & {voiceInfo.Type} is not supported");
                 return false;
             }
 
-            Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-            if (ttsLipSyncer.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
+            Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+            if (ttsController.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
             {
                 Log.Info(LogTag, "TTS is not ready");
                 return false;
@@ -346,8 +443,8 @@ namespace Tizen.AIAvatar
 
             try
             {
-                ttsLipSyncer.AddText(text, voiceInfo);
-                ttsLipSyncer.PlayAsync(ttsReadyFinishedCallback);
+                ttsController.AddText(text, voiceInfo);
+                ttsController.PlayAsync(ttsReadyFinishedCallback);
             }
             catch (Exception e)
             {
@@ -368,28 +465,28 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PlayTTS(string text, string lang = "ko_KR", EventHandler ttsReadyFinishedCallback = null)
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return false;
             }
 
-            if (!ttsLipSyncer.IsSupportedVoice(lang))
+            if (!ttsController.IsSupportedVoice(lang))
             {
                 Log.Error(LogTag, $"{lang} is not supported");
                 return false;
             }
 
-            Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-            if (ttsLipSyncer.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
+            Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+            if (ttsController.TtsHandle.CurrentState != Tizen.Uix.Tts.State.Ready)
             {
                 Log.Error(LogTag, "TTS is not ready");
                 return false;
             }
             try
             {
-                ttsLipSyncer.AddText(text, lang);
-                ttsLipSyncer.PlayAsync(ttsReadyFinishedCallback);
+                ttsController.AddText(text, lang);
+                ttsController.PlayAsync(ttsReadyFinishedCallback);
             }
             catch (Exception e)
             {
@@ -406,7 +503,7 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void PauseTTS()
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return;
@@ -414,8 +511,8 @@ namespace Tizen.AIAvatar
 
             try
             {
-                Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-                ttsLipSyncer?.Pause();
+                Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+                ttsController?.Pause();
             }
             catch (Exception e)
             {
@@ -430,7 +527,7 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StopTTS()
         {
-            if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
+            if (ttsController == null || ttsController.TtsHandle == null)
             {
                 Log.Error(LogTag, "tts is null");
                 return;
@@ -438,8 +535,8 @@ namespace Tizen.AIAvatar
 
             try
             {
-                Log.Info(LogTag, "Current TTS State :" + ttsLipSyncer.TtsHandle.CurrentState);
-                ttsLipSyncer?.Stop();
+                Log.Info(LogTag, "Current TTS State :" + ttsController.TtsHandle.CurrentState);
+                ttsController?.Stop();
             }
             catch (Exception e)
             {
@@ -448,12 +545,83 @@ namespace Tizen.AIAvatar
             }
         }
 
+        public void InitializeMic()
+        {
+            if (audioRecorder == null)
+            {
+                Tizen.Log.Error(LogTag, "audio record is null");
+                return;
+            }
+            audioRecorder.InitializeMic(lipSyncer, 160);
+        }
+
+        public void DeinitializeMic()
+        {
+            if (audioRecorder == null)
+            {
+                Tizen.Log.Error(LogTag, "audio record is null");
+                return;
+            }
+            audioRecorder.StartRecording();
+        }
+
+        public void StartMic()
+        {
+            if (audioRecorder == null)
+            {
+                Tizen.Log.Error(LogTag, "audio record is null");
+                return;
+            }
+            audioRecorder.StartRecording();
+        }
+
+        public void StopMic()
+        {
+            if (audioRecorder == null)
+            {
+                Tizen.Log.Error(LogTag, "audio record is null");
+                return;
+            }
+            audioRecorder.StopRecording();
+        }
+
+        public void PauseMic()
+        {
+            if (audioRecorder == null)
+            {
+                Tizen.Log.Error(LogTag, "audio record is null");
+                return;
+            }
+            audioRecorder.PauseRecording();
+        }
+
+        public void ResumeMic()
+        {
+            if(audioRecorder == null)
+            {
+                Tizen.Log.Error(LogTag, "audio record is null");
+                return;
+            }
+            audioRecorder.ResumeRecording();
+        }
+
         /// <summary>  
         /// Releases unmanaged resources used by this instance.  
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
+            if (ttsController != null)
+            {
+                ttsController.Dispose();
+                ttsController = null;
+            }
+
+            if (audioRecorder != null)
+            {
+                audioRecorder.Dispose();
+                audioRecorder = null;
+            }
         }
     }
 }

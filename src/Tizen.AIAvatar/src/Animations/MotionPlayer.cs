@@ -16,7 +16,7 @@
  */
 
 using Tizen.NUI;
-
+using Tizen.NUI.Scene3D;
 using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
@@ -31,6 +31,8 @@ namespace Tizen.AIAvatar
         internal MotionPlayer()
         {
             eyeBlinker = new EyeBlinker();
+
+
         }
 
         internal void PlayAnimation(Animation motionAnimation, int duration = 3000, bool isLooping = false, int loopCount = 1)
@@ -59,7 +61,7 @@ namespace Tizen.AIAvatar
 
         internal void SetBlinkAnimation(Animation blinkerAnimation)
         {
-            eyeBlinker.Init(blinkerAnimation);
+            eyeBlinker?.Init(blinkerAnimation);
         }
 
         internal void StartEyeBlink()
@@ -80,7 +82,7 @@ namespace Tizen.AIAvatar
 
         internal void DestroyAnimations()
         {
-            eyeBlinker.Destroy();
+            eyeBlinker?.Destroy();
         }
 
         private void ResetAnimations()
