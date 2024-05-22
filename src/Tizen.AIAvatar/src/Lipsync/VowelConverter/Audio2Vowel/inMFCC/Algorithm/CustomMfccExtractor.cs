@@ -96,7 +96,7 @@ namespace Tizen.AIAvatar
     }
 
     //DLL Interface
-    public class Extractor
+    internal class Extractor
     {
         public static float[][] ComputeFrom(float[] audio, int samplingRate, float frameDuration, float hopDuration, int featureCount)
         {

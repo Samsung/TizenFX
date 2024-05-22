@@ -23,13 +23,13 @@ using System.IO;
 
 namespace Tizen.AIAvatar
 {
-    public enum Viseme
+    internal enum Viseme
     {
         sil, AE, Ah, B_M_P, Ch_J, EE, Er, IH, Oh, W_OO, S_Z, F_V, TH,
         T_L_D_N, K_G_H_NG, R
     };
 
-    public class AnimationConverter
+    internal class AnimationConverter
     {
         private Dictionary<string, string> VowelToViseme
             = new Dictionary<string, string> {

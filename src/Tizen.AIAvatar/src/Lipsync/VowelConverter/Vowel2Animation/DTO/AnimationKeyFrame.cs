@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Tizen.AIAvatar
 {
-    public class KeyFrame
+    internal class KeyFrame
     {
         public KeyFrame(float t, float v)
         {
@@ -30,7 +30,7 @@ namespace Tizen.AIAvatar
         public float value;
     }
 
-    public class AnimationKeyFrame
+    internal class AnimationKeyFrame
     {
         private Dictionary<string, List<KeyFrame>[]> _animationKeyFrames;
 

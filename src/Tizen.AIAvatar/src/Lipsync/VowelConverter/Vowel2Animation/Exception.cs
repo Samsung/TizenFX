@@ -19,7 +19,7 @@ using System;
 
 namespace Tizen.AIAvatar
 {
-    public class InvalidVowelTypeException : Exception
+    internal class InvalidVowelTypeException : Exception
     {
         public InvalidVowelTypeException() { }
 
@@ -27,7 +27,7 @@ namespace Tizen.AIAvatar
             : base($"Not supported vowel type, {name}") { }
     }
 
-    public class FailedPersonalizeException : Exception
+    internal class FailedPersonalizeException : Exception
     {
         public FailedPersonalizeException() { }
 
@@ -35,7 +35,7 @@ namespace Tizen.AIAvatar
             : base($"Failed to personalize, file_path : {name}") { }
     }
 
-    public class NotInitializedException : Exception
+    internal class NotInitializedException : Exception
     {
         public NotInitializedException()
             : base($"Animation Converter should be initialized with viseme_info") { }

@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Tizen.AIAvatar
 {
-    public class BlendShapeInfo
+    internal class BlendShapeInfo
     {
         public BlendShapeModelInfo blendShape;
         public BlendShapeVisemeInfo[] visemes;
@@ -50,7 +50,7 @@ namespace Tizen.AIAvatar
         }
     }
 
-    public class BlendShapeModelInfo
+    internal class BlendShapeModelInfo
     {
         public string keyFormat;
         public string[] nodeNames;
@@ -64,13 +64,13 @@ namespace Tizen.AIAvatar
         }
     }
 
-    public class BlendShapeVisemeInfo
+    internal class BlendShapeVisemeInfo
     {
         public string name;
         public BlendShapeValue[] values;
     }
 
-    public class BlendShapeValue
+    internal class BlendShapeValue
     {
         public string nodeName;
         public int blendIndex;
