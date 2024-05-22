@@ -146,7 +146,6 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPropertyName(uint index, string name)
         {
-            Tizen.Log.Error("MYLOG", "------------------------SetPropertyName :" + index + "," +name+"\n");
             mapper.TryAdd(index, name);
         }
 
@@ -159,10 +158,7 @@ namespace Tizen.AIAvatar
         public string GetPropertyName(uint index)
         {
             string ret = null;
-            Tizen.Log.Error("MYLOG", "------------------------index :" + index + "\n");
             mapper.TryGetValue(index, out ret);
-            Tizen.Log.Error("MYLOG", "mapper count :" + mapper.Count +"\n");
-            Tizen.Log.Error("MYLOG", "------------------------out :" + ret + "\n");
             return ret;
         }
     }

@@ -111,11 +111,6 @@ namespace Tizen.AIAvatar
 
 internal class SystemUtils
 {
-    internal static void ST()
-    {
-        Tizen.Log.Error("MYLOG", System.Environment.StackTrace);
-    }
-
     internal static string GetFileName(string path)
     {
         return System.IO.Path.GetFileName(path);

@@ -67,9 +67,6 @@ namespace Tizen.AIAvatar
         internal AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType) 
             : base(new PropertyKey(GetPropertyNameFromMapper(nodeMapper, (uint)nodeType)), new PropertyKey(GetPropertyNameFromMapper(blendShapeMapper, (uint)blendShapeType)))
         {
-
-            Tizen.Log.Error("MYLOG", "++++++++++++++++++NodeMapper :" + GetPropertyNameFromMapper(nodeMapper, (uint)nodeType) +"\n");
-            Tizen.Log.Error("MYLOG", "++++++++++++++++++blendMapper :" + GetPropertyNameFromMapper(blendShapeMapper, (uint)blendShapeType) + "\n");
             nameMapper = blendShapeMapper;
             this.blendShapeType = (uint)blendShapeType;
         }
@@ -92,7 +89,6 @@ namespace Tizen.AIAvatar
             }
 
             var str = mapper?.GetPropertyName((uint)id.IndexKey) ?? "";
-            Tizen.Log.Error("MYLOG", "GetPropertyNameFromMapper----------------" + str + "\n");
             return str;
         }
 
@@ -105,7 +101,6 @@ namespace Tizen.AIAvatar
         private static string GetPropertyNameFromMapper(AvatarPropertyMapper mapper, uint type)
         {
             var str = mapper?.GetPropertyName(type) ?? "";
-            Tizen.Log.Error("MYLOG", "GetPropertyNameFromMapper----------------" + str + "\n");
             return str;
         }
 
