@@ -3494,6 +3494,7 @@ namespace Tizen.NUI.BaseComponents
         // keep readonly for BindableProperty
 #endif
 
+
         /// <summary>
         /// Gets View's Size2D set by user.
         /// </summary>

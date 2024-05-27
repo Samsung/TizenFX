@@ -89,11 +89,11 @@ namespace Tizen.NUI.BaseComponents
 
         static View()
         {
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-            //to get "IsUsingXaml" feature working at preload, we need to remove readonly for BindableProperty.
-#else
             if (NUIApplication.IsUsingXaml)
             {
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+                CreateBindableProperties();
+#else
                 StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(View), string.Empty,
                     propertyChanged: SetInternalStyleNameProperty, defaultValueCreator: GetInternalStyleNameProperty);
 
@@ -439,23 +439,14 @@ namespace Tizen.NUI.BaseComponents
                 RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
                 RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
                 RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
-            }
 #endif
+            }
             RegisterAccessibilityDelegate();
         }
 
         static internal new void Preload()
         {
             Container.Preload();
-
-            // not needed, at preload, APP can not set the "IsUsingXaml" flag, it have the default value at preload
-            // if (NUIApplication.IsUsingXaml)
-            // {
-            //     // Do nothing. Just call for load static values.
-            //     var temporalPositionPropertyGroup = positionPropertyGroup;
-            //     var temporalSizePropertyGroup = sizePropertyGroup;
-            //     var temporalScalePropertyGroup = scalePropertyGroup;
-            // }
         }
 
         /// <summary>
