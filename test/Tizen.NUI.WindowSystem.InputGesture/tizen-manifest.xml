@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="7.0" package="org.tizen.example.InputGesture" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.InputGesture"
+					exec="Tizen.NUI.WindowSystem.InputGesture.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+                    api-version="10">
+    <label>Tizen.NUI.WindowSystem.InputGesture</label>
+    <icon>Tizen.NUI.WindowSystem.InputGesture.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+</manifest>
