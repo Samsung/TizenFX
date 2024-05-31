@@ -15,11 +15,20 @@
  *
  */
 
-using Tizen.NUI.Scene3D;
-
 namespace Tizen.AIAvatar
 {
-    internal class AvatarScene : SceneView
+    internal class PreEmphasis
     {
+        internal static void PreEmphasize(ref float[] block, float value)
+        {
+            float prevSample = block[0];
+
+            for (int i = 0; i < block.Length; i++)
+            {
+                var result = block[i] - prevSample * value;
+                prevSample = block[i];
+                block[i] = result;
+            }
+        }
     }
 }

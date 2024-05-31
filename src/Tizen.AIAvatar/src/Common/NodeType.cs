@@ -15,30 +15,32 @@
  *
  */
 
-using System.Collections.Generic;
-using System.IO;
 using System.ComponentModel;
-
-using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
+    /// <summary>
+    /// The type of predefined node. We can customize each type name by "TODO_mapper"
+    /// The basic names provided by AIAvatar to control the default avatar of AREmoji.
+    /// Contains the node information of AIAvatar.  
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static class AvatarExtension
+    public enum NodeType
     {
+        /// <summary>
+        /// head geometry
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static List<AvatarInfo> GetDefaultAvatarList()
-        {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
-
-            return list;
-        }
+        HeadGeo,
+        /// <summary>
+        /// mouth geometry
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MouthGeo,
+        /// <summary>
+        /// eyelash geometry
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        EyelashGeo
     }
 }

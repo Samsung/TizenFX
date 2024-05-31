@@ -15,11 +15,9 @@
  *
  */
 
-using Tizen.NUI.Scene3D;
-
 namespace Tizen.AIAvatar
 {
-    internal class AvatarScene : SceneView
+    internal class TrackingOptions
     {
     }
 }
