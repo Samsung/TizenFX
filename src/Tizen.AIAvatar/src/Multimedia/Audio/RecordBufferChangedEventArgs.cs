@@ -15,11 +15,20 @@
  *
  */
 
-using Tizen.NUI.Scene3D;
+using System;
 
 namespace Tizen.AIAvatar
 {
-    internal class AvatarScene : SceneView
+    internal class RecordBufferChangedEventArgs : EventArgs
     {
+        public byte[] RecordedBuffer { get; set; }
+        public int SampleRate { get; set; }
+
+        public RecordBufferChangedEventArgs(byte[] recordedBuffer, int SampleRate)
+        {
+            this.RecordedBuffer = recordedBuffer;
+            this.SampleRate = SampleRate;
+        }
     }
+
 }

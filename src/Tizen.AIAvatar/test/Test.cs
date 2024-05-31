@@ -15,11 +15,25 @@
  *
  */
 
-using Tizen.NUI.Scene3D;
-
 namespace Tizen.AIAvatar
 {
-    internal class AvatarScene : SceneView
+    internal class Test
     {
+        public void CreateTest()
+        {
+            var avatar1 = new Avatar();
+
+            var avatarInfo = new AvatarInfo("avatarName", "resourcePath");
+            var avatar2 = new Avatar(avatarInfo);
+
+            var avatar3 = new Avatar("resourcePath");
+
+            var avatar4 = new Avatar(avatar1);
+
+            avatar1.Dispose();
+            avatar2.Dispose();
+            avatar3.Dispose();
+            avatar4.Dispose();
+        }
     }
 }
