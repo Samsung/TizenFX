@@ -15,11 +15,13 @@
  *
  */
 
-using Tizen.NUI.Scene3D;
+using System.Collections.Generic;
 
 namespace Tizen.AIAvatar
 {
-    internal class AvatarScene : SceneView
+    internal interface IMfccExtractor
     {
+        List<float[]> ComputeFrom(float[] samples, int samplingRate);
     }
 }
+
