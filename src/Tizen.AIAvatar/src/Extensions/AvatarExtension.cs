@@ -17,13 +17,16 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.ComponentModel;
 
 using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class AvatarExtension
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<AvatarInfo> GetDefaultAvatarList()
         {
             var list = new List<AvatarInfo>();

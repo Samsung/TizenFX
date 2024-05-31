@@ -16,11 +16,14 @@
  */
 
 using Tizen.NUI.Scene3D;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class SceneViewExtension
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetAlphaMaskUrl(this SceneView sceneView, string url)
         {
             var setValue = new Tizen.NUI.PropertyValue(url);
@@ -28,6 +31,7 @@ namespace Tizen.AIAvatar
             setValue.Dispose();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetAlphaMaskUrl(this SceneView sceneView)
         {
             var returnValue = "";
@@ -37,6 +41,7 @@ namespace Tizen.AIAvatar
             return returnValue;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetMaskContentScaleFactor(this SceneView sceneView, float factor)
         {
             var setValue = new Tizen.NUI.PropertyValue(factor);
@@ -44,6 +49,7 @@ namespace Tizen.AIAvatar
             setValue.Dispose();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float GetMaskContentScaleFactor(this SceneView sceneView)
         {
             var returnValue = 0.0f;
@@ -53,6 +59,7 @@ namespace Tizen.AIAvatar
             return returnValue;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableCropToMask(this SceneView sceneView, bool enableCropToMask)
         {
             var setValue = new Tizen.NUI.PropertyValue(enableCropToMask);
@@ -60,6 +67,7 @@ namespace Tizen.AIAvatar
             setValue.Dispose();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsEnabledCropToMask(this SceneView sceneView)
         {
             bool returnValue = false;
