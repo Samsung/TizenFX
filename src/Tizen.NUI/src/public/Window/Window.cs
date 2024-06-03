@@ -416,13 +416,20 @@ namespace Tizen.NUI
             BottomRight = 8,
         }
 
-
         /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12, please use Default instead")]
         public static Window Instance { get; internal set; }
+
+        /// <summary>
+        /// Gets the default window.
+        /// The main window or default window is automatically created when the application is launched, 
+        /// and it remains constant and unchanged throughout the application's operation.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public static Window Default { get; internal set; }
 
         /// <summary>
         /// Gets or sets a window type.
