@@ -5321,7 +5321,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Voice interaction name for voice touch.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public string VoiceInteractionName
         {
             set

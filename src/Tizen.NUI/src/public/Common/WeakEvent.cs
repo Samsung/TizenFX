@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The WeakEvent without holding strong reference of event handler.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 12 </since_tizen>
     public class WeakEvent<T> where T : Delegate
     {
         private const int addThreshold = 1000; // Experimetal constant
@@ -36,13 +36,13 @@ namespace Tizen.NUI
         /// <summary>
         /// The count of currently added event handlers.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         protected int Count => handlers.Count;
 
         /// <summary>
         /// Add an event handler.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public virtual void Add(T handler)
         {
             handlers.Add(new WeakHandler<T>(handler));
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Remove last added event handler.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public virtual void Remove(T handler)
         {
             int lastIndex = handlers.FindLastIndex(item => item.Equals(handler));
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoke event handlers.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public void Invoke(object sender, object args)
         {
             // Iterate copied one to prevent addition/removal item in the handler call.
@@ -86,7 +86,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoked when the event handler count is increased.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         protected virtual void OnCountIncreased()
         {
         }
@@ -94,6 +94,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoked when the event handler count is decreased.
         /// </summary>
+        /// <since_tizen> 12 </since_tizen>
         protected virtual void OnCountDicreased()
         {
         }
