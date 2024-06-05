@@ -20,6 +20,7 @@ namespace Tizen.Applications.Shortcut
     /// Enumeration for values of the shortcut response types.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public enum ShortcutError
     {
         /// <summary>
