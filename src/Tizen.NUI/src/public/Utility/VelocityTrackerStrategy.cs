@@ -15,7 +15,6 @@
  *
  */
 
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Utility
@@ -23,7 +22,7 @@ namespace Tizen.NUI.Utility
 
     /// <summary>
     /// VelocityTrackerStrategy
-    /// </sumary>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class VelocityTrackerStrategy
     {

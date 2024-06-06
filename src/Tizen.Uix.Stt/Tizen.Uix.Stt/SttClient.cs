@@ -125,12 +125,12 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Out of Memory.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>.
+        /// <since_tizen> 3 </since_tizen>
         OutOfMemory,
         /// <summary>
         /// I/O error.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>.
+        /// <since_tizen> 3 </since_tizen>
         IoError,
         /// <summary>
         /// Invalid parameter.
