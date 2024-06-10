@@ -189,7 +189,7 @@ namespace Tizen.NUI
                 DragType type = (DragType)Interop.DragAndDrop.GetAction(dragEvent);
                 DragEvent ev = new DragEvent();
                 global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(dragEvent);
-                ev.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                ev.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, true);
 
                 if (type == DragType.Enter)
                 {
