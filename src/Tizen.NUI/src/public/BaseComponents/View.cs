@@ -2520,8 +2520,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (basehandle is Layer layer)
                 {
-                    ret = new View(Layer.getCPtr(layer).Handle, false);
-                    NUILog.Error("This Parent property is deprecated, should do not be used");
+                    throw new InvalidOperationException("This Parent property is deprecated, should do not be used");
                 }
                 else
                 {
