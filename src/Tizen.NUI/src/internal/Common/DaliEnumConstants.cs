@@ -238,6 +238,22 @@ namespace Tizen.NUI
         {
             Tizen.Log.Error("NUI", $"{msg} (at line {lineNum} of {caller} in {file})\n");
         }
+
+        public static void ErrorBacktrace(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Error("NUI", $"[ERR]{msg} (at line {lineNum} of {caller} in {file})\n");
+            Tizen.Log.Error("NUI", $"[ERR] Back Trace =>");
+            global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
+            for (int i = 0; i < st.FrameCount; i++)
+            {
+                global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
+                Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+            }
+        }
     }
 
 }
