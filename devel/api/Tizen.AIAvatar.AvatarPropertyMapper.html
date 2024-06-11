@@ -89,7 +89,10 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.AIAvatar.html">AIAvatar</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.AIAvatar.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>TODO : Explain more detail</p>
+  <div class="markdown level0 summary"><p>The AvatarPropertyMapper class manages property mapping information for specific attributes of an Avatar model.
+It primarily maps the names of AvatarProperty to their actual storage locations.
+By doing so, developers can directly read or write the values of these properties using their respective names.
+This approach provides consistency and convenience when working with Avatar models.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -114,7 +117,7 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L42">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarPropertyMapper__ctor_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_AvatarPropertyMapper__ctor" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.#ctor">AvatarPropertyMapper()</h4>
@@ -130,16 +133,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarPropertyMapper__ctor_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_AvatarPropertyMapper__ctor_Tizen_AIAvatar_AvatarPropertyMapper_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.#ctor(Tizen.AIAvatar.AvatarPropertyMapper)">AvatarPropertyMapper(AvatarPropertyMapper)</h4>
-  <div class="markdown level1 summary"><p>Copy constructor.</p>
+  <div class="markdown level1 summary"><p>Copy constructor.<br>
+Creates a new instance of the AvatarPropertyMapper class by copying the contents of another existing AvatarPropertyMapper instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AvatarPropertyMapper(AvatarPropertyMapper rhs)</code></pre>
+    <pre><code class="lang-csharp hljs">public AvatarPropertyMapper(AvatarPropertyMapper source)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -153,8 +157,9 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.AIAvatar.AvatarPropertyMapper.html">AvatarPropertyMapper</a></td>
-        <td><span class="parametername">rhs</span></td>
-        <td></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The source AvatarPropertyMapper instance to be copied.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -165,41 +170,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L68">View Source</a>
-  </span>
-  <a id="Tizen_AIAvatar_AvatarPropertyMapper_CustomIndexCounter_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.CustomIndexCounter*"></a>
-  <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_CustomIndexCounter" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.CustomIndexCounter">CustomIndexCounter</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected uint CustomIndexCounter { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">uint</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L100">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L59">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarPropertyMapper_Item_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.Item*"></a>
   <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_Item_System_UInt32_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.Item(System.UInt32)">this[uint]</h4>
-  <div class="markdown level1 summary"><p>TODO : Explain me.</p>
+  <div class="markdown level1 summary"><p>Indexer method. Allows accessing and setting the property names using array notation.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -245,7 +220,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarPropertyMapper_Mapper_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.Mapper*"></a>
   <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_Mapper" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.Mapper">Mapper</h4>
@@ -278,11 +253,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L137">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L124">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarPropertyMapper_GetPropertyIndexByName_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.GetPropertyIndexByName*"></a>
   <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_GetPropertyIndexByName_System_String_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.GetPropertyIndexByName(System.String)">GetPropertyIndexByName(string)</h4>
-  <div class="markdown level1 summary"><p>TODO : Explain me.</p>
+  <div class="markdown level1 summary"><p>Returns the index of a property by its name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -328,11 +303,61 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L119">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L157">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_AvatarPropertyMapper_GetPropertyName_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.GetPropertyName*"></a>
+  <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_GetPropertyName_System_UInt32_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.GetPropertyName(System.UInt32)">GetPropertyName(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets the property name at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetPropertyName(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of property what we want to set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The name of property, or null if not exist</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L107">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarPropertyMapper_RegisterCustomProperty_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.RegisterCustomProperty*"></a>
   <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_RegisterCustomProperty_System_String_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.RegisterCustomProperty(System.String)">RegisterCustomProperty(string)</h4>
-  <div class="markdown level1 summary"><p>TODO : Explain me.</p>
+  <div class="markdown level1 summary"><p>Registers a custom property by name and returns its index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -377,6 +402,46 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L146">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_AvatarPropertyMapper_SetPropertyName_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.SetPropertyName*"></a>
+  <h4 id="Tizen_AIAvatar_AvatarPropertyMapper_SetPropertyName_System_UInt32_System_String_" data-uid="Tizen.AIAvatar.AvatarPropertyMapper.SetPropertyName(System.UInt32,System.String)">SetPropertyName(uint, string)</h4>
+  <div class="markdown level1 summary"><p>Sets the property name at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPropertyName(uint index, string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of property what we want to set</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of property what we want to set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
@@ -407,7 +472,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarPropertyMapper.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarPropertyMapper.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -89,7 +89,11 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.AIAvatar.html">AIAvatar</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.AIAvatar.dll</dd></dl>
 
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>The Avatar class contains an inner AvatarProperties class.
+This class manages AvatarProperty information using the AvatarPropertyMapper class.
+By default, it includes jointMapper, blendShapeMapper, and nodeMapper, which automatically generate Properties based on model information.
+This structure enables users to work with Avatar properties in a more convenient way.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
@@ -113,11 +117,13 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarProperties.cs/#L30">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarProperties.cs/#L101">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarProperties__ctor_" data-uid="Tizen.AIAvatar.AvatarProperties.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_AvatarProperties__ctor_Tizen_AIAvatar_AvatarPropertyMapper_Tizen_AIAvatar_AvatarPropertyMapper_Tizen_AIAvatar_AvatarPropertyMapper_" data-uid="Tizen.AIAvatar.AvatarProperties.#ctor(Tizen.AIAvatar.AvatarPropertyMapper,Tizen.AIAvatar.AvatarPropertyMapper,Tizen.AIAvatar.AvatarPropertyMapper)">AvatarProperties(AvatarPropertyMapper, AvatarPropertyMapper, AvatarPropertyMapper)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the AvatarProperties class with the specified joint mapper, blend shape mapper, and node mapper.
+These mappers are used to map between the Avatar's underlying model data and its corresponding properties.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -136,17 +142,20 @@
       <tr>
         <td><a class="xref" href="Tizen.AIAvatar.AvatarPropertyMapper.html">AvatarPropertyMapper</a></td>
         <td><span class="parametername">jointMapper</span></td>
-        <td></td>
+        <td><p>The AvatarPropertyMapper for joints.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.AIAvatar.AvatarPropertyMapper.html">AvatarPropertyMapper</a></td>
         <td><span class="parametername">blendShapeMapper</span></td>
-        <td></td>
+        <td><p>The AvatarPropertyMapper for blend shapes.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.AIAvatar.AvatarPropertyMapper.html">AvatarPropertyMapper</a></td>
         <td><span class="parametername">nodeMapper</span></td>
-        <td></td>
+        <td><p>The AvatarPropertyMapper for nodes.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -157,11 +166,13 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarProperties.cs/#L54">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarProperties.cs/#L62">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarProperties_BlendShapeMapper_" data-uid="Tizen.AIAvatar.AvatarProperties.BlendShapeMapper*"></a>
   <h4 id="Tizen_AIAvatar_AvatarProperties_BlendShapeMapper" data-uid="Tizen.AIAvatar.AvatarProperties.BlendShapeMapper">BlendShapeMapper</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The BlendShapeMapper property gets or sets the AvatarPropertyMapper responsible for managing blend shape information in the Avatar model.<br>
+When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -187,11 +198,13 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarProperties.cs/#L40">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarProperties.cs/#L44">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarProperties_JointMapper_" data-uid="Tizen.AIAvatar.AvatarProperties.JointMapper*"></a>
   <h4 id="Tizen_AIAvatar_AvatarProperties_JointMapper" data-uid="Tizen.AIAvatar.AvatarProperties.JointMapper">JointMapper</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The JointMapper property gets or sets the AvatarPropertyMapper responsible for mapping joint information in the Avatar model.
+When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -217,11 +230,13 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarProperties.cs/#L68">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarProperties.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_AvatarProperties_NodeMapper_" data-uid="Tizen.AIAvatar.AvatarProperties.NodeMapper*"></a>
   <h4 id="Tizen_AIAvatar_AvatarProperties_NodeMapper" data-uid="Tizen.AIAvatar.AvatarProperties.NodeMapper">NodeMapper</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The NodeMapper property gets or sets the AvatarPropertyMapper responsible for managing node information in the Avatar model.<br>
+When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -239,6 +254,64 @@
       <tr>
         <td><a class="xref" href="Tizen.AIAvatar.AvatarPropertyMapper.html">AvatarPropertyMapper</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarProperties.cs/#L115">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_AvatarProperties_CreateBlendShapeMotionIndex_" data-uid="Tizen.AIAvatar.AvatarProperties.CreateBlendShapeMotionIndex*"></a>
+  <h4 id="Tizen_AIAvatar_AvatarProperties_CreateBlendShapeMotionIndex_Tizen_AIAvatar_NodeType_Tizen_AIAvatar_BlendShapeType_" data-uid="Tizen.AIAvatar.AvatarProperties.CreateBlendShapeMotionIndex(Tizen.AIAvatar.NodeType,Tizen.AIAvatar.BlendShapeType)">CreateBlendShapeMotionIndex(NodeType, BlendShapeType)</h4>
+  <div class="markdown level1 summary"><p>This method generates a MotionIndex to be used in animations based on the NodeType and BlendShapeType using the model information of an Avatar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MotionIndex CreateBlendShapeMotionIndex(NodeType nodeType, BlendShapeType blendShapeType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.NodeType.html">NodeType</a></td>
+        <td><span class="parametername">nodeType</span></td>
+        <td><p>Node type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.BlendShapeType.html">BlendShapeType</a></td>
+        <td><span class="parametername">blendShapeType</span></td>
+        <td><p>Blend shape type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></td>
+        <td><p>The generated MotionIndex</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -276,7 +349,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Properties/AvatarProperties.cs/#L23" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/AvatarProperties.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
