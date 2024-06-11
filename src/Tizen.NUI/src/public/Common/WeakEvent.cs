@@ -84,7 +84,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Invoked when the event handler count is increased.
+        /// Invoked when the event handler count is increased - a new event handler has been added.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         protected virtual void OnCountIncreased()
