@@ -74,6 +74,16 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// Constructor with remote address of the device
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BluetoothDevice(string remoteAddress)
+        {
+            RemoteDeviceAddress = remoteAddress;
+        }
+
+        /// <summary>
         /// The address of the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
