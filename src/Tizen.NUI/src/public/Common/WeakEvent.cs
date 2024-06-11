@@ -94,6 +94,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoked when the event handler count is decreased.
         /// </summary>
+        /// <remarks>
+        /// The event handler count decreases when an event handler is removed
+        ///  with <see cref="Remove()"/> or after detecting that it is no longer valid.
+        /// </remarks>
         /// <since_tizen> 12 </since_tizen>
         protected virtual void OnCountDicreased()
         {
