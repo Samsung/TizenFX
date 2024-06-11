@@ -62,7 +62,7 @@ namespace Tizen.NUI
             if (lastIndex >= 0)
             {
                 handlers.RemoveAt(lastIndex);
-                OnCountDicreased();
+                OnCountDecreased();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Tizen.NUI
         ///  with <see cref="Remove()"/> or after detecting that it is no longer valid.
         /// </remarks>
         /// <since_tizen> 12 </since_tizen>
-        protected virtual void OnCountDicreased()
+        protected virtual void OnCountDecreased()
         {
         }
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI
             cleanUpAddCount = 0;
             int count = handlers.Count;
             handlers.RemoveAll(item => !item.IsAlive);
-            if (count > handlers.Count) OnCountDicreased();
+            if (count > handlers.Count) OnCountDecreased();
         }
 
         internal class WeakHandler<U> where U : Delegate
