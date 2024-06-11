@@ -210,9 +210,14 @@ namespace Tizen.NUI.BaseComponents
 
             protected override bool ReleaseHandle()
             {
+                DisposeQueue.Instance.Add(this);
+                return true;
+            }
+
+            public void Dispose()
+            {
                 Interop.View.DeleteControlHandleView(handle);
                 this.SetHandle(IntPtr.Zero);
-                return true;
             }
         }
 
