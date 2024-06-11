@@ -89,10 +89,9 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.AIAvatar.html">AIAvatar</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.AIAvatar.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Avatar is a Class to show 3D avatar objects.
-It is subclass of Model s.t. we can control Avatar like models animation easly.
-For example,</p>
-<p>Avatar supports AR Emoji.</p>
+  <div class="markdown level0 summary"><p>The Avatar class displays 3D avatars and provides easy access to their animations.
+This class is a sub-class of the Model class which allows us to easily control the Avatar's animations.
+Avatar also supports AR Emoji for humanoid-based 3D models.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -133,7 +132,7 @@ For example,</p>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Avatar.cs/#L47">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L54">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_Avatar__ctor_" data-uid="Tizen.AIAvatar.Avatar.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_Avatar__ctor" data-uid="Tizen.AIAvatar.Avatar.#ctor">Avatar()</h4>
@@ -149,7 +148,7 @@ For example,</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Avatar.cs/#L74">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_Avatar__ctor_" data-uid="Tizen.AIAvatar.Avatar.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_Avatar__ctor_System_String_System_String_" data-uid="Tizen.AIAvatar.Avatar.#ctor(System.String,System.String)">Avatar(string, string)</h4>
@@ -173,7 +172,8 @@ For example,</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">avatarUrl</span></td>
-        <td></td>
+        <td><p>avatar file url.(e.g. glTF).</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
@@ -193,7 +193,7 @@ For example,</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Avatar.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L90">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_Avatar__ctor_" data-uid="Tizen.AIAvatar.Avatar.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_Avatar__ctor_Tizen_AIAvatar_Avatar_" data-uid="Tizen.AIAvatar.Avatar.#ctor(Tizen.AIAvatar.Avatar)">Avatar(Avatar)</h4>
@@ -227,7 +227,7 @@ For example,</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Avatar.cs/#L56">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L63">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_Avatar__ctor_" data-uid="Tizen.AIAvatar.Avatar.#ctor*"></a>
   <h4 id="Tizen_AIAvatar_Avatar__ctor_Tizen_AIAvatar_AvatarInfo_" data-uid="Tizen.AIAvatar.Avatar.#ctor(Tizen.AIAvatar.AvatarInfo)">Avatar(AvatarInfo)</h4>
@@ -262,15 +262,16 @@ For example,</p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Avatar.cs/#L91">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L41">View Source</a>
   </span>
-  <a id="Tizen_AIAvatar_Avatar_AvatarProperties_" data-uid="Tizen.AIAvatar.Avatar.AvatarProperties*"></a>
-  <h4 id="Tizen_AIAvatar_Avatar_AvatarProperties" data-uid="Tizen.AIAvatar.Avatar.AvatarProperties">AvatarProperties</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Tizen_AIAvatar_Avatar_Properties_" data-uid="Tizen.AIAvatar.Avatar.Properties*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_Properties" data-uid="Tizen.AIAvatar.Avatar.Properties">Properties</h4>
+  <div class="markdown level1 summary"><p>The AvatarProperties property gets or sets the AvatarProperties object containing various information about the Avatar.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AvatarProperties AvatarProperties { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public AvatarProperties Properties { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -287,6 +288,244 @@ For example,</p>
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L216">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_PauseEyeBlink_" data-uid="Tizen.AIAvatar.Avatar.PauseEyeBlink*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_PauseEyeBlink" data-uid="Tizen.AIAvatar.Avatar.PauseEyeBlink">PauseEyeBlink()</h4>
+  <div class="markdown level1 summary"><p>Pauses the eye blink animation for the current avatar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PauseEyeBlink()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L189">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_PauseMotionAnimation_" data-uid="Tizen.AIAvatar.Avatar.PauseMotionAnimation*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_PauseMotionAnimation" data-uid="Tizen.AIAvatar.Avatar.PauseMotionAnimation">PauseMotionAnimation()</h4>
+  <div class="markdown level1 summary"><p>Pauses the currently playing avatar animation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PauseMotionAnimation()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L173">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_PlayAnimation_" data-uid="Tizen.AIAvatar.Avatar.PlayAnimation*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_PlayAnimation_System_Int32_System_Int32_System_Boolean_System_Int32_" data-uid="Tizen.AIAvatar.Avatar.PlayAnimation(System.Int32,System.Int32,System.Boolean,System.Int32)">PlayAnimation(int, int, bool, int)</h4>
+  <div class="markdown level1 summary"><p>Plays the specified avatar animation based on its index within the available animations and an optional duration and loop count.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PlayAnimation(int index, int duration = 3000, bool isLooping = false, int loopCount = 1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The zero-based index of the desired avatar animation within the list of available animations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td><p>The duration of the animation in milliseconds (default is 3000).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isLooping</span></td>
+        <td><p>A boolean indicating whether the animation should be looped or not.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">loopCount</span></td>
+        <td><p>The number of times to repeat the animation if it's set to loop.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L105">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_PlayAnimation_" data-uid="Tizen.AIAvatar.Avatar.PlayAnimation*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_PlayAnimation_Tizen_AIAvatar_AnimationInfo_System_Int32_System_Boolean_System_Int32_" data-uid="Tizen.AIAvatar.Avatar.PlayAnimation(Tizen.AIAvatar.AnimationInfo,System.Int32,System.Boolean,System.Int32)">PlayAnimation(AnimationInfo, int, bool, int)</h4>
+  <div class="markdown level1 summary"><p>Plays the specified avatar animation with an optional duration and loop count.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PlayAnimation(AnimationInfo animationInfo, int duration = 3000, bool isLooping = false, int loopCount = 1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.AnimationInfo.html">AnimationInfo</a></td>
+        <td><span class="parametername">animationInfo</span></td>
+        <td><p>The AnimationInfo object containing information about the desired avatar animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td><p>The duration of the animation in milliseconds (default is 3000).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isLooping</span></td>
+        <td><p>A boolean indicating whether the animation should be looped or not.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">loopCount</span></td>
+        <td><p>The number of times to repeat the animation if it's set to loop.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L142">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_PlayAnimation_" data-uid="Tizen.AIAvatar.Avatar.PlayAnimation*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_PlayAnimation_Tizen_NUI_Scene3D_MotionData_System_Int32_System_Boolean_System_Int32_" data-uid="Tizen.AIAvatar.Avatar.PlayAnimation(Tizen.NUI.Scene3D.MotionData,System.Int32,System.Boolean,System.Int32)">PlayAnimation(MotionData, int, bool, int)</h4>
+  <div class="markdown level1 summary"><p>Plays the specified avatar animation with MotionData and an optional duration and loop count.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PlayAnimation(MotionData motionData, int duration = 3000, bool isLooping = false, int loopCount = 1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
+        <td><span class="parametername">motionData</span></td>
+        <td><p>The MotionData object containing information about the desired avatar animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td><p>The duration of the animation in milliseconds (default is 3000).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isLooping</span></td>
+        <td><p>A boolean indicating whether the animation should be looped or not.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">loopCount</span></td>
+        <td><p>The number of times to repeat the animation if it's set to loop.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L207">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_StartEyeBlink_" data-uid="Tizen.AIAvatar.Avatar.StartEyeBlink*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_StartEyeBlink" data-uid="Tizen.AIAvatar.Avatar.StartEyeBlink">StartEyeBlink()</h4>
+  <div class="markdown level1 summary"><p>Starts the eye blink animation for the current avatar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartEyeBlink()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L225">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_StopEyeBlink_" data-uid="Tizen.AIAvatar.Avatar.StopEyeBlink*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_StopEyeBlink" data-uid="Tizen.AIAvatar.Avatar.StopEyeBlink">StopEyeBlink()</h4>
+  <div class="markdown level1 summary"><p>Stops the eye blink animation for the current avatar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopEyeBlink()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L198">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_Avatar_StopMotionAnimation_" data-uid="Tizen.AIAvatar.Avatar.StopMotionAnimation*"></a>
+  <h4 id="Tizen_AIAvatar_Avatar_StopMotionAnimation" data-uid="Tizen.AIAvatar.Avatar.StopMotionAnimation">StopMotionAnimation()</h4>
+  <div class="markdown level1 summary"><p>Stops the currently playing avatar animation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopMotionAnimation()</code></pre>
+  </div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -334,7 +573,7 @@ For example,</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Avatar.cs/#L33" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Common/Avatar.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

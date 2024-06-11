@@ -89,27 +89,37 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.AIAvatar.html">AIAvatar</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.AIAvatar.dll</dd></dl>
 
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>VoiceInfo stores information about a voice.
+The 'Language' field stores the language of the voice
+The 'Type' field stores the type of the voice.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct VoiceInfo</code></pre>
+    <pre><code class="lang-csharp hljs">public struct VoiceInfo : IEquatable&lt;VoiceInfo&gt;</code></pre>
   </div>
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">IEquatable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a>&gt;</div>
+    </dd>
+  </dl>
 
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Info/VoiceInfo.cs/#L31">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L37">View Source</a>
   </span>
-  <a id="Tizen_AIAvatar_VoiceInfo_Lang_" data-uid="Tizen.AIAvatar.VoiceInfo.Lang*"></a>
-  <h4 id="Tizen_AIAvatar_VoiceInfo_Lang" data-uid="Tizen.AIAvatar.VoiceInfo.Lang">Lang</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Tizen_AIAvatar_VoiceInfo_Language_" data-uid="Tizen.AIAvatar.VoiceInfo.Language*"></a>
+  <h4 id="Tizen_AIAvatar_VoiceInfo_Language" data-uid="Tizen.AIAvatar.VoiceInfo.Language">Language</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the language of the voice.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Lang { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Language { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -131,15 +141,16 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Info/VoiceInfo.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L43">View Source</a>
   </span>
   <a id="Tizen_AIAvatar_VoiceInfo_Type_" data-uid="Tizen.AIAvatar.VoiceInfo.Type*"></a>
   <h4 id="Tizen_AIAvatar_VoiceInfo_Type" data-uid="Tizen.AIAvatar.VoiceInfo.Type">Type</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the type of the voice.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Voice Type { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VoiceType Type { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -151,7 +162,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Uix.Tts.Voice.html">Voice</a></td>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceType.html">VoiceType</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -160,6 +171,258 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L51">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_VoiceInfo_Equals_" data-uid="Tizen.AIAvatar.VoiceInfo.Equals*"></a>
+  <h4 id="Tizen_AIAvatar_VoiceInfo_Equals_System_Object_" data-uid="Tizen.AIAvatar.VoiceInfo.Equals(System.Object)">Equals(object)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare with the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if equal VoiceInfo, else false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L59">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_VoiceInfo_Equals_" data-uid="Tizen.AIAvatar.VoiceInfo.Equals*"></a>
+  <h4 id="Tizen_AIAvatar_VoiceInfo_Equals_Tizen_AIAvatar_VoiceInfo_" data-uid="Tizen.AIAvatar.VoiceInfo.Equals(Tizen.AIAvatar.VoiceInfo)">Equals(VoiceInfo)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(VoiceInfo other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The VoiceInfo to compare with the current VoiceInfo.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if equal VoiceInfo, else false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L84">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_VoiceInfo_GetHashCode_" data-uid="Tizen.AIAvatar.VoiceInfo.GetHashCode*"></a>
+  <h4 id="Tizen_AIAvatar_VoiceInfo_GetHashCode" data-uid="Tizen.AIAvatar.VoiceInfo.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Gets the hash code of this VoiceInfo.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The hash code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L68">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_VoiceInfo_op_Equality_" data-uid="Tizen.AIAvatar.VoiceInfo.op_Equality*"></a>
+  <h4 id="Tizen_AIAvatar_VoiceInfo_op_Equality_Tizen_AIAvatar_VoiceInfo_Tizen_AIAvatar_VoiceInfo_" data-uid="Tizen.AIAvatar.VoiceInfo.op_Equality(Tizen.AIAvatar.VoiceInfo,Tizen.AIAvatar.VoiceInfo)">operator ==(VoiceInfo, VoiceInfo)</h4>
+  <div class="markdown level1 summary"><p>The == operator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(VoiceInfo lhsVoiceInfo, VoiceInfo rhsVoiceInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">lhsVoiceInfo</span></td>
+        <td><p>VoiceInfo to compare</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">rhsVoiceInfo</span></td>
+        <td><p>VoiceInfo to be compared</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if VoiceInfo are equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L77">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_VoiceInfo_op_Inequality_" data-uid="Tizen.AIAvatar.VoiceInfo.op_Inequality*"></a>
+  <h4 id="Tizen_AIAvatar_VoiceInfo_op_Inequality_Tizen_AIAvatar_VoiceInfo_Tizen_AIAvatar_VoiceInfo_" data-uid="Tizen.AIAvatar.VoiceInfo.op_Inequality(Tizen.AIAvatar.VoiceInfo,Tizen.AIAvatar.VoiceInfo)">operator !=(VoiceInfo, VoiceInfo)</h4>
+  <div class="markdown level1 summary"><p>The != operator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(VoiceInfo lhsVoiceInfo, VoiceInfo rhsVoiceInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">lhsVoiceInfo</span></td>
+        <td><p>VoiceInfo to compare</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">rhsVoiceInfo</span></td>
+        <td><p>VoiceInfo to be compared</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if VoiceInfo are not equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
@@ -190,7 +453,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/public/Avatar/Info/VoiceInfo.cs/#L22" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.AIAvatar/src/Multimedia/TTS/VoiceInfo.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
