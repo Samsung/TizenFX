@@ -52,7 +52,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Remove last added event handler.
+        /// Remove last stored event handler equal to <paramref name="handler"/>.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public virtual void Remove(T handler)
