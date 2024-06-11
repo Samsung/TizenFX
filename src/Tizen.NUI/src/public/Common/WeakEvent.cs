@@ -34,7 +34,7 @@ namespace Tizen.NUI
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
         /// <summary>
-        /// The count of currently added event handlers.
+        /// The count of currently stored event handlers.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         protected int Count => handlers.Count;
