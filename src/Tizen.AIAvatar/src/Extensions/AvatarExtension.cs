@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2023 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,17 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.ComponentModel;
 
 using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
-    internal static class AvatarExtension
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class AvatarExtension
     {
-        internal static List<AvatarInfo> GetDefaultAvatarList()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<AvatarInfo> GetDefaultAvatarList()
         {
             var list = new List<AvatarInfo>();
             var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);

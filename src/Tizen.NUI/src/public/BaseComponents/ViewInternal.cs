@@ -1425,6 +1425,15 @@ namespace Tizen.NUI.BaseComponents
             internalCurrentScreenPosition?.Dispose();
             internalCurrentScreenPosition = null;
 
+            if (visualContainers != null)
+            {
+                foreach (var visualContainer in visualContainers)
+                {
+                    visualContainer?.Dispose();
+                }
+                visualContainers = null;
+            }
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User

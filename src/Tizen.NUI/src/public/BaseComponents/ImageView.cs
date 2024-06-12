@@ -2216,43 +2216,6 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsCornerRadius;
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsBorderline;
 
-            // Do Fitting Buffer when desired dimension is set
-            // TODO : Couldn't we do this job in dali-engine side.
-            if (_desired_width != -1 && _desired_height != -1)
-            {
-                if (!string.IsNullOrEmpty(_resourceUrl))
-                {
-                    Size2D imageSize = ImageLoader.GetOriginalImageSize(_resourceUrl, true);
-                    if (imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0 && _desired_height > 0)
-                    {
-                        int adjustedDesiredWidth, adjustedDesiredHeight;
-                        float aspectOfDesiredSize = (float)_desired_height / (float)_desired_width;
-                        float aspectOfImageSize = (float)imageSize.Height / (float)imageSize.Width;
-                        if (aspectOfImageSize > aspectOfDesiredSize)
-                        {
-                            adjustedDesiredWidth = _desired_width;
-                            adjustedDesiredHeight = imageSize.Height * _desired_width / imageSize.Width;
-                        }
-                        else
-                        {
-                            adjustedDesiredWidth = imageSize.Width * _desired_height / imageSize.Height;
-                            adjustedDesiredHeight = _desired_height;
-                        }
-
-                        PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
-                        cachedImagePropertyMap[ImageVisualProperty.DesiredWidth] = returnWidth;
-                        returnWidth?.Dispose();
-                        PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
-                        cachedImagePropertyMap[ImageVisualProperty.DesiredHeight] = returnHeight;
-                        returnHeight?.Dispose();
-                        PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
-                        cachedImagePropertyMap[ImageVisualProperty.FittingMode] = scaleToFit;
-                        scaleToFit?.Dispose();
-                    }
-                    imageSize?.Dispose();
-                }
-            }
-
             UpdateImageMap();
         }
 

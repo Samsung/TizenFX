@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.AIAvatar.Sample", "Tizen.AIAvatar.Sample.csproj", "{0176A159-FCC2-45B8-ABEE-63FEBFEA5079}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.AIAvatar", "..\..\src\Tizen.AIAvatar\Tizen.AIAvatar.csproj", "{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0176A159-FCC2-45B8-ABEE-63FEBFEA5079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0176A159-FCC2-45B8-ABEE-63FEBFEA5079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0176A159-FCC2-45B8-ABEE-63FEBFEA5079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0176A159-FCC2-45B8-ABEE-63FEBFEA5079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
