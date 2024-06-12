@@ -447,6 +447,42 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
+        /// Set Auto Scan Mode.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void SetAutoScanMode(WiFiAutoScanMode scanMode)
+        {
+            WiFiManagerImpl.Instance.SetAutoScanMode((int)scanMode);
+        }
+
+        /// <summary>
+        /// Hidden Ap connect.
+        /// </summary>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <returns>A task indicating whether the HiddenAPConnectAsync method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public Task HiddenAPConnectAsync(string essid, int secType, string password)
+        {
+            return WiFiManagerImpl.Instance.HiddenAPConnectAsync(essid, secType, password);
+        }
+
+        /// <summary>
         /// Create Specific scan handle.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
