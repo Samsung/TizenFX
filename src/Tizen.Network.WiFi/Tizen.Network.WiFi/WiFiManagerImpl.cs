@@ -597,6 +597,62 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
+        internal void SetAutoScanMode(int scanMode)
+        {
+            Log.Info(Globals.LogTag, "SetAutoScanMode");
+            int ret = Interop.WiFi.SetAutoScanMode(GetSafeHandle(), scanMode);
+            CheckReturnValue(ret, "GetSafeHandle", PrivilegeNetworkGet);
+        }
+
+        internal Task HiddenAPConnectAsync(string essid, int secType, string passphrase)
+        {
+            Log.Info(Globals.LogTag, "HiddenAPConnect");
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Info(Globals.LogTag, "HiddenAPConnect Done " + essid);
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during HiddenAPConnect, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during HiddenAPConnect, " + (WiFiError)error));
+                    }
+                    else
+                    {
+                        task.SetResult(true);
+                    }
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+
+            context.Post((x) =>
+            {
+                Log.Info(Globals.LogTag, "Interop.WiFi.HiddenAPConnect");
+                try
+                {
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, _callback_map[id], id);
+                    }
+                    CheckReturnValue(ret, "HiddenAPConnect", "");
+                }
+                catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on HiddenAPConnect\n" + e);
+                    task.SetException(e);
+                }
+            }, null);
+
+            return task.Task;
+        }
+
         internal void CreateSpecificScanHandle()
         {
             Log.Debug(Globals.LogTag, "CreateSpecificScanHandle");
