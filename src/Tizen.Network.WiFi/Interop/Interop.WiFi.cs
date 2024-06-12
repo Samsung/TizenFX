@@ -92,6 +92,10 @@ internal static partial class Interop
         internal static extern int ForgetAP(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_update_ap")]
         internal static extern int UpdateAP(SafeWiFiManagerHandle wifi, IntPtr ap);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_set_autoscan_mode")]
+        internal static extern int SetAutoScanMode(SafeWiFiManagerHandle wifi, int mode);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect_hidden_ap")]
+        internal static extern int ConnectHiddenAP(SafeWiFiManagerHandle wifi, string essid, int secType, string passphrase, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_scan_create")]
         internal static extern int SpecificScanCreate(SafeWiFiManagerHandle wifi, out IntPtr specificScanHandle);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_scan_destroy")]
