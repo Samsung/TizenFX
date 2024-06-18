@@ -37,6 +37,8 @@ namespace Tizen.NUI.Samples
             };
             window.Add(root);
 
+            window.KeyEvent += WindowKeyEvent;
+
             canvasView = new CanvasView(window.Size)
             {
                 Size = window.Size,
@@ -262,9 +264,12 @@ namespace Tizen.NUI.Samples
         {
             if (root != null)
             {
-                timer.Stop();
-                NUIApplication.GetDefaultWindow().Remove(root);
-                canvasView.Dispose();
+                Window window = NUIApplication.GetDefaultWindow();
+                window.KeyEvent -= WindowKeyEvent;
+                window.Remove(root);
+
+                timer?.Stop();
+                canvasView?.Dispose();
                 root.Dispose();
             }
         }
@@ -289,7 +294,29 @@ namespace Tizen.NUI.Samples
 
             count++;
 
+            if(canvasView.RasterizationRequestManually)
+            {
+                canvasView.RequestRasterization();
+            }
+
             return true;
+        }
+
+        private void WindowKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "1")
+                {
+                    canvasView.SynchronousLoading =!canvasView.SynchronousLoading;
+                    log.Error(tag, $"CanvasView.SynchronousLoading --> {canvasView.SynchronousLoading}\n");
+                }
+                else if (e.Key.KeyPressedName == "2")
+                {
+                    canvasView.RasterizationRequestManually =!canvasView.RasterizationRequestManually;
+                    log.Error(tag, $"CanvasView.RasterizationRequestManually --> {canvasView.RasterizationRequestManually}\n");
+                }
+            }
         }
     }
 }
