@@ -10,7 +10,7 @@
     <meta name="title" content="Class EcoreMainloop
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L47">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L47">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_IsMainThread_" data-uid="ElmSharp.EcoreMainloop.IsMainThread*"></a>
   <h4 id="ElmSharp_EcoreMainloop_IsMainThread" data-uid="ElmSharp.EcoreMainloop.IsMainThread">IsMainThread</h4>
@@ -150,10 +150,10 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L114">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L114">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_AddTimer_" data-uid="ElmSharp.EcoreMainloop.AddTimer*"></a>
-  <h4 id="ElmSharp_EcoreMainloop_AddTimer_System_Double_Func_System_Boolean__" data-uid="ElmSharp.EcoreMainloop.AddTimer(System.Double,Func{System.Boolean})">AddTimer(double, Func&lt;bool&gt;)</h4>
+  <h4 id="ElmSharp_EcoreMainloop_AddTimer_System_Double_System_Func_System_Boolean__" data-uid="ElmSharp.EcoreMainloop.AddTimer(System.Double,System.Func{System.Boolean})">AddTimer(double, Func&lt;bool&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a timer to call the given function in the given period of time.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -178,7 +178,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Func&lt;&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><span class="xref">System.Func&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
         <td><span class="parametername">handler</span></td>
         <td><p>The given function.</p>
 </td>
@@ -195,7 +195,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><p>A timer object handler on success, or null on failure.</p>
 </td>
       </tr>
@@ -206,7 +206,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L53">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_Begin_" data-uid="ElmSharp.EcoreMainloop.Begin*"></a>
   <h4 id="ElmSharp_EcoreMainloop_Begin" data-uid="ElmSharp.EcoreMainloop.Begin">Begin()</h4>
@@ -222,10 +222,10 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L72">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_Post_" data-uid="ElmSharp.EcoreMainloop.Post*"></a>
-  <h4 id="ElmSharp_EcoreMainloop_Post_Action_" data-uid="ElmSharp.EcoreMainloop.Post(Action)">Post(Action)</h4>
+  <h4 id="ElmSharp_EcoreMainloop_Post_System_Action_" data-uid="ElmSharp.EcoreMainloop.Post(System.Action)">Post(Action)</h4>
   <div class="markdown level1 summary"><p>Adds an idler handler.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -244,7 +244,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Action</span></td>
+        <td><span class="xref">System.Action</span></td>
         <td><span class="parametername">task</span></td>
         <td><p>The action to call when idle.</p>
 </td>
@@ -256,10 +256,10 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L83">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L83">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_PostAndWakeUp_" data-uid="ElmSharp.EcoreMainloop.PostAndWakeUp*"></a>
-  <h4 id="ElmSharp_EcoreMainloop_PostAndWakeUp_Action_" data-uid="ElmSharp.EcoreMainloop.PostAndWakeUp(Action)">PostAndWakeUp(Action)</h4>
+  <h4 id="ElmSharp_EcoreMainloop_PostAndWakeUp_System_Action_" data-uid="ElmSharp.EcoreMainloop.PostAndWakeUp(System.Action)">PostAndWakeUp(Action)</h4>
   <div class="markdown level1 summary"><p>Calls the callback asynchronously in the main loop.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -278,7 +278,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Action</span></td>
+        <td><span class="xref">System.Action</span></td>
         <td><span class="parametername">task</span></td>
         <td><p>The action wanted to be called.</p>
 </td>
@@ -290,7 +290,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L62">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L62">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_Quit_" data-uid="ElmSharp.EcoreMainloop.Quit*"></a>
   <h4 id="ElmSharp_EcoreMainloop_Quit" data-uid="ElmSharp.EcoreMainloop.Quit">Quit()</h4>
@@ -306,10 +306,10 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L125">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L125">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_RemoveTimer_" data-uid="ElmSharp.EcoreMainloop.RemoveTimer*"></a>
-  <h4 id="ElmSharp_EcoreMainloop_RemoveTimer_IntPtr_" data-uid="ElmSharp.EcoreMainloop.RemoveTimer(IntPtr)">RemoveTimer(IntPtr)</h4>
+  <h4 id="ElmSharp_EcoreMainloop_RemoveTimer_System_IntPtr_" data-uid="ElmSharp.EcoreMainloop.RemoveTimer(System.IntPtr)">RemoveTimer(IntPtr)</h4>
   <div class="markdown level1 summary"><p>Removes the specified timer from the timer list.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -328,7 +328,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">id</span></td>
         <td><p>The specified timer handler</p>
 </td>
@@ -340,10 +340,10 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L101">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L101">View Source</a>
   </span>
   <a id="ElmSharp_EcoreMainloop_Send_" data-uid="ElmSharp.EcoreMainloop.Send*"></a>
-  <h4 id="ElmSharp_EcoreMainloop_Send_Action_" data-uid="ElmSharp.EcoreMainloop.Send(Action)">Send(Action)</h4>
+  <h4 id="ElmSharp_EcoreMainloop_Send_System_Action_" data-uid="ElmSharp.EcoreMainloop.Send(System.Action)">Send(Action)</h4>
   <div class="markdown level1 summary"><p>Calls the callback synchronously in the main loop.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -362,7 +362,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Action</span></td>
+        <td><span class="xref">System.Action</span></td>
         <td><span class="parametername">task</span></td>
         <td><p>The action wanted to be called.</p>
 </td>
@@ -381,7 +381,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/ElmSharp/ElmSharp/EcoreMainloop.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

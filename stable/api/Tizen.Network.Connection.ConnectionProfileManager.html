@@ -10,7 +10,7 @@
     <meta name="title" content="Class ConnectionProfileManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L49">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_AddCellularProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.AddCellularProfile*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_AddCellularProfile_Tizen_Network_Connection_CellularProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.AddCellularProfile(Tizen.Network.Connection.CellularProfile)">AddCellularProfile(CellularProfile)</h4>
@@ -143,12 +143,53 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when connection or profile instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L98">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L98">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_ConnectProfileAsync_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.ConnectProfileAsync*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_ConnectProfileAsync_Tizen_Network_Connection_ConnectionProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.ConnectProfileAsync(Tizen.Network.Connection.ConnectionProfile)">ConnectProfileAsync(ConnectionProfile)</h4>
@@ -187,7 +228,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicates whether the ConnectProfileAsync method is done successfully or not.</p>
 </td>
       </tr>
@@ -196,12 +237,53 @@
   <h5 id="Tizen_Network_Connection_ConnectionProfileManager_ConnectProfileAsync_Tizen_Network_Connection_ConnectionProfile__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection or a profile instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L125">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L125">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_DisconnectProfileAsync_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.DisconnectProfileAsync*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_DisconnectProfileAsync_Tizen_Network_Connection_ConnectionProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.DisconnectProfileAsync(Tizen.Network.Connection.ConnectionProfile)">DisconnectProfileAsync(ConnectionProfile)</h4>
@@ -240,7 +322,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</p>
 </td>
       </tr>
@@ -249,12 +331,53 @@
   <h5 id="Tizen_Network_Connection_ConnectionProfileManager_DisconnectProfileAsync_Tizen_Network_Connection_ConnectionProfile__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection or a profile instance is invalid or when a method fails due to invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L193">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L193">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_GetCurrentProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.GetCurrentProfile*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_GetCurrentProfile" data-uid="Tizen.Network.Connection.ConnectionProfileManager.GetCurrentProfile">GetCurrentProfile()</h4>
@@ -281,12 +404,43 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L215">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L215">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_GetDefaultCellularProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.GetDefaultCellularProfile*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_GetDefaultCellularProfile_Tizen_Network_Connection_CellularServiceType_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.GetDefaultCellularProfile(Tizen.Network.Connection.CellularServiceType)">GetDefaultCellularProfile(CellularServiceType)</h4>
@@ -331,12 +485,48 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L71">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L71">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_GetProfileListAsync_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.GetProfileListAsync*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_GetProfileListAsync_Tizen_Network_Connection_ProfileListType_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.GetProfileListAsync(Tizen.Network.Connection.ProfileListType)">GetProfileListAsync(ProfileListType)</h4>
@@ -375,8 +565,44 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.Connection.ConnectionProfile.html">ConnectionProfile</a>&gt;&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.Connection.ConnectionProfile.html">ConnectionProfile</a>&gt;&gt;</td>
         <td><p>List of connection profile objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance has been disposed.</p>
 </td>
       </tr>
     </tbody>
@@ -386,7 +612,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L148">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L148">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_RemoveProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.RemoveProfile*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_RemoveProfile_Tizen_Network_Connection_ConnectionProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.RemoveProfile(Tizen.Network.Connection.ConnectionProfile)">RemoveProfile(ConnectionProfile)</h4>
@@ -415,12 +641,53 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection or a profile instance is invalid or when a method fails due to invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L243">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L243">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_SetDefaultCellularProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.SetDefaultCellularProfile*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_SetDefaultCellularProfile_Tizen_Network_Connection_CellularServiceType_Tizen_Network_Connection_ConnectionProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.SetDefaultCellularProfile(Tizen.Network.Connection.CellularServiceType,Tizen.Network.Connection.ConnectionProfile)">SetDefaultCellularProfile(CellularServiceType, ConnectionProfile)</h4>
@@ -465,7 +732,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</p>
 </td>
       </tr>
@@ -474,12 +741,53 @@
   <h5 id="Tizen_Network_Connection_ConnectionProfileManager_SetDefaultCellularProfile_Tizen_Network_Connection_CellularServiceType_Tizen_Network_Connection_ConnectionProfile__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection or a profile instance is invalid or when a method fails due to invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L173">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L173">View Source</a>
   </span>
   <a id="Tizen_Network_Connection_ConnectionProfileManager_UpdateProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.UpdateProfile*"></a>
   <h4 id="Tizen_Network_Connection_ConnectionProfileManager_UpdateProfile_Tizen_Network_Connection_ConnectionProfile_" data-uid="Tizen.Network.Connection.ConnectionProfileManager.UpdateProfile(Tizen.Network.Connection.ConnectionProfile)">UpdateProfile(ConnectionProfile)</h4>
@@ -510,6 +818,47 @@ When you call this function, your changes affect the ConnectionProfileManager an
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection or a profile instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -522,7 +871,7 @@ When you call this function, your changes affect the ConnectionProfileManager an
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L30" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionProfileManager.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

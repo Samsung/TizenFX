@@ -10,7 +10,7 @@
     <meta name="title" content="Class Locator
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -112,11 +112,17 @@ and others can also be acquired.</p>
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L76">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L76">View Source</a>
   </span>
   <a id="Tizen_Location_Locator__ctor_" data-uid="Tizen.Location.Locator.#ctor*"></a>
   <h4 id="Tizen_Location_Locator__ctor_Tizen_Location_LocationType_" data-uid="Tizen.Location.Locator.#ctor(Tizen.Location.LocationType)">Locator(LocationType)</h4>
@@ -145,6 +151,32 @@ and others can also be acquired.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -152,7 +184,7 @@ and others can also be acquired.</p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L160">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L160">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_BatchInterval_" data-uid="Tizen.Location.Locator.BatchInterval*"></a>
   <h4 id="Tizen_Location_Locator_BatchInterval" data-uid="Tizen.Location.Locator.BatchInterval">BatchInterval</h4>
@@ -179,12 +211,28 @@ Should be in the range of 1~255 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L188">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L188">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_BatchPeriod_" data-uid="Tizen.Location.Locator.BatchPeriod*"></a>
   <h4 id="Tizen_Location_Locator_BatchPeriod" data-uid="Tizen.Location.Locator.BatchPeriod">BatchPeriod</h4>
@@ -211,12 +259,28 @@ Should be in the range of 0~60000 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L216">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L216">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Distance_" data-uid="Tizen.Location.Locator.Distance*"></a>
   <h4 id="Tizen_Location_Locator_Distance" data-uid="Tizen.Location.Locator.Distance">Distance</h4>
@@ -243,12 +307,28 @@ Should be in the range of 1-120 meters.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L271">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L271">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_EnableMock_" data-uid="Tizen.Location.Locator.EnableMock*"></a>
   <h4 id="Tizen_Location_Locator_EnableMock" data-uid="Tizen.Location.Locator.EnableMock">EnableMock</h4>
@@ -274,12 +354,33 @@ Should be in the range of 1-120 meters.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to use the location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L104">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L104">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Interval_" data-uid="Tizen.Location.Locator.Interval*"></a>
   <h4 id="Tizen_Location_Locator_Interval" data-uid="Tizen.Location.Locator.Interval">Interval</h4>
@@ -306,12 +407,28 @@ Should be in the range of 1~120 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L242">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L242">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Location_" data-uid="Tizen.Location.Locator.Location*"></a>
   <h4 id="Tizen_Location_Locator_Location" data-uid="Tizen.Location.Locator.Location">Location</h4>
@@ -342,7 +459,7 @@ Should be in the range of 1~120 seconds.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L255">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L255">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_LocationType_" data-uid="Tizen.Location.Locator.LocationType*"></a>
   <h4 id="Tizen_Location_Locator_LocationType" data-uid="Tizen.Location.Locator.LocationType">LocationType</h4>
@@ -373,7 +490,7 @@ Should be in the range of 1~120 seconds.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L132">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L132">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_StayInterval_" data-uid="Tizen.Location.Locator.StayInterval*"></a>
   <h4 id="Tizen_Location_Locator_StayInterval" data-uid="Tizen.Location.Locator.StayInterval">StayInterval</h4>
@@ -400,6 +517,22 @@ Should be in the range of 1~120 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -407,7 +540,7 @@ Should be in the range of 1~120 seconds.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L541">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L541">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_AddBoundary_" data-uid="Tizen.Location.Locator.AddBoundary*"></a>
   <h4 id="Tizen_Location_Locator_AddBoundary_Tizen_Location_LocationBoundary_" data-uid="Tizen.Location.Locator.AddBoundary(Tizen.Location.LocationBoundary)">AddBoundary(LocationBoundary)</h4>
@@ -436,12 +569,38 @@ Should be in the range of 1~120 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L416">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L416">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_ClearMock_" data-uid="Tizen.Location.Locator.ClearMock*"></a>
   <h4 id="Tizen_Location_Locator_ClearMock" data-uid="Tizen.Location.Locator.ClearMock">ClearMock()</h4>
@@ -452,12 +611,43 @@ Should be in the range of 1~120 seconds.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ClearMock()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to use the location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L577">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L577">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Dispose_" data-uid="Tizen.Location.Locator.Dispose*"></a>
   <h4 id="Tizen_Location_Locator_Dispose" data-uid="Tizen.Location.Locator.Dispose">Dispose()</h4>
@@ -468,12 +658,28 @@ Should be in the range of 1~120 seconds.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L587">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L587">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Dispose_" data-uid="Tizen.Location.Locator.Dispose*"></a>
   <h4 id="Tizen_Location_Locator_Dispose_System_Boolean_" data-uid="Tizen.Location.Locator.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -506,7 +712,7 @@ Should be in the range of 1~120 seconds.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L93">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L93">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Finalize_" data-uid="Tizen.Location.Locator.Finalize*"></a>
   <h4 id="Tizen_Location_Locator_Finalize" data-uid="Tizen.Location.Locator.Finalize">~Locator()</h4>
@@ -522,7 +728,7 @@ Should be in the range of 1~120 seconds.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L484">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L484">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_GetLocation_" data-uid="Tizen.Location.Locator.GetLocation*"></a>
   <h4 id="Tizen_Location_Locator_GetLocation" data-uid="Tizen.Location.Locator.GetLocation">GetLocation()</h4>
@@ -549,12 +755,43 @@ Should be in the range of 1~120 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to use the location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L438">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L438">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_GetLocationAsync_" data-uid="Tizen.Location.Locator.GetLocationAsync*"></a>
   <h4 id="Tizen_Location_Locator_GetLocationAsync_System_Int32_" data-uid="Tizen.Location.Locator.GetLocationAsync(System.Int32)">GetLocationAsync(int)</h4>
@@ -593,8 +830,39 @@ Should be in the range of 1~120 seconds.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Location.Location.html">Location</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Location.Location.html">Location</a>&gt;</td>
         <td><p>A task which contains the current location details.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to use the location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -604,7 +872,7 @@ Should be in the range of 1~120 seconds.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L561">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L561">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_RemoveBoundary_" data-uid="Tizen.Location.Locator.RemoveBoundary*"></a>
   <h4 id="Tizen_Location_Locator_RemoveBoundary_Tizen_Location_LocationBoundary_" data-uid="Tizen.Location.Locator.RemoveBoundary(Tizen.Location.LocationBoundary)">RemoveBoundary(LocationBoundary)</h4>
@@ -633,12 +901,38 @@ Should be in the range of 1~120 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L387">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L387">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_SetMockLocation_" data-uid="Tizen.Location.Locator.SetMockLocation*"></a>
   <h4 id="Tizen_Location_Locator_SetMockLocation_Tizen_Location_Location_" data-uid="Tizen.Location.Locator.SetMockLocation(Tizen.Location.Location)">SetMockLocation(Location)</h4>
@@ -667,12 +961,43 @@ Should be in the range of 1~120 seconds.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to use the location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L322">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L322">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Start_" data-uid="Tizen.Location.Locator.Start*"></a>
   <h4 id="Tizen_Location_Locator_Start" data-uid="Tizen.Location.Locator.Start">Start()</h4>
@@ -683,12 +1008,43 @@ Should be in the range of 1~120 seconds.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Start()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to use the location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L354">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L354">View Source</a>
   </span>
   <a id="Tizen_Location_Locator_Stop_" data-uid="Tizen.Location.Locator.Stop*"></a>
   <h4 id="Tizen_Location_Locator_Stop" data-uid="Tizen.Location.Locator.Stop">Stop()</h4>
@@ -700,6 +1056,32 @@ Does not destroy the manager.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -707,7 +1089,7 @@ Does not destroy the manager.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L807">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L807">View Source</a>
   </span>
   <h4 id="Tizen_Location_Locator_DistanceBasedLocationChanged" data-uid="Tizen.Location.Locator.DistanceBasedLocationChanged">DistanceBasedLocationChanged</h4>
   <div class="markdown level1 summary"><p>The DistanceBasedLocationChanged event is raised with the updated location information.
@@ -728,8 +1110,29 @@ The callback will be invoked at a minimum interval or minimum distance with the 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Location.LocationChangedEventArgs.html">LocationChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.LocationChangedEventArgs.html">LocationChangedEventArgs</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -738,7 +1141,7 @@ The callback will be invoked at a minimum interval or minimum distance with the 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L873">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L873">View Source</a>
   </span>
   <h4 id="Tizen_Location_Locator_LocationChanged" data-uid="Tizen.Location.Locator.LocationChanged">LocationChanged</h4>
   <div class="markdown level1 summary"><p>The LocationUpdated event is raised at defined intervals of time with the updated location information.
@@ -759,8 +1162,29 @@ The callback will be invoked periodically.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Location.LocationChangedEventArgs.html">LocationChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.LocationChangedEventArgs.html">LocationChangedEventArgs</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -769,7 +1193,7 @@ The callback will be invoked periodically.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L614">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L614">View Source</a>
   </span>
   <h4 id="Tizen_Location_Locator_ServiceStateChanged" data-uid="Tizen.Location.Locator.ServiceStateChanged">ServiceStateChanged</h4>
   <div class="markdown level1 summary"><p>The ServiceStateChanged event is invoked when the location service state is changed.</p>
@@ -789,8 +1213,29 @@ The callback will be invoked periodically.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Location.ServiceStateChangedEventArgs.html">ServiceStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.ServiceStateChangedEventArgs.html">ServiceStateChangedEventArgs</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -799,7 +1244,7 @@ The callback will be invoked periodically.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L744">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L744">View Source</a>
   </span>
   <h4 id="Tizen_Location_Locator_SettingChanged" data-uid="Tizen.Location.Locator.SettingChanged">SettingChanged</h4>
   <div class="markdown level1 summary"><p>The SetttingChanged event is raised when the location setting is changed.</p>
@@ -819,8 +1264,34 @@ The callback will be invoked periodically.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Location.SettingChangedEventArgs.html">SettingChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.SettingChangedEventArgs.html">SettingChangedEventArgs</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid for the current state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -829,7 +1300,7 @@ The callback will be invoked periodically.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L676">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L676">View Source</a>
   </span>
   <h4 id="Tizen_Location_Locator_ZoneChanged" data-uid="Tizen.Location.Locator.ZoneChanged">ZoneChanged</h4>
   <div class="markdown level1 summary"><p>The ZoneChanged event is invoked when the previously set boundary area is entered or left.</p>
@@ -849,8 +1320,29 @@ The callback will be invoked periodically.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Location.ZoneChangedEventArgs.html">ZoneChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.ZoneChangedEventArgs.html">ZoneChangedEventArgs</a>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the location is not supported.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -858,27 +1350,9 @@ The callback will be invoked periodically.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
@@ -888,7 +1362,7 @@ The callback will be invoked periodically.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Location/Tizen.Location/Locator.cs/#L36" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Location/Tizen.Location/Locator.cs/#L36" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

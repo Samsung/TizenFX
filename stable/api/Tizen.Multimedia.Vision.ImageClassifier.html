@@ -10,7 +10,7 @@
     <meta name="title" content="Class ImageClassifier
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L50">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_ImageClassifier_ClassifyAsync_" data-uid="Tizen.Multimedia.Vision.ImageClassifier.ClassifyAsync*"></a>
   <h4 id="Tizen_Multimedia_Vision_ImageClassifier_ClassifyAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration_" data-uid="Tizen.Multimedia.Vision.ImageClassifier.ClassifyAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.InferenceModelConfiguration)">ClassifyAsync(MediaVisionSource, InferenceModelConfiguration)</h4>
@@ -160,9 +160,40 @@ Each time when DetectAsync is called, a set of the detected faces at the media s
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageClassificationResult.html">ImageClassificationResult</a>&gt;&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageClassificationResult.html">ImageClassificationResult</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous classify operation.<br>
 If there's no classified image object, empty collection will be returned.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> or <code data-dev-comment-type="paramref" class="paramref">config</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -183,7 +214,7 @@ If there's no classified image object, empty collection will be returned.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L30" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/ImageClassifier.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

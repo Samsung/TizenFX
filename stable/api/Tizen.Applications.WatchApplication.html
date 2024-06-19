@@ -10,7 +10,7 @@
     <meta name="title" content="Class WatchApplication
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class WatchApplication : CoreApplication</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public class WatchApplication : CoreApplication, IDisposable</code></pre>
   </div>
 
 
@@ -112,11 +113,17 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L37">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication__ctor_" data-uid="Tizen.Applications.WatchApplication.#ctor*"></a>
   <h4 id="Tizen_Applications_WatchApplication__ctor" data-uid="Tizen.Applications.WatchApplication.#ctor">WatchApplication()</h4>
@@ -125,7 +132,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public WatchApplication()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public WatchApplication()</code></pre>
   </div>
   <h5 id="Tizen_Applications_WatchApplication__ctor_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Default backend for the watch application will be used.</p>
@@ -135,7 +143,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L50">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication__ctor_" data-uid="Tizen.Applications.WatchApplication.#ctor*"></a>
   <h4 id="Tizen_Applications_WatchApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend_" data-uid="Tizen.Applications.WatchApplication.#ctor(Tizen.Applications.CoreBackend.ICoreBackend)">WatchApplication(ICoreBackend)</h4>
@@ -144,7 +152,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public WatchApplication(ICoreBackend backend)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public WatchApplication(ICoreBackend backend)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -174,7 +183,7 @@
   <h3 id="fields">Fields
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L60">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L60">View Source</a>
   </span>
   <h4 id="Tizen_Applications_WatchApplication_Window" data-uid="Tizen.Applications.WatchApplication.Window">Window</h4>
   <div class="markdown level1 summary"><p>Instances for the window.</p>
@@ -182,7 +191,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Window Window</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected Window Window</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -206,7 +216,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L263">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L263">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_GetAmbientTickType_" data-uid="Tizen.Applications.WatchApplication.GetAmbientTickType*"></a>
   <h4 id="Tizen_Applications_WatchApplication_GetAmbientTickType" data-uid="Tizen.Applications.WatchApplication.GetAmbientTickType">GetAmbientTickType()</h4>
@@ -215,7 +225,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected AmbientTickType GetAmbientTickType()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected AmbientTickType GetAmbientTickType()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -250,12 +261,33 @@
     }
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to get the ambient tick type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the method is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L218">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L218">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_GetCurrentTime_" data-uid="Tizen.Applications.WatchApplication.GetCurrentTime*"></a>
   <h4 id="Tizen_Applications_WatchApplication_GetCurrentTime" data-uid="Tizen.Applications.WatchApplication.GetCurrentTime">GetCurrentTime()</h4>
@@ -264,7 +296,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected WatchTime GetCurrentTime()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected WatchTime GetCurrentTime()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -299,12 +332,38 @@
     }
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to get the current time because of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed to get the current time because the memory is not enough.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the method is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L395">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L395">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_GetTimeTickFrequency_" data-uid="Tizen.Applications.WatchApplication.GetTimeTickFrequency*"></a>
   <h4 id="Tizen_Applications_WatchApplication_GetTimeTickFrequency_System_Int32__Tizen_Applications_TimeTickResolution__" data-uid="Tizen.Applications.WatchApplication.GetTimeTickFrequency(System.Int32@,Tizen.Applications.TimeTickResolution@)">GetTimeTickFrequency(out int, out TimeTickResolution)</h4>
@@ -313,7 +372,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void GetTimeTickFrequency(out int ticks, out TimeTickResolution type)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected void GetTimeTickFrequency(out int ticks, out TimeTickResolution type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -357,12 +417,33 @@
     }
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to get the time tick frequency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the method is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L184">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L184">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_OnAmbientChanged_" data-uid="Tizen.Applications.WatchApplication.OnAmbientChanged*"></a>
   <h4 id="Tizen_Applications_WatchApplication_OnAmbientChanged_Tizen_Applications_AmbientEventArgs_" data-uid="Tizen.Applications.WatchApplication.OnAmbientChanged(Tizen.Applications.AmbientEventArgs)">OnAmbientChanged(AmbientEventArgs)</h4>
@@ -372,7 +453,8 @@ If base.OnAmbientChanged() is not called, the event 'AmbientChanged' will not be
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnAmbientChanged(AmbientEventArgs mode)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected virtual void OnAmbientChanged(AmbientEventArgs mode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -397,7 +479,7 @@ If base.OnAmbientChanged() is not called, the event 'AmbientChanged' will not be
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L172">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L172">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_OnAmbientTick_" data-uid="Tizen.Applications.WatchApplication.OnAmbientTick*"></a>
   <h4 id="Tizen_Applications_WatchApplication_OnAmbientTick_Tizen_Applications_TimeEventArgs_" data-uid="Tizen.Applications.WatchApplication.OnAmbientTick(Tizen.Applications.TimeEventArgs)">OnAmbientTick(TimeEventArgs)</h4>
@@ -407,7 +489,8 @@ If base.OnAmbientTick() is not called, the event 'AmbientTick' will not be emitt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnAmbientTick(TimeEventArgs time)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected virtual void OnAmbientTick(TimeEventArgs time)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -432,7 +515,7 @@ If base.OnAmbientTick() is not called, the event 'AmbientTick' will not be emitt
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L120">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L120">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_OnCreate_" data-uid="Tizen.Applications.WatchApplication.OnCreate*"></a>
   <h4 id="Tizen_Applications_WatchApplication_OnCreate" data-uid="Tizen.Applications.WatchApplication.OnCreate">OnCreate()</h4>
@@ -442,7 +525,8 @@ If base.OnCreate() is not called, the event 'Created' will not be emitted.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnCreate()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected override void OnCreate()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_OnCreate">CoreApplication.OnCreate()</a></div>
@@ -451,7 +535,7 @@ If base.OnCreate() is not called, the event 'Created' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L147">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L147">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_OnPause_" data-uid="Tizen.Applications.WatchApplication.OnPause*"></a>
   <h4 id="Tizen_Applications_WatchApplication_OnPause" data-uid="Tizen.Applications.WatchApplication.OnPause">OnPause()</h4>
@@ -461,14 +545,15 @@ If base.OnPause() is not called, the event 'Paused' will not be emitted.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnPause()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected virtual void OnPause()</code></pre>
   </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L136">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L136">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_OnResume_" data-uid="Tizen.Applications.WatchApplication.OnResume*"></a>
   <h4 id="Tizen_Applications_WatchApplication_OnResume" data-uid="Tizen.Applications.WatchApplication.OnResume">OnResume()</h4>
@@ -478,14 +563,15 @@ If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnResume()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected virtual void OnResume()</code></pre>
   </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L159">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L159">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_OnTick_" data-uid="Tizen.Applications.WatchApplication.OnTick*"></a>
   <h4 id="Tizen_Applications_WatchApplication_OnTick_Tizen_Applications_TimeEventArgs_" data-uid="Tizen.Applications.WatchApplication.OnTick(Tizen.Applications.TimeEventArgs)">OnTick(TimeEventArgs)</h4>
@@ -495,7 +581,8 @@ If base.OnTick() is not called, the event 'TimeTick' will not be emitted.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnTick(TimeEventArgs time)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected virtual void OnTick(TimeEventArgs time)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -520,7 +607,7 @@ If base.OnTick() is not called, the event 'TimeTick' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L102">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L102">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_Run_" data-uid="Tizen.Applications.WatchApplication.Run*"></a>
   <h4 id="Tizen_Applications_WatchApplication_Run_System_String___" data-uid="Tizen.Applications.WatchApplication.Run(System.String[])">Run(string[])</h4>
@@ -529,7 +616,8 @@ If base.OnTick() is not called, the event 'TimeTick' will not be emitted.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Run(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public override void Run(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -556,7 +644,7 @@ If base.OnTick() is not called, the event 'TimeTick' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L309">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L309">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_SetAmbientTickType_" data-uid="Tizen.Applications.WatchApplication.SetAmbientTickType*"></a>
   <h4 id="Tizen_Applications_WatchApplication_SetAmbientTickType_Tizen_Applications_AmbientTickType_" data-uid="Tizen.Applications.WatchApplication.SetAmbientTickType(Tizen.Applications.AmbientTickType)">SetAmbientTickType(AmbientTickType)</h4>
@@ -567,7 +655,8 @@ If the SetAmbientTickType is not called, the OnAmbientTick will be called every 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void SetAmbientTickType(AmbientTickType ambientTickType)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected void SetAmbientTickType(AmbientTickType ambientTickType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -603,12 +692,33 @@ If the SetAmbientTickType is not called, the OnAmbientTick will be called every 
     }
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to set the ambient tick type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the method is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L352">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L352">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchApplication_SetTimeTickFrequency_" data-uid="Tizen.Applications.WatchApplication.SetTimeTickFrequency*"></a>
   <h4 id="Tizen_Applications_WatchApplication_SetTimeTickFrequency_System_Int32_Tizen_Applications_TimeTickResolution_" data-uid="Tizen.Applications.WatchApplication.SetTimeTickFrequency(System.Int32,Tizen.Applications.TimeTickResolution)">SetTimeTickFrequency(int, TimeTickResolution)</h4>
@@ -619,7 +729,8 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void SetTimeTickFrequency(int ticks, TimeTickResolution type)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+protected void SetTimeTickFrequency(int ticks, TimeTickResolution type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -661,6 +772,27 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
     }
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to set the time tick frequency.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the method is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -668,7 +800,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L95">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L95">View Source</a>
   </span>
   <h4 id="Tizen_Applications_WatchApplication_AmbientChanged" data-uid="Tizen.Applications.WatchApplication.AmbientChanged">AmbientChanged</h4>
   <div class="markdown level1 summary"><p>Occurs when the ambient mode is changed.</p>
@@ -676,7 +808,8 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AmbientEventArgs&gt; AmbientChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public event EventHandler&lt;AmbientEventArgs&gt; AmbientChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -688,7 +821,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.AmbientEventArgs.html">AmbientEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.AmbientEventArgs.html">AmbientEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -698,7 +831,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L88">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L88">View Source</a>
   </span>
   <h4 id="Tizen_Applications_WatchApplication_AmbientTick" data-uid="Tizen.Applications.WatchApplication.AmbientTick">AmbientTick</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the time tick comes in the ambient mode.</p>
@@ -706,7 +839,8 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TimeEventArgs&gt; AmbientTick</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public event EventHandler&lt;TimeEventArgs&gt; AmbientTick</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -718,7 +852,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.TimeEventArgs.html">TimeEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.TimeEventArgs.html">TimeEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -728,7 +862,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L74">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L74">View Source</a>
   </span>
   <h4 id="Tizen_Applications_WatchApplication_Paused" data-uid="Tizen.Applications.WatchApplication.Paused">Paused</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the application is paused.</p>
@@ -736,7 +870,8 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Paused</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public event EventHandler Paused</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -748,7 +883,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -758,7 +893,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L67">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L67">View Source</a>
   </span>
   <h4 id="Tizen_Applications_WatchApplication_Resumed" data-uid="Tizen.Applications.WatchApplication.Resumed">Resumed</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the application is resumed.</p>
@@ -766,7 +901,8 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Resumed</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public event EventHandler Resumed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -778,7 +914,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -788,7 +924,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L81">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L81">View Source</a>
   </span>
   <h4 id="Tizen_Applications_WatchApplication_TimeTick" data-uid="Tizen.Applications.WatchApplication.TimeTick">TimeTick</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the time tick comes.</p>
@@ -796,7 +932,8 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TimeEventArgs&gt; TimeTick</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public event EventHandler&lt;TimeEventArgs&gt; TimeTick</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -808,7 +945,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.TimeEventArgs.html">TimeEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.TimeEventArgs.html">TimeEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -817,27 +954,9 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
@@ -847,7 +966,7 @@ If SetTimeTickFrequency is not called, OnTick will be called every second.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchApplication/Tizen.Applications/WatchApplication.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

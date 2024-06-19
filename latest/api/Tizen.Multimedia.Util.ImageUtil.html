@@ -10,7 +10,7 @@
     <meta name="title" content="Class ImageUtil
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L63">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L63">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageUtil_CalculateBufferSize_" data-uid="Tizen.Multimedia.Util.ImageUtil.CalculateBufferSize*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageUtil_CalculateBufferSize_Tizen_Multimedia_Size_Tizen_Multimedia_ColorSpace_" data-uid="Tizen.Multimedia.Util.ImageUtil.CalculateBufferSize(Tizen.Multimedia.Size,Tizen.Multimedia.ColorSpace)">CalculateBufferSize(Size, ColorSpace)</h4>
@@ -123,7 +123,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated in level 6.&quot;)]
+public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -165,12 +166,35 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>width of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.<br>
+-or-<br>
+height of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L103">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageUtil_GetColor_" data-uid="Tizen.Multimedia.Util.ImageUtil.GetColor*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageUtil_GetColor_System_Byte___Tizen_Multimedia_Size_" data-uid="Tizen.Multimedia.Util.ImageUtil.GetColor(System.Byte[],Tizen.Multimedia.Size)">GetColor(byte[], Size)</h4>
@@ -224,12 +248,40 @@
   <h5 id="Tizen_Multimedia_Util_ImageUtil_GetColor_System_Byte___Tizen_Multimedia_Size__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The image should be <a class="xref" href="Tizen.Multimedia.ColorSpace.html#Tizen_Multimedia_ColorSpace_Rgb888">Rgb888</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is empty.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>width of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than or equal to zero.<br>
+-or-<br>
+height of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L37">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageUtil_GetSupportedColorSpaces_" data-uid="Tizen.Multimedia.Util.ImageUtil.GetSupportedColorSpaces*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageUtil_GetSupportedColorSpaces_Tizen_Multimedia_Util_ImageFormat_" data-uid="Tizen.Multimedia.Util.ImageUtil.GetSupportedColorSpaces(Tizen.Multimedia.Util.ImageFormat)">GetSupportedColorSpaces(ImageFormat)</h4>
@@ -268,8 +320,24 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a>&gt;</td>
         <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a> representing the supported color-spaces.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">format</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -286,7 +354,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

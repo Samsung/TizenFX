@@ -10,7 +10,7 @@
     <meta name="title" content="Class StyleManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -98,7 +98,8 @@ It provides the path to the application resource root folder, from there the fil
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StyleManager : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public class StyleManager : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -108,7 +109,7 @@ It provides the path to the application resource root folder, from there the fil
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">StyleManager</span></div>
       </div>
@@ -120,8 +121,7 @@ It provides the path to the application resource root folder, from there the fil
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
@@ -129,7 +129,7 @@ It provides the path to the application resource root folder, from there the fil
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager__ctor_" data-uid="Tizen.NUI.StyleManager.#ctor*"></a>
   <h4 id="Tizen_NUI_StyleManager__ctor" data-uid="Tizen.NUI.StyleManager.#ctor">StyleManager()</h4>
@@ -139,7 +139,8 @@ This can be initialized with StyleManager::Get().<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StyleManager()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public StyleManager()</code></pre>
   </div>
 
 
@@ -148,7 +149,7 @@ This can be initialized with StyleManager::Get().<br></p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L87">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_Instance_" data-uid="Tizen.NUI.StyleManager.Instance*"></a>
   <h4 id="Tizen_NUI_StyleManager_Instance" data-uid="Tizen.NUI.StyleManager.Instance">Instance</h4>
@@ -157,7 +158,8 @@ This can be initialized with StyleManager::Get().<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static StyleManager Instance { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public static StyleManager Instance { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -181,7 +183,7 @@ This can be initialized with StyleManager::Get().<br></p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L157">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L149">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_AddConstant_" data-uid="Tizen.NUI.StyleManager.AddConstant*"></a>
   <h4 id="Tizen_NUI_StyleManager_AddConstant_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.StyleManager.AddConstant(System.String,Tizen.NUI.PropertyValue)">AddConstant(string, PropertyValue)</h4>
@@ -190,7 +192,8 @@ This can be initialized with StyleManager::Get().<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AddConstant(string key, PropertyValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public void AddConstant(string key, PropertyValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -221,7 +224,7 @@ This can be initialized with StyleManager::Get().<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L144">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L136">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_ApplyDefaultTheme_" data-uid="Tizen.NUI.StyleManager.ApplyDefaultTheme*"></a>
   <h4 id="Tizen_NUI_StyleManager_ApplyDefaultTheme" data-uid="Tizen.NUI.StyleManager.ApplyDefaultTheme">ApplyDefaultTheme()</h4>
@@ -230,14 +233,15 @@ This can be initialized with StyleManager::Get().<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ApplyDefaultTheme()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public void ApplyDefaultTheme()</code></pre>
   </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L186">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L178">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_ApplyStyle_" data-uid="Tizen.NUI.StyleManager.ApplyStyle*"></a>
   <h4 id="Tizen_NUI_StyleManager_ApplyStyle_Tizen_NUI_BaseComponents_View_System_String_System_String_" data-uid="Tizen.NUI.StyleManager.ApplyStyle(Tizen.NUI.BaseComponents.View,System.String,System.String)">ApplyStyle(View, string, string)</h4>
@@ -246,7 +250,8 @@ This can be initialized with StyleManager::Get().<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ApplyStyle(View control, string jsonFileName, string styleName)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public void ApplyStyle(View control, string jsonFileName, string styleName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -283,7 +288,7 @@ This can be initialized with StyleManager::Get().<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L133">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L125">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_ApplyTheme_" data-uid="Tizen.NUI.StyleManager.ApplyTheme*"></a>
   <h4 id="Tizen_NUI_StyleManager_ApplyTheme_System_String_" data-uid="Tizen.NUI.StyleManager.ApplyTheme(System.String)">ApplyTheme(string)</h4>
@@ -296,7 +301,8 @@ instead for those controls.<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ApplyTheme(string themeFile)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public void ApplyTheme(string themeFile)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -321,7 +327,7 @@ instead for those controls.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L101">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L108">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_Get_" data-uid="Tizen.NUI.StyleManager.Get*"></a>
   <h4 id="Tizen_NUI_StyleManager_Get" data-uid="Tizen.NUI.StyleManager.Get">Get()</h4>
@@ -330,7 +336,8 @@ instead for those controls.<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static StyleManager Get()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public static StyleManager Get()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -353,7 +360,7 @@ instead for those controls.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L171">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L163">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_GetConstant_" data-uid="Tizen.NUI.StyleManager.GetConstant*"></a>
   <h4 id="Tizen_NUI_StyleManager_GetConstant_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.StyleManager.GetConstant(System.String,Tizen.NUI.PropertyValue)">GetConstant(string, PropertyValue)</h4>
@@ -362,7 +369,8 @@ instead for those controls.<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool GetConstant(string key, PropertyValue valueOut)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public bool GetConstant(string key, PropertyValue valueOut)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -410,7 +418,7 @@ instead for those controls.<br></p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L61">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L61">View Source</a>
   </span>
   <h4 id="Tizen_NUI_StyleManager_StyleChanged" data-uid="Tizen.NUI.StyleManager.StyleChanged">StyleChanged</h4>
   <div class="markdown level1 summary"><p>An event for the StyleChanged signal which can be used to subscribe or unsubscribe the
@@ -421,7 +429,8 @@ and the controls have been informed.<br></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StyleManager.StyleChangedEventArgs&gt; StyleChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
+public event EventHandler&lt;StyleManager.StyleChangedEventArgs&gt; StyleChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -433,7 +442,7 @@ and the controls have been informed.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.StyleManager.StyleChangedEventArgs.html">StyleChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.StyleManager.html">StyleManager</a>.<a class="xref" href="Tizen.NUI.StyleManager.StyleChangedEventArgs.html">StyleChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -444,41 +453,10 @@ and the controls have been informed.<br></p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -488,7 +466,7 @@ and the controls have been informed.<br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L33" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L33" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

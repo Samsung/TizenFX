@@ -10,7 +10,7 @@
     <meta name="title" content="Class Size
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API10">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Size : Disposable, ICloneable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Size : Disposable, IDisposable, ICloneable</code></pre>
   </div>
 
 
@@ -114,14 +114,15 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">ICloneable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.ICloneable</span></div>
     </dd>
   </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L44">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L44">View Source</a>
   </span>
   <a id="Tizen_NUI_Size__ctor_" data-uid="Tizen.NUI.Size.#ctor*"></a>
   <h4 id="Tizen_NUI_Size__ctor" data-uid="Tizen.NUI.Size.#ctor">Size()</h4>
@@ -145,7 +146,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L64">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L64">View Source</a>
   </span>
   <a id="Tizen_NUI_Size__ctor_" data-uid="Tizen.NUI.Size.#ctor*"></a>
   <h4 id="Tizen_NUI_Size__ctor_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.Size.#ctor(System.Single,System.Single,System.Single)">Size(float, float, float)</h4>
@@ -199,7 +200,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L74">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L74">View Source</a>
   </span>
   <a id="Tizen_NUI_Size__ctor_" data-uid="Tizen.NUI.Size.#ctor*"></a>
   <h4 id="Tizen_NUI_Size__ctor_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size.#ctor(Tizen.NUI.Size2D)">Size(Size2D)</h4>
@@ -235,7 +236,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L175">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L175">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_Depth_" data-uid="Tizen.NUI.Size.Depth*"></a>
   <h4 id="Tizen_NUI_Size_Depth" data-uid="Tizen.NUI.Size.Depth">Depth</h4>
@@ -269,7 +270,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L142">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L142">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_Height_" data-uid="Tizen.NUI.Size.Height*"></a>
   <h4 id="Tizen_NUI_Size_Height" data-uid="Tizen.NUI.Size.Height">Height</h4>
@@ -303,7 +304,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L282">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L282">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_Item_" data-uid="Tizen.NUI.Size.Item*"></a>
   <h4 id="Tizen_NUI_Size_Item_System_UInt32_" data-uid="Tizen.NUI.Size.Item(System.UInt32)">this[uint]</h4>
@@ -353,7 +354,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L109">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L109">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_Width_" data-uid="Tizen.NUI.Size.Width*"></a>
   <h4 id="Tizen_NUI_Size_Width" data-uid="Tizen.NUI.Size.Width">Width</h4>
@@ -387,7 +388,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L83">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L83">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_Zero_" data-uid="Tizen.NUI.Size.Zero*"></a>
   <h4 id="Tizen_NUI_Size_Zero" data-uid="Tizen.NUI.Size.Zero">Zero</h4>
@@ -420,37 +421,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L345">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size_Clone_" data-uid="Tizen.NUI.Size.Clone*"></a>
-  <h4 id="Tizen_NUI_Size_Clone" data-uid="Tizen.NUI.Size.Clone">Clone()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L295">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L295">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_Equals_" data-uid="Tizen.NUI.Size.Equals*"></a>
   <h4 id="Tizen_NUI_Size_Equals_Tizen_System_Object_" data-uid="Tizen.NUI.Size.Equals(Tizen.System.Object)">Equals(Object)</h4>
@@ -500,7 +471,7 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L323">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L323">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_EqualTo_" data-uid="Tizen.NUI.Size.EqualTo*"></a>
   <h4 id="Tizen_NUI_Size_EqualTo_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.EqualTo(Tizen.NUI.Size)">EqualTo(Size)</h4>
@@ -551,7 +522,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L311">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L311">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_GetHashCode_" data-uid="Tizen.NUI.Size.GetHashCode*"></a>
   <h4 id="Tizen_NUI_Size_GetHashCode" data-uid="Tizen.NUI.Size.GetHashCode">GetHashCode()</h4>
@@ -578,12 +549,14 @@ Utilizes appropriate machine epsilon values.<br></p>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.GetHashCode()</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L337">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L337">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_NotEqualTo_" data-uid="Tizen.NUI.Size.NotEqualTo*"></a>
   <h4 id="Tizen_NUI_Size_NotEqualTo_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.NotEqualTo(Tizen.NUI.Size)">NotEqualTo(Size)</h4>
@@ -633,44 +606,10 @@ Utilizes appropriate machine epsilon values.<br></p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L405">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Size.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_Size_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Size.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="operators">Operators
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L200">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L200">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Addition_" data-uid="Tizen.NUI.Size.op_Addition*"></a>
   <h4 id="Tizen_NUI_Size_op_Addition_Tizen_NUI_Size_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.op_Addition(Tizen.NUI.Size,Tizen.NUI.Size)">operator +(Size, Size)</h4>
@@ -726,7 +665,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L271">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L271">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Division_" data-uid="Tizen.NUI.Size.op_Division*"></a>
   <h4 id="Tizen_NUI_Size_op_Division_Tizen_NUI_Size_System_Single_" data-uid="Tizen.NUI.Size.op_Division(Tizen.NUI.Size,System.Single)">operator /(Size, float)</h4>
@@ -782,7 +721,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L259">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L259">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Division_" data-uid="Tizen.NUI.Size.op_Division*"></a>
   <h4 id="Tizen_NUI_Size_op_Division_Tizen_NUI_Size_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.op_Division(Tizen.NUI.Size,Tizen.NUI.Size)">operator /(Size, Size)</h4>
@@ -838,7 +777,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L353">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L353">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Implicit_" data-uid="Tizen.NUI.Size.op_Implicit*"></a>
   <h4 id="Tizen_NUI_Size_op_Implicit_Tizen_NUI_Size__Tizen_NUI_Vector3" data-uid="Tizen.NUI.Size.op_Implicit(Tizen.NUI.Size)~Tizen.NUI.Vector3">implicit operator Vector3(Size)</h4>
@@ -887,56 +826,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L382">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size_op_Implicit_" data-uid="Tizen.NUI.Size.op_Implicit*"></a>
-  <h4 id="Tizen_NUI_Size_op_Implicit_Tizen_NUI_Size2D__Tizen_NUI_Size" data-uid="Tizen.NUI.Size.op_Implicit(Tizen.NUI.Size2D)~Tizen.NUI.Size">implicit operator Size(Size2D)</h4>
-  <div class="markdown level1 summary"><p>Implicit type cast operator, Size2D to Size</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Size(Size2D size2d)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
-        <td><span class="parametername">size2d</span></td>
-        <td><p>The object of Size2D type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L367">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L367">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Implicit_" data-uid="Tizen.NUI.Size.op_Implicit*"></a>
   <h4 id="Tizen_NUI_Size_op_Implicit_Tizen_NUI_Vector3__Tizen_NUI_Size" data-uid="Tizen.NUI.Size.op_Implicit(Tizen.NUI.Vector3)~Tizen.NUI.Size">implicit operator Size(Vector3)</h4>
@@ -985,7 +875,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L247">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L247">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Multiply_" data-uid="Tizen.NUI.Size.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Size_op_Multiply_Tizen_NUI_Size_System_Single_" data-uid="Tizen.NUI.Size.op_Multiply(Tizen.NUI.Size,System.Single)">operator *(Size, float)</h4>
@@ -1041,7 +931,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L235">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L235">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Multiply_" data-uid="Tizen.NUI.Size.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Size_op_Multiply_Tizen_NUI_Size_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.op_Multiply(Tizen.NUI.Size,Tizen.NUI.Size)">operator *(Size, Size)</h4>
@@ -1097,7 +987,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L212">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L212">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_Subtraction_" data-uid="Tizen.NUI.Size.op_Subtraction*"></a>
   <h4 id="Tizen_NUI_Size_op_Subtraction_Tizen_NUI_Size_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.op_Subtraction(Tizen.NUI.Size,Tizen.NUI.Size)">operator -(Size, Size)</h4>
@@ -1153,7 +1043,7 @@ Utilizes appropriate machine epsilon values.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L223">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L223">View Source</a>
   </span>
   <a id="Tizen_NUI_Size_op_UnaryNegation_" data-uid="Tizen.NUI.Size.op_UnaryNegation*"></a>
   <h4 id="Tizen_NUI_Size_op_UnaryNegation_Tizen_NUI_Size_" data-uid="Tizen.NUI.Size.op_UnaryNegation(Tizen.NUI.Size)">operator -(Size)</h4>
@@ -1204,41 +1094,10 @@ Utilizes appropriate machine epsilon values.<br></p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">ICloneable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Size_">GraphicsTypeExtensions.DpToPx(Size)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Size_">GraphicsTypeExtensions.PxToDp(Size)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Size_">GraphicsTypeExtensions.PxToSp(Size)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Size_">GraphicsTypeExtensions.SpToPx(Size)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.ICloneable</span>
   </div>
 </article>
           </div>
@@ -1248,7 +1107,7 @@ Utilizes appropriate machine epsilon values.<br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Size.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Size.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
