@@ -1,4 +1,9 @@
-name: "Deploy Documents Latest"
+name: "Deploy Documents Legacy"
+
+on:
+  push:
+    branches:
+    - test-actions
 
 jobs:
 
@@ -15,7 +20,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ./build_master.sh clone
+        ./build_legacy.sh clone
     - name: Cache DocFX output
       id: cache-site
       uses: actions/cache@v2
@@ -26,8 +31,8 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        ./build_master.sh restore
-        ./build_master.sh build
+        ./build_legacy.sh restore
+        ./build_legacy.sh build
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/

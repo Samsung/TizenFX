@@ -6,7 +6,6 @@ on:
     - master
     - DevelNUI
     - API*
-    - test-actions
 
     paths:
     - 'build/**'
