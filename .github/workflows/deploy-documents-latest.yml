@@ -64,6 +64,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
+        keep_files: true
         publish_branch: ${{ env.DEPLOY_BRANCH }}
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
