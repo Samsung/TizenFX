@@ -1,4 +1,4 @@
-name: "Deploy Documents"
+name: "Deploy Documents Latest"
 
 on:
   schedule:
