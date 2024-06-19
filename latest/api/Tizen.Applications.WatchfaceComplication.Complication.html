@@ -10,7 +10,7 @@
     <meta name="title" content="Class Complication
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API10">
+    <meta name="version" content="API11">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,14 +114,14 @@
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Applications.WatchfaceComplication.IEditable.html">IEditable</a></div>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
     </dd>
   </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L77">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication__ctor_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.#ctor*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication__ctor_System_Int32_Tizen_Applications_WatchfaceComplication_ComplicationTypes_Tizen_Applications_WatchfaceComplication_EventTypes_System_String_Tizen_Applications_WatchfaceComplication_ComplicationTypes_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.#ctor(System.Int32,Tizen.Applications.WatchfaceComplication.ComplicationTypes,Tizen.Applications.WatchfaceComplication.EventTypes,System.String,Tizen.Applications.WatchfaceComplication.ComplicationTypes)">Complication(int, ComplicationTypes, EventTypes, string, ComplicationTypes)</h4>
@@ -189,37 +189,6 @@
 _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.ShortText | ComplicationTypes.Image),
       (int) EventTypes.EventNone, _complicationProviderId, ComplicationTypes.ShortText, _complicationBtn);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the invalid parameter is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when the application does not have privilege to access this method.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -227,7 +196,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L153">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L153">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_AllowedList_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.AllowedList*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_AllowedList" data-uid="Tizen.Applications.WatchfaceComplication.Complication.AllowedList">AllowedList</h4>
@@ -248,7 +217,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;(<span class="xref">string</span> <span class="xref">allowedProviderId</span>, <a class="xref" href="Tizen.Applications.WatchfaceComplication.ComplicationTypes.html">ComplicationTypes</a> <span class="xref">supportTypes</span>)&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;(<span class="xref">string</span> <span class="xref">allowedProviderId</span>, <a class="xref" href="Tizen.Applications.WatchfaceComplication.ComplicationTypes.html">ComplicationTypes</a> <span class="xref">supportTypes</span>)&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -258,7 +227,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L202">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L202">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_ComplicationId_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.ComplicationId*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_ComplicationId" data-uid="Tizen.Applications.WatchfaceComplication.Complication.ComplicationId">ComplicationId</h4>
@@ -289,7 +258,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L186">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Highlight_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Highlight*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Highlight" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Highlight">Highlight</h4>
@@ -320,7 +289,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L124">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L124">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_SupportEvents_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.SupportEvents*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_SupportEvents" data-uid="Tizen.Applications.WatchfaceComplication.Complication.SupportEvents">SupportEvents</h4>
@@ -351,7 +320,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L112">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L112">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_SupportTypes_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.SupportTypes*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_SupportTypes" data-uid="Tizen.Applications.WatchfaceComplication.Complication.SupportTypes">SupportTypes</h4>
@@ -384,7 +353,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L905">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L905">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Dispose_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Dispose*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Dispose" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Dispose">Dispose()</h4>
@@ -400,7 +369,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L891">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L891">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Dispose_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Dispose*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Dispose_System_Boolean_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -434,7 +403,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L103">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Finalize_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Finalize*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Finalize" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Finalize">~Complication()</h4>
@@ -450,7 +419,7 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L301">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L301">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetCurrentProviderId_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetCurrentProviderId*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetCurrentProviderId" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetCurrentProviderId">GetCurrentProviderId()</h4>
@@ -481,28 +450,12 @@ _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.Shor
   <pre><code>MyComplication comp = new MyComplication();
 string providerId = comp.GetCurrentProviderId();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L322">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L322">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetCurrentType_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetCurrentType*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetCurrentType" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetCurrentType">GetCurrentType()</h4>
@@ -533,28 +486,12 @@ string providerId = comp.GetCurrentProviderId();</code></pre>
   <pre><code>MyComplication comp = new MyComplication();
 ComplicationTypes type = comp.GetCurrentType();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L651">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L651">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetCurrentValueOfRange_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetCurrentValueOfRange*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetCurrentValueOfRange_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetCurrentValueOfRange(Tizen.Applications.Bundle)">GetCurrentValueOfRange(Bundle)</h4>
@@ -617,38 +554,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L815">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L815">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetExtraData_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetExtraData*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetExtraData_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetExtraData(Tizen.Applications.Bundle)">GetExtraData(Bundle)</h4>
@@ -711,38 +622,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L774">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L774">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetIconPath_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetIconPath*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetIconPath_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetIconPath(Tizen.Applications.Bundle)">GetIconPath(Bundle)</h4>
@@ -805,38 +690,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L610">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L610">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetImagePath_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetImagePath*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetImagePath_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetImagePath(Tizen.Applications.Bundle)">GetImagePath(Bundle)</h4>
@@ -899,38 +758,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L487">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L487">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetLongText_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetLongText*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetLongText_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetLongText(Tizen.Applications.Bundle)">GetLongText(Bundle)</h4>
@@ -993,38 +826,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L733">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L733">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetMaxValueOfRange_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetMaxValueOfRange*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetMaxValueOfRange_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetMaxValueOfRange(Tizen.Applications.Bundle)">GetMaxValueOfRange(Bundle)</h4>
@@ -1087,38 +894,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L692">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L692">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetMinValueOfRange_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetMinValueOfRange*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetMinValueOfRange_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetMinValueOfRange(Tizen.Applications.Bundle)">GetMinValueOfRange(Bundle)</h4>
@@ -1181,38 +962,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L856">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L856">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetScreenReaderText_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetScreenReaderText*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetScreenReaderText_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetScreenReaderText(Tizen.Applications.Bundle)">GetScreenReaderText(Bundle)</h4>
@@ -1275,38 +1030,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L446">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L446">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetShortText_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetShortText*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetShortText_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetShortText(Tizen.Applications.Bundle)">GetShortText(Bundle)</h4>
@@ -1369,38 +1098,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L569">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L569">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetTimestamp_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetTimestamp*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetTimestamp_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetTimestamp(Tizen.Applications.Bundle)">GetTimestamp(Bundle)</h4>
@@ -1463,38 +1166,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L528">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L528">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetTitle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetTitle*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetTitle_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetTitle(Tizen.Applications.Bundle)">GetTitle(Bundle)</h4>
@@ -1557,38 +1234,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
    }
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when data is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L405">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L405">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_GetType_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetType*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_GetType_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.GetType(Tizen.Applications.Bundle)">GetType(Bundle)</h4>
@@ -1636,38 +1287,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
   <h5 id="Tizen_Applications_WatchfaceComplication_Complication_GetType_Tizen_Applications_Bundle__examples">Examples</h5>
   <pre><code>ComplicationTypes type = Complication.GetType(dupData);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the invalid argument is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L882">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L882">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_OnComplicationError_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.OnComplicationError*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_OnComplicationError_System_String_Tizen_Applications_WatchfaceComplication_ComplicationTypes_Tizen_Applications_WatchfaceComplication_ComplicationError_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.OnComplicationError(System.String,Tizen.Applications.WatchfaceComplication.ComplicationTypes,Tizen.Applications.WatchfaceComplication.ComplicationError)">OnComplicationError(string, ComplicationTypes, ComplicationError)</h4>
@@ -1713,7 +1338,7 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L873">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L873">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_OnComplicationUpdated_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.OnComplicationUpdated*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_OnComplicationUpdated_System_String_Tizen_Applications_WatchfaceComplication_ComplicationTypes_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.OnComplicationUpdated(System.String,Tizen.Applications.WatchfaceComplication.ComplicationTypes,Tizen.Applications.Bundle)">OnComplicationUpdated(string, ComplicationTypes, Bundle)</h4>
@@ -1759,7 +1384,7 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L359">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L359">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_SendUpdateRequest_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.SendUpdateRequest*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_SendUpdateRequest" data-uid="Tizen.Applications.WatchfaceComplication.Complication.SendUpdateRequest">SendUpdateRequest()</h4>
@@ -1774,33 +1399,12 @@ ComplicationTypes type = comp.GetCurrentType();</code></pre>
   <pre><code>MyComplication comp = new MyComplication();
 ComplicationError err = comp.SendUpdateRequest();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when the application does not have privilege to access this method.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L384">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L384">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_TransferEvent_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.TransferEvent*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_TransferEvent_Tizen_Applications_WatchfaceComplication_EventTypes_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.TransferEvent(Tizen.Applications.WatchfaceComplication.EventTypes)">TransferEvent(EventTypes)</h4>
@@ -1835,32 +1439,6 @@ ComplicationError err = comp.SendUpdateRequest();</code></pre>
     comp.TransferEvent(EventTypes.EventTap);
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when the application does not have privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the invalid argument is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1868,7 +1446,7 @@ ComplicationError err = comp.SendUpdateRequest();</code></pre>
   <h3 id="eii">Explicit Interface Implementations
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L214">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L214">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_EditableId_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#EditableId*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_EditableId" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#EditableId">IEditable.EditableId</h4>
@@ -1899,7 +1477,7 @@ ComplicationError err = comp.SendUpdateRequest();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L279">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L279">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentData_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentData*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentData" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentData">IEditable.GetCurrentData()</h4>
@@ -1930,28 +1508,12 @@ ComplicationError err = comp.SendUpdateRequest();</code></pre>
   <pre><code>MyComplication comp = new MyComplication();
 Bundle curData = comp.GetCurrentData();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L256">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L256">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentDataIndex_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentDataIndex*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentDataIndex" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentDataIndex">IEditable.GetCurrentDataIndex()</h4>
@@ -1982,28 +1544,12 @@ Bundle curData = comp.GetCurrentData();</code></pre>
   <pre><code>MyComplication comp = new MyComplication();
 Bundle curData = comp.GetCurrentDataIndex();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L136">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L136">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_Highlight_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#Highlight*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_Highlight" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#Highlight">IEditable.Highlight</h4>
@@ -2034,7 +1580,7 @@ Bundle curData = comp.GetCurrentDataIndex();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L230">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L230">View Source</a>
   </span>
   <a id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_Name_" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#Name*"></a>
   <h4 id="Tizen_Applications_WatchfaceComplication_Complication_Tizen_Applications_WatchfaceComplication_IEditable_Name" data-uid="Tizen.Applications.WatchfaceComplication.Complication.Tizen#Applications#WatchfaceComplication#IEditable#Name">IEditable.Name</h4>
@@ -2069,7 +1615,29 @@ Bundle curData = comp.GetCurrentDataIndex();</code></pre>
       <a class="xref" href="Tizen.Applications.WatchfaceComplication.IEditable.html">IEditable</a>
   </div>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -2079,7 +1647,7 @@ Bundle curData = comp.GetCurrentDataIndex();</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/Complication.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

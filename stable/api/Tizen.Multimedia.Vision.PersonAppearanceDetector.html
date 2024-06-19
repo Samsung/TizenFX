@@ -10,7 +10,7 @@
     <meta name="title" content="Class PersonAppearanceDetector
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API10">
+    <meta name="version" content="API11">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PersonAppearanceDetector : SurveillanceEngine, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class PersonAppearanceDetector : SurveillanceEngine</code></pre>
   </div>
 
 
@@ -111,17 +111,11 @@
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_PersonAppearanceDetector__ctor_" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.#ctor*"></a>
   <h4 id="Tizen_Multimedia_Vision_PersonAppearanceDetector__ctor" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.#ctor">PersonAppearanceDetector()</h4>
@@ -132,22 +126,6 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PersonAppearanceDetector()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required features are not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Vision_PersonAppearanceDetector__ctor_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetectionConfiguration.html">PersonAppearanceDetectionConfiguration</a></div>
@@ -159,7 +137,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L114">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L114">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_PersonAppearanceDetector_AddSource_" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.AddSource*"></a>
   <h4 id="Tizen_Multimedia_Vision_PersonAppearanceDetector_AddSource_Tizen_Multimedia_Vision_SurveillanceSource_Tizen_Multimedia_Vision_PersonAppearanceDetectionConfiguration_" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.AddSource(Tizen.Multimedia.Vision.SurveillanceSource,Tizen.Multimedia.Vision.PersonAppearanceDetectionConfiguration)">AddSource(SurveillanceSource, PersonAppearanceDetectionConfiguration)</h4>
@@ -194,29 +172,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetector.html">PersonAppearanceDetector</a> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Vision_PersonAppearanceDetector_AddSource_Tizen_Multimedia_Vision_SurveillanceSource_Tizen_Multimedia_Vision_PersonAppearanceDetectionConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetectionConfiguration.html">PersonAppearanceDetectionConfiguration</a></div>
@@ -226,7 +181,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L96">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L96">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_PersonAppearanceDetector_AddSource_" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.AddSource*"></a>
   <h4 id="Tizen_Multimedia_Vision_PersonAppearanceDetector_AddSource_Tizen_Multimedia_Vision_SurveillanceSource_" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.AddSource(Tizen.Multimedia.Vision.SurveillanceSource)">AddSource(SurveillanceSource)</h4>
@@ -255,27 +210,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetector.html">PersonAppearanceDetector</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Vision_PersonAppearanceDetector_AddSource_Tizen_Multimedia_Vision_SurveillanceSource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetectionConfiguration.html">PersonAppearanceDetectionConfiguration</a></div>
@@ -287,7 +221,7 @@
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L54">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L54">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_Vision_PersonAppearanceDetector_Detected" data-uid="Tizen.Multimedia.Vision.PersonAppearanceDetector.Detected">Detected</h4>
   <div class="markdown level1 summary"><p>Occurs when the any appearance changes detected.</p>
@@ -307,7 +241,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetectedEventArgs.html">PersonAppearanceDetectedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.PersonAppearanceDetectedEventArgs.html">PersonAppearanceDetectedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -323,9 +257,27 @@
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
@@ -339,7 +291,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/PersonAppearanceDetector.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

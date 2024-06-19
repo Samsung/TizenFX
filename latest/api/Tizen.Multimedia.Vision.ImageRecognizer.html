@@ -10,7 +10,7 @@
     <meta name="title" content="Class ImageRecognizer
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API10">
+    <meta name="version" content="API11">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/ImageRecognizer.cs/#L77">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/ImageRecognizer.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_ImageRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.ImageRecognizer.RecognizeAsync*"></a>
   <h4 id="Tizen_Multimedia_Vision_ImageRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageObject___Tizen_Multimedia_Vision_ImageRecognitionConfiguration_" data-uid="Tizen.Multimedia.Vision.ImageRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.ImageObject[],Tizen.Multimedia.Vision.ImageRecognitionConfiguration)">RecognizeAsync(MediaVisionSource, ImageObject[], ImageRecognitionConfiguration)</h4>
@@ -165,45 +165,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageRecognitionResult.html">ImageRecognitionResult</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageRecognitionResult.html">ImageRecognitionResult</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous recognition operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">imageObjects</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">imageObjects</code> contains null elements.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">imageObjects</code> has no elements.(The length is zero.)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -213,7 +176,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/ImageRecognizer.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/ImageRecognizer.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_ImageRecognizer_RecognizeAsync_" data-uid="Tizen.Multimedia.Vision.ImageRecognizer.RecognizeAsync*"></a>
   <h4 id="Tizen_Multimedia_Vision_ImageRecognizer_RecognizeAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_ImageObject___" data-uid="Tizen.Multimedia.Vision.ImageRecognizer.RecognizeAsync(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.ImageObject[])">RecognizeAsync(MediaVisionSource, ImageObject[])</h4>
@@ -258,43 +221,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageRecognitionResult.html">ImageRecognitionResult</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.ImageRecognitionResult.html">ImageRecognitionResult</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous recognition operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">imageObjects</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">imageObjects</code> contains null reference.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">imageObjects</code> has no elements.(The length is zero.)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -311,7 +239,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Vision/MediaVision/ImageRecognizer.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Vision/MediaVision/ImageRecognizer.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

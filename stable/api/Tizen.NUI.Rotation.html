@@ -10,7 +10,7 @@
     <meta name="title" content="Class Rotation
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API10">
+    <meta name="version" content="API11">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Rotation : Disposable, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Rotation : Disposable</code></pre>
   </div>
 
 
@@ -111,17 +111,11 @@
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L35">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L35">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation__ctor_" data-uid="Tizen.NUI.Rotation.#ctor*"></a>
   <h4 id="Tizen_NUI_Rotation__ctor" data-uid="Tizen.NUI.Rotation.#ctor">Rotation()</h4>
@@ -137,7 +131,53 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L71">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation__ctor_" data-uid="Tizen.NUI.Rotation.#ctor*"></a>
+  <h4 id="Tizen_NUI_Rotation__ctor_Tizen_NUI_Radian_Tizen_NUI_Radian_Tizen_NUI_Radian_" data-uid="Tizen.NUI.Rotation.#ctor(Tizen.NUI.Radian,Tizen.NUI.Radian,Tizen.NUI.Radian)">Rotation(Radian, Radian, Radian)</h4>
+  <div class="markdown level1 summary"><p>The constructor of Rotation from Euler angles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rotation(Radian pitch, Radian yaw, Radian roll)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">pitch</span></td>
+        <td><p>Pitch value as Radian.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">yaw</span></td>
+        <td><p>Yaw value as Radian</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">roll</span></td>
+        <td><p>Roll value as Radian</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L46">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation__ctor_" data-uid="Tizen.NUI.Rotation.#ctor*"></a>
   <h4 id="Tizen_NUI_Rotation__ctor_Tizen_NUI_Radian_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Rotation.#ctor(Tizen.NUI.Radian,Tizen.NUI.Vector3)">Rotation(Radian, Vector3)</h4>
@@ -176,10 +216,87 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L59">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation__ctor_" data-uid="Tizen.NUI.Rotation.#ctor*"></a>
+  <h4 id="Tizen_NUI_Rotation__ctor_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Rotation.#ctor(Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Rotation(Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"><p>The constructor of Rotation which describes minimum rotation to align v0 with v1.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rotation(Vector3 v0, Vector3 v1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">v0</span></td>
+        <td><p>The first normalized vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">v1</span></td>
+        <td><p>The second normalized vector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Rotation__ctor_Tizen_NUI_Vector3_Tizen_NUI_Vector3__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>v0 and v1 should be normalized.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L81">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation__ctor_" data-uid="Tizen.NUI.Rotation.#ctor*"></a>
+  <h4 id="Tizen_NUI_Rotation__ctor_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Rotation.#ctor(Tizen.NUI.Vector4)">Rotation(Vector4)</h4>
+  <div class="markdown level1 summary"><p>The constructor of Rotation from Quaternion Vector4.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rotation(Vector4 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>Quaternion vector for Rotation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L81">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L91">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_IDENTITY_" data-uid="Tizen.NUI.Rotation.IDENTITY*"></a>
   <h4 id="Tizen_NUI_Rotation_IDENTITY" data-uid="Tizen.NUI.Rotation.IDENTITY">IDENTITY</h4>
@@ -212,7 +329,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L270">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L280">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_AngleBetween_" data-uid="Tizen.NUI.Rotation.AngleBetween*"></a>
   <h4 id="Tizen_NUI_Rotation_AngleBetween_Tizen_NUI_Rotation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.AngleBetween(Tizen.NUI.Rotation,Tizen.NUI.Rotation)">AngleBetween(Rotation, Rotation)</h4>
@@ -268,7 +385,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L383">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L419">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Conjugate_" data-uid="Tizen.NUI.Rotation.Conjugate*"></a>
   <h4 id="Tizen_NUI_Rotation_Conjugate" data-uid="Tizen.NUI.Rotation.Conjugate">Conjugate()</h4>
@@ -284,7 +401,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L194">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L204">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Dot_" data-uid="Tizen.NUI.Rotation.Dot*"></a>
   <h4 id="Tizen_NUI_Rotation_Dot_Tizen_NUI_Rotation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.Dot(Tizen.NUI.Rotation,Tizen.NUI.Rotation)">Dot(Rotation, Rotation)</h4>
@@ -340,7 +457,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L416">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L452">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Exp_" data-uid="Tizen.NUI.Rotation.Exp*"></a>
   <h4 id="Tizen_NUI_Rotation_Exp" data-uid="Tizen.NUI.Rotation.Exp">Exp()</h4>
@@ -372,7 +489,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L326">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L336">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_GetAxisAngle_" data-uid="Tizen.NUI.Rotation.GetAxisAngle*"></a>
   <h4 id="Tizen_NUI_Rotation_GetAxisAngle_Tizen_NUI_Vector3_Tizen_NUI_Radian_" data-uid="Tizen.NUI.Rotation.GetAxisAngle(Tizen.NUI.Vector3,Tizen.NUI.Radian)">GetAxisAngle(Vector3, Radian)</h4>
@@ -428,7 +545,53 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L393">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L362">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation_GetEulerAngle_" data-uid="Tizen.NUI.Rotation.GetEulerAngle*"></a>
+  <h4 id="Tizen_NUI_Rotation_GetEulerAngle_Tizen_NUI_Radian_Tizen_NUI_Radian_Tizen_NUI_Radian_" data-uid="Tizen.NUI.Rotation.GetEulerAngle(Tizen.NUI.Radian,Tizen.NUI.Radian,Tizen.NUI.Radian)">GetEulerAngle(Radian, Radian, Radian)</h4>
+  <div class="markdown level1 summary"><p>Get the Euler angles from this quaternion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetEulerAngle(Radian pitch, Radian yaw, Radian roll)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">pitch</span></td>
+        <td><p>The result of pitch value as Radian.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">yaw</span></td>
+        <td><p>The result of yaw value as Radian</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">roll</span></td>
+        <td><p>The result of roll value as Radian</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L429">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Invert_" data-uid="Tizen.NUI.Rotation.Invert*"></a>
   <h4 id="Tizen_NUI_Rotation_Invert" data-uid="Tizen.NUI.Rotation.Invert">Invert()</h4>
@@ -444,7 +607,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L312">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L322">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_IsIdentity_" data-uid="Tizen.NUI.Rotation.IsIdentity*"></a>
   <h4 id="Tizen_NUI_Rotation_IsIdentity" data-uid="Tizen.NUI.Rotation.IsIdentity">IsIdentity()</h4>
@@ -476,7 +639,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L338">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L374">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Length_" data-uid="Tizen.NUI.Rotation.Length*"></a>
   <h4 id="Tizen_NUI_Rotation_Length" data-uid="Tizen.NUI.Rotation.Length">Length()</h4>
@@ -508,7 +671,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L350">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L386">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_LengthSquared_" data-uid="Tizen.NUI.Rotation.LengthSquared*"></a>
   <h4 id="Tizen_NUI_Rotation_LengthSquared" data-uid="Tizen.NUI.Rotation.LengthSquared">LengthSquared()</h4>
@@ -540,7 +703,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L209">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L219">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Lerp_" data-uid="Tizen.NUI.Rotation.Lerp*"></a>
   <h4 id="Tizen_NUI_Rotation_Lerp_Tizen_NUI_Rotation_Tizen_NUI_Rotation_System_Single_" data-uid="Tizen.NUI.Rotation.Lerp(Tizen.NUI.Rotation,Tizen.NUI.Rotation,System.Single)">Lerp(Rotation, Rotation, float)</h4>
@@ -602,7 +765,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L404">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L440">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Log_" data-uid="Tizen.NUI.Rotation.Log*"></a>
   <h4 id="Tizen_NUI_Rotation_Log" data-uid="Tizen.NUI.Rotation.Log">Log()</h4>
@@ -634,7 +797,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L361">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L397">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Normalize_" data-uid="Tizen.NUI.Rotation.Normalize*"></a>
   <h4 id="Tizen_NUI_Rotation_Normalize" data-uid="Tizen.NUI.Rotation.Normalize">Normalize()</h4>
@@ -650,7 +813,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L372">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L408">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Normalized_" data-uid="Tizen.NUI.Rotation.Normalized*"></a>
   <h4 id="Tizen_NUI_Rotation_Normalized" data-uid="Tizen.NUI.Rotation.Normalized">Normalized()</h4>
@@ -682,7 +845,191 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L224">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L464">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Rotation.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Rotation_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Rotation.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L294">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation_Rotate_" data-uid="Tizen.NUI.Rotation.Rotate*"></a>
+  <h4 id="Tizen_NUI_Rotation_Rotate_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Rotation.Rotate(Tizen.NUI.Vector3)">Rotate(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Rotate a vector3 with the Rotation.
+For example, if this Rotation has (0, 1, 0) rotation axis and Math.PI radian angle and the input vector is (1, 0, 0),
+this Rotation method returns (-1, 0, 0) that is rotated along Y axis amount of Math.PI.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 Rotate(Vector3 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The vector of vector3 to be rotated with this Rotation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><p>Vector3 that is the rotation result of this rotation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L309">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation_Rotate_" data-uid="Tizen.NUI.Rotation.Rotate*"></a>
+  <h4 id="Tizen_NUI_Rotation_Rotate_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Rotation.Rotate(Tizen.NUI.Vector4)">Rotate(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Rotate a vector4 with the Rotation.
+For example, if this Rotation has (0, 1, 0) rotation axis and Math.PI radian angle and the input vector is (1, 0, 0, 0),
+this Rotation method returns (-1, 0, 0, 0) that is rotated along Y axis amount of Math.PI.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector4 Rotate(Vector4 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The vector of vector4 to be rotated with this Rotation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><p>Vector4 that is the rotation result of this rotation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L349">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Rotation_SetEulerAngle_" data-uid="Tizen.NUI.Rotation.SetEulerAngle*"></a>
+  <h4 id="Tizen_NUI_Rotation_SetEulerAngle_Tizen_NUI_Radian_Tizen_NUI_Radian_Tizen_NUI_Radian_" data-uid="Tizen.NUI.Rotation.SetEulerAngle(Tizen.NUI.Radian,Tizen.NUI.Radian,Tizen.NUI.Radian)">SetEulerAngle(Radian, Radian, Radian)</h4>
+  <div class="markdown level1 summary"><p>Set the quaternion from Euler angles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetEulerAngle(Radian pitch, Radian yaw, Radian roll)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">pitch</span></td>
+        <td><p>Pitch value as Radian.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">yaw</span></td>
+        <td><p>Yaw value as Radian</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Radian.html">Radian</a></td>
+        <td><span class="parametername">roll</span></td>
+        <td><p>Roll value as Radian</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L234">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Slerp_" data-uid="Tizen.NUI.Rotation.Slerp*"></a>
   <h4 id="Tizen_NUI_Rotation_Slerp_Tizen_NUI_Rotation_Tizen_NUI_Rotation_System_Single_" data-uid="Tizen.NUI.Rotation.Slerp(Tizen.NUI.Rotation,Tizen.NUI.Rotation,System.Single)">Slerp(Rotation, Rotation, float)</h4>
@@ -744,7 +1091,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L239">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L249">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_SlerpNoInvert_" data-uid="Tizen.NUI.Rotation.SlerpNoInvert*"></a>
   <h4 id="Tizen_NUI_Rotation_SlerpNoInvert_Tizen_NUI_Rotation_Tizen_NUI_Rotation_System_Single_" data-uid="Tizen.NUI.Rotation.SlerpNoInvert(Tizen.NUI.Rotation,Tizen.NUI.Rotation,System.Single)">SlerpNoInvert(Rotation, Rotation, float)</h4>
@@ -806,7 +1153,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L256">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L266">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_Squad_" data-uid="Tizen.NUI.Rotation.Squad*"></a>
   <h4 id="Tizen_NUI_Rotation_Squad_Tizen_NUI_Rotation_Tizen_NUI_Rotation_Tizen_NUI_Rotation_Tizen_NUI_Rotation_System_Single_" data-uid="Tizen.NUI.Rotation.Squad(Tizen.NUI.Rotation,Tizen.NUI.Rotation,Tizen.NUI.Rotation,Tizen.NUI.Rotation,System.Single)">Squad(Rotation, Rotation, Rotation, Rotation, float)</h4>
@@ -882,7 +1229,7 @@
   <h3 id="operators">Operators
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L99">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L109">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Addition_" data-uid="Tizen.NUI.Rotation.op_Addition*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Addition_Tizen_NUI_Rotation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.op_Addition(Tizen.NUI.Rotation,Tizen.NUI.Rotation)">operator +(Rotation, Rotation)</h4>
@@ -938,7 +1285,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L182">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L192">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Division_" data-uid="Tizen.NUI.Rotation.op_Division*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Division_Tizen_NUI_Rotation_System_Single_" data-uid="Tizen.NUI.Rotation.op_Division(Tizen.NUI.Rotation,System.Single)">operator /(Rotation, float)</h4>
@@ -994,7 +1341,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L170">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L180">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Division_" data-uid="Tizen.NUI.Rotation.op_Division*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Division_Tizen_NUI_Rotation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.op_Division(Tizen.NUI.Rotation,Tizen.NUI.Rotation)">operator /(Rotation, Rotation)</h4>
@@ -1050,7 +1397,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L158">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L168">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Multiply_" data-uid="Tizen.NUI.Rotation.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Multiply_Tizen_NUI_Rotation_System_Single_" data-uid="Tizen.NUI.Rotation.op_Multiply(Tizen.NUI.Rotation,System.Single)">operator *(Rotation, float)</h4>
@@ -1106,7 +1453,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L134">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L144">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Multiply_" data-uid="Tizen.NUI.Rotation.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Multiply_Tizen_NUI_Rotation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.op_Multiply(Tizen.NUI.Rotation,Tizen.NUI.Rotation)">operator *(Rotation, Rotation)</h4>
@@ -1162,7 +1509,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L146">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L156">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Multiply_" data-uid="Tizen.NUI.Rotation.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Multiply_Tizen_NUI_Rotation_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Rotation.op_Multiply(Tizen.NUI.Rotation,Tizen.NUI.Vector3)">operator *(Rotation, Vector3)</h4>
@@ -1218,7 +1565,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L111">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L121">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_Subtraction_" data-uid="Tizen.NUI.Rotation.op_Subtraction*"></a>
   <h4 id="Tizen_NUI_Rotation_op_Subtraction_Tizen_NUI_Rotation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.op_Subtraction(Tizen.NUI.Rotation,Tizen.NUI.Rotation)">operator -(Rotation, Rotation)</h4>
@@ -1274,7 +1621,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L122">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L132">View Source</a>
   </span>
   <a id="Tizen_NUI_Rotation_op_UnaryNegation_" data-uid="Tizen.NUI.Rotation.op_UnaryNegation*"></a>
   <h4 id="Tizen_NUI_Rotation_op_UnaryNegation_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Rotation.op_UnaryNegation(Tizen.NUI.Rotation)">operator -(Rotation)</h4>
@@ -1323,9 +1670,27 @@
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -1335,7 +1700,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Common/Rotation.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/Rotation.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

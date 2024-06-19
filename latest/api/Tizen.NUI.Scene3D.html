@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.NUI.Scene3D
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API10">
+    <meta name="version" content="API11">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -88,15 +88,70 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
 </h3>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a></h4>
+      <section><p>Specialized <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control blend shape.
+We can control the blend shape by index (when we set BlendShapeId as IndexKey),
+or by name (when we set BlendShapeId as StringKey).</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></h4>
       <section><p>Camera class controls a camera in 3D space.</p>
 <p>Camera can be added on the SceneView and displays SceneView's virtual 3D world to the screen.
 Camera can be translated and rotated in the space.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.Light.html">Light</a></h4>
+      <section><p>This class is to define 3D Light source.
+Currently this Light class supports Directional Light that lights every position from the same direction. (e.g, Sun light)
+If a Light object is added on SceneView, the 3D objects in the SceneView are shined the Light.
+NUI Scene3D limits the maximum enabled light count per each SceneView.
+Currently the maximum number is set to 5, and it can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Light.html#Tizen_NUI_Scene3D_Light_MaximumActivatedLightCount">MaximumActivatedLightCount</a>.
+If more than 5 enabled Light objects are added on SceneView, SceneView turns on only 5 lights in the order the lights were added.
+This Light can be added to SceneView directly but also it can be added on other View.
+When a parent actor is added to a SceneView, its Light behaves in the SceneView the same as if it were added directly to the SceneView.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.Material.html">Material</a></h4>
+      <section><p>Class for setting Material properties of 3D models.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.Model.html">Model</a></h4>
       <section><p>Model is a Class to show 3D mesh objects.
 Model supports glTF 2.0 and DLI model formats.
 Physically Based Rendering with Image Based Lighting is also supported.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.Model.MeshHitEventArgs.html">Model.MeshHitEventArgs</a></h4>
+      <section><p>MeshHitEventArgs
+Contains arguments when MeshHitSignal called</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a></h4>
+      <section><p>ModelNode is a class for representing the Node of Model in Scene3D.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.ModelPrimitive.html">ModelPrimitive</a></h4>
+      <section><p>Class for Model Primitives for 3D Geometry and Material.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></h4>
+      <section><p>List of model motion definitions.
+Each motion has pair of <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a>.
+MotionIndex is abstract class that specify the target of motion.
+MotionValue is destination value of target for the motion. It can be expressed with <a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a> or <a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></h4>
+      <section><p>Index of motion value. It will be used to specify the target of motion applied.
+There are three kinds of MotionIndex : <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>, <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a>.
+MotionPropertyIndex will be used for control all kind of properties.
+The <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a> loaded from files / buffer will have this kind of MotionIndex.
+MotionTransformIndex will be used for control the <a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a>'s Position / Orientation / Scale, or each components.
+BlendShapeIndex will be used for control some blend shape animation.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a></h4>
+      <section><p>Basic <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control Property.
+It can control more general case.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a></h4>
+      <section><p>Specialized <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control transform.
+It will be used when app developer doesn't care about Property index list,
+but want to change the transform properties anyway fast enough.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a></h4>
+      <section><p>This MotionValue will be used for target value of each <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a>.
+We can get and set MotionValue as 2 types : PropertyValue and KeyFrames.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.SceneView.html">SceneView</a></h4>
       <section><p>SceneView is a Class to show multiple 3D objects in a single 2D screen.
@@ -132,9 +187,27 @@ It could decreases performance slightly, but it is useful to show SceneView acco
 </section>
     <h3 id="enums">Enums
 </h3>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.Camera.ProjectionDirectionType.html">Camera.ProjectionDirectionType</a></h4>
+      <section><p>Enumeration for the projectionDirection.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.Camera.ProjectionModeType.html">Camera.ProjectionModeType</a></h4>
       <section><p>Enumeration for the projectionMode.
 ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane with projection.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MaterialAlphaModeType.html">MaterialAlphaModeType</a></h4>
+      <section><p>MaterialAlphaModeType is enum for Material's AlphaMode type</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MaterialDepthIndexRange.html">MaterialDepthIndexRange</a></h4>
+      <section><p>Depth index ranges to define rendering order.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MaterialTextureType.html">MaterialTextureType</a></h4>
+      <section><p>MaterialTextureType is enum for Material's Texture type</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes.html">MotionTransformIndex.TransformTypes</a></h4>
+      <section><p>The list of transform property types what this MotionTransformIndex can control.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Scene3D.MotionValue.ValueType.html">MotionValue.ValueType</a></h4>
+      <section><p>Determine whether current stored value is PropertyValue, or KeyFrames.</p>
 </section>
 </article>
           </div>
