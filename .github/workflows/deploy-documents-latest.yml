@@ -33,7 +33,6 @@ jobs:
       run: |
         ./build_master.sh restore
         ./build_master.sh build
-        ./build_master.sh index
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
