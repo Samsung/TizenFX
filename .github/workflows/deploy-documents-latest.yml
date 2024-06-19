@@ -1,9 +1,9 @@
 name: "Deploy Documents Latest"
 
 on:
-  schedule:
-  - cron: "0 16 * * *"
-  workflow_dispatch:
+  push:
+    branches:
+    - test-actions
 
 env:
   DOCFX_FILE: docfx_tizen_docs.json
