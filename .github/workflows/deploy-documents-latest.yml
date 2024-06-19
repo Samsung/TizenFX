@@ -5,11 +5,6 @@ on:
     branches:
     - test-actions
 
-env:
-  DOCFX_FILE: docfx_tizen_docs.json
-  DEPLOY_BRANCH: gh-pages
-  CACHE_NAME: docfx-gh-pages-site
-
 jobs:
 
   build:
@@ -31,7 +26,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: _site
-        key: ${{ env.CACHE_NAME }}-${{ hashFiles('repos/commits') }}
+        key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
 
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
@@ -65,7 +60,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
         keep_files: true
-        publish_branch: ${{ env.DEPLOY_BRANCH }}
+        publish_branch: gh-pages
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
         full_commit_message: 'Update documents'
