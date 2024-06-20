@@ -29,7 +29,7 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        cp doxfx_config/docfx_API5.json docfx.json
+        cp docfx_config/docfx_API5.json docfx.json
         ./build.sh restore API5
         ./build.sh build API5
     - name: Archive Artifacts
