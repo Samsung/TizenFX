@@ -81,9 +81,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_ACCESSIBILITY_HIGHLIGHTABLE_get")]
             public static extern int AccessibilityHighlightableGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_ACCESSIBILITY_ATTRIBUTES_get")]
-            public static extern int AccessibilityAttributesGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_DISPATCH_KEY_EVENTS_get")]
             public static extern int DispatchKeyEventsGet();
 
