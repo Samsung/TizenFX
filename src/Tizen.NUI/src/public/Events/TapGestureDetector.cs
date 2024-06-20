@@ -241,6 +241,7 @@ namespace Tizen.NUI
             // If DispatchGestureEvents is false, no gesture events are dispatched.
             if (e.View != null && e.View.DispatchGestureEvents == false)
             {
+                NUILog.Debug("If DispatchGestureEvents is false,  no gesture events are dispatched");
                 return;
             }
 

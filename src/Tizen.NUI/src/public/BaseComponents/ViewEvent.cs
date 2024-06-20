@@ -1764,6 +1764,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnGestureDetected(object source, EventArgs e)
         {
             // Does notting. This is to consume the gesture.
+            NUILog.Debug("If DispatchParentGestureEvents is false, it can not dispatch gesture.");
         }
 
         /// <summary>
