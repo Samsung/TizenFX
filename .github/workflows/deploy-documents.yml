@@ -56,9 +56,9 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/
+        publish_dir: ./_site/API5/
         keep_files: true
         publish_branch: gh-pages-test
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents'
+        full_commit_message: 'Update documents test'
