@@ -10,7 +10,7 @@
     <meta name="title" content="Class MessagesManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L61">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L59">View Source</a>
   </span>
   <a id="Tizen_Messaging_Messages_MessagesManager_SearchMessageAsync_" data-uid="Tizen.Messaging.Messages.MessagesManager.SearchMessageAsync*"></a>
   <h4 id="Tizen_Messaging_Messages_MessagesManager_SearchMessageAsync_Tizen_Messaging_Messages_MessagesSearchFilter_" data-uid="Tizen.Messaging.Messages.MessagesManager.SearchMessageAsync(Tizen.Messaging.Messages.MessagesSearchFilter)">SearchMessageAsync(MessagesSearchFilter)</h4>
@@ -153,8 +153,44 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.Message.html">Message</a>&gt;&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.Message.html">Message</a>&gt;&gt;</td>
         <td><p>A task containing the messages, which match the search filter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the message service is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when input coordinates are invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have proper privileges.</p>
 </td>
       </tr>
     </tbody>
@@ -164,7 +200,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L42">View Source</a>
   </span>
   <a id="Tizen_Messaging_Messages_MessagesManager_SendMessageAsync_" data-uid="Tizen.Messaging.Messages.MessagesManager.SendMessageAsync*"></a>
   <h4 id="Tizen_Messaging_Messages_MessagesManager_SendMessageAsync_Tizen_Messaging_Messages_Message_System_Boolean_" data-uid="Tizen.Messaging.Messages.MessagesManager.SendMessageAsync(Tizen.Messaging.Messages.Message,System.Boolean)">SendMessageAsync(Message, bool)</h4>
@@ -209,8 +245,39 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.SentResult.html">SentResult</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.SentResult.html">SentResult</a>&gt;</td>
         <td><p>A task containing the result of message sending.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the message service is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when input coordinates are invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have proper privileges.</p>
 </td>
       </tr>
     </tbody>
@@ -222,7 +289,7 @@
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L69">View Source</a>
   </span>
   <h4 id="Tizen_Messaging_Messages_MessagesManager_MessageReceived" data-uid="Tizen.Messaging.Messages.MessagesManager.MessageReceived">MessageReceived</h4>
   <div class="markdown level1 summary"><p>The MessageReceived event that is raised when receiving a message.</p>
@@ -242,7 +309,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.MessageReceivedEventArgs.html">MessageReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.MessageReceivedEventArgs.html">MessageReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -259,7 +326,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Messaging/Tizen.Messaging.Messages/MessagesManager.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

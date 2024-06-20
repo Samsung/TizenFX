@@ -10,7 +10,7 @@
     <meta name="title" content="Class ShortcutEventManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L208">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L208">View Source</a>
   </span>
   <a id="Tizen_Applications_Shortcut_ShortcutEventManager_GetTemplateList_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.GetTemplateList*"></a>
   <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_GetTemplateList_System_String_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.GetTemplateList(System.String)">GetTemplateList(string)</h4>
@@ -153,8 +153,44 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Shortcut.ShortcutTemplate.html">ShortcutTemplate</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Shortcut.ShortcutTemplate.html">ShortcutTemplate</a>&gt;</td>
         <td><p>The List of ShortcutTemplate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown in case of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -164,7 +200,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L70">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L70">View Source</a>
   </span>
   <a id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler*"></a>
   <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler(Tizen.Applications.Shortcut.ShortcutAdded)">RegisterEventHandler(ShortcutAdded)</h4>
@@ -196,12 +232,48 @@
   <h5 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Previous registered delegate function should be unregistered.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown in case of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L106">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L106">View Source</a>
   </span>
   <a id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler*"></a>
   <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler(Tizen.Applications.Shortcut.ShortcutDeleted)">RegisterEventHandler(ShortcutDeleted)</h4>
@@ -233,12 +305,48 @@
   <h5 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Previous registered delegate function should be unregistered.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown in case of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L137">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L137">View Source</a>
   </span>
   <a id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler*"></a>
   <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler(Tizen.Applications.Shortcut.ShortcutAdded)">UnregisterEventHandler(ShortcutAdded)</h4>
@@ -267,12 +375,38 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L171">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L171">View Source</a>
   </span>
   <a id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler*"></a>
   <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler(Tizen.Applications.Shortcut.ShortcutDeleted)">UnregisterEventHandler(ShortcutDeleted)</h4>
@@ -301,6 +435,32 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -313,7 +473,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L43" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L43" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

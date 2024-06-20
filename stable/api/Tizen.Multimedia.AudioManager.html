@@ -10,7 +10,7 @@
     <meta name="title" content="Class AudioManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L38">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioManager_VolumeController_" data-uid="Tizen.Multimedia.AudioManager.VolumeController*"></a>
   <h4 id="Tizen_Multimedia_AudioManager_VolumeController" data-uid="Tizen.Multimedia.AudioManager.VolumeController">VolumeController</h4>
@@ -148,7 +148,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioManager_GetConnectedDevices_" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices*"></a>
   <h4 id="Tizen_Multimedia_AudioManager_GetConnectedDevices" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices">GetConnectedDevices()</h4>
@@ -169,7 +169,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a>&gt;</td>
         <td><p>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</p>
 </td>
       </tr>
@@ -182,7 +182,7 @@
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L100">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L99">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioManager_DeviceConnectionChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceConnectionChanged">DeviceConnectionChanged</h4>
   <div class="markdown level1 summary"><p>Occurs when the state of a connection of an audio device changes.</p>
@@ -202,7 +202,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -212,7 +212,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L174">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L241">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioManager_DeviceRunningChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceRunningChanged">DeviceRunningChanged</h4>
   <div class="markdown level1 summary"><p>Occurs when the audio stream started actually to run on the device.</p>
@@ -232,7 +232,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -242,6 +242,53 @@
 this event will not be invoked anymore, even if there are more audio streams to run.<br>
 This event is invoked only when all streams are stopped and a new stream starts to run.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>AudioManager failed to communicate internally or allocate memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L166">View Source</a>
+  </span>
+  <h4 id="Tizen_Multimedia_AudioManager_DeviceStateChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceStateChanged">DeviceStateChanged</h4>
+  <div class="markdown level1 summary"><p>Occurs when the state of an audio device changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 5. Please use the DeviceRunningStateChanged property instead.&quot;)]
+public static event EventHandler&lt;AudioDeviceStateChangedEventArgs&gt; DeviceStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceStateChangedEventArgs.html">AudioDeviceStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -254,7 +301,7 @@ This event is invoked only when all streams are stopped and a new stream starts 
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

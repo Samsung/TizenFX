@@ -10,7 +10,7 @@
     <meta name="title" content="Class SyncClient
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -115,7 +115,7 @@ The sync service maintains sync requests from all the applications and invokes t
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L112">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L112">View Source</a>
   </span>
   <a id="Tizen_Account_SyncManager_SyncClient_AddDataChangeSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.AddDataChangeSyncJob*"></a>
   <h4 id="Tizen_Account_SyncManager_SyncClient_AddDataChangeSyncJob_Tizen_Account_SyncManager_SyncJobData_Tizen_Account_SyncManager_SyncOption_" data-uid="Tizen.Account.SyncManager.SyncClient.AddDataChangeSyncJob(Tizen.Account.SyncManager.SyncJobData,Tizen.Account.SyncManager.SyncOption)">AddDataChangeSyncJob(SyncJobData, SyncOption)</h4>
@@ -166,12 +166,38 @@ The sync service maintains sync requests from all the applications and invokes t
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of a privilege is not defined.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when any of the arguments are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the application calling this API doesn't have a sync adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L80">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_Account_SyncManager_SyncClient_AddPeriodicSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.AddPeriodicSyncJob*"></a>
   <h4 id="Tizen_Account_SyncManager_SyncClient_AddPeriodicSyncJob_Tizen_Account_SyncManager_SyncJobData_Tizen_Account_SyncManager_SyncPeriod_Tizen_Account_SyncManager_SyncOption_" data-uid="Tizen.Account.SyncManager.SyncClient.AddPeriodicSyncJob(Tizen.Account.SyncManager.SyncJobData,Tizen.Account.SyncManager.SyncPeriod,Tizen.Account.SyncManager.SyncOption)">AddPeriodicSyncJob(SyncJobData, SyncPeriod, SyncOption)</h4>
@@ -228,12 +254,38 @@ The sync service maintains sync requests from all the applications and invokes t
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of a privilege not defined.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when any of the arguments are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the application calling this API doesn't have a sync adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L139">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L139">View Source</a>
   </span>
   <a id="Tizen_Account_SyncManager_SyncClient_GetAllSyncJobs_" data-uid="Tizen.Account.SyncManager.SyncClient.GetAllSyncJobs*"></a>
   <h4 id="Tizen_Account_SyncManager_SyncClient_GetAllSyncJobs" data-uid="Tizen.Account.SyncManager.SyncClient.GetAllSyncJobs">GetAllSyncJobs()</h4>
@@ -254,7 +306,7 @@ The sync service maintains sync requests from all the applications and invokes t
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">int</span>, <a class="xref" href="Tizen.Account.SyncManager.SyncJobData.html">SyncJobData</a>&gt;&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">int</span>, <a class="xref" href="Tizen.Account.SyncManager.SyncJobData.html">SyncJobData</a>&gt;&gt;</td>
         <td><p>Returns the list of SyncJobData corresponding to sync requests.</p>
 </td>
       </tr>
@@ -265,7 +317,7 @@ The sync service maintains sync requests from all the applications and invokes t
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L174">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L174">View Source</a>
   </span>
   <a id="Tizen_Account_SyncManager_SyncClient_RemoveSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.RemoveSyncJob*"></a>
   <h4 id="Tizen_Account_SyncManager_SyncClient_RemoveSyncJob_System_Int32_" data-uid="Tizen.Account.SyncManager.SyncClient.RemoveSyncJob(System.Int32)">RemoveSyncJob(int)</h4>
@@ -294,12 +346,28 @@ The sync service maintains sync requests from all the applications and invokes t
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the input arugments is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_Account_SyncManager_SyncClient_RequestOnDemandSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.RequestOnDemandSyncJob*"></a>
   <h4 id="Tizen_Account_SyncManager_SyncClient_RequestOnDemandSyncJob_Tizen_Account_SyncManager_SyncJobData_Tizen_Account_SyncManager_SyncOption_" data-uid="Tizen.Account.SyncManager.SyncClient.RequestOnDemandSyncJob(Tizen.Account.SyncManager.SyncJobData,Tizen.Account.SyncManager.SyncOption)">RequestOnDemandSyncJob(SyncJobData, SyncOption)</h4>
@@ -350,6 +418,27 @@ The sync service maintains sync requests from all the applications and invokes t
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when any of the arugments are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the application calling this API doesn't have a sync adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -362,7 +451,7 @@ The sync service maintains sync requests from all the applications and invokes t
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
