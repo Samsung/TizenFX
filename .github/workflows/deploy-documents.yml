@@ -18,7 +18,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ./build.sh clone API4
+        ./build.sh clone API5
     - name: Cache DocFX output
       id: cache-site
       uses: actions/cache@v2
@@ -29,9 +29,9 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        cp doxfx_config/docfx_API4.json docfx.json
-        ./build.sh restore API4
-        ./build.sh build API4
+        cp doxfx_config/docfx_API5.json docfx.json
+        ./build.sh restore API5
+        ./build.sh build API5
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
