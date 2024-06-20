@@ -10,7 +10,7 @@
     <meta name="title" content="Class GenGridItemClass
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GenGridItemClass : GenItemClass</code></pre>
+    <pre><code class="lang-csharp hljs">public class GenGridItemClass : GenItemClass, IDisposable</code></pre>
   </div>
 
 
@@ -111,11 +111,17 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/GenItemClass.cs/#L259">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/GenItemClass.cs/#L257">View Source</a>
   </span>
   <a id="ElmSharp_GenGridItemClass__ctor_" data-uid="ElmSharp.GenGridItemClass.#ctor*"></a>
   <h4 id="ElmSharp_GenGridItemClass__ctor_System_String_" data-uid="ElmSharp.GenGridItemClass.#ctor(System.String)">GenGridItemClass(string)</h4>
@@ -151,7 +157,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/GenItemClass.cs/#L268">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/GenItemClass.cs/#L266">View Source</a>
   </span>
   <a id="ElmSharp_GenGridItemClass_CreateItemClass_" data-uid="ElmSharp.GenGridItemClass.CreateItemClass*"></a>
   <h4 id="ElmSharp_GenGridItemClass_CreateItemClass" data-uid="ElmSharp.GenGridItemClass.CreateItemClass">CreateItemClass()</h4>
@@ -172,7 +178,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><p>The new instance.</p>
 </td>
       </tr>
@@ -185,10 +191,10 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/GenItemClass.cs/#L278">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/GenItemClass.cs/#L276">View Source</a>
   </span>
   <a id="ElmSharp_GenGridItemClass_ReleaseItemClass_" data-uid="ElmSharp.GenGridItemClass.ReleaseItemClass*"></a>
-  <h4 id="ElmSharp_GenGridItemClass_ReleaseItemClass_IntPtr_" data-uid="ElmSharp.GenGridItemClass.ReleaseItemClass(IntPtr)">ReleaseItemClass(IntPtr)</h4>
+  <h4 id="ElmSharp_GenGridItemClass_ReleaseItemClass_System_IntPtr_" data-uid="ElmSharp.GenGridItemClass.ReleaseItemClass(System.IntPtr)">ReleaseItemClass(IntPtr)</h4>
   <div class="markdown level1 summary"><p>Removes the item class in a given GenGrid widget.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -207,7 +213,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">unmanagedPtr</span></td>
         <td><p>The object to be removed.</p>
 </td>
@@ -215,32 +221,14 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="ElmSharp.GenItemClass.html#ElmSharp_GenItemClass_ReleaseItemClass_IntPtr_">GenItemClass.ReleaseItemClass(IntPtr)</a></div>
+  <div><a class="xref" href="ElmSharp.GenItemClass.html#ElmSharp_GenItemClass_ReleaseItemClass_System_IntPtr_">GenItemClass.ReleaseItemClass(IntPtr)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
@@ -250,7 +238,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/GenItemClass.cs/#L252" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/GenItemClass.cs/#L250" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

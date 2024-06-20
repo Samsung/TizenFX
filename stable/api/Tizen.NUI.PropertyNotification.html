@@ -10,7 +10,7 @@
     <meta name="title" content="Class PropertyNotification
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -95,7 +95,7 @@ See PropertyCondition for available defined conditions.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PropertyNotification : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class PropertyNotification : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -104,8 +104,8 @@ See PropertyCondition for available defined conditions.</p>
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">PropertyNotification</span></div>
       </div>
@@ -117,8 +117,7 @@ See PropertyCondition for available defined conditions.</p>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
@@ -126,7 +125,7 @@ See PropertyCondition for available defined conditions.</p>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L176">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification__ctor_" data-uid="Tizen.NUI.PropertyNotification.#ctor*"></a>
   <h4 id="Tizen_NUI_PropertyNotification__ctor" data-uid="Tizen.NUI.PropertyNotification.#ctor">PropertyNotification()</h4>
@@ -142,7 +141,7 @@ See PropertyCondition for available defined conditions.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L198">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification__ctor_" data-uid="Tizen.NUI.PropertyNotification.#ctor*"></a>
   <h4 id="Tizen_NUI_PropertyNotification__ctor_Tizen_NUI_PropertyNotification_" data-uid="Tizen.NUI.PropertyNotification.#ctor(Tizen.NUI.PropertyNotification)">PropertyNotification(PropertyNotification)</h4>
@@ -177,11 +176,61 @@ See PropertyCondition for available defined conditions.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L258">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L209">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PropertyNotification_Assign_" data-uid="Tizen.NUI.PropertyNotification.Assign*"></a>
+  <h4 id="Tizen_NUI_PropertyNotification_Assign_Tizen_NUI_PropertyNotification_" data-uid="Tizen.NUI.PropertyNotification.Assign(Tizen.NUI.PropertyNotification)">Assign(PropertyNotification)</h4>
+  <div class="markdown level1 summary"><p>Assign.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyNotification Assign(PropertyNotification rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>A reference to the copied handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></td>
+        <td><p>A reference to this.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_Dispose_" data-uid="Tizen.NUI.PropertyNotification.Dispose*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.PropertyNotification.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
-  <div class="markdown level1 summary"><p>override it to clean-up your own resources.</p>
+  <div class="markdown level1 summary"><p>Dispose.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -212,7 +261,7 @@ See PropertyCondition for available defined conditions.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L147">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L187">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_DownCast_" data-uid="Tizen.NUI.PropertyNotification.DownCast*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_DownCast_Tizen_NUI_BaseHandle_" data-uid="Tizen.NUI.PropertyNotification.DownCast(Tizen.NUI.BaseHandle)">DownCast(BaseHandle)</h4>
@@ -262,7 +311,7 @@ See PropertyCondition for available defined conditions.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L175">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L221">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_GetCondition_" data-uid="Tizen.NUI.PropertyNotification.GetCondition*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_GetCondition" data-uid="Tizen.NUI.PropertyNotification.GetCondition">GetCondition()</h4>
@@ -294,7 +343,7 @@ See PropertyCondition for available defined conditions.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L235">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L267">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_GetNotifyMode_" data-uid="Tizen.NUI.PropertyNotification.GetNotifyMode*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_GetNotifyMode" data-uid="Tizen.NUI.PropertyNotification.GetNotifyMode">GetNotifyMode()</h4>
@@ -326,7 +375,7 @@ See PropertyCondition for available defined conditions.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L247">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L279">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_GetNotifyResult_" data-uid="Tizen.NUI.PropertyNotification.GetNotifyResult*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_GetNotifyResult" data-uid="Tizen.NUI.PropertyNotification.GetNotifyResult">GetNotifyResult()</h4>
@@ -358,7 +407,58 @@ useful when using NotifyOnChanged mode and need to know what it changed to.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L199">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L165">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PropertyNotification_GetPropertyNotificationFromPtr_" data-uid="Tizen.NUI.PropertyNotification.GetPropertyNotificationFromPtr*"></a>
+  <h4 id="Tizen_NUI_PropertyNotification_GetPropertyNotificationFromPtr_System_IntPtr_" data-uid="Tizen.NUI.PropertyNotification.GetPropertyNotificationFromPtr(System.IntPtr)">GetPropertyNotificationFromPtr(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Get property notification from Intptr.<br>
+This should be internal, please do not use.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PropertyNotification GetPropertyNotificationFromPtr(IntPtr cPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">cPtr</span></td>
+        <td><p>An object of IntPtr type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></td>
+        <td><p>An object of the PropertyNotification type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L232">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_GetTarget_" data-uid="Tizen.NUI.PropertyNotification.GetTarget*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_GetTarget" data-uid="Tizen.NUI.PropertyNotification.GetTarget">GetTarget()</h4>
@@ -389,7 +489,7 @@ useful when using NotifyOnChanged mode and need to know what it changed to.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L212">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L244">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_GetTargetProperty_" data-uid="Tizen.NUI.PropertyNotification.GetTargetProperty*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_GetTargetProperty" data-uid="Tizen.NUI.PropertyNotification.GetTargetProperty">GetTargetProperty()</h4>
@@ -421,41 +521,39 @@ useful when using NotifyOnChanged mode and need to know what it changed to.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L290">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L291">View Source</a>
   </span>
-  <a id="Tizen_NUI_PropertyNotification_ReleaseSwigCPtr_" data-uid="Tizen.NUI.PropertyNotification.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_PropertyNotification_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.PropertyNotification.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Tizen_NUI_PropertyNotification_NotifySignal_" data-uid="Tizen.NUI.PropertyNotification.NotifySignal*"></a>
+  <h4 id="Tizen_NUI_PropertyNotification_NotifySignal" data-uid="Tizen.NUI.PropertyNotification.NotifySignal">NotifySignal()</h4>
+  <div class="markdown level1 summary"><p>Connects to this signal to be notified when the notification has occurred.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+    <pre><code class="lang-csharp hljs">public PropertyNotifySignal NotifySignal()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
+        <td><a class="xref" href="Tizen.NUI.PropertyNotifySignal.html">PropertyNotifySignal</a></td>
+        <td><p>A signal object to Connect() with</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">BaseHandle.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L224">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L256">View Source</a>
   </span>
   <a id="Tizen_NUI_PropertyNotification_SetNotifyMode_" data-uid="Tizen.NUI.PropertyNotification.SetNotifyMode*"></a>
   <h4 id="Tizen_NUI_PropertyNotification_SetNotifyMode_Tizen_NUI_PropertyNotification_NotifyMode_" data-uid="Tizen.NUI.PropertyNotification.SetNotifyMode(Tizen.NUI.PropertyNotification.NotifyMode)">SetNotifyMode(NotifyMode)</h4>
@@ -491,7 +589,7 @@ useful when using NotifyOnChanged mode and need to know what it changed to.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L114">View Source</a>
   </span>
   <h4 id="Tizen_NUI_PropertyNotification_Notified" data-uid="Tizen.NUI.PropertyNotification.Notified">Notified</h4>
   <div class="markdown level1 summary"><p>Event for Notified signal which can be used to subscribe/unsubscribe the event handler
@@ -523,41 +621,10 @@ Notified signal is emitted when the notification upon a condition of the propert
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -567,7 +634,7 @@ Notified signal is emitted when the notification upon a condition of the propert
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Common/PropertyNotification.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/PropertyNotification.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

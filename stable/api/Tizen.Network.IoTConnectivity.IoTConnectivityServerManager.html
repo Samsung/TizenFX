@@ -10,7 +10,7 @@
     <meta name="title" content="Class IoTConnectivityServerManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API5">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L81">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L81">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Deinitialize_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.Deinitialize*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Deinitialize" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.Deinitialize">Deinitialize()</h4>
@@ -140,7 +140,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L56">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L56">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Initialize_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.Initialize*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Initialize_System_String_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.Initialize(System.String)">Initialize(string)</h4>
@@ -178,6 +178,32 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <pre><code>    string filePath = &quot;../../res/iotcon-test-svr-db-server.dat&quot;;
     IoTConnectivityServerManager.Initialize(filePath);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Initialize_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Deinitialize">Deinitialize()</a></div>
@@ -187,7 +213,7 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L118">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L118">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_RegisterResource_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.RegisterResource*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_RegisterResource_Tizen_Network_IoTConnectivity_Resource_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.RegisterResource(Tizen.Network.IoTConnectivity.Resource)">RegisterResource(Resource)</h4>
@@ -226,6 +252,42 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_RegisterResource_Tizen_Network_IoTConnectivity_Resource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a></div>
@@ -236,7 +298,7 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L294">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L294">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.SetDeviceName*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.SetDeviceName(System.String)">SetDeviceName(string)</h4>
@@ -272,6 +334,32 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String__examples">Examples</h5>
   <pre><code>    IoTConnectivityServerManager.SetDeviceName(&quot;my-tizen&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_DeviceInformationFound">DeviceInformationFound</a></div>
@@ -283,7 +371,7 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L231">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L231">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.StartSendingPresence*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_System_UInt32_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.StartSendingPresence(System.UInt32)">StartSendingPresence(uint)</h4>
@@ -325,6 +413,32 @@ Server can call this API when online for the first time or come back from offlin
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_System_UInt32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String_">StartReceivingPresence(string, string)</a></div>
@@ -337,7 +451,7 @@ Server can call this API when online for the first time or come back from offlin
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L265">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L265">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.StopSendingPresence*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.StopSendingPresence">StopSendingPresence()</h4>
@@ -355,6 +469,32 @@ Server can call this API when terminating, entering to offline or out of network
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_examples">Examples</h5>
   <pre><code>    IoTConnectivityServerManager.StopSendingPresence();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String_">StartReceivingPresence(string, string)</a></div>
@@ -367,7 +507,7 @@ Server can call this API when terminating, entering to offline or out of network
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L186">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_UnregisterResource_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.UnregisterResource*"></a>
   <h4 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_UnregisterResource_Tizen_Network_IoTConnectivity_Resource_" data-uid="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.UnregisterResource(Tizen.Network.IoTConnectivity.Resource)">UnregisterResource(Resource)</h4>
@@ -407,6 +547,27 @@ Server can call this API when terminating, entering to offline or out of network
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_UnregisterResource_Tizen_Network_IoTConnectivity_Resource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a></div>
@@ -424,7 +585,7 @@ Server can call this API when terminating, entering to offline or out of network
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/IoTConnectivityServerManager.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
