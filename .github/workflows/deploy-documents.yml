@@ -56,7 +56,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API4/
+        publish_dir: ./_site/
         keep_files: true
         publish_branch: gh-pages-test
         user_name: 'TizenAPI-Bot'
