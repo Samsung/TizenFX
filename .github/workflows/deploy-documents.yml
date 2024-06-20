@@ -20,7 +20,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ./build.sh clone  API12
+        ./build.sh clone API12
 
     - name: Cache DocFX output
       id: cache-site
