@@ -58,7 +58,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site/
         keep_files: true
-        publish_branch: gh-pages-test
+        publish_branch: gh-pages
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
         full_commit_message: 'Update documents test'
