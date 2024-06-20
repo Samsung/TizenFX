@@ -1,10 +1,5 @@
 name: "Deploy Documents"
 
-on:
-  schedule:
-  - cron: "0 16 * * *"
-  workflow_dispatch:
-
 jobs:
 
   build:
@@ -32,9 +27,9 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
+        cp docfx_config/docfx_API4.json docfx.json
         ./build.sh restore API4
         ./build.sh build API4
-        ./build.sh index API4
 
     - name: Archive Artifacts
       run: |
