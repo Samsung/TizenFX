@@ -10,7 +10,7 @@
     <meta name="title" content="Class ModelNode
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API11">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -142,7 +142,7 @@ modelPrimitive.Material = material;</code></pre>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L62">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L62">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode__ctor_" data-uid="Tizen.NUI.Scene3D.ModelNode.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode__ctor" data-uid="Tizen.NUI.Scene3D.ModelNode.#ctor">ModelNode()</h4>
@@ -171,7 +171,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L73">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L73">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode__ctor_" data-uid="Tizen.NUI.Scene3D.ModelNode.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode__ctor_Tizen_NUI_Scene3D_ModelNode_" data-uid="Tizen.NUI.Scene3D.ModelNode.#ctor(Tizen.NUI.Scene3D.ModelNode)">ModelNode(ModelNode)</h4>
@@ -220,7 +220,7 @@ modelPrimitive.Material = material;</code></pre>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L96">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L96">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_ModelPrimitiveCount_" data-uid="Tizen.NUI.Scene3D.ModelNode.ModelPrimitiveCount*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_ModelPrimitiveCount" data-uid="Tizen.NUI.Scene3D.ModelNode.ModelPrimitiveCount">ModelPrimitiveCount</h4>
@@ -266,7 +266,7 @@ modelPrimitive.Material = material;</code></pre>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_AddModelPrimitive_" data-uid="Tizen.NUI.Scene3D.ModelNode.AddModelPrimitive*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_AddModelPrimitive_Tizen_NUI_Scene3D_ModelPrimitive_" data-uid="Tizen.NUI.Scene3D.ModelNode.AddModelPrimitive(Tizen.NUI.Scene3D.ModelPrimitive)">AddModelPrimitive(ModelPrimitive)</h4>
@@ -313,57 +313,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L248">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Scene3D_ModelNode_CastShadow_" data-uid="Tizen.NUI.Scene3D.ModelNode.CastShadow*"></a>
-  <h4 id="Tizen_NUI_Scene3D_ModelNode_CastShadow_System_Boolean_" data-uid="Tizen.NUI.Scene3D.ModelNode.CastShadow(System.Boolean)">CastShadow(bool)</h4>
-  <div class="markdown level1 summary"><p>Sets whether this Model casts shadow or not.
-If it is true, this model is drawn on Shadow Map.
-Note: This method affects all of the child ModelNode.
-However, same property of each child ModelNode can be changed respectively and it not changes parent's property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CastShadow(bool castShadow)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><span class="parametername">castShadow</span></td>
-        <td><p>Whether this Model casts shadow or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Scene3D_ModelNode_CastShadow_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>ModelNode contains multiple ModelPrimitives and allows easy access and
-modification of Material information that ModelPrimitive has. If a 3D
-format file is loaded by Model, ModelNode is created internally to
-construct the model. In addition, you can create a Custom ModelNode
-using ModelPrimitive and Material directly and add it to Model.</p>
-<pre><code>ModelNode modelNode = new ModelNode();
-ModelPrimitive modelPrimitive = new ModelPrimitive();
-modelNode.AddModelPrimitive(modelPrimitive);
-
-Material material = new Material;
-modelPrimitive.Material = material;</code></pre>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L174">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L174">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_FindChildModelNodeByName_" data-uid="Tizen.NUI.Scene3D.ModelNode.FindChildModelNodeByName*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_FindChildModelNodeByName_System_String_" data-uid="Tizen.NUI.Scene3D.ModelNode.FindChildModelNodeByName(System.String)">FindChildModelNodeByName(string)</h4>
@@ -426,7 +376,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L147">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L147">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_GetModelPrimitive_" data-uid="Tizen.NUI.Scene3D.ModelNode.GetModelPrimitive*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_GetModelPrimitive_System_UInt32_" data-uid="Tizen.NUI.Scene3D.ModelNode.GetModelPrimitive(System.UInt32)">GetModelPrimitive(uint)</h4>
@@ -489,149 +439,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L261">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Scene3D_ModelNode_IsShadowCasting_" data-uid="Tizen.NUI.Scene3D.ModelNode.IsShadowCasting*"></a>
-  <h4 id="Tizen_NUI_Scene3D_ModelNode_IsShadowCasting" data-uid="Tizen.NUI.Scene3D.ModelNode.IsShadowCasting">IsShadowCasting()</h4>
-  <div class="markdown level1 summary"><p>Retrieves whether the Model casts shadow or not for Light.
-Note: IBL does not cast any shadow.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsShadowCasting()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if this model casts shadow.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Scene3D_ModelNode_IsShadowCasting_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>ModelNode contains multiple ModelPrimitives and allows easy access and
-modification of Material information that ModelPrimitive has. If a 3D
-format file is loaded by Model, ModelNode is created internally to
-construct the model. In addition, you can create a Custom ModelNode
-using ModelPrimitive and Material directly and add it to Model.</p>
-<pre><code>ModelNode modelNode = new ModelNode();
-ModelPrimitive modelPrimitive = new ModelPrimitive();
-modelNode.AddModelPrimitive(modelPrimitive);
-
-Material material = new Material;
-modelPrimitive.Material = material;</code></pre>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L290">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Scene3D_ModelNode_IsShadowReceiving_" data-uid="Tizen.NUI.Scene3D.ModelNode.IsShadowReceiving*"></a>
-  <h4 id="Tizen_NUI_Scene3D_ModelNode_IsShadowReceiving" data-uid="Tizen.NUI.Scene3D.ModelNode.IsShadowReceiving">IsShadowReceiving()</h4>
-  <div class="markdown level1 summary"><p>Retrieves whether the Model receives shadow or not for Light
-If it is true, this model is drawn on Shadow Map.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsShadowReceiving()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><p>True if this model receives shadow.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Scene3D_ModelNode_IsShadowReceiving_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>ModelNode contains multiple ModelPrimitives and allows easy access and
-modification of Material information that ModelPrimitive has. If a 3D
-format file is loaded by Model, ModelNode is created internally to
-construct the model. In addition, you can create a Custom ModelNode
-using ModelPrimitive and Material directly and add it to Model.</p>
-<pre><code>ModelNode modelNode = new ModelNode();
-ModelPrimitive modelPrimitive = new ModelPrimitive();
-modelNode.AddModelPrimitive(modelPrimitive);
-
-Material material = new Material;
-modelPrimitive.Material = material;</code></pre>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L277">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Scene3D_ModelNode_ReceiveShadow_" data-uid="Tizen.NUI.Scene3D.ModelNode.ReceiveShadow*"></a>
-  <h4 id="Tizen_NUI_Scene3D_ModelNode_ReceiveShadow_System_Boolean_" data-uid="Tizen.NUI.Scene3D.ModelNode.ReceiveShadow(System.Boolean)">ReceiveShadow(bool)</h4>
-  <div class="markdown level1 summary"><p>Sets whether this Model receives shadow or not.
-If it is true, shadows are drawn on this model.
-Note: This method affects all of the child ModelNode.
-However, same property of each child ModelNode can be changed respectively and it not changes parent's property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ReceiveShadow(bool receiveShadow)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><span class="parametername">receiveShadow</span></td>
-        <td><p>Whether this Model receives shadow or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Scene3D_ModelNode_ReceiveShadow_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>ModelNode contains multiple ModelPrimitives and allows easy access and
-modification of Material information that ModelPrimitive has. If a 3D
-format file is loaded by Model, ModelNode is created internally to
-construct the model. In addition, you can create a Custom ModelNode
-using ModelPrimitive and Material directly and add it to Model.</p>
-<pre><code>ModelNode modelNode = new ModelNode();
-ModelPrimitive modelPrimitive = new ModelPrimitive();
-modelNode.AddModelPrimitive(modelPrimitive);
-
-Material material = new Material;
-modelPrimitive.Material = material;</code></pre>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L390">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L332">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.ModelNode.ReleaseSwigCPtr*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.ModelNode.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
@@ -677,7 +485,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L134">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L134">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_RemoveModelPrimitive_" data-uid="Tizen.NUI.Scene3D.ModelNode.RemoveModelPrimitive*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_RemoveModelPrimitive_System_UInt32_" data-uid="Tizen.NUI.Scene3D.ModelNode.RemoveModelPrimitive(System.UInt32)">RemoveModelPrimitive(uint)</h4>
@@ -724,7 +532,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L122">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L122">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_RemoveModelPrimitive_" data-uid="Tizen.NUI.Scene3D.ModelNode.RemoveModelPrimitive*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_RemoveModelPrimitive_Tizen_NUI_Scene3D_ModelPrimitive_" data-uid="Tizen.NUI.Scene3D.ModelNode.RemoveModelPrimitive(Tizen.NUI.Scene3D.ModelPrimitive)">RemoveModelPrimitive(ModelPrimitive)</h4>
@@ -771,7 +579,7 @@ modelPrimitive.Material = material;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L213">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L213">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_ModelNode_SetColliderMesh_" data-uid="Tizen.NUI.Scene3D.ModelNode.SetColliderMesh*"></a>
   <h4 id="Tizen_NUI_Scene3D_ModelNode_SetColliderMesh_List_Tizen_NUI_Vector3__List_Tizen_NUI_Vector3__List_System_Int32__" data-uid="Tizen.NUI.Scene3D.ModelNode.SetColliderMesh(List{Tizen.NUI.Vector3},List{Tizen.NUI.Vector3},List{System.Int32})">SetColliderMesh(List&lt;Vector3&gt;, List&lt;Vector3&gt;, List&lt;int&gt;)</h4>
@@ -872,7 +680,7 @@ modelPrimitive.Material = material;</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L48" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/ModelNode.cs/#L48" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
