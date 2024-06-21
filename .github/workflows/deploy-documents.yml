@@ -20,7 +20,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ./build.sh clone API12
+        ./build_latest.sh clone
 
     - name: Cache DocFX output
       id: cache-site
@@ -32,9 +32,10 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        ./build.sh restore API12
-        ./build.sh build API12
-        ./build.sh index API12
+        cp docfx_config/docfx_latest.json docfx.json
+        ./build_latest.sh restore
+        ./build_latest.sh build
+        ./build_latest.sh index
 
     - name: Archive Artifacts
       run: |
