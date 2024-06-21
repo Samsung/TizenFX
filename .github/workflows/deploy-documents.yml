@@ -36,6 +36,7 @@ jobs:
 
     - name: Archive Artifacts
       run: |
+        cp .gitattributes _site/
         tar cfz site.tar.gz _site/
     - uses: actions/upload-artifact@v2
       with:
@@ -54,7 +55,6 @@ jobs:
     - name: Extract Artifacts
       run: |
         tar xfz site.tar.gz
-        cp .gitattributes ./_site/
 
     - name: Deploy GitHub Pages Latest
       uses: peaceiris/actions-gh-pages@v4
