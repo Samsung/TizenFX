@@ -6,7 +6,7 @@ on:
 jobs:
 
   build:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-20.04
     container:
       image: tizendotnet/tizenfx-build-worker:2.4
       options: --ulimit nofile=10240:10240
@@ -33,141 +33,13 @@ jobs:
         ./build_all.sh restore
         ./build_all.sh build
         ./build_all.sh index
-    - name: Archive Artifacts
-      run: |
-        tar cfz site.tar.gz _site/
-    - uses: actions/upload-artifact@v2
-      with:
-        name: documents
-        path: site.tar.gz
 
-  deploy:
-    needs: [build]
-    runs-on: ubuntu-20.04
-
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: documents
-
-    - name: Extract Artifacts
-      run: |
-        tar xfz site.tar.gz
-        
-    - name: Deploy GitHub Pages API4
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API4
-        destination_dir: API4
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API5
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API5
-        destination_dir: API5
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API6
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API6
-        destination_dir: API6
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API7
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API7
-        destination_dir: API7
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API8
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API8
-        destination_dir: API8
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API9
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API9
-        destination_dir: API9
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API10
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API10
-        destination_dir: API10
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Deploy GitHub Pages API11
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site/API11
-        destination_dir: API11
-        keep_files: true
-        publish_branch: gh-pages
-        user_name: 'TizenAPI-Bot'
-        user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents test'
-
-    - name: Remove Uploded files
-      run: |
-        rm -rf ./_site/API4
-        rm -rf ./_site/API5
-        rm -rf ./_site/API6
-        rm -rf ./_site/API7
-        rm -rf ./_site/API8
-        rm -rf ./_site/API9
-        rm -rf ./_site/API10
-        rm -rf ./_site/API11
-
-    - name: Deploy GitHub Pages Latest
+    - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
-        keep_files: true
-        publish_branch: gh-pages
+        publish_branch: gh-pages-test
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
         full_commit_message: 'Update documents test'
