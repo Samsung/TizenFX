@@ -128,6 +128,61 @@ if(queue.CanDequeueBuffer())
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L104">View Source</a>
+  </span>
+  <a id="Tizen_NUI_NativeImageQueue__ctor_" data-uid="Tizen.NUI.NativeImageQueue.#ctor*"></a>
+  <h4 id="Tizen_NUI_NativeImageQueue__ctor_System_UInt32_System_UInt32_System_UInt32_Tizen_NUI_NativeImageQueue_ColorFormat_" data-uid="Tizen.NUI.NativeImageQueue.#ctor(System.UInt32,System.UInt32,System.UInt32,Tizen.NUI.NativeImageQueue.ColorFormat)">NativeImageQueue(uint, uint, uint, ColorFormat)</h4>
+  <div class="markdown level1 summary"><p>Creates an initialized NativeImageQueue with queue count and size and color format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeImageQueue(uint queueCount, uint width, uint height, NativeImageQueue.ColorFormat colorFormat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">queueCount</span></td>
+        <td><p>The number of queue count. Use system default value if it is 0.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>A Width of queue.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>A Height of queue.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.NativeImageQueue.html">NativeImageQueue</a>.<a class="xref" href="Tizen.NUI.NativeImageQueue.ColorFormat.html">ColorFormat</a></td>
+        <td><span class="parametername">colorFormat</span></td>
+        <td><p>A color format of queue.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_NativeImageQueue__ctor_System_UInt32_System_UInt32_System_UInt32_Tizen_NUI_NativeImageQueue_ColorFormat__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since queueCount can increase the memory usage, we recommened queueCount value is less or equal than 3.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L89">View Source</a>
   </span>
   <a id="Tizen_NUI_NativeImageQueue__ctor_" data-uid="Tizen.NUI.NativeImageQueue.#ctor*"></a>
@@ -176,7 +231,7 @@ if(queue.CanDequeueBuffer())
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L126">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L153">View Source</a>
   </span>
   <a id="Tizen_NUI_NativeImageQueue_CanDequeueBuffer_" data-uid="Tizen.NUI.NativeImageQueue.CanDequeueBuffer*"></a>
   <h4 id="Tizen_NUI_NativeImageQueue_CanDequeueBuffer" data-uid="Tizen.NUI.NativeImageQueue.CanDequeueBuffer">CanDequeueBuffer()</h4>
@@ -208,7 +263,7 @@ if(queue.CanDequeueBuffer())
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L141">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L168">View Source</a>
   </span>
   <a id="Tizen_NUI_NativeImageQueue_DequeueBuffer_" data-uid="Tizen.NUI.NativeImageQueue.DequeueBuffer*"></a>
   <h4 id="Tizen_NUI_NativeImageQueue_DequeueBuffer_System_Int32__System_Int32__System_Int32__" data-uid="Tizen.NUI.NativeImageQueue.DequeueBuffer(System.Int32@,System.Int32@,System.Int32@)">DequeueBuffer(ref int, ref int, ref int)</h4>
@@ -270,7 +325,7 @@ if(queue.CanDequeueBuffer())
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L154">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L181">View Source</a>
   </span>
   <a id="Tizen_NUI_NativeImageQueue_EnqueueBuffer_" data-uid="Tizen.NUI.NativeImageQueue.EnqueueBuffer*"></a>
   <h4 id="Tizen_NUI_NativeImageQueue_EnqueueBuffer_IntPtr_" data-uid="Tizen.NUI.NativeImageQueue.EnqueueBuffer(IntPtr)">EnqueueBuffer(IntPtr)</h4>
@@ -320,7 +375,7 @@ if(queue.CanDequeueBuffer())
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L107">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L134">View Source</a>
   </span>
   <a id="Tizen_NUI_NativeImageQueue_GenerateUrl_" data-uid="Tizen.NUI.NativeImageQueue.GenerateUrl*"></a>
   <h4 id="Tizen_NUI_NativeImageQueue_GenerateUrl" data-uid="Tizen.NUI.NativeImageQueue.GenerateUrl">GenerateUrl()</h4>
@@ -357,7 +412,41 @@ if(queue.CanDequeueBuffer())
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L119">View Source</a>
+  </span>
+  <a id="Tizen_NUI_NativeImageQueue_GetQueueCount_" data-uid="Tizen.NUI.NativeImageQueue.GetQueueCount*"></a>
+  <h4 id="Tizen_NUI_NativeImageQueue_GetQueueCount" data-uid="Tizen.NUI.NativeImageQueue.GetQueueCount">GetQueueCount()</h4>
+  <div class="markdown level1 summary"><p>The number of queue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetQueueCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_NativeImageQueue_GetQueueCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Images/NativeImageQueue.cs/#L142">View Source</a>
   </span>
   <a id="Tizen_NUI_NativeImageQueue_ReleaseSwigCPtr_" data-uid="Tizen.NUI.NativeImageQueue.ReleaseSwigCPtr*"></a>
   <h4 id="Tizen_NUI_NativeImageQueue_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.NativeImageQueue.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>

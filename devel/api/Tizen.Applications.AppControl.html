@@ -570,7 +570,7 @@ The callee application can just read it.
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L993">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1001">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_GetDefaultApplicationIds_" data-uid="Tizen.Applications.AppControl.GetDefaultApplicationIds*"></a>
   <h4 id="Tizen_Applications_AppControl_GetDefaultApplicationIds" data-uid="Tizen.Applications.AppControl.GetDefaultApplicationIds">GetDefaultApplicationIds()</h4>
@@ -672,7 +672,7 @@ if (applicationIds != null)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1052">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1060">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_GetWindowPosition_" data-uid="Tizen.Applications.AppControl.GetWindowPosition*"></a>
   <h4 id="Tizen_Applications_AppControl_GetWindowPosition" data-uid="Tizen.Applications.AppControl.GetWindowPosition">GetWindowPosition()</h4>
@@ -704,7 +704,7 @@ if (applicationIds != null)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L736">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L744">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,System.UInt32,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequest(AppControl, uint, AppControlReplyCallback)</h4>
@@ -801,7 +801,7 @@ AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, re
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L618">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L626">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,System.UInt32)">SendLaunchRequest(AppControl, uint)</h4>
@@ -849,12 +849,48 @@ If there is an error that is not related to timeout, the error is returned immed
 appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
 AppControl.SendLaunchRequest(appControl, 10000);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
+        <td><p>Thrown when the application to run is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchFailedException.html">LaunchFailedException</a></td>
+        <td><p>Thrown when the request failed to launch the application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
+        <td><p>Thrown when the launch request is rejected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
+        <td><p>Thrown when the memory is insufficient.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L655">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L663">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequest(AppControl, AppControlReplyCallback)</h4>
@@ -945,7 +981,7 @@ AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) =
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L588">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L592">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl)">SendLaunchRequest(AppControl)</h4>
@@ -987,12 +1023,48 @@ To launch a service application, an explicit launch request with the application
 appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
 AppControl.SendLaunchRequest(appControl);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
+        <td><p>Thrown when the application to run is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchFailedException.html">LaunchFailedException</a></td>
+        <td><p>Thrown when the request failed to launch the application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
+        <td><p>Thrown when the launch request is rejected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
+        <td><p>Thrown when the memory is insufficient.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L850">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L858">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequestAsync_" data-uid="Tizen.Applications.AppControl.SendLaunchRequestAsync*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequestAsync_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequestAsync(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequestAsync(AppControl, AppControlReplyCallback)</h4>
@@ -1077,7 +1149,7 @@ To launch a service application, an explicit launch request with the application
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L807">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L815">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendTerminateRequest_" data-uid="Tizen.Applications.AppControl.SendTerminateRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendTerminateRequest_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SendTerminateRequest(Tizen.Applications.AppControl)">SendTerminateRequest(AppControl)</h4>
@@ -1122,7 +1194,7 @@ AppControl.SendTerminateRequest(terminateRequest);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L922">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L930">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SetAutoRestart_" data-uid="Tizen.Applications.AppControl.SetAutoRestart*"></a>
   <h4 id="Tizen_Applications_AppControl_SetAutoRestart_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SetAutoRestart(Tizen.Applications.AppControl)">SetAutoRestart(AppControl)</h4>
@@ -1182,7 +1254,7 @@ This method is only available for platform level signed applications.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1025">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1033">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SetWindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition*"></a>
   <h4 id="Tizen_Applications_AppControl_SetWindowPosition_Tizen_Applications_WindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition(Tizen.Applications.WindowPosition)">SetWindowPosition(WindowPosition)</h4>
@@ -1216,7 +1288,7 @@ This method is only available for platform level signed applications.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L957">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L965">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_UnsetAutoRestart_" data-uid="Tizen.Applications.AppControl.UnsetAutoRestart*"></a>
   <h4 id="Tizen_Applications_AppControl_UnsetAutoRestart" data-uid="Tizen.Applications.AppControl.UnsetAutoRestart">UnsetAutoRestart()</h4>
