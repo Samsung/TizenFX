@@ -33,8 +33,29 @@ jobs:
         ./build_all.sh restore
         ./build_all.sh build
         ./build_all.sh index
+		
+    - name: Archive Artifacts
+      run: |
+        tar cfz site.tar.gz _site/
+    - uses: actions/upload-artifact@v2
+      with:
+        name: documents
+        path: site.tar.gz
 
-    - name: Deploy GitHub Pages
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: documents
+
+    - name: Extract Artifacts
+      run: |
+        tar xfz site.tar.gz
+
+    - name: Deploy GitHub Pages Latest
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
