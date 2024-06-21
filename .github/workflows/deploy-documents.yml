@@ -6,7 +6,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: [self-hosted, linux, x64]
     container:
       image: tizendotnet/tizenfx-build-worker:2.4
       options: --ulimit nofile=10240:10240
@@ -54,6 +54,7 @@ jobs:
     - name: Extract Artifacts
       run: |
         tar xfz site.tar.gz
+        cp .gitattributes ./_site/
 
     - name: Deploy GitHub Pages Latest
       uses: peaceiris/actions-gh-pages@v4
