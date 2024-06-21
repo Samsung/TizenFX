@@ -10,7 +10,7 @@
     <meta name="title" content="Class ImageDecoder
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -113,23 +113,20 @@
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.BmpDecoder.html">BmpDecoder</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.GifDecoder.html">GifDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.HeifDecoder.html">HeifDecoder</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.JpegDecoder.html">JpegDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.JpegXlDecoder.html">JpegXlDecoder</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.PngDecoder.html">PngDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.WebPDecoder.html">WebPDecoder</a></div>
     </dd>
   </dl>
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L54">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageDecoder_InputFormat_" data-uid="Tizen.Multimedia.Util.ImageDecoder.InputFormat*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageDecoder_InputFormat" data-uid="Tizen.Multimedia.Util.ImageDecoder.InputFormat">InputFormat</h4>
@@ -162,7 +159,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L149">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L151">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_System_Byte___" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync(System.Byte[])">DecodeAsync(byte[])</h4>
@@ -201,7 +198,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.BitmapFrame.html">BitmapFrame</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.BitmapFrame.html">BitmapFrame</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous decoding operation.</p>
 </td>
       </tr>
@@ -220,23 +217,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">inputBuffer</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">inputBuffer</code> is an empty array.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">inputBuffer</code> is not <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html#Tizen_Multimedia_Util_ImageDecoder_InputFormat">InputFormat</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html">ImageDecoder</a> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -246,7 +228,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L109">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_System_String_" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync(System.String)">DecodeAsync(string)</h4>
@@ -285,7 +267,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.BitmapFrame.html">BitmapFrame</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.BitmapFrame.html">BitmapFrame</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous decoding operation.</p>
 </td>
       </tr>
@@ -307,35 +289,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is an empty string.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is not a image file.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> does not exists.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller does not have required permission to access the path.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is not <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html#Tizen_Multimedia_Util_ImageDecoder_InputFormat">InputFormat</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html">ImageDecoder</a> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -345,7 +300,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L272">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L306">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageDecoder_Dispose_" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageDecoder_Dispose" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose">Dispose()</h4>
@@ -361,7 +316,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L256">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L290">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageDecoder_Dispose_" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageDecoder_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -395,7 +350,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L75">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L76">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageDecoder_SetColorSpace_" data-uid="Tizen.Multimedia.Util.ImageDecoder.SetColorSpace*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageDecoder_SetColorSpace_Tizen_Multimedia_ColorSpace_" data-uid="Tizen.Multimedia.Util.ImageDecoder.SetColorSpace(Tizen.Multimedia.ColorSpace)">SetColorSpace(ColorSpace)</h4>
@@ -424,27 +379,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is not supported by the decoder.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Util_ImageDecoder_SetColorSpace_Tizen_Multimedia_ColorSpace__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Util.ImageUtil.html#Tizen_Multimedia_Util_ImageUtil_GetSupportedColorSpaces_Tizen_Multimedia_Util_ImageFormat_">GetSupportedColorSpaces(ImageFormat)</a></div>
@@ -453,9 +387,27 @@
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -465,7 +417,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L34" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L35" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

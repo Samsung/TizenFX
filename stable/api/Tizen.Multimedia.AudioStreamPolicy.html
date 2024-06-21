@@ -10,7 +10,7 @@
     <meta name="title" content="Class AudioStreamPolicy
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -110,17 +110,11 @@
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L46">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy__ctor_" data-uid="Tizen.Multimedia.AudioStreamPolicy.#ctor*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy__ctor_Tizen_Multimedia_AudioStreamType_" data-uid="Tizen.Multimedia.AudioStreamPolicy.#ctor(Tizen.Multimedia.AudioStreamType)">AudioStreamPolicy(AudioStreamType)</h4>
@@ -154,22 +148,6 @@
 be passed to other APIs related to playback or recording. (For example., <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>,
 <a class="xref" href="Tizen.Multimedia.WavPlayer.html">WavPlayer</a> , etc.)</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamType</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -177,7 +155,7 @@ be passed to other APIs related to playback or recording. (For example., <a clas
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L133">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L136">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_FocusReacquisitionEnabled_" data-uid="Tizen.Multimedia.AudioStreamPolicy.FocusReacquisitionEnabled*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_FocusReacquisitionEnabled" data-uid="Tizen.Multimedia.AudioStreamPolicy.FocusReacquisitionEnabled">FocusReacquisitionEnabled</h4>
@@ -209,28 +187,12 @@ The default is true.</p>
   <div class="markdown level1 remarks"><p>If you don't want to reacquire the focus you've lost automatically,
 disable the focus reacquisition.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L113">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_PlaybackFocusState_" data-uid="Tizen.Multimedia.AudioStreamPolicy.PlaybackFocusState*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_PlaybackFocusState" data-uid="Tizen.Multimedia.AudioStreamPolicy.PlaybackFocusState">PlaybackFocusState</h4>
@@ -257,6 +219,43 @@ disable the focus reacquisition.</p>
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L332">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioStreamPolicy_PreferredInputDevice_" data-uid="Tizen.Multimedia.AudioStreamPolicy.PreferredInputDevice*"></a>
+  <h4 id="Tizen_Multimedia_AudioStreamPolicy_PreferredInputDevice" data-uid="Tizen.Multimedia.AudioStreamPolicy.PreferredInputDevice">PreferredInputDevice</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the preferred input device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioDevice PreferredInputDevice { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a> instance.<br>
+The default is null which means any device is not set on this property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioStreamPolicy_PreferredInputDevice_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -267,18 +266,79 @@ disable the focus reacquisition.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
+        <td><a class="xref" href="Tizen.Multimedia.AudioPolicyException.html">AudioPolicyException</a></td>
+        <td><p>A device is not supported by this <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> instance.</p>
 </td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Multimedia_AudioStreamPolicy_PreferredInputDevice_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_GetConnectedDevices">GetConnectedDevices()</a></div>
+  </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L118">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L371">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioStreamPolicy_PreferredOutputDevice_" data-uid="Tizen.Multimedia.AudioStreamPolicy.PreferredOutputDevice*"></a>
+  <h4 id="Tizen_Multimedia_AudioStreamPolicy_PreferredOutputDevice" data-uid="Tizen.Multimedia.AudioStreamPolicy.PreferredOutputDevice">PreferredOutputDevice</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the preferred output device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioDevice PreferredOutputDevice { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a> instance.<br>
+The default is null which means any device is not set on this property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioStreamPolicy_PreferredOutputDevice_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioPolicyException.html">AudioPolicyException</a></td>
+        <td><p>A device is not supported by this <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioStreamPolicy_PreferredOutputDevice_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_GetConnectedDevices">GetConnectedDevices()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L121">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_RecordingFocusState_" data-uid="Tizen.Multimedia.AudioStreamPolicy.RecordingFocusState*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_RecordingFocusState" data-uid="Tizen.Multimedia.AudioStreamPolicy.RecordingFocusState">RecordingFocusState</h4>
@@ -305,28 +365,12 @@ disable the focus reacquisition.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L80">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L83">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_VolumeType_" data-uid="Tizen.Multimedia.AudioStreamPolicy.VolumeType*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_VolumeType" data-uid="Tizen.Multimedia.AudioStreamPolicy.VolumeType">VolumeType</h4>
@@ -357,22 +401,6 @@ disable the focus reacquisition.</p>
   <div class="markdown level1 remarks"><p>If the <a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a> of the current AudioStreamPolicy is <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_Emergency">Emergency</a>,
 it returns <a class="xref" href="Tizen.Multimedia.AudioVolumeType.html#Tizen_Multimedia_AudioVolumeType_None">None</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -380,7 +408,7 @@ it returns <a class="xref" href="Tizen.Multimedia.AudioVolumeType.html#Tizen_Mul
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L177">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L180">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_AcquireFocus_" data-uid="Tizen.Multimedia.AudioStreamPolicy.AcquireFocus*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_AcquireFocus_Tizen_Multimedia_AudioStreamFocusOptions_Tizen_Multimedia_AudioStreamBehaviors_System_String_" data-uid="Tizen.Multimedia.AudioStreamPolicy.AcquireFocus(Tizen.Multimedia.AudioStreamFocusOptions,Tizen.Multimedia.AudioStreamBehaviors,System.String)">AcquireFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)</h4>
@@ -431,30 +459,8 @@ it returns <a class="xref" href="Tizen.Multimedia.AudioVolumeType.html#Tizen_Mul
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">options</code> is zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">options</code> contain a invalid bit.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">behaviors</code> contain a invalid bit.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The focus has already been acquired.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.AudioPolicyException.html">AudioPolicyException</a></td>
         <td><p>Called in <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html#Tizen_Multimedia_AudioStreamPolicy_FocusStateChanged">FocusStateChanged</a> raised by releasing focus.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -464,7 +470,7 @@ it returns <a class="xref" href="Tizen.Multimedia.AudioVolumeType.html#Tizen_Mul
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L267">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L275">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_AddDeviceForStreamRouting_" data-uid="Tizen.Multimedia.AudioStreamPolicy.AddDeviceForStreamRouting*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_AddDeviceForStreamRouting_Tizen_Multimedia_AudioDevice_" data-uid="Tizen.Multimedia.AudioStreamPolicy.AddDeviceForStreamRouting(Tizen.Multimedia.AudioDevice)">AddDeviceForStreamRouting(AudioDevice)</h4>
@@ -506,25 +512,8 @@ it returns <a class="xref" href="Tizen.Multimedia.AudioVolumeType.html#Tizen_Mul
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The device is not connected.<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">device</code> is null.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.AudioPolicyException.html">AudioPolicyException</a></td>
         <td><p><a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a> of <code data-dev-comment-type="paramref" class="paramref">device</code> is unavailable for this.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -539,7 +528,7 @@ An internal error occurs.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L244">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L252">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_ApplyStreamRouting_" data-uid="Tizen.Multimedia.AudioStreamPolicy.ApplyStreamRouting*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_ApplyStreamRouting" data-uid="Tizen.Multimedia.AudioStreamPolicy.ApplyStreamRouting">ApplyStreamRouting()</h4>
@@ -553,22 +542,6 @@ An internal error occurs.</p>
   <h5 id="Tizen_Multimedia_AudioStreamPolicy_ApplyStreamRouting_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the stream has not been made yet, this will be applied when the stream starts to play.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_AudioStreamPolicy_ApplyStreamRouting_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html#Tizen_Multimedia_AudioStreamPolicy_AddDeviceForStreamRouting_Tizen_Multimedia_AudioDevice_">AddDeviceForStreamRouting(AudioDevice)</a></div>
@@ -579,7 +552,7 @@ An internal error occurs.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L311">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L428">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_Dispose_" data-uid="Tizen.Multimedia.AudioStreamPolicy.Dispose*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_Dispose" data-uid="Tizen.Multimedia.AudioStreamPolicy.Dispose">Dispose()</h4>
@@ -595,7 +568,7 @@ An internal error occurs.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L321">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L439">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_Dispose_" data-uid="Tizen.Multimedia.AudioStreamPolicy.Dispose*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.AudioStreamPolicy.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -629,7 +602,69 @@ An internal error occurs.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L213">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L411">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioStreamPolicy_HasStreamOnDevice_" data-uid="Tizen.Multimedia.AudioStreamPolicy.HasStreamOnDevice*"></a>
+  <h4 id="Tizen_Multimedia_AudioStreamPolicy_HasStreamOnDevice_Tizen_Multimedia_AudioDevice_" data-uid="Tizen.Multimedia.AudioStreamPolicy.HasStreamOnDevice(Tizen.Multimedia.AudioDevice)">HasStreamOnDevice(AudioDevice)</h4>
+  <div class="markdown level1 summary"><p>Checks if any stream from the current AudioStreamPolicy is using the device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasStreamOnDevice(AudioDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td><p>The device to be checked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if any audio stream from the current AudioStreamPolicy is using the device; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioStreamPolicy_HasStreamOnDevice_Tizen_Multimedia_AudioDevice__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The AudioStreamPolicy can be applied to each playback or recording stream via other API set.
+(For example., <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>, <a class="xref" href="Tizen.Multimedia.WavPlayer.html">WavPlayer</a>,
+<a class="xref" href="Tizen.Multimedia.AudioPlayback.html">AudioPlayback</a>, <a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a>, etc.)
+This method returns true only when the device is used for the stream which meets to the two conditions.
+One is that the current AudioStreamPolicy sets a audio route path to the device and the other is that the playback
+or recording stream from other API set should have already started to prepare or to play.(It depends on the API set.)</p>
+</div>
+  <h5 id="Tizen_Multimedia_AudioStreamPolicy_HasStreamOnDevice_Tizen_Multimedia_AudioDevice__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_GetConnectedDevices">GetConnectedDevices()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L216">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_ReleaseFocus_" data-uid="Tizen.Multimedia.AudioStreamPolicy.ReleaseFocus*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_ReleaseFocus_Tizen_Multimedia_AudioStreamFocusOptions_Tizen_Multimedia_AudioStreamBehaviors_System_String_" data-uid="Tizen.Multimedia.AudioStreamPolicy.ReleaseFocus(Tizen.Multimedia.AudioStreamFocusOptions,Tizen.Multimedia.AudioStreamBehaviors,System.String)">ReleaseFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)</h4>
@@ -670,45 +705,12 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">options</code> is zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">options</code> contain a invalid bit.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">behaviors</code> contain a invalid bit.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The focus has not been acquired.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L296">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L304">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioStreamPolicy_RemoveDeviceForStreamRouting_" data-uid="Tizen.Multimedia.AudioStreamPolicy.RemoveDeviceForStreamRouting*"></a>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_RemoveDeviceForStreamRouting_Tizen_Multimedia_AudioDevice_" data-uid="Tizen.Multimedia.AudioStreamPolicy.RemoveDeviceForStreamRouting(Tizen.Multimedia.AudioDevice)">RemoveDeviceForStreamRouting(AudioDevice)</h4>
@@ -740,32 +742,6 @@ An internal error occurs.</p>
   <h5 id="Tizen_Multimedia_AudioStreamPolicy_RemoveDeviceForStreamRouting_Tizen_Multimedia_AudioDevice__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The available <a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a> is <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_Voip">Voip</a> and <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_MediaExternalOnly">MediaExternalOnly</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">device</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_AudioStreamPolicy_RemoveDeviceForStreamRouting_Tizen_Multimedia_AudioDevice__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_GetConnectedDevices">GetConnectedDevices()</a></div>
@@ -777,7 +753,7 @@ An internal error occurs.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L68">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L71">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_FocusStateChanged" data-uid="Tizen.Multimedia.AudioStreamPolicy.FocusStateChanged">FocusStateChanged</h4>
   <div class="markdown level1 summary"><p>Occurs when the state of focus that belongs to the current AudioStreamPolicy is changed.</p>
@@ -797,7 +773,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioStreamPolicyFocusStateChangedEventArgs.html">AudioStreamPolicyFocusStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioStreamPolicyFocusStateChangedEventArgs.html">AudioStreamPolicyFocusStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -810,7 +786,7 @@ An internal error occurs.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L344">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L467">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioStreamPolicy_StreamFocusStateChanged" data-uid="Tizen.Multimedia.AudioStreamPolicy.StreamFocusStateChanged">StreamFocusStateChanged</h4>
   <div class="markdown level1 summary"><p>Occurs when the focus state for stream types is changed regardless of the process.</p>
@@ -830,7 +806,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamFocusStateChangedEventArgs.html">StreamFocusStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamFocusStateChangedEventArgs.html">StreamFocusStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -839,9 +815,27 @@ An internal error occurs.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -851,7 +845,7 @@ An internal error occurs.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamPolicy.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

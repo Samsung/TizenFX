@@ -10,7 +10,7 @@
     <meta name="title" content="Class VideoMediaFormat
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -115,7 +115,72 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L157">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
+  <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, int, int, int, int, int)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the VideoMediaFormat class with the specified mime type,
+width, height, frame rate, bit rate and max bps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height, int frameRate, int bitRate, int maxBps)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatVideoMimeType.html">MediaFormatVideoMimeType</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The mime type of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height value of the format</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">frameRate</span></td>
+        <td><p>The frame rate of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitRate</span></td>
+        <td><p>The bit rate of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">maxBps</span></td>
+        <td><p>The max bps of the format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L111">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,System.Int32,System.Int32,System.Int32,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, int, int, int, int)</h4>
@@ -169,33 +234,12 @@ width, height, frame rate, and bit rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">width</code>, <code data-dev-comment-type="paramref" class="paramref">height</code>, <code data-dev-comment-type="paramref" class="paramref">frameRate</code>, or <code data-dev-comment-type="paramref" class="paramref">bitRate</code> is less than zero.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L71">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L72">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,System.Int32,System.Int32,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, int, int, int)</h4>
@@ -243,33 +287,12 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">width</code>, <code data-dev-comment-type="paramref" class="paramref">height</code>, or <code data-dev-comment-type="paramref" class="paramref">frameRate</code> is less than zero.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L40">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L41">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,System.Int32,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, int, int)</h4>
@@ -310,23 +333,61 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L183">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
+  <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_Tizen_Multimedia_Size_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,Tizen.Multimedia.Size,System.Int32,System.Int32,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, Size, int, int, int)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the VideoMediaFormat class with the specified mime type,
+size, frame rate, bit rate and max bps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size, int frameRate, int bitRate, int maxBps)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).</p>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatVideoMimeType.html">MediaFormatVideoMimeType</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The mime type of the format.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">width</code> or <code data-dev-comment-type="paramref" class="paramref">height</code> is less than zero.</p>
+        <td><a class="xref" href="Tizen.Multimedia.Size.html">Size</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The size of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">frameRate</span></td>
+        <td><p>The frame rate of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitRate</span></td>
+        <td><p>The bit rate of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">maxBps</span></td>
+        <td><p>The max bps of the format.</p>
 </td>
       </tr>
     </tbody>
@@ -336,7 +397,7 @@ width, height, and frame rate.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L133">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L134">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_Tizen_Multimedia_Size_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,Tizen.Multimedia.Size,System.Int32,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, Size, int, int)</h4>
@@ -384,37 +445,12 @@ size, frame rate, and bit rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The width or the height of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than zero.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">frameRate</code> is less than zero.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">bitRate</code> is less than zero.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L90">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L91">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_Tizen_Multimedia_Size_System_Int32_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,Tizen.Multimedia.Size,System.Int32)">VideoMediaFormat(MediaFormatVideoMimeType, Size, int)</h4>
@@ -456,35 +492,12 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The width or the height of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than zero.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">frameRate</code> is less than zero.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L54">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat__ctor_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat__ctor_Tizen_Multimedia_MediaFormatVideoMimeType_Tizen_Multimedia_Size_" data-uid="Tizen.Multimedia.VideoMediaFormat.#ctor(Tizen.Multimedia.MediaFormatVideoMimeType,Tizen.Multimedia.Size)">VideoMediaFormat(MediaFormatVideoMimeType, Size)</h4>
@@ -519,27 +532,6 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The width or the height of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than zero.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -547,7 +539,7 @@ width, height, and frame rate.</p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L231">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L289">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_BitRate_" data-uid="Tizen.Multimedia.VideoMediaFormat.BitRate*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_BitRate" data-uid="Tizen.Multimedia.VideoMediaFormat.BitRate">BitRate</h4>
@@ -578,7 +570,7 @@ width, height, and frame rate.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L225">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L283">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_FrameRate_" data-uid="Tizen.Multimedia.VideoMediaFormat.FrameRate*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_FrameRate" data-uid="Tizen.Multimedia.VideoMediaFormat.FrameRate">FrameRate</h4>
@@ -609,7 +601,38 @@ width, height, and frame rate.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L213">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L295">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_VideoMediaFormat_MaxBps_" data-uid="Tizen.Multimedia.VideoMediaFormat.MaxBps*"></a>
+  <h4 id="Tizen_Multimedia_VideoMediaFormat_MaxBps" data-uid="Tizen.Multimedia.VideoMediaFormat.MaxBps">MaxBps</h4>
+  <div class="markdown level1 summary"><p>Gets the max bps value of the current format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxBps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L271">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_MimeType_" data-uid="Tizen.Multimedia.VideoMediaFormat.MimeType*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_MimeType" data-uid="Tizen.Multimedia.VideoMediaFormat.MimeType">MimeType</h4>
@@ -640,7 +663,7 @@ width, height, and frame rate.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L219">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L277">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_Size_" data-uid="Tizen.Multimedia.VideoMediaFormat.Size*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_Size" data-uid="Tizen.Multimedia.VideoMediaFormat.Size">Size</h4>
@@ -673,7 +696,7 @@ width, height, and frame rate.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L248">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L312">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_Equals_" data-uid="Tizen.Multimedia.VideoMediaFormat.Equals*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_Equals_System_Object_" data-uid="Tizen.Multimedia.VideoMediaFormat.Equals(System.Object)">Equals(object)</h4>
@@ -697,7 +720,7 @@ width, height, and frame rate.</p>
       <tr>
         <td><span class="xref">object</span></td>
         <td><span class="parametername">obj</span></td>
-        <td><p>A <span class="xref">object</span> to compare.</p>
+        <td><p>A <see cref="!:Object"></see> to compare.</p>
 </td>
       </tr>
     </tbody>
@@ -718,14 +741,12 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">object.Equals(object)</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L265">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L329">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_GetHashCode_" data-uid="Tizen.Multimedia.VideoMediaFormat.GetHashCode*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_GetHashCode" data-uid="Tizen.Multimedia.VideoMediaFormat.GetHashCode">GetHashCode()</h4>
@@ -752,14 +773,12 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">object.GetHashCode()</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L238">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L302">View Source</a>
   </span>
   <a id="Tizen_Multimedia_VideoMediaFormat_ToString_" data-uid="Tizen.Multimedia.VideoMediaFormat.ToString*"></a>
   <h4 id="Tizen_Multimedia_VideoMediaFormat_ToString" data-uid="Tizen.Multimedia.VideoMediaFormat.ToString">ToString()</h4>
@@ -786,12 +805,32 @@ width, height, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">object.ToString()</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
 
@@ -800,7 +839,7 @@ width, height, and frame rate.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/VideoMediaFormat.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

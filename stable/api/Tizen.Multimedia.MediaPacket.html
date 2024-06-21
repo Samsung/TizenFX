@@ -10,7 +10,7 @@
     <meta name="title" content="Class MediaPacket
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -113,14 +113,14 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
     </dd>
   </dl>
 
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L342">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L378">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Buffer_" data-uid="Tizen.Multimedia.MediaPacket.Buffer*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Buffer" data-uid="Tizen.Multimedia.MediaPacket.Buffer">Buffer</h4>
@@ -148,22 +148,6 @@ This property will return null if the packet is in the raw video format.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_MediaPacket_Buffer_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.MediaPacket.html#Tizen_Multimedia_MediaPacket_IsEncoded">IsEncoded</a></div>
@@ -174,7 +158,7 @@ This property will return null if the packet is in the raw video format.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L445">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L481">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_BufferFlags_" data-uid="Tizen.Multimedia.MediaPacket.BufferFlags*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_BufferFlags" data-uid="Tizen.Multimedia.MediaPacket.BufferFlags">BufferFlags</h4>
@@ -200,33 +184,12 @@ This property will return null if the packet is in the raw video format.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket is not in the writable state, which means it is being used by another module.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L369">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L405">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_BufferWrittenLength_" data-uid="Tizen.Multimedia.MediaPacket.BufferWrittenLength*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_BufferWrittenLength" data-uid="Tizen.Multimedia.MediaPacket.BufferWrittenLength">BufferWrittenLength</h4>
@@ -252,44 +215,16 @@ This property will return null if the packet is in the raw video format.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The value specified for this property is less than zero or greater than the length of the <a class="xref" href="Tizen.Multimedia.MediaPacket.html#Tizen_Multimedia_MediaPacket_Buffer">Buffer</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket has <a class="xref" href="Tizen.Multimedia.MediaPacket.html#Tizen_Multimedia_MediaPacket_VideoPlanes">VideoPlanes</a> instead of <a class="xref" href="Tizen.Multimedia.MediaPacket.html#Tizen_Multimedia_MediaPacket_Buffer">Buffer</a>.<br>
--or-<br>
-The MediaPacket is not in the writable state, which means it is being used by another module.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L212">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L219">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Dts_" data-uid="Tizen.Multimedia.MediaPacket.Dts*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Dts" data-uid="Tizen.Multimedia.MediaPacket.Dts">Dts</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the DTS(Decoding Time Stamp) value of the current packet.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the DTS(Decoding Time Stamp) value of the current packet in nanoseconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -311,24 +246,34 @@ The MediaPacket is not in the writable state, which means it is being used by an
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L248">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MediaPacket_Duration_" data-uid="Tizen.Multimedia.MediaPacket.Duration*"></a>
+  <h4 id="Tizen_Multimedia_MediaPacket_Duration" data-uid="Tizen.Multimedia.MediaPacket.Duration">Duration</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the duration value of the current packet in nanoseconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Duration { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket is not in the writable state, which means it is being used by another module.</p>
-</td>
+        <td><span class="xref">ulong</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -337,7 +282,7 @@ The MediaPacket is not in the writable state, which means it is being used by an
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L297">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L333">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Flip_" data-uid="Tizen.Multimedia.MediaPacket.Flip*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Flip" data-uid="Tizen.Multimedia.MediaPacket.Flip">Flip</h4>
@@ -366,38 +311,12 @@ The MediaPacket is not in the writable state, which means it is being used by an
   <h5 id="Tizen_Multimedia_MediaPacket_Flip_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Flips.html#Tizen_Multimedia_Flips_None">None</a> will be ignored in set case. It's not supported in Native FW.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The specified value to set is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket is not in the writable state, which means it is being used by another module.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L164">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L173">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Format_" data-uid="Tizen.Multimedia.MediaPacket.Format*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Format" data-uid="Tizen.Multimedia.MediaPacket.Format">Format</h4>
@@ -428,11 +347,11 @@ The MediaPacket is not in the writable state, which means it is being used by an
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L479">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L511">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_IsDisposed_" data-uid="Tizen.Multimedia.MediaPacket.IsDisposed*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_IsDisposed" data-uid="Tizen.Multimedia.MediaPacket.IsDisposed">IsDisposed</h4>
-  <div class="markdown level1 summary"><p>Gets a value indicating whether the packet has been disposed of.</p>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the packet has been disposed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -460,7 +379,7 @@ The MediaPacket is not in the writable state, which means it is being used by an
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L239">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L275">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_IsEncoded_" data-uid="Tizen.Multimedia.MediaPacket.IsEncoded*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_IsEncoded" data-uid="Tizen.Multimedia.MediaPacket.IsEncoded">IsEncoded</h4>
@@ -487,32 +406,16 @@ The MediaPacket is not in the writable state, which means it is being used by an
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L181">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L190">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Pts_" data-uid="Tizen.Multimedia.MediaPacket.Pts*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Pts" data-uid="Tizen.Multimedia.MediaPacket.Pts">Pts</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the PTS(Presentation Time Stamp) value of the current packet.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the PTS(Presentation Time Stamp) value of the current packet in nanoseconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -534,33 +437,12 @@ The MediaPacket is not in the writable state, which means it is being used by an
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket is not in the writable state, which means it is being used by another module.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L261">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L297">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Rotation_" data-uid="Tizen.Multimedia.MediaPacket.Rotation*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Rotation" data-uid="Tizen.Multimedia.MediaPacket.Rotation">Rotation</h4>
@@ -586,38 +468,12 @@ The MediaPacket is not in the writable state, which means it is being used by an
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The specified value to set is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket is not in the writable state, which means it is being used by another module.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L417">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L453">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_VideoPlanes_" data-uid="Tizen.Multimedia.MediaPacket.VideoPlanes*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_VideoPlanes" data-uid="Tizen.Multimedia.MediaPacket.VideoPlanes">VideoPlanes</h4>
@@ -645,22 +501,6 @@ This property will return null if the packet is not in the raw video format.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The MediaPacket has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_MediaPacket_VideoPlanes_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.MediaPacket.html#Tizen_Multimedia_MediaPacket_IsEncoded">IsEncoded</a></div>
@@ -673,7 +513,7 @@ This property will return null if the packet is not in the raw video format.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L624">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L668">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Create_" data-uid="Tizen.Multimedia.MediaPacket.Create*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Create_Tizen_Multimedia_MediaFormat_" data-uid="Tizen.Multimedia.MediaPacket.Create(Tizen.Multimedia.MediaFormat)">Create(MediaFormat)</h4>
@@ -723,7 +563,62 @@ This property will return null if the packet is not in the raw video format.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L490">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L684">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MediaPacket_Create_" data-uid="Tizen.Multimedia.MediaPacket.Create*"></a>
+  <h4 id="Tizen_Multimedia_MediaPacket_Create_Tizen_Multimedia_MediaPacket_" data-uid="Tizen.Multimedia.MediaPacket.Create(Tizen.Multimedia.MediaPacket)">Create(MediaPacket)</h4>
+  <div class="markdown level1 summary"><p>Creates an object of the MediaPacket based on the original MediaPacket and increases the internal reference(hereafter ref) count by 1.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MediaPacket Create(MediaPacket mediaPacket)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a></td>
+        <td><span class="parametername">mediaPacket</span></td>
+        <td><p>The media packet to increase ref count.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a></td>
+        <td><p>A MediaPacket object which is based on original MediaPacket instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MediaPacket_Create_Tizen_Multimedia_MediaPacket__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method can be useful when user share MediaPacket instance to other module and don't know the exact time to dispose it.\n
+In this case, user creates a new instance with <a class="xref" href="Tizen.Multimedia.MediaPacket.html#Tizen_Multimedia_MediaPacket_Create_Tizen_Multimedia_MediaPacket_">Create(MediaPacket)</a> and shares it to other module.\n
+And then, each MediaPacket instances can be disposed independently without concerning other instance's life cycle.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L522">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Dispose_" data-uid="Tizen.Multimedia.MediaPacket.Dispose*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Dispose" data-uid="Tizen.Multimedia.MediaPacket.Dispose">Dispose()</h4>
@@ -734,28 +629,12 @@ This property will return null if the packet is not in the raw video format.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The MediaPacket can not be disposed, which means it is being used by another module.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L509">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L541">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Dispose_" data-uid="Tizen.Multimedia.MediaPacket.Dispose*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.MediaPacket.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -789,7 +668,7 @@ This property will return null if the packet is not in the raw video format.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L83">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.cs/#L93">View Source</a>
   </span>
   <a id="Tizen_Multimedia_MediaPacket_Finalize_" data-uid="Tizen.Multimedia.MediaPacket.Finalize*"></a>
   <h4 id="Tizen_Multimedia_MediaPacket_Finalize" data-uid="Tizen.Multimedia.MediaPacket.Finalize">~MediaPacket()</h4>
@@ -806,7 +685,29 @@ This property will return null if the packet is not in the raw video format.</p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
@@ -816,7 +717,7 @@ This property will return null if the packet is not in the raw video format.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Multimedia/MediaTool/MediaPacket.Lock.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/MediaTool/MediaPacket.Lock.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

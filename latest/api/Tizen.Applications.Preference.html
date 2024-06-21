@@ -10,7 +10,7 @@
     <meta name="title" content="Class Preference
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -115,7 +115,7 @@ Keys are always text strings and the value can be any one of the four types: int
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Keys_" data-uid="Tizen.Applications.Preference.Keys*"></a>
   <h4 id="Tizen_Applications_Preference_Keys" data-uid="Tizen.Applications.Preference.Keys">Keys</h4>
@@ -136,7 +136,7 @@ Keys are always text strings and the value can be any one of the four types: int
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>The list of keys.</p>
 </td>
       </tr>
@@ -159,7 +159,7 @@ Keys are always text strings and the value can be any one of the four types: int
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L151">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L151">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Contains_" data-uid="Tizen.Applications.Preference.Contains*"></a>
   <h4 id="Tizen_Applications_Preference_Contains_System_String_" data-uid="Tizen.Applications.Preference.Contains(System.String)">Contains(string)</h4>
@@ -213,33 +213,12 @@ Keys are always text strings and the value can be any one of the four types: int
         Console.WriteLine(&quot;user {0}&quot;, value);
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L251">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L251">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Get_" data-uid="Tizen.Applications.Preference.Get*"></a>
   <h4 id="Tizen_Applications_Preference_Get__1_System_String_" data-uid="Tizen.Applications.Preference.Get``1(System.String)">Get&lt;T&gt;(string)</h4>
@@ -309,38 +288,12 @@ Note that this is a generic method.</p>
         Console.WriteLine(&quot;user {0}&quot;, value);
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_GetEventContext_" data-uid="Tizen.Applications.Preference.GetEventContext*"></a>
   <h4 id="Tizen_Applications_Preference_GetEventContext_System_String_" data-uid="Tizen.Applications.Preference.GetEventContext(System.String)">GetEventContext(string)</h4>
@@ -379,7 +332,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.WeakReference&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
+        <td><span class="xref">WeakReference&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
         <td><p>The event context of respective key.</p>
 </td>
       </tr>
@@ -406,27 +359,6 @@ Note that this is a generic method.</p>
         context.Changed -= Preference_PreferenceChanged;
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is invalid parameter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a></div>
@@ -436,7 +368,7 @@ Note that this is a generic method.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L310">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L310">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Remove_" data-uid="Tizen.Applications.Preference.Remove*"></a>
   <h4 id="Tizen_Applications_Preference_Remove_System_String_" data-uid="Tizen.Applications.Preference.Remove(System.String)">Remove(string)</h4>
@@ -472,33 +404,12 @@ Note that this is a generic method.</p>
         string value = Preference.Remove(&quot;active_user&quot;);
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L334">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L334">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_RemoveAll_" data-uid="Tizen.Applications.Preference.RemoveAll*"></a>
   <h4 id="Tizen_Applications_Preference_RemoveAll" data-uid="Tizen.Applications.Preference.RemoveAll">RemoveAll()</h4>
@@ -516,28 +427,12 @@ Note that this is a generic method.</p>
     Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);
     Preference.RemoveAll();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L184">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L184">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Set_" data-uid="Tizen.Applications.Preference.Set*"></a>
   <h4 id="Tizen_Applications_Preference_Set_System_String_System_Object_" data-uid="Tizen.Applications.Preference.Set(System.String,System.Object)">Set(string, object)</h4>
@@ -582,27 +477,6 @@ Data types for supported values are: integer, double, string, and bool.</p>
     Preference.Set(&quot;default_volume&quot;, 10);
     Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -615,7 +489,7 @@ Data types for supported values are: integer, double, string, and bool.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

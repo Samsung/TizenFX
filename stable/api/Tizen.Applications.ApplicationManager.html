@@ -10,7 +10,7 @@
     <meta name="title" content="Class ApplicationManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,125 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L311">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L610">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationManager_AttachWindow_" data-uid="Tizen.Applications.ApplicationManager.AttachWindow*"></a>
+  <h4 id="Tizen_Applications_ApplicationManager_AttachWindow_System_String_System_String_" data-uid="Tizen.Applications.ApplicationManager.AttachWindow(System.String,System.String)">AttachWindow(string, string)</h4>
+  <div class="markdown level1 summary"><p>Attaches the window of the child application to the window of the parent application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AttachWindow(string parentAppId, string childAppId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">parentAppId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">childAppId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationManager_AttachWindow_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is only available for platform level signed applications.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L679">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationManager_AttachWindowBelow_" data-uid="Tizen.Applications.ApplicationManager.AttachWindowBelow*"></a>
+  <h4 id="Tizen_Applications_ApplicationManager_AttachWindowBelow_System_String_System_String_" data-uid="Tizen.Applications.ApplicationManager.AttachWindowBelow(System.String,System.String)">AttachWindowBelow(string, string)</h4>
+  <div class="markdown level1 summary"><p>Attaches the window of the child application below the window of the parent application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AttachWindowBelow(string parentAppId, string childAppId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">parentAppId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">childAppId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationManager_AttachWindowBelow_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is only available for platform level signed applications.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L645">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationManager_DetachWindow_" data-uid="Tizen.Applications.ApplicationManager.DetachWindow*"></a>
+  <h4 id="Tizen_Applications_ApplicationManager_DetachWindow_System_String_" data-uid="Tizen.Applications.ApplicationManager.DetachWindow(System.String)">DetachWindow(string)</h4>
+  <div class="markdown level1 summary"><p>Detaches the window of the application from its parent window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DetachWindow(string applicationId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">applicationId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationManager_DetachWindow_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is only available for platform level signed applications.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L378">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_GetAllRunningApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetAllRunningApplicationsAsync*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_GetAllRunningApplicationsAsync" data-uid="Tizen.Applications.ApplicationManager.GetAllRunningApplicationsAsync">GetAllRunningApplicationsAsync()</h4>
@@ -135,8 +253,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
-        <td></td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
+        <td><p>The application running context list.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -145,7 +264,57 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L350">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L455">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationManager_GetAppId_" data-uid="Tizen.Applications.ApplicationManager.GetAppId*"></a>
+  <h4 id="Tizen_Applications_ApplicationManager_GetAppId_System_Int32_" data-uid="Tizen.Applications.ApplicationManager.GetAppId(System.Int32)">GetAppId(int)</h4>
+  <div class="markdown level1 summary"><p>Returns the application id.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetAppId(int processId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">processId</span></td>
+        <td><p>The application pid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Returns the application id.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L418">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplication_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplication*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplication_System_String_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplication(System.String)">GetInstalledApplication(string)</h4>
@@ -185,7 +354,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a></td>
-        <td></td>
+        <td><p>The application info.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -194,7 +364,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L170">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L172">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync">GetInstalledApplicationsAsync()</h4>
@@ -215,8 +385,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
-        <td></td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
+        <td><p>The installed application info list.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -225,7 +396,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L208">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L246">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoFilter_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync(Tizen.Applications.ApplicationInfoFilter)">GetInstalledApplicationsAsync(ApplicationInfoFilter)</h4>
@@ -264,8 +435,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
-        <td></td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
+        <td><p>The installed application info list.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -274,7 +446,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L241">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L293">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_GetInstalledApplicationsAsync_Tizen_Applications_ApplicationInfoMetadataFilter_" data-uid="Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync(Tizen.Applications.ApplicationInfoMetadataFilter)">GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter)</h4>
@@ -313,8 +485,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
-        <td></td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationInfo.html">ApplicationInfo</a>&gt;&gt;</td>
+        <td><p>The installed application info list.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -323,7 +496,39 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L273">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L562">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationManager_GetRecentApplications_" data-uid="Tizen.Applications.ApplicationManager.GetRecentApplications*"></a>
+  <h4 id="Tizen_Applications_ApplicationManager_GetRecentApplications" data-uid="Tizen.Applications.ApplicationManager.GetRecentApplications">GetRecentApplications()</h4>
+  <div class="markdown level1 summary"><p>Gets the information of the recent applications.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;RecentApplicationInfo&gt; GetRecentApplications()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.RecentApplicationInfo.html">RecentApplicationInfo</a>&gt;</td>
+        <td><p>Returns a dictionary containing all the recent application info.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L339">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_GetRunningApplicationsAsync_" data-uid="Tizen.Applications.ApplicationManager.GetRunningApplicationsAsync*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_GetRunningApplicationsAsync" data-uid="Tizen.Applications.ApplicationManager.GetRunningApplicationsAsync">GetRunningApplicationsAsync()</h4>
@@ -344,8 +549,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
-        <td></td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>&gt;&gt;</td>
+        <td><p>The application running context list.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -354,7 +560,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L369">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L437">View Source</a>
   </span>
   <a id="Tizen_Applications_ApplicationManager_IsRunning_" data-uid="Tizen.Applications.ApplicationManager.IsRunning*"></a>
   <h4 id="Tizen_Applications_ApplicationManager_IsRunning_System_String_" data-uid="Tizen.Applications.ApplicationManager.IsRunning(System.String)">IsRunning(string)</h4>
@@ -399,22 +605,44 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L218">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationManager_TerminateBackgroundApplication_" data-uid="Tizen.Applications.ApplicationManager.TerminateBackgroundApplication*"></a>
+  <h4 id="Tizen_Applications_ApplicationManager_TerminateBackgroundApplication_Tizen_Applications_ApplicationRunningContext_" data-uid="Tizen.Applications.ApplicationManager.TerminateBackgroundApplication(Tizen.Applications.ApplicationRunningContext)">TerminateBackgroundApplication(ApplicationRunningContext)</h4>
+  <div class="markdown level1 summary"><p>Terminates the application if it is running on background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void TerminateBackgroundApplication(ApplicationRunningContext app)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the given parameter is invalid.</p>
+        <td><a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a></td>
+        <td><span class="parametername">app</span></td>
+        <td><p>ApplicationRunningContext object</p>
 </td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_ApplicationManager_TerminateBackgroundApplication_Tizen_Applications_ApplicationRunningContext__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function returns after it just sends a request for terminating a background application.
+Platform will decide if the target application could be terminated or not according to the state of the target application.</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -422,7 +650,7 @@
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L77">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L78">View Source</a>
   </span>
   <h4 id="Tizen_Applications_ApplicationManager_ApplicationDisabled" data-uid="Tizen.Applications.ApplicationManager.ApplicationDisabled">ApplicationDisabled</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the installed application is disabled.</p>
@@ -442,7 +670,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationDisabledEventArgs.html">ApplicationDisabledEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationDisabledEventArgs.html">ApplicationDisabledEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -452,7 +680,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L47">View Source</a>
   </span>
   <h4 id="Tizen_Applications_ApplicationManager_ApplicationEnabled" data-uid="Tizen.Applications.ApplicationManager.ApplicationEnabled">ApplicationEnabled</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the installed application is enabled.</p>
@@ -472,7 +700,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationEnabledEventArgs.html">ApplicationEnabledEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationEnabledEventArgs.html">ApplicationEnabledEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -482,7 +710,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L108">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L109">View Source</a>
   </span>
   <h4 id="Tizen_Applications_ApplicationManager_ApplicationLaunched" data-uid="Tizen.Applications.ApplicationManager.ApplicationLaunched">ApplicationLaunched</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the installed applications get launched.</p>
@@ -502,7 +730,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationLaunchedEventArgs.html">ApplicationLaunchedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationLaunchedEventArgs.html">ApplicationLaunchedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -512,7 +740,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L139">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L140">View Source</a>
   </span>
   <h4 id="Tizen_Applications_ApplicationManager_ApplicationTerminated" data-uid="Tizen.Applications.ApplicationManager.ApplicationTerminated">ApplicationTerminated</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the installed applications get terminated.</p>
@@ -532,7 +760,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationTerminatedEventArgs.html">ApplicationTerminatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ApplicationTerminatedEventArgs.html">ApplicationTerminatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -549,7 +777,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/ApplicationManager.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

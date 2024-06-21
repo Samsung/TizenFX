@@ -10,7 +10,7 @@
     <meta name="title" content="Class ItemObject
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -130,10 +130,50 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L67">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject__ctor_" data-uid="ElmSharp.ItemObject.#ctor*"></a>
-  <h4 id="ElmSharp_ItemObject__ctor_System_IntPtr_" data-uid="ElmSharp.ItemObject.#ctor(System.IntPtr)">ItemObject(IntPtr)</h4>
+  <h4 id="ElmSharp_ItemObject__ctor_IntPtr_ElmSharp_EvasObject_" data-uid="ElmSharp.ItemObject.#ctor(IntPtr,ElmSharp.EvasObject)">ItemObject(IntPtr, EvasObject)</h4>
+  <div class="markdown level1 summary"><p>Creates and initializes a new instance of the ItemObject class with parent object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ItemObject(IntPtr handle, EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IntPtr</span></td>
+        <td><span class="parametername">handle</span></td>
+        <td><p>IntPtr</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>Parent EvasObject</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L51">View Source</a>
+  </span>
+  <a id="ElmSharp_ItemObject__ctor_" data-uid="ElmSharp.ItemObject.#ctor*"></a>
+  <h4 id="ElmSharp_ItemObject__ctor_IntPtr_" data-uid="ElmSharp.ItemObject.#ctor(IntPtr)">ItemObject(IntPtr)</h4>
   <div class="markdown level1 summary"><p>Creates and initializes a new instance of the ItemObject class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -152,7 +192,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><span class="parametername">handle</span></td>
         <td><p>IntPtr</p>
 </td>
@@ -166,7 +206,7 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L64">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L90">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_Id_" data-uid="ElmSharp.ItemObject.Id*"></a>
   <h4 id="ElmSharp_ItemObject_Id" data-uid="ElmSharp.ItemObject.Id">Id</h4>
@@ -197,7 +237,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L70">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L97">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_IsEnabled_" data-uid="ElmSharp.ItemObject.IsEnabled*"></a>
   <h4 id="ElmSharp_ItemObject_IsEnabled" data-uid="ElmSharp.ItemObject.IsEnabled">IsEnabled</h4>
@@ -228,7 +268,38 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L96">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L43">View Source</a>
+  </span>
+  <a id="ElmSharp_ItemObject_Parent_" data-uid="ElmSharp.ItemObject.Parent*"></a>
+  <h4 id="ElmSharp_ItemObject_Parent" data-uid="ElmSharp.ItemObject.Parent">Parent</h4>
+  <div class="markdown level1 summary"><p>Gets the parent object for ItemObject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EvasObject Parent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L125">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_Style_" data-uid="ElmSharp.ItemObject.Style*"></a>
   <h4 id="ElmSharp_ItemObject_Style" data-uid="ElmSharp.ItemObject.Style">Style</h4>
@@ -259,7 +330,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L80">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L108">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_TrackObject_" data-uid="ElmSharp.ItemObject.TrackObject*"></a>
   <h4 id="ElmSharp_ItemObject_TrackObject" data-uid="ElmSharp.ItemObject.TrackObject">TrackObject</h4>
@@ -292,10 +363,10 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L240">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L283">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_AddSignalHandler_" data-uid="ElmSharp.ItemObject.AddSignalHandler*"></a>
-  <h4 id="ElmSharp_ItemObject_AddSignalHandler_System_String_System_String_System_Func_System_String_System_String_System_Boolean__" data-uid="ElmSharp.ItemObject.AddSignalHandler(System.String,System.String,System.Func{System.String,System.String,System.Boolean})">AddSignalHandler(string, string, Func&lt;string, string, bool&gt;)</h4>
+  <h4 id="ElmSharp_ItemObject_AddSignalHandler_System_String_System_String_Func_System_String_System_String_System_Boolean__" data-uid="ElmSharp.ItemObject.AddSignalHandler(System.String,System.String,Func{System.String,System.String,System.Boolean})">AddSignalHandler(string, string, Func&lt;string, string, bool&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds a function for a signal emitted by the object item edje.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -326,7 +397,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Func&lt;T1, T2, TResult&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="xref">Func&lt;, , &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
         <td><span class="parametername">func</span></td>
         <td><p>The function to be executed when the signal is emitted.</p>
 </td>
@@ -338,7 +409,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L139">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L174">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_Delete_" data-uid="ElmSharp.ItemObject.Delete*"></a>
   <h4 id="ElmSharp_ItemObject_Delete" data-uid="ElmSharp.ItemObject.Delete">Delete()</h4>
@@ -354,7 +425,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L228">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L270">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_DeletePartColor_" data-uid="ElmSharp.ItemObject.DeletePartColor*"></a>
   <h4 id="ElmSharp_ItemObject_DeletePartColor_System_String_" data-uid="ElmSharp.ItemObject.DeletePartColor(System.String)">DeletePartColor(string)</h4>
@@ -388,7 +459,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L286">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L331">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_EmitSignal_" data-uid="ElmSharp.ItemObject.EmitSignal*"></a>
   <h4 id="ElmSharp_ItemObject_EmitSignal_System_String_System_String_" data-uid="ElmSharp.ItemObject.EmitSignal(System.String,System.String)">EmitSignal(string, string)</h4>
@@ -428,7 +499,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L216">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L257">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_GetPartColor_" data-uid="ElmSharp.ItemObject.GetPartColor*"></a>
   <h4 id="ElmSharp_ItemObject_GetPartColor_System_String_" data-uid="ElmSharp.ItemObject.GetPartColor(System.String)">GetPartColor(string)</h4>
@@ -478,7 +549,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L191">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L230">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_GetPartText_" data-uid="ElmSharp.ItemObject.GetPartText*"></a>
   <h4 id="ElmSharp_ItemObject_GetPartText_System_String_" data-uid="ElmSharp.ItemObject.GetPartText(System.String)">GetPartText(string)</h4>
@@ -527,7 +598,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L307">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L354">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_OnInvalidate_" data-uid="ElmSharp.ItemObject.OnInvalidate*"></a>
   <h4 id="ElmSharp_ItemObject_OnInvalidate" data-uid="ElmSharp.ItemObject.OnInvalidate">OnInvalidate()</h4>
@@ -543,10 +614,10 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L263">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L307">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_RemoveSignalHandler_" data-uid="ElmSharp.ItemObject.RemoveSignalHandler*"></a>
-  <h4 id="ElmSharp_ItemObject_RemoveSignalHandler_System_String_System_String_System_Func_System_String_System_String_System_Boolean__" data-uid="ElmSharp.ItemObject.RemoveSignalHandler(System.String,System.String,System.Func{System.String,System.String,System.Boolean})">RemoveSignalHandler(string, string, Func&lt;string, string, bool&gt;)</h4>
+  <h4 id="ElmSharp_ItemObject_RemoveSignalHandler_System_String_System_String_Func_System_String_System_String_System_Boolean__" data-uid="ElmSharp.ItemObject.RemoveSignalHandler(System.String,System.String,Func{System.String,System.String,System.Boolean})">RemoveSignalHandler(string, string, Func&lt;string, string, bool&gt;)</h4>
   <div class="markdown level1 summary"><p>Removes a signal-triggered function from the object item edje object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -577,7 +648,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Func&lt;T1, T2, TResult&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="xref">Func&lt;, , &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
         <td><span class="parametername">func</span></td>
         <td><p>The function to be executed when the signal is emitted.</p>
 </td>
@@ -589,7 +660,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L202">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L242">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_SetPartColor_" data-uid="ElmSharp.ItemObject.SetPartColor*"></a>
   <h4 id="ElmSharp_ItemObject_SetPartColor_System_String_ElmSharp_Color_" data-uid="ElmSharp.ItemObject.SetPartColor(System.String,ElmSharp.Color)">SetPartColor(string, Color)</h4>
@@ -629,7 +700,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L163">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L200">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_SetPartContent_" data-uid="ElmSharp.ItemObject.SetPartContent*"></a>
   <h4 id="ElmSharp_ItemObject_SetPartContent_System_String_ElmSharp_EvasObject_System_Boolean_" data-uid="ElmSharp.ItemObject.SetPartContent(System.String,ElmSharp.EvasObject,System.Boolean)">SetPartContent(string, EvasObject, bool)</h4>
@@ -676,7 +747,7 @@ Sets a content of the object item.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L151">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L187">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_SetPartContent_" data-uid="ElmSharp.ItemObject.SetPartContent*"></a>
   <h4 id="ElmSharp_ItemObject_SetPartContent_System_String_ElmSharp_EvasObject_" data-uid="ElmSharp.ItemObject.SetPartContent(System.String,ElmSharp.EvasObject)">SetPartContent(string, EvasObject)</h4>
@@ -716,7 +787,7 @@ Sets a content of the object item.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L180">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L218">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_SetPartText_" data-uid="ElmSharp.ItemObject.SetPartText*"></a>
   <h4 id="ElmSharp_ItemObject_SetPartText_System_String_System_String_" data-uid="ElmSharp.ItemObject.SetPartText(System.String,System.String)">SetPartText(string, string)</h4>
@@ -758,7 +829,7 @@ Sets a content of the object item.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L133">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L168">View Source</a>
   </span>
   <h4 id="ElmSharp_ItemObject_Deleted" data-uid="ElmSharp.ItemObject.Deleted">Deleted</h4>
   <div class="markdown level1 summary"><p>Deleted will be triggered when the item object is deleted.</p>
@@ -778,7 +849,7 @@ Sets a content of the object item.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -790,10 +861,10 @@ Sets a content of the object item.</p>
   <h3 id="operators">Operators
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L296">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L342">View Source</a>
   </span>
   <a id="ElmSharp_ItemObject_op_Implicit_" data-uid="ElmSharp.ItemObject.op_Implicit*"></a>
-  <h4 id="ElmSharp_ItemObject_op_Implicit_ElmSharp_ItemObject__System_IntPtr" data-uid="ElmSharp.ItemObject.op_Implicit(ElmSharp.ItemObject)~System.IntPtr">implicit operator IntPtr(ItemObject)</h4>
+  <h4 id="ElmSharp_ItemObject_op_Implicit_ElmSharp_ItemObject__IntPtr" data-uid="ElmSharp.ItemObject.op_Implicit(ElmSharp.ItemObject)~IntPtr">implicit operator IntPtr(ItemObject)</h4>
   <div class="markdown level1 summary"><p>Gets the handle of the object item.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -829,7 +900,7 @@ Sets a content of the object item.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="xref">IntPtr</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -845,6 +916,27 @@ Sets a content of the object item.</p>
   <div>
       <a class="xref" href="ElmSharp.ItemObjectExtension.html#ElmSharp_ItemObjectExtension_GrabHighlight_ElmSharp_ItemObject_">ItemObjectExtension.GrabHighlight(ItemObject)</a>
   </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
 
@@ -853,7 +945,7 @@ Sets a content of the object item.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/ItemObject.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/ItemObject.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.Multimedia
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API5">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -106,6 +106,9 @@
       <h4><a class="xref" href="Tizen.Multimedia.AudioDataAvailableEventArgs.html">AudioDataAvailableEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html#Tizen_Multimedia_AsyncAudioCapture_DataAvailable">DataAvailable</a> event.</p>
 </section>
+      <h4><a class="xref" href="Tizen.Multimedia.AudioDataDecodedEventArgs.html">AudioDataDecodedEventArgs</a></h4>
+      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioDataDecoded">AudioDataDecoded</a> event.</p>
+</section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a></h4>
       <section><p>Provides the ability to query the information of sound devices.</p>
 </section>
@@ -115,8 +118,11 @@
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceRunningChanged">DeviceRunningChanged</a> event.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceStateChangedEventArgs.html">AudioDeviceStateChangedEventArgs</a></h4>
-      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceStateChanged">DeviceStateChanged</a> event.</p>
+      <h4><a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a></h4>
+      <section><p>Provides the functionalities to control audio ducking.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.AudioDuckingStateChangedEventArgs.html">AudioDuckingStateChangedEventArgs</a></h4>
+      <section><p>Provides data for the state change event of <a class="xref" href="Tizen.Multimedia.AudioDucking.html#Tizen_Multimedia_AudioDucking_DuckingStateChanged">DuckingStateChanged</a>.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioEffect.html">AudioEffect</a></h4>
       <section><p>Provides the ability to control the audio effects for <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>.</p>
@@ -132,6 +138,9 @@
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioMetadata.html">AudioMetadata</a></h4>
       <section><p>Represents the audio metadata information.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.AudioOffload.html">AudioOffload</a></h4>
+      <section><p>The class that control the audio offload for <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioPlayback.html">AudioPlayback</a></h4>
       <section><p>Provides the ability to directly manage the system audio output devices and play the PCM (pulse-code modulation) data.</p>
@@ -173,8 +182,14 @@ to get various capability information of the camera device.</p>
       <h4><a class="xref" href="Tizen.Multimedia.CameraCapturingEventArgs.html">CameraCapturingEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Capturing">Capturing</a> event.</p>
 </section>
+      <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceConnectionChangedEventArgs.html">CameraDeviceConnectionChangedEventArgs</a></h4>
+      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html#Tizen_Multimedia_CameraDeviceManager_DeviceConnectionChanged">DeviceConnectionChanged</a> event.</p>
+</section>
       <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceException.html">CameraDeviceException</a></h4>
       <section><p>The exception that is thrown when a camera device-related error occurs.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html">CameraDeviceManager</a></h4>
+      <section><p>This CameraDeviceManager class provides methods to control current camera devices and get its information.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceNotFoundException.html">CameraDeviceNotFoundException</a></h4>
       <section><p>The exception that is thrown when a camera device is not available.</p>
@@ -233,6 +248,9 @@ or the input is malformed.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.EqualizerBand.html">EqualizerBand</a></h4>
       <section><p>Represents an equalizer band of <a class="xref" href="Tizen.Multimedia.AudioEffect.html">AudioEffect</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.ExtraPreviewEventArgs.html">ExtraPreviewEventArgs</a></h4>
+      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_ExtraPreview">ExtraPreview</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.FaceDetectedEventArgs.html">FaceDetectedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_FaceDetected">FaceDetected</a> event.
@@ -295,7 +313,8 @@ This class is used if and only if the format of the packet is the raw video.</p>
       <section><p>Represents the metadata information of a media.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a></h4>
-      <section><p>Provides a means to edit the metadata of the media file.</p>
+      <section><p>Provides a means to edit the metadata of MP3 and MP4 files.
+Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.MetadataExtractor.html">MetadataExtractor</a></h4>
       <section><p>Provides a means to get the metadata from a media file.</p>
@@ -305,6 +324,9 @@ This class is used if and only if the format of the packet is the raw video.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.NoBufferSpaceException.html">NoBufferSpaceException</a></h4>
       <section><p>The exception that is thrown when there is no available space in a buffer.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></h4>
+      <section><p>The exception that is thrown when it is not available.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.PlaybackInterruptedEventArgs.html">PlaybackInterruptedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PlaybackInterrupted">PlaybackInterrupted</a> event.</p>
@@ -390,27 +412,6 @@ Simple audio and audio/video are supported.</p>
       <h4><a class="xref" href="Tizen.Multimedia.StreamInfo.html">StreamInfo</a></h4>
       <section><p>Provides a means to retrieve stream information.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></h4>
-      <section><p>Provides the ability to record user buffer from application.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderAudioOptions.html">StreamRecorderAudioOptions</a></h4>
-      <section><p>Specifies the options associated with audio recording.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderBufferConsumedEventArgs.html">StreamRecorderBufferConsumedEventArgs</a></h4>
-      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_BufferConsumed">BufferConsumed</a> event.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderErrorOccurredEventArgs.html">StreamRecorderErrorOccurredEventArgs</a></h4>
-      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_ErrorOccurred">ErrorOccurred</a> event.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html">StreamRecorderOptions</a></h4>
-      <section><p>Specifies the options associated with <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a>.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderStateChangedEventArgs.html">StreamRecorderStateChangedEventArgs</a></h4>
-      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_StateChanged">StateChanged</a> event.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderVideoOptions.html">StreamRecorderVideoOptions</a></h4>
-      <section><p>Specifies the options associated with video recording.</p>
-</section>
       <h4><a class="xref" href="Tizen.Multimedia.SubtitleUpdatedEventArgs.html">SubtitleUpdatedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SubtitleUpdated">SubtitleUpdated</a> event.</p>
 </section>
@@ -455,11 +456,17 @@ Simple audio and audio/video are supported.</p>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamProperties.html">AudioStreamProperties</a></h4>
       <section><p>Represents properties for the audio stream.</p>
 </section>
+      <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceInformation.html">CameraDeviceInformation</a></h4>
+      <section><p>Provides the ability to get camera device information.</p>
+</section>
       <h4><a class="xref" href="Tizen.Multimedia.DirectionOfView.html">DirectionOfView</a></h4>
       <section><p>Represents properties for the spherical video direction of view.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.DownloadProgress.html">DownloadProgress</a></h4>
       <section><p>Represents data for a downloading status.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.ExtraPreviewStreamInfo.html">ExtraPreviewStreamInfo</a></h4>
+      <section><p>Provides the ability to get the information of extra preview stream.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.FieldOfView.html">FieldOfView</a></h4>
       <section><p>Represents properties for the spherical video field of view.</p>
@@ -497,6 +504,9 @@ coordinates of top left corner, width and height.</p>
       <h4><a class="xref" href="Tizen.Multimedia.IPreviewPlane.html">IPreviewPlane</a></h4>
       <section><p>Provides interface for various preview plane types.</p>
 </section>
+      <h4><a class="xref" href="Tizen.Multimedia.IWindowProvider.html">IWindowProvider</a></h4>
+      <section><p>The IWindowProvider interface provides the window handle and information about the window's position, size, and rotation.</p>
+</section>
     <h3 id="enums">Enums
 </h3>
       <h4><a class="xref" href="Tizen.Multimedia.AudioChannel.html">AudioChannel</a></h4>
@@ -504,9 +514,6 @@ coordinates of top left corner, width and height.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceIoDirection.html">AudioDeviceIoDirection</a></h4>
       <section><p>Specifies the audio device directions.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceState.html">AudioDeviceState</a></h4>
-      <section><p>Specifies the audio device states.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceType.html">AudioDeviceType</a></h4>
       <section><p>Specifies the audio device types.</p>
@@ -526,7 +533,7 @@ coordinates of top left corner, width and height.</p>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamBehaviors.html">AudioStreamBehaviors</a></h4>
       <section><p>Specifies the flags for the audio stream behaviors.</p>
 <p>
-This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute that allows a bitwise combination of its member values.
+This enumeration has a <see cref="!:FlagsAttribute"></see> attribute that allows a bitwise combination of its member values.
 </p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamFocusChangedReason.html">AudioStreamFocusChangedReason</a></h4>
@@ -535,7 +542,7 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamFocusOptions.html">AudioStreamFocusOptions</a></h4>
       <section><p>Specifies the flags for the audio stream focus options.</p>
 <p>
-This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute that allows a bitwise combination of its member values.
+This enumeration has a <see cref="!:FlagsAttribute"></see> attribute that allows a bitwise combination of its member values.
 </p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamFocusState.html">AudioStreamFocusState</a></h4>
@@ -555,6 +562,9 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceState.html">CameraDeviceState</a></h4>
       <section><p>Enumeration for the camera device state.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.CameraDeviceType.html">CameraDeviceType</a></h4>
+      <section><p>Enumeration for camera device type</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.CameraDisplayMode.html">CameraDisplayMode</a></h4>
       <section><p>Enumeration for the camera display mode.</p>
@@ -619,6 +629,9 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
       <h4><a class="xref" href="Tizen.Multimedia.CodecKind.html">CodecKind</a></h4>
       <section><p>Specifies whether a codec is an audio codec or a video codec.</p>
 </section>
+      <h4><a class="xref" href="Tizen.Multimedia.CodecType.html">CodecType</a></h4>
+      <section><p>Specifies the types of a codec for <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>.</p>
+</section>
       <h4><a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a></h4>
       <section><p>Specifies color spaces for Tizen.Multimedia.</p>
 </section>
@@ -627,6 +640,9 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.MediaFormatAacType.html">MediaFormatAacType</a></h4>
       <section><p>Specifies the AAC types for <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html">MediaFormatAudioChannelPosition</a></h4>
+      <section><p>Specifies the channel position of <a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html#Tizen_Multimedia_MediaFormatAudioMimeType_Pcm">Pcm</a> media format.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a></h4>
       <section><p>Specifies the mime types for audio media formats.</p>
@@ -649,7 +665,7 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
       <h4><a class="xref" href="Tizen.Multimedia.MediaPacketBufferFlags.html">MediaPacketBufferFlags</a></h4>
       <section><p>Specifies the flag for a buffer.</p>
 <p>
-This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute that allows a bitwise combination of its member values.
+This enumeration has a <see cref="!:FlagsAttribute"></see> attribute that allows a bitwise combination of its member values.
 </p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.MediaStreamBufferStatus.html">MediaStreamBufferStatus</a></h4>
@@ -660,6 +676,9 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.PlaybackInterruptionReason.html">PlaybackInterruptionReason</a></h4>
       <section><p>Specifies the reason for the playback interruption.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Multimedia.PlayerAudioExtractOption.html">PlayerAudioExtractOption</a></h4>
+      <section><p>Enumeration of audio extract option.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.PlayerDisplayMode.html">PlayerDisplayMode</a></h4>
       <section><p>Specifies display modes for <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>.</p>
@@ -711,12 +730,6 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.StreamMetadataKey.html">StreamMetadataKey</a></h4>
       <section><p>Specifies keys for the metadata.</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderError.html">StreamRecorderError</a></h4>
-      <section><p>Specifies errors for <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a>/</p>
-</section>
-      <h4><a class="xref" href="Tizen.Multimedia.StreamRecorderVideoFormat.html">StreamRecorderVideoFormat</a></h4>
-      <section><p>Specifies the video source formats for <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a>.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.ToneType.html">ToneType</a></h4>
       <section><p>Specifies the audio codec.</p>
