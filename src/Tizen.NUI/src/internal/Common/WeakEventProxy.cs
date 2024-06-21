@@ -41,7 +41,7 @@ namespace Tizen.NUI
             }
         }
 
-        protected override void OnCountDicreased()
+        protected override void OnCountDecreased()
         {
             if (Count == 0)
             {
@@ -72,7 +72,7 @@ namespace Tizen.NUI
             }
         }
 
-        protected override void OnCountDicreased()
+        protected override void OnCountDecreased()
         {
             if (Count == 0)
             {

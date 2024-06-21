@@ -5310,9 +5310,9 @@ namespace Tizen.NUI.BaseComponents
         public static int AliveCount => aliveCount;
 
         /// <summary>
-        /// Voice interaction name for voice touch.
+        /// Voice interaction name for Voice Touch.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public string VoiceInteractionName
         {
             set
