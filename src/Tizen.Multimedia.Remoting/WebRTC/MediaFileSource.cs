@@ -107,7 +107,7 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the transceiver direction for receiving media stream.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver direction is set.
+        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
         /// </remarks>
         /// <param name="type">The media type.</param>
         /// <param name="direction">The transceiver direction.</param>

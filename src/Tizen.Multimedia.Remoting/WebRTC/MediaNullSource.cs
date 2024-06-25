@@ -64,8 +64,7 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the transceiver codec for receiving media stream.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.<br/>
-        ///
+        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
         /// </remarks>
         /// <param name="type">The media type.</param>
         /// <param name="codec">The transceiver codec.</param>
@@ -83,8 +82,6 @@ namespace Tizen.Multimedia.Remoting
             {
                 throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
             }
-
-            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
 
             NativeWebRTC.SetTransceiverCodec(WebRtc.Handle, SourceId.Value, type, codec).
                 ThrowIfFailed("Failed to set transceiver codec");

@@ -66,8 +66,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
-        /// <br/>
+        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
         /// <see cref="WebRTC"/> does not support all <see cref="AudioStreamType"/>.<br/>
         /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.VoiceRecognition"/>,
         /// <see cref="AudioStreamType.Voip"/>, <see cref="AudioStreamType.MediaExternalOnly"/>.
@@ -77,7 +76,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     <paramref name="policy"/> has already been disposed.
         /// </exception>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
         /// <exception cref="NotSupportedException">
         ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
@@ -90,8 +89,6 @@ namespace Tizen.Multimedia.Remoting
             {
                 throw new ArgumentNullException(nameof(policy), "policy is null");
             }
-
-            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
 
             var ret = NativeWebRTC.SetAudioStreamPolicyToMicrophoneSource(WebRtc.Handle, SourceId.Value, policy.Handle);
 
