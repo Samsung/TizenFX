@@ -2514,5 +2514,45 @@ namespace Tizen.NUI
                 return new NUI.SafeNativeWindowHandle(this);
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the window is modal or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsModal
+        {
+            get
+            {
+                bool ret = Interop.Window.IsModal(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetModal(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the window is alwats on top of other windows or not.
+        /// Its behavior is effective among windows with the same notification level.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsAlwaysOnTop
+        {
+            get
+            {
+                bool ret = Interop.Window.IsAlwaysOnTop(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetAlwaysOnTop(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
     }
 }
