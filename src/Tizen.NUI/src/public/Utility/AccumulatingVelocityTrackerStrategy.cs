@@ -28,7 +28,7 @@ namespace Tizen.NUI.Utility
 {
     /// <summary>
     /// Accumulating Velocity Tracker
-    /// </sumary>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AccumulatingVelocityTrackerStrategy : VelocityTrackerStrategy
     {
@@ -56,7 +56,7 @@ namespace Tizen.NUI.Utility
 
         /// <summary>
         /// Create an instance of AccumulatingVelocityTrackerStrategy.
-        /// </sumary>
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccumulatingVelocityTrackerStrategy(uint maximumTime) : base()
         {
