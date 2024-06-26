@@ -21,10 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Components", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\..\src\Tizen.System.Information\Tizen.System.Information.csproj", "{1C93CF1D-452C-4EF8-BE4F-01023FC7318A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nunit.framework", "..\..\..\charp_api\tct-suite-vs\nunit.framework\nunit.framework.csproj", "{37B85E87-6F6B-410A-9471-0774C3263033}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nunitlite", "..\..\..\charp_api\tct-suite-vs\nunitlite\nunitlite.csproj", "{5E92B3C2-BF09-4C15-943C-8E251D0A7B58}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.WindowSystem", "..\..\src\Tizen.NUI.WindowSystem\Tizen.NUI.WindowSystem.csproj", "{FB1E79E8-90E1-4AB4-8C69-D3A17E33865E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Samples", "..\Tizen.NUI.Samples\Tizen.NUI.Samples\Tizen.NUI.Samples.csproj", "{E43F3735-04C1-4BC6-84E1-7316D22AA488}"

@@ -15,6 +15,7 @@
  */
 using System;
 using ElmSharp;
+using Tizen.Common;
 
 namespace Tizen.Multimedia
 {
@@ -175,9 +176,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowProvider"/> interface.
+        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="Tizen.Common.IWindowProvider"/> interface.
         /// </summary>
-        /// <param name="window">An <see cref="IWindowProvider"/> object that provides a handle to a window.</param>
+        /// <param name="window">An <see cref="Tizen.Common.IWindowProvider"/> object that provides a handle to a window.</param>
         /// <since_tizen> 12 </since_tizen>
         public Display(IWindowProvider window)
             : this(window, false)
@@ -185,9 +186,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowProvider"/> interface.
+        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="Tizen.Common.IWindowProvider"/> interface.
         /// </summary>
-        /// <param name="window">An <see cref="IWindowProvider"/> object that provides a handle to a window.</param>
+        /// <param name="window">An <see cref="Tizen.Common.IWindowProvider"/> object that provides a handle to a window.</param>
         /// <param name="uiSync">A value indicating whether video and UI are in sync or not.</param>
         /// <remarks>
         /// UI sync is only for <see cref="T:Tizen.Multimedia.Player"/> and
@@ -207,7 +208,6 @@ namespace Tizen.Multimedia
 
             UiSync = uiSync;
         }
-
 
         private EvasObject EvasObject { get; }
 
