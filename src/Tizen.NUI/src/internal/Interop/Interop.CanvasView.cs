@@ -41,8 +41,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RemoveAllDrawables")]
             public static extern void RemoveAllDrawables(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_RequestRasterization")]
+            public static extern void RequestRasterization(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_VIEWBOX_get")]
             public static extern int PropertyViewBoxGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_SYNCHRONOUS_LOADING_get")]
+            public static extern int PropertySynchronousLoadingGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CanvasView_Property_RASTERIZATION_REQUEST_MANUALLY_get")]
+            public static extern int PropertyRasterizationRequestManuallyGet();
         }
     }
 }
