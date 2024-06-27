@@ -425,7 +425,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalAlphaMaskURL = (string)newValue;
             }
         }
-        
+
         internal static object GetInternalAlphaMaskURLProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -446,7 +446,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalCropToMask = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalCropToMaskProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -458,7 +458,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FittingModeProperty = null;
-        
+
         internal static void SetInternalFittingModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -467,7 +467,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalFittingMode = (Tizen.NUI.FittingModeType)newValue;
             }
         }
-        
+
         internal static object GetInternalFittingModeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -488,7 +488,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalDesiredWidth = (int)newValue;
             }
         }
-        
+
         internal static object GetInternalDesiredWidthProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -509,7 +509,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalDesiredHeight = (int)newValue;
             }
         }
-        
+
         internal static object GetInternalDesiredHeightProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -530,7 +530,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalReleasePolicy = (Tizen.NUI.ReleasePolicyType)newValue;
             }
         }
-        
+
         internal static object GetInternalReleasePolicyProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -551,7 +551,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalWrapModeU = (Tizen.NUI.WrapModeType)newValue;
             }
         }
-        
+
         internal static object GetInternalWrapModeUProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -572,7 +572,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalWrapModeV = (Tizen.NUI.WrapModeType)newValue;
             }
         }
-        
+
         internal static object GetInternalWrapModeVProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -593,7 +593,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.adjustViewSize = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalAdjustViewSizeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
@@ -658,7 +658,7 @@ namespace Tizen.NUI.BaseComponents
                 Interop.View.InternalUpdateVisualPropertyVector4(imageView.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.MixColor, Vector4.getCPtr((Color)newValue));
             }
         }
-        
+
         internal static object GetInternalImageColorProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
