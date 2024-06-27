@@ -45,18 +45,22 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// ResourceUrlProperty
         /// </summary>
+        /// <remarks>
+        /// This property does not have same logic with LottieAnimationView.ResourceUrl.
+        /// Should use new keyword!
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
 #if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
         public static new BindableProperty ResourceUrlProperty = null;
 #else
         public static readonly new BindableProperty ResourceUrlProperty = null;
 #endif
-        internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
+        internal static new void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             instance.InternalResourceUrl = (string)newValue;
         }
-        internal static object GetInternalResourceUrlProperty(BindableObject bindable)
+        internal static new object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceUrl;
@@ -88,13 +92,17 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// CurrentFrameProperty
         /// </summary>
+        /// <remarks>
+        /// This property does not have same logic with LottieAnimationView.CurrentFrame.
+        /// Should use new keyword!
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
 #if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
         public static new BindableProperty CurrentFrameProperty = null;
 #else
         public static readonly new BindableProperty CurrentFrameProperty = null;
 #endif
-        internal static void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
+        internal static new void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
@@ -102,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
                 instance.InternalCurrentFrame = (int)newValue;
             }
         }
-        internal static object GetInternalCurrentFrameProperty(BindableObject bindable)
+        internal static new object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalCurrentFrame;
