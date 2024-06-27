@@ -93,9 +93,9 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             {
                 ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null,
                   propertyChanged: SetInternalViewBoxProperty, defaultValueCreator: GetInternalViewBoxProperty);
-                SynchronousLoadingProperty = BindableProperty.Create(nameof(ViewBox), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), true,
+                SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), true,
                   propertyChanged: SetInternalSynchronousLoadingProperty, defaultValueCreator: GetInternalSynchronousLoadingProperty);
-                RasterizationRequestManuallyProperty = BindableProperty.Create(nameof(ViewBox), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), false,
+                RasterizationRequestManuallyProperty = BindableProperty.Create(nameof(RasterizationRequestManually), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), false,
                   propertyChanged: SetInternalRasterizationRequestManuallyProperty, defaultValueCreator: GetInternalRasterizationRequestManuallyProperty);
             }
         }

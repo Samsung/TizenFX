@@ -28,6 +28,7 @@ namespace Tizen.NUI.Utility
 {
     /// <summary>
     /// Calculates the velocity of touch movements over time.
+    /// </summary>
     /// <example>
     ///  private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
     ///  {
@@ -45,7 +46,6 @@ namespace Tizen.NUI.Utility
     ///      }
     ///  }
     /// </example>
-    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class VelocityTracker
     {

@@ -26,8 +26,8 @@ namespace Tizen.NUI
         /// LayoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty LayoutProperty = null;
-        internal static void SetInternalLayoutProperty(BindableObject bindable, object oldValue, object newValue)
+        public static new BindableProperty LayoutProperty = null;
+        internal static new void SetInternalLayoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -35,7 +35,7 @@ namespace Tizen.NUI
                 instance.InternalLayout = (Tizen.NUI.PropertyArray)newValue;
             }
         }
-        internal static object GetInternalLayoutProperty(BindableObject bindable)
+        internal static new object GetInternalLayoutProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalLayout;

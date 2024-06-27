@@ -51,7 +51,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
-        private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
+        // TODO : Re-open this API when we resolve Animation issue.
+        // private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
 
         internal virtual LayoutItem CreateDefaultLayout()
         {
@@ -1217,7 +1218,8 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateBackgroundExtraData(object source, EventArgs e)
         {
             // Note : To allow event attachment during UpdateBackgroundExtraData, let we make flag as false before call UpdateBackgroundExtraData().
-            backgroundExtraDataUpdateProcessAttachedFlag = false;
+            // TODO : Re-open this API when we resolve Animation issue.
+            // backgroundExtraDataUpdateProcessAttachedFlag = false;
             UpdateBackgroundExtraData();
         }
 
