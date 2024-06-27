@@ -102,7 +102,7 @@
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">AppControl</span></div>
       </div>
     </dd>
@@ -173,7 +173,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">enableAppStartedResultEvent</span></td>
         <td><p>The flag value to receive an additional launch result event on the launch request.</p>
 </td>
@@ -241,7 +241,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><p>(if the application ID is null for setter, it clears the previous value.)</p>
 </td>
       </tr>
@@ -278,7 +278,7 @@ Log.Debug(LogTag, &quot;ApplicationId: &quot; + appControl.ApplicationId);</code
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><p>(if the category is null for setter, it clears the previous value.)</p>
 </td>
       </tr>
@@ -310,7 +310,7 @@ Log.Debug(LogTag, &quot;ApplicationId: &quot; + appControl.ApplicationId);</code
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><p>(if the component ID is null for setter, it clears the previous value.)
 From Tizen 5.5, a new application model is supported that is component-based application.
 This property is for launching component-based application. If it's not set, the main component of component-based application will be launched.
@@ -430,7 +430,7 @@ appControl.LaunchMode = AppControlLaunchMode.Group;</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><p>(if the mime is null for setter, it clears the previous value.)</p>
 </td>
       </tr>
@@ -467,7 +467,7 @@ Log.Debug(LogTag, &quot;Mime: &quot; + appControl.Mime);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><p>The operation is the mandatory information for the launch request. If the operation is not specified,
 AppControlOperations.Default is used for the launch request. If the operation is AppControlOperations.Default,
 the package information is mandatory to explicitly launch the application.
@@ -538,7 +538,7 @@ Log.Debug(LogTag, &quot;Operation: &quot; + appControl.Operation);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><p>Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and
 it is a regular file in this application's data path, which can be obtained
 by property DataPath in ApplicationInfo class,
@@ -592,7 +592,7 @@ The callee application can just read it.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>ApplicationIds.</p>
 </td>
       </tr>
@@ -652,7 +652,7 @@ if (applicationIds != null)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>ApplicationIds.</p>
 </td>
       </tr>
@@ -733,7 +733,7 @@ if (applicationIds != null)
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>The timeout in milliseconds, the timeout range is 5000 to 30000.</p>
 </td>
@@ -830,7 +830,7 @@ AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, re
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">timeout</span></td>
         <td><p>The timeout in milliseconds, the timeout range is 5000 to 30000.</p>
 </td>
