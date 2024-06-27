@@ -40,6 +40,22 @@ namespace Tizen.NUI.WindowSystem.Shell
         private event EventHandler _dragStarted;
         private event EventHandler _dragEnded;
 
+
+        /// <summary>
+        /// Drop target type of PerformDrop request of KVM Service.
+        /// </summary>
+        public enum DropTarget
+        {
+            /// <summary>
+            /// Drop to KVM Service window self.
+            /// </summary>
+            KVMServiceWin = 0,
+            /// <summary>
+            /// Drop to the window that under pointer.
+            /// </summary>
+            UnderPointer = 1,
+        };
+
         /// <summary>
         /// Creates a new KVM Service handle.
         /// </summary>
@@ -185,6 +201,16 @@ namespace Tizen.NUI.WindowSystem.Shell
         public void PerformDrop()
         {
             int res = Interop.KVMService.PerformDrop(_kvmService);
+            _tzsh.ErrorCodeThrow(res);
+        }
+
+        /// <summary>
+        /// Requests to perform drop to given target.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void PerformDrop(DropTarget target)
+        {
+            int res = Interop.KVMService.PerformDropTarget(_kvmService, (uint)target);
             _tzsh.ErrorCodeThrow(res);
         }
 
