@@ -255,10 +255,13 @@ namespace Tizen.NUI.BaseComponents
 #endif
         internal static void SetInternalBackgroundImageProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            if (String.Equals(oldValue, newValue))
+            if (NUIApplication.IsUsingXaml)
             {
-                NUILog.Debug($"oldValue={oldValue} newValue={newValue} are same. just return here");
-                return;
+                if (String.Equals(oldValue, newValue))
+                {
+                    NUILog.Debug($"oldValue={oldValue} newValue={newValue} are same. just return here");
+                    return;
+                }
             }
 
             var view = (View)bindable;
@@ -3161,7 +3164,7 @@ namespace Tizen.NUI.BaseComponents
 
                 ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
                     propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
-                
+
                 ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
                     propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
 
@@ -3428,7 +3431,7 @@ namespace Tizen.NUI.BaseComponents
 
                 AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
                     propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
-                
+
                 WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0,
                     propertyChanged: SetInternalWidthSpecificationProperty, defaultValueCreator: GetInternalWidthSpecificationProperty);
 
@@ -3560,7 +3563,7 @@ namespace Tizen.NUI.BaseComponents
                 map.Add(Visual.Property.Type, imageType);
             }
 
-            if(backgroundExtraData != null)
+            if (backgroundExtraData != null)
             {
                 using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
                 using var cornerRadius = new PropertyValue(cornerRadiusValue);
