@@ -23,7 +23,7 @@ namespace Tizen.NUI.Utility
 
     /// <summary>
     /// VelocityTrackerStrategy
-    /// </sumary>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class VelocityTrackerStrategy
     {
