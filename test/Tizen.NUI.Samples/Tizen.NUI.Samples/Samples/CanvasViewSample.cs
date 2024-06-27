@@ -35,6 +35,10 @@ namespace Tizen.NUI.Samples
                 PivotPoint = PivotPoint.Center,
                 PositionUsesPivotPoint = true,
             };
+            root.PropertyChanged += (object o, global::System.ComponentModel.PropertyChangedEventArgs e) =>
+            {
+                Tizen.Log.Error("NUI", $"root view Property Changed! {e.PropertyName}\n");
+            };
             window.Add(root);
 
             window.KeyEvent += WindowKeyEvent;
@@ -45,6 +49,10 @@ namespace Tizen.NUI.Samples
                 ParentOrigin = ParentOrigin.Center,
                 PivotPoint = PivotPoint.Center,
                 PositionUsesPivotPoint = true,
+            };
+            canvasView.PropertyChanged += (object o, global::System.ComponentModel.PropertyChangedEventArgs e) =>
+            {
+                Tizen.Log.Error("NUI", $"canvas view Property Changed! {e.PropertyName}\n");
             };
 
             RadialGradient roundedRectFillRadialGradient = new RadialGradient()
