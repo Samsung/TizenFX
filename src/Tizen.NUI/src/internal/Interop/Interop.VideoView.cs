@@ -48,6 +48,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_3")]
             public static extern global::System.IntPtr New(string jarg1, bool swCodec);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_4")]
+            public static extern global::System.IntPtr New(int enableSyncMode);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VideoView")]
             public static extern void DeleteVideoView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -94,6 +97,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetNativePlayerHandle")]
             public static extern global::System.IntPtr GetNativePlayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_PlayAnimation")]
+            public static extern global::System.IntPtr PlayAnimation(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }

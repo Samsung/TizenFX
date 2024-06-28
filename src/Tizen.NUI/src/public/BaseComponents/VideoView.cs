@@ -213,6 +213,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Creates an initialized VideoView.<br />
+        /// The syncMode is for synchronization between UI(transparent hole) and underlay video.<br />
+        /// </summary>
+        /// <param name="enableSyncMode">The synchronization mode between the UI (transparent hole) and VideoPlayer.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(int enableSyncMode) : this(Interop.VideoView.New(enableSyncMode), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
+        /// <summary>
         /// Hidden API (Inhouse API).
         /// Using Uri class to provide safe service and secure API.
         /// Creates an initialized VideoView.
@@ -496,6 +508,20 @@ namespace Tizen.NUI.BaseComponents
         public void Backward(int millisecond)
         {
             Interop.VideoView.Backward(SwigCPtr, millisecond);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Play the resize or move animation with synchronization between UI(transparent hole) and video player
+        ///
+        /// The resize and move animation's play() function is called.
+        /// If the animation is played, UI and video player will work synchronization.
+        /// </summary>
+        /// <param name="animation">The animation for video view's resize or move.
+        /// [EditorBrowsable(EditorBrowsableState.Never)]
+        public void PlayAnimation(Animation animation)
+        {
+            Interop.VideoView.PlayAnimation(SwigCPtr, Animation.getCPtr(animation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
