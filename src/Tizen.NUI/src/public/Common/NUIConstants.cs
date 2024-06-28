@@ -438,7 +438,17 @@ namespace Tizen.NUI
         /// A virtual keyboard
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        VirtualKeyboard
+        VirtualKeyboard,
+        /// <summary>
+        /// A virtual remocon
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        VirtualRemocon,
+        /// <summary>
+        /// A virtual mouse
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        VirtualMouse
     }
 
     /// <summary>
@@ -783,7 +793,7 @@ namespace Tizen.NUI
         /// This is a desktop type. No other windows can be placed below this type of window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Desktop        
+        Desktop
     }
 
     /// <summary>
