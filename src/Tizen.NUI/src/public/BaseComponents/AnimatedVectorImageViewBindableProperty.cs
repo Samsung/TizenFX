@@ -26,11 +26,8 @@ namespace Tizen.NUI.BaseComponents
         /// ResourceURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-        public static BindableProperty ResourceURLProperty = null;
-#else
         public static readonly BindableProperty ResourceURLProperty = null;
-#endif
+
         internal static void SetInternalResourceURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
@@ -50,11 +47,8 @@ namespace Tizen.NUI.BaseComponents
         /// Should use new keyword!
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-        public static new BindableProperty ResourceUrlProperty = null;
-#else
         public static readonly new BindableProperty ResourceUrlProperty = null;
-#endif
+
         internal static new void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
@@ -70,11 +64,8 @@ namespace Tizen.NUI.BaseComponents
         /// RepeatCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-        public static BindableProperty RepeatCountProperty = null;
-#else
         public static readonly BindableProperty RepeatCountProperty = null;
-#endif
+
         internal static void SetInternalRepeatCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
@@ -97,11 +88,8 @@ namespace Tizen.NUI.BaseComponents
         /// Should use new keyword!
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-        public static new BindableProperty CurrentFrameProperty = null;
-#else
         public static readonly new BindableProperty CurrentFrameProperty = null;
-#endif
+
         internal static new void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
@@ -120,11 +108,8 @@ namespace Tizen.NUI.BaseComponents
         /// RepeatModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-        public static BindableProperty RepeatModeProperty = null;
-#else
         public static readonly BindableProperty RepeatModeProperty = null;
-#endif
+
         static internal void SetInternalRepeatModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
