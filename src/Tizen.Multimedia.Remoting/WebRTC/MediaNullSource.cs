@@ -64,15 +64,11 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the transceiver codec for receiving media stream.
         /// </summary>
         /// <remarks>
-        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// </remarks>
         /// <param name="type">The media type.</param>
         /// <param name="codec">The transceiver codec.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     MediaSource is not attached yet.<br/>
-        /// -or-<br/>
-        ///     The WebRTC is not in the valid state.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="GetTransceiverCodec"/>
         /// <since_tizen> 10 </since_tizen>

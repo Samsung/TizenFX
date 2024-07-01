@@ -227,7 +227,7 @@ namespace Tizen.Multimedia.Remoting
         /// Creates SDP offer asynchronously to start a new WebRTC connection to a remote peer.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API12)
+        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
         /// </remarks>
         /// <returns>The SDP offer.</returns>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
@@ -262,7 +262,7 @@ namespace Tizen.Multimedia.Remoting
         /// Creates SDP answer asynchronously with option to an offer received from a remote peer.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API12)
+        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
         /// </remarks>
         /// <returns>The SDP answer.</returns>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
@@ -297,7 +297,7 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the session description for a local peer.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API12)
+        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
         /// </remarks>
         /// <param name="description">The local session description.</param>
         /// <exception cref="ArgumentException">The description is empty string.</exception>
@@ -320,7 +320,7 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the session description of the remote peer's current offer or answer.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API12)
+        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
         /// </remarks>
         /// <param name="description">The remote session description.</param>
         /// <exception cref="ArgumentException">The description is empty string.</exception>
@@ -386,7 +386,7 @@ namespace Tizen.Multimedia.Remoting
         /// Adds media source.
         /// </summary>
         /// <remarks>
-        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
         /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
@@ -401,7 +401,7 @@ namespace Tizen.Multimedia.Remoting
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
         /// <exception cref="InvalidOperationException">
-        /// The WebRTC is not in the valid state.<br/>
+        /// An internal error occurs.<br/>
         /// - or -<br/>
         /// All or one of <paramref name="source"/> was already detached.
         /// </exception>
@@ -432,7 +432,7 @@ namespace Tizen.Multimedia.Remoting
         /// Adds media sources.
         /// </summary>
         /// <remarks>
-        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// Each MediaSource requires different feature or privilege.<br/>
         /// <see cref="MediaCameraSource"/> needs camera feature and privilege.<br/>
         /// <see cref="MediaMicrophoneSource"/> needs microphone feature and recorder privilege.<br/>
@@ -447,7 +447,7 @@ namespace Tizen.Multimedia.Remoting
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
         /// <exception cref="InvalidOperationException">
-        /// The WebRTC is not in the valid state.<br/>
+        /// An internal error occurs.<br/>
         /// - or -<br/>
         /// All or one of <paramref name="sources"/> was already detached.
         /// </exception>
@@ -479,12 +479,12 @@ namespace Tizen.Multimedia.Remoting
         /// Removes media source.
         /// </summary>
         /// <remarks>
-        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// If user want to use removed MediaSource again, user should create new instance for it.
         /// </remarks>
         /// <param name="source">The media source to remove.</param>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicrophoneSource"/>
@@ -512,12 +512,12 @@ namespace Tizen.Multimedia.Remoting
         /// Removes media sources.
         /// </summary>
         /// <remarks>
-        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// If user want to use removed MediaSource again, user should create new instance for it.
         /// </remarks>
         /// <param name="sources">The media source to remove.</param>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
-        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaCameraSource"/>
         /// <seealso cref="MediaMicrophoneSource"/>
@@ -606,7 +606,7 @@ namespace Tizen.Multimedia.Remoting
         /// Retrieves the current statistics information.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>(Since API12) or <see cref="WebRTCState.Playing"/>
+        /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/>(Since API Level 12) or <see cref="WebRTCState.Playing"/>
         /// </remarks>
         /// <returns>The WebRTC statistics informations.</returns>
         /// <param name="category">The category of statistics to get.</param>

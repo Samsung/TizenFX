@@ -66,7 +66,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>
-        /// This method does not throw state exception anymore(Since API12). It can be called in any state.<br/>
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// <see cref="WebRTC"/> does not support all <see cref="AudioStreamType"/>.<br/>
         /// Supported types are <see cref="AudioStreamType.Media"/>, <see cref="AudioStreamType.VoiceRecognition"/>,
         /// <see cref="AudioStreamType.Voip"/>, <see cref="AudioStreamType.MediaExternalOnly"/>.
