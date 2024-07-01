@@ -539,9 +539,33 @@ namespace Tizen.NUI.Samples
             break;
 
           case KEY_NUM_6:
+            log.Fatal(tag, $"Modal window Test");
+            if(mainWin.IsModal)
+            {
+                log.Fatal(tag, $"current modal is true and change to false");
+                subWindow.Unparent();
+                subWindow.IsModal = false;
+            }
+            else
+            {
+                log.Fatal(tag, $"current modal is false and change to true");
+                subWindow.SetParent(mainWin);
+                subWindow.IsModal = true;
+            }
             break;
 
           case KEY_NUM_7:
+            log.Fatal(tag, $"Always On Top Window Test");
+            if(mainWin.IsAlwaysOnTop)
+            {
+                log.Fatal(tag, $"current AlwaysOnTop is true and change to false");
+                subWindow.IsAlwaysOnTop = false;
+            }
+            else
+            {
+                log.Fatal(tag, $"current AlwaysOnTop is false and change to true");
+                subWindow.IsAlwaysOnTop = true;
+            }
             break;
 
           case KEY_NUM_8:
