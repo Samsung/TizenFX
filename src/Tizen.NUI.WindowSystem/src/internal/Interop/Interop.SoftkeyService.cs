@@ -11,7 +11,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             const string lib = "libtzsh_softkey_service.so.0";
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_create")]
-            internal static extern IntPtr Create(IntPtr tzsh, IntPtr win);
+            internal static extern IntPtr Create(IntPtr tzsh, uint win);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_service_destroy")]
             internal static extern int Destroy(IntPtr softkeyService);

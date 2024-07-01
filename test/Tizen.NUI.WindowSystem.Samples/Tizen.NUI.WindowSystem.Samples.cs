@@ -6,6 +6,7 @@ using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.WindowSystem;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Samples
 {
@@ -123,7 +124,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnClient);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            qpClient = new Shell.QuickPanelClient(tzShell, window, Shell.QuickPanelClient.Types.SystemDefault);
+            qpClient = new Shell.QuickPanelClient(tzShell, (IWindowProvider)window, Shell.QuickPanelClient.Types.SystemDefault);
 
             qpClient.VisibleChanged += OnVisibleEvent;
             qpClient.OrientationChanged += OnOrientationEvent;
@@ -239,7 +240,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnClient);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            qpService = new Shell.QuickPanelService(tzShell, window, type);
+            qpService = new Shell.QuickPanelService(tzShell, (IWindowProvider)window, type);
             //if ((type == Shell.QuickPanelService.Types.ContextMenu) || (type == Shell.QuickPanelService.Types.AppsMenu))
                 //window.AddAuxiliaryHint("wm.policy.win.user.geometry", "1");
 
@@ -410,7 +411,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnClient);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            softkeyClient = new Shell.SoftkeyClient(tzShell, window);
+            softkeyClient = new Shell.SoftkeyClient(tzShell, (IWindowProvider)window);
 
             textSoftkeyClientVisible = new TextLabel($"Visible: {softkeyClient.Visible}");
             textSoftkeyClientVisible.Position = new Position(0, -100);
@@ -554,7 +555,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Remove(BtnClient);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            softkeyService = new Shell.SoftkeyService(tzShell, window);
+            softkeyService = new Shell.SoftkeyService(tzShell, (IWindowProvider)window);
 
             textSoftkeyServiceVisible = new TextLabel($"Visible: None");
             textSoftkeyServiceVisible.Position = new Position(0, -100);

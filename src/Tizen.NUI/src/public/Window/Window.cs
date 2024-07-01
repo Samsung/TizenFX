@@ -22,8 +22,8 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
 using Tizen.NUI.BaseComponents;
+using Tizen.Common;
 
 namespace Tizen.NUI
 {
@@ -32,7 +32,7 @@ namespace Tizen.NUI
     /// The window has an orientation and indicator properties.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class Window : BaseHandle
+    public partial class Window : BaseHandle, IWindowProvider
     {
         private HandleRef stageCPtr;
         private Layer rootLayer;
@@ -2514,5 +2514,12 @@ namespace Tizen.NUI
                 return new NUI.SafeNativeWindowHandle(this);
             }
         }
+
+        IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
+        float IWindowProvider.X => WindowPosition.X;
+        float IWindowProvider.Y => WindowPosition.Y;
+        float IWindowProvider.Width => WindowSize.Width;
+        float IWindowProvider.Height => WindowSize.Height;
+        int IWindowProvider.Rotation => (int)GetCurrentOrientation();
     }
 }
