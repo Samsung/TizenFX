@@ -2517,6 +2517,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets a value indicating whether the window is modal or not.
+        /// The modal property of a window requires that it be set to a parent window. 
+        /// The window modal function operates on the specified parent window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsModal
