@@ -89,24 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Utility.html">Utility</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Calculates the velocity of touch movements over time.
-<example>
-private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
-{
-tracker.AddMovement(e.PanGesture.ScreenPosition, e.PanGesture.Time);
-if (e.PanGesture.State == Gesture.StateType.Started)
-{
-}
-else if (e.PanGesture.State == Gesture.StateType.Continuing)
-{
-}
-else if (e.PanGesture.State == Gesture.StateType.Finished || e.PanGesture.State == Gesture.StateType.Cancelled)
-{
-float panVelocity = (ScrollingDirection == Direction.Horizontal) ? tracker.GetVelocity().X : tracker.GetVelocity().Y;
-tracker.Clear();
-}
-}
-</example></p>
+  <div class="markdown level0 summary"><p>Calculates the velocity of touch movements over time.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -127,6 +110,23 @@ tracker.Clear();
 
 
 
+
+  <h5 id="Tizen_NUI_Utility_VelocityTracker_examples"><strong>Examples</strong></h5>
+  <p>private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
+{
+tracker.AddMovement(e.PanGesture.ScreenPosition, e.PanGesture.Time);
+if (e.PanGesture.State == Gesture.StateType.Started)
+{
+}
+else if (e.PanGesture.State == Gesture.StateType.Continuing)
+{
+}
+else if (e.PanGesture.State == Gesture.StateType.Finished || e.PanGesture.State == Gesture.StateType.Cancelled)
+{
+float panVelocity = (ScrollingDirection == Direction.Horizontal) ? tracker.GetVelocity().X : tracker.GetVelocity().Y;
+tracker.Clear();
+}
+}</p>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -191,6 +191,23 @@ tracker.Clear();
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Utility_VelocityTracker__ctor_Tizen_NUI_Utility_VelocityTrackerStrategy____examples">Examples</h5>
+  <p>private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
+{
+tracker.AddMovement(e.PanGesture.ScreenPosition, e.PanGesture.Time);
+if (e.PanGesture.State == Gesture.StateType.Started)
+{
+}
+else if (e.PanGesture.State == Gesture.StateType.Continuing)
+{
+}
+else if (e.PanGesture.State == Gesture.StateType.Finished || e.PanGesture.State == Gesture.StateType.Cancelled)
+{
+float panVelocity = (ScrollingDirection == Direction.Horizontal) ? tracker.GetVelocity().X : tracker.GetVelocity().Y;
+tracker.Clear();
+}
+}</p>
+
 
 
   <div style="margin-bottom: 15px"></div>
