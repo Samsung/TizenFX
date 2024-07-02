@@ -953,7 +953,6 @@ namespace Tizen.NUI
                 using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
-#if NUI_ANIMATION_PROPERTY_CHANGE_1
                         var targetValueIntPtr = current.RefineValueIntPtr(destinationValue);
                         if (targetValueIntPtr == global::System.IntPtr.Zero)
                         {
@@ -961,11 +960,6 @@ namespace Tizen.NUI
                         }
                         AnimateToIntPtr(current.Property, targetValueIntPtr, alphaFunction, time);
                         Interop.PropertyValue.DeletePropertyValueIntPtr(targetValueIntPtr);
-#else
-                        var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
-                        AnimateTo(current.Property, targetValue, alphaFunction, time);
-                        targetValue.Dispose();
-#endif
                         current = current.NextResult;
                     }
             }
