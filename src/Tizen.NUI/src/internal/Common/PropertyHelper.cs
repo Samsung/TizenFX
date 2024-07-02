@@ -294,18 +294,22 @@ namespace Tizen.NUI
                 var refined = keyFrames;
                 if (propertyValueConverter != null)
                 {
-                    // TODO Enable this code when csharp-binder is ready
-                    // refined = new KeyFrames();
-                    // for (uint i = 0; i < keyFrames.Count; i++)
-                    // {
-                    //     var keyFrame = keyFrames.GetKeyFrame(i);
-                    //     var newKeyFrame = propertyValueConverter(keyFrame);
-                    //     if (newKeyFrame == null)
-                    //     {
-                    //         return null;
-                    //     }
-                    //     refined.Add(newKeyFrame);
-                    // }
+                    uint keyFramesCount = keyFrames.GetKeyFrameCount();
+                    float keyFrameProgress;
+                    using PropertyValue keyFrameValue = new PropertyValue();
+
+                    refined = new KeyFrames();
+
+                    for (uint i = 0; i < keyFramesCount; i++)
+                    {
+                        keyFrames.GetKeyFrame(i, out keyFrameProgress, keyFrameValue);
+                        using var newKeyFrameValue = propertyValueConverter(keyFrameValue);
+                        if (newKeyFrameValue == null)
+                        {
+                            return null;
+                        }
+                        refined.Add(keyFrameProgress, newKeyFrameValue);
+                    }
                 }
 
                 return refined;
