@@ -98,9 +98,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NUIApplication.IsUsingXaml)
             {
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-                CreateBindableProperties();
-#else
                 StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(View), string.Empty,
                     propertyChanged: SetInternalStyleNameProperty, defaultValueCreator: GetInternalStyleNameProperty);
 
@@ -112,7 +109,7 @@ namespace Tizen.NUI.BaseComponents
 
                 ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
                     propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
-                
+
                 ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
                     propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
 
@@ -379,7 +376,7 @@ namespace Tizen.NUI.BaseComponents
 
                 AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
                     propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
-                
+
                 WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0,
                     propertyChanged: SetInternalWidthSpecificationProperty, defaultValueCreator: GetInternalWidthSpecificationProperty);
 
@@ -446,7 +443,6 @@ namespace Tizen.NUI.BaseComponents
                 RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
                 RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
                 RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
-#endif
             }
             RegisterAccessibilityDelegate();
         }
@@ -777,7 +773,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalExcludeLayoutingProperty(this);
+                    //should be same implementation with GetInternalExcludeLayoutingProperty
+                    return this.InternalExcludeLayouting;
                 }
             }
             set
@@ -788,7 +785,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalExcludeLayoutingProperty(this, null, value);
+                    //should be same implementation with SetInternalExcludeLayoutingProperty
+                    this.InternalExcludeLayouting = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -857,7 +855,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalKeyInputFocusProperty(this);
+                    //should be same implementation with GetInternalKeyInputFocusProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.KeyInputFocus);
                 }
             }
             set
@@ -868,7 +867,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalKeyInputFocusProperty(this, null, value);
+                    //should be same implementation with SetInternalKeyInputFocusProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.KeyInputFocus, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1174,7 +1174,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (VisualTransformPolicyType)GetInternalCornerRadiusPolicyProperty(this);
+                    //should be same implementation with GetInternalCornerRadiusPolicyProperty
+                    return this.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : this.backgroundExtraData.CornerRadiusPolicy;
                 }
             }
             set
@@ -1185,7 +1186,12 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCornerRadiusPolicyProperty(this, null, value);
+                    //should be same implementation with SetInternalCornerRadiusPolicyProperty
+                    (this.backgroundExtraData ?? (this.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = value;
+                    if (this.backgroundExtraData.CornerRadius != null)
+                    {
+                        this.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+                    }
                 }
             }
         }
@@ -1213,7 +1219,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalBorderlineWidthProperty(this);
+                    //should be same implementation with GetInternalBorderlineWidthProperty
+                    return this.backgroundExtraData == null ? 0.0f : this.backgroundExtraData.BorderlineWidth;
                 }
             }
             set
@@ -1224,7 +1231,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBorderlineWidthProperty(this, null, value);
+                    //should be same implementation with SetInternalBorderlineWidthProperty
+                    (this.backgroundExtraData ?? (this.backgroundExtraData = new BackgroundExtraData())).BorderlineWidth = value;
+                    this.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
                 }
                 NotifyPropertyChanged();
             }
@@ -1329,7 +1338,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalBorderlineOffsetProperty(this);
+                    //should be same implementation with GetInternalBorderlineOffsetProperty
+                    return this.backgroundExtraData == null ? 0.0f : this.backgroundExtraData.BorderlineOffset;
                 }
             }
             set
@@ -1340,7 +1350,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBorderlineOffsetProperty(this, null, value);
+                    //should be same implementation with SetInternalBorderlineOffsetProperty
+                    (this.backgroundExtraData ?? (this.backgroundExtraData = new BackgroundExtraData())).BorderlineOffset = value;
+                    this.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
                 }
                 NotifyPropertyChanged();
             }
@@ -1360,7 +1372,16 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (States)GetInternalStateProperty(this);
+                    //should be same implementation with GetInternalStateProperty
+                    int temp = 0;
+                    temp = Object.InternalGetPropertyInt(this.SwigCPtr, View.Property.STATE);
+                    switch (temp)
+                    {
+                        case 0: return States.Normal;
+                        case 1: return States.Focused;
+                        case 2: return States.Disabled;
+                        default: return States.Normal;
+                    }
                 }
             }
             set
@@ -1371,7 +1392,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalStateProperty(this, null, value);
+                    //should be same implementation with SetInternalStateProperty
+                    Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.STATE, (int)value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1391,7 +1413,10 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (States)GetInternalSubStateProperty(this);
+                    //should be same implementation with GetInternalSubStateProperty
+                    string temp;
+                    temp = Object.InternalGetPropertyString(this.SwigCPtr, View.Property.SubState);
+                    return temp.GetValueByDescription<States>();
                 }
             }
             set
@@ -1402,7 +1427,10 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSubStateProperty(this, null, value);
+                    //should be same implementation with SetInternalSubStateProperty
+                    string valueToString = "";
+                    valueToString = value.GetDescription();
+                    Object.InternalSetPropertyString(this.SwigCPtr, View.Property.SubState, valueToString);
                 }
                 NotifyPropertyChanged();
             }
@@ -1521,7 +1549,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalFlexProperty(this);
+                    //should be same implementation with GetInternalFlexProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, FlexContainer.ChildProperty.FLEX);
                 }
             }
             set
@@ -1532,7 +1561,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFlexProperty(this, null, value);
+                    //should be same implementation with SetInternalFlexProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, FlexContainer.ChildProperty.FLEX, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1554,7 +1584,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalAlignSelfProperty(this);
+                    //should be same implementation with GetInternalAlignSelfProperty
+                    return Object.InternalGetPropertyInt(this.SwigCPtr, FlexContainer.ChildProperty.AlignSelf);
                 }
             }
             set
@@ -1565,7 +1596,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAlignSelfProperty(this, null, value);
+                    //should be same implementation with SetInternalAlignSelfProperty
+                    Object.InternalSetPropertyInt(this.SwigCPtr, FlexContainer.ChildProperty.AlignSelf, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1640,8 +1672,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (Vector2)GetInternalCellIndexProperty(this);
                 }
-
-
             }
             set
             {
@@ -1653,8 +1683,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalCellIndexProperty(this, null, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -1676,7 +1704,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalRowSpanProperty(this);
+                    //should be same implementation with GetInternalRowSpanProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, TableView.ChildProperty.RowSpan);
                 }
             }
             set
@@ -1687,7 +1716,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRowSpanProperty(this, null, value);
+                    //should be same implementation with SetInternalRowSpanProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, TableView.ChildProperty.RowSpan, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1710,7 +1740,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalColumnSpanProperty(this);
+                    //should be same implementation with GetInternalColumnSpanProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, TableView.ChildProperty.ColumnSpan);
                 }
             }
             set
@@ -1721,7 +1752,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalColumnSpanProperty(this, null, value);
+                    //should be same implementation with SetInternalColumnSpanProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, TableView.ChildProperty.ColumnSpan, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1744,7 +1776,10 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (HorizontalAlignmentType)GetInternalCellHorizontalAlignmentProperty(this);
+                    //should be same implementation with GetInternalCellHorizontalAlignmentProperty
+                    string temp;
+                    temp = Object.InternalGetPropertyString(this.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment);
+                    return temp.GetValueByDescription<HorizontalAlignmentType>();
                 }
             }
             set
@@ -1755,7 +1790,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCellHorizontalAlignmentProperty(this, null, value);
+                    //should be same implementation with SetInternalCellHorizontalAlignmentProperty
+                    string valueToString = (value).GetDescription();
+                    Object.InternalSetPropertyString(this.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment, valueToString);
                 }
                 NotifyPropertyChanged();
             }
@@ -1778,7 +1815,10 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (VerticalAlignmentType)GetInternalCellVerticalAlignmentProperty(this);
+                    //should be same implementation with GetInternalCellVerticalAlignmentProperty
+                    string temp;
+                    temp = Object.InternalGetPropertyString(this.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment);
+                    return temp.GetValueByDescription<VerticalAlignmentType>();
                 }
             }
             set
@@ -1789,7 +1829,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCellVerticalAlignmentProperty(this, null, value);
+                    //should be same implementation with SetInternalCellVerticalAlignmentProperty
+                    string valueToString = (value).GetDescription();
+                    Object.InternalSetPropertyString(this.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment, valueToString);
                 }
                 NotifyPropertyChanged();
             }
@@ -2013,7 +2055,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusableProperty(this);
+                    //should be same implementation with GetInternalFocusableProperty
+                    return this.IsKeyboardFocusable();
                 }
             }
             set
@@ -2024,7 +2067,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusableProperty(this, null, value);
+                    //should be same implementation with SetInternalFocusableProperty
+                    this.SetKeyboardFocusable(value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2045,7 +2089,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusableChildrenProperty(this);
+                    //should be same implementation with GetInternalFocusableChildrenProperty
+                    return this.AreChildrenKeyBoardFocusable();
                 }
             }
             set
@@ -2056,7 +2101,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusableChildrenProperty(this, null, value);
+                    //should be same implementation with SetInternalFocusableChildrenProperty
+                    this.SetKeyboardFocusableChildren(value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2079,7 +2125,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusableInTouchProperty(this);
+                    //should be same implementation with GetInternalFocusableInTouchProperty
+                    return this.IsFocusableInTouch();
                 }
             }
             set
@@ -2090,7 +2137,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusableInTouchProperty(this, null, value);
+                    //should be same implementation with SetInternalFocusableInTouchProperty
+                    this.SetFocusableInTouch(value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2216,7 +2264,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalOpacityProperty(this);
+                    //should be same implementation with GetInternalOpacityProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.OPACITY);
                 }
             }
             set
@@ -2227,7 +2276,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalOpacityProperty(this, null, value);
+                    //should be same implementation with SetInternalOpacityProperty
+                    //Selector using code has been removed because the Selector is not used when IsUsingXaml is false
+                    this.SetOpacity(value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2276,7 +2327,6 @@ namespace Tizen.NUI.BaseComponents
                 else
                 {
                     SetInternalPosition2DProperty(this, null, value);
-
                 }
                 NotifyPropertyChanged();
             }
@@ -2329,7 +2379,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalPositionUsesPivotPointProperty(this);
+                    //should be same implementation with GetInternalPositionUsesPivotPointProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.PositionUsesAnchorPoint);
                 }
             }
             set
@@ -2340,7 +2391,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPositionUsesPivotPointProperty(this, null, value);
+                    //should be same implementation with SetInternalPositionUsesPivotPointProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.PositionUsesAnchorPoint, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2367,7 +2419,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalPositionUsesAnchorPointProperty(this);
+                    //should be same implementation with GetInternalPositionUsesAnchorPointProperty
+                    return this.InternalPositionUsesAnchorPoint;
                 }
             }
             set
@@ -2378,7 +2431,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPositionUsesAnchorPointProperty(this, null, value);
+                    //should be same implementation with SetInternalPositionUsesAnchorPointProperty
+                    this.InternalPositionUsesAnchorPoint = value;
                 }
             }
         }
@@ -2440,7 +2494,15 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalSiblingOrderProperty(this);
+                    //should be same implementation with GetInternalSiblingOrderProperty
+                    var parentChildren = this.GetParent()?.Children;
+                    if (parentChildren != null)
+                    {
+                        int currentOrder = parentChildren.IndexOf(this);
+                        if (currentOrder < 0) { return 0; }
+                        else if (currentOrder < parentChildren.Count) { return currentOrder; }
+                    }
+                    return 0;
                 }
             }
             set
@@ -2451,7 +2513,27 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSiblingOrderProperty(this, null, value);
+                    //should be same implementation with SetInternalSiblingOrderProperty
+                    if (value < 0)
+                    {
+                        NUILog.Error("SiblingOrder should be bigger than 0 or equal to 0.");
+                        return;
+                    }
+                    var siblings = this.GetParent()?.Children;
+                    if (siblings != null)
+                    {
+                        int currentOrder = siblings.IndexOf(this);
+                        if (value != currentOrder)
+                        {
+                            if (value == 0) { this.LowerToBottom(); }
+                            else if (value < siblings.Count - 1)
+                            {
+                                if (value > currentOrder) { this.RaiseAbove(siblings[value]); }
+                                else { this.LowerBelow(siblings[value]); }
+                            }
+                            else { this.RaiseToTop(); }
+                        }
+                    }
                 }
                 Layout?.ChangeLayoutSiblingOrder(value);
                 NotifyPropertyChanged();
@@ -2607,10 +2689,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalSizeWidthProperty(this);
+                    //should be same implementation with GetInternalSizeWidthProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.SizeWidth);
                 }
-
-
             }
             set
             {
@@ -2620,9 +2701,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSizeWidthProperty(this, null, value);
-                }
+                    //should be same implementation with SetInternalSizeWidthProperty
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    float width = value;
+                    this.userSizeWidth = width;
 
+                    // To avoid duplicated size setup, change internal policy directly.
+                    int widthPolicy = (int)System.Math.Ceiling(width);
+                    if (this.widthPolicy != widthPolicy)
+                    {
+                        this.widthPolicy = widthPolicy;
+                        this.layout?.RequestLayout();
+                    }
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.SizeWidth, width);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2649,10 +2744,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalSizeHeightProperty(this);
+                    //should be same implementation with GetInternalSizeHeightProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.SizeHeight);
                 }
-
-
             }
             set
             {
@@ -2662,10 +2756,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSizeHeightProperty(this, null, value);
+                    //should be same implementation with SetInternalSizeHeightProperty
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    float height = value;
+                    this.userSizeHeight = height;
+
+                    // To avoid duplicated size setup, change internal policy directly.
+                    int heightPolicy = (int)System.Math.Ceiling(height);
+                    if (this.heightPolicy != heightPolicy)
+                    {
+                        this.heightPolicy = heightPolicy;
+                        this.layout?.RequestLayout();
+                    }
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.SizeHeight, height);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -2745,7 +2852,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalPositionXProperty(this);
+                    //should be same implementation with GetInternalPositionXProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.PositionX);
                 }
             }
             set
@@ -2756,7 +2864,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPositionXProperty(this, null, value);
+                    //should be same implementation with SetInternalPositionXProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.PositionX, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2784,7 +2893,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalPositionYProperty(this);
+                    //should be same implementation with GetInternalPositionYProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.PositionY);
                 }
             }
             set
@@ -2795,7 +2905,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPositionYProperty(this, null, value);
+                    //should be same implementation with SetInternalPositionYProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.PositionY, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2823,7 +2934,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalPositionZProperty(this);
+                    //should be same implementation with GetInternalPositionZProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.PositionZ);
                 }
             }
             set
@@ -2834,7 +2946,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPositionZProperty(this, null, value);
+                    //should be same implementation with SetInternalPositionZProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.PositionZ, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2947,8 +3060,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (Vector3)GetInternalScaleProperty(this);
                 }
-
-
             }
             set
             {
@@ -2960,8 +3071,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalScaleProperty(this, null, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -2988,10 +3097,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalScaleXProperty(this);
+                    //should be same implementation with GetInternalScaleXProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.ScaleX);
                 }
-
-
             }
             set
             {
@@ -3001,10 +3109,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScaleXProperty(this, null, value);
+                    //should be same implementation with SetInternalScaleXProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.ScaleX, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -3031,10 +3138,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalScaleYProperty(this);
+                    //should be same implementation with GetInternalScaleYProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.ScaleY);
                 }
-
-
             }
             set
             {
@@ -3044,10 +3150,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScaleYProperty(this, null, value);
+                    //should be same implementation with SetInternalScaleYProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.ScaleY, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -3074,10 +3179,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalScaleZProperty(this);
+                    //should be same implementation with GetInternalScaleZProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.ScaleZ);
                 }
-
-
             }
             set
             {
@@ -3087,10 +3191,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScaleZProperty(this, null, value);
+                    //should be same implementation with SetInternalScaleZProperty
+                    Object.InternalSetPropertyFloat(this.SwigCPtr, View.Property.ScaleZ, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -3159,8 +3262,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (string)GetInternalNameProperty(this);
                 }
-
-
             }
             set
             {
@@ -3172,8 +3273,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalNameProperty(this, null, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -3218,7 +3317,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalSensitiveProperty(this);
+                    //should be same implementation with GetInternalSensitiveProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.SENSITIVE);
                 }
             }
             set
@@ -3229,7 +3329,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSensitiveProperty(this, null, value);
+                    //should be same implementation with SetInternalSensitiveProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.SENSITIVE, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3251,7 +3352,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalIsEnabledProperty(this);
+                    //should be same implementation with GetInternalIsEnabledProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.UserInteractionEnabled);
                 }
             }
             set
@@ -3262,7 +3364,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalIsEnabledProperty(this, null, value);
+                    //should be same implementation with SetInternalIsEnabledProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.UserInteractionEnabled, value);
+                    this.OnEnabled(value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3282,7 +3386,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalLeaveRequiredProperty(this);
+                    //should be same implementation with GetInternalLeaveRequiredProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.LeaveRequired);
                 }
             }
             set
@@ -3293,7 +3398,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLeaveRequiredProperty(this, null, value);
+                    //should be same implementation with SetInternalLeaveRequiredProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.LeaveRequired, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3313,7 +3419,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalInheritOrientationProperty(this);
+                    //should be same implementation with GetInternalInheritOrientationProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.InheritOrientation);
                 }
             }
             set
@@ -3324,7 +3431,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalInheritOrientationProperty(this, null, value);
+                    //should be same implementation with SetInternalInheritOrientationProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.InheritOrientation, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3344,7 +3452,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalInheritScaleProperty(this);
+                    //should be same implementation with GetInternalInheritScaleProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.InheritScale);
                 }
             }
             set
@@ -3355,7 +3464,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalInheritScaleProperty(this, null, value);
+                    //should be same implementation with SetInternalInheritScaleProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.InheritScale, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3380,7 +3490,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (DrawModeType)GetInternalDrawModeProperty(this);
+                    //should be same implementation with GetInternalDrawModeProperty
+                    return (DrawModeType)Object.InternalGetPropertyInt(this.SwigCPtr, View.Property.DrawMode);
                 }
             }
             set
@@ -3391,7 +3502,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDrawModeProperty(this, null, value);
+                    //should be same implementation with SetInternalDrawModeProperty
+                    Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.DrawMode, (int)value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3429,8 +3541,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (Vector3)GetInternalSizeModeFactorProperty(this);
                 }
-
-
             }
             set
             {
@@ -3442,8 +3552,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalSizeModeFactorProperty(this, null, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -3462,7 +3570,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (ResizePolicyType)GetInternalWidthResizePolicyProperty(this);
+                    //should be same implementation with GetInternalWidthResizePolicyProperty
+                    string temp = Object.InternalGetPropertyString(this.SwigCPtr, View.Property.WidthResizePolicy);
+                    return temp.GetValueByDescription<ResizePolicyType>();
                 }
             }
             set
@@ -3473,7 +3583,45 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalWidthResizePolicyProperty(this, null, value);
+                    //should be same implementation with SetInternalWidthResizePolicyProperty
+                    if (value == ResizePolicyType.KeepSizeFollowingParent)
+                    {
+                        if (this.widthConstraint == null)
+                        {
+                            this.widthConstraint = new EqualConstraintWithParentFloat(this.SwigCPtr, View.Property.SizeWidth, View.Property.SizeWidth);
+                            this.widthConstraint.Apply();
+                        }
+                        Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.WidthResizePolicy, (int)ResizePolicyType.FillToParent);
+                    }
+                    else
+                    {
+                        this.widthConstraint?.Remove();
+                        this.widthConstraint?.Dispose();
+                        this.widthConstraint = null;
+                        Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.WidthResizePolicy, (int)value);
+                    }
+                    // Match ResizePolicy to new Layouting.
+                    // Parent relative policies can not be mapped at this point as parent size unknown.
+                    switch (value)
+                    {
+                        case ResizePolicyType.UseNaturalSize:
+                            {
+                                this.WidthSpecification = LayoutParamPolicies.WrapContent;
+                                break;
+                            }
+                        case ResizePolicyType.FillToParent:
+                            {
+                                this.WidthSpecification = LayoutParamPolicies.MatchParent;
+                                break;
+                            }
+                        case ResizePolicyType.FitToChildren:
+                            {
+                                this.WidthSpecification = LayoutParamPolicies.WrapContent;
+                                break;
+                            }
+                        default:
+                            break;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -3493,7 +3641,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (ResizePolicyType)GetInternalHeightResizePolicyProperty(this);
+                    //should be same implementation with GetInternalHeightResizePolicyProperty
+                    string temp = Object.InternalGetPropertyString(this.SwigCPtr, View.Property.HeightResizePolicy);
+                    return temp.GetValueByDescription<ResizePolicyType>();
                 }
             }
             set
@@ -3504,7 +3654,46 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalHeightResizePolicyProperty(this, null, value);
+                    //should be same implementation with SetInternalHeightResizePolicyProperty
+                    if (value == ResizePolicyType.KeepSizeFollowingParent)
+                    {
+                        if (this.heightConstraint == null)
+                        {
+                            this.heightConstraint = new EqualConstraintWithParentFloat(this.SwigCPtr, View.Property.SizeHeight, View.Property.SizeHeight);
+                            this.heightConstraint.Apply();
+                        }
+                        Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.HeightResizePolicy, (int)ResizePolicyType.FillToParent);
+                    }
+                    else
+                    {
+                        this.heightConstraint?.Remove();
+                        this.heightConstraint?.Dispose();
+                        this.heightConstraint = null;
+
+                        Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.HeightResizePolicy, (int)value);
+                    }
+                    // Match ResizePolicy to new Layouting.
+                    // Parent relative policies can not be mapped at this point as parent size unknown.
+                    switch (value)
+                    {
+                        case ResizePolicyType.UseNaturalSize:
+                            {
+                                this.HeightSpecification = LayoutParamPolicies.WrapContent;
+                                break;
+                            }
+                        case ResizePolicyType.FillToParent:
+                            {
+                                this.HeightSpecification = LayoutParamPolicies.MatchParent;
+                                break;
+                            }
+                        case ResizePolicyType.FitToChildren:
+                            {
+                                this.HeightSpecification = LayoutParamPolicies.WrapContent;
+                                break;
+                            }
+                        default:
+                            break;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -3525,7 +3714,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (SizeScalePolicyType)GetInternalSizeScalePolicyProperty(this);
+                    //should be same implementation with GetInternalSizeScalePolicyProperty
+                    return (SizeScalePolicyType)Object.InternalGetPropertyInt(this.SwigCPtr, View.Property.SizeScalePolicy);
                 }
             }
             set
@@ -3536,7 +3726,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSizeScalePolicyProperty(this, null, value);
+                    //should be same implementation with SetInternalSizeScalePolicyProperty
+                    string valueToString = (value).GetDescription();
+                    Object.InternalSetPropertyString(this.SwigCPtr, View.Property.SizeScalePolicy, valueToString);
                 }
                 NotifyPropertyChanged();
             }
@@ -3556,7 +3748,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalWidthForHeightProperty(this);
+                    //should be same implementation with GetInternalWidthForHeightProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.WidthForHeight);
                 }
             }
             set
@@ -3567,7 +3760,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalWidthForHeightProperty(this, null, value);
+                    //should be same implementation with SetInternalWidthForHeightProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.WidthForHeight, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3587,7 +3781,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalHeightForWidthProperty(this);
+                    //should be same implementation with GetInternalHeightForWidthProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.HeightForWidth);
                 }
             }
             set
@@ -3598,7 +3793,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalHeightForWidthProperty(this, null, value);
+                    //should be same implementation with SetInternalHeightForWidthProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.HeightForWidth, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3634,8 +3830,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (Extents)GetInternalPaddingProperty(this);
                 }
-
-
             }
             set
             {
@@ -3647,8 +3841,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalPaddingProperty(this, null, value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -3684,7 +3876,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (Size2D)GetInternalMinimumSizeProperty(this);
                 }
-
             }
             set
             {
@@ -3708,7 +3899,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalMinimumSizeProperty(this, null, value);
                 }
-
                 NotifyPropertyChanged();
             }
         }
@@ -3758,7 +3948,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalMaximumSizeProperty(this, null, value);
                 }
-
                 NotifyPropertyChanged();
             }
         }
@@ -3779,7 +3968,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalInheritPositionProperty(this);
+                    //should be same implementation with GetInternalInheritPositionProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.InheritPosition);
                 }
             }
             set
@@ -3790,7 +3980,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalInheritPositionProperty(this, null, value);
+                    //should be same implementation with SetInternalInheritPositionProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.InheritPosition, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3810,7 +4001,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (ClippingModeType)GetInternalClippingModeProperty(this);
+                    //should be same implementation with GetInternalClippingModeProperty
+                    return (ClippingModeType)Object.InternalGetPropertyInt(this.SwigCPtr, View.Property.ClippingMode);
                 }
             }
             set
@@ -3821,7 +4013,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalClippingModeProperty(this, null, value);
+                    //should be same implementation with SetInternalClippingModeProperty
+                    Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.ClippingMode, (int)value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3864,8 +4057,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     return (Position)GetInternalAnchorPointProperty(this);
                 }
-
-
             }
             set
             {
@@ -3877,7 +4068,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalAnchorPointProperty(this, null, value);
                 }
-
             }
         }
 
@@ -3998,7 +4188,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalInheritLayoutDirectionProperty(this);
+                    //should be same implementation with GetInternalInheritLayoutDirectionProperty
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.InheritLayoutDirection);
                 }
             }
             set
@@ -4009,7 +4200,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalInheritLayoutDirectionProperty(this, null, value);
+                    //should be same implementation with SetInternalInheritLayoutDirectionProperty
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.InheritLayoutDirection, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -4029,7 +4221,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (ViewLayoutDirectionType)GetInternalLayoutDirectionProperty(this);
+                    //should be same implementation with GetInternalLayoutDirectionProperty
+                    return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(this.SwigCPtr, View.Property.LayoutDirection);
                 }
             }
             set
@@ -4040,7 +4233,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLayoutDirectionProperty(this, null, value);
+                    //should be same implementation with SetInternalLayoutDirectionProperty
+                    Object.InternalSetPropertyInt(this.SwigCPtr, View.Property.LayoutDirection, (int)value);
                 }
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
@@ -4126,7 +4320,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalWidthSpecificationProperty(this);
+                    //should be same implementation with GetInternalWidthSpecificationProperty
+                    return this.InternalWidthSpecification;
                 }
             }
             set
@@ -4137,7 +4332,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalWidthSpecificationProperty(this, null, value);
+                    //should be same implementation with SetInternalWidthSpecificationProperty
+                    this.InternalWidthSpecification = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -4193,7 +4389,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalHeightSpecificationProperty(this);
+                    //should be same implementation with GetInternalHeightSpecificationProperty
+                    return this.InternalHeightSpecification;
                 }
             }
             set
@@ -4204,7 +4401,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalHeightSpecificationProperty(this, null, value);
+                    //should be same implementation with SetInternalHeightSpecificationProperty
+                    this.InternalHeightSpecification = (int)value;
                 }
                 NotifyPropertyChanged();
             }
@@ -4438,10 +4636,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalColorRedProperty(this);
+                    //should be same implementation with GetInternalColorRedProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.ColorRed);
                 }
-
-
             }
             set
             {
@@ -4451,10 +4648,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalColorRedProperty(this, null, value);
+                    //should be same implementation with SetInternalColorRedProperty
+                    this.SetColorRed(value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -4478,10 +4674,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalColorGreenProperty(this);
+                    //should be same implementation with GetInternalColorGreenProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.ColorGreen);
                 }
-
-
             }
             set
             {
@@ -4491,10 +4686,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalColorGreenProperty(this, null, value);
+                    //should be same implementation with SetInternalColorGreenProperty
+                    this.SetColorGreen(value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -4518,10 +4712,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalColorBlueProperty(this);
+                    //should be same implementation with GetInternalColorBlueProperty
+                    return Object.InternalGetPropertyFloat(this.SwigCPtr, View.Property.ColorBlue);
                 }
-
-
             }
             set
             {
@@ -4531,10 +4724,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalColorBlueProperty(this, null, value);
+                    //should be same implementation with SetInternalColorBlueProperty
+                    this.SetColorBlue(value);
                 }
-
-
                 NotifyPropertyChanged();
             }
         }
@@ -4707,7 +4899,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalBackgroundImageSynchronosLoadingProperty(this);
+                    //should be same implementation with GetInternalBackgroundImageSynchronosLoadingProperty
+                    return this.InternalBackgroundImageSynchronosLoading;
                 }
             }
             set
@@ -4718,7 +4911,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBackgroundImageSynchronosLoadingProperty(this, null, value);
+                    //should be same implementation with SetInternalBackgroundImageSynchronosLoadingProperty
+                    this.InternalBackgroundImageSynchronosLoading = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -4753,7 +4947,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalBackgroundImageSynchronousLoadingProperty(this);
+                    //should be same implementation with GetInternalBackgroundImageSynchronousLoadingProperty
+                    return this.InternalBackgroundImageSynchronousLoading;
                 }
             }
             set
@@ -4764,7 +4959,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBackgroundImageSynchronousLoadingProperty(this, null, value);
+                    //should be same implementation with SetInternalBackgroundImageSynchronousLoadingProperty
+                    this.InternalBackgroundImageSynchronousLoading = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -4840,7 +5036,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableControlStatePropagationProperty(this);
+                    //should be same implementation with GetInternalEnableControlStatePropagationProperty
+                    return this.InternalEnableControlStatePropagation;
                 }
             }
             set
@@ -4851,7 +5048,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalEnableControlStatePropagationProperty(this, null, value);
+                    //should be same implementation with SetInternalEnableControlStatePropagationProperty
+                    this.InternalEnableControlStatePropagation = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -4931,7 +5129,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableControlStateProperty(this);
+                    //should be same implementation with GetInternalEnableControlStateProperty
+                    return this.enableControlState;
                 }
             }
             set
@@ -4942,7 +5141,21 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalEnableControlStateProperty(this, null, value);
+                    //should be same implementation with SetInternalEnableControlStateProperty
+                    bool prev = this.enableControlState;
+                    this.enableControlState = value;
+
+                    if (prev != this.enableControlState)
+                    {
+                        if (prev)
+                        {
+                            this.TouchEvent -= this.EmptyOnTouch;
+                        }
+                        else
+                        {
+                            this.TouchEvent += this.EmptyOnTouch;
+                        }
+                    }
                 }
             }
         }
@@ -4962,7 +5175,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalGrabTouchAfterLeaveProperty(this);
+                    //should be same implementation with GetInternalGrabTouchAfterLeaveProperty
+                    return this.InternalGrabTouchAfterLeave;
                 }
             }
             set
@@ -4973,7 +5187,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalGrabTouchAfterLeaveProperty(this, null, value);
+                    //should be same implementation with SetInternalGrabTouchAfterLeaveProperty
+                    this.InternalGrabTouchAfterLeave = value;
                 }
             }
         }
@@ -5017,7 +5232,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalAllowOnlyOwnTouchProperty(this);
+                    //should be same implementation with GetInternalAllowOnlyOwnTouchProperty
+                    return this.InternalAllowOnlyOwnTouch;
                 }
             }
             set
@@ -5028,7 +5244,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAllowOnlyOwnTouchProperty(this, null, value);
+                    //should be same implementation with SetInternalAllowOnlyOwnTouchProperty
+                    this.InternalAllowOnlyOwnTouch = value;
                 }
             }
         }
@@ -5062,7 +5279,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (BlendEquationType)GetInternalBlendEquationProperty(this);
+                    //should be same implementation with GetInternalBlendEquationProperty
+                    return this.InternalBlendEquation;
                 }
             }
             set
@@ -5073,7 +5291,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBlendEquationProperty(this, null, value);
+                    //should be same implementation with SetInternalBlendEquationProperty
+                    this.InternalBlendEquation = value;
                 }
             }
         }
@@ -5106,7 +5325,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalThemeChangeSensitiveProperty(this);
+                    //should be same implementation with GetInternalThemeChangeSensitiveProperty
+                    return this.themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
                 }
             }
             set
@@ -5117,7 +5337,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalThemeChangeSensitiveProperty(this, null, value);
+                    //should be same implementation with SetInternalThemeChangeSensitiveProperty
+                    if (this.ThemeChangeSensitive == value) return;
+        
+                    if (this.themeData == null) this.themeData = new ThemeData();
+
+                    this.themeData.ThemeChangeSensitive = value;
+
+                    if (this.themeData.ThemeChangeSensitive && !this.themeData.ListeningThemeChangeEvent)
+                    {
+                        this.themeData.ListeningThemeChangeEvent = true;
+                        ThemeManager.ThemeChangedInternal.Add(this.OnThemeChanged);
+                    }
+                    else if (!this.themeData.ThemeChangeSensitive && this.themeData.ListeningThemeChangeEvent)
+                    {
+                        this.themeData.ListeningThemeChangeEvent = false;
+                        ThemeManager.ThemeChangedInternal.Remove(this.OnThemeChanged);
+                    }
                 }
             }
         }
