@@ -324,6 +324,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets ImageUrl that is saved captured image.
+        /// </summary>
+        /// <returns>ImageUrl that is saved captured image.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GetImageUrl()
+        {
+            IntPtr cPtr = Interop.Capture.GetImageUrl(SwigCPtr);
+            ImageUrl ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ImageUrl;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+            }
+            else
+            {
+                ret = new ImageUrl(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
         /// Get NativeImageSource that is saved captured image.
         /// </summary>
         /// <returns>NativeImageSource that is saved captured image.</returns>
