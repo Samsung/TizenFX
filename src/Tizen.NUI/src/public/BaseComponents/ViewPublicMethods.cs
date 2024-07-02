@@ -312,6 +312,28 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Sets render effect to the view. The effect is applied to at most one view.
+        /// </summary>
+        /// <param name="effect">A render effect to set.</param>
+        /// <since_tizen> 12 </since_tizen>
+        public void SetRenderEffect(RenderEffect effect)
+        {
+            Interop.View.SetRenderEffect(SwigCPtr, RenderEffect.getCPtr(effect));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clears render effect.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public void ClearRenderEffect()
+        {
+            Interop.View.ClearRenderEffect(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
         /// Shows the view.
         /// </summary>
         /// <remarks>
