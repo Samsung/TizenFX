@@ -52,7 +52,7 @@ namespace Tizen.NUI
         {
             Tizen.Log.Debug("NUI", $"DisposeQueue is destroyed\n");
             initialized = false;
-            if (processorRegistered && ProcessorController.Instance.Initialized)
+            if (processorRegistered && ProcessorController.Initialized)
             {
                 processorRegistered = false;
                 ProcessorController.Instance.ProcessorOnceEvent -= TriggerProcessDisposables;
@@ -158,7 +158,7 @@ namespace Tizen.NUI
             if (incrementallyDisposedQueue.Count > 0)
             {
                 if (!incrementalDisposeSupported ||
-                    (!fullCollectRequested && !ProcessorController.Instance.Initialized))
+                    (!fullCollectRequested && !ProcessorController.Initialized))
                 {
                     // Full Dispose if IncrementalDisposeSupported is false, or ProcessorController is not initialized yet.
                     fullCollectRequested = true;
@@ -189,7 +189,7 @@ namespace Tizen.NUI
 
             if (incrementallyDisposedQueue.Count > 0)
             {
-                if (ProcessorController.Instance.Initialized && !processorRegistered)
+                if (ProcessorController.Initialized && !processorRegistered)
                 {
                     processorRegistered = true;
                     ProcessorController.Instance.ProcessorOnceEvent += TriggerProcessDisposables;
