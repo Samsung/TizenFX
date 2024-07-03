@@ -45,6 +45,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.NUI.FLUX.Components, " + Tizen.NUI.PublicKey.TizenFLUX)]
 [assembly: InternalsVisibleTo("Tizen.DA.FLUX.Components, " + Tizen.NUI.PublicKey.TizenFLUX)]
 
+[assembly: InternalsVisibleTo("Tizen.NUI2, " + Tizen.NUI.PublicKey.TizenNUI2)]
+
 namespace Tizen.NUI
 {
     internal static class PublicKey
@@ -68,6 +70,12 @@ namespace Tizen.NUI
             "e6b2035e799be5ab69a41ede17cad2e2b7967fbf49b685452496be0";
 
         internal const string TizenFLUX =
+            "PublicKey=0024000004800000940000000602000000240000525341310004000001000100ed445c2a988d35b" +
+            "99e5766f42eef33d89d1f67225db051f011abcfce47a4788875c39750a2e5695f1ec117f41d96610419811762" +
+            "669f98131db30a6e64c6bb8fde3731f373f6cda4c0087d121f5108559f216dc015807dc46ec5a4d1b63f5deff" +
+            "64c01754a0db0dc849bc300672572cbd2697432ab6c193ebf9fade6bf0f2aad";
+
+        internal const string TizenNUI2 =
             "PublicKey=0024000004800000940000000602000000240000525341310004000001000100ed445c2a988d35b" +
             "99e5766f42eef33d89d1f67225db051f011abcfce47a4788875c39750a2e5695f1ec117f41d96610419811762" +
             "669f98131db30a6e64c6bb8fde3731f373f6cda4c0087d121f5108559f216dc015807dc46ec5a4d1b63f5deff" +
