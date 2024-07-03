@@ -684,12 +684,6 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Initialize();
             Tizen.Tracer.End();
 
-            Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
-            Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
-            // Initialize ProcessorController Singleton class. This is also required to create ProcessorController on main thread.
-            ProcessorController.Instance.Initialize();
-            Tizen.Tracer.End();
-
             Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
             Window.Instance = GetWindow();
