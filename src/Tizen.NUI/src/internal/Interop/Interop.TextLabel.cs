@@ -192,6 +192,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_CUTOUT_get")]
             public static extern int CutoutGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithFixedSize")]
+            public static extern void RequestAsyncRenderWithFixedSize(global::System.Runtime.InteropServices.HandleRef textLabelRef, float width, float height);
         }
     }
 }

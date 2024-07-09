@@ -321,6 +321,21 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Requests asynchronous rendering of text with a fixed size.
+        /// </summary>
+        /// <param name="width">The width of text to render.</param>
+        /// <param name="height">The height of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncLoad is true.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithFixedSize(float width, float height)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithFixedSize(SwigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
