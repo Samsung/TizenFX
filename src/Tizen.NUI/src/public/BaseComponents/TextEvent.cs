@@ -47,4 +47,27 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public InputFilterType Type { get; set; }
     }
+
+    /// <summary>
+    /// AsyncTextRenderedEventArgs is a class to record async text rendered event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AsyncTextRenderedEventArgs : EventArgs
+    {
+        public AsyncTextRenderedEventArgs(float width, float height)
+        {
+            Width = width;
+            Height = height;
+        }
+
+        /// <summary>
+        /// The rendered width.
+        /// </summary>
+        public float Width { get; }
+
+        /// <summary>
+        /// The rendered height.
+        /// </summary>
+        public float Height { get; }
+    }
 }

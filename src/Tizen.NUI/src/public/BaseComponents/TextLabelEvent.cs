@@ -35,11 +35,57 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler textLabelTextFitChangedEventHandler;
         private TextFitChangedCallbackDelegate textLabelTextFitChangedCallbackDelegate;
 
+        private EventHandler<AsyncTextRenderedEventArgs> textLabelAsyncTextRenderedEventHandler;
+        private AsyncTextRenderedCallbackDelegate textLabelAsyncTextRenderedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TextFitChangedCallbackDelegate(IntPtr textLabel);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AsyncTextRenderedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+        /// <summary>
+        /// The AsyncTextRendered signal is emitted when the async text rendered.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AsyncTextRenderedEventArgs> AsyncTextRendered
+        {
+            add
+            {
+                if (textLabelAsyncTextRenderedEventHandler == null)
+                {
+                    textLabelAsyncTextRenderedCallbackDelegate = (OnAsyncTextRendered);
+                    AsyncTextRenderedSignal().Connect(textLabelAsyncTextRenderedCallbackDelegate);
+                }
+                textLabelAsyncTextRenderedEventHandler += value;
+            }
+            remove
+            {
+                textLabelAsyncTextRenderedEventHandler -= value;
+                if (textLabelAsyncTextRenderedEventHandler == null && AsyncTextRenderedSignal().Empty() == false)
+                {
+                    AsyncTextRenderedSignal().Disconnect(textLabelAsyncTextRenderedCallbackDelegate);
+                }
+            }
+        }
+
+        internal TextLabelSignal AsyncTextRenderedSignal()
+        {
+            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AsyncTextRenderedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnAsyncTextRendered(IntPtr textLabel, float width, float height)
+        {
+            AsyncTextRenderedEventArgs e = new AsyncTextRenderedEventArgs(width, height);
+
+            //here we send all data to user event handlers
+            textLabelAsyncTextRenderedEventHandler?.Invoke(this, e);
+        }
 
         /// <summary>
         /// The AnchorClicked signal is emitted when the anchor is clicked.
