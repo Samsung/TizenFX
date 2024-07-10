@@ -352,6 +352,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Requests asynchronous rendering with the maximum available width using the given widthConstraint.
+        /// </summary>
+        /// <param name="widthConstraint">The maximum available width of text to render.</param>
+        /// <remarks>
+        /// If the width of the text content is smaller than the widthConstraint, the width will be determined by the width of the text.<br />
+        /// If the width of the text content is larger than the widthConstraint, the width will be determined by the widthConstraint.<br />
+        /// The height is determined by the content of the text when rendered with the given width.<br />
+        /// In this case, the result will be the same as the height returned by GetHeightForWidth.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithConstraint(float widthConstraint)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithConstraint(SwigCPtr, widthConstraint);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>

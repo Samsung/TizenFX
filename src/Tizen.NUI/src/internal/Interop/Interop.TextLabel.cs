@@ -199,6 +199,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithFixedWidth")]
             public static extern void RequestAsyncRenderWithFixedWidth(global::System.Runtime.InteropServices.HandleRef textLabelRef, float width);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithConstraint")]
+            public static extern void RequestAsyncRenderWithConstraint(global::System.Runtime.InteropServices.HandleRef textLabelRef, float widthConstraint);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AsyncTextRenderedSignal")]
             public static extern global::System.IntPtr AsyncTextRenderedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
