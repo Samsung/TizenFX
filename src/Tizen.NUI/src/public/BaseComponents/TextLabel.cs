@@ -217,6 +217,9 @@ namespace Tizen.NUI.BaseComponents
 
                 CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
                     propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
+
+                RenderModeProperty = BindableProperty.Create(nameof(RenderMode), typeof(TextRenderMode), typeof(TextLabel), TextRenderMode.Sync,
+                    propertyChanged: SetInternalRenderModeProperty, defaultValueCreator: GetInternalRenderModeProperty);
             }
         }
 
@@ -326,7 +329,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width of text to render.</param>
         /// <param name="height">The height of text to render.</param>
         /// <remarks>
-        /// Only works when AsyncLoad is true.
+        /// Only works when AsyncMode.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncRenderWithFixedSize(float width, float height)
@@ -341,7 +344,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width of text to render.</param>
         /// <param name="heightConstraint">The maximum available height of text to render.</param>
         /// <remarks>
-        /// Only works when AsyncLoad is true.<br />
+        /// Only works when AsyncMode.<br />
         /// The height is determined by the content of the text when rendered with the given width.<br />
         /// The result will be the same as the height returned by GetHeightForWidth.
         /// If the heightConstraint is given, the maximum height will be the heightConstraint.
@@ -2563,6 +2566,44 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The RenderMode property.
+        /// </summary>
+        /// <remarks>
+        /// Sync : default, synchronous text loading.<br />
+        /// AsyncAuto : automatically requests an asynchronous text load in OnRelayout.<br />
+        /// AsyncManual : users should manually request rendering using the async text method.<br />
+        /// All text rendering processes (update/layout/render) are performed asynchronously in AsyncAuto and AsyncManual.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextRenderMode RenderMode
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (TextRenderMode)GetValue(RenderModeProperty);
+                }
+                else
+                {
+                    return (TextRenderMode)GetInternalRenderModeProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RenderModeProperty, value);
+                }
+                else
+                {
+                    SetInternalRenderModeProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -2789,6 +2830,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RemoveFrontInset = Interop.TextLabel.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
+            internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
 
 
             internal static void Preload()
