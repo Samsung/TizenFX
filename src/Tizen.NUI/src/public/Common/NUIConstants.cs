@@ -2208,6 +2208,28 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the render mode of text.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextRenderMode
+    {
+        /// <summary>
+        /// default, synchronous text loading.
+        /// </summary>
+        Sync,
+
+        /// <summary>
+        /// automatically requests an asynchronous text load in OnRelayout.
+        /// </summary>
+        AsyncAuto,
+
+        /// <summary>
+        /// users should manually request rendering using the async text method.
+        /// </summary>
+        AsyncManual
+    }
+
+    /// <summary>
     /// Pre-defined SlideTransition Direction
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
