@@ -336,6 +336,22 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Requests asynchronous text rendering with a fixed width.
+        /// </summary>
+        /// <param name="width">The width of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncLoad is true.<br />
+        /// The height is determined by the content of the text when rendered with the given width.<br />
+        /// The result will be the same as the height returned by GetHeightForWidth.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithFixedWidth(float width)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithFixedWidth(SwigCPtr, width);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
