@@ -275,12 +275,10 @@ namespace Tizen.NUI
                     foreach (System.Attribute attr in attrs)
                     {
                         // If the Scriptable attribute exists, then register it with the type registry.
-                        if (attr is ScriptableProperty)
+                        // first get the attribute type, ( default, or animatable)
+                        if (attr is ScriptableProperty scriptableProp)
                         {
                             NUILog.Debug("Got a DALi JSON scriptable property = " + propertyInfo.Name + ", of type " + propertyInfo.PropertyType.Name);
-
-                            // first get the attribute type, ( default, or animatable)
-                            ScriptableProperty scriptableProp = attr as ScriptableProperty;
 
                             // we get the start property index, based on the type and it's hierarchy, e.g. DateView (70,000)-> Spin (60,000) -> View (50,000)
                             int propertyIndex = propertyRangeManager.GetPropertyIndex(viewType.ToString(), viewType, scriptableProp.type);
@@ -373,7 +371,7 @@ namespace Tizen.NUI
             if (view != null)
             {
                 // call the get property function
-                System.Object val = view.GetType().GetProperty(propertyName).GetAccessors()[0].Invoke(view, null);
+                System.Object val = view.GetType().GetProperty(propertyName)?.GetAccessors()[0].Invoke(view, null);
 
                 PropertyValue value = PropertyValue.CreateFromObject(val);
                 IntPtr ptr = (IntPtr)PropertyValue.getCPtr(value);
@@ -403,7 +401,7 @@ namespace Tizen.NUI
             {
                 System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName);
                 // We know the property name, we know it's type, we just need to convert from a DALi property value to native C# type
-                System.Type type = propertyInfo.PropertyType;
+                System.Type type = propertyInfo?.PropertyType;
                 bool ok = false;
 
                 if (type.Equals(typeof(Int32)))
