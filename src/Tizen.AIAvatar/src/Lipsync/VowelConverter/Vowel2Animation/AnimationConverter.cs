@@ -69,6 +69,7 @@ namespace Tizen.AIAvatar
                                                            blendShapeCounts,
                                                            blendShapeKeyFormat);
                 _isInitialized = true;
+                v.Dispose();
             }
             catch (Exception)
             {

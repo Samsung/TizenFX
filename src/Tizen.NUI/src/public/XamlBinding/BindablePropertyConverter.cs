@@ -110,7 +110,7 @@ namespace Tizen.NUI.Binding
                 return null;
             }
             Type type = Type.GetType("Tizen.NUI." + parts[0]);
-            return ConvertFrom(type, parts[1], null);
+            return type == null ? null : ConvertFrom(type, parts[1], null);
         }
 
         BindableProperty ConvertFrom(Type type, string propertyName, IXmlLineInfo lineinfo)
