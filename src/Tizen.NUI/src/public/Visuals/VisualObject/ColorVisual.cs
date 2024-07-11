@@ -68,6 +68,25 @@ namespace Tizen.NUI.Visuals
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Cutout policy of color visual
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ColorVisualCutoutPolicyType CutoutPolicy
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.ColorVisualProperty.CutoutPolicy, new PropertyValue((int)value));
+            }
+            get
+            {
+                int ret = (int)ColorVisualCutoutPolicyType.None;
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ColorVisualProperty.CutoutPolicy);
+                propertyValue?.Get(out ret);
+                return (ColorVisualCutoutPolicyType)ret;
+            }
+        }
         #endregion
 
         #region Decorated Visual Properties
