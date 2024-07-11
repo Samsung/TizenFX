@@ -663,16 +663,24 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int MixColor = NDalic.ColorVisualMixColor;
+
         /// <summary>
         /// Whether to render if the MixColor is transparent.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int RenderIfTransparent = NDalic.ColorVisualMixColor + 1;
+
         /// <summary>
-        /// Then radius value for the area to blur.
+        /// The radius value for the area to blur.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int BlurRadius = NDalic.ColorVisualMixColor + 2;
+
+        /// <summary>
+        /// The policy value for the cutout of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int CutoutPolicy = NDalic.ColorVisualMixColor + 3;
     }
 
     /// <summary>
@@ -1369,5 +1377,34 @@ namespace Tizen.NUI
         ///  The color is multiplied by another one.
         /// </summary>
         Multiply
+    };
+
+    /// <summary>
+    /// Defines how a colorvisual cutout
+    /// </summary>
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ColorVisualCutoutPolicyType
+    {
+        /// <summary>
+        /// No cutout. (default)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None,
+        /// <summary>
+        /// Cutout as bounding box of view
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutView,
+        /// <summary>
+        /// Cutout as bounding box of view, include corner radius.
+        /// </summary>
+        /// <remarks>
+        /// The CornerRadius and CornerRadiusPolicy will be used color visual itself's value.
+        /// If you are using this policy at Tizen.NUI.Visuals.ColorVisual, please be careful that CornerRadius value
+        /// is not same as View.CornerRadius.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutViewWithCornerRadius,
     };
 }
