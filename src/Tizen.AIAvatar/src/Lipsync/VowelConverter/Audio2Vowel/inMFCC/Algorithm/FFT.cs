@@ -73,6 +73,7 @@ namespace Tizen.AIAvatar
                 im[i] = input[k++];
             }
 
+            fftSize = Math.Max(fftSize, 0);
             var L = fftSize;
             var M = fftSize >> 1;
             var S = fftSize - 1;
