@@ -250,7 +250,7 @@ namespace Tizen.NUI.Xaml
             }
 
             //if the value is not assignable and there's an implicit conversion, convert
-            if (value != null && !toType.IsAssignableFrom(value.GetType()))
+            if (value != null && toType!= null && !toType.IsAssignableFrom(value.GetType()))
             {
                 var opImplicit = value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
                                 ?? toType.GetImplicitConversionOperator(fromType: value.GetType(), toType: toType);

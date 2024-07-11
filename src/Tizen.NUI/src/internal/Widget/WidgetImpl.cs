@@ -324,13 +324,17 @@ namespace Tizen.NUI
             swigDelegate6 = null;
             swigDelegate7 = null;
 
-            Interop.WidgetImpl.DirectorConnect(SwigCPtr,  null, null, null, null, null, null, null, null);
+            Interop.WidgetImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, global::System.Reflection.BindingFlags.Public | global::System.Reflection.BindingFlags.NonPublic | global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
-            bool hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof(WidgetImpl));
+            bool hasDerivedMethod = false;
+            if (methodInfo != null)
+            {
+                hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof(WidgetImpl));
+            }
             return hasDerivedMethod;
         }
 
