@@ -2603,6 +2603,23 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Whether the last async rendering result is a manual render. <br />
+        /// If it's false, the render result was automatically requested by OnRelayout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ManualRendered
+        {
+            get
+            {
+                bool manualRendered = false;
+                using (var propertyValue = GetProperty(TextLabel.Property.ManualRendered))
+                {
+                    propertyValue.Get(out manualRendered);
+                }
+                return manualRendered;
+            }
+        }
 
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
@@ -2831,6 +2848,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
+            internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
 
 
             internal static void Preload()
