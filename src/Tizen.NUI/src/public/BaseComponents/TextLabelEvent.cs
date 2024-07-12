@@ -38,6 +38,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AsyncTextRenderedEventArgs> textLabelAsyncTextRenderedEventHandler;
         private AsyncTextRenderedCallbackDelegate textLabelAsyncTextRenderedCallbackDelegate;
 
+        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncTextNaturalSizeComputedEventHandler;
+        private AsyncTextNaturalSizeComputedCallbackDelegate textLabelAsyncTextNaturalSizeComputedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
 
@@ -46,6 +49,50 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AsyncTextRenderedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AsyncTextNaturalSizeComputedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+
+        /// <summary>
+        /// The AsyncNaturalSizeComputed signal is emitted when the async natural size computed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AsyncTextSizeComputedEventArgs> AsyncNaturalSizeComputed
+        {
+            add
+            {
+                if (textLabelAsyncTextNaturalSizeComputedEventHandler == null)
+                {
+                    textLabelAsyncTextNaturalSizeComputedCallbackDelegate = (OnAsyncNaturalSizeComputed);
+                    AsyncNaturalSizeComputedSignal().Connect(textLabelAsyncTextNaturalSizeComputedCallbackDelegate);
+                }
+                textLabelAsyncTextNaturalSizeComputedEventHandler += value;
+            }
+            remove
+            {
+                textLabelAsyncTextNaturalSizeComputedEventHandler -= value;
+                if (textLabelAsyncTextNaturalSizeComputedEventHandler == null && AsyncNaturalSizeComputedSignal().Empty() == false)
+                {
+                    AsyncNaturalSizeComputedSignal().Disconnect(textLabelAsyncTextNaturalSizeComputedCallbackDelegate);
+                }
+            }
+        }
+
+        internal TextLabelSignal AsyncNaturalSizeComputedSignal()
+        {
+            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AsyncNaturalSizeComputedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnAsyncNaturalSizeComputed(IntPtr textLabel, float width, float height)
+        {
+            AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
+
+            //here we send all data to user event handlers
+            textLabelAsyncTextNaturalSizeComputedEventHandler?.Invoke(this, e);
+        }
 
         /// <summary>
         /// The AsyncTextRendered signal is emitted when the async text rendered.
