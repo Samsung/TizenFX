@@ -70,4 +70,27 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public float Height { get; }
     }
+
+    /// <summary>
+    /// AsyncTextSizeComputedEventArgs is a class to record async text size computed event arguments which will be sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AsyncTextSizeComputedEventArgs : EventArgs
+    {
+        public AsyncTextSizeComputedEventArgs(float width, float height)
+        {
+            Width = width;
+            Height = height;
+        }
+
+        /// <summary>
+        /// The computed width.
+        /// </summary>
+        public float Width { get; }
+
+        /// <summary>
+        /// The computed height.
+        /// </summary>
+        public float Height { get; }
+    }
 }

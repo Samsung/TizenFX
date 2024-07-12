@@ -376,6 +376,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Requests asynchronous text natural size computation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncNaturalSize()
+        {
+            Interop.TextLabel.RequestAsyncNaturalSize(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
