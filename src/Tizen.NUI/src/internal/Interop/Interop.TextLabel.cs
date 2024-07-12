@@ -208,8 +208,14 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithConstraint")]
             public static extern void RequestAsyncRenderWithConstraint(global::System.Runtime.InteropServices.HandleRef textLabelRef, float widthConstraint, float heightConstraint);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncNaturalSize")]
+            public static extern void RequestAsyncNaturalSize(global::System.Runtime.InteropServices.HandleRef textLabelRef);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AsyncTextRenderedSignal")]
             public static extern global::System.IntPtr AsyncTextRenderedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AsyncNaturalSizeComputedSignal")]
+            public static extern global::System.IntPtr AsyncNaturalSizeComputedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
