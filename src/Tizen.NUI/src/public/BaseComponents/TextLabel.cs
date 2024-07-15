@@ -329,7 +329,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width of text to render.</param>
         /// <param name="height">The height of text to render.</param>
         /// <remarks>
-        /// Only works when AsyncMode.
+        /// Only works when AsyncAuto and AsyncManual.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncRenderWithFixedSize(float width, float height)
@@ -344,7 +344,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width of text to render.</param>
         /// <param name="heightConstraint">The maximum available height of text to render.</param>
         /// <remarks>
-        /// Only works when AsyncMode.<br />
+        /// Only works when AsyncAuto and AsyncManual.<br />
         /// The height is determined by the content of the text when rendered with the given width.<br />
         /// The result will be the same as the height returned by GetHeightForWidth.
         /// If the heightConstraint is given, the maximum height will be the heightConstraint.
@@ -362,6 +362,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="widthConstraint">The maximum available width of text to render.</param>
         /// <param name="heightConstraint">The maximum available height of text to render.</param>
         /// <remarks>
+        /// Only works when AsyncAuto and AsyncManual.<br />
         /// If the width of the text content is smaller than the widthConstraint, the width will be determined by the width of the text.<br />
         /// If the width of the text content is larger than the widthConstraint, the width will be determined by the widthConstraint.<br />
         /// The height is determined by the content of the text when rendered with the given width.<br />
@@ -2642,6 +2643,33 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Number of lines after latest asynchronous computing or rendering of text.
+        /// </summary>
+        /// <example>
+        /// The following example demonstrates how to obtain the LineCount asynchronously.
+        /// <code>
+        /// label.RequestAsyncHeightForWidth(label.Size.Width);
+        /// label.AsyncHeightForWidthComputed += (s, e) =>
+        /// {
+        ///    int lineCount = label.AsyncLineCount;
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int AsyncLineCount
+        {
+            get
+            {
+                int asyncLineCount = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.AsyncLineCount))
+                {
+                    propertyValue.Get(out asyncLineCount);
+                }
+                return asyncLineCount;
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -2870,6 +2898,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
+            internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
 
 
             internal static void Preload()
