@@ -38,11 +38,11 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AsyncTextRenderedEventArgs> textLabelAsyncTextRenderedEventHandler;
         private AsyncTextRenderedCallbackDelegate textLabelAsyncTextRenderedCallbackDelegate;
 
-        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncTextNaturalSizeComputedEventHandler;
-        private AsyncTextNaturalSizeComputedCallbackDelegate textLabelAsyncTextNaturalSizeComputedCallbackDelegate;
+        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncNaturalSizeComputedEventHandler;
+        private AsyncNaturalSizeComputedCallbackDelegate textLabelAsyncNaturalSizeComputedCallbackDelegate;
 
-        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncTextHeightForWidthComputedEventHandler;
-        private AsyncTextHeightForWidthComputedCallbackDelegate textLabelAsyncTextHeightForWidthComputedCallbackDelegate;
+        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncHeightForWidthComputedEventHandler;
+        private AsyncHeightForWidthComputedCallbackDelegate textLabelAsyncHeightForWidthComputedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
@@ -54,10 +54,10 @@ namespace Tizen.NUI.BaseComponents
         private delegate void AsyncTextRenderedCallbackDelegate(IntPtr textLabel, float width, float height);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void AsyncTextNaturalSizeComputedCallbackDelegate(IntPtr textLabel, float width, float height);
+        private delegate void AsyncNaturalSizeComputedCallbackDelegate(IntPtr textLabel, float width, float height);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void AsyncTextHeightForWidthComputedCallbackDelegate(IntPtr textLabel, float width, float height);
+        private delegate void AsyncHeightForWidthComputedCallbackDelegate(IntPtr textLabel, float width, float height);
 
 
         /// <summary>
@@ -68,19 +68,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (textLabelAsyncTextHeightForWidthComputedEventHandler == null)
+                if (textLabelAsyncHeightForWidthComputedEventHandler == null)
                 {
-                    textLabelAsyncTextHeightForWidthComputedCallbackDelegate = (OnAsyncHeightForWidthComputed);
-                    AsyncHeightForWidthComputedSignal().Connect(textLabelAsyncTextHeightForWidthComputedCallbackDelegate);
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = (OnAsyncHeightForWidthComputed);
+                    AsyncHeightForWidthComputedSignal().Connect(textLabelAsyncHeightForWidthComputedCallbackDelegate);
                 }
-                textLabelAsyncTextHeightForWidthComputedEventHandler += value;
+                textLabelAsyncHeightForWidthComputedEventHandler += value;
             }
             remove
             {
-                textLabelAsyncTextHeightForWidthComputedEventHandler -= value;
-                if (textLabelAsyncTextHeightForWidthComputedEventHandler == null && AsyncHeightForWidthComputedSignal().Empty() == false)
+                textLabelAsyncHeightForWidthComputedEventHandler -= value;
+                if (textLabelAsyncHeightForWidthComputedEventHandler == null && AsyncHeightForWidthComputedSignal().Empty() == false)
                 {
-                    AsyncHeightForWidthComputedSignal().Disconnect(textLabelAsyncTextHeightForWidthComputedCallbackDelegate);
+                    AsyncHeightForWidthComputedSignal().Disconnect(textLabelAsyncHeightForWidthComputedCallbackDelegate);
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace Tizen.NUI.BaseComponents
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
             //here we send all data to user event handlers
-            textLabelAsyncTextHeightForWidthComputedEventHandler?.Invoke(this, e);
+            textLabelAsyncHeightForWidthComputedEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
@@ -108,19 +108,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (textLabelAsyncTextNaturalSizeComputedEventHandler == null)
+                if (textLabelAsyncNaturalSizeComputedEventHandler == null)
                 {
-                    textLabelAsyncTextNaturalSizeComputedCallbackDelegate = (OnAsyncNaturalSizeComputed);
-                    AsyncNaturalSizeComputedSignal().Connect(textLabelAsyncTextNaturalSizeComputedCallbackDelegate);
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = (OnAsyncNaturalSizeComputed);
+                    AsyncNaturalSizeComputedSignal().Connect(textLabelAsyncNaturalSizeComputedCallbackDelegate);
                 }
-                textLabelAsyncTextNaturalSizeComputedEventHandler += value;
+                textLabelAsyncNaturalSizeComputedEventHandler += value;
             }
             remove
             {
-                textLabelAsyncTextNaturalSizeComputedEventHandler -= value;
-                if (textLabelAsyncTextNaturalSizeComputedEventHandler == null && AsyncNaturalSizeComputedSignal().Empty() == false)
+                textLabelAsyncNaturalSizeComputedEventHandler -= value;
+                if (textLabelAsyncNaturalSizeComputedEventHandler == null && AsyncNaturalSizeComputedSignal().Empty() == false)
                 {
-                    AsyncNaturalSizeComputedSignal().Disconnect(textLabelAsyncTextNaturalSizeComputedCallbackDelegate);
+                    AsyncNaturalSizeComputedSignal().Disconnect(textLabelAsyncNaturalSizeComputedCallbackDelegate);
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace Tizen.NUI.BaseComponents
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
             //here we send all data to user event handlers
-            textLabelAsyncTextNaturalSizeComputedEventHandler?.Invoke(this, e);
+            textLabelAsyncNaturalSizeComputedEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
