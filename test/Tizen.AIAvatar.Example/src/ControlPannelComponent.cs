@@ -38,6 +38,10 @@ namespace AIAvatar
         private readonly float ControlPannelWidthScale = 0.25f;// Relative size of window width. windowSize.Width * 0.5f
 
         public event EventHandler OnExitButtonClicked;
+        private int GetRatio(int percent, float value)
+        {
+            return (int)(value * (percent / 100.0f));
+        }
 
         public void MakeControlPannel(Window uiWindow, AvatarScene mainScene)
         {
@@ -240,9 +244,11 @@ namespace AIAvatar
             AddControlButton("GR", "button_avatar", mainScene.StartAvatarTalk_3);
             AddControlButton("Start Mic", "button_bvh", mainScene.StartMic);
             AddControlButton("Stop Mic", "button_bvh", mainScene.StopMic);
+            AddControlButton("FaceAnimation", "button_bvh", mainScene.PlayFaceAnimtaion);
             AddControlButton("Show/Hide", "button_bvh", mainScene.ShowHide);
             AddControlSlider("Camera FOV", "slider_camera_fov", 0.1f, 1.3f, mainScene.GetSelectedCamera().FieldOfView.ConvertToFloat(), mainScene.SetupSceneViewCameraFov);
             AddControlSlider("IBL intensity", "slider_ibl_factor", 0.1f, 0.8f, mainScene.IBLFactor, mainScene.SetupSceneViewIBLFactor);
+
             AddControlButton("Quit", "button_quit", Exit);
         }
 

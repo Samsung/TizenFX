@@ -24,9 +24,25 @@ using Tizen.NUI.Scene3D;
 using Tizen.AIAvatar;
 using Tizen;
 using Tizen.Uix.Tts;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace AIAvatar
 {
+    public class Message
+    {
+        public string role { get; set; }
+        public string content { get; set; }
+    }
+
+    public class Prompt
+    {
+        public string model { get; set; }
+        public List<Message> messages { get; set; }
+        public double temperature { get; set; }
+    }
+
     public class AvatarScene : SceneView
     {
         private static readonly string ApplicationResourcePath = "/usr/apps/org.tizen.default-avatar-resource/shared/res/";
@@ -47,6 +63,10 @@ namespace AIAvatar
 
         private int avatarIndex = 0;
         private float iblFactor = 0.3f;
+        private ImageView imageView;
+
+        private IRestClient restClient;
+        private const string playgroundURL = "https://playground-api.sec.samsung.net";
 
         public float IBLFactor
         {
@@ -78,8 +98,51 @@ namespace AIAvatar
 
             // Load Default Animations
             LoadDefaultAnimations();
+
+            // Setup RestClinet
+            RestClientFactory restClientFactory = new RestClientFactory();
+            restClient = restClientFactory.CreateClient(playgroundURL);
+        }
+        
+        public void MakeEmojiStatus(Window uiWindow)
+        {
+            Size = new Tizen.NUI.Size();
+
+            ImageView BackgroundImage = new ImageView();
+            BackgroundImage.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/emotion_black_720.png";
+
+            BackgroundImage.Size2D = new Size2D(320, 320);
+            BackgroundImage.Position2D = new Position2D(1500, 50);
+
+            uiWindow.Add(BackgroundImage);
+
+
+            imageView = new ImageView();
+            imageView.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/emotion_720.png";
+            imageView.AlphaMaskURL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/emotion_alpha_0.png";
+            imageView.CropToMask = true;
+
+            imageView.Size2D = new Size2D(320, 320);
+            imageView.Position2D = new Position2D(1500, 50);
+
+            uiWindow.Add(imageView);
+        }
+        public void PlayFaceAnimtaion()
+        {
+            defaultAIAvatar.StartFaceAnimation("surprise");
         }
 
+        private void ChangeEmojiStatus(int index)
+        {
+            imageView.AlphaMaskURL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + $"images/emotion_alpha_{index}.png";
+        }
+
+        public void ContextAnimation(string emotion)
+        {
+            defaultAIAvatar.StartFaceAnimation(emotion);
+            StartRandomAnimation();
+        }
+        
         private void LoadDefaultAnimations()
         {
             var motionAnimations = Directory.GetFiles(ApplicationResourcePath + DefaultMotionResourcePath, "*.bvh");
@@ -190,6 +253,93 @@ namespace AIAvatar
             InitTTS();
         }
 
+        public async Task StartTTSwithLLMAsync(string text)
+        {
+            Random rand = new Random(); // 랜덤 객체 생성  
+
+            string bearerToken = "hidden";
+            string bearerToken2 = "hidden";
+            string jsonData = "{\"messages\": [{\"role\": \"user\", \"content\": \"" + text + " [출력] 'A sentence that contains emotions'\"}], \"temperature\": 0.5 \n}";
+
+            List<string> emotions = new List<string> { "joy", "trust",  "fear", "surprise", "sadness", "disgust", "anger", "anticipation" };
+
+            try
+            {
+                //질의응답
+                string postResponse = await restClient.SendRequestAsync(HttpMethod.Post, "/api/v1/chat/completions", bearerToken, jsonData);
+                var responseData = JsonConvert.DeserializeObject<dynamic>(postResponse);
+                string content = responseData["response"]["content"];
+                Log.Info("Tizen.AIAvatar.LLM", "respone 65B : " + content);
+
+                char[] separators = new char[] { '.', '!', '?', '"' };
+                string[] parts = content.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+                //감정파악
+                StreamReader v = new StreamReader($"{resourcePath}/data/emotion1B.json");
+                var jsonString = v.ReadToEnd();
+
+                foreach (string part in parts)
+                {
+                    string answer = "'" + part + ".'";
+                    Log.Info("Tizen.AIAvatar.LLM", "respone 65B[Part] : " + answer);                 
+
+                    Prompt prompt = JsonConvert.DeserializeObject<Prompt>(jsonString);
+
+                    Message message = new Message();
+                    message.role = "user";
+                    message.content = answer;
+                    prompt.messages.Add(message);
+
+                    jsonData = JsonConvert.SerializeObject(prompt);
+
+                    string postEmotionResponse = await restClient.SendRequestAsync(HttpMethod.Post, "/api/v1/chat/completions", bearerToken2, jsonData);
+                    var responseEmotionData = JsonConvert.DeserializeObject<dynamic>(postEmotionResponse);
+                    string emotion = responseEmotionData["response"]["content"];
+                    Log.Info("Tizen.AIAvatar.LLM", "responeEmotion : " + emotion);
+
+                    string[] words = emotion.Split(' ');
+                    string firstWord = words[0];
+                    
+                    string tts_text = "normal";
+                    int index = emotions.IndexOf(firstWord.ToLower());
+                    if (index != -1)
+                    {
+                        tts_text = emotions[index];
+                    }
+
+                    ChangeEmojiStatus(index + 1);
+                    Log.Info("Tizen.AIAvatar.LLM", "emotion : " + tts_text);
+
+                    //TTS 호출
+                    VoiceInfo voiceInfo = new VoiceInfo()
+                    {
+                        Language = "en_US",
+                        Type = VoiceType.Female,
+                    };
+
+                    lipSyncController.PrepareTTS(content, voiceInfo, (o, e) =>
+                    {
+                        ContextAnimation(tts_text);
+                        lipSyncController.PlayPreparedTTS();
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Tizen.AIAvatar", "에러 발생: " + ex.Message);
+            }
+        }
+
+        public void StartLLMTest()
+        {
+            lipSyncController.StopTTS();
+
+            var task = Task.Run(async () => {
+                await StartTTSwithLLMAsync(Utils.TTSText);
+            });
+
+        }
         public void StartTTSTest()
         {
             lipSyncController.StopTTS();

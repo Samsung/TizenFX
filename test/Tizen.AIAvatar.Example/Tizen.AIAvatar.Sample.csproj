@@ -11,6 +11,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="src\Prompt.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Prompt.cs" />
+  </ItemGroup>
 
   <ItemGroup>
      <ProjectReference Include="..\..\src\Tizen.AIAvatar\Tizen.AIAvatar.csproj" />

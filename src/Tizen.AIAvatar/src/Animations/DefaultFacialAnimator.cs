@@ -1,12 +1,26 @@
-﻿using Newtonsoft.Json;
+﻿/*
+ * Copyright(c) 2024 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security;
-using System.Threading;
-using System.Xml.Linq;
 using Tizen.NUI;
 using Tizen.NUI.Scene3D;
 
@@ -14,7 +28,7 @@ using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
-    public class FaceAnimBlendShape
+    internal class FaceAnimBlendShape
     {
         public string name { get; set; }
         public string fullName { get; set; }
@@ -24,7 +38,7 @@ namespace Tizen.AIAvatar
         public List<List<float>> key { get; set; }
     }
 
-    public class FaceAnimationData
+    internal class FaceAnimationData
     {
         public string name { get; set; }
         public string version { get; set; }
@@ -34,26 +48,26 @@ namespace Tizen.AIAvatar
         public int frames { get; set; }
     }
 
-    public class Expression
+    internal class Expression
     {
         public string name { get; set; }
         public List<string> filename { get; set; }
     }
 
-    public class IgnoreBlendShape
+    internal class IgnoreBlendShape
     {
         public string name { get; set; }
         public List<string> morphname { get; set; }
     }
 
-    public class EmotionConfig
+    internal class EmotionConfig
     {
         public List<Expression> expressions { get; set; }
         public List<IgnoreBlendShape> ignoreBlendShapes { get; set; }
     }
 
 
-    public class DefaultFacialAnimator
+    internal class DefaultFacialAnimator
     {
         protected Animation FaceAnimation;
         protected EmotionConfig EmotionConfigData;
