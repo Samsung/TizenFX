@@ -26,11 +26,13 @@ namespace Tizen.AIAvatar
         internal static readonly string EmojiAvatarResourcePath = "/models/EmojiAvatar/";
         internal static readonly string DefaultModelResourcePath = "/models/DefaultAvatar/";
         internal static readonly string DefaultMotionResourcePath = "/animation/motion/";
+        internal static readonly string DefaultFaceResourcePath = "/animation/face/";
 
         internal static readonly string VisemeInfo = $"{ApplicationResourcePath}/viseme/emoji_viseme_info.json";
         internal static readonly string DefaultModel = "DefaultAvatar.gltf";
 
         internal static readonly string AREmojiDefaultAvatarPath = $"{ApplicationResourcePath}{DefaultModelResourcePath}{DefaultModel}";
+        internal static readonly string AREmojiDefaultFacialPath = $"{ApplicationResourcePath}{DefaultFaceResourcePath}";
 
         internal static readonly string DefaultLowModelResourcePath = "/models/DefaultAvatar_Low/";
         internal static readonly string ExternalModel = "model_external.gltf";

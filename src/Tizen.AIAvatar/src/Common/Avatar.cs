@@ -228,7 +228,38 @@ namespace Tizen.AIAvatar
             motionPlayer?.StopEyeBlink();
         }
         #endregion
-        
+
+
+        /// <summary>  
+        /// Starts the eye blink animation for the current avatar.  
+        /// </summary>  
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void StartFaceAnimation(string emotion = "normal")
+        {
+            var facialMotionData = motionPlayer?.GetFacialMotionData(emotion);
+            Animation animation = null;
+            if (facialMotionData != null)
+            {
+                animation = this.GenerateMotionDataAnimation(facialMotionData);
+            }
+            else
+            {
+                Tizen.Log.Info(LogTag, "Error StartFacialAnimation, facialMotionData is null");
+                return;
+            }
+            motionPlayer?.StartFacialAnimation(animation);
+        }
+
+
+        /// <summary>  
+        /// Stops the eye blink animation for the current avatar.  
+        /// </summary>  
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void StopFaceAnimation()
+        {
+            motionPlayer?.StopFacialAnimation();
+        }
+
         private void InitAvatar()
         {
             motionPlayer = new MotionPlayer();
