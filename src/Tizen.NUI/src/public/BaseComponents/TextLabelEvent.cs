@@ -41,6 +41,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncTextNaturalSizeComputedEventHandler;
         private AsyncTextNaturalSizeComputedCallbackDelegate textLabelAsyncTextNaturalSizeComputedCallbackDelegate;
 
+        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncTextHeightForWidthComputedEventHandler;
+        private AsyncTextHeightForWidthComputedCallbackDelegate textLabelAsyncTextHeightForWidthComputedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
 
@@ -53,6 +56,49 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AsyncTextNaturalSizeComputedCallbackDelegate(IntPtr textLabel, float width, float height);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AsyncTextHeightForWidthComputedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+
+        /// <summary>
+        /// The AsyncHeightForWidthComputed signal is emitted when the async natural size computed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AsyncTextSizeComputedEventArgs> AsyncHeightForWidthComputed
+        {
+            add
+            {
+                if (textLabelAsyncTextHeightForWidthComputedEventHandler == null)
+                {
+                    textLabelAsyncTextHeightForWidthComputedCallbackDelegate = (OnAsyncHeightForWidthComputed);
+                    AsyncHeightForWidthComputedSignal().Connect(textLabelAsyncTextHeightForWidthComputedCallbackDelegate);
+                }
+                textLabelAsyncTextHeightForWidthComputedEventHandler += value;
+            }
+            remove
+            {
+                textLabelAsyncTextHeightForWidthComputedEventHandler -= value;
+                if (textLabelAsyncTextHeightForWidthComputedEventHandler == null && AsyncHeightForWidthComputedSignal().Empty() == false)
+                {
+                    AsyncHeightForWidthComputedSignal().Disconnect(textLabelAsyncTextHeightForWidthComputedCallbackDelegate);
+                }
+            }
+        }
+
+        internal TextLabelSignal AsyncHeightForWidthComputedSignal()
+        {
+            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AsyncHeightForWidthComputedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnAsyncHeightForWidthComputed(IntPtr textLabel, float width, float height)
+        {
+            AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
+
+            //here we send all data to user event handlers
+            textLabelAsyncTextHeightForWidthComputedEventHandler?.Invoke(this, e);
+        }
 
         /// <summary>
         /// The AsyncNaturalSizeComputed signal is emitted when the async natural size computed.
