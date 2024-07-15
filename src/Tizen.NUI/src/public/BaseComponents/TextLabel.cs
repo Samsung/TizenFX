@@ -386,6 +386,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Requests asynchronous computation of the height of the text based on the given width.
+        /// </summary>
+        /// <param name="width">The width of text to compute.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncHeightForWidth(float width)
+        {
+            Interop.TextLabel.RequestAsyncHeightForWidth(SwigCPtr, width);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
