@@ -36,7 +36,8 @@ jobs:
 
     - name: Archive Artifacts
       run: |
-        cp .gitattributes _site/
+        # cp .gitattributes _site/
+        rm _site/index-prebuilt.json
         tar cfz site.tar.gz _site/
     - uses: actions/upload-artifact@v2
       with:
