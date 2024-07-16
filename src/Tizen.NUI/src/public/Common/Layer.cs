@@ -29,10 +29,18 @@ namespace Tizen.NUI
     {
         private Window window;
         private int layoutCount = 0;
+
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
+
+        private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
+        private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
 
         /// <summary>
         /// Creates a Layer object.
@@ -67,6 +75,15 @@ namespace Tizen.NUI
                 Interop.ActorSignal.VisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 visibilityChangedEventCallback = null;
+            }
+
+            if (aggregatedVisibilityChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] aggregatedVisibilityChangedEventCallback");
+
+                Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                aggregatedVisibilityChangedEventCallback = null;
             }
 
             LayoutCount = 0;
@@ -646,6 +663,35 @@ namespace Tizen.NUI
                 }
             }
         }
+        /// <summary>
+        /// An event for aggregated visibility change which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This event is sent when visible property of this or any of its parents (right up to the root) and Window changes.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AggregatedVisibilityChangedEventArgs> AggregatedVisibilityChanged
+        {
+            add
+            {
+                if (aggregatedVisibilityChangedEventHandler == null)
+                {
+                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                aggregatedVisibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                aggregatedVisibilityChangedEventHandler -= value;
+                if (aggregatedVisibilityChangedEventHandler == null && aggregatedVisibilityChangedEventCallback != null)
+                {
+                    Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    aggregatedVisibilityChangedEventCallback = null;
+                }
+            }
+        }
 
         /// <summary>
         /// Event arguments of visibility changed.
@@ -892,6 +938,18 @@ namespace Tizen.NUI
             if (visibilityChangedEventHandler != null)
             {
                 visibilityChangedEventHandler(this, e);
+            }
+        }
+
+        // Callback for Layer aggregated visibility change signal
+        private void OnAggregatedVisibilityChanged(IntPtr data, bool visibility)
+        {
+            AggregatedVisibilityChangedEventArgs e = new AggregatedVisibilityChangedEventArgs();
+            e.Visibility = visibility;
+
+            if (aggregatedVisibilityChangedEventHandler != null)
+            {
+                aggregatedVisibilityChangedEventHandler(this, e);
             }
         }
     }

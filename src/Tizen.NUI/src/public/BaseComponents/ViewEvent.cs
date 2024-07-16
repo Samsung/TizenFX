@@ -43,11 +43,12 @@ namespace Tizen.NUI.BaseComponents
         private HoverEventCallbackType hoverEventCallback;
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
+        private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
+        private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
         private EventHandler keyInputFocusGainedEventHandler;
-
         private KeyInputFocusGainedCallbackType keyInputFocusGainedCallback;
-        private EventHandler keyInputFocusLostEventHandler;
 
+        private EventHandler keyInputFocusLostEventHandler;
         private KeyInputFocusLostCallbackType keyInputFocusLostCallback;
         private EventHandler onRelayoutEventHandler;
         private OnRelayoutEventCallbackType onRelayoutEventCallback;
@@ -64,30 +65,43 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OffWindowEventCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool KeyCallbackType(IntPtr control, IntPtr keyEvent);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResourcesLoadedCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void _backgroundResourceLoadedCallbackType(IntPtr view);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyInputFocusGainedCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyInputFocusLostCallbackType(IntPtr control);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OnRelayoutEventCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OnWindowEventCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
@@ -477,6 +491,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
         /// <summary>
         /// An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br />
         /// This event is sent when the visibility of this or a parent view is changed.<br />
@@ -514,6 +529,43 @@ namespace Tizen.NUI.BaseComponents
                     Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                     visibilityChangedEventCallback = null;
+                }
+            }
+        }
+        /// <summary>
+        /// An event for aggregated visibility change which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This event is sent when visible property of this View, any of its parents (right up to the root layer) or Window changes.<br />
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This event is NOT sent if the view becomes transparent (or the reverse), it's ONLY linked with Show() and Hide() of View and Window.
+        /// For reference, a view is only shown if the view, its parents (up to the root view) and Window are also visible,
+        /// they are not transparent, and the view has a non-zero size.
+        /// So if its parent is not visible, the view is not shown.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AggregatedVisibilityChangedEventArgs> AggregatedVisibilityChanged
+        {
+            add
+            {
+                if (aggregatedVisibilityChangedEventHandler == null)
+                {
+                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                aggregatedVisibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                aggregatedVisibilityChangedEventHandler -= value;
+                if (aggregatedVisibilityChangedEventHandler == null && aggregatedVisibilityChangedEventCallback != null)
+                {
+                    Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    aggregatedVisibilityChangedEventCallback = null;
                 }
             }
         }
@@ -1021,6 +1073,18 @@ namespace Tizen.NUI.BaseComponents
             if (visibilityChangedEventHandler != null)
             {
                 visibilityChangedEventHandler(this, e);
+            }
+        }
+
+        // Callback for View aggregated visibility change signal
+        private void OnAggregatedVisibilityChanged(IntPtr data, bool visibility)
+        {
+            AggregatedVisibilityChangedEventArgs e = new AggregatedVisibilityChangedEventArgs();
+            e.Visibility = visibility;
+
+            if (aggregatedVisibilityChangedEventHandler != null)
+            {
+                aggregatedVisibilityChangedEventHandler(this, e);
             }
         }
 
