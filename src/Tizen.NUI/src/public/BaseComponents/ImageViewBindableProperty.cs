@@ -134,35 +134,14 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (imageView.imagePropertyUpdatedFlag)
-                {
-                    // If imageView Property still not send to the dali, Append cached property.
-                    imageView.UpdateImage(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)newValue));
-                }
-                else
-                {
-                    // Else, we don't need to re-create view. Get value from current ImageView.
-                    Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, (bool)newValue);
-                }
+                imageView.SetInternalPreMultipliedAlpha((bool)newValue);
             }
         }
 
         internal static object GetInternalPreMultipliedAlphaProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool temp = false;
-
-            if (imageView.imagePropertyUpdatedFlag)
-            {
-                // If imageView Property still not send to the dali, just get cached property.
-                imageView.GetCachedImageVisualProperty(Visual.Property.PremultipliedAlpha)?.Get(out temp);
-            }
-            else
-            {
-                // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
-                temp = Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
-            }
-            return temp;
+            return imageView.GetInternalPreMultipliedAlpha();
         }
 
         /// Intenal used, will never be opened.
@@ -226,30 +205,23 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (NUIApplication.IsUsingXaml)
+                if (oldValue != null)
                 {
-                    if (oldValue != null)
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if (oldBool == newBool)
                     {
-                        bool oldBool = (bool)oldValue;
-                        bool newBool = (bool)newValue;
-                        if (oldBool == newBool)
-                        {
-                            return;
-                        }
+                        return;
                     }
                 }
-                imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
+                imageView.SetInternalBorderOnly((bool)newValue);
             }
         }
 
         internal static object GetInternalBorderOnlyProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalBorderOnly();
         }
 
         /// Intenal used, will never be opened.
@@ -261,16 +233,13 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (NUIApplication.IsUsingXaml)
+                if (oldValue != null)
                 {
-                    if (oldValue != null)
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if (oldBool == newBool)
                     {
-                        bool oldBool = (bool)oldValue;
-                        bool newBool = (bool)newValue;
-                        if (oldBool == newBool)
-                        {
-                            return;
-                        }
+                        return;
                     }
                 }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
@@ -297,31 +266,23 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (NUIApplication.IsUsingXaml)
+                if (oldValue != null)
                 {
-                    if (oldValue != null)
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if (oldBool == newBool)
                     {
-                        bool oldBool = (bool)oldValue;
-                        bool newBool = (bool)newValue;
-                        if (oldBool == newBool)
-                        {
-                            return;
-                        }
+                        return;
                     }
                 }
-                // Note : We need to create new visual if previous visual was async, and now we set value as sync.
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
+                imageView.SetInternalSynchronousLoading((bool)newValue);
             }
         }
 
         internal static object GetInternalSynchronousLoadingProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalSynchronousLoading();
         }
 
         /// Intenal used, will never be opened.
@@ -333,31 +294,23 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (NUIApplication.IsUsingXaml)
+                if (oldValue != null)
                 {
-                    if (oldValue != null)
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if (oldBool == newBool)
                     {
-                        bool oldBool = (bool)oldValue;
-                        bool newBool = (bool)newValue;
-                        if (oldBool == newBool)
-                        {
-                            return;
-                        }
+                        return;
                     }
                 }
-                imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
+                imageView.SetInternalOrientationCorrection((bool)newValue);
             }
         }
 
         internal static object GetInternalOrientationCorrectionProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalOrientationCorrection();
         }
 
         /// <summary>
@@ -642,14 +595,14 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect, (bool)newValue);
+                imageView.SetInternalTransitionEffect((bool)newValue);
             }
         }
 
         internal static object GetInternalTransitionEffectProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            return Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect);
+            return imageView.GetInternalTransitionEffect();
         }
 
         /// <summary>

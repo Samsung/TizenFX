@@ -39,15 +39,13 @@ namespace Tizen.NUI.BaseComponents
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection, new Tizen.NUI.PropertyValue((int)newValue));
+                flexContainer.SetInternalContentDirection((ContentDirectionType)newValue);
             }
         }
         internal static object GetInternalContentDirectionProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection).Get(out temp);
-            return (ContentDirectionType)temp;
+            return flexContainer.GetInternalContentDirection();
         }
 
         /// <summary> Property of FlexDirection </summary>
@@ -58,15 +56,13 @@ namespace Tizen.NUI.BaseComponents
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection, new Tizen.NUI.PropertyValue((int)newValue));
+                flexContainer.SetInternalFlexDirection((FlexDirectionType)newValue);
             }
         }
         internal static object GetInternalFlexDirectionProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection).Get(out temp);
-            return (FlexDirectionType)temp;
+            return flexContainer.GetInternalFlexDirection();
         }
 
         /// <summary> Property of FlexWrap </summary>
@@ -77,15 +73,13 @@ namespace Tizen.NUI.BaseComponents
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap, new Tizen.NUI.PropertyValue((int)newValue));
+                flexContainer.SetInternalFlexWrap((WrapType)newValue);
             }
         }
         internal static object GetInternalFlexWrapProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap).Get(out temp);
-            return (WrapType)temp;
+            return flexContainer.GetInternalFlexWrap();
         }
 
         /// <summary> Property of JustifyContent </summary>
@@ -96,15 +90,13 @@ namespace Tizen.NUI.BaseComponents
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent, new Tizen.NUI.PropertyValue((int)newValue));
+                flexContainer.SetInternalJustifyContent((Justification)newValue);
             }
         }
         internal static object GetInternalJustifyContentProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent).Get(out temp);
-            return (Justification)temp;
+            return flexContainer.GetInternalJustifyContent();
         }
 
         /// <summary> Property of AlignItems </summary>
@@ -115,15 +107,13 @@ namespace Tizen.NUI.BaseComponents
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems, new Tizen.NUI.PropertyValue((int)newValue));
+                flexContainer.SetInternalAlignItems((Alignment)newValue);
             }
         }
         internal static object GetInternalAlignItemsProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems).Get(out temp);
-            return (Alignment)temp;
+            return flexContainer.GetInternalAlignItems();
         }
 
         /// <summary> Property of AlignContent </summary>
@@ -134,15 +124,13 @@ namespace Tizen.NUI.BaseComponents
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent, new Tizen.NUI.PropertyValue((int)newValue));
+                flexContainer.SetInternalAlignContent((Alignment)newValue);
             }
         }
         internal static object GetInternalAlignContentProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent).Get(out temp);
-            return (Alignment)temp;
+            return flexContainer.GetInternalAlignContent();
         }
 
         static FlexContainer()
@@ -364,7 +352,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (ContentDirectionType)GetInternalContentDirectionProperty(this);
+                    return GetInternalContentDirection();
                 }
             }
             set
@@ -375,10 +363,21 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalContentDirectionProperty(this, null, value);
+                    SetInternalContentDirection(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalContentDirection(ContentDirectionType value)
+        {
+            Object.SetProperty(SwigCPtr, Property.ContentDirection, new PropertyValue((int)value));
+        }
+
+        internal ContentDirectionType GetInternalContentDirection()
+        {
+            Object.GetProperty(SwigCPtr, Property.ContentDirection).Get(out int temp);
+            return (ContentDirectionType)temp;
         }
 
         /// <summary>
@@ -396,7 +395,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (FlexDirectionType)GetInternalFlexDirectionProperty(this);
+                    return GetInternalFlexDirection();
                 }
             }
             set
@@ -407,10 +406,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFlexDirectionProperty(this, null, value);
+                    SetInternalFlexDirection(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalFlexDirection(FlexDirectionType value)
+        {
+            Object.SetProperty(SwigCPtr, Property.FlexDirection, new PropertyValue((int)value));
+        }
+        internal FlexDirectionType GetInternalFlexDirection()
+        {
+            Object.GetProperty(SwigCPtr, Property.FlexDirection).Get(out int temp);
+            return (FlexDirectionType)temp;
         }
 
         /// <summary>
@@ -428,7 +437,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (WrapType)GetInternalFlexWrapProperty(this);
+                    return GetInternalFlexWrap();
                 }
             }
             set
@@ -439,10 +448,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFlexWrapProperty(this, null, value);
+                    SetInternalFlexWrap(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalFlexWrap(WrapType value)
+        {
+            Object.SetProperty(SwigCPtr, Property.FlexWrap, new PropertyValue((int)value));
+        }
+        internal WrapType GetInternalFlexWrap()
+        {
+            Object.GetProperty(SwigCPtr, Property.FlexWrap).Get(out int temp);
+            return (WrapType)temp;
         }
 
         /// <summary>
@@ -460,7 +479,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Justification)GetInternalJustifyContentProperty(this);
+                    return GetInternalJustifyContent();
                 }
             }
             set
@@ -471,10 +490,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalJustifyContentProperty(this, null, value);
+                    SetInternalJustifyContent(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalJustifyContent(Justification value)
+        {
+            Object.SetProperty(SwigCPtr, Property.JustifyContent, new PropertyValue((int)value));
+        }
+        internal Justification GetInternalJustifyContent()
+        {
+            Object.GetProperty(SwigCPtr, Property.JustifyContent).Get(out int temp);
+            return (Justification)temp;
         }
 
         /// <summary>
@@ -492,7 +521,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Alignment)GetInternalAlignItemsProperty(this);
+                    return GetInternalAlignItems();
                 }
             }
             set
@@ -503,10 +532,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAlignItemsProperty(this, null, value);
+                    SetInternalAlignItems(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalAlignItems(Alignment value)
+        {
+            Object.SetProperty(SwigCPtr, Property.AlignItems, new PropertyValue((int)value));
+        }
+        internal Alignment GetInternalAlignItems()
+        {
+            Object.GetProperty(SwigCPtr, Property.AlignItems).Get(out int temp);
+            return (Alignment)temp;
         }
 
         /// <summary>
@@ -524,7 +563,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Alignment)GetInternalAlignContentProperty(this);
+                    return GetInternalAlignContent();
                 }
             }
             set
@@ -535,12 +574,21 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAlignContentProperty(this, null, value);
+                    SetInternalAlignContent(value);
                 }
                 NotifyPropertyChanged();
             }
         }
 
+        internal void SetInternalAlignContent(Alignment value)
+        {
+            Object.SetProperty(SwigCPtr, Property.AlignContent, new PropertyValue((int)value));
+        }
+        internal Alignment GetInternalAlignContent()
+        {
+            Object.GetProperty(SwigCPtr, Property.AlignContent).Get(out int temp);
+            return (Alignment)temp;
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

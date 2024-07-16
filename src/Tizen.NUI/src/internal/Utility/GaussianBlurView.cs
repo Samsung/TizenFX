@@ -48,15 +48,13 @@ namespace Tizen.NUI
             var gaussianBlurView = (GaussianBlurView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex(), new Tizen.NUI.PropertyValue((float)newValue));
+                gaussianBlurView.SetInternalBlurStrength((float)newValue);
             }
         }
         internal static object GetInternalBlurStrengthProperty(BindableObject bindable)
         {
             var gaussianBlurView = (GaussianBlurView)bindable;
-            float temp;
-            Tizen.NUI.Object.GetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex()).Get(out temp);
-            return temp;
+            return gaussianBlurView.GetInternalBlurStrength();
         }
 
         internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
@@ -158,7 +156,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalBlurStrengthProperty(this);
+                    return GetInternalBlurStrength();
                 }
             }
             set
@@ -169,10 +167,20 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalBlurStrengthProperty(this, null, value);
+                    SetInternalBlurStrength(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalBlurStrength(float blurStrength)
+        {
+            Object.SetProperty(SwigCPtr, GetBlurStrengthPropertyIndex(), new PropertyValue(blurStrength));
+        }
+        internal float GetInternalBlurStrength()
+        {
+            Object.GetProperty(SwigCPtr, GetBlurStrengthPropertyIndex()).Get(out float temp);
+            return temp;
         }
 
         /// <summary>

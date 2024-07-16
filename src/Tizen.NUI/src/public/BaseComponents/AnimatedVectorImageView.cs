@@ -213,7 +213,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalRepeatCountProperty(this);
+                    return InternalRepeatCount;
                 }
             }
             set
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRepeatCountProperty(this, null, value);
+                    InternalRepeatCount = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -288,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalCurrentFrameProperty(this);
+                    return InternalCurrentFrame;
                 }
             }
             set
@@ -299,7 +299,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCurrentFrameProperty(this, null, value);
+                    InternalCurrentFrame = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -346,7 +346,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (RepeatModes)GetInternalRepeatModeProperty(this);
+                    return InternalRepeatMode;
                 }
             }
             set
@@ -357,7 +357,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRepeatModeProperty(this, null, value);
+                    InternalRepeatMode = value;
                 }
                 NotifyPropertyChanged();
             }
