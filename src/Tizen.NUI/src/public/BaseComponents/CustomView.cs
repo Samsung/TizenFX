@@ -110,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusNavigationSupportProperty(this);
+                    return IsKeyboardNavigationSupported();
                 }
             }
             set
@@ -121,7 +121,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusNavigationSupportProperty(this, null, value);
+                    SetKeyboardNavigationSupport(value);
                 }
             }
         }
@@ -141,7 +141,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusGroupProperty(this);
+                    return IsKeyboardFocusGroup();
                 }
             }
             set
@@ -152,7 +152,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusGroupProperty(this, null, value);
+                    SetAsKeyboardFocusGroup(value);
                 }
             }
         }
