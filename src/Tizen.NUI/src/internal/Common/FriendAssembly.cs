@@ -46,6 +46,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.DA.FLUX.Components, " + Tizen.NUI.PublicKey.TizenFLUX)]
 
 [assembly: InternalsVisibleTo("Tizen.NUI2, " + Tizen.NUI.PublicKey.TizenNUI2)]
+[assembly: InternalsVisibleTo("Tizen.NUI2.Compatibility, " + Tizen.NUI.PublicKey.TizenNUI2)]
 
 namespace Tizen.NUI
 {
