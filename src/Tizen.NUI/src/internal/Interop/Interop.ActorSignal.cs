@@ -82,6 +82,12 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_VisibilityChangedSignal_Disconnect")]
             public static extern void VisibilityChangedDisconnect(HandleRef actor, HandleRef handler);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InheritedVisibilityChangedSignal_Connect")]
+            public static extern void AggregatedVisibilityChangedConnect(HandleRef actor, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InheritedVisibilityChangedSignal_Disconnect")]
+            public static extern void AggregatedVisibilityChangedDisconnect(HandleRef actor, HandleRef handler);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LayoutDirectionChangedSignal_Connect")]
             public static extern void LayoutDirectionChangedConnect(HandleRef actor, HandleRef handler);
 
