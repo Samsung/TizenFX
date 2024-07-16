@@ -37,7 +37,6 @@ jobs:
         ./build.sh index
     - name: Archive Artifacts
       run: |
-        cp .gitattributes _site/
         tar cfz site.tar.gz _site/
     - uses: actions/upload-artifact@v2
       with:
