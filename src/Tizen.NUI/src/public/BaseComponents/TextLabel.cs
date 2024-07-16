@@ -329,7 +329,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">The width of text to render.</param>
         /// <param name="height">The height of text to render.</param>
         /// <remarks>
-        /// Only works when AsyncAuto and AsyncManual.
+        /// Only works when AsyncAuto and AsyncManual.<br />
+        /// If another request occurs before the requested render is completed, the previous request will be canceled.<br />
+        /// In AsyncAuto, the manual request is not canceled by an auto request caused by OnRealyout.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncRenderWithFixedSize(float width, float height)
@@ -346,8 +348,10 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Only works when AsyncAuto and AsyncManual.<br />
         /// The height is determined by the content of the text when rendered with the given width.<br />
-        /// The result will be the same as the height returned by GetHeightForWidth.
-        /// If the heightConstraint is given, the maximum height will be the heightConstraint.
+        /// The result will be the same as the height returned by GetHeightForWidth.<br />
+        /// If the heightConstraint is given, the maximum height will be the heightConstraint.<br />
+        /// If another request occurs before the requested render is completed, the previous request will be canceled.<br />
+        /// In AsyncAuto, the manual request is not canceled by an auto request caused by OnRealyout.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncRenderWithFixedWidth(float width, float heightConstraint = float.PositiveInfinity)
@@ -366,8 +370,10 @@ namespace Tizen.NUI.BaseComponents
         /// If the width of the text content is smaller than the widthConstraint, the width will be determined by the width of the text.<br />
         /// If the width of the text content is larger than the widthConstraint, the width will be determined by the widthConstraint.<br />
         /// The height is determined by the content of the text when rendered with the given width.<br />
-        /// In this case, the result will be the same as the height returned by GetHeightForWidth.
-        /// If the heightConstraint is given, the maximum height will be the heightConstraint.
+        /// In this case, the result will be the same as the height returned by GetHeightForWidth.<br />
+        /// If the heightConstraint is given, the maximum height will be the heightConstraint.<br />
+        /// If another request occurs before the requested render is completed, the previous request will be canceled.<br />
+        /// In AsyncAuto, the manual request is not canceled by an auto request caused by OnRealyout.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncRenderWithConstraint(float widthConstraint, float heightConstraint = float.PositiveInfinity)
@@ -379,6 +385,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Requests asynchronous text natural size computation.
         /// </summary>
+        /// <remarks>
+        /// If another request occurs before the requested natural size computation is completed, the previous request will be canceled.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncNaturalSize()
         {
@@ -390,6 +399,9 @@ namespace Tizen.NUI.BaseComponents
         /// Requests asynchronous computation of the height of the text based on the given width.
         /// </summary>
         /// <param name="width">The width of text to compute.</param>
+        /// <remarks>
+        /// If another request occurs before the requested height for width computation is completed, the previous request will be canceled.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestAsyncHeightForWidth(float width)
         {
