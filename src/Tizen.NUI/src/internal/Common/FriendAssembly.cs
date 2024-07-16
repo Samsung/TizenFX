@@ -42,6 +42,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.NUI.Components.Devel.Tests, " + Tizen.NUI.PublicKey.Sample)]
 
 [assembly: InternalsVisibleTo("Tizen.NUI2, " + Tizen.NUI.PublicKey.TizenNUI2)]
+[assembly: InternalsVisibleTo("Tizen.NUI2.Compatibility, " + Tizen.NUI.PublicKey.TizenNUI2)]
 
 namespace Tizen.NUI
 {
