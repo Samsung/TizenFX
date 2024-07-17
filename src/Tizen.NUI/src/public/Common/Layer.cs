@@ -348,12 +348,6 @@ namespace Tizen.NUI
                 Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this layer.");
                 return;
             }
-            // If the view had focus, it clears focus.
-            if (child == FocusManager.Instance.GetCurrentFocusView())
-            {
-                FocusManager.Instance.ClearFocus();
-            }
-
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();

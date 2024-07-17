@@ -1143,12 +1143,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal void RemoveChild(View child)
         {
-            // If the view had focus, it clears focus.
-            if (child == FocusManager.Instance.GetCurrentFocusView())
-            {
-                Tizen.Log.Debug("NUI", $"ClearFocus due to View id:({child.ID}) removed from scene\n");
-                FocusManager.Instance.ClearFocus();
-            }
             // Do actual child removal
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
