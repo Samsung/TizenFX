@@ -391,7 +391,7 @@ The default bundle policy is <a class="xref" href="Tizen.Multimedia.Remoting.Web
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L344">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L352">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_AddIceCandidate_" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddIceCandidate*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_AddIceCandidate_System_String_" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddIceCandidate(System.String)">AddIceCandidate(string)</h4>
@@ -428,7 +428,7 @@ The default bundle policy is <a class="xref" href="Tizen.Multimedia.Remoting.Web
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L363">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L371">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_AddIceCandidates_" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddIceCandidates*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_AddIceCandidates_IEnumerable_System_String__" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddIceCandidates(IEnumerable{System.String})">AddIceCandidates(IEnumerable&lt;string&gt;)</h4>
@@ -465,7 +465,7 @@ The default bundle policy is <a class="xref" href="Tizen.Multimedia.Remoting.Web
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L411">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L419">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_AddSource_" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddSource*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddSource(Tizen.Multimedia.Remoting.MediaSource)">AddSource(MediaSource)</h4>
@@ -495,7 +495,7 @@ The default bundle policy is <a class="xref" href="Tizen.Multimedia.Remoting.Web
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Idle">Idle</a>.<br>
+  <div class="markdown level1 remarks"><p>This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br>
 Each MediaSource requires different feature or privilege.<br>
 <a class="xref" href="Tizen.Multimedia.Remoting.MediaCameraSource.html">MediaCameraSource</a> needs camera feature and privilege.<br>
 <a class="xref" href="Tizen.Multimedia.Remoting.MediaMicrophoneSource.html">MediaMicrophoneSource</a> needs microphone feature and recorder privilege.<br></p>
@@ -515,7 +515,7 @@ Each MediaSource requires different feature or privilege.<br>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L459">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L465">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_AddSources_" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddSources*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___" data-uid="Tizen.Multimedia.Remoting.WebRTC.AddSources(Tizen.Multimedia.Remoting.MediaSource[])">AddSources(params MediaSource[])</h4>
@@ -545,7 +545,7 @@ Each MediaSource requires different feature or privilege.<br>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource____remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Idle">Idle</a>.<br>
+  <div class="markdown level1 remarks"><p>This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br>
 Each MediaSource requires different feature or privilege.<br>
 <a class="xref" href="Tizen.Multimedia.Remoting.MediaCameraSource.html">MediaCameraSource</a> needs camera feature and privilege.<br>
 <a class="xref" href="Tizen.Multimedia.Remoting.MediaMicrophoneSource.html">MediaMicrophoneSource</a> needs microphone feature and recorder privilege.<br></p>
@@ -565,7 +565,7 @@ Each MediaSource requires different feature or privilege.<br>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L268">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L272">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_CreateAnswerAsync_" data-uid="Tizen.Multimedia.Remoting.WebRTC.CreateAnswerAsync*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_CreateAnswerAsync" data-uid="Tizen.Multimedia.Remoting.WebRTC.CreateAnswerAsync">CreateAnswerAsync()</h4>
@@ -593,7 +593,7 @@ Each MediaSource requires different feature or privilege.<br>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_CreateAnswerAsync_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a></p>
+  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a> or <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a>(Since API Level 12)</p>
 </div>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_CreateAnswerAsync_seealso">See Also</h5>
   <div class="seealso">
@@ -604,7 +604,7 @@ Each MediaSource requires different feature or privilege.<br>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L235">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L237">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_CreateOfferAsync_" data-uid="Tizen.Multimedia.Remoting.WebRTC.CreateOfferAsync*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_CreateOfferAsync" data-uid="Tizen.Multimedia.Remoting.WebRTC.CreateOfferAsync">CreateOfferAsync()</h4>
@@ -632,7 +632,7 @@ Each MediaSource requires different feature or privilege.<br>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_CreateOfferAsync_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a></p>
+  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a> or <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a>(Since API Level 12)</p>
 </div>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_CreateOfferAsync_seealso">See Also</h5>
   <div class="seealso">
@@ -694,7 +694,7 @@ false to release only unmanaged resources.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L610">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L616">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_GetStatistics_" data-uid="Tizen.Multimedia.Remoting.WebRTC.GetStatistics*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_GetStatistics_Tizen_Multimedia_Remoting_WebRTCStatisticsCategory_" data-uid="Tizen.Multimedia.Remoting.WebRTC.GetStatistics(Tizen.Multimedia.Remoting.WebRTCStatisticsCategory)">GetStatistics(WebRTCStatisticsCategory)</h4>
@@ -740,14 +740,14 @@ false to release only unmanaged resources.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_GetStatistics_Tizen_Multimedia_Remoting_WebRTCStatisticsCategory__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a></p>
+  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a>(Since API Level 12) or <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a></p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L580">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L584">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_GetTurnServer_" data-uid="Tizen.Multimedia.Remoting.WebRTC.GetTurnServer*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_GetTurnServer" data-uid="Tizen.Multimedia.Remoting.WebRTC.GetTurnServer">GetTurnServer()</h4>
@@ -779,7 +779,7 @@ false to release only unmanaged resources.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L491">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L497">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_RemoveSource_" data-uid="Tizen.Multimedia.Remoting.WebRTC.RemoveSource*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_RemoveSource_Tizen_Multimedia_Remoting_MediaSource_" data-uid="Tizen.Multimedia.Remoting.WebRTC.RemoveSource(Tizen.Multimedia.Remoting.MediaSource)">RemoveSource(MediaSource)</h4>
@@ -809,7 +809,7 @@ false to release only unmanaged resources.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_RemoveSource_Tizen_Multimedia_Remoting_MediaSource__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Idle">Idle</a>.<br>
+  <div class="markdown level1 remarks"><p>This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br>
 If user want to use removed MediaSource again, user should create new instance for it.</p>
 </div>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_RemoveSource_Tizen_Multimedia_Remoting_MediaSource__seealso">See Also</h5>
@@ -827,7 +827,7 @@ If user want to use removed MediaSource again, user should create new instance f
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L526">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L530">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_RemoveSources_" data-uid="Tizen.Multimedia.Remoting.WebRTC.RemoveSources*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_RemoveSources_Tizen_Multimedia_Remoting_MediaSource___" data-uid="Tizen.Multimedia.Remoting.WebRTC.RemoveSources(Tizen.Multimedia.Remoting.MediaSource[])">RemoveSources(params MediaSource[])</h4>
@@ -857,7 +857,7 @@ If user want to use removed MediaSource again, user should create new instance f
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_RemoveSources_Tizen_Multimedia_Remoting_MediaSource____remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Idle">Idle</a>.<br>
+  <div class="markdown level1 remarks"><p>This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br>
 If user want to use removed MediaSource again, user should create new instance for it.</p>
 </div>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_RemoveSources_Tizen_Multimedia_Remoting_MediaSource____seealso">See Also</h5>
@@ -875,7 +875,7 @@ If user want to use removed MediaSource again, user should create new instance f
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L304">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L310">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_SetLocalDescription_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetLocalDescription*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_SetLocalDescription_System_String_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetLocalDescription(System.String)">SetLocalDescription(string)</h4>
@@ -905,7 +905,7 @@ If user want to use removed MediaSource again, user should create new instance f
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_SetLocalDescription_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a>.</p>
+  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a> or <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a>(Since API Level 12)</p>
 </div>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_SetLocalDescription_System_String__seealso">See Also</h5>
   <div class="seealso">
@@ -917,7 +917,7 @@ If user want to use removed MediaSource again, user should create new instance f
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L325">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L333">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_SetRemoteDescription_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetRemoteDescription*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_SetRemoteDescription_System_String_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetRemoteDescription(System.String)">SetRemoteDescription(string)</h4>
@@ -947,7 +947,7 @@ If user want to use removed MediaSource again, user should create new instance f
     </tbody>
   </table>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_SetRemoteDescription_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a>.</p>
+  <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a> or <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a>(Since API Level 12)</p>
 </div>
   <h5 id="Tizen_Multimedia_Remoting_WebRTC_SetRemoteDescription_System_String__seealso">See Also</h5>
   <div class="seealso">
@@ -959,7 +959,7 @@ If user want to use removed MediaSource again, user should create new instance f
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L540">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L544">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_SetTurnServer_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetTurnServer*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_SetTurnServer_System_String_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetTurnServer(System.String)">SetTurnServer(string)</h4>
@@ -992,7 +992,7 @@ If user want to use removed MediaSource again, user should create new instance f
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L559">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTC.cs/#L563">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_WebRTC_SetTurnServers_" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetTurnServers*"></a>
   <h4 id="Tizen_Multimedia_Remoting_WebRTC_SetTurnServers_System_String___" data-uid="Tizen.Multimedia.Remoting.WebRTC.SetTurnServers(System.String[])">SetTurnServers(params string[])</h4>
