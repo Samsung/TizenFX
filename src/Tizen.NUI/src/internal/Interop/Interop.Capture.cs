@@ -65,6 +65,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Get")]
             public static extern IntPtr Get(HandleRef jarg1);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetImageUrl")]
+            public static extern IntPtr GetImageUrl(HandleRef capture);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetNativeImageSource")]
             public static extern IntPtr GetNativeImageSourcePtr(HandleRef jarg1);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -210,25 +210,41 @@ namespace Tizen.NUI.BaseComponents
 
             protected override bool ReleaseHandle()
             {
-                DisposeQueue.Instance.Add(this);
+                if (IsInvalid)
+                {
+                    return true;
+                }
+
+                Interop.View.DeleteControlHandleView(handle);
+                this.SetHandle(IntPtr.Zero);
                 return true;
             }
 
-            public void Dispose()
+            protected override void Dispose(bool disposing)
             {
-                Interop.View.DeleteControlHandleView(handle);
-                this.SetHandle(IntPtr.Zero);
+                if (disposing)
+                {
+                    base.Dispose(true);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "Warning! ControlHandle is disposed by Unmanaged code. Don't forget to add 'using' keyword before use ControlHandle\n");
+                    DisposeQueue.Instance.Add(this);
+                }
             }
         }
 
         /// <summary>
         /// Gets the control handle.
         /// </summary>
+        /// <remarks>
+        /// We don't allow to keep ControlHandle in managed code.
+        /// Don't forget to call Dispose() after using it.
+        /// </remarks>
         /// <returns>The control handle of the view</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        ControlHandle GetControl()
+        internal ControlHandle GetControl()
         {
-            var result = new ControlHandle(Interop.View.DownCast(SwigCPtr));
+            var result = new ControlHandle(Interop.BaseHandle.NewBaseHandle(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -295,7 +311,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal AccessibilityDoGestureSignal AccessibilityGestureInfoSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             AccessibilityDoGestureSignal ret = new AccessibilityDoGestureSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityDoGestureSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -357,7 +373,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal StringToVoidSignal GetAccessibilityDescriptionSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             StringToVoidSignal ret = new StringToVoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityGetDescriptionSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -419,7 +435,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal StringToVoidSignal GetAccessibilityNameSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             StringToVoidSignal ret = new StringToVoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityGetNameSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -481,7 +497,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VoidSignal AccessibilityActivatedSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityActivateSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -530,7 +546,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VoidSignal AccessibilityReadingSkippedSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingSkippedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -579,7 +595,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VoidSignal AccessibilityReadingPausedSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingPausedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -628,7 +644,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VoidSignal AccessibilityReadingResumedSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingResumedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -677,7 +693,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VoidSignal AccessibilityReadingCancelledSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingCancelledSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -726,7 +742,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal VoidSignal AccessibilityReadingStoppedSignal()
         {
-            var handle = GetControl();
+            using var handle = GetControl();
             VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityReadingStoppedSignal(handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

@@ -237,7 +237,21 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] RepeatCount SET");
 
                 repeatCnt = (value < -1) ? -1 : value;
-                LoopCount = (repeatCnt < 0) ? repeatCnt : repeatCnt + 1;
+                if (repeatCnt < 0)
+                {
+                    LoopCount = repeatCnt;
+                }
+                else
+                {
+                    if (repeatCnt < int.MaxValue)
+                    {
+                        LoopCount = repeatCnt + 1;
+                    }
+                    else
+                    {
+                        LoopCount = int.MaxValue;
+                    }
+                }
 
                 NUILog.Debug($"[{GetId()}] repeatCnt={repeatCnt} ]AnimatedVectorImageView END]");
             }

@@ -43,6 +43,7 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_updateEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_moveEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
+        private static event EventHandler<PackageManagerClearCacheEventArgs> s_clearCacheEventHandler;
 
         private static readonly object s_pkgEventLock = new object();
         private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
@@ -199,6 +200,34 @@ namespace Tizen.Applications
                 lock (s_pkgEventLock)
                 {
                     s_clearDataEventHandler -= value;
+                    UnregisterPackageManagerEventIfNeeded();
+                    UnsetPackageManagerEventStatus();
+                }
+            }
+        }
+
+        /// <summary>
+        /// ClearCacheProgressChanged event. This event occurs when cache directories are cleared in the given package.
+        /// </summary>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<PackageManagerClearCacheEventArgs> ClearCacheProgressChanged
+        {
+            add
+            {
+                lock (s_pkgEventLock)
+                {
+                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearCache);
+                    RegisterPackageManagerEventIfNeeded();
+                    s_clearCacheEventHandler += value;
+                }
+            }
+            remove
+            {
+                lock (s_pkgEventLock)
+                {
+                    s_clearCacheEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
                     UnsetPackageManagerEventStatus();
                 }
@@ -1375,6 +1404,7 @@ namespace Tizen.Applications
             if (s_updateEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Upgrade;
             if (s_moveEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Move;
             if (s_clearDataEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearData;
+            if (s_clearCacheEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearCache;
             if (eventStatus != Interop.PackageManager.EventStatus.All)
                 eventStatus |= Interop.PackageManager.EventStatus.Progress;
 
@@ -1394,7 +1424,7 @@ namespace Tizen.Applications
 
         private static void RegisterPackageManagerEventIfNeeded()
         {
-            if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null)
+            if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null && s_clearCacheEventHandler != null)
                 return;
 
             if ((s_registered_eventStatus & s_eventStatus) == s_eventStatus)
@@ -1419,8 +1449,7 @@ namespace Tizen.Applications
             }
         }
 
-        private static void InternalEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data)
-        {
+        private static void HandlePackageEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data) {
             PackageManagerEventArgs args;
             try
             {
@@ -1460,9 +1489,40 @@ namespace Tizen.Applications
             handlers?.Invoke(null, args);
         }
 
+        private static void HandleClearCacheEventCallback(string packageId, Interop.PackageManager.PackageEventState eventState, IntPtr user_data)
+        {
+            PackageManagerClearCacheEventArgs args;
+            try
+            {
+                args = new PackageManagerClearCacheEventArgs(packageId, (PackageEventState)eventState);
+            }
+            catch (Exception e)
+            {
+                Log.Warn(LogTag, e.Message);
+                return;
+            }
+
+            EventHandler<PackageManagerClearCacheEventArgs> handlers = null;
+            lock (s_pkgEventLock)
+            {
+                handlers = s_clearCacheEventHandler;
+            }
+
+            handlers?.Invoke(null, args);
+        }
+
+        private static void InternalEventCallback(string packageType, string packageId, Interop.PackageManager.EventType eventType, Interop.PackageManager.PackageEventState eventState, int progress, Interop.PackageManager.ErrorCode error, IntPtr user_data)
+        {
+            if (eventType == Interop.PackageManager.EventType.ClearCache) {
+                HandleClearCacheEventCallback(packageId, eventState, user_data);
+            } else {
+                HandlePackageEventCallback(packageType, packageId, eventType, eventState, progress, error, user_data);
+            }
+        }
+
         private static void UnregisterPackageManagerEventIfNeeded()
         {
-            if (s_packageManagerEventCallback == null || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null)
+            if (s_packageManagerEventCallback == null || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null || s_clearCacheEventHandler != null)
             {
                 return;
             }
