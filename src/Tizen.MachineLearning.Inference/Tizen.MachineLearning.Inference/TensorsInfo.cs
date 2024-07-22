@@ -60,10 +60,10 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
-        /// Add a Tensor information to the TensorsInfo instance. Note that we support up to 16 tensors in TensorsInfo.
+        /// Add a Tensor information to the TensorsInfo instance. Note that we support up to 256 tensors in TensorsInfo.
         /// </summary>
         /// <param name="type">Data element type of Tensor.</param>
-        /// <param name="dimension">Dimension of Tensor. Note that we support up to 4th ranks.</param>
+        /// <param name="dimension">Dimension of Tensor. Note that we support up to 16th ranks.</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SizeLimit)</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
