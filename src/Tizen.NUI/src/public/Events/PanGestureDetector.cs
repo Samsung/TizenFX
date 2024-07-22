@@ -645,8 +645,12 @@ namespace Tizen.NUI
                     return;
                 }
 
+
                 e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
+                // Save the state.
+                GestureStatus.Instance.PanGestureStates = e.PanGesture.State;
                 detectedEventHandler(this, e);
+
             }
         }
 
