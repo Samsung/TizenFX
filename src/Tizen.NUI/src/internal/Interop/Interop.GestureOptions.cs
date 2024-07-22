@@ -98,6 +98,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumMotionAllowedDistance")]
             public static extern void SetTapMaximumMotionAllowedDistance(float distance);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_GetPanGestureState")]
+            public static extern int GetPanGestureState();
         }
     }
 }

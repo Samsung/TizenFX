@@ -367,5 +367,12 @@ namespace Tizen.NUI
             Interop.GestureOptions.SetTapMaximumMotionAllowedDistance(distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gesture.StateType GetPanGestureState()
+        {
+            return (Gesture.StateType)Interop.GestureOptions.GetPanGestureState();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
