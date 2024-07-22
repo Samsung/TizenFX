@@ -2507,5 +2507,29 @@ namespace Tizen.NUI
                 return new NUI.SafeNativeWindowHandle(this);
             }
         }
+
+        /// <summary>
+        /// Requests relative motion grab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionGrab()
+        {
+            bool ret = Interop.Window.RelativeMotionGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests relative motion ungrab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionUnGrab()
+        {
+            bool ret = Interop.Window.RelativeMotionUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }
