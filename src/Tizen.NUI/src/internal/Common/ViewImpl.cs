@@ -184,18 +184,6 @@ namespace Tizen.NUI
         /// Do not use this, that will be deprecated.
         [Obsolete("Do not use this, that will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AccessibilityActivate()
-        {
-            Interop.ViewImpl.AccessibilityActivate(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// [Obsolete("Do not use this, that will be deprecated.")]
-        /// </summary>
-        /// Do not use this, that will be deprecated.
-        [Obsolete("Do not use this, that will be deprecated.")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void KeyboardEnter()
         {
             Interop.ViewImpl.KeyboardEnter(SwigCPtr);
