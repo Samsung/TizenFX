@@ -1619,6 +1619,14 @@ namespace Tizen.NUI.BaseComponents
                 hitTestResultDataCallback = null;
             }
 
+            if (visibilityChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
+
+                Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                visibilityChangedEventCallback = null;
+            }
 
             if (interceptTouchDataCallback != null)
             {
@@ -1627,6 +1635,15 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 interceptTouchDataCallback = null;
+            }
+
+            if (layoutDirectionChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
+
+                Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                layoutDirectionChangedEventCallback = null;
             }
 
             if (touchDataCallback != null)
@@ -1683,6 +1700,97 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ViewSignal.ResourceReadyDisconnect(GetBaseHandleCPtrHandleRef, backgroundResourceLoadedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 backgroundResourceLoadedCallback = null;
+            }
+
+            // For ViewAccessibility
+            if (gestureInfoCallback != null)
+            {
+                NUILog.Debug($"[Dispose] gestureInfoCallback");
+
+                gestureInfoSignal?.Disconnect(gestureInfoCallback);
+                gestureInfoSignal?.Dispose();
+                gestureInfoSignal = null;
+                gestureInfoCallback = null;
+            }
+
+            if (getDescriptionCallback != null)
+            {
+                NUILog.Debug($"[Dispose] getDescriptionCallback");
+
+                getDescriptionSignal?.Disconnect(getDescriptionCallback);
+                getDescriptionSignal?.Dispose();
+                getDescriptionSignal = null;
+                getDescriptionCallback = null;
+            }
+
+            if (getNameCallback != null)
+            {
+                NUILog.Debug($"[Dispose] getNameCallback");
+
+                getNameSignal?.Disconnect(getNameCallback);
+                getNameSignal?.Dispose();
+                getNameSignal = null;
+                getNameCallback = null;
+            }
+
+            if (activateCallback != null)
+            {
+                NUILog.Debug($"[Dispose] activateCallback");
+
+                ActivateSignal?.Disconnect(activateCallback);
+                ActivateSignal?.Dispose();
+                ActivateSignal = null;
+                activateCallback = null;
+            }
+
+            if (readingSkippedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingSkippedCallback");
+                
+                ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
+                ReadingSkippedSignal?.Dispose();
+                ReadingSkippedSignal = null;
+                readingSkippedCallback = null;
+            }
+
+            if (readingPausedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingPausedCallback");
+
+                ReadingPausedSignal?.Disconnect(readingPausedCallback);
+                ReadingPausedSignal?.Dispose();
+                ReadingPausedSignal = null;
+                readingPausedCallback = null;
+            }
+
+            if (readingResumedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingResumedCallback");
+
+                ReadingResumedSignal?.Disconnect(readingResumedCallback);
+                ReadingResumedSignal?.Dispose();
+                ReadingResumedSignal = null;
+                readingResumedCallback = null;
+            }
+
+            if (readingCancelledCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingCancelledCallback");
+
+                ReadingCancelledSignal?.Disconnect(readingCancelledCallback);
+                ReadingCancelledSignal?.Dispose();
+                ReadingCancelledSignal = null;
+                readingCancelledCallback = null;
+            }
+
+            if (readingStoppedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingStoppedCallback");
+
+                ReadingStoppedSignal?.Disconnect(readingStoppedCallback);
+                ReadingStoppedSignal?.Dispose();
+                ReadingStoppedSignal = null;
+                readingStoppedCallback = null;
             }
 
             NDalicPINVOKE.ThrowExceptionIfExists();
