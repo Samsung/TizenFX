@@ -1166,11 +1166,8 @@ namespace Tizen.NUI.BaseComponents
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
-                    visualEvent.Disconnect(visualEventSignalCallback);
-                    if (visualEvent?.Empty() == true)
-                    {
-                        visualEventSignalCallback = null;
-                    }
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    visualEventSignalCallback = null;
                 }
             }
         }

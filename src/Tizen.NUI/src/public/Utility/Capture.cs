@@ -94,6 +94,13 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                if (finishedCallback != null)
+                {
+                    finishedSignal?.Disconnect(finishedCallback);
+                    finishedSignal?.Dispose();
+                    finishedSignal = null;
+                    finishedCallback = null;
+                }
             }
 
             base.Dispose(type);
@@ -318,8 +325,8 @@ namespace Tizen.NUI
             {
                 if (finishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr));
                     finishedCallback = onFinished;
+                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr));
                     finishedSignal.Connect(finishedCallback);
                 }
                 finishedEventHandler += value;
@@ -328,10 +335,12 @@ namespace Tizen.NUI
             {
                 finishedEventHandler -= value;
 
-                if (finishedEventHandler == null && finishedSignal?.Empty() == false)
+                if (finishedEventHandler == null && finishedCallback != null)
                 {
-                    finishedCallback = onFinished;
-                    finishedSignal.Disconnect(finishedCallback);
+                    finishedSignal?.Disconnect(finishedCallback);
+                    finishedSignal?.Dispose();
+                    finishedSignal = null;
+                    finishedCallback = null;
                 }
             }
         }

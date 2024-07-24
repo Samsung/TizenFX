@@ -305,12 +305,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourceReadyEventHandler -= value;
 
-                ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
-                if (_resourceReadyEventHandler == null && resourceReadySignal?.Empty() == false)
+                if (_resourceReadyEventHandler == null && _resourceReadyEventCallback != null)
                 {
+                    using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
                     resourceReadySignal?.Disconnect(_resourceReadyEventCallback);
+                    _resourceReadyEventCallback = null;
                 }
-                resourceReadySignal?.Dispose();
             }
         }
 
@@ -331,12 +331,12 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 _resourceLoadedEventHandler -= value;
-                ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
-                if (_resourceLoadedEventHandler == null && resourceReadySignal?.Empty() == false)
+                if (_resourceLoadedEventHandler == null && _resourceLoadedCallback != null)
                 {
+                    using ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
                     resourceReadySignal?.Disconnect(_resourceLoadedCallback);
+                    _resourceLoadedCallback = null;
                 }
-                resourceReadySignal?.Dispose();
             }
         }
 
