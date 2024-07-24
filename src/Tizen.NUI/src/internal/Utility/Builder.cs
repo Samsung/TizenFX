@@ -51,10 +51,13 @@ namespace Tizen.NUI
                 if (builderQuitEventHandler == null)
                 {
                     builderQuitEventHandler += value;
-
                     builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
                     quitSignal = this.QuitSignal();
                     quitSignal?.Connect(builderQuitEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Builder.Quit] Only one listener is allowed\n");
                 }
             }
 
@@ -62,10 +65,13 @@ namespace Tizen.NUI
             {
                 if (builderQuitEventHandler != null)
                 {
-                    quitSignal?.Disconnect(builderQuitEventCallbackDelegate);
+                    builderQuitEventHandler -= value;
+                    if (builderQuitEventHandler == null)
+                    {
+                        quitSignal?.Disconnect(builderQuitEventCallbackDelegate);
+                        builderQuitEventCallbackDelegate = null;
+                    }
                 }
-
-                builderQuitEventHandler -= value;
             }
         }
 

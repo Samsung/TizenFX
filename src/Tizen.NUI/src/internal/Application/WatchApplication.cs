@@ -153,9 +153,10 @@ namespace Tizen.NUI
             {
                 timeTickEventHandler -= value;
 
-                if (timeTickEventHandler == null && TimeTickSignal().Empty() == false)
+                if (timeTickEventHandler == null && timeTickCallback != null)
                 {
                     TimeTickSignal().Disconnect(timeTickCallback);
+                    timeTickCallback = null;
                 }
             }
         }
@@ -225,9 +226,10 @@ namespace Tizen.NUI
             {
                 ambientTickEventHandler -= value;
 
-                if (ambientTickEventHandler == null && AmbientTickSignal().Empty() == false)
+                if (ambientTickEventHandler == null && ambientTickCallback != null)
                 {
                     AmbientTickSignal().Disconnect(ambientTickCallback);
+                    ambientTickCallback = null;
                 }
             }
         }
@@ -297,9 +299,10 @@ namespace Tizen.NUI
             {
                 ambientChangedEventHandler -= value;
 
-                if (ambientChangedEventHandler == null && AmbientChangedSignal().Empty() == false)
+                if (ambientChangedEventHandler == null && ambientChangedCallback != null)
                 {
                     AmbientChangedSignal().Disconnect(ambientChangedCallback);
+                    ambientChangedCallback = null;
                 }
             }
         }
