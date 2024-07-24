@@ -91,16 +91,23 @@ namespace Tizen.NUI
                     objectRegistryObjectCreatedEventCallbackDelegate = new ObjectCreatedEventCallbackDelegate(OnObjectCreated);
                     this.ObjectCreatedSignal().Connect(objectRegistryObjectCreatedEventCallbackDelegate);
                 }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[ObjectRegistry.ObjectCreated] Only one listener is allowed\n");
+                }
             }
 
             remove
             {
                 if (objectRegistryObjectCreatedEventHandler != null)
                 {
-                    this.ObjectCreatedSignal().Disconnect(objectRegistryObjectCreatedEventCallbackDelegate);
+                    objectRegistryObjectCreatedEventHandler -= value;
+                    if (objectRegistryObjectCreatedEventHandler == null)
+                    {
+                        this.ObjectCreatedSignal().Disconnect(objectRegistryObjectCreatedEventCallbackDelegate);
+                        objectRegistryObjectCreatedEventCallbackDelegate = null;
+                    }
                 }
-
-                objectRegistryObjectCreatedEventHandler -= value;
             }
         }
 
@@ -131,16 +138,23 @@ namespace Tizen.NUI
                     objectRegistryObjectDestroyedEventCallbackDelegate = new ObjectDestroyedEventCallbackDelegate(OnObjectDestroyed);
                     this.ObjectDestroyedSignal().Connect(objectRegistryObjectDestroyedEventCallbackDelegate);
                 }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[ObjectRegistry.ObjectDestroyed] Only one listener is allowed\n");
+                }
             }
 
             remove
             {
                 if (objectRegistryObjectDestroyedEventHandler != null)
                 {
-                    this.ObjectDestroyedSignal().Disconnect(objectRegistryObjectDestroyedEventCallbackDelegate);
+                    objectRegistryObjectDestroyedEventHandler -= value;
+                    if (objectRegistryObjectDestroyedEventHandler == null)
+                    {
+                        this.ObjectDestroyedSignal().Disconnect(objectRegistryObjectDestroyedEventCallbackDelegate);
+                        objectRegistryObjectDestroyedEventCallbackDelegate = null;
+                    }
                 }
-
-                objectRegistryObjectDestroyedEventHandler -= value;
             }
         }
 
