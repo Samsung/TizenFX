@@ -417,6 +417,44 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The Pointer edge boundary for grab.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum PointerBoundary
+        {
+            /// <summary>
+            /// Default value
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+
+            /// <summary>
+            /// Top
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top = 1,
+
+            /// <summary>
+            /// Right
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Right = 2,
+
+            /// <summary>
+            /// Bottom
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom = 3,
+
+            /// <summary>
+            /// Left
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Left = 4,
+
+        }
+
+        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -425,7 +463,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the default window.
-        /// The main window or default window is automatically created when the application is launched, 
+        /// The main window or default window is automatically created when the application is launched,
         /// and it remains constant and unchanged throughout the application's operation.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
@@ -2517,7 +2555,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets a value indicating whether the window is modal or not.
-        /// The modal property of a window requires that it be set to a parent window. 
+        /// The modal property of a window requires that it be set to a parent window.
         /// The window modal function operates on the specified parent window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2556,5 +2594,31 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
+
+        /// <summary>
+        /// Requests relative motion grab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionGrab(PointerBoundary boundary)
+        {
+            bool ret = Interop.Window.RelativeMotionGrab(SwigCPtr, (uint)boundary);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests relative motion ungrab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionUnGrab()
+        {
+            bool ret = Interop.Window.RelativeMotionUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
     }
 }
