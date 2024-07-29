@@ -1023,6 +1023,15 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int NotifyAfterRasterization = NDalic.ImageVisualOrientationCorrection + 17;
+
+        /// <summary>
+        /// @brief Whether to synchronize image texture size to visual size.
+        /// @details Name "synchronousSizing", type Property::BOOLEAN.
+        /// If this property is true, ImageVisual ignores mDesiredSize.
+        /// @note Used by the ImageVisual. The default is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int SynchronousSizing = NDalic.ImageVisualOrientationCorrection + 18;
     }
 
     /// <summary>
