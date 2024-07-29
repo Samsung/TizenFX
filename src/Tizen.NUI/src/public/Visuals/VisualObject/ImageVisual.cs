@@ -175,6 +175,29 @@ namespace Tizen.NUI.Visuals
         }
 
         /// <summary>
+        /// Gets or sets whether to automatically reload the image as the visual size.<br />
+        /// If we set this value as true, Visual size will be works as desired size of image.<br />
+        /// </summary>
+        /// <remarks>
+        /// If this value is true, <see cref="DesiredWidth"/> and <see cref="DesiredHeight"/> will be invalidated.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SynchronousSizing
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousSizing, new PropertyValue(value), true);
+            }
+            get
+            {
+                bool ret = false;
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousSizing);
+                propertyValue?.Get(out ret);
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the URL of the alpha mask.<br />
         /// Optional.
         /// </summary>

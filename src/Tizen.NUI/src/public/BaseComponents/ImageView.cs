@@ -52,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
                 SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalSynchronousLoadingProperty, defaultValueCreator: GetInternalSynchronousLoadingProperty);
 
                 OrientationCorrectionProperty = BindableProperty.Create(nameof(OrientationCorrection), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalOrientationCorrectionProperty, defaultValueCreator: GetInternalOrientationCorrectionProperty);
-                        
+
                 MaskingModeProperty = BindableProperty.Create(nameof(MaskingMode), typeof(MaskingModeType), typeof(ImageView), default(MaskingModeType), propertyChanged: SetInternalMaskingModeProperty, defaultValueCreator: GetInternalMaskingModeProperty);
 
                 FastTrackUploadingProperty = BindableProperty.Create(nameof(FastTrackUploading), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalFastTrackUploadingProperty, defaultValueCreator: GetInternalFastTrackUploadingProperty);
@@ -136,6 +136,7 @@ namespace Tizen.NUI.BaseComponents
             Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
             ImageVisualProperty.FastTrackUploading,
+            ImageVisualProperty.SynchronousSizing,
             NpatchImageVisualProperty.Border,
             NpatchImageVisualProperty.BorderOnly,
         };
@@ -769,6 +770,27 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalOrientationCorrectionProperty(this, null, value);
                 }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to automatically reload the image as the view size<br />
+        /// If we set this value as true, view size will be works as desired size of image.<br />
+        /// </summary>
+        /// <remarks>
+        /// If we set this value as true, <see cref="DesiredWidth"/> and <see cref="DesiredHeight"/> will be invalidated.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SynchronousSizing
+        {
+            get
+            {
+                return (bool)GetInternalSynchronousSizingProperty(this);
+            }
+            set
+            {
+                SetInternalSynchronousSizingProperty(this, value);
                 NotifyPropertyChanged();
             }
         }
