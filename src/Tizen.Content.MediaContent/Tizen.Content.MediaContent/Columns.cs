@@ -465,6 +465,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="PlaylistCommand.Count(CountArguments)"/>
     /// <seealso cref="PlaylistCommand.Select(SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class PlaylistColumns
     {
         /// <summary>
@@ -476,6 +477,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Playlist.Name"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Name => "PLAYLIST_NAME";
 
         /// <summary>
@@ -487,6 +489,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Playlist.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Id => "PLAYLIST_ID";
 
         /// <summary>
@@ -498,6 +501,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="PlaylistCommand.UpdatePlayOrder(int, PlayOrder)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string MemberOrder => "PLAYLIST_MEMBER_ORDER";
 
         /// <summary>
@@ -510,6 +514,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="PlaylistCommand.AddMember(int, string)"/>
         /// <seealso cref="PlaylistCommand.RemoveMember(int, int)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Count => "PLAYLIST_MEDIA_COUNT";
     }
 
@@ -579,6 +584,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="MediaInfoCommand.CountBookmark(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectBookmark(string, SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class BookmarkColumns
     {
         /// <summary>
@@ -590,6 +596,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Bookmark.Offset"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Offset => "BOOKMARK_MARKED_TIME";
 
         /// <summary>
@@ -601,6 +608,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Bookmark.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Id => "BOOKMARK_ID";
 
         /// <summary>
@@ -612,6 +620,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Bookmark.Name"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Name => "BOOKMARK_NAME";
     }
 

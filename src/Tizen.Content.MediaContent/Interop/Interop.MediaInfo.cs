@@ -54,11 +54,11 @@ internal static partial class Interop
             Common.ItemCallback callback, IntPtr userData = default);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_bookmark_count_from_db")]
-        internal static extern MediaContentError GetBookmarkCount(string mediaId, FilterHandle filter, out int bookmarkCount);
+        internal static extern MediaContentError GetBookmarkCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_bookmark_from_db")]
         internal static extern MediaContentError ForeachBookmarks(string mediaId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default);
+            Common.ItemCallback callback, IntPtr userData = default); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db")]
         internal static extern MediaContentError GetFaceCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated
