@@ -312,8 +312,7 @@ namespace Tizen.NUI.Samples
                 Width = thumbnailSize,
                 Height = thumbnailSize,
 
-                DesiredWidth = (int)thumbnailSize,
-                DesiredHeight = (int)thumbnailSize,
+                SynchronousSizing = true,
 
                 OffsetXPolicy = VisualTransformPolicyType.Absolute,
                 OffsetYPolicy = VisualTransformPolicyType.Absolute,
