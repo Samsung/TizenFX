@@ -68,9 +68,13 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public class SceneView : View
     {
-        private bool inCameraTransition = false;
-        private Animation cameraTransition;
         private string skyboxUrl;
+
+        private EventHandler cameraTransitionFinishedEventHandler;
+        private CameraTransitionFinishedEventCallbackType cameraTransitionFinishedEventCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void CameraTransitionFinishedEventCallbackType(IntPtr data);
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
@@ -78,6 +82,31 @@ namespace Tizen.NUI.Scene3D
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
+        }
+
+        /// <summary>
+        /// Dispose Explicit or Implicit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (cameraTransitionFinishedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] cameraTransitionFinishedEventCallback");
+
+                Interop.SceneView.CameraTransitionFinishedDisconnect(GetBaseHandleCPtrHandleRef, cameraTransitionFinishedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                cameraTransitionFinishedEventCallback = null;
+            }
+
+            LayoutCount = 0;
+
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -116,7 +145,30 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler CameraTransitionFinished;
+        public event EventHandler CameraTransitionFinished
+        {
+            add
+            {
+                if (cameraTransitionFinishedEventHandler == null)
+                {
+                    cameraTransitionFinishedEventCallback = OnCameraTransitionFinished;
+                    Interop.SceneView.CameraTransitionFinishedConnect(SwigCPtr, cameraTransitionFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                cameraTransitionFinishedEventHandler += value;
+            }
+
+            remove
+            {
+                cameraTransitionFinishedEventHandler -= value;
+                if (cameraTransitionFinishedEventHandler == null && cameraTransitionFinishedEventCallback != null)
+                {
+                    Interop.SceneView.CameraTransitionFinishedDisconnect(SwigCPtr, cameraTransitionFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    cameraTransitionFinishedEventCallback = null;
+                }
+            }
+        }
 
         /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
@@ -354,11 +406,6 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(uint index)
         {
-            if (inCameraTransition)
-            {
-                return;
-            }
-            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -370,11 +417,6 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(string name)
         {
-            if (inCameraTransition)
-            {
-                return;
-            }
-            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -384,7 +426,7 @@ namespace Tizen.NUI.Scene3D
         /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
-        /// The selected camera is switched to the Camera of the index when the transition is started.
+        /// The selected camera is switched to the Camera of the index when the transition is finished.
         /// During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
         /// During camera transition, Camera properties of Selected Camera should not be changed.
         /// </remarks>
@@ -395,14 +437,13 @@ namespace Tizen.NUI.Scene3D
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if (inCameraTransition || GetSelectedCamera() == GetCamera(index))
+            AlphaFunction actualAlphaFunction = alphaFunction;
+            if(actualAlphaFunction == null)
             {
-                return;
+                actualAlphaFunction = new AlphaFunction();
             }
-            Camera source = GetSelectedCamera();
-            SelectCamera(index);
-            Camera destination = GetSelectedCamera();
-            CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
+            Interop.SceneView.StartCameraTransitionByIndex(SwigCPtr, index, durationMilliSeconds, actualAlphaFunction.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -410,7 +451,7 @@ namespace Tizen.NUI.Scene3D
         /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
-        /// The selected camera is switched to the Camera of the input name when the transition is started.
+        /// The selected camera is switched to the Camera of the input name when the transition is finished.
         /// During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
         /// During camera transition, Camera properties of Selected Camera should not be changed.
         /// </remarks>
@@ -421,14 +462,13 @@ namespace Tizen.NUI.Scene3D
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if (inCameraTransition || GetSelectedCamera() == GetCamera(name))
+            AlphaFunction actualAlphaFunction = alphaFunction;
+            if(actualAlphaFunction == null)
             {
-                return;
+                actualAlphaFunction = new AlphaFunction();
             }
-            Camera source = GetSelectedCamera();
-            SelectCamera(name);
-            Camera destination = GetSelectedCamera();
-            CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
+            Interop.SceneView.StartCameraTransitionByName(SwigCPtr, name, durationMilliSeconds, actualAlphaFunction.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -496,7 +536,7 @@ namespace Tizen.NUI.Scene3D
         /// <remarks>
         ///  If the SceneView not uses FBO, this method returns SceneView's width.
         /// </remarks>
-        /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
+        /// <returns> Width of the SceneView resolution </returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetResolutionWidth()
@@ -512,7 +552,7 @@ namespace Tizen.NUI.Scene3D
         /// <remarks>
         ///  If the SceneView not uses FBO, this method returns SceneView's height.
         /// </remarks>
-        /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
+        /// <returns> Height of the SceneView resolution.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetResolutionHeight()
@@ -638,102 +678,6 @@ namespace Tizen.NUI.Scene3D
             return ret;
         }
 
-        private void CameraTransition(Camera sourceCamera, Camera destinationCamera, int durationMilliSeconds, AlphaFunction alphaFunction)
-        {
-            inCameraTransition = true;
-
-            Position sourcePosition = sourceCamera.Position;
-            Rotation sourceOrientation = sourceCamera.Orientation;
-
-            Position destinationPosition = destinationCamera.Position;
-            Rotation destinationOrientation = destinationCamera.Orientation;
-
-            cameraTransition = new Animation(durationMilliSeconds);
-
-            KeyFrames positionKeyFrames = new KeyFrames();
-            positionKeyFrames.Add(0.0f, sourcePosition);
-            positionKeyFrames.Add(1.0f, destinationPosition);
-
-            KeyFrames orientationKeyFrames = new KeyFrames();
-            orientationKeyFrames.Add(0.0f, sourceOrientation);
-            orientationKeyFrames.Add(1.0f, destinationOrientation);
-
-            cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
-            cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
-
-            if (destinationCamera.ProjectionMode == Camera.ProjectionModeType.Perspective)
-            {
-                Radian sourceFieldOfView = sourceCamera.FieldOfView;
-                Radian destinationFieldOfView = destinationCamera.FieldOfView;
-
-                // If ProjectionDirection is not equal, match the value.
-                if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
-                {
-                    float aspect = destinationCamera.AspectRatio;
-                    if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
-                    {
-                        Camera.ConvertFovFromHorizontalToVertical(aspect, ref sourceFieldOfView);
-                    }
-                    else
-                    {
-                        Camera.ConvertFovFromVerticalToHorizontal(aspect, ref sourceFieldOfView);
-                    }
-                }
-
-                KeyFrames fieldOfViewKeyFrames = new KeyFrames();
-                fieldOfViewKeyFrames.Add(0.0f, sourceFieldOfView.ConvertToFloat());
-                fieldOfViewKeyFrames.Add(1.0f, destinationFieldOfView.ConvertToFloat());
-                cameraTransition.AnimateBetween(destinationCamera, "FieldOfView", fieldOfViewKeyFrames, Animation.Interpolation.Linear, alphaFunction);
-
-                sourceFieldOfView.Dispose();
-                destinationFieldOfView.Dispose();
-                fieldOfViewKeyFrames.Dispose();
-            }
-            else
-            {
-                float sourceOrthographicSize = sourceCamera.OrthographicSize;
-                float destinationOrthographicSize = destinationCamera.OrthographicSize;
-
-                // If ProjectionDirection is not equal, match the value.
-                if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
-                {
-                    float aspect = destinationCamera.AspectRatio;
-                    if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
-                    {
-                        sourceOrthographicSize = sourceOrthographicSize / aspect;
-                    }
-                    else
-                    {
-                        sourceOrthographicSize = sourceOrthographicSize * aspect;
-                    }
-                }
-
-                KeyFrames orthographicSizeKeyFrames = new KeyFrames();
-                orthographicSizeKeyFrames.Add(0.0f, sourceOrthographicSize);
-                orthographicSizeKeyFrames.Add(1.0f, destinationOrthographicSize);
-                cameraTransition.AnimateBetween(destinationCamera, "OrthographicSize", orthographicSizeKeyFrames, Animation.Interpolation.Linear, alphaFunction);
-
-                orthographicSizeKeyFrames.Dispose();
-            }
-
-            float destinationNearPlaneDistance = destinationCamera.NearPlaneDistance;
-            float destinationFarPlaneDistance = destinationCamera.FarPlaneDistance;
-            destinationCamera.NearPlaneDistance = Math.Min(sourceCamera.NearPlaneDistance, destinationCamera.NearPlaneDistance);
-            destinationCamera.FarPlaneDistance = Math.Max(sourceCamera.FarPlaneDistance, destinationCamera.FarPlaneDistance);
-
-            cameraTransition.Finished += (s, e) =>
-            {
-                this.GetSelectedCamera().NearPlaneDistance = destinationNearPlaneDistance;
-                this.GetSelectedCamera().FarPlaneDistance = destinationFarPlaneDistance;
-                inCameraTransition = false;
-                CameraTransitionFinished?.Invoke(this, EventArgs.Empty);
-            };
-            cameraTransition.Play();
-
-            positionKeyFrames.Dispose();
-            orientationKeyFrames.Dispose();
-        }
-
         /// <summary>
         /// Release swigCPtr.
         /// </summary>
@@ -742,6 +686,12 @@ namespace Tizen.NUI.Scene3D
         protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.SceneView.DeleteScene(swigCPtr);
+        }
+
+        // Callback for camera transition finished signal
+        private void OnCameraTransitionFinished(IntPtr data)
+        {
+            cameraTransitionFinishedEventHandler?.Invoke(this, EventArgs.Empty);
         }
     }
 }
