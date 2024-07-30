@@ -105,6 +105,12 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetSkyboxOrientation")]
             public static extern global::System.IntPtr GetSkyboxOrientation(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SceneView_CameraTransitionFinishedSignal_Connect")]
+            public static extern void CameraTransitionFinishedConnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SceneView_CameraTransitionFinishedSignal_Disconnect")]
+            public static extern void CameraTransitionFinishedDisconnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
         }
     }
 }

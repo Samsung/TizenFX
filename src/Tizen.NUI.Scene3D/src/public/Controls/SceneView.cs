@@ -72,12 +72,43 @@ namespace Tizen.NUI.Scene3D
         private Animation cameraTransition;
         private string skyboxUrl;
 
+        private EventHandler cameraTransitionFinishedEventHandler;
+        private CameraTransitionFinishedEventCallbackType cameraTransitionFinishedEventCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void CameraTransitionFinishedEventCallbackType(IntPtr data);
+
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
+        }
+
+        /// <summary>
+        /// Dispose Explicit or Implicit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (cameraTransitionFinishedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] cameraTransitionFinishedEventCallback");
+
+                Interop.SceneView.CameraTransitionFinishedDisconnect(GetBaseHandleCPtrHandleRef, cameraTransitionFinishedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                cameraTransitionFinishedEventCallback = null;
+            }
+
+            LayoutCount = 0;
+
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -116,7 +147,30 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler CameraTransitionFinished;
+        public event EventHandler CameraTransitionFinished
+        {
+            add
+            {
+                if (cameraTransitionFinishedEventHandler == null)
+                {
+                    cameraTransitionFinishedEventCallback = OnCameraTransitionFinished;
+                    Interop.SceneView.CameraTransitionFinishedConnect(SwigCPtr, cameraTransitionFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                cameraTransitionFinishedEventHandler += value;
+            }
+
+            remove
+            {
+                cameraTransitionFinishedEventHandler -= value;
+                if (cameraTransitionFinishedEventHandler == null && cameraTransitionFinishedEventCallback != null)
+                {
+                    Interop.SceneView.CameraTransitionFinishedDisconnect(SwigCPtr, cameraTransitionFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    cameraTransitionFinishedEventCallback = null;
+                }
+            }
+        }
 
         /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
@@ -354,11 +408,6 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(uint index)
         {
-            if (inCameraTransition)
-            {
-                return;
-            }
-            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -370,11 +419,6 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(string name)
         {
-            if (inCameraTransition)
-            {
-                return;
-            }
-            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -496,7 +540,7 @@ namespace Tizen.NUI.Scene3D
         /// <remarks>
         ///  If the SceneView not uses FBO, this method returns SceneView's width.
         /// </remarks>
-        /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
+        /// <returns> Width of the SceneView resolution </returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetResolutionWidth()
@@ -512,7 +556,7 @@ namespace Tizen.NUI.Scene3D
         /// <remarks>
         ///  If the SceneView not uses FBO, this method returns SceneView's height.
         /// </remarks>
-        /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
+        /// <returns> Height of the SceneView resolution.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetResolutionHeight()
@@ -726,7 +770,7 @@ namespace Tizen.NUI.Scene3D
                 this.GetSelectedCamera().NearPlaneDistance = destinationNearPlaneDistance;
                 this.GetSelectedCamera().FarPlaneDistance = destinationFarPlaneDistance;
                 inCameraTransition = false;
-                CameraTransitionFinished?.Invoke(this, EventArgs.Empty);
+                cameraTransitionFinishedEventHandler(this, EventArgs.Empty);
             };
             cameraTransition.Play();
 
@@ -742,6 +786,15 @@ namespace Tizen.NUI.Scene3D
         protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.SceneView.DeleteScene(swigCPtr);
+        }
+
+        // Callback for camera transition finished signal
+        private void OnCameraTransitionFinished(IntPtr data)
+        {
+            if (cameraTransitionFinishedEventHandler != null)
+            {
+                cameraTransitionFinishedEventHandler(this, EventArgs.Empty);
+            }
         }
     }
 }
