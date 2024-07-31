@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 using Tizen.Applications.Exceptions;
 using Tizen.System;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Shell
 {
@@ -116,6 +117,39 @@ namespace Tizen.NUI.WindowSystem.Shell
                     _tzsh.ErrorCodeThrow(_res);
                 }
             }
+        }
+
+        private event EventHandler<int> _rotationChanged;
+
+        /// <summary>
+        /// Emits the event when the rotation(orientation) of the quickpanel service window is changed.
+        /// The value of the event argument represents the rotation angle in degrees.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public event EventHandler<int> RotationChanged
+        {
+            add
+            {
+                if(_rotationChanged == null)
+                {
+                    OrientationChanged += OnRotationChanged;
+                }
+                _rotationChanged += value;
+            }
+            remove
+            {
+                _rotationChanged -= value;
+                if(_rotationChanged == null)
+                {
+                    OrientationChanged -= OnRotationChanged;
+                }
+            }
+        }
+
+        private void OnRotationChanged(object sender, Window.WindowOrientation e)
+        {
+            _rotationChanged?.Invoke(sender, (int)e);
         }
 
         /// <summary>
@@ -228,7 +262,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <param name="type">The type of quickpanel service.</param>
         /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public QuickPanelClient(TizenShell tzShell, Window win, Types type)
         {
@@ -248,7 +282,7 @@ namespace Tizen.NUI.WindowSystem.Shell
 
             _tzsh = tzShell;
             _tzshWin = win.GetNativeId();
-            _tzshQpClient = Interop.QuickPanelClient.CreateWithType(_tzsh.GetNativeHandle(), (IntPtr)_tzshWin, (int)type);
+            _tzshQpClient = Interop.QuickPanelClient.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
             if (_tzshQpClient == IntPtr.Zero)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
@@ -258,6 +292,46 @@ namespace Tizen.NUI.WindowSystem.Shell
             Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
             Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
             if (width > height) _screenOrientation = Window.WindowOrientation.Landscape;
+        }
+
+        /// <summary>
+        /// Creates a new Quickpanel Client handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window provider for the quickpanel service.</param>
+        /// <param name="type">The type of quickpanel service.</param>
+        /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when there is not enough memory (to allocate).</exception>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public QuickPanelClient(TizenShell tzShell, IWindowProvider win, Types type)
+        {
+            int width = 0, height = 0;
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException((string)"tzShell");
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException((string)"win");
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _tzshQpClient = Interop.QuickPanelClient.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
+            if (_tzshQpClient == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+
+            Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
+            Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
+            if (width > height) _screenOrientation = (Window.WindowOrientation)(90);
         }
 
         /// <summary>

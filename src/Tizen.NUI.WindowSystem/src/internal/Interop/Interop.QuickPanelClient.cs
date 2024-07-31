@@ -11,7 +11,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             const string lib = "libtzsh_quickpanel.so.0";
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_create_with_type")]
-            internal static extern IntPtr CreateWithType(IntPtr tzsh, IntPtr win, int type);
+            internal static extern IntPtr CreateWithType(IntPtr tzsh, uint win, int type);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_destroy")]
             internal static extern int Destroy(IntPtr qpClient);

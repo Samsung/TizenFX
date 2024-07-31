@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Shell
 {
@@ -61,7 +62,44 @@ namespace Tizen.NUI.WindowSystem.Shell
 
             _tzsh = tzShell;
             _tzshWin = win.GetNativeId();
-            _softkeyClient = Interop.SoftkeyClient.Create(_tzsh.GetNativeHandle(), (IntPtr)_tzshWin);
+            _softkeyClient = Interop.SoftkeyClient.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_softkeyClient == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+        }
+
+        /// <summary>
+        /// Creates a new Softkey Client handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window provider for the quickpanel service.</param>
+        /// <privilege>http://tizen.org/privilege/windowsystem.admin</privilege>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the caller does not have privilege to use this method.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <since_tizen> 12 </since_tizen>        
+        public SoftkeyClient(TizenShell tzShell, IWindowProvider win)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _softkeyClient = Interop.SoftkeyClient.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
             if (_softkeyClient == IntPtr.Zero)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();

@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Shell
 {
@@ -81,7 +82,46 @@ namespace Tizen.NUI.WindowSystem.Shell
 
             _tzsh = tzShell;
             _tzshWin = win.GetNativeId();
-            _taskbarService = Interop.TaskbarService.Create(_tzsh.GetNativeHandle(), (IntPtr)_tzshWin);
+            _taskbarService = Interop.TaskbarService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_taskbarService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+
+            Interop.TaskbarService.SetPlaceType(_taskbarService, (int)type);
+        }
+
+        /// <summary>
+        /// Creates a new Taskbar Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window provider for the taskbar service.</param>
+        /// <param name="type">The selected, predefined location on the screen the Taskbar should be placed on the screen.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        public TaskbarService(TizenShell tzShell, IWindowProvider win, PlaceType type = PlaceType.Bottom)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+            if (!(win is Tizen.NUI.Window))
+            {
+                throw new ArgumentNullException("win should be NUI.Window because this is for NUI.WindowSystem");
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _taskbarService = Interop.TaskbarService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
             if (_taskbarService == IntPtr.Zero)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
