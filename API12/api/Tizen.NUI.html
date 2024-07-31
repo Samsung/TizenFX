@@ -688,6 +688,15 @@ All values (x, y, and z) should be between [0, 1].</p>
       <h4><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></h4>
       <section><p>An interface to encapsulate the information required for relayout.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.RenderEffect.html">RenderEffect</a></h4>
+      <section><p>View's optional render effect.
+Applications can apply RenderEffect as the example below :</p>
+<pre><code>RenderEffect effect = RenderEffect.CreateBackgroundBlurEffect(20.0f);
+
+view.SetRenderEffect(effect);
+view.ClearRenderEffect();</code></pre>
+<p>Note that a view owns at most one render effect.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Renderer.html">Renderer</a></h4>
       <section><p>Renderer is a handle to an object used to show content by combining a Geometry, a TextureSet and a shader.</p>
 </section>
@@ -1019,10 +1028,14 @@ on receiving timeTick signal.</p>
       <section><p>Event arguments that passed via the WebView.PageLoadStarted or WebView.PageLoadFinished.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.WebViewPolicyDecidedEventArgs.html">WebViewPolicyDecidedEventArgs</a></h4>
-      <section><p>Event arguments that passed via the WebView.ResponsePolicyDecided.</p>
+      <section><p>Event arguments that passed via the WebView.ResponsePolicyDecided,
+WebView.NavigationPolicyDecided or WebView.NewWindowPolicyDecided.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.WebViewScrollEdgeReachedEventArgs.html">WebViewScrollEdgeReachedEventArgs</a></h4>
       <section><p>Event arguments that passed via the WebView.ScrollEdgeReached.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.WebViewTextFoundEventArgs.html">WebViewTextFoundEventArgs</a></h4>
+      <section><p>Event arguments that passed via the WebView.TextFound.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.WebViewUrlChangedEventArgs.html">WebViewUrlChangedEventArgs</a></h4>
       <section><p>Event arguments that passed via the WebView.UrlChanged.</p>
@@ -1287,6 +1300,9 @@ The @p horizontalAlignment and @p verticalAlignment can be used to align the tex
 </section>
       <h4><a class="xref" href="Tizen.NUI.ColorMode.html">ColorMode</a></h4>
       <section><p>This specifies whether the actor uses its own color or inherits.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ColorVisualCutoutPolicyType.html">ColorVisualCutoutPolicyType</a></h4>
+      <section><p>Defines how a colorvisual cutout</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.CookieAcceptPolicy.html">CookieAcceptPolicy</a></h4>
       <section><p>Enumeration for setting cache model of a WebView.</p>
