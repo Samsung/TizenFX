@@ -1063,9 +1063,18 @@ namespace Tizen.NUI.BaseComponents
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
-            if (data != IntPtr.Zero)
+            IntPtr changedViewCPtr = Interop.Actor.GetVisiblityChangedActor();
+            if (changedViewCPtr != IntPtr.Zero)
             {
-                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(changedViewCPtr) as View;
+                if(e.View != null)
+                {
+                    Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, changedViewCPtr));
+                }
+                else
+                {
+                    e.View = new View(changedViewCPtr, true);
+                }
             }
             e.Visibility = visibility;
             e.Type = type;
@@ -1265,7 +1274,7 @@ namespace Tizen.NUI.BaseComponents
             private VisibilityChangeType _type;
 
             /// <summary>
-            /// The view, or child of view, whose visibility has changed.
+            /// The view, whose visibility has changed.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public View View
