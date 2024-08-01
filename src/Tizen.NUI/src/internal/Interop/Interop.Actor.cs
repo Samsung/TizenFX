@@ -134,6 +134,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_CurrentScreenExtents")]
             public static extern global::System.IntPtr CurrentScreenExtents(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetVisiblityChangedActor")]
+            public static extern global::System.IntPtr GetVisiblityChangedActor();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector2")]
             public static extern int InternalRetrievingPropertyVector2(HandleRef actor, int propertyType, HandleRef retrievingVector2);
 
