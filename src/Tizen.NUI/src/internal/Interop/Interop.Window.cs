@@ -323,6 +323,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_InternalRetrievingLastHoverEvent")]
             public static extern void InternalRetrievingLastHoverEvent(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef hover);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_InternalRetrievingLastPanGestureState")]
+            public static extern int InternalRetrievingLastPanGestureState(global::System.Runtime.InteropServices.HandleRef window);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetNeedsRotationCompletedAcknowledgement")]
             public static extern void SetNeedsRotationCompletedAcknowledgement(global::System.Runtime.InteropServices.HandleRef window, bool needAcknowledgement);
 
