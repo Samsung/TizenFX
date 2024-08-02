@@ -230,9 +230,9 @@ namespace Tizen.NUI
         /// Removes listener for drop targets
         /// </summary>
         /// <param name="targetView">The target view</param>
-        /// <param name="callback">The callback function to remove</param>
+        /// <param name="_">The callback function to remove(Not used)</param>
         /// <since_tizen> 10 </since_tizen>
-        public void RemoveListener(View targetView, DragAndDropEventHandler callback)
+        public void RemoveListener(View targetView, DragAndDropEventHandler _)
         {
             if (!targetEventDictionary.ContainsKey(targetView))
             {
@@ -300,9 +300,9 @@ namespace Tizen.NUI
         /// Removes listener for drop targets
         /// </summary>
         /// <param name="targetWindow">The target window</param>
-        /// <param name="callback">The callback function to remove</param>
+        /// <param name="_">The callback function to remove(Not used)</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveListener(Window targetWindow, DragAndDropWindowEventHandler callback)
+        public void RemoveListener(Window targetWindow, DragAndDropWindowEventHandler _)
         {
             if (!targetWindowEventDictionary.ContainsKey(targetWindow))
             {

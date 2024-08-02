@@ -246,6 +246,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector3(RelativeVector3 relativeVector3)
         {
+            if (relativeVector3 == null) return null;
             return new Vector3(relativeVector3.X, relativeVector3.Y, relativeVector3.Z);
         }
 
@@ -254,6 +255,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector3(Vector3 vec)
         {
+            if (vec == null) return null;
             return new RelativeVector3(vec.X, vec.Y, vec.Z);
         }
 

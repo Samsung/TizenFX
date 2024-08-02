@@ -1507,7 +1507,6 @@ namespace Tizen.NUI.BaseComponents
         };
         private states currentStates;
 
-        private const string tag = "NUITEST";
         private event EventHandler finishedEventHandler;
 
         private void OnFinished()

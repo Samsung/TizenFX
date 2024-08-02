@@ -139,7 +139,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
             else if (null == position)
             {
@@ -183,7 +183,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
             else if (quality > 100)
             {
@@ -226,7 +226,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
             else if (null == color)
             {
@@ -267,7 +267,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
 
             if (source is View || source is Layer)
