@@ -290,6 +290,13 @@ class Scene3DSample : NUIApplication
             }
         };
 
+        if (mModelRotateAnimation != null)
+        {
+            mModelRotateAnimation.Stop();
+            mModelRotateAnimation.Dispose();
+            mModelRotateAnimation = null;
+        }
+
         mModelRotateAnimation = new Animation(modelRotateAnimationDurationMilliseconds);
         mModelRotateAnimation.AnimateBy(mModel, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.YAxis));
 
@@ -452,9 +459,9 @@ class Scene3DSample : NUIApplication
                 }
                 case "f":
                 {
-                    if (mModelAnimation?.State == Animation.States.Playing)
+                    if (mModel != null && mModelLoadFinished)
                     {
-                        if (mModel != null && mModelLoadFinished)
+                        if (mModelAnimation != null && mModelAnimation.State == Animation.States.Playing)
                         {
                             mMotionAnimation = mModel.GenerateMotionDataAnimation(mAnimateMotionData);
 
@@ -479,7 +486,7 @@ class Scene3DSample : NUIApplication
         }
         else if (e.Key.State == Key.StateType.Up)
         {
-            if (mModelAnimation?.State == Animation.States.Stopped)
+            if (mModelAnimation != null && mModelAnimation.State == Animation.States.Stopped)
             {
                 if (mMotionAnimation != null)
                 {
@@ -499,7 +506,7 @@ class Scene3DSample : NUIApplication
 
     public void Activate()
     {
-        mWindow = Window.Instance;
+        mWindow = Window.Default;
         mWindow.BackgroundColor = Color.DarkOrchid;
         mWindowSize = mWindow.WindowSize;
 
