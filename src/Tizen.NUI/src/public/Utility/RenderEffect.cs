@@ -60,6 +60,7 @@ namespace Tizen.NUI
     /// <code>
     /// RenderEffect.CreateBackgroundBlurEffect(blurRadius);
     /// </code>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     sealed class BackgroundBlurEffect : RenderEffect
     {

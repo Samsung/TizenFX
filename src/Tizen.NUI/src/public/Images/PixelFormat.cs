@@ -21,7 +21,8 @@ namespace Tizen.NUI
     /// Enumeration for Pixel formats.<br />
     /// Pixel format, default color depth is RGBA 32 bit with alpha.
     /// </summary>
-    /// /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 3 </since_tizen>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707: Identifiers should not contain underscores")]
     public enum PixelFormat
     {
         /// <summary>

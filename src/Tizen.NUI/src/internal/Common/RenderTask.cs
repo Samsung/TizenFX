@@ -66,6 +66,7 @@ namespace Tizen.NUI
             internal static readonly int RequiresSync = Interop.RenderTask.RequiresSyncGet();
         }
 
+#pragma warning disable CA1707
         internal static SWIGTYPE_p_f_r_Dali__Vector2__bool DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION
         {
             get
@@ -148,6 +149,7 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+#pragma warning restore CA1707
 
         public RenderTask() : this(Interop.RenderTask.NewRenderTask(), true)
         {
@@ -405,6 +407,7 @@ namespace Tizen.NUI
         }
 
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707: Identifiers should not contain underscores")]
         public enum RefreshRate
         {
             REFRESH_ONCE = 0,

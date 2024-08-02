@@ -2085,7 +2085,7 @@ namespace Tizen.NUI.BaseComponents
         /// (Example : if we change SynchronousLoading property from 'true' to 'false', or if we call this function during UpdateImage)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void UpdateImage(int key, PropertyValue value, bool requiredVisualCreation = true)
+        protected void UpdateImage(int key, PropertyValue value, bool requiredVisualCreation = true)
         {
             // Update image property map value as inputed value.
             if (key != 0)
