@@ -637,6 +637,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the classes that are not derived from Control (such as View, ImageView and TextLabel) want to use this system,
         /// please set <see cref="EnableControlState"/> to true.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when set null. </exception>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlState ControlState
@@ -650,6 +651,10 @@ namespace Tizen.NUI.BaseComponents
                 if (ControlState == value)
                 {
                     return;
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value), "ControlState should not be null.");
                 }
 
                 var prevState = ControlState;

@@ -36,7 +36,9 @@ namespace Tizen.NUI
     /// </example>
     /// <summary></summary>
     /// <since_tizen> 9 </since_tizen>
+#pragma warning disable CA1724
     public static class ThemeManager
+#pragma warning restore CA1724
     {
         /// <summary>
         /// The default light theme name preloaded in platform.

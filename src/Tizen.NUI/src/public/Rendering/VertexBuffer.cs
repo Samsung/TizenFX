@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException"> Thrown when vertices is null or length of the vertices is 0. </exception>
         /// <exception cref="OverflowException"> Thrown when length of the vertices is overflow. </exception>
         /// <since_tizen> 8 </since_tizen>
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1715: Identifiers should have correct prefix")]
         public void SetData<VertexType>(VertexType[] vertices) where VertexType : struct
         {
             if (null == vertices || vertices.Length == 0)

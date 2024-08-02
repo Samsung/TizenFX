@@ -21,6 +21,7 @@ namespace Tizen.NUI
 {
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707: Identifiers should not contain underscores")]
     public enum DefaultItemLayoutProperty
     {
         /// <summary>
