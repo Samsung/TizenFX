@@ -45,6 +45,11 @@ namespace Tizen.NUI
         /// <since_tizen> 12 </since_tizen>
         public virtual void Add(T handler)
         {
+            if (handler == null)
+            {
+                // Do nothing.
+                return;
+            }
             handlers.Add(new WeakHandler<T>(handler));
             OnCountIncreased();
 
@@ -57,6 +62,12 @@ namespace Tizen.NUI
         /// <since_tizen> 12 </since_tizen>
         public virtual void Remove(T handler)
         {
+            if (handler == null)
+            {
+                // Do nothing.
+                return;
+            }
+
             int lastIndex = handlers.FindLastIndex(item => item.Equals(handler));
 
             if (lastIndex >= 0)

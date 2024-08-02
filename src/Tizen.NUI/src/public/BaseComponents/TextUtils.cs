@@ -1214,11 +1214,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Copy the previously selected text from the text control into the clipboard.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when argument is null. </exception>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
         /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextEditor textEditor)
         {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(nameof(textEditor), "TextEditor should not be null.");
+            }
             string copiedText = Interop.TextEditor.CopyText(textEditor.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return copiedText;
@@ -1227,11 +1232,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Copy the previously selected text from the text control into the clipboard.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when argument is null. </exception>
         /// <param name="textField">The textField control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
         /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextField textField)
         {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(nameof(textField), "TextField should not be null.");
+            }
             string copiedText = Interop.TextField.CopyText(textField.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return copiedText;
@@ -1240,11 +1250,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Cut the previously selected text from the text control into the clipboard.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when argument is null. </exception>
         /// <param name="textEditor">The textEditor control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
         /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextEditor textEditor)
         {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(nameof(textEditor), "TextEditor should not be null.");
+            }
             string cutText = Interop.TextEditor.CutText(textEditor.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return cutText;
@@ -1253,11 +1268,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Cut the previously selected text from the text control into the clipboard.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when argument is null. </exception>
         /// <param name="textField">The textField control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
         /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextField textField)
         {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(nameof(textField), "TextField should not be null.");
+            }
             string cutText = Interop.TextField.CutText(textField.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return cutText;
@@ -1271,10 +1291,15 @@ namespace Tizen.NUI.BaseComponents
         /// the text will be appended to the last cursor position and the text control will gain focus.
         /// If some text inside the text control is selected, it will be replaced by the pasted text.
         /// </remarks>
+        /// <exception cref="ArgumentNullException"> Thrown when argument is null. </exception>
         /// <param name="textEditor">The textEditor control into which the text is pasted.</param>
         /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextEditor textEditor)
         {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(nameof(textEditor), "TextEditor should not be null.");
+            }
             Interop.TextEditor.PasteText(textEditor.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1287,10 +1312,15 @@ namespace Tizen.NUI.BaseComponents
         /// the text will be appended to the last cursor position and the text control will gain focus.
         /// If some text inside the text control is selected, it will be replaced by the pasted text.
         /// </remarks>
+        /// <exception cref="ArgumentNullException"> Thrown when argument is null. </exception>
         /// <param name="textField">The textField control into which the text is pasted.</param>
         /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextField textField)
         {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(nameof(textField), "TextEditor should not be null.");
+            }
             Interop.TextField.PasteText(textField.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
