@@ -15,7 +15,6 @@
  *
  */
 
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Utility
