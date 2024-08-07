@@ -132,13 +132,16 @@ namespace Tizen.AIAvatar
         {
             DestroyLipAnimation();
             var lipKeyFrames = CreateKeyFrame(audio, sampleRate);
-            var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyFrames, false);
-            if (lipAnimation != null)
+            if (lipKeyFrames != null)
             {
-                ResetLipAnimation(lipAnimation);
-                PlayLipAnimation();
+                var lipAnimation = CreatedKeyFrameAnimation?.Invoke(lipKeyFrames, false);
+                if (lipAnimation != null)
+                {
+                    ResetLipAnimation(lipAnimation);
+                    PlayLipAnimation();
+                }
+                audioPlayer.Play(audio, sampleRate);
             }
-            audioPlayer.Play(audio, sampleRate);
         }
 
         private void PlayLipSync(string path)

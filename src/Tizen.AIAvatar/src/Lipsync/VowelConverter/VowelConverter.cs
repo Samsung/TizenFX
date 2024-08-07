@@ -40,13 +40,20 @@ namespace Tizen.AIAvatar
         {
             vowelClassifier = GetVowelClassifier(sampleRate);
 
-            if (isMic)
+            if (vowelClassifier != null)
             {
-                return animationConverter.ConvertVowelsToAnimationMic(vowels, vowelClassifier.GetStepTime());
+                if (isMic)
+                {
+                    return animationConverter.ConvertVowelsToAnimationMic(vowels, vowelClassifier.GetStepTime());
+                }
+                else
+                {
+                    return animationConverter.ConvertVowelsToAnimation(vowels, vowelClassifier.GetStepTime());
+                }
             }
             else
             {
-                return animationConverter.ConvertVowelsToAnimation(vowels, vowelClassifier.GetStepTime());
+                return null;
             }
         }
 
