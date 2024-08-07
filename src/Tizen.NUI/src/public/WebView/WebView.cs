@@ -259,6 +259,13 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void JavaScriptEntireMessageHandler(string messageName, string messageBody);
+
+        /// <summary>
+        /// The callback function that is invoked when the message is received from the script.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptAlertCallback(string message);
 
         /// <summary>
@@ -2467,6 +2474,19 @@ namespace Tizen.NUI.BaseComponents
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             Interop.WebView.AddJavaScriptMessageHandler(SwigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Add a message handler into the WebView.
+        /// </summary>
+        /// <param name="objectName">The name of exposed object</param>
+        /// <param name="handler">The callback function</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddJavaScriptMessageHandler(string objectName, JavaScriptEntireMessageHandler handler)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
+            Interop.WebView.AddJavaScriptEntireMessageHandler(SwigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
