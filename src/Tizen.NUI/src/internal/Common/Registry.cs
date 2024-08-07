@@ -82,14 +82,14 @@ namespace Tizen.NUI
                     var target = weakReference.Target;
 
                     BaseHandle ret = target as BaseHandle;
-                    if (target == null)
+                    // Note : Do not use ret == null because BaseHandle override operator ==.
+                    if ((ret?.Disposed ?? true) || (ret?.IsDisposeQueued ?? true))
                     {
-                        // Special case. If WeakReference.Target is null, it might be disposed by GC. just Add forcely.
-                        if (Instance._controlMap.TryRemove(refCptr, out weakReference) != true)
-                        {
-                            Tizen.Log.Error("NUI", $"Something Wrong when we try to remove null target! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}\n");
-                        }
-                        if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
+                        // Special case. If WeakReference.Target is null or disposed by GC,
+                        // Unregister forcibly first. and then try to add again.
+                        ret?.UnregisterFromRegistry();
+
+                        if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, true)) != true)
                         {
                             Tizen.Log.Error("NUI", $"Something Wrong when we try to replace null target! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}\n");
 
@@ -120,7 +120,7 @@ namespace Tizen.NUI
                 }
             }
 
-            NUILog.Debug($"[Registry] Register! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            NUILog.Debug($"[Registry] Register! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} refCptr=0x{refCptr.ToInt64():X} NativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             return true;
         }
 
@@ -139,7 +139,7 @@ namespace Tizen.NUI
                 Tizen.Log.Error("NUI", $"something wrong when removing refCptr!\n");
             }
 
-            NUILog.Debug($"[Registry] Unregister! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            NUILog.Debug($"[Registry] Unregister! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} refCptr=0x{refCptr.ToInt64():X} NativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             return;
         }
 
@@ -164,7 +164,7 @@ namespace Tizen.NUI
             if (refObjectPtr == global::System.IntPtr.Zero)
             {
                 NUILog.Debug("Registry refObjectPtr is NULL! This means bind native object is NULL!");
-                //return null;
+                return null;
             }
             else
             {
@@ -184,6 +184,14 @@ namespace Tizen.NUI
                 }
 
                 BaseHandle ret = weakReference.Target as BaseHandle;
+                // Note : Do not use ret == null because BaseHandle override operator ==.
+                if ((ret?.Disposed ?? true) || (ret?.IsDisposeQueued ?? true))
+                {
+                    // Special case. If WeakReference.Target is null or disposed by GC,
+                    // Unregister first. and then return null.
+                    ret?.UnregisterFromRegistry();
+                    return null;
+                }
                 return ret;
             }
             else
