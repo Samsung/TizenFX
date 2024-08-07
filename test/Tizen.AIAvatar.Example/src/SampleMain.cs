@@ -92,6 +92,7 @@ namespace AIAvatar
             avatarScene = new AvatarScene();
             avatarScene.UseFramebuffer = true;
 
+            avatarScene.MakeEmojiStatus(window);
             avatarScene.SetAlphaMaskUrl(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/contact-cards-mask.png");
             avatarScene.EnableCropToMask(false);
             //window.Add(avatarScene);

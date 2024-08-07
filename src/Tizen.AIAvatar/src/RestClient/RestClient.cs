@@ -24,7 +24,8 @@ using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
-    internal class RestClient : IRestClient, IDisposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RestClient : IRestClient, IDisposable
     {
         private readonly HttpClient client;
 

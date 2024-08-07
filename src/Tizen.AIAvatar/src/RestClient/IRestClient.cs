@@ -17,11 +17,14 @@
 
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.ComponentModel;
+
 
 namespace Tizen.AIAvatar
 {
 
-    internal interface IRestClient
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface IRestClient
     {
         Task<string> SendRequestAsync(HttpMethod method, string endpoint, string bearerToken = null, string jsonData = null);
     }

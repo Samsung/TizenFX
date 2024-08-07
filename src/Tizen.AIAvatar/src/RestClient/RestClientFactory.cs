@@ -17,12 +17,16 @@
 
 using System.Net.Http;
 using System;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
-    internal class RestClientFactory
+    [EditorBrowsable(EditorBrowsableState.Never)]
+
+    public class RestClientFactory
     {
-        internal IRestClient CreateClient(string baseUrl)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IRestClient CreateClient(string baseUrl)
         {
             return new RestClient(new HttpClient { BaseAddress = new Uri(baseUrl) });
         }

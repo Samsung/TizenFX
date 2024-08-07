@@ -26,13 +26,15 @@ namespace Tizen.AIAvatar
         private Animation motionAnimation;
         private EyeBlinker eyeBlinker;
 
+        private DefaultFacialAnimator facialAnimator;
+
         internal Animation MotionAnimation { get => motionAnimation; private set => motionAnimation = value; }
 
         internal MotionPlayer()
         {
             eyeBlinker = new EyeBlinker();
-
-
+            facialAnimator = new DefaultFacialAnimator();
+            facialAnimator.LoadEmotionConfig(AREmojiDefaultFacialPath, "/Emoji_Emotion.json");
         }
 
         internal void PlayAnimation(Animation motionAnimation, int duration = 3000, bool isLooping = false, int loopCount = 1)
@@ -80,6 +82,36 @@ namespace Tizen.AIAvatar
             eyeBlinker?.Stop();
         }
 
+        internal void StartFacialAnimation(Animation animation)
+        {
+            StopFacialAnimation();
+            if (animation == null)
+            {
+                Tizen.Log.Error(LogTag, "StartFacialAnimation Error, animation is null");
+            }
+            facialAnimator?.Start(animation, true, 1, 0.1f);
+            //var randomIdx = new Random().Next(0, facialAnimatorCount);
+            //var facialMotionData = facialAnimator.GetFacialMotionData(randomIdx);
+        }
+          
+
+        internal MotionData GetFacialMotionData(int index)
+        {
+            var facialMotionData = facialAnimator?.GetFacialMotionData(index);
+            return facialMotionData;
+        }
+
+        internal MotionData GetFacialMotionData(string emotion)
+        {
+            var facialMotionData = facialAnimator?.GetFacialMotionData(emotion);
+            return facialMotionData;
+        }
+
+        internal void StopFacialAnimation()
+        {
+            facialAnimator?.Stop();
+        }
+        
         internal void DestroyAnimations()
         {
             eyeBlinker?.Destroy();
