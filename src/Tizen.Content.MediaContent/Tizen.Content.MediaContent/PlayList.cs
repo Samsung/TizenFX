@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// Represents the playlist that is a group of media (usually songs).
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class Playlist
     {
         internal Playlist(IntPtr handle)
@@ -39,6 +40,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The unique ID of the playlist.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Id { get; }
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The name of the playlist.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Name { get; }
 
         /// <summary>
@@ -53,6 +56,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The path to the thumbnail.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string ThumbnailPath { get; }
 
         /// <summary>
@@ -60,6 +64,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>A string representation of the current playlist.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public override string ToString() =>
             $"Id={Id}, Name={Name}, ThumbnailPath={ThumbnailPath}";
     }
@@ -72,6 +77,7 @@ namespace Tizen.Content.MediaContent
     /// </remarks>
     /// <seealso cref="PlaylistCommand.Update (int, PlaylistUpdateValues)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class PlaylistUpdateValues
     {
         /// <summary>
@@ -80,6 +86,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for name; the field will not be updated if null.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Name { get; set; }
 
         /// <summary>
@@ -88,6 +95,7 @@ namespace Tizen.Content.MediaContent
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for the thumbnail path; the field will not be updated if null.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string ThumbnailPath { get; set; }
     }
 
@@ -95,6 +103,7 @@ namespace Tizen.Content.MediaContent
     /// Represents an order of a member of the playlist.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class PlayOrder
     {
         /// <summary>
@@ -108,6 +117,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="orderValue"/> is less than zero.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public PlayOrder(int memberId, int orderValue)
         {
             MemberId = memberId;
@@ -124,6 +134,7 @@ namespace Tizen.Content.MediaContent
         /// <paramref name="value"/> is less than or equal to zero.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int MemberId
         {
             get => _memberId;
@@ -148,6 +159,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="value"/> is less than zero.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Value
         {
             get => _value;
