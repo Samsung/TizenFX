@@ -1463,7 +1463,7 @@ namespace Tizen.NUI.BaseComponents
 
             foreach (View view in Children)
             {
-                view.InternalParent = null;
+                if (view != null) { view.InternalParent = null; }
             }
 
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
