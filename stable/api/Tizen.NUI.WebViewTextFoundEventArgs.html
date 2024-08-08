@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate WebView.JavaScriptConfirmCallback
+    <title>Class WebViewTextFoundEventArgs
  </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate WebView.JavaScriptConfirmCallback
+    <meta name="title" content="Class WebViewTextFoundEventArgs
  ">
     <meta name="generator" content="docfx ">
     <meta name="version" content="API11">
@@ -79,25 +79,70 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmCallback">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.WebViewTextFoundEventArgs">
 
 
-  <h1 id="Tizen_NUI_BaseComponents_WebView_JavaScriptConfirmCallback" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmCallback" class="text-break">Delegate WebView.JavaScriptConfirmCallback
+  <h1 id="Tizen_NUI_WebViewTextFoundEventArgs" data-uid="Tizen.NUI.WebViewTextFoundEventArgs" class="text-break">Class WebViewTextFoundEventArgs
 </h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The callback function that is invoked when the message is received from the script.</p>
+  <div class="markdown level0 summary"><p>Event arguments that passed via the WebView.TextFound.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void WebView.JavaScriptConfirmCallback(string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public class WebViewTextFoundEventArgs : EventArgs</code></pre>
   </div>
 
 
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">WebViewTextFoundEventArgs</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/internal/WebView/WebViewTextFoundEventArgs.cs/#L37">View Source</a>
+  </span>
+  <a id="Tizen_NUI_WebViewTextFoundEventArgs_Count_" data-uid="Tizen.NUI.WebViewTextFoundEventArgs.Count*"></a>
+  <h4 id="Tizen_NUI_WebViewTextFoundEventArgs_Count" data-uid="Tizen.NUI.WebViewTextFoundEventArgs.Count">Count</h4>
+  <div class="markdown level1 summary"><p>The count of text found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
 
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -129,7 +174,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/WebView/WebView.cs/#L274" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/internal/WebView/WebViewTextFoundEventArgs.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
