@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Content.MediaContent
 {
     /// <summary>
     /// Represents a member of the <see cref="Playlist"/>.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class PlaylistMember
     {
         /// <summary>
@@ -27,6 +30,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The member ID of the playlist.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int MemberId { get; }
 
         /// <summary>
@@ -34,6 +38,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The <see cref="MediaInfo"/> of the member.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public MediaInfo MediaInfo { get; }
 
         internal PlaylistMember(int memberId, MediaInfo mediaInfo)

@@ -23,6 +23,7 @@ namespace Tizen.Content.MediaContent
     /// in media (video and audio) to enable fast searching.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class Bookmark
     {
         internal Bookmark(IntPtr handle)
@@ -38,6 +39,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The ID of the bookmark.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Id { get; }
 
         /// <summary>
@@ -45,6 +47,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The thumbnail path of the bookmark.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string ThumbnailPath { get; }
 
         /// <summary>
@@ -52,6 +55,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The offset of the bookmark in media in milliseconds.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Offset { get; }
 
         /// <summary>
@@ -59,6 +63,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The name of the bookmark.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Name { get; }
 
         internal static Bookmark FromHandle(IntPtr handle) => new Bookmark(handle);
@@ -68,6 +73,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>A string representation of the current bookmark.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public override string ToString() =>
             $"Id={Id}, Name={Name}, ThumbnailPath={ThumbnailPath}, Offset={Offset}";
     }
