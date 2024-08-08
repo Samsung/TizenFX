@@ -305,6 +305,7 @@ namespace Tizen.NUI.BaseComponents
                     gestureInfoSignal?.Disconnect(gestureInfoCallback);
                     gestureInfoSignal?.Dispose();
                     gestureInfoSignal = null;
+                    gestureInfoCallback = null;
                 }
             }
         }
@@ -367,6 +368,7 @@ namespace Tizen.NUI.BaseComponents
                     getDescriptionSignal?.Disconnect(getDescriptionCallback);
                     getDescriptionSignal?.Dispose();
                     getDescriptionSignal = null;
+                    getDescriptionCallback = null;
                 }
             }
         }
@@ -429,6 +431,7 @@ namespace Tizen.NUI.BaseComponents
                     getNameSignal?.Disconnect(getNameCallback);
                     getNameSignal?.Dispose();
                     getNameSignal = null;
+                    getNameCallback = null;
                 }
             }
         }
@@ -491,6 +494,7 @@ namespace Tizen.NUI.BaseComponents
                     ActivateSignal?.Disconnect(activateCallback);
                     ActivateSignal?.Dispose();
                     ActivateSignal = null;
+                    activateCallback = null;
                 }
             }
         }
@@ -540,6 +544,7 @@ namespace Tizen.NUI.BaseComponents
                     ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
                     ReadingSkippedSignal?.Dispose();
                     ReadingSkippedSignal = null;
+                    readingSkippedCallback = null;
                 }
             }
         }
@@ -589,6 +594,7 @@ namespace Tizen.NUI.BaseComponents
                     ReadingPausedSignal?.Disconnect(readingPausedCallback);
                     ReadingPausedSignal?.Dispose();
                     ReadingPausedSignal = null;
+                    readingPausedCallback = null;
                 }
             }
         }
@@ -638,6 +644,7 @@ namespace Tizen.NUI.BaseComponents
                     ReadingResumedSignal?.Disconnect(readingResumedCallback);
                     ReadingResumedSignal?.Dispose();
                     ReadingResumedSignal = null;
+                    readingResumedCallback = null;
                 }
             }
         }
@@ -687,6 +694,7 @@ namespace Tizen.NUI.BaseComponents
                     ReadingCancelledSignal?.Disconnect(readingCancelledCallback);
                     ReadingCancelledSignal?.Dispose();
                     ReadingCancelledSignal = null;
+                    readingCancelledCallback = null;
                 }
             }
         }
@@ -736,6 +744,7 @@ namespace Tizen.NUI.BaseComponents
                     ReadingStoppedSignal?.Disconnect(readingStoppedCallback);
                     ReadingStoppedSignal?.Dispose();
                     ReadingStoppedSignal = null;
+                    readingStoppedCallback = null;
                 }
             }
         }

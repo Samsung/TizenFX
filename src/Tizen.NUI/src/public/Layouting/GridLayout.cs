@@ -418,8 +418,8 @@ namespace Tizen.NUI
                 int row = child.Row.Start;
                 int columnEnd = child.Column.End;
                 int rowEnd = child.Row.End;
-                float l = hLocations[column] + Padding.Start + view.Margin.Start;
-                float t = vLocations[row] + Padding.Top + view.Margin.Top;
+                float childLeft = hLocations[column] + Padding.Start + view.Margin.Start;
+                float childTop = vLocations[row] + Padding.Top + view.Margin.Top;
                 float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.Margin.Start - view.Margin.End;
                 float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.Margin.Top - view.Margin.Bottom;
                 bool needMeasuredWidth = false;
@@ -431,7 +431,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    l += (width - child.LayoutItem.MeasuredWidth.Size.AsDecimal()) * halign.ToFloat();
+                    childLeft += (width - child.LayoutItem.MeasuredWidth.Size.AsDecimal()) * halign.ToFloat();
                     width = child.LayoutItem.MeasuredWidth.Size.AsDecimal();
                 }
 
@@ -441,7 +441,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    t += (height - child.LayoutItem.MeasuredHeight.Size.AsDecimal()) * valign.ToFloat();
+                    childTop += (height - child.LayoutItem.MeasuredHeight.Size.AsDecimal()) * valign.ToFloat();
                     height = child.LayoutItem.MeasuredHeight.Size.AsDecimal();
                 }
 
@@ -489,7 +489,7 @@ namespace Tizen.NUI
                     }
                 }
 
-                child.LayoutItem.Layout(new LayoutLength(l), new LayoutLength(t), new LayoutLength(l + width), new LayoutLength(t + height));
+                child.LayoutItem.Layout(new LayoutLength(childLeft), new LayoutLength(childTop), new LayoutLength(childLeft + width), new LayoutLength(childTop + height));
             }
         }
 

@@ -104,9 +104,12 @@ namespace Tizen.NUI
                 if (applicationCreateNativeEventHandler == null)
                 {
                     applicationCreateNativeEventHandler += value;
-
                     applicationCreateNativeEventCallbackDelegate = new NUIComponentApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
                     Connect(applicationCreateNativeEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[ComponentApplication.CreateNative] Only one listener is allowed\n");
                 }
             }
 
@@ -114,10 +117,13 @@ namespace Tizen.NUI
             {
                 if (applicationCreateNativeEventHandler != null)
                 {
-                    Disconnect(applicationCreateNativeEventCallbackDelegate);
+                    applicationCreateNativeEventHandler -= value;
+                    if (applicationCreateNativeEventHandler == null)
+                    {
+                        Disconnect(applicationCreateNativeEventCallbackDelegate);
+                        applicationCreateNativeEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationCreateNativeEventHandler -= value;
             }
         }
 

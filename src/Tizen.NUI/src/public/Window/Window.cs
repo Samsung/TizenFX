@@ -425,7 +425,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the default window.
-        /// The main window or default window is automatically created when the application is launched, 
+        /// The main window or default window is automatically created when the application is launched,
         /// and it remains constant and unchanged throughout the application's operation.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
@@ -2224,6 +2224,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the last pan gesture state the window gets.
+        /// </summary>
+        /// <returns>The last pan gesture state the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gesture.StateType GetLastPanGestureState()
+        {
+            Gesture.StateType ret = (Gesture.StateType)Interop.Window.InternalRetrievingLastPanGestureState(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Sets the necessary for window rotation Acknowledgement.
         /// After this function called, SendRotationCompletedAcknowledgement() should be called to complete window rotation.
         ///
@@ -2517,7 +2529,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets a value indicating whether the window is modal or not.
-        /// The modal property of a window requires that it be set to a parent window. 
+        /// The modal property of a window requires that it be set to a parent window.
         /// The window modal function operates on the specified parent window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
