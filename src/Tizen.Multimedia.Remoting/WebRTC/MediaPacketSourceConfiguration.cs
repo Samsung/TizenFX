@@ -76,8 +76,12 @@ namespace Tizen.Multimedia.Remoting
 
         private void UnregisterBufferStatusChangedCallback()
         {
+            Log.Info(WebRTCLog.Tag, "Enter");
+
             NativeWebRTC.UnsetBufferStateChangedCb(Handle, SourceId).
                 ThrowIfFailed("Failed to unset buffer status changed callback.");
+
+            Log.Info(WebRTCLog.Tag, "Leave");
         }
     }
 }
