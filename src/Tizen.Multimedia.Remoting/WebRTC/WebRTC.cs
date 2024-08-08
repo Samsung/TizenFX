@@ -164,6 +164,8 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public async Task StartAsync()
         {
+            Log.Info(WebRTCLog.Tag, "Enter");
+
             ValidateWebRTCState(WebRTCState.Idle);
 
             var tcs = new TaskCompletionSource<bool>();
@@ -203,6 +205,8 @@ namespace Tizen.Multimedia.Remoting
                 StateChanged -= stateChangedEventHandler;
                 ErrorOccurred -= errorEventHandler;
             }
+
+            Log.Info(WebRTCLog.Tag, "Leave");
         }
 
         /// <summary>
@@ -236,6 +240,8 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public async Task<string> CreateOfferAsync()
         {
+            Log.Info(WebRTCLog.Tag, "Enter");
+
             ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
             var tcsSdpCreated = new TaskCompletionSource<string>();
@@ -255,6 +261,8 @@ namespace Tizen.Multimedia.Remoting
                 await Task.Yield();
             }
 
+            Log.Info(WebRTCLog.Tag, "Leave");
+
             return offer;
         }
 
@@ -271,6 +279,8 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public async Task<string> CreateAnswerAsync()
         {
+            Log.Info(WebRTCLog.Tag, "Enter");
+
             ValidateWebRTCState(WebRTCState.Negotiating, WebRTCState.Playing);
 
             var tcsSdpCreated = new TaskCompletionSource<string>();
@@ -289,6 +299,8 @@ namespace Tizen.Multimedia.Remoting
                 answer = await tcsSdpCreated.Task.ConfigureAwait(false);
                 await Task.Yield();
             }
+
+            Log.Info(WebRTCLog.Tag, "Leave");
 
             return answer;
         }
