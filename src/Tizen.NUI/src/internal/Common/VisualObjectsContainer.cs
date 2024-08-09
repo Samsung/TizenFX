@@ -159,10 +159,6 @@ namespace Tizen.NUI.Visuals
             {
                 Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
             }
-            else
-            {
-                ret = new Visuals.VisualBase(cPtr, true);
-            }
             NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }

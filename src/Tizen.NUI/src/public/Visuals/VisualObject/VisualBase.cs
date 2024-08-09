@@ -35,7 +35,7 @@ namespace Tizen.NUI.Visuals
     /// animation.AnimateTo(view, "BorderlineOffset", -1.0f);
     /// </code>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class VisualBase : BaseHandle
+    public abstract class VisualBase : BaseHandle
     {
         #region Internal And Private
         internal PropertyMap cachedVisualPropertyMap = null;
@@ -186,15 +186,6 @@ namespace Tizen.NUI.Visuals
         #endregion
 
         #region Constructor
-        /// <summary>
-        /// Creates an visual object.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public VisualBase() : this(Interop.VisualObject.VisualObjectNew(), true)
-        {
-            NDalicPINVOKE.ThrowExceptionIfExists();
-        }
-
         internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
@@ -237,7 +228,7 @@ namespace Tizen.NUI.Visuals
         /// and the visuals with larger sibling order are drawn top.
         ///
         /// It will be changed automatically when the visuals are added to the view.
-        /// The default value is 0.
+        /// It is 0 before being added to the view.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint SiblingOrder
@@ -337,7 +328,15 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.Opacity, new PropertyValue(value), false);
+                using Tizen.NUI.Color currentVisualColor = Color;
+                if (currentVisualColor.A != value)
+                {
+                    using Tizen.NUI.Color visualColor = new Tizen.NUI.Color(currentVisualColor.R, currentVisualColor.G, currentVisualColor.B, value);
+                    UpdateVisualProperty((int)Tizen.NUI.Visual.Property.MixColor, new PropertyValue(visualColor), false);
+
+                    // warning : We should set cached Opacity after set MixColor.
+                    UpdateVisualProperty((int)Tizen.NUI.Visual.Property.Opacity, new PropertyValue(value), false);
+                }
             }
             get
             {
@@ -358,20 +357,32 @@ namespace Tizen.NUI.Visuals
         /// The default value is VisualFittingModeType.DontCare.
         /// If user set one of Transform property, it will be set as VisualFittingModeType.DontCare automatically.
         /// </remarks>
+        /// <remarks>
+        /// Fitting mode is only available when the visual has original size.
+        /// For example, ImageVisual and TextVisual support FittingMode, but ColorVisual and BorderVisual don't support.
+        /// If visual doesn't have original size, Property set will be ignored.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VisualFittingModeType FittingMode
         {
             set
             {
-                if (value != VisualFittingModeType.DontCare)
+                if (IsFittingModeAvailable())
                 {
-                    visualFittingModeApplied = true;
+                    if (value != VisualFittingModeType.DontCare)
+                    {
+                        visualFittingModeApplied = true;
+                    }
+                    else
+                    {
+                        visualFittingModeApplied = false;
+                    }
+                    UpdateVisualProperty((int)Tizen.NUI.Visual.Property.VisualFittingMode, new PropertyValue((int)value));
                 }
                 else
                 {
-                    visualFittingModeApplied = false;
+                    Tizen.Log.Error("NUI", $"Fitting mode is not supported by this visual type:{Type}. Set as DontCare\n");
                 }
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.VisualFittingMode, new PropertyValue((int)value));
             }
             get
             {
@@ -1017,7 +1028,17 @@ namespace Tizen.NUI.Visuals
             if (ret == null)
             {
                 // If we cannot find result from cached map, Get value from native engine.
-                GetCurrentVisualProperty(key);
+                ret = GetCurrentVisualProperty(key);
+                
+                // Update cached value here
+                if (ret != null)
+                {
+                    if (cachedVisualPropertyMap == null)
+                    {
+                        cachedVisualPropertyMap = new PropertyMap();
+                    }
+                    cachedVisualPropertyMap[key] = ret;
+                }
             }
             return ret;
         }
@@ -1068,6 +1089,30 @@ namespace Tizen.NUI.Visuals
                 // Call process hardly.
                 ProcessorController.Instance.Awake();
             }
+        }
+
+        /// <summary>
+        /// Check whether given visual object is available to be use fitting mode or not.
+        /// </summary>
+        internal bool IsFittingModeAvailable()
+        {
+            switch (internalType)
+            {
+                case (int)Tizen.NUI.Visual.Type.Image:
+                case (int)Tizen.NUI.Visual.Type.NPatch:
+                case (int)Tizen.NUI.Visual.Type.AnimatedImage:
+                case (int)Tizen.NUI.Visual.Type.Text:
+                {
+                    return true;
+                }
+                case (int)Tizen.NUI.Visual.Type.Invalid:
+                case (int)Tizen.NUI.Visual.Type.Border:
+                case (int)Tizen.NUI.Visual.Type.Color:
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         /// <summary>
