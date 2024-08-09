@@ -361,6 +361,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// SynchronousSizingProperty
+        /// </summary>
+        internal static void SetInternalSynchronousSizingProperty(ImageView imageView, bool newValue)
+        {
+            imageView.UpdateImage(ImageVisualProperty.SynchronousSizing, new PropertyValue(newValue));
+        }
+
+        internal static object GetInternalSynchronousSizingProperty(ImageView imageView)
+        {
+            bool ret = false;
+
+            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousSizing)?.Get(out ret);
+
+            return ret;
+        }
+
+        /// <summary>
         /// MaskingModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
