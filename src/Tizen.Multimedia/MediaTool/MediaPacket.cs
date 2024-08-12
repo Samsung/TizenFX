@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
 using Native = Tizen.Multimedia.Interop.MediaPacket;
@@ -499,6 +500,30 @@ namespace Tizen.Multimedia
 
                 ret = Native.SetBufferFlags(_handle, (int)value);
                 MultimediaDebug.AssertNoError(ret);
+            }
+        }
+
+        /// <summary>
+        /// Gets the pointer to the tbm_surface object associated with the MediaPacket.
+        /// </summary>
+        /// <value>
+        /// The pointer to the tbm_surface object.
+        /// </value>
+        /// <exception cref="ObjectDisposedException">
+        /// Thrown if the current instance has already been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the operation failed.
+        /// </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IntPtr TbmSurface
+        {
+            get
+            {
+                ValidateNotDisposed();
+                int ret = Native.GetTbmSurface(_handle, out var surface);
+                MultimediaDebug.AssertNoError(ret);
+                return surface;
             }
         }
 

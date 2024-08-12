@@ -115,6 +115,9 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_duration")]
             internal static extern int GetDuration(IntPtr handle, out ulong value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_tbm_surface")]
+            internal static extern int GetTbmSurface(IntPtr handle, out IntPtr surface);
         }
 
         internal static class MediaFormat
