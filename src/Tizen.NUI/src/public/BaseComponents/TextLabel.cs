@@ -2739,9 +2739,29 @@ namespace Tizen.NUI.BaseComponents
 
             if (this.HasBody())
             {
+                if (textLabelAnchorClickedCallbackDelegate != null)
+                {
+                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
+                }
+
                 if (textLabelTextFitChangedCallbackDelegate != null)
                 {
                     TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                }
+
+                if (textLabelAsyncTextRenderedCallbackDelegate != null)
+                {
+                    AsyncTextRenderedSignal().Disconnect(textLabelAsyncTextRenderedCallbackDelegate);
+                }
+
+                if (textLabelAsyncNaturalSizeComputedCallbackDelegate != null)
+                {
+                    AsyncNaturalSizeComputedSignal().Disconnect(textLabelAsyncNaturalSizeComputedCallbackDelegate);
+                }
+
+                if (textLabelAsyncHeightForWidthComputedCallbackDelegate != null)
+                {
+                    AsyncHeightForWidthComputedSignal().Disconnect(textLabelAsyncHeightForWidthComputedCallbackDelegate);
                 }
             }
 
