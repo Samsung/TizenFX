@@ -68,8 +68,15 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public class SceneView : View
     {
+        private bool inCapture = false;
         private bool inCameraTransition = false;
         private Animation cameraTransition;
+
+        // CaptureFinishedEvent
+        private EventHandler<CaptureFinishedEventArgs> captureFinishedEventHandler;
+        private CaptureFinishedEventCallbackType captureFinishedEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void CaptureFinishedEventCallbackType(IntPtr data, int captureId, IntPtr capturedImageUrl);
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -95,6 +102,29 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Dispose Explicit or Implicit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (captureFinishedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] captureFinishedEventCallback");
+                Interop.SceneView.CaptureFinishedDisconnect(GetBaseHandleCPtrHandleRef, captureFinishedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                captureFinishedEventCallback = null;
+            }
+            LayoutCount = 0;
+
+            base.Dispose(type);
+        }
+
+        /// <summary>
         /// Assignment operator.
         /// </summary>
         /// <param name="sceneView">Handle to an object.</param>
@@ -104,6 +134,38 @@ namespace Tizen.NUI.Scene3D
             SceneView ret = new SceneView(Interop.SceneView.SceneAssign(SwigCPtr, SceneView.getCPtr(sceneView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+
+        /// <summary>
+        /// An event emitted when Capture is finished.
+        /// If Capture is successed, CaptureFinishedEventArgs includes finished capture ID and ImageUrl of the captured image.
+        /// If Capture is failed, the ImageUrl is null.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CaptureFinishedEventArgs> CaptureFinished
+        {
+            add
+            {
+                if (captureFinishedEventHandler == null)
+                {
+                    captureFinishedEventCallback = OnCaptureFinished;
+                    Interop.SceneView.CaptureFinishedConnect(SwigCPtr, captureFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                captureFinishedEventHandler += value;
+            }
+            remove
+            {
+                captureFinishedEventHandler -= value;
+                if (captureFinishedEventHandler == null && captureFinishedEventCallback != null)
+                {
+                    Interop.SceneView.CaptureFinishedDisconnect(SwigCPtr, captureFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    captureFinishedEventCallback = null;
+                }
+            }
         }
 
         /// <summary>
@@ -469,6 +531,39 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Requests to capture this SceneView with the Camera.
+        /// </summary>
+        /// <param name="camera">Camera to be used for capture.</param>
+        /// <param name="size">captured size.</param>
+        /// <remarks>
+        /// The input camera should not be used for any other purpose during Capture.
+        /// The selected camera cannot be used for input camera.
+        /// The camera is required to be added in this SceneView.
+        /// If the SceneView is disconnected from Scene, the left capture request is canceled.
+        /// </remarks>
+        /// <returns> capture id that id unique value to distinguish each request.
+        /// If capture is requested during previous capture, invalid index(-1) is returned.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Capture(Scene3D.Camera camera, Vector2 size)
+        {
+            if(inCapture)
+            {
+                Tizen.Log.Error("NUI", "The previous capture request is not finished yet.\n");
+                return -1;  // invalid index
+            }
+            if(camera == null)
+            {
+                Tizen.Log.Error("NUI", "Invalid Camera is used.\n");
+                return -1;  // invalid index
+            }
+            inCapture = true;
+            int id = Interop.SceneView.Capture(SwigCPtr, camera.SwigCPtr, Vector2.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return id;
+        }
+
         internal void SetUseFramebuffer(bool useFramebuffer)
         {
             Interop.SceneView.UseFramebuffer(SwigCPtr, useFramebuffer);
@@ -610,6 +705,16 @@ namespace Tizen.NUI.Scene3D
 
             positionKeyFrames.Dispose();
             orientationKeyFrames.Dispose();
+        }
+        
+        // Callback for capture finished signal
+        private void OnCaptureFinished(IntPtr data, int captureId, IntPtr capturedImageUrl)
+        {
+            CaptureFinishedEventArgs e = new CaptureFinishedEventArgs();
+            e.CaptureId = captureId;
+            e.CapturedImageUrl = new ImageUrl(capturedImageUrl, false);
+            captureFinishedEventHandler?.Invoke(this, e);
+            inCapture = false;  // To prevent to request capture in the capture finished callback.
         }
 
         /// <summary>
