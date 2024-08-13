@@ -320,7 +320,14 @@ namespace Tizen.NUI.Binding
         internal System.Reflection.TypeInfo ReturnTypeInfo { get; }
 
         internal ValidateValueDelegate ValidateValue { get; private set; }
-
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty Create<TDeclarer, TPropertyType>(string propertyName, TPropertyType defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
+                                                                        ValidateValueDelegate<TPropertyType> validateValue = null, BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null,
+                                                                        BindingPropertyChangingDelegate<TPropertyType> propertyChanging = null, CoerceValueDelegate<TPropertyType> coerceValue = null,
+                                                                        CreateDefaultValueDelegate<TDeclarer, TPropertyType> defaultValueCreator = null) where TDeclarer : BindableObject
+        {
+            return Create(propertyName, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, defaultValueCreator: defaultValueCreator);
+        }
         /// <summary>
         /// Creates a new instance of the BindableProperty class.
         /// </summary>
@@ -408,6 +415,46 @@ namespace Tizen.NUI.Binding
             return
                 new BindablePropertyKey(new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
                     isReadOnly: true, defaultValueCreator: defaultValueCreator));
+        }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static BindableProperty Create<TDeclarer, TPropertyType>(string propertyName, TPropertyType defaultValue, BindingMode defaultBindingMode,
+                                                                          ValidateValueDelegate<TPropertyType> validateValue, BindingPropertyChangedDelegate<TPropertyType> propertyChanged, BindingPropertyChangingDelegate<TPropertyType> propertyChanging,
+                                                                          CoerceValueDelegate<TPropertyType> coerceValue, BindablePropertyBindingChanging bindingChanging, bool isReadOnly = false,
+                                                                          CreateDefaultValueDelegate<TDeclarer, TPropertyType> defaultValueCreator = null) where TDeclarer : BindableObject
+        {
+            //if (getter == null)
+            //    throw new ArgumentNullException("getter");
+
+            //Expression expr = getter.Body;
+
+            //var unary = expr as UnaryExpression;
+            //if (unary != null)
+            //    expr = unary.Operand;
+
+            //var member = expr as MemberExpression;
+            //if (member == null)
+            //    throw new ArgumentException("getter must be a MemberExpression", "getter");
+
+            //var property = (PropertyInfo)member.Member;
+
+            ValidateValueDelegate untypedValidateValue = null;
+            BindingPropertyChangedDelegate untypedBindingPropertyChanged = null;
+            BindingPropertyChangingDelegate untypedBindingPropertyChanging = null;
+            CoerceValueDelegate untypedCoerceValue = null;
+            CreateDefaultValueDelegate untypedDefaultValueCreator = null;
+            if (validateValue != null)
+                untypedValidateValue = (bindable, value) => validateValue(bindable, (TPropertyType)value);
+            if (propertyChanged != null)
+                untypedBindingPropertyChanged = (bindable, oldValue, newValue) => propertyChanged(bindable, (TPropertyType)oldValue, (TPropertyType)newValue);
+            if (propertyChanging != null)
+                untypedBindingPropertyChanging = (bindable, oldValue, newValue) => propertyChanging(bindable, (TPropertyType)oldValue, (TPropertyType)newValue);
+            if (coerceValue != null)
+                untypedCoerceValue = (bindable, value) => coerceValue(bindable, (TPropertyType)value);
+            if (defaultValueCreator != null)
+                untypedDefaultValueCreator = o => defaultValueCreator((TDeclarer)o);
+
+            return new BindableProperty(propertyName, typeof(TPropertyType), typeof(TDeclarer), defaultValue, defaultBindingMode, untypedValidateValue, untypedBindingPropertyChanged,
+                untypedBindingPropertyChanging, untypedCoerceValue, bindingChanging, isReadOnly, untypedDefaultValueCreator);
         }
         internal static BindableProperty Create(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode, ValidateValueDelegate validateValue,
                                                 BindingPropertyChangedDelegate propertyChanged, BindingPropertyChangingDelegate propertyChanging, CoerceValueDelegate coerceValue, BindablePropertyBindingChanging bindingChanging,

@@ -86,136 +86,136 @@ namespace Tizen.NUI.BaseComponents
         { 
             if (NUIApplication.IsUsingXaml)
             {
-                TranslatableTextProperty = BindableProperty.Create(nameof(TranslatableText), typeof(string), typeof(TextLabel), string.Empty, 
+                TranslatableTextProperty = BindableProperty.Create<TextLabel, string>(nameof(TranslatableText), string.Empty,
                     propertyChanged: SetInternalTranslatableTextProperty, defaultValueCreator: GetInternalTranslatableTextProperty);
 
-                TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextLabel), string.Empty, 
+                TextProperty = BindableProperty.Create<TextLabel, string>(nameof(Text), string.Empty,
                     propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
 
-                FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextLabel), string.Empty, 
+                FontFamilyProperty = BindableProperty.Create<TextLabel, string>(nameof(FontFamily), string.Empty,
                     propertyChanged: SetInternalFontFamilyProperty, defaultValueCreator: GetInternalFontFamilyProperty);
 
-                FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextLabel), null, 
+                FontStyleProperty = BindableProperty.Create<TextLabel, PropertyMap>(nameof(FontStyle), null,
                     propertyChanged: SetInternalFontStyleProperty, defaultValueCreator: GetInternalFontStyleProperty);
 
-                PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextLabel), default(float), 
+                PointSizeProperty = BindableProperty.Create<TextLabel, float>(nameof(PointSize), default(float),
                     propertyChanged: SetInternalPointSizeProperty, defaultValueCreator: GetInternalPointSizeProperty);
 
-                MultiLineProperty = BindableProperty.Create(nameof(MultiLine), typeof(bool), typeof(TextLabel), false, 
+                MultiLineProperty = BindableProperty.Create<TextLabel, bool>(nameof(MultiLine), false,
                     propertyChanged: SetInternalMultiLineProperty, defaultValueCreator: GetInternalMultiLineProperty);
 
-                HorizontalAlignmentProperty = BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextLabel), HorizontalAlignment.Begin, 
+                HorizontalAlignmentProperty = BindableProperty.Create<TextLabel, HorizontalAlignment>(nameof(HorizontalAlignment), HorizontalAlignment.Begin,
                     propertyChanged: SetInternalHorizontalAlignmentProperty, defaultValueCreator: GetInternalHorizontalAlignmentProperty);
 
-                VerticalAlignmentProperty = BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment), typeof(TextLabel), VerticalAlignment.Bottom, 
+                VerticalAlignmentProperty = BindableProperty.Create<TextLabel, VerticalAlignment>(nameof(VerticalAlignment), VerticalAlignment.Bottom,
                     propertyChanged: SetInternalVerticalAlignmentProperty, defaultValueCreator: GetInternalVerticalAlignmentProperty);
 
-                TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextLabel), null, 
+                TextColorProperty = BindableProperty.Create<TextLabel, Color>(nameof(TextColor), null,
                     propertyChanged: SetInternalTextColorProperty, defaultValueCreator: GetInternalTextColorProperty);
 
-                AnchorColorProperty = BindableProperty.Create(nameof(TextLabel.AnchorColor), typeof(Color), typeof(TextLabel), null, 
+                AnchorColorProperty = BindableProperty.Create<TextLabel, Color>(nameof(TextLabel.AnchorColor), null,
                     propertyChanged: SetInternalAnchorColorProperty, defaultValueCreator: GetInternalAnchorColorProperty);
 
-                AnchorClickedColorProperty = BindableProperty.Create(nameof(TextLabel.AnchorClickedColor), typeof(Color), typeof(TextLabel), null, 
+                AnchorClickedColorProperty = BindableProperty.Create<TextLabel, Color>(nameof(TextLabel.AnchorClickedColor), null,
                     propertyChanged: SetInternalAnchorClickedColorProperty, defaultValueCreator: GetInternalAnchorClickedColorProperty);
 
-                RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), false, 
+                RemoveFrontInsetProperty = BindableProperty.Create<TextLabel, bool>(nameof(RemoveFrontInset), false,
                     propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
 
-                RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), false, 
+                RemoveBackInsetProperty = BindableProperty.Create<TextLabel, bool>(nameof(RemoveBackInset), false,
                     propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
 
-                EnableMarkupProperty = BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextLabel), false, 
+                EnableMarkupProperty = BindableProperty.Create<TextLabel, bool>(nameof(EnableMarkup), false,
                     propertyChanged: SetInternalEnableMarkupProperty, defaultValueCreator: GetInternalEnableMarkupProperty);
 
-                EnableAutoScrollProperty = BindableProperty.Create(nameof(EnableAutoScroll), typeof(bool), typeof(TextLabel), false, 
+                EnableAutoScrollProperty = BindableProperty.Create<TextLabel, bool>(nameof(EnableAutoScroll), false,
                     propertyChanged: SetInternalEnableAutoScrollProperty, defaultValueCreator: GetInternalEnableAutoScrollProperty);
 
-                AutoScrollSpeedProperty = BindableProperty.Create(nameof(AutoScrollSpeed), typeof(int), typeof(TextLabel), default(int), 
+                AutoScrollSpeedProperty = BindableProperty.Create<TextLabel, int>(nameof(AutoScrollSpeed), default(int),
                     propertyChanged: SetInternalAutoScrollSpeedProperty, defaultValueCreator: GetInternalAutoScrollSpeedProperty);
 
-                AutoScrollLoopCountProperty = BindableProperty.Create(nameof(AutoScrollLoopCount), typeof(int), typeof(TextLabel), default(int), 
+                AutoScrollLoopCountProperty = BindableProperty.Create<TextLabel, int>(nameof(AutoScrollLoopCount), default(int),
                     propertyChanged: SetInternalAutoScrollLoopCountProperty, defaultValueCreator: GetInternalAutoScrollLoopCountProperty);
 
-                AutoScrollGapProperty = BindableProperty.Create(nameof(AutoScrollGap), typeof(float), typeof(TextLabel), default(float), 
+                AutoScrollGapProperty = BindableProperty.Create<TextLabel, float>(nameof(AutoScrollGap), default(float),
                     propertyChanged: SetInternalAutoScrollGapProperty, defaultValueCreator: GetInternalAutoScrollGapProperty);
 
-                LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextLabel), default(float), 
+                LineSpacingProperty = BindableProperty.Create<TextLabel, float>(nameof(LineSpacing), default(float),
                     propertyChanged: SetInternalLineSpacingProperty, defaultValueCreator: GetInternalLineSpacingProperty);
 
-                RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float), typeof(TextLabel), default(float), 
+                RelativeLineHeightProperty = BindableProperty.Create<TextLabel, float>(nameof(RelativeLineHeight), default(float),
                     propertyChanged: SetInternalRelativeLineHeightProperty, defaultValueCreator: GetInternalRelativeLineHeightProperty);
 
-                UnderlineProperty = BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextLabel), null, 
+                UnderlineProperty = BindableProperty.Create<TextLabel, PropertyMap>(nameof(Underline), null,
                     propertyChanged: SetInternalUnderlineProperty, defaultValueCreator: GetInternalUnderlineProperty);
 
-                ShadowProperty = BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextLabel), null, 
+                ShadowProperty = BindableProperty.Create<TextLabel, PropertyMap>(nameof(Shadow), null,
                     propertyChanged: SetInternalShadowProperty, defaultValueCreator: GetInternalShadowProperty);
 
-                TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(TextShadow), typeof(TextLabel), null, 
+                TextShadowProperty = BindableProperty.Create<TextLabel, TextShadow>(nameof(TextShadow), null,
                     propertyChanged: SetInternalTextShadowProperty, defaultValueCreator: GetInternalTextShadowProperty);
 
-                EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabel), string.Empty, 
+                EmbossProperty = BindableProperty.Create<TextLabel, string>(nameof(Emboss), string.Empty,
                     propertyChanged: SetInternalEmbossProperty, defaultValueCreator: GetInternalEmbossProperty);
 
-                OutlineProperty = BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextLabel), null, 
+                OutlineProperty = BindableProperty.Create<TextLabel, PropertyMap>(nameof(Outline), null,
                     propertyChanged: SetInternalOutlineProperty, defaultValueCreator: GetInternalOutlineProperty);
 
-                PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextLabel), default(float), 
+                PixelSizeProperty = BindableProperty.Create<TextLabel, float>(nameof(PixelSize), default(float),
                     propertyChanged: SetInternalPixelSizeProperty, defaultValueCreator: GetInternalPixelSizeProperty);
 
-                EllipsisProperty = BindableProperty.Create(nameof(Ellipsis), typeof(bool), typeof(TextLabel), false, 
+                EllipsisProperty = BindableProperty.Create<TextLabel, bool>(nameof(Ellipsis), false,
                     propertyChanged: SetInternalEllipsisProperty, defaultValueCreator: GetInternalEllipsisProperty);
 
-                EllipsisPositionProperty = BindableProperty.Create(nameof(EllipsisPosition), typeof(EllipsisPosition), typeof(TextLabel), EllipsisPosition.End, 
+                EllipsisPositionProperty = BindableProperty.Create<TextLabel, EllipsisPosition>(nameof(EllipsisPosition), EllipsisPosition.End,
                     propertyChanged: SetInternalEllipsisPositionProperty, defaultValueCreator: GetInternalEllipsisPositionProperty);
 
-                AutoScrollLoopDelayProperty = BindableProperty.Create(nameof(AutoScrollLoopDelay), typeof(float), typeof(TextLabel), default(float), 
+                AutoScrollLoopDelayProperty = BindableProperty.Create<TextLabel, float>(nameof(AutoScrollLoopDelay), default(float),
                     propertyChanged: SetInternalAutoScrollLoopDelayProperty, defaultValueCreator: GetInternalAutoScrollLoopDelayProperty);
 
-                AutoScrollStopModeProperty = BindableProperty.Create(nameof(AutoScrollStopMode), typeof(AutoScrollStopMode), typeof(TextLabel), AutoScrollStopMode.FinishLoop, 
+                AutoScrollStopModeProperty = BindableProperty.Create<TextLabel, AutoScrollStopMode>(nameof(AutoScrollStopMode), AutoScrollStopMode.FinishLoop,
                     propertyChanged: SetInternalAutoScrollStopModeProperty, defaultValueCreator: GetInternalAutoScrollStopModeProperty);
 
-                LineWrapModeProperty = BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextLabel), LineWrapMode.Word, 
+                LineWrapModeProperty = BindableProperty.Create<TextLabel, LineWrapMode>(nameof(LineWrapMode), LineWrapMode.Word,
                     propertyChanged: SetInternalLineWrapModeProperty, defaultValueCreator: GetInternalLineWrapModeProperty);
 
-                VerticalLineAlignmentProperty = BindableProperty.Create(nameof(VerticalLineAlignment), typeof(VerticalLineAlignment), typeof(TextLabel), VerticalLineAlignment.Bottom, 
+                VerticalLineAlignmentProperty = BindableProperty.Create<TextLabel, VerticalLineAlignment>(nameof(VerticalLineAlignment), VerticalLineAlignment.Bottom,
                     propertyChanged: SetInternalVerticalLineAlignmentProperty, defaultValueCreator: GetInternalVerticalLineAlignmentProperty);
 
-                MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool), typeof(TextLabel), false, 
+                MatchSystemLanguageDirectionProperty = BindableProperty.Create<TextLabel, bool>(nameof(MatchSystemLanguageDirection), false,
                     propertyChanged: SetInternalMatchSystemLanguageDirectionProperty, defaultValueCreator: GetInternalMatchSystemLanguageDirectionProperty);
 
-                CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float), typeof(TextLabel), default(float), 
+                CharacterSpacingProperty = BindableProperty.Create<TextLabel, float>(nameof(CharacterSpacing), default(float),
                     propertyChanged: SetInternalCharacterSpacingProperty, defaultValueCreator: GetInternalCharacterSpacingProperty);
 
-                TextFitProperty = BindableProperty.Create(nameof(TextFit), typeof(PropertyMap), typeof(TextLabel), null, 
+                TextFitProperty = BindableProperty.Create<TextLabel, PropertyMap>(nameof(TextFit), null,
                     propertyChanged: SetInternalTextFitProperty, defaultValueCreator: GetInternalTextFitProperty);
 
-                MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float), typeof(TextLabel), default(float), 
+                MinLineSizeProperty = BindableProperty.Create<TextLabel, float>(nameof(MinLineSize), default(float),
                     propertyChanged: SetInternalMinLineSizeProperty, defaultValueCreator: GetInternalMinLineSizeProperty);
 
-                FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float), typeof(TextLabel), default(float), 
+                FontSizeScaleProperty = BindableProperty.Create<TextLabel, float>(nameof(FontSizeScale), default(float),
                     propertyChanged: SetInternalFontSizeScaleProperty, defaultValueCreator: GetInternalFontSizeScaleProperty);
 
-                EnableFontSizeScaleProperty = BindableProperty.Create(nameof(EnableFontSizeScale), typeof(bool), typeof(TextLabel), default(bool), 
+                EnableFontSizeScaleProperty = BindableProperty.Create<TextLabel, bool>(nameof(EnableFontSizeScale), default(bool),
                     propertyChanged: SetInternalEnableFontSizeScaleProperty, defaultValueCreator: GetInternalEnableFontSizeScaleProperty);
 
-                ShadowOffsetProperty = BindableProperty.Create(nameof(ShadowOffset), typeof(Tizen.NUI.Vector2), typeof(TextLabel), null, 
+                ShadowOffsetProperty = BindableProperty.Create<TextLabel, Vector2>(nameof(ShadowOffset), null,
                     propertyChanged: SetInternalShadowOffsetProperty, defaultValueCreator: GetInternalShadowOffsetProperty);
 
-                ShadowColorProperty = BindableProperty.Create(nameof(ShadowColor), typeof(Tizen.NUI.Vector4), typeof(TextLabel), null, 
+                ShadowColorProperty = BindableProperty.Create<TextLabel, Vector4>(nameof(ShadowColor), null,
                     propertyChanged: SetInternalShadowColorProperty, defaultValueCreator: GetInternalShadowColorProperty);
 
-                UnderlineEnabledProperty = BindableProperty.Create(nameof(UnderlineEnabled), typeof(bool), typeof(TextLabel), false, 
+                UnderlineEnabledProperty = BindableProperty.Create<TextLabel, bool>(nameof(UnderlineEnabled), false,
                     propertyChanged: SetInternalUnderlineEnabledProperty, defaultValueCreator: GetInternalUnderlineEnabledProperty);
 
-                UnderlineColorProperty = BindableProperty.Create(nameof(UnderlineColor), typeof(Tizen.NUI.Vector4), typeof(TextLabel), null, 
+                UnderlineColorProperty = BindableProperty.Create<TextLabel, Vector4>(nameof(UnderlineColor), null,
                     propertyChanged: SetInternalUnderlineColorProperty, defaultValueCreator: GetInternalUnderlineColorProperty);
 
-                UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(TextLabel), 0.0f, 
+                UnderlineHeightProperty = BindableProperty.Create<TextLabel, float>(nameof(UnderlineHeight), 0.0f,
                     propertyChanged: SetInternalUnderlineHeightProperty, defaultValueCreator: GetInternalUnderlineHeightProperty);
 
-                CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
+                CutoutProperty = BindableProperty.Create<TextLabel, bool>(nameof(Cutout), false,
                     propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
             }
         }
@@ -604,7 +604,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalPointSizeProperty(this, null, value);
+                    SetInternalPointSizeProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -636,7 +636,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalMultiLineProperty(this, null, value);
+                    SetInternalMultiLineProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -657,7 +657,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (HorizontalAlignment)GetInternalHorizontalAlignmentProperty(this);
+                    return GetInternalHorizontalAlignmentProperty(this);
                 }
             }
             set
@@ -668,7 +668,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalHorizontalAlignmentProperty(this, null, value);
+                    SetInternalHorizontalAlignmentProperty(this, HorizontalAlignment.Begin, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -689,7 +689,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (VerticalAlignment)GetInternalVerticalAlignmentProperty(this);
+                    return GetInternalVerticalAlignmentProperty(this);
                 }
             }
             set
@@ -700,7 +700,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalVerticalAlignmentProperty(this, null, value);
+                    SetInternalVerticalAlignmentProperty(this, VerticalAlignment.Top, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -727,7 +727,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    temp = (Color)GetInternalTextColorProperty(this);
+                    temp = GetInternalTextColorProperty(this);
                 }
                 return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
@@ -765,7 +765,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalShadowOffsetProperty(this) as Vector2;
+                    return GetInternalShadowOffsetProperty(this);
                 }
             }
             set
@@ -911,7 +911,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalUnderlineEnabledProperty(this, null, value);
+                    SetInternalUnderlineEnabledProperty(this, false, value);
                 }
             }
         }
@@ -1041,7 +1041,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalUnderlineHeightProperty(this, null, value);
+                    SetInternalUnderlineHeightProperty(this, 0, value);
                 }
             }
         }
@@ -1088,7 +1088,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableMarkupProperty(this);
+                    return GetInternalEnableMarkupProperty(this);
                 }
             }
             set
@@ -1099,7 +1099,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalEnableMarkupProperty(this, null, value);
+                    SetInternalEnableMarkupProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1120,7 +1120,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableAutoScrollProperty(this);
+                    return GetInternalEnableAutoScrollProperty(this);
                 }
             }
             set
@@ -1131,7 +1131,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalEnableAutoScrollProperty(this, null, value);
+                    SetInternalEnableAutoScrollProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1152,7 +1152,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalAutoScrollSpeedProperty(this);
+                    return GetInternalAutoScrollSpeedProperty(this);
                 }
             }
             set
@@ -1163,7 +1163,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalAutoScrollSpeedProperty(this, null, value);
+                    SetInternalAutoScrollSpeedProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1184,7 +1184,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalAutoScrollLoopCountProperty(this);
+                    return GetInternalAutoScrollLoopCountProperty(this);
                 }
             }
             set
@@ -1195,7 +1195,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalAutoScrollLoopCountProperty(this, null, value);
+                    SetInternalAutoScrollLoopCountProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1216,7 +1216,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalAutoScrollGapProperty(this);
+                    return GetInternalAutoScrollGapProperty(this);
                 }
             }
             set
@@ -1227,7 +1227,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalAutoScrollGapProperty(this, null, value);
+                    SetInternalAutoScrollGapProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1248,7 +1248,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalLineSpacingProperty(this);
+                    return GetInternalLineSpacingProperty(this);
                 }
             }
             set
@@ -1259,7 +1259,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalLineSpacingProperty(this, null, value);
+                    SetInternalLineSpacingProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1280,7 +1280,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalRelativeLineHeightProperty(this);
+                    return GetInternalRelativeLineHeightProperty(this);
                 }
             }
             set
@@ -1291,7 +1291,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalRelativeLineHeightProperty(this, null, value);
+                    SetInternalRelativeLineHeightProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1319,7 +1319,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalUnderlineProperty(this);
+                    return GetInternalUnderlineProperty(this);
                 }
             }
             set
@@ -1402,7 +1402,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalShadowProperty(this);
+                    return GetInternalShadowProperty(this);
                 }
             }
             set
@@ -1478,7 +1478,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (TextShadow)GetInternalTextShadowProperty(this);
+                    return GetInternalTextShadowProperty(this);
                 }
             }
             set
@@ -1510,7 +1510,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalEmbossProperty(this);
+                    return GetInternalEmbossProperty(this);
                 }
             }
             set
@@ -1548,7 +1548,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalOutlineProperty(this);
+                    return GetInternalOutlineProperty(this);
                 }
             }
             set
@@ -1671,7 +1671,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalPixelSizeProperty(this);
+                    return GetInternalPixelSizeProperty(this);
                 }
             }
             set
@@ -1682,7 +1682,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalPixelSizeProperty(this, null, value);
+                    SetInternalPixelSizeProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1703,7 +1703,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEllipsisProperty(this);
+                    return GetInternalEllipsisProperty(this);
                 }
             }
             set
@@ -1714,7 +1714,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalEllipsisProperty(this, null, value);
+                    SetInternalEllipsisProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1735,7 +1735,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (EllipsisPosition)GetInternalEllipsisPositionProperty(this);
+                    return GetInternalEllipsisPositionProperty(this);
                 }
             }
             set
@@ -1746,7 +1746,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalEllipsisPositionProperty(this, null, value);
+                    SetInternalEllipsisPositionProperty(this, EllipsisPosition.End, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1767,7 +1767,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalAutoScrollLoopDelayProperty(this);
+                    return GetInternalAutoScrollLoopDelayProperty(this);
                 }
             }
             set
@@ -1778,7 +1778,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalAutoScrollLoopDelayProperty(this, null, value);
+                    SetInternalAutoScrollLoopDelayProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1800,7 +1800,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (AutoScrollStopMode)GetInternalAutoScrollStopModeProperty(this);
+                    return GetInternalAutoScrollStopModeProperty(this);
                 }
             }
             set
@@ -1811,7 +1811,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalAutoScrollStopModeProperty(this, null, value);
+                    SetInternalAutoScrollStopModeProperty(this, AutoScrollStopMode.FinishLoop, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1849,7 +1849,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (LineWrapMode)GetInternalLineWrapModeProperty(this);
+                    return GetInternalLineWrapModeProperty(this);
                 }
             }
             set
@@ -1860,7 +1860,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalLineWrapModeProperty(this, null, value);
+                    SetInternalLineWrapModeProperty(this, LineWrapMode.Word, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1899,7 +1899,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (VerticalLineAlignment)GetInternalVerticalLineAlignmentProperty(this);
+                    return GetInternalVerticalLineAlignmentProperty(this);
                 }
             }
             set
@@ -1910,7 +1910,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalVerticalLineAlignmentProperty(this, null, value);
+                    SetInternalVerticalLineAlignmentProperty(this, VerticalLineAlignment.Bottom, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1930,7 +1930,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalMatchSystemLanguageDirectionProperty(this);
+                    return GetInternalMatchSystemLanguageDirectionProperty(this);
                 }
             }
             set
@@ -1941,7 +1941,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalMatchSystemLanguageDirectionProperty(this, null, value);
+                    SetInternalMatchSystemLanguageDirectionProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2152,7 +2152,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalMinLineSizeProperty(this);
+                    return GetInternalMinLineSizeProperty(this);
                 }
             }
             set
@@ -2163,7 +2163,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalMinLineSizeProperty(this, null, value);
+                    SetInternalMinLineSizeProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2187,7 +2187,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalCharacterSpacingProperty(this);
+                    return GetInternalCharacterSpacingProperty(this);
                 }
             }
             set
@@ -2198,7 +2198,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalCharacterSpacingProperty(this, null, value);
+                    SetInternalCharacterSpacingProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2264,7 +2264,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    color = (Color)GetInternalAnchorClickedColorProperty(this);
+                    color = GetInternalAnchorClickedColorProperty(this);
                 }
                 return new Color(OnAnchorClickedColorChanged, color.R, color.G, color.B, color.A);
             }
@@ -2300,7 +2300,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalRemoveFrontInsetProperty(this);
+                    return GetInternalRemoveFrontInsetProperty(this);
                 }
             }
             set
@@ -2311,7 +2311,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalRemoveFrontInsetProperty(this, null, value);
+                    SetInternalRemoveFrontInsetProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2335,7 +2335,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalRemoveBackInsetProperty(this);
+                    return GetInternalRemoveBackInsetProperty(this);
                 }
             }
             set
@@ -2346,7 +2346,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalRemoveBackInsetProperty(this, null, value);
+                    SetInternalRemoveBackInsetProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2369,7 +2369,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalFontSizeScaleProperty(this);
+                    return GetInternalFontSizeScaleProperty(this);
                 }
             }
             set
@@ -2380,7 +2380,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalFontSizeScaleProperty(this, null, value);
+                    SetInternalFontSizeScaleProperty(this, 0, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2447,7 +2447,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableFontSizeScaleProperty(this);
+                    return GetInternalEnableFontSizeScaleProperty(this);
                 }
             }
             set
@@ -2458,7 +2458,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
-                    SetInternalEnableFontSizeScaleProperty(this, null, value);
+                    SetInternalEnableFontSizeScaleProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -2494,7 +2494,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalCutoutProperty(this);
+                    return GetInternalCutoutProperty(this);
                 }
             }
             set
@@ -2505,7 +2505,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCutoutProperty(this, null, value);
+                    SetInternalCutoutProperty(this, false, value);
                 }
                 NotifyPropertyChanged();
             }
