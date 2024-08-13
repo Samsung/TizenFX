@@ -2,7 +2,7 @@
 <manifest xmlns="http://tizen.org/ns/packages" api-version="7" package="org.tizen.example.Tizen.NUI.Samples" version="1.0.2">
   <profile name="common" />
   <ui-application appid="org.tizen.example.Tizen.NUI.Samples"
-					exec="Tizen.NUI.Samples.dll"
+					exec="NuiSample.dll"
 					type="dotnet-nui"
 					multiple="false"
 					taskmanage="true"
