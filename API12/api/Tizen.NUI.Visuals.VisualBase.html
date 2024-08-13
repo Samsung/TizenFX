@@ -95,7 +95,7 @@ This class is abstract class. We cannot use it without type of Properties.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class VisualBase : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class VisualBase : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
 
@@ -138,34 +138,10 @@ It will be used when we want to add a new visual to the View.
 We can change the size or offset of visuals, and sibling order.</p>
 <p>When we change the property of visual, the visual will be recreated at end of event loop.</p>
 </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L192">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Visuals_VisualBase__ctor_" data-uid="Tizen.NUI.Visuals.VisualBase.#ctor*"></a>
-  <h4 id="Tizen_NUI_Visuals_VisualBase__ctor" data-uid="Tizen.NUI.Visuals.VisualBase.#ctor">VisualBase()</h4>
-  <div class="markdown level1 summary"><p>Creates an visual object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VisualBase()</code></pre>
-  </div>
-  <h5 id="Tizen_NUI_Visuals_VisualBase__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Visual is the smallest rendering unit that application can control without custom renderer.
-It will be used when we want to add a new visual to the View.
-We can change the size or offset of visuals, and sibling order.</p>
-<p>When we change the property of visual, the visual will be recreated at end of event loop.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L310">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L301">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Color_" data-uid="Tizen.NUI.Visuals.VisualBase.Color*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Color" data-uid="Tizen.NUI.Visuals.VisualBase.Color">Color</h4>
@@ -200,7 +176,7 @@ Opacity property be applied as Color.A.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L660">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L671">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_ExtraHeight_" data-uid="Tizen.NUI.Visuals.VisualBase.ExtraHeight*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_ExtraHeight" data-uid="Tizen.NUI.Visuals.VisualBase.ExtraHeight">ExtraHeight</h4>
@@ -237,7 +213,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L636">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L647">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_ExtraWidth_" data-uid="Tizen.NUI.Visuals.VisualBase.ExtraWidth*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_ExtraWidth" data-uid="Tizen.NUI.Visuals.VisualBase.ExtraWidth">ExtraWidth</h4>
@@ -274,7 +250,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L361">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L365">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_FittingMode_" data-uid="Tizen.NUI.Visuals.VisualBase.FittingMode*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_FittingMode" data-uid="Tizen.NUI.Visuals.VisualBase.FittingMode">FittingMode</h4>
@@ -310,7 +286,7 @@ If user set one of Transform property, it will be set as VisualFittingModeType.D
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L412">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L423">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Height_" data-uid="Tizen.NUI.Visuals.VisualBase.Height*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Height" data-uid="Tizen.NUI.Visuals.VisualBase.Height">Height</h4>
@@ -347,7 +323,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L464">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L475">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_HeightPolicy_" data-uid="Tizen.NUI.Visuals.VisualBase.HeightPolicy*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_HeightPolicy" data-uid="Tizen.NUI.Visuals.VisualBase.HeightPolicy">HeightPolicy</h4>
@@ -386,7 +362,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L281">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L272">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Name_" data-uid="Tizen.NUI.Visuals.VisualBase.Name*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Name" data-uid="Tizen.NUI.Visuals.VisualBase.Name">Name</h4>
@@ -423,7 +399,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L488">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L499">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_OffsetX_" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetX*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_OffsetX" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetX">OffsetX</h4>
@@ -460,7 +436,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L538">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L549">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_OffsetXPolicy_" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetXPolicy*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_OffsetXPolicy" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetXPolicy">OffsetXPolicy</h4>
@@ -499,7 +475,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L512">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L523">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_OffsetY_" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetY*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_OffsetY" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetY">OffsetY</h4>
@@ -536,7 +512,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L564">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L575">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_OffsetYPolicy_" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetYPolicy*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_OffsetYPolicy" data-uid="Tizen.NUI.Visuals.VisualBase.OffsetYPolicy">OffsetYPolicy</h4>
@@ -575,7 +551,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L335">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L326">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Opacity_" data-uid="Tizen.NUI.Visuals.VisualBase.Opacity*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Opacity" data-uid="Tizen.NUI.Visuals.VisualBase.Opacity">Opacity</h4>
@@ -609,7 +585,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L588">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L599">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Origin_" data-uid="Tizen.NUI.Visuals.VisualBase.Origin*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Origin" data-uid="Tizen.NUI.Visuals.VisualBase.Origin">Origin</h4>
@@ -646,7 +622,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L612">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L623">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_PivotPoint_" data-uid="Tizen.NUI.Visuals.VisualBase.PivotPoint*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_PivotPoint" data-uid="Tizen.NUI.Visuals.VisualBase.PivotPoint">PivotPoint</h4>
@@ -683,7 +659,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L288">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L279">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_PropertyUpdateMode_" data-uid="Tizen.NUI.Visuals.VisualBase.PropertyUpdateMode*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_PropertyUpdateMode" data-uid="Tizen.NUI.Visuals.VisualBase.PropertyUpdateMode">PropertyUpdateMode</h4>
@@ -721,7 +697,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L242">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L233">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_SiblingOrder_" data-uid="Tizen.NUI.Visuals.VisualBase.SiblingOrder*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_SiblingOrder" data-uid="Tizen.NUI.Visuals.VisualBase.SiblingOrder">SiblingOrder</h4>
@@ -752,14 +728,14 @@ We can change the size or offset of visuals, and sibling order.</p>
 The visuals with smaller sibling order are drawn bottom,
 and the visuals with larger sibling order are drawn top.</p>
 <p>It will be changed automatically when the visuals are added to the view.
-The default value is 0.</p>
+It is 0 before being added to the view.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L261">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L252">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Type_" data-uid="Tizen.NUI.Visuals.VisualBase.Type*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Type" data-uid="Tizen.NUI.Visuals.VisualBase.Type">Type</h4>
@@ -796,7 +772,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L388">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L399">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Width_" data-uid="Tizen.NUI.Visuals.VisualBase.Width*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Width" data-uid="Tizen.NUI.Visuals.VisualBase.Width">Width</h4>
@@ -833,7 +809,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L438">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L449">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_WidthPolicy_" data-uid="Tizen.NUI.Visuals.VisualBase.WidthPolicy*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_WidthPolicy" data-uid="Tizen.NUI.Visuals.VisualBase.WidthPolicy">WidthPolicy</h4>
@@ -874,7 +850,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L700">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L711">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Detach_" data-uid="Tizen.NUI.Visuals.VisualBase.Detach*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Detach" data-uid="Tizen.NUI.Visuals.VisualBase.Detach">Detach()</h4>
@@ -896,7 +872,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L1076">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L1121">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Dispose_" data-uid="Tizen.NUI.Visuals.VisualBase.Dispose*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Visuals.VisualBase.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
@@ -937,7 +913,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L686">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L697">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_GetOwner_" data-uid="Tizen.NUI.Visuals.VisualBase.GetOwner*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_GetOwner" data-uid="Tizen.NUI.Visuals.VisualBase.GetOwner">GetOwner()</h4>
@@ -974,7 +950,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L731">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L742">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Lower_" data-uid="Tizen.NUI.Visuals.VisualBase.Lower*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Lower" data-uid="Tizen.NUI.Visuals.VisualBase.Lower">Lower()</h4>
@@ -996,7 +972,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L771">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L782">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_LowerBelow_" data-uid="Tizen.NUI.Visuals.VisualBase.LowerBelow*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_LowerBelow_Tizen_NUI_Visuals_VisualBase_" data-uid="Tizen.NUI.Visuals.VisualBase.LowerBelow(Tizen.NUI.Visuals.VisualBase)">LowerBelow(VisualBase)</h4>
@@ -1035,7 +1011,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L751">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L762">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_LowerToBottom_" data-uid="Tizen.NUI.Visuals.VisualBase.LowerToBottom*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_LowerToBottom" data-uid="Tizen.NUI.Visuals.VisualBase.LowerToBottom">LowerToBottom()</h4>
@@ -1057,7 +1033,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L721">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L732">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_Raise_" data-uid="Tizen.NUI.Visuals.VisualBase.Raise*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_Raise" data-uid="Tizen.NUI.Visuals.VisualBase.Raise">Raise()</h4>
@@ -1079,7 +1055,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L761">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L772">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_RaiseAbove_" data-uid="Tizen.NUI.Visuals.VisualBase.RaiseAbove*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_RaiseAbove_Tizen_NUI_Visuals_VisualBase_" data-uid="Tizen.NUI.Visuals.VisualBase.RaiseAbove(Tizen.NUI.Visuals.VisualBase)">RaiseAbove(VisualBase)</h4>
@@ -1118,7 +1094,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L741">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L752">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_RaiseToTop_" data-uid="Tizen.NUI.Visuals.VisualBase.RaiseToTop*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_RaiseToTop" data-uid="Tizen.NUI.Visuals.VisualBase.RaiseToTop">RaiseToTop()</h4>
@@ -1140,7 +1116,7 @@ We can change the size or offset of visuals, and sibling order.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L781">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Visuals/VisualObject/VisualBase.cs/#L792">View Source</a>
   </span>
   <a id="Tizen_NUI_Visuals_VisualBase_UpdateProperty_" data-uid="Tizen.NUI.Visuals.VisualBase.UpdateProperty*"></a>
   <h4 id="Tizen_NUI_Visuals_VisualBase_UpdateProperty" data-uid="Tizen.NUI.Visuals.VisualBase.UpdateProperty">UpdateProperty()</h4>
