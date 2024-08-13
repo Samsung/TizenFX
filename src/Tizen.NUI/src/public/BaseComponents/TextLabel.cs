@@ -217,9 +217,6 @@ namespace Tizen.NUI.BaseComponents
 
                 CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
                     propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
-
-                RenderModeProperty = BindableProperty.Create(nameof(RenderMode), typeof(TextRenderMode), typeof(TextLabel), TextRenderMode.Sync,
-                    propertyChanged: SetInternalRenderModeProperty, defaultValueCreator: GetInternalRenderModeProperty);
             }
         }
 
@@ -2614,25 +2611,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (TextRenderMode)GetValue(RenderModeProperty);
-                }
-                else
-                {
-                    return (TextRenderMode)GetInternalRenderModeProperty(this);
-                }
+                return (TextRenderMode)Object.InternalGetPropertyInt(this.SwigCPtr, TextLabel.Property.RenderMode);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(RenderModeProperty, value);
-                }
-                else
-                {
-                    SetInternalRenderModeProperty(this, null, value);
-                }
+                Object.InternalSetPropertyInt(this.SwigCPtr, TextLabel.Property.RenderMode, (int)value);
                 NotifyPropertyChanged();
             }
         }
@@ -2751,17 +2734,20 @@ namespace Tizen.NUI.BaseComponents
 
                 if (textLabelAsyncTextRenderedCallbackDelegate != null)
                 {
-                    AsyncTextRenderedSignal().Disconnect(textLabelAsyncTextRenderedCallbackDelegate);
+                    Interop.TextLabel.AsyncTextRenderedDisconnect(this.SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
+                    textLabelAsyncTextRenderedCallbackDelegate = null;
                 }
 
                 if (textLabelAsyncNaturalSizeComputedCallbackDelegate != null)
                 {
-                    AsyncNaturalSizeComputedSignal().Disconnect(textLabelAsyncNaturalSizeComputedCallbackDelegate);
+                    Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(this.SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
                 }
 
                 if (textLabelAsyncHeightForWidthComputedCallbackDelegate != null)
                 {
-                    AsyncHeightForWidthComputedSignal().Disconnect(textLabelAsyncHeightForWidthComputedCallbackDelegate);
+                    Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(this.SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
                 }
             }
 
