@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,23 +15,34 @@
  *
  */
 
-namespace Tizen.NUI
+using System;
+using System.ComponentModel;
+
+namespace Tizen.NUI.Scene3D
 {
     /// <summary>
-    /// The visibility change type.
+    /// Event arguments of SceneView capture finished event.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum VisibilityChangeType
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CaptureFinishedEventArgs : EventArgs
     {
         /// <summary>
-        /// The visibility of the actor itself has changed.
+        /// Integer ID of the capture request.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        SELF,
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int CaptureId
+        {
+            get; set;
+        }
+
         /// <summary>
-        /// The visibility of a parent has changed.
+        /// ImageUrl of the captured result
+        /// If the capture is failed, it is null.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        PARENT
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl CapturedImageUrl
+        {
+            get; set;
+        }
     }
 }

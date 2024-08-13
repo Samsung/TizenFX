@@ -22,6 +22,9 @@ using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Tizen.NUI.Scene3D
 {
@@ -68,13 +71,23 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public class SceneView : View
     {
+        private Dictionary<int, TaskCompletionSource<ImageUrl>> asyncCaptureIds = new();
         private string skyboxUrl;
 
+        // CameraTransitionFinishedEvent
         private EventHandler cameraTransitionFinishedEventHandler;
         private CameraTransitionFinishedEventCallbackType cameraTransitionFinishedEventCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CameraTransitionFinishedEventCallbackType(IntPtr data);
+
+        // CaptureFinishedEvent
+        private EventHandler<CaptureFinishedEventArgs> captureFinishedEventHandler;
+        private EventHandler<CaptureFinishedEventArgs> asyncCaptureFinishedEventHandler;
+        private CaptureFinishedEventCallbackType captureFinishedEventCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void CaptureFinishedEventCallbackType(IntPtr data, int captureId, IntPtr capturedImageUrl);
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
@@ -102,6 +115,15 @@ namespace Tizen.NUI.Scene3D
                 Interop.SceneView.CameraTransitionFinishedDisconnect(GetBaseHandleCPtrHandleRef, cameraTransitionFinishedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 cameraTransitionFinishedEventCallback = null;
+            }
+
+            if (captureFinishedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] captureFinishedEventCallback");
+
+                Interop.SceneView.CaptureFinishedDisconnect(GetBaseHandleCPtrHandleRef, captureFinishedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                captureFinishedEventCallback = null;
             }
 
             LayoutCount = 0;
@@ -169,6 +191,64 @@ namespace Tizen.NUI.Scene3D
                 }
             }
         }
+
+        /// <summary>
+        /// An event emitted when Capture is finished.
+        /// If Capture is successed, CaptureFinishedEventArgs includes finished capture ID and ImageUrl of the captured image.
+        /// If Capture is failed, the ImageUrl is null.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<CaptureFinishedEventArgs> CaptureFinished
+        {
+            add
+            {
+                if (captureFinishedEventHandler == null)
+                {
+                    captureFinishedEventCallback = OnCaptureFinished;
+                    Interop.SceneView.CaptureFinishedConnect(SwigCPtr, captureFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                captureFinishedEventHandler += value;
+            }
+
+            remove
+            {
+                captureFinishedEventHandler -= value;
+                if (captureFinishedEventHandler == null && captureFinishedEventCallback != null)
+                {
+                    Interop.SceneView.CaptureFinishedDisconnect(SwigCPtr, captureFinishedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    captureFinishedEventCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// An event emitted when CaptureAsync is finished.
+        /// </summary>
+        private event EventHandler<CaptureFinishedEventArgs> AsyncCaptureFinished
+        {
+            add
+            {
+                if (asyncCaptureFinishedEventHandler == null)
+                {
+                    CaptureFinished += dummy;
+                }
+                asyncCaptureFinishedEventHandler += value;
+            }
+
+            remove
+            {
+                asyncCaptureFinishedEventHandler -= value;
+                if (asyncCaptureFinishedEventHandler == null)
+                {
+                    CaptureFinished += dummy;
+                }
+            }
+        }
+
+        void dummy(object sender, CaptureFinishedEventArgs e) {}
 
         /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
@@ -573,6 +653,82 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Requests to capture this SceneView with the Camera.
+        /// When the capture is finished, CaptureFinished Event is emited.
+        /// <see cref="CaptureFinishedEventArgs"/> includes <see cref="CaptureFinishedEventArgs.CaptureId"/> and <see cref="CaptureFinishedEventArgs.CapturedImageUrl"/>.
+        /// If the capture is successful, the <see cref="CaptureFinishedEventArgs.CapturedImageUrl"/> contains url of captured image.
+        /// If the capture fails, the <see cref="CaptureFinishedEventArgs.CapturedImageUrl"/> is null.
+        /// </summary>
+        /// <param name="camera">Camera to be used for capture.</param>
+        /// <param name="size">captured size.</param>
+        /// <remarks>
+        /// The input camera should not be used for any other purpose during Capture.
+        /// (Simultaneous usage elsewhere may result in incorrect rendering.)
+        /// The camera is required to be added in this SceneView. (Not need to be a selected camera)
+        /// If the SceneView is disconnected from Scene, the left capture requests are canceled with fail.
+        /// </remarks>
+        /// <returns> capture id that id unique value to distinguish each requiest.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Capture(Scene3D.Camera camera, Vector2 size)
+        {
+            int id = Interop.SceneView.Capture(SwigCPtr, camera.SwigCPtr, Vector2.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return id;
+        }
+
+        /// <summary>
+        /// Requests to capture this SceneView with the Camera asynchronously.
+        /// </summary>
+        /// <param name="camera">Camera to be used for capture.</param>
+        /// <param name="size">captured size.</param>
+        /// <remarks>
+        /// The input camera should not be used for any other purpose during Capture.
+        /// (Simultaneous usage elsewhere may result in incorrect rendering.)
+        /// The camera is required to be added in this SceneView. (Not need to be a selected camera)
+        /// If the SceneView is disconnected from Scene, the left capture requests are canceled with fail.
+        /// </remarks>
+        /// <returns>
+        /// A task that represents the asynchronous operation. The task result contains the URL of the captured image.
+        /// If the capture is successful, the task result is the ImageURL.
+        /// If the capture fails, the task will complete with an <see cref="InvalidOperationException"/> 
+        /// </returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task<ImageUrl> CaptureAsync(Scene3D.Camera camera, Vector2 size)
+        {
+            void Handler(object _, CaptureFinishedEventArgs e)
+            {
+                if (asyncCaptureIds.TryGetValue(e.CaptureId, out var tcs))
+                {
+                    try
+                    {
+                        if (e.CapturedImageUrl != null)
+                        {
+                            tcs.SetResult(e.CapturedImageUrl);
+                        }
+                        else
+                        {
+                            tcs.SetException(new InvalidOperationException("Fail to Capture"));
+                        }
+                    }
+                    finally
+                    {
+                        AsyncCaptureFinished -= Handler;
+                        asyncCaptureIds.Remove(e.CaptureId);
+                    }
+                }
+            };
+
+            AsyncCaptureFinished += Handler;
+            var captureId = Interop.SceneView.Capture(SwigCPtr, camera.SwigCPtr, Vector2.getCPtr(size));
+            TaskCompletionSource<ImageUrl> ret = new TaskCompletionSource<ImageUrl>();
+            asyncCaptureIds.Add(captureId, ret);
+
+            return ret.Task;
+        }
+
         internal void SetUseFramebuffer(bool useFramebuffer)
         {
             Interop.SceneView.UseFramebuffer(SwigCPtr, useFramebuffer);
@@ -692,6 +848,26 @@ namespace Tizen.NUI.Scene3D
         private void OnCameraTransitionFinished(IntPtr data)
         {
             cameraTransitionFinishedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Callback for capture finished signal
+        private void OnCaptureFinished(IntPtr data, int captureId, IntPtr capturedImageUrl)
+        {
+            CaptureFinishedEventArgs e = new CaptureFinishedEventArgs();
+            ImageUrl imageUrl = new ImageUrl(NUI.Interop.ImageUrl.NewImageUrl(new ImageUrl(capturedImageUrl, false).SwigCPtr), true);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+
+            e.CaptureId = captureId;
+            e.CapturedImageUrl = imageUrl.HasBody() ? imageUrl : null;
+
+            if (asyncCaptureIds.ContainsKey(e.CaptureId))
+            {
+                asyncCaptureFinishedEventHandler?.Invoke(this, e);
+            }
+            else
+            {
+                captureFinishedEventHandler?.Invoke(this, e);
+            }
         }
     }
 }
