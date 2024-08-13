@@ -953,26 +953,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout);
         }
 
-        /// <summary>
-        /// RenderModeProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RenderModeProperty = null;
-        internal static void SetInternalRenderModeProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.RenderMode, (int)newValue);
-            }
-        }
-        internal static object GetInternalRenderModeProperty(BindableObject bindable)
-        {
-            var textLabel = (TextLabel)bindable;
-
-            return (TextRenderMode)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.RenderMode);
-        }
-
         internal Selector<string> TranslatableTextSelector
         {
             get => GetSelector<string>(selectorData?.TranslatableText, TextLabel.TranslatableTextProperty);
