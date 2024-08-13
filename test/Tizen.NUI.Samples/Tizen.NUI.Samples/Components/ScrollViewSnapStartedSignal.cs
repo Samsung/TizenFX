@@ -15,58 +15,61 @@
  *
  */
 
-namespace Tizen.NUI
+using global::System.Runtime.InteropServices;
+using global::System;
+
+namespace Tizen.NUI.Samples
 {
     internal class ScrollViewSnapStartedSignal : Disposable
     {
-        internal ScrollViewSnapStartedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ScrollViewSnapStartedSignal(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            Interop.ScrollView.DeleteScrollViewSnapStartedSignal(swigCPtr);
+            Tizen.NUI.Interop.ScrollView.DeleteScrollViewSnapStartedSignal(swigCPtr);
         }
 
         public bool Empty()
         {
-            bool ret = Interop.ScrollView.ScrollViewSnapStartedSignalEmpty(SwigCPtr);
+            bool ret = Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalEmpty(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ScrollView.ScrollViewSnapStartedSignalGetConnectionCount(SwigCPtr);
+            uint ret = Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalGetConnectionCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void Connect(System.Delegate func)
+        public void Connect(Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+            IntPtr ip = global::System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.ScrollView.ScrollViewSnapStartedSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalConnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
-        public void Disconnect(System.Delegate func)
+        public void Disconnect(Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+            IntPtr ip = global::System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.ScrollView.ScrollViewSnapStartedSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalDisconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(ScrollView.SnapEvent arg)
         {
-            Interop.ScrollView.ScrollViewSnapStartedSignalEmit(SwigCPtr, ScrollView.SnapEvent.getCPtr(arg));
+            Tizen.NUI.Interop.ScrollView.ScrollViewSnapStartedSignalEmit(SwigCPtr, ScrollView.SnapEvent.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public ScrollViewSnapStartedSignal() : this(Interop.ScrollView.NewScrollViewSnapStartedSignal(), true)
+        public ScrollViewSnapStartedSignal() : this(Tizen.NUI.Interop.ScrollView.NewScrollViewSnapStartedSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
