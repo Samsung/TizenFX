@@ -70,34 +70,32 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncHeightForWidthComputedEventHandler == null)
                 {
-                    textLabelAsyncHeightForWidthComputedCallbackDelegate = (OnAsyncHeightForWidthComputed);
-                    AsyncHeightForWidthComputedSignal().Connect(textLabelAsyncHeightForWidthComputedCallbackDelegate);
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = OnAsyncHeightForWidthComputed;
+                    Interop.TextLabel.AsyncHeightForWidthComputedConnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 textLabelAsyncHeightForWidthComputedEventHandler += value;
             }
             remove
             {
                 textLabelAsyncHeightForWidthComputedEventHandler -= value;
-                if (textLabelAsyncHeightForWidthComputedEventHandler == null && AsyncHeightForWidthComputedSignal().Empty() == false)
+                if (textLabelAsyncHeightForWidthComputedEventHandler == null && textLabelAsyncHeightForWidthComputedCallbackDelegate != null)
                 {
-                    AsyncHeightForWidthComputedSignal().Disconnect(textLabelAsyncHeightForWidthComputedCallbackDelegate);
+                    Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
                 }
             }
-        }
-
-        internal TextLabelSignal AsyncHeightForWidthComputedSignal()
-        {
-            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AsyncHeightForWidthComputedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private void OnAsyncHeightForWidthComputed(IntPtr textLabel, float width, float height)
         {
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
-            //here we send all data to user event handlers
-            textLabelAsyncHeightForWidthComputedEventHandler?.Invoke(this, e);
+            if (textLabelAsyncHeightForWidthComputedEventHandler != null)
+            {
+                textLabelAsyncHeightForWidthComputedEventHandler(this, e);
+            }
         }
 
         /// <summary>
@@ -110,34 +108,32 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncNaturalSizeComputedEventHandler == null)
                 {
-                    textLabelAsyncNaturalSizeComputedCallbackDelegate = (OnAsyncNaturalSizeComputed);
-                    AsyncNaturalSizeComputedSignal().Connect(textLabelAsyncNaturalSizeComputedCallbackDelegate);
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = OnAsyncNaturalSizeComputed;
+                    Interop.TextLabel.AsyncNaturalSizeComputedConnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 textLabelAsyncNaturalSizeComputedEventHandler += value;
             }
             remove
             {
                 textLabelAsyncNaturalSizeComputedEventHandler -= value;
-                if (textLabelAsyncNaturalSizeComputedEventHandler == null && AsyncNaturalSizeComputedSignal().Empty() == false)
+                if (textLabelAsyncNaturalSizeComputedEventHandler == null && textLabelAsyncNaturalSizeComputedCallbackDelegate != null)
                 {
-                    AsyncNaturalSizeComputedSignal().Disconnect(textLabelAsyncNaturalSizeComputedCallbackDelegate);
+                    Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
                 }
             }
-        }
-
-        internal TextLabelSignal AsyncNaturalSizeComputedSignal()
-        {
-            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AsyncNaturalSizeComputedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private void OnAsyncNaturalSizeComputed(IntPtr textLabel, float width, float height)
         {
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
-            //here we send all data to user event handlers
-            textLabelAsyncNaturalSizeComputedEventHandler?.Invoke(this, e);
+            if (textLabelAsyncNaturalSizeComputedEventHandler != null)
+            {
+                textLabelAsyncNaturalSizeComputedEventHandler(this, e);
+            }
         }
 
         /// <summary>
@@ -150,34 +146,32 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncTextRenderedEventHandler == null)
                 {
-                    textLabelAsyncTextRenderedCallbackDelegate = (OnAsyncTextRendered);
-                    AsyncTextRenderedSignal().Connect(textLabelAsyncTextRenderedCallbackDelegate);
+                    textLabelAsyncTextRenderedCallbackDelegate = OnAsyncTextRendered;
+                    Interop.TextLabel.AsyncTextRenderedConnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 textLabelAsyncTextRenderedEventHandler += value;
             }
             remove
             {
                 textLabelAsyncTextRenderedEventHandler -= value;
-                if (textLabelAsyncTextRenderedEventHandler == null && AsyncTextRenderedSignal().Empty() == false)
+                if (textLabelAsyncTextRenderedEventHandler == null && textLabelAsyncTextRenderedCallbackDelegate != null)
                 {
-                    AsyncTextRenderedSignal().Disconnect(textLabelAsyncTextRenderedCallbackDelegate);
+                    Interop.TextLabel.AsyncTextRenderedDisconnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    textLabelAsyncTextRenderedCallbackDelegate = null;
                 }
             }
-        }
-
-        internal TextLabelSignal AsyncTextRenderedSignal()
-        {
-            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.AsyncTextRenderedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private void OnAsyncTextRendered(IntPtr textLabel, float width, float height)
         {
             AsyncTextRenderedEventArgs e = new AsyncTextRenderedEventArgs(width, height);
 
-            //here we send all data to user event handlers
-            textLabelAsyncTextRenderedEventHandler?.Invoke(this, e);
+            if (textLabelAsyncTextRenderedEventHandler != null)
+            {
+                textLabelAsyncTextRenderedEventHandler(this, e);
+            }
         }
 
         /// <summary>
