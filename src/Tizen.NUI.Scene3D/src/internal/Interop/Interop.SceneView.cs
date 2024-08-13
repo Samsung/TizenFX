@@ -96,6 +96,15 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetFramebufferMultiSamplingLevel")]
             public static extern uint GetFramebufferMultiSamplingLevel(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Capture")]
+            public static extern int Capture(global::System.Runtime.InteropServices.HandleRef sceneView, global::System.Runtime.InteropServices.HandleRef camera, global::System.Runtime.InteropServices.HandleRef size);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CaptureFinishedSignal_Connect")]
+            public static extern void CaptureFinishedConnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CaptureFinishedSignal_Disconnect")]
+            public static extern void CaptureFinishedDisconnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
         }
     }
 }
