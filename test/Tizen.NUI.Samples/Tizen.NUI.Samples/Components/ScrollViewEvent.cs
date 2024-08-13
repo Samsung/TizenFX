@@ -18,8 +18,9 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// <summary>
     /// ScrollView contains views that can be scrolled manually (via touch).
@@ -69,7 +70,7 @@ namespace Tizen.NUI
 
         internal ScrollViewSnapStartedSignal SnapStartedSignal()
         {
-            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.SnapStartedSignal(SwigCPtr), false);
+            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Tizen.NUI.Interop.ScrollView.SnapStartedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -93,7 +94,7 @@ namespace Tizen.NUI
         /// Snaps signal event's data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SnapEvent : Disposable
         {
             /// <summary>
@@ -108,7 +109,7 @@ namespace Tizen.NUI
             /// Create an instance of SnapEvent.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public SnapEvent() : this(Interop.ScrollView.NewScrollViewSnapEvent(), true)
+            public SnapEvent() : this(Tizen.NUI.Interop.ScrollView.NewScrollViewSnapEvent(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -127,12 +128,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.ScrollView.SnapEventPositionSet(swigCPtr, Vector2.getCPtr(value));
+                    Tizen.NUI.Interop.ScrollView.SnapEventPositionSet(swigCPtr, Vector2.getCPtr(value));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    global::System.IntPtr cPtr = Interop.ScrollView.SnapEventPositionGet(swigCPtr);
+                    global::System.IntPtr cPtr = Tizen.NUI.Interop.ScrollView.SnapEventPositionGet(swigCPtr);
                     Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
@@ -147,12 +148,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.ScrollView.SnapEventDurationSet(swigCPtr, value);
+                    Tizen.NUI.Interop.ScrollView.SnapEventDurationSet(swigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    float ret = Interop.ScrollView.SnapEventDurationGet(swigCPtr);
+                    float ret = Tizen.NUI.Interop.ScrollView.SnapEventDurationGet(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }
@@ -162,12 +163,12 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    Interop.ScrollView.SnapEventTypeSet(swigCPtr, (int)value);
+                    Tizen.NUI.Interop.ScrollView.SnapEventTypeSet(swigCPtr, (int)value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    SnapType ret = (SnapType)Interop.ScrollView.SnapEventTypeGet(swigCPtr);
+                    SnapType ret = (SnapType)Tizen.NUI.Interop.ScrollView.SnapEventTypeGet(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -205,7 +206,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        Interop.ScrollView.DeleteScrollViewSnapEvent(swigCPtr);
+                        Tizen.NUI.Interop.ScrollView.DeleteScrollViewSnapEvent(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -219,16 +220,16 @@ namespace Tizen.NUI
         /// Event arguments that passed via the SnapStarted signal.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class SnapStartedEventArgs : EventArgs
         {
-            private Tizen.NUI.ScrollView.SnapEvent snapEvent;
+            private ScrollView.SnapEvent snapEvent;
 
             /// <summary>
             /// SnapEventInfo is the SnapEvent information like snap or flick (it tells the target position, scale, rotation for the snap or flick).
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Tizen.NUI.ScrollView.SnapEvent SnapEventInfo
+            public ScrollView.SnapEvent SnapEventInfo
             {
                 get
                 {

@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// (via touch) or automatically.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Scrollable : View
     {
         static Scrollable()
@@ -58,6 +59,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty OvershootEffectColorProperty = null;
 
         internal static void SetInternalOvershootEffectColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -79,6 +81,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty OvershootAnimationSpeedProperty = null;
 
         internal static void SetInternalOvershootAnimationSpeedProperty(BindableObject bindable, object oldValue, object newValue)
@@ -100,6 +103,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty OvershootEnabledProperty = null;
 
         internal static void SetInternalOvershootEnabledProperty(BindableObject bindable, object oldValue, object newValue)
@@ -121,6 +125,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty OvershootSizeProperty = null;
 
         internal static void SetInternalOvershootSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -142,6 +147,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty ScrollToAlphaFunctionProperty = null;
 
         internal static void SetInternalScrollToAlphaFunctionProperty(BindableObject bindable, object oldValue, object newValue) 
@@ -163,6 +169,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty ScrollRelativePositionProperty = null;
 
         internal static void SetInternalScrollRelativePositionProperty(BindableObject bindable, object oldValue, object newValue)
@@ -184,6 +191,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty ScrollPositionMinProperty = null;
 
         internal static void SetInternalScrollPositionMinProperty(BindableObject bindable, object oldValue, object newValue)
@@ -205,6 +213,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty ScrollPositionMaxProperty = null;
 
         internal static void SetInternalScrollPositionMaxProperty(BindableObject bindable, object oldValue, object newValue)
@@ -226,6 +235,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty CanScrollVerticalProperty = null;
 
         internal static void SetInternalCanScrollVerticalProperty(BindableObject bindable, object oldValue, object newValue)
@@ -247,6 +257,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty CanScrollHorizontalProperty = null;
 
         internal static void SetInternalCanScrollHorizontalProperty(BindableObject bindable, object oldValue, object newValue)
@@ -277,6 +288,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an instance of scrollable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Scrollable() : this(Interop.Scrollable.NewScrollable(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -299,6 +311,7 @@ namespace Tizen.NUI.BaseComponents
         /// The ScrollStarted event emitted when the Scrollable has moved (whether by touch or animation).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event DaliEventHandler<object, StartedEventArgs> ScrollStarted
         {
             add
@@ -328,6 +341,7 @@ namespace Tizen.NUI.BaseComponents
         /// The ScrollUpdated event emitted when the Scrollable has moved (whether by touch or animation).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event DaliEventHandler<object, UpdatedEventArgs> ScrollUpdated
         {
             add
@@ -358,6 +372,7 @@ namespace Tizen.NUI.BaseComponents
         /// (whether by touch or animation).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event DaliEventHandler<object, CompletedEventArgs> ScrollCompleted
         {
             add
@@ -387,6 +402,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets and Gets the color of the overshoot effect.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Vector4 OvershootEffectColor
         {
             get
@@ -418,6 +434,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets and Gets the speed of overshoot animation in pixels per second.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public float OvershootAnimationSpeed
         {
             get
@@ -449,6 +466,7 @@ namespace Tizen.NUI.BaseComponents
         /// Checks if scroll overshoot has been enabled or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool OvershootEnabled
         {
             get
@@ -480,6 +498,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets OvershootSize property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Vector2 OvershootSize
         {
             get
@@ -511,6 +530,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets ScrollToAlphaFunction property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ScrollToAlphaFunction
         {
             get
@@ -542,6 +562,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets ScrollRelativePosition property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Vector2 ScrollRelativePosition
         {
             get
@@ -573,6 +594,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets ScrollPositionMin property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Vector2 ScrollPositionMin
         {
             get
@@ -604,6 +626,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets ScrollPositionMax property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Vector2 ScrollPositionMax
         {
             get
@@ -635,6 +658,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets CanScrollVertical property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool CanScrollVertical
         {
             get
@@ -666,6 +690,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets and Sets CanScrollHorizontal property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool CanScrollHorizontal
         {
             get
@@ -719,6 +744,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="type">DisposeTypes</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -739,6 +765,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Scrollable.DeleteScrollable(swigCPtr);
@@ -853,6 +880,7 @@ namespace Tizen.NUI.BaseComponents
         /// The scroll animation started event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public class StartedEventArgs : EventArgs
         {
             private Vector2 vector2;
@@ -878,6 +906,7 @@ namespace Tizen.NUI.BaseComponents
         /// The scrollable updated event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public class UpdatedEventArgs : EventArgs
         {
             private Vector2 vector2;
@@ -903,6 +932,7 @@ namespace Tizen.NUI.BaseComponents
         /// The scroll animation completed event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public class CompletedEventArgs : EventArgs
         {
             private Vector2 vector2;

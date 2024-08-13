@@ -15,12 +15,15 @@
  *
  */
 
-using System.ComponentModel;
+using global::System;
+using global::System.Diagnostics.CodeAnalysis;
+using global::System.Runtime.InteropServices;
+using global::System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// <summary>
     /// ScrollView contains views that can be scrolled manually (via touch).
@@ -76,7 +79,7 @@ namespace Tizen.NUI
         /// Create an instance of ScrollView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollView() : this(Interop.ScrollView.New(), true)
+        public ScrollView() : this(Tizen.NUI.Interop.ScrollView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -635,7 +638,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AlphaFunction GetScrollSnapAlphaFunction()
         {
-            AlphaFunction ret = new AlphaFunction(Interop.ScrollView.GetScrollSnapAlphaFunction(SwigCPtr), true);
+            AlphaFunction ret = new AlphaFunction(Tizen.NUI.Interop.ScrollView.GetScrollSnapAlphaFunction(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -647,7 +650,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollSnapAlphaFunction(AlphaFunction alpha)
         {
-            Interop.ScrollView.SetScrollSnapAlphaFunction(SwigCPtr, AlphaFunction.getCPtr(alpha));
+            Tizen.NUI.Interop.ScrollView.SetScrollSnapAlphaFunction(SwigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -658,7 +661,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AlphaFunction GetScrollFlickAlphaFunction()
         {
-            AlphaFunction ret = new AlphaFunction(Interop.ScrollView.GetScrollFlickAlphaFunction(SwigCPtr), true);
+            AlphaFunction ret = new AlphaFunction(Tizen.NUI.Interop.ScrollView.GetScrollFlickAlphaFunction(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -670,7 +673,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollFlickAlphaFunction(AlphaFunction alpha)
         {
-            Interop.ScrollView.SetScrollFlickAlphaFunction(SwigCPtr, AlphaFunction.getCPtr(alpha));
+            Tizen.NUI.Interop.ScrollView.SetScrollFlickAlphaFunction(SwigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -681,7 +684,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetScrollSnapDuration()
         {
-            float ret = Interop.ScrollView.GetScrollSnapDuration(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetScrollSnapDuration(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -693,7 +696,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollSnapDuration(float time)
         {
-            Interop.ScrollView.SetScrollSnapDuration(SwigCPtr, time);
+            Tizen.NUI.Interop.ScrollView.SetScrollSnapDuration(SwigCPtr, time);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -704,7 +707,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetScrollFlickDuration()
         {
-            float ret = Interop.ScrollView.GetScrollFlickDuration(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetScrollFlickDuration(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -716,7 +719,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollFlickDuration(float time)
         {
-            Interop.ScrollView.SetScrollFlickDuration(SwigCPtr, time);
+            Tizen.NUI.Interop.ScrollView.SetScrollFlickDuration(SwigCPtr, time);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -727,7 +730,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollSensitive(bool sensitive)
         {
-            Interop.ScrollView.SetScrollSensitive(SwigCPtr, sensitive);
+            Tizen.NUI.Interop.ScrollView.SetScrollSensitive(SwigCPtr, sensitive);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -739,7 +742,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaxOvershoot(float overshootX, float overshootY)
         {
-            Interop.ScrollView.SetMaxOvershoot(SwigCPtr, overshootX, overshootY);
+            Tizen.NUI.Interop.ScrollView.SetMaxOvershoot(SwigCPtr, overshootX, overshootY);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -750,7 +753,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSnapOvershootAlphaFunction(AlphaFunction alpha)
         {
-            Interop.ScrollView.SetSnapOvershootAlphaFunction(SwigCPtr, AlphaFunction.getCPtr(alpha));
+            Tizen.NUI.Interop.ScrollView.SetSnapOvershootAlphaFunction(SwigCPtr, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -761,7 +764,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSnapOvershootDuration(float duration)
         {
-            Interop.ScrollView.SetSnapOvershootDuration(SwigCPtr, duration);
+            Tizen.NUI.Interop.ScrollView.SetSnapOvershootDuration(SwigCPtr, duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -774,7 +777,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetViewAutoSnap(bool enable)
         {
-            Interop.ScrollView.SetActorAutoSnap(SwigCPtr, enable);
+            Tizen.NUI.Interop.ScrollView.SetActorAutoSnap(SwigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -786,7 +789,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetWrapMode(bool enable)
         {
-            Interop.ScrollView.SetWrapMode(SwigCPtr, enable);
+            Tizen.NUI.Interop.ScrollView.SetWrapMode(SwigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -797,7 +800,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetScrollUpdateDistance()
         {
-            int ret = Interop.ScrollView.GetScrollUpdateDistance(SwigCPtr);
+            int ret = Tizen.NUI.Interop.ScrollView.GetScrollUpdateDistance(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -811,7 +814,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollUpdateDistance(int distance)
         {
-            Interop.ScrollView.SetScrollUpdateDistance(SwigCPtr, distance);
+            Tizen.NUI.Interop.ScrollView.SetScrollUpdateDistance(SwigCPtr, distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -822,7 +825,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetAxisAutoLock()
         {
-            bool ret = Interop.ScrollView.GetAxisAutoLock(SwigCPtr);
+            bool ret = Tizen.NUI.Interop.ScrollView.GetAxisAutoLock(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -837,7 +840,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAxisAutoLock(bool enable)
         {
-            Interop.ScrollView.SetAxisAutoLock(SwigCPtr, enable);
+            Tizen.NUI.Interop.ScrollView.SetAxisAutoLock(SwigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -848,7 +851,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetAxisAutoLockGradient()
         {
-            float ret = Interop.ScrollView.GetAxisAutoLockGradient(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetAxisAutoLockGradient(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -861,7 +864,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAxisAutoLockGradient(float gradient)
         {
-            Interop.ScrollView.SetAxisAutoLockGradient(SwigCPtr, gradient);
+            Tizen.NUI.Interop.ScrollView.SetAxisAutoLockGradient(SwigCPtr, gradient);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -873,7 +876,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFrictionCoefficient()
         {
-            float ret = Interop.ScrollView.GetFrictionCoefficient(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetFrictionCoefficient(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -885,7 +888,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFrictionCoefficient(float friction)
         {
-            Interop.ScrollView.SetFrictionCoefficient(SwigCPtr, friction);
+            Tizen.NUI.Interop.ScrollView.SetFrictionCoefficient(SwigCPtr, friction);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -897,7 +900,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFlickSpeedCoefficient()
         {
-            float ret = Interop.ScrollView.GetFlickSpeedCoefficient(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetFlickSpeedCoefficient(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -911,7 +914,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFlickSpeedCoefficient(float speed)
         {
-            Interop.ScrollView.SetFlickSpeedCoefficient(SwigCPtr, speed);
+            Tizen.NUI.Interop.ScrollView.SetFlickSpeedCoefficient(SwigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -922,7 +925,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetMinimumDistanceForFlick()
         {
-            Vector2 ret = new Vector2(Interop.ScrollView.GetMinimumDistanceForFlick(SwigCPtr), true);
+            Vector2 ret = new Vector2(Tizen.NUI.Interop.ScrollView.GetMinimumDistanceForFlick(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -935,7 +938,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumDistanceForFlick(Vector2 distance)
         {
-            Interop.ScrollView.SetMinimumDistanceForFlick(SwigCPtr, Vector2.getCPtr(distance));
+            Tizen.NUI.Interop.ScrollView.SetMinimumDistanceForFlick(SwigCPtr, Vector2.getCPtr(distance));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -946,7 +949,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetMinimumSpeedForFlick()
         {
-            float ret = Interop.ScrollView.GetMinimumSpeedForFlick(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetMinimumSpeedForFlick(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -958,7 +961,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumSpeedForFlick(float speed)
         {
-            Interop.ScrollView.SetMinimumSpeedForFlick(SwigCPtr, speed);
+            Tizen.NUI.Interop.ScrollView.SetMinimumSpeedForFlick(SwigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -970,7 +973,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetMaxFlickSpeed()
         {
-            float ret = Interop.ScrollView.GetMaxFlickSpeed(SwigCPtr);
+            float ret = Tizen.NUI.Interop.ScrollView.GetMaxFlickSpeed(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -983,7 +986,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaxFlickSpeed(float speed)
         {
-            Interop.ScrollView.SetMaxFlickSpeed(SwigCPtr, speed);
+            Tizen.NUI.Interop.ScrollView.SetMaxFlickSpeed(SwigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -994,7 +997,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetCurrentScrollPosition()
         {
-            Vector2 ret = new Vector2(Interop.ScrollView.GetCurrentScrollPosition(SwigCPtr), true);
+            Vector2 ret = new Vector2(Tizen.NUI.Interop.ScrollView.GetCurrentScrollPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1007,7 +1010,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetCurrentPage()
         {
-            uint ret = Interop.ScrollView.GetCurrentPage(SwigCPtr);
+            uint ret = Tizen.NUI.Interop.ScrollView.GetCurrentPage(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1019,7 +1022,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position)
         {
-            Interop.ScrollView.ScrollToVector2(SwigCPtr, Vector2.getCPtr(position));
+            Tizen.NUI.Interop.ScrollView.ScrollToVector2(SwigCPtr, Vector2.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1031,7 +1034,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration);
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1044,7 +1047,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha));
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1058,7 +1061,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration, (int)horizontalBias, (int)verticalBias);
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration, (int)horizontalBias, (int)verticalBias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1073,7 +1076,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha), (int)horizontalBias, (int)verticalBias);
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha), (int)horizontalBias, (int)verticalBias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1084,7 +1087,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(uint page)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, page);
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, page);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1096,7 +1099,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(uint page, float duration)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, page, duration);
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, page, duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1109,7 +1112,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(uint page, float duration, DirectionBias bias)
         {
-            Interop.ScrollView.ScrollTo(SwigCPtr, page, duration, (int)bias);
+            Tizen.NUI.Interop.ScrollView.ScrollTo(SwigCPtr, page, duration, (int)bias);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1120,7 +1123,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(View view)
         {
-            Interop.ScrollView.ScrollToView(SwigCPtr, View.getCPtr(view));
+            Tizen.NUI.Interop.ScrollView.ScrollToView(SwigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1132,7 +1135,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(View view, float duration)
         {
-            Interop.ScrollView.ScrollToViewDuration(SwigCPtr, View.getCPtr(view), duration);
+            Tizen.NUI.Interop.ScrollView.ScrollToViewDuration(SwigCPtr, View.getCPtr(view), duration);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1144,7 +1147,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScrollToSnapPoint()
         {
-            bool ret = Interop.ScrollView.ScrollToSnapPoint(SwigCPtr);
+            bool ret = Tizen.NUI.Interop.ScrollView.ScrollToSnapPoint(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1156,7 +1159,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyEffect(ScrollViewEffect effect)
         {
-            Interop.ScrollView.ApplyEffect(SwigCPtr, ScrollViewEffect.getCPtr(effect));
+            Tizen.NUI.Interop.ScrollView.ApplyEffect(SwigCPtr, ScrollViewEffect.getCPtr(effect));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1167,7 +1170,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveEffect(ScrollViewEffect effect)
         {
-            Interop.ScrollView.RemoveEffect(SwigCPtr, ScrollViewEffect.getCPtr(effect));
+            Tizen.NUI.Interop.ScrollView.RemoveEffect(SwigCPtr, ScrollViewEffect.getCPtr(effect));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1177,7 +1180,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAllEffects()
         {
-            Interop.ScrollView.RemoveAllEffects(SwigCPtr);
+            Tizen.NUI.Interop.ScrollView.RemoveAllEffects(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1189,7 +1192,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void BindView(View child)
         {
-            Interop.ScrollView.BindActor(SwigCPtr, View.getCPtr(child));
+            Tizen.NUI.Interop.ScrollView.BindActor(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1201,7 +1204,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void UnbindView(View child)
         {
-            Interop.ScrollView.UnbindActor(SwigCPtr, View.getCPtr(child));
+            Tizen.NUI.Interop.ScrollView.UnbindActor(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1213,7 +1216,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollingDirection(Radian direction, Radian threshold)
         {
-            Interop.ScrollView.SetScrollingDirection(SwigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
+            Tizen.NUI.Interop.ScrollView.SetScrollingDirection(SwigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1224,7 +1227,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollingDirection(Radian direction)
         {
-            Interop.ScrollView.SetScrollingDirection(SwigCPtr, Radian.getCPtr(direction));
+            Tizen.NUI.Interop.ScrollView.SetScrollingDirection(SwigCPtr, Radian.getCPtr(direction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1235,7 +1238,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveScrollingDirection(Radian direction)
         {
-            Interop.ScrollView.RemoveScrollingDirection(SwigCPtr, Radian.getCPtr(direction));
+            Tizen.NUI.Interop.ScrollView.RemoveScrollingDirection(SwigCPtr, Radian.getCPtr(direction));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1246,7 +1249,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRulerX(RulerPtr ruler)
         {
-            Interop.ScrollView.SetRulerX(SwigCPtr, RulerPtr.getCPtr(ruler));
+            Tizen.NUI.Interop.ScrollView.SetRulerX(SwigCPtr, RulerPtr.getCPtr(ruler));
         }
 
         /// <summary>
@@ -1256,12 +1259,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRulerY(RulerPtr ruler)
         {
-            Interop.ScrollView.SetRulerY(SwigCPtr, RulerPtr.getCPtr(ruler));
+            Tizen.NUI.Interop.ScrollView.SetRulerY(SwigCPtr, RulerPtr.getCPtr(ruler));
         }
 
         internal void ApplyConstraintToChildren(Constraint constraint)
         {
-            Interop.ScrollView.ApplyConstraintToChildren(SwigCPtr, constraint.SwigCPtr);
+            Tizen.NUI.Interop.ScrollView.ApplyConstraintToChildren(SwigCPtr, constraint.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1293,9 +1296,9 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            Interop.ScrollView.DeleteScrollView(swigCPtr);
+            Tizen.NUI.Interop.ScrollView.DeleteScrollView(swigCPtr);
         }
 
         /// <summary>
@@ -1310,132 +1313,132 @@ namespace Tizen.NUI
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int WrapEnabled = Interop.ScrollView.WrapEnabledGet();
+            public static readonly int WrapEnabled = Tizen.NUI.Interop.ScrollView.WrapEnabledGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int PanningEnabled = Interop.ScrollView.PanningEnabledGet();
+            public static readonly int PanningEnabled = Tizen.NUI.Interop.ScrollView.PanningEnabledGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int AxisAutoLockEnabled = Interop.ScrollView.AxisAutoLockEnabledGet();
+            public static readonly int AxisAutoLockEnabled = Tizen.NUI.Interop.ScrollView.AxisAutoLockEnabledGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int WheelScrollDistanceStep = Interop.ScrollView.WheelScrollDistanceStepGet();
+            public static readonly int WheelScrollDistanceStep = Tizen.NUI.Interop.ScrollView.WheelScrollDistanceStepGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollMode = Interop.ScrollView.ScrollModeGet();
+            public static readonly int ScrollMode = Tizen.NUI.Interop.ScrollView.ScrollModeGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPosition = Interop.ScrollView.ScrollPositionGet();
+            public static readonly int ScrollPosition = Tizen.NUI.Interop.ScrollView.ScrollPositionGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPrePosition = Interop.ScrollView.ScrollPrePositionGet();
+            public static readonly int ScrollPrePosition = Tizen.NUI.Interop.ScrollView.ScrollPrePositionGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPrePositionX = Interop.ScrollView.ScrollPrePositionXGet();
+            public static readonly int ScrollPrePositionX = Tizen.NUI.Interop.ScrollView.ScrollPrePositionXGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPrePositionY = Interop.ScrollView.ScrollPrePositionYGet();
+            public static readonly int ScrollPrePositionY = Tizen.NUI.Interop.ScrollView.ScrollPrePositionYGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPrePositionMax = Interop.ScrollView.ScrollPrePositionMaxGet();
+            public static readonly int ScrollPrePositionMax = Tizen.NUI.Interop.ScrollView.ScrollPrePositionMaxGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPrePositionMaxX = Interop.ScrollView.ScrollPrePositionMaxXGet();
+            public static readonly int ScrollPrePositionMaxX = Tizen.NUI.Interop.ScrollView.ScrollPrePositionMaxXGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPrePositionMaxY = Interop.ScrollView.ScrollPrePositionMaxYGet();
+            public static readonly int ScrollPrePositionMaxY = Tizen.NUI.Interop.ScrollView.ScrollPrePositionMaxYGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OvershootX = Interop.ScrollView.OvershootXGet();
+            public static readonly int OvershootX = Tizen.NUI.Interop.ScrollView.OvershootXGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OvershootY = Interop.ScrollView.OvershootYGet();
+            public static readonly int OvershootY = Tizen.NUI.Interop.ScrollView.OvershootYGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollFinal = Interop.ScrollView.ScrollFinalGet();
+            public static readonly int ScrollFinal = Tizen.NUI.Interop.ScrollView.ScrollFinalGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollFinalX = Interop.ScrollView.ScrollFinalXGet();
+            public static readonly int ScrollFinalX = Tizen.NUI.Interop.ScrollView.ScrollFinalXGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollFinalY = Interop.ScrollView.ScrollFinalYGet();
+            public static readonly int ScrollFinalY = Tizen.NUI.Interop.ScrollView.ScrollFinalYGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int WRAP = Interop.ScrollView.WrapGet();
+            public static readonly int WRAP = Tizen.NUI.Interop.ScrollView.WrapGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int PANNING = Interop.ScrollView.PanningGet();
+            public static readonly int PANNING = Tizen.NUI.Interop.ScrollView.PanningGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLLING = Interop.ScrollView.ScrollingGet();
+            public static readonly int SCROLLING = Tizen.NUI.Interop.ScrollView.ScrollingGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollDomainSize = Interop.ScrollView.ScrollDomainSizeGet();
+            public static readonly int ScrollDomainSize = Tizen.NUI.Interop.ScrollView.ScrollDomainSizeGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollDomainSizeX = Interop.ScrollView.ScrollDomainSizeXGet();
+            public static readonly int ScrollDomainSizeX = Tizen.NUI.Interop.ScrollView.ScrollDomainSizeXGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollDomainSizeY = Interop.ScrollView.ScrollDomainSizeYGet();
+            public static readonly int ScrollDomainSizeY = Tizen.NUI.Interop.ScrollView.ScrollDomainSizeYGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollDomainOffset = Interop.ScrollView.ScrollDomainOffsetGet();
+            public static readonly int ScrollDomainOffset = Tizen.NUI.Interop.ScrollView.ScrollDomainOffsetGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int ScrollPositionDelta = Interop.ScrollView.ScrollPositionDeltaGet();
+            public static readonly int ScrollPositionDelta = Tizen.NUI.Interop.ScrollView.ScrollPositionDeltaGet();
             /// <summary>
             /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int StartPagePosition = Interop.ScrollView.StartPagePositionGet();
+            public static readonly int StartPagePosition = Tizen.NUI.Interop.ScrollView.StartPagePositionGet();
         }
     }
 }
