@@ -334,11 +334,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.IsUsingXaml)
                 {
-                    return (string)GetValue(TranslatableTextProperty);
+                    return GetValue<string>(TranslatableTextProperty);
                 }
                 else
                 {
-                    return (string)GetInternalTranslatableTextProperty(this);
+                    return GetInternalTranslatableTextProperty(this);
                 }
             }
             set

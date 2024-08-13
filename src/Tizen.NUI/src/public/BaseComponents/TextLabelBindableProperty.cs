@@ -37,11 +37,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 
-            if (newValue is Selector<string> selector)
-            {
-                textLabel.TranslatableTextSelector = selector;
-            }
-            else
+            //if (newValue is Selector<string> selector)
+            //{
+            //    textLabel.TranslatableTextSelector = selector;
+            //}
+            //else
             {
                 textLabel.selectorData?.TranslatableText?.Reset(textLabel);
                 textLabel.SetTranslatableText((string)newValue);

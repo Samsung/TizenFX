@@ -40,7 +40,7 @@ namespace Tizen.NUI.Binding
             BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject),  default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
             null, null, BindingContextPropertyBindingChanging);
 
-        readonly Dictionary<BindableProperty, BindablePropertyContext> properties = new Dictionary<BindableProperty, BindablePropertyContext>(4);
+        readonly Dictionary<BindableProperty, IBindablePropertyContext> properties = new Dictionary<BindableProperty, IBindablePropertyContext>(4);
 
         bool applying;
         object inheritedContext;
@@ -196,6 +196,25 @@ namespace Tizen.NUI.Binding
             return context.Value;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TPropertyType GetValue<TPropertyType>(BindableProperty property)
+        {
+            if (property == null)
+                throw new ArgumentNullException(nameof(property));
+
+            if (!IsBound && property.ValueGetter != null)
+            {
+                return (TPropertyType)property.ValueGetter(this);
+            }
+
+            BindablePropertyContext<TPropertyType> context = property.DefaultValueCreator != null ? GetOrCreateContext<TPropertyType>(property) : GetContext<TPropertyType>(property);
+
+            if (context == null)
+                return (TPropertyType)property.DefaultValue;
+
+            return context.Value;
+        }
+
         /// <summary>
         /// Raised when a property is about to change.
         /// </summary>
@@ -243,7 +262,7 @@ namespace Tizen.NUI.Binding
         {
             if (null != property)
             {
-                BindablePropertyContext context = GetOrCreateContext(property);
+                IBindablePropertyContext context = GetOrCreateContext(property);
                 BindingBase binding = context.Binding;
 
                 var currentlyApplying = applying;
@@ -296,6 +315,13 @@ namespace Tizen.NUI.Binding
             ChangedPropertiesSetExcludingStyle.Add(property);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetValue<TPropertyType>(BindableProperty property, TPropertyType value)
+        {
+            InternalSetValue(property, value);
+            ChangedPropertiesSetExcludingStyle.Add(property);
+        }
+
         internal void InternalSetValue(BindableProperty property, object value)
         {
             if (true == IsBound)
@@ -311,6 +337,36 @@ namespace Tizen.NUI.Binding
 
                 object oldvalue = null;
                 BindablePropertyContext context = GetOrCreateContext(property);
+                if (null != context)
+                {
+                    context.Attributes |= BindableContextAttributes.IsManuallySet;
+                    oldvalue = context.Value;
+                    context.Value = value;
+                }
+
+                property.PropertyChanging?.Invoke(this, oldvalue, value);
+                property.PropertyChanged?.Invoke(this, oldvalue, value);
+
+                OnPropertyChanged(property.PropertyName);
+                OnPropertyChangedWithData(property);
+            }
+        }
+
+        internal void InternalSetValue<TPropertyType>(BindableProperty property, TPropertyType value)
+        {
+            if (true == IsBound)
+            {
+                SetValue(property, value, false, true);
+            }
+            else
+            {
+                if (null == property)
+                {
+                    throw new ArgumentNullException(nameof(property));
+                }
+
+                object oldvalue = null;
+                BindablePropertyContext<TPropertyType> context = GetOrCreateContext<TPropertyType>(property);
                 if (null != context)
                 {
                     context.Attributes |= BindableContextAttributes.IsManuallySet;
@@ -727,9 +783,9 @@ namespace Tizen.NUI.Binding
 
             if ((context.Attributes & BindableContextAttributes.IsBeingSet) != 0)
             {
-                Queue<SetValueArgs> delayQueue = context.DelayedSetters;
+                Queue<ISetValueArgs> delayQueue = context.DelayedSetters;
                 if (delayQueue == null)
-                    context.DelayedSetters = delayQueue = new Queue<SetValueArgs>();
+                    context.DelayedSetters = delayQueue = new Queue<ISetValueArgs>();
 
                 delayQueue.Enqueue(new SetValueArgs(property, context, value, currentlyApplying, attributes));
             }
@@ -738,13 +794,89 @@ namespace Tizen.NUI.Binding
                 context.Attributes |= BindableContextAttributes.IsBeingSet;
                 SetValueActual(property, context, value, currentlyApplying, attributes, silent);
 
-                Queue<SetValueArgs> delayQueue = context.DelayedSetters;
+                Queue<ISetValueArgs> delayQueue = context.DelayedSetters;
                 if (delayQueue != null)
                 {
                     while (delayQueue.Count > 0)
                     {
-                        SetValueArgs s = delayQueue.Dequeue();
+                        SetValueArgs s = delayQueue.Dequeue() as SetValueArgs;
                         SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, s.Attributes);
+                    }
+
+                    context.DelayedSetters = null;
+                }
+
+                context.Attributes &= ~BindableContextAttributes.IsBeingSet;
+            }
+        }
+
+        internal void SetValueCore<TPropertyType>(BindableProperty property, TPropertyType value, SetValueFlags attributes, SetValuePrivateFlags privateAttributes)
+        {
+            bool checkAccess = (privateAttributes & SetValuePrivateFlags.CheckAccess) != 0;
+            bool manuallySet = (privateAttributes & SetValuePrivateFlags.ManuallySet) != 0;
+            bool silent = (privateAttributes & SetValuePrivateFlags.Silent) != 0;
+            bool fromStyle = (privateAttributes & SetValuePrivateFlags.FromStyle) != 0;
+            bool converted = (privateAttributes & SetValuePrivateFlags.Converted) != 0;
+
+            if (property == null)
+                throw new ArgumentNullException(nameof(property));
+            if (checkAccess && property.IsReadOnly)
+            {
+                Debug.WriteLine("Can not set the BindableProperty \"{0}\" because it is readonly.", property.PropertyName);
+                return;
+            }
+
+            //if (!converted && !property.TryConvert(ref value))
+            //{
+            //    Console.WriteLine($"SetValue : Can not convert {value} to type {property.ReturnType}");
+            //    return;
+            //}
+
+            if (property.ValidateValue != null && !property.ValidateValue(this, value))
+                throw new ArgumentException("Value was an invalid value for " + property.PropertyName, nameof(value));
+
+            //if (property.CoerceValue != null)
+            //    value = property.CoerceValue(this, value);
+
+            BindablePropertyContext<TPropertyType> context = GetOrCreateContext<TPropertyType>(property);
+            if (manuallySet)
+            {
+                context.Attributes |= BindableContextAttributes.IsManuallySet;
+                context.Attributes &= ~BindableContextAttributes.IsSetFromStyle;
+            }
+            else
+            {
+                context.Attributes &= ~BindableContextAttributes.IsManuallySet;
+            }
+
+            if (fromStyle)
+            {
+                context.Attributes |= BindableContextAttributes.IsSetFromStyle;
+            }
+            // else omitted on purpose
+
+            bool currentlyApplying = applying;
+
+            if ((context.Attributes & BindableContextAttributes.IsBeingSet) != 0)
+            {
+                Queue<ISetValueArgs> delayQueue = context.DelayedSetters;
+                if (delayQueue == null)
+                    context.DelayedSetters = delayQueue = new Queue<ISetValueArgs>();
+
+                delayQueue.Enqueue(new SetValueArgs<TPropertyType>(property, context, value, currentlyApplying, attributes));
+            }
+            else
+            {
+                context.Attributes |= BindableContextAttributes.IsBeingSet;
+                SetValueActual<TPropertyType>(property, context, value, currentlyApplying, attributes, silent);
+
+                Queue<ISetValueArgs> delayQueue = context.DelayedSetters;
+                if (delayQueue != null)
+                {
+                    while (delayQueue.Count > 0)
+                    {
+                        SetValueArgs<TPropertyType> s = delayQueue.Dequeue() as SetValueArgs<TPropertyType>;
+                        SetValueActual<TPropertyType>(s.Property, s.Context, s.Value, s.CurrentlyApplying, s.Attributes);
                     }
 
                     context.DelayedSetters = null;
@@ -759,7 +891,7 @@ namespace Tizen.NUI.Binding
             var prop = properties.Values.ToArray();
             for (int i = 0, propLength = prop.Length; i < propLength; i++)
             {
-                BindablePropertyContext context = prop[i];
+                IBindablePropertyContext context = prop[i];
                 BindingBase binding = context.Binding;
                 if (binding == null)
                     continue;
@@ -881,7 +1013,24 @@ namespace Tizen.NUI.Binding
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        BindablePropertyContext GetContext(BindableProperty property) => properties.TryGetValue(property, out var result) ? result : null;
+        BindablePropertyContext<TPropertyType> CreateAndAddContext<TPropertyType>(BindableProperty property)
+        {
+            var context = new BindablePropertyContext<TPropertyType> { Property = property, Value = (TPropertyType)(property.DefaultValueCreator != null ? property.DefaultValueCreator(this) : property.DefaultValue) };
+
+            if (property.DefaultValueCreator == null)
+                context.Attributes = BindableContextAttributes.IsDefaultValue;
+            else
+                context.Attributes = BindableContextAttributes.IsDefaultValueCreated;
+
+            properties.Add(property, context);
+            return context;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        BindablePropertyContext GetContext(BindableProperty property) => properties.TryGetValue(property, out var result) ? result as BindablePropertyContext : null;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        BindablePropertyContext<TPropertyType> GetContext<TPropertyType>(BindableProperty property) => properties.TryGetValue(property, out var result) ? result as BindablePropertyContext<TPropertyType> : null;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         BindablePropertyContext GetOrCreateContext(BindableProperty property)
@@ -903,7 +1052,35 @@ namespace Tizen.NUI.Binding
             return context;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        BindablePropertyContext<TPropertyType> GetOrCreateContext<TPropertyType>(BindableProperty property)
+        {
+            BindablePropertyContext<TPropertyType> context = GetContext<TPropertyType>(property);
+            if (context == null)
+            {
+                context = CreateAndAddContext<TPropertyType>(property);
+            }
+            else if (property.ValueGetter != null)
+            {
+                context.Value = (TPropertyType)property.ValueGetter(this); //Update Value from dali
+            }//added by xiaohui.fang
+            else if (property.DefaultValueCreator != null) //This will be removed in the future.
+            {
+                context.Value = (TPropertyType)property.DefaultValueCreator(this); //Update Value from dali
+            }//added by xb.teng
+
+            return context;
+        }
+
         void RemoveBinding(BindableProperty property, BindablePropertyContext context)
+        {
+            context.Binding.Unapply();
+
+            property.BindingChanging?.Invoke(this, context.Binding, null);
+
+            context.Binding = null;
+        }
+        void RemoveBinding<TPropertyType>(BindableProperty property, BindablePropertyContext<TPropertyType> context)
         {
             context.Binding.Unapply();
 
@@ -913,6 +1090,21 @@ namespace Tizen.NUI.Binding
         }
 
         internal void SetValue(BindableProperty property, object value, bool fromStyle, bool checkAccess)
+        {
+            if (property == null)
+                throw new ArgumentNullException(nameof(property));
+
+            if (checkAccess && property.IsReadOnly)
+                throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
+
+            if (fromStyle && !CanBeSetFromStyle(property))
+                return;
+
+            SetValueCore(property, value, SetValueFlags.ClearOneWayBindings | SetValueFlags.ClearDynamicResource,
+                (fromStyle ? SetValuePrivateFlags.FromStyle : SetValuePrivateFlags.ManuallySet) | (checkAccess ? SetValuePrivateFlags.CheckAccess : 0));
+        }
+
+        internal void SetValue<TPropertyType>(BindableProperty property, TPropertyType value, bool fromStyle, bool checkAccess)
         {
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
@@ -1004,6 +1196,83 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        void SetValueActual<TPropertyType>(BindableProperty property, BindablePropertyContext<TPropertyType> context, TPropertyType value, bool currentlyApplying, SetValueFlags attributes, bool silent = false)
+        {
+            TPropertyType original = context.Value;
+            bool raiseOnEqual = (attributes & SetValueFlags.RaiseOnEqual) != 0;
+            bool clearDynamicResources = (attributes & SetValueFlags.ClearDynamicResource) != 0;
+            bool clearOneWayBindings = (attributes & SetValueFlags.ClearOneWayBindings) != 0;
+            bool clearTwoWayBindings = (attributes & SetValueFlags.ClearTwoWayBindings) != 0;
+
+            bool same = ReferenceEquals(context.Property, BindingContextProperty) ? ReferenceEquals(value, original) : Equals(value, original);
+            if (!silent && (!same || raiseOnEqual))
+            {
+                property.PropertyChanging?.Invoke(this, original, value);
+
+                OnPropertyChanging(property.PropertyName);
+            }
+
+            if (!same || raiseOnEqual)
+            {
+                context.Value = value;
+            }
+
+            context.Attributes &= ~BindableContextAttributes.IsDefaultValue;
+            context.Attributes &= ~BindableContextAttributes.IsDefaultValueCreated;
+
+            if ((context.Attributes & BindableContextAttributes.IsDynamicResource) != 0 && clearDynamicResources)
+                RemoveDynamicResource(property);
+
+            BindingBase binding = context.Binding;
+            if (binding != null)
+            {
+                if (clearOneWayBindings && binding.GetRealizedMode(property) == BindingMode.OneWay || clearTwoWayBindings && binding.GetRealizedMode(property) == BindingMode.TwoWay)
+                {
+                    RemoveBinding(property, context);
+                    binding = null;
+                }
+            }
+
+            PropertyToGroup.TryGetValue(property, out HashSet<BindableProperty> propertyGroup);
+
+            if (!silent && (!same || raiseOnEqual))
+            {
+                property.PropertyChanged?.Invoke(this, original, value);
+
+                if (binding != null && !currentlyApplying)
+                {
+                    applying = true;
+                    binding.Apply(true);
+                    applying = false;
+                }
+
+                OnPropertyChanged(property.PropertyName);
+
+                if (null != propertyGroup)
+                {
+                    foreach (var relativeProperty in propertyGroup)
+                    {
+                        if (relativeProperty != property)
+                        {
+                            var relativeContext = GetOrCreateContext(relativeProperty);
+                            var relativeBinding = relativeContext.Binding;
+
+                            if (null != relativeBinding)
+                            {
+                                applying = true;
+                                relativeBinding.Apply(true);
+                                applying = false;
+                            }
+
+                            OnPropertyChanged(relativeProperty.PropertyName);
+                        }
+                    }
+                }
+
+                OnPropertyChangedWithData(property);
+            }
+        }
+
         private static Dictionary<BindableProperty, HashSet<BindableProperty>> PropertyToGroup { get; }
             = new Dictionary<BindableProperty, HashSet<BindableProperty>>();
 
@@ -1018,13 +1287,22 @@ namespace Tizen.NUI.Binding
             IsDefaultValueCreated = 1 << 5,
         }
 
-        class BindablePropertyContext
+        abstract class IBindablePropertyContext
         {
             public BindableContextAttributes Attributes;
             public BindingBase Binding;
-            public Queue<SetValueArgs> DelayedSetters;
+            public Queue<ISetValueArgs> DelayedSetters;
             public BindableProperty Property;
             public object Value;
+        }
+
+        class BindablePropertyContext : IBindablePropertyContext
+        {
+        }
+
+        class BindablePropertyContext<T> : IBindablePropertyContext
+        {
+            public new T Value;
         }
 
         [Flags]
@@ -1039,7 +1317,11 @@ namespace Tizen.NUI.Binding
             Default = CheckAccess
         }
 
-        class SetValueArgs
+        interface ISetValueArgs
+        {
+        }
+
+        class SetValueArgs : ISetValueArgs
         {
             public readonly SetValueFlags Attributes;
             public readonly BindablePropertyContext Context;
@@ -1048,6 +1330,24 @@ namespace Tizen.NUI.Binding
             public readonly object Value;
 
             public SetValueArgs(BindableProperty property, BindablePropertyContext context, object value, bool currentlyApplying, SetValueFlags attributes)
+            {
+                Property = property;
+                Context = context;
+                Value = value;
+                CurrentlyApplying = currentlyApplying;
+                Attributes = attributes;
+            }
+        }
+
+        class SetValueArgs<T> : ISetValueArgs
+        {
+            public readonly SetValueFlags Attributes;
+            public readonly BindablePropertyContext<T> Context;
+            public readonly bool CurrentlyApplying;
+            public readonly BindableProperty Property;
+            public readonly T Value;
+
+            public SetValueArgs(BindableProperty property, BindablePropertyContext<T> context, T value, bool currentlyApplying, SetValueFlags attributes)
             {
                 Property = property;
                 Context = context;
