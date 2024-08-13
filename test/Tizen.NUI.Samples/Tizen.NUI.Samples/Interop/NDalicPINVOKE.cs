@@ -1,4 +1,5 @@
-﻿
+﻿#if false
+#error
 namespace Tizen.NUI.Samples
 {
     internal class NDalicPINVOKE
@@ -6,3 +7,4 @@ namespace Tizen.NUI.Samples
         public const string Lib = "libdali2-csharp-binder.so";
     }
 }
+#endif
