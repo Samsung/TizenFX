@@ -180,7 +180,7 @@ namespace Tizen.NUI.EXaml
             object temp = null;
             GlobalDataList eXamlData = null;
             LoadEXaml.Load(temp, eXamlStr, out eXamlData);
-            return eXamlData.Root;
+            return eXamlData?.Root;
         }
 
         /// Internal used, will never be opened.
