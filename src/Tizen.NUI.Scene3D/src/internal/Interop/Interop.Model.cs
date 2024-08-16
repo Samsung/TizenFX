@@ -35,9 +35,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_delete_Model")]
             public static extern void DeleteModel(global::System.Runtime.InteropServices.HandleRef model);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Assign")]
-            public static extern global::System.IntPtr ModelAssign(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef sourceModel);
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetModelRoot")]
             public static extern global::System.IntPtr GetModelRoot(global::System.Runtime.InteropServices.HandleRef model);
 
