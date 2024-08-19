@@ -1460,7 +1460,6 @@ namespace Tizen.NUI.BaseComponents
                     //do nothing
                     break;
             }
-            ret?.Dispose();
         }
 
         internal void FlushLottieMessages()
