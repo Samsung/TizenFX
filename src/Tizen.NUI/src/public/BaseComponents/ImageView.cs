@@ -52,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
                 SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalSynchronousLoadingProperty, defaultValueCreator: GetInternalSynchronousLoadingProperty);
 
                 OrientationCorrectionProperty = BindableProperty.Create(nameof(OrientationCorrection), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalOrientationCorrectionProperty, defaultValueCreator: GetInternalOrientationCorrectionProperty);
-                        
+
                 MaskingModeProperty = BindableProperty.Create(nameof(MaskingMode), typeof(MaskingModeType), typeof(ImageView), default(MaskingModeType), propertyChanged: SetInternalMaskingModeProperty, defaultValueCreator: GetInternalMaskingModeProperty);
 
                 FastTrackUploadingProperty = BindableProperty.Create(nameof(FastTrackUploading), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalFastTrackUploadingProperty, defaultValueCreator: GetInternalFastTrackUploadingProperty);
@@ -136,6 +136,7 @@ namespace Tizen.NUI.BaseComponents
             Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
             ImageVisualProperty.FastTrackUploading,
+            ImageVisualProperty.SynchronousSizing,
             NpatchImageVisualProperty.Border,
             NpatchImageVisualProperty.BorderOnly,
         };
@@ -305,12 +306,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourceReadyEventHandler -= value;
 
-                ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
-                if (_resourceReadyEventHandler == null && resourceReadySignal?.Empty() == false)
+                if (_resourceReadyEventHandler == null && _resourceReadyEventCallback != null)
                 {
+                    using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
                     resourceReadySignal?.Disconnect(_resourceReadyEventCallback);
+                    _resourceReadyEventCallback = null;
                 }
-                resourceReadySignal?.Dispose();
             }
         }
 
@@ -331,12 +332,12 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 _resourceLoadedEventHandler -= value;
-                ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
-                if (_resourceLoadedEventHandler == null && resourceReadySignal?.Empty() == false)
+                if (_resourceLoadedEventHandler == null && _resourceLoadedCallback != null)
                 {
+                    using ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
                     resourceReadySignal?.Disconnect(_resourceLoadedCallback);
+                    _resourceLoadedCallback = null;
                 }
-                resourceReadySignal?.Dispose();
             }
         }
 
@@ -769,6 +770,27 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SetInternalOrientationCorrectionProperty(this, null, value);
                 }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to automatically reload the image as the view size<br />
+        /// If we set this value as true, view size will be works as desired size of image.<br />
+        /// </summary>
+        /// <remarks>
+        /// If we set this value as true, <see cref="DesiredWidth"/> and <see cref="DesiredHeight"/> will be invalidated.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SynchronousSizing
+        {
+            get
+            {
+                return (bool)GetInternalSynchronousSizingProperty(this);
+            }
+            set
+            {
+                SetInternalSynchronousSizingProperty(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2085,7 +2107,7 @@ namespace Tizen.NUI.BaseComponents
         /// (Example : if we change SynchronousLoading property from 'true' to 'false', or if we call this function during UpdateImage)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void UpdateImage(int key, PropertyValue value, bool requiredVisualCreation = true)
+        protected void UpdateImage(int key, PropertyValue value, bool requiredVisualCreation = true)
         {
             // Update image property map value as inputed value.
             if (key != 0)

@@ -327,6 +327,17 @@
                                 <CheckBox x:Name="ShadowToggleButton"
                                   IsSelected="True"
                                 />
+
+                                <TextLabel
+                                  x:Name="ShadowCutoutButtonT"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Toggle Cutout View:"
+                                />
+                                <CheckBox x:Name="ShadowCutoutButton"
+                                  IsSelected="False"
+                                />
                             </View>
                         </View>
                     </View>

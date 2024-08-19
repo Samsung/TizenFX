@@ -65,6 +65,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets whether this capture source can be rendered on Screen or not.
+        /// If it is true, the source is not rendered on screen but it will be captured.
+        /// If it is false, the source is rendered on both of screen and captured result.
+        /// Default value is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsExclusive
+        {
+            get => Interop.Capture.IsExclusive(SwigCPtr);
+            set => Interop.Capture.SetExclusive(SwigCPtr, value);
+        }
+
+        /// <summary>
         /// Dispose
         /// </summary>
         /// <param name="type"></param>
@@ -81,6 +94,13 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                if (finishedCallback != null)
+                {
+                    finishedSignal?.Disconnect(finishedCallback);
+                    finishedSignal?.Dispose();
+                    finishedSignal = null;
+                    finishedCallback = null;
+                }
             }
 
             base.Dispose(type);
@@ -119,7 +139,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
             else if (null == position)
             {
@@ -163,7 +183,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
             else if (quality > 100)
             {
@@ -206,7 +226,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
             else if (null == color)
             {
@@ -247,7 +267,7 @@ namespace Tizen.NUI
             }
             else if (null == path)
             {
-                throw new ArgumentNullException("path should not be null");
+                throw new ArgumentNullException(nameof(path), "path should not be null");
             }
 
             if (source is View || source is Layer)
@@ -305,8 +325,8 @@ namespace Tizen.NUI
             {
                 if (finishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr));
                     finishedCallback = onFinished;
+                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr));
                     finishedSignal.Connect(finishedCallback);
                 }
                 finishedEventHandler += value;
@@ -315,10 +335,12 @@ namespace Tizen.NUI
             {
                 finishedEventHandler -= value;
 
-                if (finishedEventHandler == null && finishedSignal?.Empty() == false)
+                if (finishedEventHandler == null && finishedCallback != null)
                 {
-                    finishedCallback = onFinished;
-                    finishedSignal.Disconnect(finishedCallback);
+                    finishedSignal?.Disconnect(finishedCallback);
+                    finishedSignal?.Dispose();
+                    finishedSignal = null;
+                    finishedCallback = null;
                 }
             }
         }

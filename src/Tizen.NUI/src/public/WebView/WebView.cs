@@ -127,6 +127,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
         private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
 
+        private EventHandler<WebViewPolicyDecidedEventArgs> newWindowPolicyDecidedEventHandler;
+        private WebViewPolicyDecidedCallback newWindowPolicyDecidedCallback;
+
         private EventHandlerWithReturnType<object, EventArgs, WebView> newWindowCreatedEventHandler;
         private WebViewNewWindowCreatedCallback newWindowCreatedCallback;
 
@@ -148,8 +151,16 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewContextMenuHiddenEventArgs> contextMenuHiddenEventHandler;
         private WebViewContextMenuHiddenCallback contextMenuHiddenCallback;
 
-        private PlainTextReceivedCallback plainTextReceivedCallback;
+        private EventHandler<EventArgs> fullscreenEnteredEventHandler;
+        private WebViewFullscreenEnteredCallback fullscreenEnteredCallback;
 
+        private EventHandler<EventArgs> fullscreenExitedEventHandler;
+        private WebViewFullscreenExitedCallback fullscreenExitedCallback;
+
+        private EventHandler<WebViewTextFoundEventArgs> textFoundEventHandler;
+        private WebViewTextFoundCallback textFoundCallback;
+
+        private PlainTextReceivedCallback plainTextReceivedCallback;
 
         /// <summary>
         /// Creates a WebView.
@@ -343,6 +354,15 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewContextMenuHiddenCallback(IntPtr menu);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewFullscreenEnteredCallback();
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewFullscreenExitedCallback();
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewTextFoundCallback(uint count);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -625,6 +645,34 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Event for the NewWindowPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when new window policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewPolicyDecidedEventArgs> NewWindowPolicyDecided
+        {
+            add
+            {
+                if (newWindowPolicyDecidedEventHandler == null)
+                {
+                    newWindowPolicyDecidedCallback = OnNewWindowPolicyDecided;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(newWindowPolicyDecidedCallback);
+                    Interop.WebView.RegisterNewWindowPolicyDecidedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                newWindowPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                newWindowPolicyDecidedEventHandler -= value;
+                if (newWindowPolicyDecidedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterNewWindowPolicyDecidedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
         /// Event for the NewWindowCreated signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when a new window would be created.<br />
         /// </summary>
@@ -821,6 +869,90 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Event for the FullscreenEntered signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when fullscreen is entered.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> FullscreenEntered
+        {
+            add
+            {
+                if (fullscreenEnteredEventHandler == null)
+                {
+                    fullscreenEnteredCallback = OnFullscreenEntered;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(fullscreenEnteredCallback);
+                    Interop.WebView.RegisterFullscreenEnteredCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                fullscreenEnteredEventHandler += value;
+            }
+            remove
+            {
+                fullscreenEnteredEventHandler -= value;
+                if (fullscreenEnteredEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterFullscreenEnteredCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the FullscreenExited signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when fullscreen is exited.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<EventArgs> FullscreenExited
+        {
+            add
+            {
+                if (fullscreenExitedEventHandler == null)
+                {
+                    fullscreenExitedCallback = OnFullscreenExited;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(fullscreenExitedCallback);
+                    Interop.WebView.RegisterFullscreenExitedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                fullscreenExitedEventHandler += value;
+            }
+            remove
+            {
+                fullscreenExitedEventHandler -= value;
+                if (fullscreenExitedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterFullscreenExitedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the TextFound signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when text is found.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewTextFoundEventArgs> TextFound
+        {
+            add
+            {
+                if (textFoundEventHandler == null)
+                {
+                    textFoundCallback = OnTextFound;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(textFoundCallback);
+                    Interop.WebView.RegisterTextFoundCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                textFoundEventHandler += value;
+            }
+            remove
+            {
+                textFoundEventHandler -= value;
+                if (textFoundEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterTextFoundCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
         /// Options for searching texts.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -916,13 +1048,25 @@ namespace Tizen.NUI.BaseComponents
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContext Context => context;
+        public WebContext Context
+        {
+            get
+            {
+                return new WebContext(Interop.WebView.GetWebContext(), false);
+            }
+        }
 
         /// <summary>
         /// CookieManager.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebCookieManager CookieManager => cookieManager;
+        public WebCookieManager CookieManager
+        {
+            get
+            {
+                return new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+            }
+        }
 
         /// <summary>
         /// BackForwardList.
@@ -2155,6 +2299,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Change orientation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeOrientation(Window.WindowOrientation orientation)
+        {
+            Interop.WebView.ChangeOrientation(SwigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Adds custom header.
         /// </summary>
         /// <param name="name">The name of custom header</param>
@@ -2417,6 +2571,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Exit fullscreen.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ExitFullscreen()
+        {
+            Interop.WebView.ExitFullscreen(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Scales the current page, centered at the given point.
         /// </summary>
         /// <param name="scaleFactor">The new factor to be scaled</param>
@@ -2621,6 +2785,23 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal override void ApplyCornerRadius()
+        {
+            base.ApplyCornerRadius();
+
+            if (backgroundExtraData == null) 
+            {
+                return;
+            }
+
+            // Update corner radius properties to webView by ActionUpdateProperty
+            if (backgroundExtraData.CornerRadius != null)
+            {
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+            }
+            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+        }
+
         private void OnPageLoadStarted(string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
@@ -2688,6 +2869,11 @@ namespace Tizen.NUI.BaseComponents
             navigationPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
         }
 
+        private void OnNewWindowPolicyDecided(IntPtr maker)
+        {
+            newWindowPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
+        }
+
         private void OnNewWindowCreated(out IntPtr viewHandle)
         {
             WebView view = newWindowCreatedEventHandler?.Invoke(this, new EventArgs());
@@ -2729,6 +2915,21 @@ namespace Tizen.NUI.BaseComponents
 #pragma warning disable CA2000 // Dispose objects before losing scope
             hitTestFinishedCallback?.Invoke(new WebHitTestResult(test, true));
 #pragma warning restore CA2000 // Dispose objects before losing scope
+        }
+
+        private void OnFullscreenEntered()
+        {
+            fullscreenEnteredEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnFullscreenExited()
+        {
+            fullscreenExitedEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnTextFound(uint count)
+        {
+            textFoundEventHandler?.Invoke(this, new WebViewTextFoundEventArgs(count));
         }
     }
 }

@@ -1166,11 +1166,8 @@ namespace Tizen.NUI.BaseComponents
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
-                    visualEvent.Disconnect(visualEventSignalCallback);
-                    if (visualEvent?.Empty() == true)
-                    {
-                        visualEventSignalCallback = null;
-                    }
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    visualEventSignalCallback = null;
                 }
             }
         }
@@ -1510,7 +1507,6 @@ namespace Tizen.NUI.BaseComponents
         };
         private states currentStates;
 
-        private const string tag = "NUITEST";
         private event EventHandler finishedEventHandler;
 
         private void OnFinished()

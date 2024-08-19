@@ -45,11 +45,12 @@ namespace Tizen.NUI
         /// <param name="width">Buffer width in pixels.</param>
         /// <param name="height">Buffer height in pixels.</param>
         /// <param name="pixelFormat">The pixel format.</param>
-        /// <param name="releaseFunction">The function used to release the memory.</param>
+        /// <param name="_">Not used parameter.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be deprecated after API level 9. ReleaseFunction is not useful in C#.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(Interop.PixelData.New(buffer, bufferSize, width, height, (int)pixelFormat), true)
+        [Obsolete("Do not use this constructor. Use PixelData(byte[], uint, uint, uint, PixelFormat).")]
+        public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction _) : this(Interop.PixelData.New(buffer, bufferSize, width, height, (int)pixelFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

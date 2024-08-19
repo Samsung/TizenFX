@@ -66,6 +66,7 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1065: Do not raise exceptions in unexpected locations")]
         public override string ToString()
         {
             string ret = Interop.ImageUrl.GetUrl(SwigCPtr);

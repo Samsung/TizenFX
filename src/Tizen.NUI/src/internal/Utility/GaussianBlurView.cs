@@ -109,12 +109,12 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
                 if (finishedEventHandler == null)
                 {
                     finishedCallback = new FinishedCallbackType(OnFinished);
                     FinishedSignal().Connect(finishedCallback);
                 }
+
                 finishedEventHandler += value;
             }
 
@@ -122,9 +122,10 @@ namespace Tizen.NUI
             {
                 finishedEventHandler -= value;
 
-                if (finishedEventHandler == null && FinishedSignal().Empty() == false)
+                if (finishedEventHandler == null && finishedCallback != null)
                 {
                     FinishedSignal().Disconnect(finishedCallback);
+                    finishedCallback = null;
                 }
             }
         }

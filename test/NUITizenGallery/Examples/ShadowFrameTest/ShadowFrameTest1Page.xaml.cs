@@ -7,11 +7,15 @@ namespace NUITizenGallery
     public partial class ShadowFrameTest1Page : ContentPage
     {
         private bool shadowToggleShow; // true if we show shadow
+
+        private ColorVisualCutoutPolicyType shadowCutoutPolicy; // The policy of cutout shadow as view
+
         private Shadow CreateShadowFromeSliders()
         {
             return new Shadow
             (
                 ShadowBlurRadius.CurrentValue,
+                shadowCutoutPolicy,
                 new Color(
                     ShadowColorRed.CurrentValue / 255.0f,
                     ShadowColorGreen.CurrentValue / 255.0f,
@@ -26,6 +30,7 @@ namespace NUITizenGallery
         {
             InitializeComponent();
             shadowToggleShow = true;
+            shadowCutoutPolicy = ColorVisualCutoutPolicyType.None;
 
             // CornerRadius
             CornerTopLeft.ValueChanged += (o, e) =>
@@ -130,6 +135,21 @@ namespace NUITizenGallery
                     }
                 }
             };
+            // Shadow Cutout Toggle
+            ShadowCutoutButton.Clicked += (o, e) =>
+            {
+                if(ShadowCutoutButton.IsSelected)
+                {
+                    shadowCutoutPolicy = ColorVisualCutoutPolicyType.CutoutViewWithCornerRadius;
+                }
+                else
+                {
+                    shadowCutoutPolicy = ColorVisualCutoutPolicyType.None;
+                }
+
+                target.BoxShadow = CreateShadowFromeSliders();
+            };
+
             // Shadow Offset
             ShadowOffsetX.ValueChanged += (o, e) =>
             {
@@ -141,7 +161,7 @@ namespace NUITizenGallery
                     return;
                 }
                 Vector2 currentOffset = currentShadow.Offset;
-                target.BoxShadow = new Shadow(currentShadow.BlurRadius, currentShadow.Color, new Vector2(ShadowOffsetX.CurrentValue, currentOffset.Y));
+                target.BoxShadow = new Shadow(currentShadow.BlurRadius, shadowCutoutPolicy, currentShadow.Color, new Vector2(ShadowOffsetX.CurrentValue, currentOffset.Y));
             };
             ShadowOffsetY.ValueChanged += (o, e) =>
             {
@@ -153,7 +173,7 @@ namespace NUITizenGallery
                     return;
                 }
                 Vector2 currentOffset = currentShadow.Offset;
-                target.BoxShadow = new Shadow(currentShadow.BlurRadius, currentShadow.Color, new Vector2(currentOffset.X, ShadowOffsetY.CurrentValue));
+                target.BoxShadow = new Shadow(currentShadow.BlurRadius, shadowCutoutPolicy, currentShadow.Color, new Vector2(currentOffset.X, ShadowOffsetY.CurrentValue));
             };
 
             // Shadow Color
@@ -167,7 +187,7 @@ namespace NUITizenGallery
                     return;
                 }
                 Color currentColor = currentShadow.Color;
-                target.BoxShadow = new Shadow(currentShadow.BlurRadius, new Color(ShadowColorRed.CurrentValue / 255.0f, currentColor.G, currentColor.B, currentColor.A), currentShadow.Offset);
+                target.BoxShadow = new Shadow(currentShadow.BlurRadius, shadowCutoutPolicy, new Color(ShadowColorRed.CurrentValue / 255.0f, currentColor.G, currentColor.B, currentColor.A), currentShadow.Offset);
             };
             ShadowColorGreen.ValueChanged += (o, e) =>
             {
@@ -179,7 +199,7 @@ namespace NUITizenGallery
                     return;
                 }
                 Color currentColor = currentShadow.Color;
-                target.BoxShadow = new Shadow(currentShadow.BlurRadius, new Color(currentColor.R, ShadowColorGreen.CurrentValue / 255.0f, currentColor.B, currentColor.A), currentShadow.Offset);
+                target.BoxShadow = new Shadow(currentShadow.BlurRadius, shadowCutoutPolicy, new Color(currentColor.R, ShadowColorGreen.CurrentValue / 255.0f, currentColor.B, currentColor.A), currentShadow.Offset);
             };
             ShadowColorBlue.ValueChanged += (o, e) =>
             {
@@ -191,7 +211,7 @@ namespace NUITizenGallery
                     return;
                 }
                 Color currentColor = currentShadow.Color;
-                target.BoxShadow = new Shadow(currentShadow.BlurRadius, new Color(currentColor.R, currentColor.G, ShadowColorBlue.CurrentValue / 255.0f, currentColor.A), currentShadow.Offset);
+                target.BoxShadow = new Shadow(currentShadow.BlurRadius, shadowCutoutPolicy, new Color(currentColor.R, currentColor.G, ShadowColorBlue.CurrentValue / 255.0f, currentColor.A), currentShadow.Offset);
             };
             ShadowOpacity.ValueChanged += (o, e) =>
             {
@@ -203,7 +223,7 @@ namespace NUITizenGallery
                     return;
                 }
                 Color currentColor = currentShadow.Color;
-                target.BoxShadow = new Shadow(currentShadow.BlurRadius, new Color(currentColor.R, currentColor.G, currentColor.B, ShadowOpacity.CurrentValue / 255.0f), currentShadow.Offset);
+                target.BoxShadow = new Shadow(currentShadow.BlurRadius, shadowCutoutPolicy, new Color(currentColor.R, currentColor.G, currentColor.B, ShadowOpacity.CurrentValue / 255.0f), currentShadow.Offset);
             };
             // Shadow Radius
             ShadowBlurRadius.ValueChanged += (o, e) =>
@@ -216,7 +236,7 @@ namespace NUITizenGallery
                     return;
                 }
                 float currentRadius = ShadowBlurRadius.CurrentValue;
-                target.BoxShadow = new Shadow(currentRadius, currentShadow.Color, currentShadow.Offset);
+                target.BoxShadow = new Shadow(currentRadius, shadowCutoutPolicy, currentShadow.Color, currentShadow.Offset);
             };
         }
     }
