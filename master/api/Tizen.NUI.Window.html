@@ -95,7 +95,7 @@ The window has an orientation and indicator properties.<br></p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Window : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Window : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable, IWindowProvider</code></pre>
   </div>
 
 
@@ -120,6 +120,7 @@ The window has an orientation and indicator properties.<br></p>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">IWindowProvider</span></div>
     </dd>
   </dl>
 
@@ -5644,6 +5645,9 @@ Even though incoming events are interrupted, the event occurs.<br></p>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IWindowProvider</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
