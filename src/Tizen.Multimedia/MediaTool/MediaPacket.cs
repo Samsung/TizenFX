@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
 using Native = Tizen.Multimedia.Interop.MediaPacket;
