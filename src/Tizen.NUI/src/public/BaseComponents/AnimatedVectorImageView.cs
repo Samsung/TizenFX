@@ -597,6 +597,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Resume Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Resume()
+        {
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+
+            if (string.IsNullOrEmpty(resourceUrl))
+            {
+                throw new InvalidOperationException("Resource Url not yet Set");
+            }
+
+            base.Play();
+            AnimationState = AnimationStates.Playing;
+
+            NUILog.Debug($" [{GetId()}] ]AnimatedVectorImageView END]");
+        }
+
+        /// <summary>
         /// Stop Animation.
         /// </summary>
         /// <param name="endAction">Defines, what should be behaviour after cancel operation
@@ -722,12 +741,12 @@ namespace Tizen.NUI.BaseComponents
         public enum RepeatModes
         {
             /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Reverse = LoopingModeType.AutoReverse
