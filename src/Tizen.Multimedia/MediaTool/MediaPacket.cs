@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
 using Native = Tizen.Multimedia.Interop.MediaPacket;
@@ -499,6 +500,47 @@ namespace Tizen.Multimedia
 
                 ret = Native.SetBufferFlags(_handle, (int)value);
                 MultimediaDebug.AssertNoError(ret);
+            }
+        }
+
+        /// <summary>
+        /// Gets the pointer to the TBM surface object associated with the packet.
+        /// </summary>
+        /// <value>
+        /// The pointer to the TBM surface object.<br/>
+        /// If packet doesn't have TBM surface, this will return IntPtr.Zero.
+        /// </value>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public IntPtr TbmSurface
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Native.GetTbmSurface(_handle, out var value);
+                MultimediaDebug.AssertNoError(ret);
+
+                return value;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the packet has TBM surface or not.
+        /// </summary>
+        /// <value>true if the packet has TBM surface; otherwise, false.</value>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public bool HasTbmSurface
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Native.HasTbmSurface(_handle, out var value);
+                MultimediaDebug.AssertNoError(ret);
+
+                return value;
             }
         }
 
