@@ -553,44 +553,45 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets or sets the RTP payload type of current media source.
+        /// Sets the RTP payload type of current media source.
         /// </summary>
-        /// <value>The RTP payload type.</value>
-        /// <exception cref="InvalidOperationException">
-        ///     MediaSource is not attached yet.
-        /// </exception>
+        /// <param name="codec">The transceiver codec.</param>
+        /// <param name="payloadType">The RTP payload type.</param>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SupportedTransceiverCodecs"/>
         /// <since_tizen> 12 </since_tizen>
-        public uint PayloadType
+        public void SetPayloadType(TransceiverCodec codec, uint payloadType)
         {
-            get
+            if (!SourceId.HasValue)
             {
-                if (!SourceId.HasValue)
-                {
-                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
-                }
-
-                NativeWebRTC.GetTransceiverCodec(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverCodec codec).
-                    ThrowIfFailed("Failed to get transceiver codec");
-
-                NativeWebRTC.GetPaylodType(WebRtc.Handle, SourceId.Value, codec, out uint payloadType).
-                    ThrowIfFailed("Failed to get payload type");
-
-                return payloadType;
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
             }
-            set
+
+            NativeWebRTC.SetPaylodType(WebRtc.Handle, SourceId.Value, codec, payloadType).
+                ThrowIfFailed("Failed to set payload type");
+        }
+
+        /// <summary>
+        /// Gets the RTP payload type of current media source.
+        /// </summary>
+        /// <param name="codec">The transceiver codec.</param>
+        /// <value>The RTP payload type.</value>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SupportedTransceiverCodecs"/>
+        /// <since_tizen> 12 </since_tizen>
+        public uint GetPayloadType(TransceiverCodec codec)
+        {
+            if (!SourceId.HasValue)
             {
-                if (!SourceId.HasValue)
-                {
-                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
-                }
-
-                NativeWebRTC.GetTransceiverCodec(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverCodec codec).
-                    ThrowIfFailed("Failed to get transceiver codec");
-
-                NativeWebRTC.SetPaylodType(WebRtc.Handle, SourceId.Value, codec, value).
-                    ThrowIfFailed("Failed to set payload type");
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
             }
+
+            NativeWebRTC.GetPaylodType(WebRtc.Handle, SourceId.Value, codec, out uint payloadType).
+                ThrowIfFailed("Failed to get payload type");
+
+            return payloadType;
         }
 
         /// <summary>
