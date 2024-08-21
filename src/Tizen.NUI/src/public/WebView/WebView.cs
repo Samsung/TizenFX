@@ -162,6 +162,7 @@ namespace Tizen.NUI.BaseComponents
 
         private PlainTextReceivedCallback plainTextReceivedCallback;
 
+
         /// <summary>
         /// Creates a WebView.
         /// </summary>
@@ -232,6 +233,27 @@ namespace Tizen.NUI.BaseComponents
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+
+               if(handlerRootMap != null)
+                {
+                    foreach (string key in handlerRootMap?.Keys)
+                    {
+                        Interop.WebView.AddJavaScriptMessageHandler(SwigCPtr, key, new HandleRef(null, IntPtr.Zero));
+                    }
+                    handlerRootMap?.Clear();
+                    handlerRootMap = null;
+                }
+
+                if(_addJavaScriptEntireMessageHandlerMap != null)
+                {
+                    foreach (string key in _addJavaScriptEntireMessageHandlerMap?.Keys)
+                    {
+                        Interop.WebView.AddJavaScriptEntireMessageHandler(SwigCPtr, key, new HandleRef(null, IntPtr.Zero));
+                    }
+                    _addJavaScriptEntireMessageHandlerMap?.Clear();
+                    _addJavaScriptEntireMessageHandlerMap = null;
+                }
+
                 BackForwardList.Dispose();
                 Settings.Dispose();
             }
@@ -2443,6 +2465,9 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        private Dictionary<int, JavaScriptMessageHandler> _evaluateJavaScriptHandlerMap = new Dictionary<int, JavaScriptMessageHandler>();
+        private int _evaluateJavaScriptCallbackId = 0;
+
         /// <summary>
         /// Evaluates JavaScript code represented as a string.
         /// </summary>
@@ -2451,7 +2476,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script, JavaScriptMessageHandler handler)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
+            var id = ++_evaluateJavaScriptCallbackId;
+            JavaScriptMessageHandler wrapper = (msg) =>
+            {
+                handler(msg);
+                _evaluateJavaScriptHandlerMap.Remove(id);
+            };
+            _evaluateJavaScriptHandlerMap.Add(id, wrapper);
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(wrapper);
             Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -2464,18 +2496,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddJavaScriptMessageHandler(string objectName, JavaScriptMessageHandler handler)
         {
-            if (handlerRootMap.ContainsKey(objectName))
-            {
-                return;
-            }
-
-            handlerRootMap.Add(objectName, handler);
+            handlerRootMap[objectName] = handler;
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             Interop.WebView.AddJavaScriptMessageHandler(SwigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        private Dictionary<string, JavaScriptEntireMessageHandler> _addJavaScriptEntireMessageHandlerMap = new Dictionary<string, JavaScriptEntireMessageHandler>();
 
         /// <summary>
         /// Add a message handler into the WebView.
@@ -2485,6 +2514,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddJavaScriptMessageHandler(string objectName, JavaScriptEntireMessageHandler handler)
         {
+            _addJavaScriptEntireMessageHandlerMap[objectName] = handler;
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
             Interop.WebView.AddJavaScriptEntireMessageHandler(SwigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
