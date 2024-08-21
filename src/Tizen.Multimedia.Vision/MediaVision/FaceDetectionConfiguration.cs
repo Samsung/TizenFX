@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceDetectionConfiguration : EngineConfiguration
     {
         private const string KeyModelFilePath = "MV_FACE_DETECTION_MODEL_FILE_PATH";
@@ -38,6 +39,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceDetectionConfiguration() : base("face_recognition")
         {
         }
@@ -47,6 +49,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string ModelFilePath
         {
             get
@@ -72,6 +75,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int? MinHeight
         {
             get
@@ -100,6 +104,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int? MinWidth
         {
             get
@@ -140,6 +145,7 @@ namespace Tizen.Multimedia.Vision
         ///     The y position of <paramref name="value"/> is less than zero.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Rectangle? Roi
         {
             get

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-using System.Collections.ObjectModel;
+using System;
 
 namespace Tizen.Multimedia.Vision
 {
@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// <see cref="FaceDetector.DetectAsync(MediaVisionSource, InferenceModelConfiguration)"/>.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceDetectionResult
     {
         internal FaceDetectionResult(float confidence, global::Interop.MediaVision.Rectangle location)

@@ -23,12 +23,14 @@ namespace Tizen.Multimedia.Vision
     /// Provides data for the <see cref="PersonRecognizer.Recognized"/> event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class PersonRecognizedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonRecognizedEventArgs"/> class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public PersonRecognizedEventArgs(IEnumerable<PersonRecognitionInfo> recognitionInfo)
         {
             Recognitions = recognitionInfo;
@@ -38,6 +40,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets a set of information that correspond to the recognized persons.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public IEnumerable<PersonRecognitionInfo> Recognitions { get; }
     }
 }

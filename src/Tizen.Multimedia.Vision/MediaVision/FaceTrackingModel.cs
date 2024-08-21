@@ -25,6 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceTrackingModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceTrackingModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel.");
@@ -57,6 +59,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceTrackingModel(string modelPath)
         {
             if (modelPath == null)
@@ -109,6 +112,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already bean disposed of.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Prepare(MediaVisionSource source, Quadrangle region)
         {
             if (source == null)
@@ -128,6 +132,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="FaceTrackingModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Save(string path)
         {
             if (path == null)
@@ -149,6 +154,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases all the resources used by the <see cref="FaceTrackingModel"/> object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Dispose()
         {
             Dispose(true);
@@ -162,6 +168,7 @@ namespace Tizen.Multimedia.Vision
         /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

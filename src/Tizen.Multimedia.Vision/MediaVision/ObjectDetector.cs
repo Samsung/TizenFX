@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to detect objects and get its locations on image source using inference engine.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class ObjectDetector
     {
         /// <summary>
@@ -46,6 +47,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<IEnumerable<ObjectDetectionResult>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
