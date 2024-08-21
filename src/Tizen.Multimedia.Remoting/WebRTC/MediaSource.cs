@@ -553,7 +553,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets the RTP payload type of current media source.
+        /// Sets the RTP payload type of given <paramref name="codec"/>.
         /// </summary>
         /// <param name="codec">The transceiver codec.</param>
         /// <param name="payloadType">The RTP payload type.</param>
@@ -573,7 +573,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the RTP payload type of current media source.
+        /// Gets the RTP payload type of given <paramref name="codec"/>.
         /// </summary>
         /// <param name="codec">The transceiver codec.</param>
         /// <value>The RTP payload type.</value>
