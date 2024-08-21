@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <example>
     /// <code>
-    /// NativeImageQueue queue = new NativeImageQueue(width,height,ColorFormat.RGBA8888);
+    /// NativeImageQueue queue = new NativeImageQueue(width,height,ColorFormat.BGRA8888);
     /// if(queue.CanDequeueBuffer())
     /// {
     ///   var buffer = queue.DequeueBuffer(ref bufferWidth,ref bufferHeight,ref bufferStride);
@@ -63,20 +63,17 @@ namespace Tizen.NUI
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits
             /// </summary>
-            [System.ObsoleteAttribute("This property is obsolete. It's behavior could be changed in a future version. Currently it is same as BGR888", false)]
-            RGB888 = 0,
+            RGB888 = 3,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
-            [System.ObsoleteAttribute("This property is obsolete. It's behavior could be changed in a future version. Currently it is same as BGRA8888", false)]
-            RGBA8888 = 1,
+            RGBA8888 = 4,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, and 8 ignored bits
             /// </summary>
-            [System.ObsoleteAttribute("This property is obsolete. It's behavior could be changed in a future version. Currently it is same as BGRX8888", false)]
-            RGBX8888 = 2,
+            RGBX8888 = 5,
         }
 
         /// <summary>
