@@ -555,10 +555,16 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sets the RTP payload type of given <paramref name="codec"/>.
         /// </summary>
+        /// <remarks>
+        /// <paramref name="payloadType"/> should be greater than or equal to 96 and less than or equal to 127.
+        /// </remarks>
         /// <param name="codec">The transceiver codec.</param>
         /// <param name="payloadType">The RTP payload type.</param>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="payloadType"/> is less than 96 or greater than 127.
+        /// </exception>
         /// <seealso cref="SupportedTransceiverCodecs"/>
         /// <since_tizen> 12 </since_tizen>
         public void SetPayloadType(TransceiverCodec codec, uint payloadType)
@@ -566,6 +572,10 @@ namespace Tizen.Multimedia.Remoting
             if (!SourceId.HasValue)
             {
                 throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
+            if (payloadType < 96 || payloadType > 127)
+            {
+                throw new ArgumentOutOfRangeException(nameof(payloadType), payloadType, "Valid range : 96 <= payloadType <= 127");
             }
 
             NativeWebRTC.SetPaylodType(WebRtc.Handle, SourceId.Value, codec, payloadType).
