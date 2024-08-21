@@ -553,6 +553,47 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets or sets the RTP payload type of current media source.
+        /// </summary>
+        /// <value>The RTP payload type.</value>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public uint PayloadType
+        {
+            get
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
+                NativeWebRTC.GetTransceiverCodec(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverCodec codec).
+                    ThrowIfFailed("Failed to get transceiver codec");
+
+                NativeWebRTC.GetPaylodType(WebRtc.Handle, SourceId.Value, codec, out uint payloadType).
+                    ThrowIfFailed("Failed to get payload type");
+
+                return payloadType;
+            }
+            set
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
+                NativeWebRTC.GetTransceiverCodec(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverCodec codec).
+                    ThrowIfFailed("Failed to get transceiver codec");
+
+                NativeWebRTC.SetPaylodType(WebRtc.Handle, SourceId.Value, codec, value).
+                    ThrowIfFailed("Failed to set payload type");
+            }
+        }
+
+        /// <summary>
         /// Enables the audio loopback. The local audio will be played with <paramref name="policy"/>.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
