@@ -46,8 +46,8 @@ namespace Tizen.Applications
         private List<string> _privileges;
         private int _installedTime;
 
-        private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
-        private int _callbackId = 0;
+        private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
+        private static int _callbackId = 0;
         private List<PackageDependencyInformation> _dependencyTo;
         private Lazy<List<PackageDependencyInformation>> _dependencyFrom;
         private IReadOnlyDictionary<string, IEnumerable<string>> _allowedPackagesAndPrivilegesList;
