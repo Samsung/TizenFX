@@ -138,6 +138,45 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetOrientation(uint id, Rotation rotation)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetOrientation(proxyIntPtr, id, Rotation.getCPtr(rotation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetOrientation(uint id, Rotation rotation)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceSetOrientation(proxyIntPtr, id, Rotation.getCPtr(rotation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool BakeOrientation(uint id, Rotation rotation)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceBakeOrientation(proxyIntPtr, id, Rotation.getCPtr(rotation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetSize(uint id, Vector3 size)
         {
             if (proxyIntPtr == IntPtr.Zero)
