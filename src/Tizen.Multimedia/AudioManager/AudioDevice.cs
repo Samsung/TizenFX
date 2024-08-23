@@ -32,6 +32,7 @@ namespace Tizen.Multimedia
         private readonly AudioDeviceType _type;
         private readonly AudioDeviceIoDirection _ioDirection;
         private const string Tag = "Tizen.Multimedia.AudioDevice";
+        private IntPtr _handle;
 
         internal AudioDevice(IntPtr deviceHandle)
         {
@@ -48,7 +49,11 @@ namespace Tizen.Multimedia
 
             ret = Interop.AudioDevice.GetDeviceIoDirection(deviceHandle, out _ioDirection);
             MultimediaDebug.AssertNoError(ret);
+
+            _handle = deviceHandle;
         }
+
+        internal IntPtr Handle => _handle;
 
         /// <summary>
         /// Gets the ID of the device.
