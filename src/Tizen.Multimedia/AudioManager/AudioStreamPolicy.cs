@@ -489,7 +489,6 @@ namespace Tizen.Multimedia
         public SoundEffectInfo GetSoundEffect(bool withReference)
         {
             AudioManagerError ret = AudioManagerError.None;
-            SoundEffectType effect = SoundEffectType.NoiseSuppression;
             SoundEffectInfo soundEffectInfo;
             int deviceId = 0;
 
@@ -502,8 +501,9 @@ namespace Tizen.Multimedia
                 }
                 ret.ThrowIfError("Failed to get sound effect with reference");
 
-                effect = nativeEffect.ToPublic();
-                soundEffectInfo = new SoundEffectInfo(effect, AudioManager.GetConnectedDevices().Where(d => d.Id == deviceId).Single());
+
+                soundEffectInfo = new SoundEffectInfo(nativeEffect.ToPublic(),
+                    AudioManager.GetConnectedDevices().Where(d => d.Id == deviceId).Single());
             }
             else
             {
@@ -514,8 +514,7 @@ namespace Tizen.Multimedia
                 }
                 ret.ThrowIfError("Failed to get sound effect");
 
-                effect = ((SoundEffectNative)nativeEffect).ToPublic();
-                soundEffectInfo = new SoundEffectInfo(effect);
+                soundEffectInfo = new SoundEffectInfo(((SoundEffectNative)nativeEffect).ToPublic());
             }
 
             return soundEffectInfo;
