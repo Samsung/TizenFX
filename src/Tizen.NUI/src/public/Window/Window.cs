@@ -869,6 +869,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool SetNotificationLevel(NotificationLevel level)
         {
@@ -923,6 +925,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenOffMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/display</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 4 </since_tizen>
         public bool SetScreenOffMode(ScreenOffMode screenOffMode)
         {
@@ -948,6 +952,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="brightness">The preferred brightness (0 to 100).</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/display</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool SetBrightness(int brightness)
         {
@@ -1105,6 +1111,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to grab.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKeyTopmost(int DaliKey)
         {
@@ -1119,6 +1127,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKeyTopmost(int DaliKey)
         {
@@ -1137,6 +1147,8 @@ namespace Tizen.NUI
         /// <param name="DaliKey">The key code to grab.</param>
         /// <param name="GrabMode">The grab mode for the key.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
         {
@@ -1151,6 +1163,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKey(int DaliKey)
         {
