@@ -407,7 +407,7 @@ namespace Tizen.Multimedia
         /// Gets the information for stitched 360 content of the media.
         /// </summary>
         /// <value>
-        /// 0:None, 1:Non-stitched, 2:stitched
+        /// 0:None(There's no stitched 360 content metadata), 1:Non-stitched content, 2:stitched content
         /// </value>
         /// <since_tizen> 12 </since_tizen>
         /// <value>A string representing the information for stitched 360 content, or null if the information does not exist.</value>
