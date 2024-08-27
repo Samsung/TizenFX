@@ -43,9 +43,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetDpi")]
             public static extern global::System.IntPtr GetDpi(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetObjectRegistry")]
-            public static extern global::System.IntPtr GetObjectRegistry(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_SetRenderingBehavior")]
             public static extern void SetRenderingBehavior(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 

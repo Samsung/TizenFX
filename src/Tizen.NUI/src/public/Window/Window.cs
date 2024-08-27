@@ -417,6 +417,44 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The Pointer edge boundary for grab.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum PointerBoundary
+        {
+            /// <summary>
+            /// Default value
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+
+            /// <summary>
+            /// Top
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top = 1,
+
+            /// <summary>
+            /// Right
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Right = 2,
+
+            /// <summary>
+            /// Bottom
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom = 3,
+
+            /// <summary>
+            /// Left
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Left = 4,
+
+        }
+
+        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -1661,26 +1699,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ObjectRegistry GetObjectRegistry()
-        {
-            global::System.IntPtr cPtr = Interop.Stage.GetObjectRegistry(stageCPtr);
-
-            ObjectRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ObjectRegistry;
-            if (ret != null)
-            {
-                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            else
-            {
-                ret = new ObjectRegistry(cPtr, true);
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
         {
             Interop.Stage.SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
@@ -2567,6 +2585,30 @@ namespace Tizen.NUI
                 Interop.Window.SetAlwaysOnTop(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+        }
+
+        /// <summary>
+        /// Requests relative motion grab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionGrab(PointerBoundary boundary)
+        {
+            bool ret = Interop.Window.RelativeMotionGrab(SwigCPtr, (uint)boundary);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests relative motion ungrab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionUnGrab()
+        {
+            bool ret = Interop.Window.RelativeMotionUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();

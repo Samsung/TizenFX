@@ -18,7 +18,7 @@
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     public partial class ItemView
     {
@@ -29,7 +29,7 @@ namespace Tizen.NUI
         public static new BindableProperty LayoutProperty = null;
         internal static new void SetInternalLayoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalLayout = (Tizen.NUI.PropertyArray)newValue;
@@ -37,7 +37,7 @@ namespace Tizen.NUI
         }
         internal static new object GetInternalLayoutProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalLayout;
         }
 
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         public static BindableProperty MinimumSwipeSpeedProperty = null;
         internal static void SetInternalMinimumSwipeSpeedProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalMinimumSwipeSpeed = (float)newValue;
@@ -56,7 +56,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalMinimumSwipeSpeedProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalMinimumSwipeSpeed;
         }
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         public static BindableProperty MinimumSwipeDistanceProperty = null;
         internal static void SetInternalMinimumSwipeDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalMinimumSwipeDistance = (float)newValue;
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalMinimumSwipeDistanceProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalMinimumSwipeDistance;
         }
 
@@ -86,7 +86,7 @@ namespace Tizen.NUI
         public static BindableProperty WheelScrollDistanceStepProperty = null;
         internal static void SetInternalWheelScrollDistanceStepProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalWheelScrollDistanceStep = (float)newValue;
@@ -94,7 +94,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalWheelScrollDistanceStepProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalWheelScrollDistanceStep;
         }
 
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         public static BindableProperty SnapToItemEnabledProperty = null;
         internal static void SetInternalSnapToItemEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalSnapToItemEnabled = (bool)newValue;
@@ -113,7 +113,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalSnapToItemEnabledProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalSnapToItemEnabled;
         }
 
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         public static BindableProperty RefreshIntervalProperty = null;
         internal static void SetInternalRefreshIntervalProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalRefreshInterval = (float)newValue;
@@ -132,7 +132,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalRefreshIntervalProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalRefreshInterval;
         }
 
@@ -143,7 +143,7 @@ namespace Tizen.NUI
         public static BindableProperty LayoutPositionProperty = null;
         internal static void SetInternalLayoutPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalLayoutPosition = (float)newValue;
@@ -151,7 +151,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalLayoutPositionProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalLayoutPosition;
         }
 
@@ -162,7 +162,7 @@ namespace Tizen.NUI
         public static BindableProperty ScrollSpeedProperty = null;
         internal static void SetInternalScrollSpeedProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalScrollSpeed = (float)newValue;
@@ -170,7 +170,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalScrollSpeedProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalScrollSpeed;
         }
 
@@ -181,7 +181,7 @@ namespace Tizen.NUI
         public static BindableProperty OvershootProperty = null;
         internal static void SetInternalOvershootProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalOvershoot = (float)newValue;
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalOvershootProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalOvershoot;
         }
 
@@ -200,7 +200,7 @@ namespace Tizen.NUI
         public static BindableProperty ScrollDirectionProperty = null;
         internal static void SetInternalScrollDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalScrollDirection = (Tizen.NUI.Vector2)newValue;
@@ -208,7 +208,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalScrollDirectionProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalScrollDirection;
         }
 
@@ -219,7 +219,7 @@ namespace Tizen.NUI
         public static BindableProperty LayoutOrientationProperty = null;
         internal static void SetInternalLayoutOrientationProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalLayoutOrientation = (int)newValue;
@@ -227,7 +227,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalLayoutOrientationProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalLayoutOrientation;
         }
 
@@ -238,7 +238,7 @@ namespace Tizen.NUI
         public static BindableProperty ScrollContentSizeProperty = null;
         internal static void SetInternalScrollContentSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalScrollContentSize = (float)newValue;
@@ -246,7 +246,7 @@ namespace Tizen.NUI
         }
         internal static object GetInternalScrollContentSizeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.ItemView)bindable;
+            var instance = (ItemView)bindable;
             return instance.InternalScrollContentSize;
         }
     }
