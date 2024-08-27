@@ -215,6 +215,7 @@ namespace Tizen.Multimedia
             DateRecorded = extractor.GetMetadata(MetadataExtractorAttr.RecordingDate);
             Rotation = extractor.GetMetadata(MetadataExtractorAttr.Rotate);
             Content360 = extractor.GetMetadata(MetadataExtractorAttr.ContentFor360);
+            StitchedContent360 = extractor.GetMetadata(MetadataExtractorAttr.StitchedContentFor360);
 
             _description = new Lazy<string>(() => ObjectDescriptionBuilder.BuildWithProperties(this));
         }
@@ -401,6 +402,16 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <value>A string representing the information for 360 content, or null if the information does not exist.</value>
         public string Content360 { get; }
+
+        /// <summary>
+        /// Gets the information for stitched 360 content of the media.
+        /// </summary>
+        /// <value>
+        /// 0:None, 1:Non-stitched, 2:stitched
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
+        /// <value>A string representing the information for stitched 360 content, or null if the information does not exist.</value>
+        public string StitchedContent360 { get; }
 
         private Lazy<string> _description;
 
