@@ -2611,6 +2611,46 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets or gets the window blur using window blur information.
+        /// 
+        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        /// This supports different types of blurring effects, including blurring the window's background only.
+        /// Or blurring the area surrounding the window while keeping the window itself clear.
+        /// The more information is written WindowBlurInfo struct.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WindowBlurInfo BlurInfo
+        {
+            get
+            {
+                IntPtr internalBlurInfo = Interop.Window.GetBlur(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                WindowBlurInfo blurInfo = new WindowBlurInfo();
+                blurInfo.BlurType = (WindowBlurType)Interop.WindowBlurInfo.GetBlurType(internalBlurInfo);
+                blurInfo.BlurRadius = Interop.WindowBlurInfo.GetBlurRadius(internalBlurInfo);
+                blurInfo.BackgroundCornerRadius = Interop.WindowBlurInfo.GetBackgroundCornerRadius(internalBlurInfo);
+
+                Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+
+                return blurInfo;
+            }
+            set
+            {
+                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                try {
+                    Interop.Window.SetBlur(SwigCPtr, internalBlurInfo);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                finally {
+                    Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+                }
+            }            
+        }
+
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
         float IWindowProvider.X => WindowPosition.X;
         float IWindowProvider.Y => WindowPosition.Y;

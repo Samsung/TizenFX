@@ -392,6 +392,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_RelativeMotionUnGrab")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool RelativeMotionUnGrab(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetBlur")]
+            public static extern void SetBlur(global::System.Runtime.InteropServices.HandleRef window, global::System.IntPtr blurInfo);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetBlur")]
+            public static extern global::System.IntPtr GetBlur(global::System.Runtime.InteropServices.HandleRef window);
         }
     }
 }
