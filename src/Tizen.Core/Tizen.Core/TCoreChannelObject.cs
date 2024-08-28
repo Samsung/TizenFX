@@ -1,0 +1,174 @@
+﻿/*
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+using System.Collections.Concurrent;
+using System.Runtime.InteropServices;
+
+namespace Tizen.Core
+{
+    /// <summary>
+    /// Represents a channel object used for inter-task communication.
+    /// </summary>
+    /// <since_tizen> 12 </since_tizen>
+    public class TCoreChannelObject : IDisposable
+    {
+        private IntPtr _handle = IntPtr.Zero;
+        private bool _disposed = false;
+        private static readonly ConcurrentDictionary<int, object> _dataMap = new ConcurrentDictionary<int, object>();
+        private static readonly object _dataLock = new object();
+        private static int _dataId = 0;
+
+        /// <summary>
+        /// // Constructor for creating a new channel object with specified ID and data.
+        /// </summary>
+        /// <param name="id">The ID.</param>
+        /// <param name="data">The data object.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <example>
+        /// <code>
+        /// 
+        /// int id = 0;
+        /// string message = "Test message";
+        /// var channelObject = new TCoreChannel(id++, message);
+        /// 
+        /// </code>
+        /// </example>
+        /// <since_tizen> 12 </since_tizen>
+        public TCoreChannelObject(int id, object data)
+        {
+            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.ObjectCreate(out _handle);
+            TCoreErrorFactory.CheckAndThrownException(error, "Failed to create channel object");
+            Id = id;
+            Data = data;
+            IsUsed = false;
+        }
+
+        internal TCoreChannelObject(IntPtr handle)
+        {
+            _handle = handle;
+            IsUsed = false;
+        }
+
+        /// <summary>
+        /// Finalizer of the class TCoreChannelObject.
+        /// </summary>
+        ~TCoreChannelObject()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Gets and sets the ID.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public int Id
+        {
+            get
+            {
+                Interop.LibTizenCore.TizenCoreChannel.ObjectGetId(_handle, out int id);
+                return id;
+            }
+            set
+            {
+                Interop.LibTizenCore.TizenCoreChannel.ObjectSetId(_handle, value); 
+            }            
+        }
+
+        /// <summary>
+        /// Gets and sets the data object.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public object Data
+        {
+            get
+            {
+                Interop.LibTizenCore.TizenCoreChannel.ObjectGetData(_handle, out IntPtr handle);
+                int id = (int)handle;
+                if (_dataMap.TryGetValue(id, out var data))
+                {
+                    return data;
+                }
+                return null;
+            }
+            set
+            {
+                int id;
+                lock (_dataLock)
+                {
+                    id = _dataId++;
+                }
+                _dataMap[id] = value;
+                Interop.LibTizenCore.TizenCoreChannel.ObjectSetData(_handle, (IntPtr)id);
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the sender task.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public string Sender {
+            get
+            {
+                Interop.LibTizenCore.TizenCoreChannel.ObjectGetSenderTaskName(_handle, out IntPtr taskName);
+                return Marshal.PtrToStringAnsi(taskName);
+            }
+        }
+
+        internal bool IsUsed { set; get; }
+
+        internal IntPtr Handle { get { return _handle; } }
+
+        /// <summary>
+        /// Release any unmanaged resources used by this object.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 12 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (_handle != IntPtr.Zero)
+                    {
+                        if (!IsUsed)
+                        {
+                            Interop.LibTizenCore.TizenCoreChannel.ObjectGetData(_handle, out IntPtr handle);
+                            int id = (int)handle;
+                            _dataMap.TryRemove(id, out var data);
+                        }
+
+                        Interop.LibTizenCore.TizenCoreChannel.ObjectDestroy(_handle);
+                        _handle = IntPtr.Zero;
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Release any unmanaged resources used by this object.
+        /// </summary>
+        /// <since_tize> 12 </since_tize>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+    }
+}
