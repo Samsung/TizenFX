@@ -656,16 +656,6 @@ namespace Tizen.Core
         /// <summary>
         /// Checks whether the task is running or not.
         /// </summary>
-        /// <example>
-        /// <code>
-        /// 
-        /// var coreTask = new TCoreTask("Runner");
-        /// coreTask.Run();
-        /// bool running = coreTask.Running;
-        /// Console.WriteLine("Runner is {}", running ? "running" : "not running");
-        /// 
-        /// </code>
-        /// </example>
         /// <since_tizen> 12 </since_tizen>
         public bool Running {
             get
