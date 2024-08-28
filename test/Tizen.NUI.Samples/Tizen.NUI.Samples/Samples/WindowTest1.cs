@@ -291,6 +291,9 @@ namespace Tizen.NUI.Samples
       mainWin.TouchEvent += WinTouchEvent;
       mainWin.BackgroundColor = Color.Cyan;
 
+      Rectangle rec = new Rectangle(20, 10, 400, 300);
+      mainWin.WindowPositionSize = rec;
+
       Information.TryGetValue<int>("http://tizen.org/feature/screen.width", out screenWidth);
       Information.TryGetValue<int>("http://tizen.org/feature/screen.height", out screenHeight);
       log.Fatal(tag, $"Initialize= screenWidth {screenWidth}, screenHeight {screenHeight} ");
@@ -416,6 +419,9 @@ namespace Tizen.NUI.Samples
           return false;
         };
 
+        subWindow.SetTransparency(true);
+        subWindow.BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
         var root = new View()
         {
           Layout = new LinearLayout()
@@ -424,7 +430,6 @@ namespace Tizen.NUI.Samples
           },
           WidthResizePolicy = ResizePolicyType.FillToParent,
           HeightResizePolicy = ResizePolicyType.FillToParent,
-          BackgroundColor = Color.Brown,
         };
 
         var image = new ImageView()
@@ -451,6 +456,8 @@ namespace Tizen.NUI.Samples
         subWindow.KeyEvent += OnSubWindowKeyEvent;
         subWindow.MoveCompleted += OnSubWindowMoveCompleted;
         subWindow.ResizeCompleted += OnSubWindowResizeCompleted;
+
+        subWindow.BlurInfo = new WindowBlurInfo(WindowBlurType.Background, 10, 50);
       }
       else
       {
@@ -569,6 +576,14 @@ namespace Tizen.NUI.Samples
             break;
 
           case KEY_NUM_8:
+            WindowBlurInfo blurInfo = subWindow.BlurInfo;
+            log.Fatal(tag, $"blur type={blurInfo.BlurType}");
+            log.Fatal(tag, $"blur radius={blurInfo.BlurRadius}");
+            log.Fatal(tag, $"background Corner Radius={blurInfo.BackgroundCornerRadius}");
+            blurInfo.BlurType = WindowBlurType.Background;
+            blurInfo.BlurRadius += 10;
+            blurInfo.BackgroundCornerRadius += 10;
+            subWindow.BlurInfo = blurInfo;
             break;
 
           case KEY_NUM_9:
