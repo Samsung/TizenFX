@@ -783,7 +783,7 @@ namespace Tizen.NUI
         /// This is a desktop type. No other windows can be placed below this type of window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Desktop        
+        Desktop
     }
 
     /// <summary>
@@ -2293,5 +2293,24 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+    }
+
+    /// <summary>
+    /// Enumeration of window blur type.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum WindowBlurType
+    {
+        /// <summary>
+        /// None type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None = 0,
+        /// <summary>
+        /// background blur for the window.
+        /// It has a blur effect ot th background area of the window, making it appear blurred.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Background = 1,
     }
 }
