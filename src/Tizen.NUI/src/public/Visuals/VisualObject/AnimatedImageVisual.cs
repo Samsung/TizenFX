@@ -143,6 +143,28 @@ namespace Tizen.NUI.Visuals
         }
 
         /// <summary>
+        /// Gets and sets the speed factor for the AnimatedImageVisual frame rendering.
+        /// The default is 1.0f. If the number is less than 1.0f then it will play slower than normal case.
+        /// If the number is greater than 1.0f then it will play faster than normal case.
+        /// We will clamp the value between [0.01f 100.0f] internally.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FrameSpeedFactor
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.FrameSpeedFactor, new PropertyValue(value));
+            }
+            get
+            {
+                float ret = 1.0f;
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.FrameSpeedFactor);
+                propertyValue?.Get(out ret);
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Get the number of total frames.
         /// Or -1 if image is invalid, or not loaded yet.
         /// </summary>
