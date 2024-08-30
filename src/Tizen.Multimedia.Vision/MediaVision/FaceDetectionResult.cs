@@ -36,12 +36,14 @@ namespace Tizen.Multimedia.Vision
         /// Gets the confidence of detected face.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public float Confidence { get; }
 
         /// <summary>
         /// Gets the location of detected face.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Rectangle Location { get; }
     }
 }
