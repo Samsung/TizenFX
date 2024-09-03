@@ -40,15 +40,15 @@ namespace Tizen.Multimedia
         NsWithAgc,
 
         /// <summary>
-        /// Including reference source.
+        /// Includes the output sound from the reference device in the recorded audio.
         /// </summary>
         /// <remarks>
         /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
         /// </remarks>
-        ReferenceCopy = 4097, // 0x1001
+        ReferenceCopy = 0x1001,
 
         /// <summary>
-        /// AEC(Acoustic Echo Cancellation) with speex.
+        /// AEC (Acoustic Echo Cancellation) with Speex.
         /// </summary>
         /// <remarks>
         /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
@@ -56,7 +56,7 @@ namespace Tizen.Multimedia
         AecSpeex,
 
         /// <summary>
-        /// AEC(Acoustic Echo Cancellation) with webrtc.
+        /// AEC (Acoustic Echo Cancellation) with WebRTC.
         /// </summary>
         /// <remarks>
         /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
@@ -74,21 +74,26 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of <see cref="SoundEffectInfo"/>.
         /// </summary>
         /// <param name="type">The SoundEffectType.</param>
+        /// <exception cref="ArgumentException">Invalid input enum type.</exception>
         /// <since_tizen> 12 </since_tizen>
         public SoundEffectInfo(SoundEffectType type)
         {
+            ValidationUtil.ValidateEnum(typeof(SoundEffectType), type, nameof(type));
+
             Type = type;
             ReferenceDevice = null;
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="SoundEffectInfo"/>.
+        /// Initializes a new instance of <see cref="SoundEffectInfo"/> with a reference audio device.
         /// </summary>
         /// <param name="type">The SoundEffectType.</param>
         /// <param name="device">The AudioDevice to be refered.</param>
         /// <since_tizen> 12 </since_tizen>
         public SoundEffectInfo(SoundEffectType type, AudioDevice device)
         {
+            ValidationUtil.ValidateEnum(typeof(SoundEffectType), type, nameof(type));
+
             Type = type;
             ReferenceDevice = device;
         }
@@ -100,7 +105,7 @@ namespace Tizen.Multimedia
         public SoundEffectType Type { get; }
 
         /// <summary>
-        /// The AudioDevice using SoundEffect.
+        /// The AudioDevice used by the SoundEffect as additional source of audio data.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public AudioDevice ReferenceDevice { get; }
@@ -122,6 +127,8 @@ namespace Tizen.Multimedia
 
     internal static class EnumExtensions
     {
+        private const string Tag = "Tizen.Multimedia.AudioManager";
+
         internal static int ToNative(this SoundEffectType effect)
         {
             int ret = 0;
@@ -159,6 +166,7 @@ namespace Tizen.Multimedia
                     ret = 4;
                     break;
                 default:
+                    Log.Error(Tag, "Invalid sound effect type.");
                     break;
             }
 
@@ -187,6 +195,7 @@ namespace Tizen.Multimedia
                     ret = SoundEffectType.NsWithAgc;
                     break;
                 default:
+                    Log.Error(Tag, "Invalid sound effect type.");
                     break;
             }
 
@@ -216,6 +225,7 @@ namespace Tizen.Multimedia
                     ret = SoundEffectType.AecWebrtc;
                     break;
                 default:
+                    Log.Error(Tag, "Invalid sound effect type.");
                     break;
             }
 

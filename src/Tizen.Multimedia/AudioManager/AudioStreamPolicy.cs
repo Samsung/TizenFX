@@ -428,34 +428,33 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// If <paramref name="withReference"/> is true, <paramref name="info.Type"/> must be <see cref="SoundEffectType.ReferenceCopy"/> or
-        /// <see cref="SoundEffectType.AecSpeex"/> or <see cref="SoundEffectType.AecWebrtc"/>.<br/>
-        /// And <paramref name="info.ReferenceDevice"/> must not be null.
+        /// <see cref="SoundEffectType.AecSpeex"/> or <see cref="SoundEffectType.AecWebrtc"/>.
+        /// And <paramref name="info.ReferenceDevice"/> must not be null.<br/>
         /// If <paramref name="withReference"/> is false, <paramref name="info.Type"/> must be <see cref="SoundEffectType.NoiseSuppression"/> or
         /// <see cref="SoundEffectType.AutoGainControl"/> or <see cref="SoundEffectType.NsWithAgc"/>.
         /// </remarks>
-        /// <param name="info"><see cref="SoundEffectInfo"/>.</param>
+        /// <param name="info">See <see cref="SoundEffectInfo"/>.</param>
         /// <param name="withReference">A reference device for sound effect.</param>
-        /// <exception cref="ArgumentException">Invalid input enum type.</exception>
-        /// <exception cref="ArgumentNullException">A reference device is null.</exception>
-        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
-        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="withReference"/> is true, A reference device is null.</exception>
+        /// <exception cref="AudioPolicyException">The current <see cref="AudioStreamType"/> is not supported for sound effect with reference.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
         /// <since_tizen> 12 </since_tizen>
         public void SetSoundEffect(SoundEffectInfo info, bool withReference)
         {
-            ValidationUtil.ValidateEnum(typeof(SoundEffectInfo), info, nameof(info));
-
             if (withReference)
             {
                 var set = new SoundEffectType[] { SoundEffectType.ReferenceCopy, SoundEffectType.AecSpeex, SoundEffectType.AecWebrtc };
                 if (!set.Contains(info.Type))
                 {
+                    Log.Error(Tag, $"Type={info.Type} is not supported for setting with reference.");
                     throw new ArgumentException($"{info.Type} is not supported for setting with reference.");
                 }
                 if (info.ReferenceDevice == null)
                 {
                     throw new ArgumentNullException(nameof(info.ReferenceDevice));
                 }
+
+                Log.Info(Tag, $"{info.ReferenceDevice}");
 
                 Interop.AudioStreamPolicy.SetSoundEffectWithReference(Handle, (SoundEffectWithReferenceNative)info.Type.ToNative(),
                     info.ReferenceDevice.Handle).ThrowIfError("Failed to set audio effect with reference");
@@ -484,6 +483,7 @@ namespace Tizen.Multimedia
         /// - or -<br/>
         /// There's no matched AudioDevice.
         /// </exception>
+        /// <exception cref="InvalidOperationException">Sound effect is not set yet.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
         /// <since_tizen> 12 </since_tizen>
         public SoundEffectInfo GetSoundEffect(bool withReference)
@@ -501,6 +501,7 @@ namespace Tizen.Multimedia
                 }
                 ret.ThrowIfError("Failed to get sound effect with reference");
 
+                Log.Info(Tag, $"Device ID : {deviceId}");
 
                 soundEffectInfo = new SoundEffectInfo(nativeEffect.ToPublic(),
                     AudioManager.GetConnectedDevices().Where(d => d.Id == deviceId).Single());
