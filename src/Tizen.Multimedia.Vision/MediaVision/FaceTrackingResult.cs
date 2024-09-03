@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents the result of face tracking operation.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceTrackingResult
     {
         internal FaceTrackingResult(bool success, double confidence, Quadrangle region)
@@ -33,12 +36,14 @@ namespace Tizen.Multimedia.Vision
         /// Gets the value indicating the tracking is successful.
         /// </summary>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public bool Success { get; }
 
         /// <summary>
         /// Gets the region which determines the new position of the tracked face on the source.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Quadrangle Region { get; }
 
         /// <summary>
@@ -46,6 +51,7 @@ namespace Tizen.Multimedia.Vision
         /// (value from 0.0 to 1.0). If no location was determined during the last track iteration, then the value is 0.0.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double Confidence { get; }
     }
 }

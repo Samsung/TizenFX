@@ -25,6 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to recognize images on image sources.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class ImageRecognizer
     {
         /// <summary>
@@ -45,6 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
         /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(
             MediaVisionSource source, ImageObject[] imageObjects)
         {
@@ -74,6 +76,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(MediaVisionSource source,
             ImageObject[] imageObjects, ImageRecognitionConfiguration config)
         {
