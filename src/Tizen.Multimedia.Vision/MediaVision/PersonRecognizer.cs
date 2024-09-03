@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="PersonRecognitionConfiguration"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class PersonRecognizer : SurveillanceEngine
     {
         private const string KeyCount = "NUMBER_OF_PERSONS";
@@ -40,6 +41,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public PersonRecognizer() : base(PersonRecognizedEventType)
         {
 
@@ -51,6 +53,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         /// <seealso cref="PersonRecognitionConfiguration.FaceRecognitionModelPath"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public event EventHandler<PersonRecognizedEventArgs> Recognized;
 
         private void RegisterEvent()
@@ -114,6 +117,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The model file is not supported format or file.</exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void AddSource(SurveillanceSource source, PersonRecognitionConfiguration config)
         {
             if (config == null)

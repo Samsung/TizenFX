@@ -24,6 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class MovementDetectionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyThreshold = "MV_SURVEILLANCE_MOVEMENT_DETECTION_THRESHOLD";
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// A read-only field that represents the default value of <see cref="Threshold"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly int DefaultThreshold = 10;
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public MovementDetectionConfiguration()
         {
         }
@@ -61,6 +64,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="value"/> is greater than 255.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int Threshold
         {
             get

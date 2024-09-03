@@ -35,50 +35,50 @@ internal static partial class Interop
         {
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_recognize")]
             internal static extern MediaVisionError Recognize(IntPtr source, IntPtr[] imageObjects,
-                int numberOfObjects, IntPtr engineCfg, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr));
+                int numberOfObjects, IntPtr engineCfg, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_track")]
             internal static extern MediaVisionError Track(IntPtr source, IntPtr imageTrackingModel,
-                IntPtr engineCfg, TrackedCallback trackedCb, IntPtr userData = default(IntPtr));
+                IntPtr engineCfg, TrackedCallback trackedCb, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_create")]
-            internal static extern MediaVisionError Create(out IntPtr handle);
+            internal static extern MediaVisionError Create(out IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_destroy")]
-            internal static extern int Destroy(IntPtr handle);
+            internal static extern int Destroy(IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_fill")]
-            internal static extern MediaVisionError Fill(IntPtr handle, IntPtr engineCfg, IntPtr source, ref Rectangle location);
+            internal static extern MediaVisionError Fill(IntPtr handle, IntPtr engineCfg, IntPtr source, ref Rectangle location); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_fill")]
-            internal static extern MediaVisionError Fill(IntPtr handle, IntPtr engineCfg, IntPtr source, IntPtr location);
+            internal static extern MediaVisionError Fill(IntPtr handle, IntPtr engineCfg, IntPtr source, IntPtr location); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_get_recognition_rate")]
-            internal static extern MediaVisionError GetRecognitionRate(IntPtr handle, out double recognitionRate);
+            internal static extern MediaVisionError GetRecognitionRate(IntPtr handle, out double recognitionRate); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_set_label")]
-            internal static extern MediaVisionError SetLabel(IntPtr handle, int label);
+            internal static extern MediaVisionError SetLabel(IntPtr handle, int label); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_get_label")]
-            internal static extern MediaVisionError GetLabel(IntPtr handle, out int label);
+            internal static extern MediaVisionError GetLabel(IntPtr handle, out int label); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_clone")]
-            internal static extern int Clone(IntPtr src, out IntPtr dst);
+            internal static extern int Clone(IntPtr src, out IntPtr dst); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_save")]
-            internal static extern MediaVisionError Save(string fileName, IntPtr handle);
+            internal static extern MediaVisionError Save(string fileName, IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_object_load")]
-            internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr handle); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void RecognizedCallback(IntPtr source, IntPtr engineCfg, IntPtr imageObjects,
                 [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 4)]
-                IntPtr[] locations, uint numberOfObjects, IntPtr userData);
+                IntPtr[] locations, uint numberOfObjects, IntPtr userData); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void TrackedCallback(IntPtr source, IntPtr imageTrackingModel,
-                IntPtr engineCfg, IntPtr location, IntPtr userData);
+                IntPtr engineCfg, IntPtr location, IntPtr userData); // Deprecated in API 12
         }
 
         /// <summary>
@@ -87,25 +87,25 @@ internal static partial class Interop
         internal static partial class ImageTrackingModel
         {
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_create")]
-            internal static extern MediaVisionError Create(out IntPtr imageTrackingModel);
+            internal static extern MediaVisionError Create(out IntPtr imageTrackingModel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_set_target")]
-            internal static extern MediaVisionError SetTarget(IntPtr handle, IntPtr imageTrackingModel);
+            internal static extern MediaVisionError SetTarget(IntPtr handle, IntPtr imageTrackingModel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_destroy")]
-            internal static extern int Destroy(IntPtr imageTrackingModel);
+            internal static extern int Destroy(IntPtr imageTrackingModel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_refresh")]
-            internal static extern MediaVisionError Refresh(IntPtr imageTrackingModel, IntPtr engineCfg);
+            internal static extern MediaVisionError Refresh(IntPtr imageTrackingModel, IntPtr engineCfg); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_clone")]
-            internal static extern int Clone(IntPtr src, out IntPtr dest);
+            internal static extern int Clone(IntPtr src, out IntPtr dest); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_save")]
-            internal static extern MediaVisionError Save(string fileName, IntPtr imageTrackingModel);
+            internal static extern MediaVisionError Save(string fileName, IntPtr imageTrackingModel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionImage, EntryPoint = "mv_image_tracking_model_load")]
-            internal static extern MediaVisionError Load(string fileName, out IntPtr imageTrackingModel);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr imageTrackingModel); // Deprecated in API 12
         }
     }
 }
