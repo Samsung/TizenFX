@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to classify image objects on image source using inference engine.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class ImageClassifier
     {
         /// <summary>
@@ -47,6 +48,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<IEnumerable<ImageClassificationResult>> ClassifyAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {

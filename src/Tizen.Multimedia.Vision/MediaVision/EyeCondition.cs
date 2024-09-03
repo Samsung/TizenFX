@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Specifies the eyes state types.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public enum EyeCondition
     {
         /// <summary>
