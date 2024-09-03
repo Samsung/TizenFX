@@ -95,7 +95,8 @@ Inherits Widget.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Naviframe : Widget, IAccessibleObject</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public class Naviframe : Widget, IAccessibleObject</code></pre>
   </div>
 
 
@@ -133,7 +134,8 @@ Inherits Widget.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Naviframe(EvasObject parent)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Naviframe(EvasObject parent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -169,7 +171,8 @@ Inherits Widget.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool DefaultBackButtonEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool DefaultBackButtonEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -200,7 +203,8 @@ Inherits Widget.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;NaviItem&gt; NavigationStack { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public IReadOnlyList&lt;NaviItem&gt; NavigationStack { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,7 +216,7 @@ Inherits Widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="ElmSharp.NaviItem.html">NaviItem</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyList&lt;T&gt;</span>&lt;<a class="xref" href="ElmSharp.NaviItem.html">NaviItem</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -231,7 +235,8 @@ Inherits Widget.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool PreserveContentOnPop { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool PreserveContentOnPop { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -264,7 +269,8 @@ Inherits Widget.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -294,7 +300,7 @@ Inherits Widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><p>Handle IntPtr.</p>
 </td>
       </tr>
@@ -316,7 +322,8 @@ Inherits Widget.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -385,7 +392,8 @@ The style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem InsertAfter(NaviItem after, EvasObject content, string title)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem InsertAfter(NaviItem after, EvasObject content, string title)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -448,7 +456,8 @@ The title is &quot;&quot; and the style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem InsertAfter(NaviItem after, EvasObject content)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem InsertAfter(NaviItem after, EvasObject content)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -504,7 +513,8 @@ The title is &quot;&quot; and the style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -573,7 +583,8 @@ The style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem InsertBefore(NaviItem before, EvasObject content, string title)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem InsertBefore(NaviItem before, EvasObject content, string title)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -636,7 +647,8 @@ The title is &quot;&quot; and the style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem InsertBefore(NaviItem before, EvasObject content)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem InsertBefore(NaviItem before, EvasObject content)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -692,7 +704,8 @@ The title is &quot;&quot; and the style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Pop()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public void Pop()</code></pre>
   </div>
 
 
@@ -708,7 +721,8 @@ The title is &quot;&quot; and the style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem Push(EvasObject content, string title, string style)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem Push(EvasObject content, string title, string style)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -771,7 +785,8 @@ The style is null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem Push(EvasObject content, string title)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem Push(EvasObject content, string title)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -827,7 +842,8 @@ The title and style are null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NaviItem Push(EvasObject content)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NaviItem Push(EvasObject content)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -878,7 +894,8 @@ The title and style are null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler AnimationFinished</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler AnimationFinished</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -890,7 +907,7 @@ The title and style are null.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -908,7 +925,8 @@ The title and style are null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;NaviframeEventArgs&gt; Popped</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler&lt;NaviframeEventArgs&gt; Popped</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -920,7 +938,7 @@ The title and style are null.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="ElmSharp.NaviframeEventArgs.html">NaviframeEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.NaviframeEventArgs.html">NaviframeEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -951,27 +969,6 @@ After calling the Popped event, the Pop/Delete method will be returned.</p>
   </div>
   <div>
       <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_RemoveRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.RemoveRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

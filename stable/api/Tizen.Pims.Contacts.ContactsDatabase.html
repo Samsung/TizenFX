@@ -227,7 +227,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsDatabase.cs/#L811">View Source</a>
   </span>
   <a id="Tizen_Pims_Contacts_ContactsDatabase_AddDBChangedEventHandler_" data-uid="Tizen.Pims.Contacts.ContactsDatabase.AddDBChangedEventHandler*"></a>
-  <h4 id="Tizen_Pims_Contacts_ContactsDatabase_AddDBChangedEventHandler_System_String_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs__" data-uid="Tizen.Pims.Contacts.ContactsDatabase.AddDBChangedEventHandler(System.String,EventHandler{Tizen.Pims.Contacts.DBChangedEventArgs})">AddDBChangedEventHandler(string, EventHandler&lt;DBChangedEventArgs&gt;)</h4>
+  <h4 id="Tizen_Pims_Contacts_ContactsDatabase_AddDBChangedEventHandler_System_String_System_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs__" data-uid="Tizen.Pims.Contacts.ContactsDatabase.AddDBChangedEventHandler(System.String,System.EventHandler{Tizen.Pims.Contacts.DBChangedEventArgs})">AddDBChangedEventHandler(string, EventHandler&lt;DBChangedEventArgs&gt;)</h4>
   <div class="markdown level1 summary"><p>Registers an EventHandler to be invoked when a record changes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -252,16 +252,52 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Pims.Contacts.DBChangedEventArgs.html">DBChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Pims.Contacts.DBChangedEventArgs.html">DBChangedEventArgs</a>&gt;</td>
         <td><span class="parametername">DBChanged</span></td>
         <td><p>The EventHandler to register.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Pims_Contacts_ContactsDatabase_AddDBChangedEventHandler_System_String_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs___remarks">Remarks</h5>
+  <h5 id="Tizen_Pims_Contacts_ContactsDatabase_AddDBChangedEventHandler_System_String_System_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -305,6 +341,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Delete_System_String_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -348,6 +420,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Delete_System_String_System_Int32____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -407,6 +515,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Get_System_String_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -472,6 +616,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_GetAll_System_String_System_Int32_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -543,6 +723,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_GetChangesByVersion_System_String_System_Int32_System_Int32_System_Int32___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -714,6 +930,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_GetRecordsWithQuery_Tizen_Pims_Contacts_ContactsQuery_System_Int32_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -767,6 +1019,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Insert_Tizen_Pims_Contacts_ContactsList__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -820,6 +1108,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Insert_Tizen_Pims_Contacts_ContactsRecord__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -828,7 +1152,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsDatabase.cs/#L848">View Source</a>
   </span>
   <a id="Tizen_Pims_Contacts_ContactsDatabase_RemoveDBChangedEventHandler_" data-uid="Tizen.Pims.Contacts.ContactsDatabase.RemoveDBChangedEventHandler*"></a>
-  <h4 id="Tizen_Pims_Contacts_ContactsDatabase_RemoveDBChangedEventHandler_System_String_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs__" data-uid="Tizen.Pims.Contacts.ContactsDatabase.RemoveDBChangedEventHandler(System.String,EventHandler{Tizen.Pims.Contacts.DBChangedEventArgs})">RemoveDBChangedEventHandler(string, EventHandler&lt;DBChangedEventArgs&gt;)</h4>
+  <h4 id="Tizen_Pims_Contacts_ContactsDatabase_RemoveDBChangedEventHandler_System_String_System_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs__" data-uid="Tizen.Pims.Contacts.ContactsDatabase.RemoveDBChangedEventHandler(System.String,System.EventHandler{Tizen.Pims.Contacts.DBChangedEventArgs})">RemoveDBChangedEventHandler(string, EventHandler&lt;DBChangedEventArgs&gt;)</h4>
   <div class="markdown level1 summary"><p>Deregisters an EventHandler.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -853,16 +1177,47 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Pims.Contacts.DBChangedEventArgs.html">DBChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Pims.Contacts.DBChangedEventArgs.html">DBChangedEventArgs</a>&gt;</td>
         <td><span class="parametername">DBChanged</span></td>
         <td><p>The EventHandler to deregister.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Pims_Contacts_ContactsDatabase_RemoveDBChangedEventHandler_System_String_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs___remarks">Remarks</h5>
+  <h5 id="Tizen_Pims_Contacts_ContactsDatabase_RemoveDBChangedEventHandler_System_String_System_EventHandler_Tizen_Pims_Contacts_DBChangedEventArgs___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -906,6 +1261,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Replace_Tizen_Pims_Contacts_ContactsList_System_Int32____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -949,6 +1340,42 @@
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Replace_Tizen_Pims_Contacts_ContactsRecord_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1046,6 +1473,42 @@
 Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, PersonGroupNotAssigned, PersonNumber, and PersonEmail,
 Because the start match and end match are needed to be composed with a keyword, this API performance is lower than Search (string viewUri, string keyword, int offset, int limit, int range).</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1124,6 +1587,42 @@ Because the start match and end match are needed to be composed with a keyword, 
   <div class="markdown level1 remarks"><p>This API works only for the views below:
 Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, PersonGroupNotAssigned, PersonNumber, and PersonEmail.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1215,6 +1714,42 @@ Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, PersonGroupNotA
 Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroupNotAssigned.
 Because the start match and end match are needed to be composed with a keyword, this API performance is lower than Search (string viewUri, string keyword, int offset, int limit).</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1287,6 +1822,42 @@ Because the start match and end match are needed to be composed with a keyword, 
   <div class="markdown level1 remarks"><p>This API works only for the views below:
 Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroupNotAssigned.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1378,6 +1949,42 @@ Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroup
 Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroupNotAssigned.
 Because the start match and end match are needed to be composed with a keyword, this API performance is lower than Search (ContactsQuery query, string keyword, int offset, int limit).</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1450,6 +2057,42 @@ Because the start match and end match are needed to be composed with a keyword, 
   <div class="markdown level1 remarks"><p>This API works only for the views below:
 Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroupNotAssigned.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1487,6 +2130,42 @@ Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroup
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Update_Tizen_Pims_Contacts_ContactsList__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1524,6 +2203,42 @@ Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroup
   <h5 id="Tizen_Pims_Contacts_ContactsDatabase_Update_Tizen_Pims_Contacts_ContactsRecord__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This class allows the user to access/create/update database operations for the contacts information.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have proper privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1551,7 +2266,7 @@ Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroup
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Pims.Contacts.DBStatusChangedEventArgs.html">DBStatusChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Pims.Contacts.DBStatusChangedEventArgs.html">DBStatusChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1563,28 +2278,6 @@ Person, PersonContact, PersonGroupRelation, PersonGroupAssigned, and PersonGroup
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
 </article>
           </div>
 

@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FaceTrackingModel : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public class FaceTrackingModel : IDisposable</code></pre>
   </div>
 
 
@@ -110,11 +111,17 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L38">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L39">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel__ctor_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.#ctor*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel__ctor" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.#ctor">FaceTrackingModel()</h4>
@@ -123,14 +130,31 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FaceTrackingModel()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public FaceTrackingModel()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L60">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L62">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel__ctor_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.#ctor*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel__ctor_System_String_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.#ctor(System.String)">FaceTrackingModel(string)</h4>
@@ -139,7 +163,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FaceTrackingModel(string modelPath)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public FaceTrackingModel(string modelPath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -162,6 +187,39 @@
   <h5 id="Tizen_Multimedia_Vision_FaceTrackingModel__ctor_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Models saved by <a class="xref" href="Tizen.Multimedia.Vision.FaceTrackingModel.html#Tizen_Multimedia_Vision_FaceTrackingModel_Save_System_String_">Save(string)</a> can be loaded.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">modelPath</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">modelPath</code> is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">modelPath</code> is not supported format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>No permission to access the specified file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_FaceTrackingModel__ctor_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.FaceTrackingModel.html#Tizen_Multimedia_Vision_FaceTrackingModel_Save_System_String_">Save(string)</a></div>
@@ -173,7 +231,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L152">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L157">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel_Dispose_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Dispose*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel_Dispose" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Dispose">Dispose()</h4>
@@ -182,14 +240,15 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public void Dispose()</code></pre>
   </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L165">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L171">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel_Dispose_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Dispose*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -198,7 +257,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -223,7 +283,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel_Finalize_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Finalize*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel_Finalize" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Finalize">~FaceTrackingModel()</h4>
@@ -239,7 +299,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L112">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L115">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel_Prepare_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Prepare*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel_Prepare_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_Quadrangle_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Prepare(Tizen.Multimedia.Vision.MediaVisionSource,Tizen.Multimedia.Vision.Quadrangle)">Prepare(MediaVisionSource, Quadrangle)</h4>
@@ -252,7 +312,8 @@ between tracking sessions to allow Media Vision start to track more accurately.<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Prepare(MediaVisionSource source, Quadrangle region)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public void Prepare(MediaVisionSource source, Quadrangle region)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -285,12 +346,35 @@ If null, then tracking model will try to find previously tracked face by itself.
   <div class="markdown level1 remarks"><p><code data-dev-comment-type="paramref" class="paramref">region</code> needs to be the position of the face to be tracked when called first time for the tracking model.
 <code data-dev-comment-type="paramref" class="paramref">region</code> is fitted to the valid region of <code data-dev-comment-type="paramref" class="paramref">source</code> if <code data-dev-comment-type="paramref" class="paramref">region</code> has invalid points.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceTrackingModel.html">FaceTrackingModel</a> has already been disposed of.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">source</code> has already bean disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L131">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/FaceTrackingModel.cs/#L135">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_FaceTrackingModel_Save_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Save*"></a>
   <h4 id="Tizen_Multimedia_Vision_FaceTrackingModel_Save_System_String_" data-uid="Tizen.Multimedia.Vision.FaceTrackingModel.Save(System.String)">Save(string)</h4>
@@ -299,7 +383,8 @@ If null, then tracking model will try to find previously tracked face by itself.
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Save(string path)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
+public void Save(string path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -319,31 +404,44 @@ If null, then tracking model will try to find previously tracked face by itself.
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>No permission to write to the specified path.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceTrackingModel.html">FaceTrackingModel</a> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.DirectoryNotFoundException</span></td>
+        <td><p>The directory for <code data-dev-comment-type="paramref" class="paramref">path</code> does not exist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
