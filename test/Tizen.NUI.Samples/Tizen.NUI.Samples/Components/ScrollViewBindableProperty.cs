@@ -18,8 +18,9 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using global::System.Runtime.InteropServices;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// <summary>
     /// ScrollView contains views that can be scrolled manually (via touch).
@@ -34,7 +35,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
         
@@ -42,7 +43,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled).Get(out temp);
             return temp;
         }
         
@@ -54,7 +55,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
         
@@ -62,7 +63,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled).Get(out temp);
             return temp;
         }
         
@@ -74,7 +75,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
         
@@ -82,7 +83,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled).Get(out temp);
             return temp;
         }
         
@@ -94,7 +95,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -102,7 +103,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep).Get(temp);
             return temp;
         }
         
@@ -114,7 +115,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -122,7 +123,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition).Get(temp);
             return temp;
         }
         
@@ -134,7 +135,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -142,7 +143,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition).Get(temp);
             return temp;
         }
         
@@ -154,7 +155,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -162,7 +163,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax).Get(temp);
             return temp;
         }
         
@@ -174,7 +175,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }
         
@@ -182,7 +183,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX).Get(out temp);
             return temp;
         }
         
@@ -194,7 +195,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY, new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }
         
@@ -202,7 +203,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY).Get(out temp);
             return temp;
         }
         
@@ -214,7 +215,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -222,7 +223,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal).Get(temp);
             return temp;
         }
         
@@ -234,7 +235,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
         
@@ -242,7 +243,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP).Get(out temp);
             return temp;
         }
         
@@ -254,7 +255,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
         
@@ -262,7 +263,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING).Get(out temp);
             return temp;
         }
         
@@ -274,7 +275,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
         
@@ -282,7 +283,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
             return temp;
         }
         
@@ -294,7 +295,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -302,7 +303,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize).Get(temp);
             return temp;
         }
         
@@ -314,7 +315,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -322,7 +323,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset).Get(temp);
             return temp;
         }
         
@@ -334,7 +335,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
         
@@ -342,7 +343,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta).Get(temp);
             return temp;
         }
         
@@ -354,7 +355,7 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition, new Tizen.NUI.PropertyValue((Vector3)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition, new Tizen.NUI.PropertyValue((Vector3)newValue));
             }
         }
         
@@ -362,7 +363,7 @@ namespace Tizen.NUI
         {
             var scrollView = (ScrollView)bindable;
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition).Get(temp);
             return temp;
         }
         
@@ -374,14 +375,14 @@ namespace Tizen.NUI
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollMode, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollMode, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         }
         
         internal static object GetInternalScrollModeProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
-            PropertyValue value = Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollMode);
+            PropertyValue value = Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollMode);
             PropertyMap map = new PropertyMap();
             value.Get(map);
             return map;

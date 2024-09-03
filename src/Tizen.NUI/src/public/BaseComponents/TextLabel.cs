@@ -321,6 +321,92 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Requests asynchronous rendering of text with a fixed size.
+        /// </summary>
+        /// <param name="width">The width of text to render.</param>
+        /// <param name="height">The height of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncAuto and AsyncManual.<br />
+        /// If another request occurs before the requested render is completed, the previous request will be canceled.<br />
+        /// In AsyncAuto, the manual request is not canceled by an auto request caused by OnRealyout.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithFixedSize(float width, float height)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithFixedSize(SwigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests asynchronous text rendering with a fixed width.
+        /// </summary>
+        /// <param name="width">The width of text to render.</param>
+        /// <param name="heightConstraint">The maximum available height of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncAuto and AsyncManual.<br />
+        /// The height is determined by the content of the text when rendered with the given width.<br />
+        /// The result will be the same as the height returned by GetHeightForWidth.<br />
+        /// If the heightConstraint is given, the maximum height will be the heightConstraint.<br />
+        /// If another request occurs before the requested render is completed, the previous request will be canceled.<br />
+        /// In AsyncAuto, the manual request is not canceled by an auto request caused by OnRealyout.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithFixedWidth(float width, float heightConstraint = float.PositiveInfinity)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithFixedWidth(SwigCPtr, width, heightConstraint);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests asynchronous rendering with the maximum available width using the given widthConstraint.
+        /// </summary>
+        /// <param name="widthConstraint">The maximum available width of text to render.</param>
+        /// <param name="heightConstraint">The maximum available height of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncAuto and AsyncManual.<br />
+        /// If the width of the text content is smaller than the widthConstraint, the width will be determined by the width of the text.<br />
+        /// If the width of the text content is larger than the widthConstraint, the width will be determined by the widthConstraint.<br />
+        /// The height is determined by the content of the text when rendered with the given width.<br />
+        /// In this case, the result will be the same as the height returned by GetHeightForWidth.<br />
+        /// If the heightConstraint is given, the maximum height will be the heightConstraint.<br />
+        /// If another request occurs before the requested render is completed, the previous request will be canceled.<br />
+        /// In AsyncAuto, the manual request is not canceled by an auto request caused by OnRealyout.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithConstraint(float widthConstraint, float heightConstraint = float.PositiveInfinity)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithConstraint(SwigCPtr, widthConstraint, heightConstraint);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests asynchronous text natural size computation.
+        /// </summary>
+        /// <remarks>
+        /// If another request occurs before the requested natural size computation is completed, the previous request will be canceled.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncNaturalSize()
+        {
+            Interop.TextLabel.RequestAsyncNaturalSize(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests asynchronous computation of the height of the text based on the given width.
+        /// </summary>
+        /// <param name="width">The width of text to compute.</param>
+        /// <remarks>
+        /// If another request occurs before the requested height for width computation is completed, the previous request will be canceled.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncHeightForWidth(float width)
+        {
+            Interop.TextLabel.RequestAsyncHeightForWidth(SwigCPtr, width);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -2511,6 +2597,74 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The RenderMode property.
+        /// </summary>
+        /// <remarks>
+        /// Sync : default, synchronous text loading.<br />
+        /// AsyncAuto : automatically requests an asynchronous text load in OnRelayout.<br />
+        /// AsyncManual : users should manually request rendering using the async text method.<br />
+        /// All text rendering processes (update/layout/render) are performed asynchronously in AsyncAuto and AsyncManual.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextRenderMode RenderMode
+        {
+            get
+            {
+                return (TextRenderMode)Object.InternalGetPropertyInt(this.SwigCPtr, TextLabel.Property.RenderMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(this.SwigCPtr, TextLabel.Property.RenderMode, (int)value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether the last async rendering result is a manual render. <br />
+        /// If it's false, the render result was automatically requested by OnRelayout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ManualRendered
+        {
+            get
+            {
+                bool manualRendered = false;
+                using (var propertyValue = GetProperty(TextLabel.Property.ManualRendered))
+                {
+                    propertyValue.Get(out manualRendered);
+                }
+                return manualRendered;
+            }
+        }
+
+        /// <summary>
+        /// Number of lines after latest asynchronous computing or rendering of text.
+        /// </summary>
+        /// <example>
+        /// The following example demonstrates how to obtain the LineCount asynchronously.
+        /// <code>
+        /// label.RequestAsyncHeightForWidth(label.Size.Width);
+        /// label.AsyncHeightForWidthComputed += (s, e) =>
+        /// {
+        ///    int lineCount = label.AsyncLineCount;
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int AsyncLineCount
+        {
+            get
+            {
+                int asyncLineCount = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.AsyncLineCount))
+                {
+                    propertyValue.Get(out asyncLineCount);
+                }
+                return asyncLineCount;
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -2568,9 +2722,32 @@ namespace Tizen.NUI.BaseComponents
 
             if (this.HasBody())
             {
+                if (textLabelAnchorClickedCallbackDelegate != null)
+                {
+                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
+                }
+
                 if (textLabelTextFitChangedCallbackDelegate != null)
                 {
                     TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                }
+
+                if (textLabelAsyncTextRenderedCallbackDelegate != null)
+                {
+                    Interop.TextLabel.AsyncTextRenderedDisconnect(this.SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
+                    textLabelAsyncTextRenderedCallbackDelegate = null;
+                }
+
+                if (textLabelAsyncNaturalSizeComputedCallbackDelegate != null)
+                {
+                    Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(this.SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
+                }
+
+                if (textLabelAsyncHeightForWidthComputedCallbackDelegate != null)
+                {
+                    Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(this.SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
                 }
             }
 
@@ -2737,6 +2914,9 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RemoveFrontInset = Interop.TextLabel.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
+            internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
+            internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
+            internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
 
 
             internal static void Preload()

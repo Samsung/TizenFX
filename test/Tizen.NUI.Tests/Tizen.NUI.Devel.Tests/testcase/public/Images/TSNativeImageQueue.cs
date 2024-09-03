@@ -42,7 +42,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
 			{
-                var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.RGBA8888);
+                var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.BGRA8888);
                 Assert.IsNotNull(testingTarget, "Can't create success object NativeImageQueue");
                 Assert.IsInstanceOf<NativeImageQueue>(testingTarget, "Should be an instance of NativeImageQueue type.");
             
@@ -130,7 +130,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"NativeImageQueueDequeueBuffer START");
 
-            var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.RGBA8888);
+            var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.BGRA8888);
             Assert.IsNotNull(testingTarget, "Can't create success object NativeImageQueue");
             Assert.IsInstanceOf<NativeImageQueue>(testingTarget, "Should be an instance of NativeImageQueue type.");
 
@@ -162,7 +162,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"NativeImageQueueEnqueueBuffer START");
 
-            var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.RGBA8888);
+            var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.BGRA8888);
             Assert.IsNotNull(testingTarget, "Can't create success object NativeImageQueue");
             Assert.IsInstanceOf<NativeImageQueue>(testingTarget, "Should be an instance of NativeImageQueue type.");
 
