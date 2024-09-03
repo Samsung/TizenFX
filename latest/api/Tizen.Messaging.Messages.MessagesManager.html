@@ -94,8 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
-public static class MessagesManager</code></pre>
+    <pre><code class="lang-csharp hljs">public static class MessagesManager</code></pre>
   </div>
 
 
@@ -124,8 +123,7 @@ public static class MessagesManager</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
-public static Task&lt;IEnumerable&lt;Message&gt;&gt; SearchMessageAsync(MessagesSearchFilter filter)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;Message&gt;&gt; SearchMessageAsync(MessagesSearchFilter filter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -155,44 +153,8 @@ public static Task&lt;IEnumerable&lt;Message&gt;&gt; SearchMessageAsync(Messages
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.Message.html">Message</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.Message.html">Message</a>&gt;&gt;</td>
         <td><p>A task containing the messages, which match the search filter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the message service is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when input coordinates are invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when failed due to out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have proper privileges.</p>
 </td>
       </tr>
     </tbody>
@@ -211,8 +173,7 @@ public static Task&lt;IEnumerable&lt;Message&gt;&gt; SearchMessageAsync(Messages
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
-public static Task&lt;SentResult&gt; SendMessageAsync(Message message, bool saveToSentbox)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;SentResult&gt; SendMessageAsync(Message message, bool saveToSentbox)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -248,39 +209,8 @@ public static Task&lt;SentResult&gt; SendMessageAsync(Message message, bool save
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.SentResult.html">SentResult</a>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.SentResult.html">SentResult</a>&gt;</td>
         <td><p>A task containing the result of message sending.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the message service is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when input coordinates are invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have proper privileges.</p>
 </td>
       </tr>
     </tbody>
@@ -300,8 +230,7 @@ public static Task&lt;SentResult&gt; SendMessageAsync(Message message, bool save
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
-public static event EventHandler&lt;MessageReceivedEventArgs&gt; MessageReceived</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;MessageReceivedEventArgs&gt; MessageReceived</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -313,7 +242,7 @@ public static event EventHandler&lt;MessageReceivedEventArgs&gt; MessageReceived
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.MessageReceivedEventArgs.html">MessageReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Messages.MessageReceivedEventArgs.html">MessageReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

@@ -157,29 +157,6 @@ with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html"
   <h5 id="Tizen_Multimedia_MediaStreamSource__ctor_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_VideoMediaFormat__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>AAC and H.264 are supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Both <code data-dev-comment-type="paramref" class="paramref">audioMediaFormat</code> and <code data-dev-comment-type="paramref" class="paramref">videoMediaFormat</code> are null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">audioMediaFormat</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">videoMediaFormat</code> is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_MediaStreamSource__ctor_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_VideoMediaFormat__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.MediaStreamSource.html#Tizen_Multimedia_MediaStreamSource_SupportedAudioTypes">SupportedAudioTypes</a></div>
@@ -222,27 +199,6 @@ with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html"
   <h5 id="Tizen_Multimedia_MediaStreamSource__ctor_Tizen_Multimedia_AudioMediaFormat__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>AAC is supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">audioMediaFormat</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">audioMediaFormat</code> is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_MediaStreamSource__ctor_Tizen_Multimedia_AudioMediaFormat__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.MediaStreamSource.html#Tizen_Multimedia_MediaStreamSource_SupportedAudioTypes">SupportedAudioTypes</a></div>
@@ -284,27 +240,6 @@ with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html"
   <h5 id="Tizen_Multimedia_MediaStreamSource__ctor_Tizen_Multimedia_VideoMediaFormat__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>H.264 is supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoMediaFormat</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoMediaFormat</code> is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_MediaStreamSource__ctor_Tizen_Multimedia_VideoMediaFormat__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.MediaStreamSource.html#Tizen_Multimedia_MediaStreamSource_SupportedVideoTypes">SupportedVideoTypes</a></div>
@@ -413,7 +348,7 @@ with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html"
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -451,7 +386,7 @@ with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html"
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatVideoMimeType.html">MediaFormatVideoMimeType</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatVideoMimeType.html">MediaFormatVideoMimeType</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -551,30 +486,6 @@ with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html"
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This source is not set as a source to a player.<br>
--or-<br>
-The player is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">packet</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">packet</code> has been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">packet</code> is neither video nor audio type.<br>
--or-<br>
-The format of packet is not matched with the specified format in the constructor.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.NoBufferSpaceException.html">NoBufferSpaceException</a></td>
         <td><p>The internal buffer has reached its limits.</p>
 </td>
@@ -591,6 +502,28 @@ The format of packet is not matched with the specified format in the constructor
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>

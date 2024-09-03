@@ -1,0 +1,1140 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PhysicsAdaptor
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PhysicsAdaptor
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor">
+
+
+  <h1 id="Tizen_NUI_Physics2D_PhysicsAdaptor" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor" class="text-break">Class PhysicsAdaptor
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Adaptor to manage access to the physics world and pairing actors and physics
+bodies, plus some translation methods to/from the physics space and dali space.</p>
+<p>Also manages a debug renderer that may utilize the physics engine debug.
+It is up to the developer to retrieve the root actor and parent it into the scene.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PhysicsAdaptor : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div><span class="xref">PhysicsAdaptor</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor__ctor_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor__ctor_Tizen_NUI_Matrix_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.#ctor(Tizen.NUI.Matrix,Tizen.NUI.Vector2)">PhysicsAdaptor(Matrix, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Initialize the physics system.</p>
+<param name="transform"> Transformation matrix from NUI space to the Physics Space
+<param name="size">Size of the root layer that the adaptor creates
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PhysicsAdaptor(Matrix transform, Vector2 size)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L85">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor__ctor_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor__ctor_Tizen_NUI_Physics2D_PhysicsAdaptor_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.#ctor(Tizen.NUI.Physics2D.PhysicsAdaptor)">PhysicsAdaptor(PhysicsAdaptor)</h4>
+  <div class="markdown level1 summary"><p>Copy Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PhysicsAdaptor(PhysicsAdaptor adaptor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.PhysicsAdaptor.html">PhysicsAdaptor</a></td>
+        <td><span class="parametername">adaptor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L191">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_DebugState_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.DebugState*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_DebugState" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.DebugState">DebugState</h4>
+  <div class="markdown level1 summary"><p>Property to handle the debug state of the adaptor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DebugState DebugState { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.DebugState.html">DebugState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L162">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_IntegrationState_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.IntegrationState*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_IntegrationState" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.IntegrationState">IntegrationState</h4>
+  <div class="markdown level1 summary"><p>Property to handle the IntegrationState of the adaptor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntegrationState IntegrationState { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.IntegrationState.html">IntegrationState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L132">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_Timestep_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.Timestep*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_Timestep" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.Timestep">Timestep</h4>
+  <div class="markdown level1 summary"><p>The time that the integration step notionally takes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Timestep { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L249">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_AddViewToBody_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.AddViewToBody*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_AddViewToBody_Tizen_NUI_BaseComponents_View_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.AddViewToBody(Tizen.NUI.BaseComponents.View,Tizen.NUI.Physics2D.Chipmunk.Body)">AddViewToBody(View, Body)</h4>
+  <div class="markdown level1 summary"><p>Add a view to the body. The view will be used to render the body. It is parented onto the root layer.
+The physics body should be added to the physics space by the user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PhysicsActor AddViewToBody(View view, Body body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.PhysicsActor.html">PhysicsActor</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L317">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_BuildPickingRay_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.BuildPickingRay*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_BuildPickingRay_Tizen_NUI_Vector3_Tizen_NUI_Vector3_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.BuildPickingRay(Tizen.NUI.Vector3,Tizen.NUI.Vector3,Tizen.NUI.Vector3,Tizen.NUI.Vector3)">BuildPickingRay(Vector3, Vector3, Vector3, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Convert a touch point into a picking ray in the Physics space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BuildPickingRay(Vector3 origin, Vector3 direction, Vector3 rayFromWorld, Vector3 rayToWorld)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">origin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">rayFromWorld</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">rayToWorld</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L402">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_ConvertVectorFromPhysicsSpace_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ConvertVectorFromPhysicsSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_ConvertVectorFromPhysicsSpace_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ConvertVectorFromPhysicsSpace(Tizen.NUI.Vector3)">ConvertVectorFromPhysicsSpace(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Converts a vector (not a point) in physics space to NUI space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 ConvertVectorFromPhysicsSpace(Vector3 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L390">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_ConvertVectorToPhysicsSpace_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ConvertVectorToPhysicsSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_ConvertVectorToPhysicsSpace_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ConvertVectorToPhysicsSpace(Tizen.NUI.Vector3)">ConvertVectorToPhysicsSpace(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Converts a vector (not a point) in NUI space to Physics space</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 ConvertVectorToPhysicsSpace(Vector3 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L416">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_CreateDebugLayer_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.CreateDebugLayer*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_CreateDebugLayer_Tizen_NUI_Window_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.CreateDebugLayer(Tizen.NUI.Window)">CreateDebugLayer(Window)</h4>
+  <div class="markdown level1 summary"><p>The debug layer uses a drawable actor and the debug features of the native physics engine
+to render any debug graphics for the physics bodies.
+This layer needs to be created before setting the DebugState has any effect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Layer CreateDebugLayer(Window window)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><span class="parametername">window</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L429">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_CreateSyncPoint_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.CreateSyncPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_CreateSyncPoint" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.CreateSyncPoint">CreateSyncPoint()</h4>
+  <div class="markdown level1 summary"><p>A sync point is necessary to synchronize Async calls in the update thread.
+Any use of the PhysicsActor.AsyncNNN calls will require this API to be called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateSyncPoint()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L105">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_Dispose_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>Dispose the PhysicsAdaptor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose_Tizen_NUI_DisposeTypes_">BaseHandle.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L236">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_GetAccessor_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.GetAccessor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_GetAccessor" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.GetAccessor">GetAccessor()</h4>
+  <div class="markdown level1 summary"><p>Return an accessor to the physics world.
+Internally, this locks a mutex to prevent the integration step from running,
+this will also block the Update thread. It is important that this accessor
+is disposed of when not needed to restart the update thread. (Suggest use of
+&quot;using&quot; block).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScopedPhysicsAccessor GetAccessor()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.html">ScopedPhysicsAccessor</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L276">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_GetPhysicsActor_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.GetPhysicsActor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_GetPhysicsActor_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.GetPhysicsActor(Tizen.NUI.Physics2D.Chipmunk.Body)">GetPhysicsActor(Body)</h4>
+  <div class="markdown level1 summary"><p>Retrieve a PhysicsActor given a physics body.
+If there is no associated PhysicsActor, this will return null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PhysicsActor GetPhysicsActor(Body body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.PhysicsActor.html">PhysicsActor</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L300">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_GetRootLayer_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.GetRootLayer*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_GetRootLayer" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.GetRootLayer">GetRootLayer()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Layer GetRootLayer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L330">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_ProjectPoint_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ProjectPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_ProjectPoint_Tizen_NUI_Vector3_Tizen_NUI_Vector3_System_Single_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ProjectPoint(Tizen.NUI.Vector3,Tizen.NUI.Vector3,System.Single)">ProjectPoint(Vector3, Vector3, float)</h4>
+  <div class="markdown level1 summary"><p>Project a point from the origin (in NUI space) a distance along the direction
+vector (in NUI space) and returns the projected point in physics space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 ProjectPoint(Vector3 origin, Vector3 direction, float distance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">origin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">distance</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L123">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L264">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_RemoveViewFromBody_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.RemoveViewFromBody*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_RemoveViewFromBody_Tizen_NUI_Physics2D_PhysicsActor_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.RemoveViewFromBody(Tizen.NUI.Physics2D.PhysicsActor)">RemoveViewFromBody(PhysicsActor)</h4>
+  <div class="markdown level1 summary"><p>This will unparent the View from the root layer, and dis-associate it
+from the physics body. It is the responsibility of the user to remove
+the physics body from the world.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveViewFromBody(PhysicsActor actor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.PhysicsActor.html">PhysicsActor</a></td>
+        <td><span class="parametername">actor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L221">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_SetTransformAndSize_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.SetTransformAndSize*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_SetTransformAndSize_Tizen_NUI_Matrix_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.SetTransformAndSize(Tizen.NUI.Matrix,Tizen.NUI.Vector2)">SetTransformAndSize(Matrix, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Change the transform matrix or the size of the root view</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTransformAndSize(Matrix transform, Vector2 size)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L366">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformPositionFromPhysicsSpace_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformPositionFromPhysicsSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformPositionFromPhysicsSpace_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformPositionFromPhysicsSpace(Tizen.NUI.Vector3)">TransformPositionFromPhysicsSpace(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Transform a position in Physics space to NUI space</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 TransformPositionFromPhysicsSpace(Vector3 position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L342">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformPositionToPhysicsSpace_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformPositionToPhysicsSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformPositionToPhysicsSpace_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformPositionToPhysicsSpace(Tizen.NUI.Vector3)">TransformPositionToPhysicsSpace(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Transforms a position from NUI space to physics space</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 TransformPositionToPhysicsSpace(Vector3 position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L378">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformRotationFromPhysicsSpace_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformRotationFromPhysicsSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformRotationFromPhysicsSpace_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformRotationFromPhysicsSpace(Tizen.NUI.Rotation)">TransformRotationFromPhysicsSpace(Rotation)</h4>
+  <div class="markdown level1 summary"><p>Convert a rotation in physics space into NUI space</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rotation TransformRotationFromPhysicsSpace(Rotation rotation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rotation.html">Rotation</a></td>
+        <td><span class="parametername">rotation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rotation.html">Rotation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L354">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformRotationToPhysicsSpace_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformRotationToPhysicsSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_PhysicsAdaptor_TransformRotationToPhysicsSpace_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Physics2D.PhysicsAdaptor.TransformRotationToPhysicsSpace(Tizen.NUI.Rotation)">TransformRotationToPhysicsSpace(Rotation)</h4>
+  <div class="markdown level1 summary"><p>Transform a rotation from NUI to physics space</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rotation TransformRotationToPhysicsSpace(Rotation rotation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rotation.html">Rotation</a></td>
+        <td><span class="parametername">rotation</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rotation.html">Rotation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/PhysicsAdaptor.cs/#L67" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ScopedPhysicsAccessor
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ScopedPhysicsAccessor
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor">
+
+
+  <h1 id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor" class="text-break">Class ScopedPhysicsAccessor
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Scoped accessor to the physics world.</p>
+<p>Automatically locks the physics world with a mutex to prevent the
+integration step from running whilst the developer is accessing
+the world, e.g. to add/remove bodies or constraints, or to
+perform hit-test.</p>
+<p>When it is disposed, the mutex is unlocked, and the integration step
+can resume.</p>
+<p>Suggest that this is created with a &quot;using&quot; block:</p>
+<p>using(accessor=physicsAdaptor.GetAccessor())
+{
+var space = accessor.GetNative();
+// Perform operations on space or bodies.
+} // automatically disposed.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ScopedPhysicsAccessor : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ScopedPhysicsAccessor</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/ScopedPhysicsAccessor.cs/#L105">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_Dispose_" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_Dispose" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the Space object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/ScopedPhysicsAccessor.cs/#L95">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_Dispose_" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_Dispose_System_Boolean_" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Dispose of this object.
+This ensures that the integration step is resumed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/ScopedPhysicsAccessor.cs/#L64">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_GetNative_" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.GetNative*"></a>
+  <h4 id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_GetNative" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.GetNative">GetNative()</h4>
+  <div class="markdown level1 summary"><p>Get a weak handle to the native physics space. Disposing of
+this handle does not destroy the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpaceRef GetNative()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.SpaceRef.html">SpaceRef</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/ScopedPhysicsAccessor.cs/#L78">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_HitTest_" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.HitTest*"></a>
+  <h4 id="Tizen_NUI_Physics2D_ScopedPhysicsAccessor_HitTest_Tizen_NUI_Vector3_Tizen_NUI_Vector3_Tizen_NUI_Physics2D_Chipmunk_ShapeFilter_Tizen_NUI_Vector3_System_Single__" data-uid="Tizen.NUI.Physics2D.ScopedPhysicsAccessor.HitTest(Tizen.NUI.Vector3,Tizen.NUI.Vector3,Tizen.NUI.Physics2D.Chipmunk.ShapeFilter,Tizen.NUI.Vector3,System.Single@)">HitTest(Vector3, Vector3, ShapeFilter, Vector3, out float)</h4>
+  <div class="markdown level1 summary"><p>Perform a hit test on the given physics world ray, with a possible filter.
+The ray can be created with PhysicsAdaptor.BuildPickingRay().
+Returns a body if hit, along with the local pivot coordinates and the distance from the ray origin (usually camera)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body HitTest(Vector3 rayFromWorld, Vector3 rayToWorld, ShapeFilter filter, Vector3 localPivot, out float distanceFromCamera)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">rayFromWorld</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">rayToWorld</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ShapeFilter.html">ShapeFilter</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">localPivot</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">distanceFromCamera</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/wrapper/ScopedPhysicsAccessor.cs/#L46" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

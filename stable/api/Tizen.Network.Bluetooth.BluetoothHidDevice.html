@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BluetoothHidDevice
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BluetoothHidDevice
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice">
+
+
+  <h1 id="Tizen_Network_Bluetooth_BluetoothHidDevice" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice" class="text-break">Class BluetoothHidDevice
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Bluetooth.html">Bluetooth</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Bluetooth.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A class which is used to provide the HID Device role.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BluetoothHidDevice : BluetoothProfile</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Network.Bluetooth.BluetoothProfile.html">BluetoothProfile</a></div>
+        <div><span class="xref">BluetoothHidDevice</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L101">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothHidDevice_ConnectAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.ConnectAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_ConnectAsync" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.ConnectAsync">ConnectAsync()</h4>
+  <div class="markdown level1 summary"><p>Connects to the remote device asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ConnectAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>A task indicating whether the method is done or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_ConnectAsync_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L128">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothHidDevice_DisconnectAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.DisconnectAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_DisconnectAsync" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.DisconnectAsync">DisconnectAsync()</h4>
+  <div class="markdown level1 summary"><p>Disconnects to the remote device asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DisconnectAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>A task indicating whether the method is done or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_DisconnectAsync_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L197">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothHidDevice_ReplyToReport_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.ReplyToReport*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_ReplyToReport_Tizen_Network_Bluetooth_BluetoothHidHeaderType_Tizen_Network_Bluetooth_BluetoothHidParamType_System_Byte___" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.ReplyToReport(Tizen.Network.Bluetooth.BluetoothHidHeaderType,Tizen.Network.Bluetooth.BluetoothHidParamType,System.Byte[])">ReplyToReport(BluetoothHidHeaderType, BluetoothHidParamType, byte[])</h4>
+  <div class="markdown level1 summary"><p>Replies to reports from the HID Host.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplyToReport(BluetoothHidHeaderType headerType, BluetoothHidParamType paramType, byte[] data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothHidHeaderType.html">BluetoothHidHeaderType</a></td>
+        <td><span class="parametername">headerType</span></td>
+        <td><p>The header type to be there in response.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothHidParamType.html">BluetoothHidParamType</a></td>
+        <td><span class="parametername">paramType</span></td>
+        <td><p>The Parameter type to be there in response.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Data to be present in data payload of response.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_ReplyToReport_Tizen_Network_Bluetooth_BluetoothHidHeaderType_Tizen_Network_Bluetooth_BluetoothHidParamType_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L170">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothHidDevice_SendKeyEvent_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.SendKeyEvent*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_SendKeyEvent_Tizen_Network_Bluetooth_BluetoothHidKeyData_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.SendKeyEvent(Tizen.Network.Bluetooth.BluetoothHidKeyData)">SendKeyEvent(BluetoothHidKeyData)</h4>
+  <div class="markdown level1 summary"><p>Sends the key event data to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendKeyEvent(BluetoothHidKeyData keyData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothHidKeyData.html">BluetoothHidKeyData</a></td>
+        <td><span class="parametername">keyData</span></td>
+        <td><p>The key data to be passed to the remote device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_SendKeyEvent_Tizen_Network_Bluetooth_BluetoothHidKeyData__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L155">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothHidDevice_SendMouseEvent_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.SendMouseEvent*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_SendMouseEvent_Tizen_Network_Bluetooth_BluetoothHidMouseData_" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.SendMouseEvent(Tizen.Network.Bluetooth.BluetoothHidMouseData)">SendMouseEvent(BluetoothHidMouseData)</h4>
+  <div class="markdown level1 summary"><p>Sends the mouse event data to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendMouseEvent(BluetoothHidMouseData mouseData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothHidMouseData.html">BluetoothHidMouseData</a></td>
+        <td><span class="parametername">mouseData</span></td>
+        <td><p>The mouse data to be passed to the remote device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_SendMouseEvent_Tizen_Network_Bluetooth_BluetoothHidMouseData__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L90">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_ConnectionStateChanged" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.ConnectionStateChanged">ConnectionStateChanged</h4>
+  <div class="markdown level1 summary"><p>The ConnectionStateChanged event is called when the HID device connection state is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;HidDeviceConnectionStateChangedEventArgs&gt; ConnectionStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.HidDeviceConnectionStateChangedEventArgs.html">HidDeviceConnectionStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_ConnectionStateChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L184">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothHidDevice_DataReceived" data-uid="Tizen.Network.Bluetooth.BluetoothHidDevice.DataReceived">DataReceived</h4>
+  <div class="markdown level1 summary"><p>The DataReceived event is called when the device receives data from the HID Host.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;HidDeviceDataReceivedEventArgs&gt; DataReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.HidDeviceDataReceivedEventArgs.html">HidDeviceDataReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothHidDevice_DataReceived_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In HID profile, there are two roles Host and Device.
+The Host(BluetoothHid) is a device that uses or requests the service of a HID.
+The Device(BluetoothHidDevice) is a device that provides the service of human data input/output to/from the host.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothHidDevice.cs/#L32" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

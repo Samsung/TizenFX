@@ -117,7 +117,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Common/Information.cs/#L159">View Source</a>
   </span>
   <a id="Tizen_System_Information_SetCallback_" data-uid="Tizen.System.Information.SetCallback*"></a>
-  <h4 id="Tizen_System_Information_SetCallback_System_String_System_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs__" data-uid="Tizen.System.Information.SetCallback(System.String,System.EventHandler{Tizen.System.RuntimeFeatureStatusChangedEventArgs})">SetCallback(string, EventHandler&lt;RuntimeFeatureStatusChangedEventArgs&gt;)</h4>
+  <h4 id="Tizen_System_Information_SetCallback_System_String_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs__" data-uid="Tizen.System.Information.SetCallback(System.String,EventHandler{Tizen.System.RuntimeFeatureStatusChangedEventArgs})">SetCallback(string, EventHandler&lt;RuntimeFeatureStatusChangedEventArgs&gt;)</h4>
   <div class="markdown level1 summary"><p>Registers a change event callback for given runtime feature key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -142,37 +142,16 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.System.RuntimeFeatureStatusChangedEventArgs.html">RuntimeFeatureStatusChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.RuntimeFeatureStatusChangedEventArgs.html">RuntimeFeatureStatusChangedEventArgs</a>&gt;</td>
         <td><span class="parametername">callback</span></td>
         <td><p>The callback function to subscribe.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_System_Information_SetCallback_System_String_System_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs___remarks">Remarks</h5>
+  <h5 id="Tizen_System_Information_SetCallback_System_String_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This function is only for runtime feature.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the <code data-dev-comment-type="paramref" class="paramref">key</code> is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the feature related <code data-dev-comment-type="paramref" class="paramref">key</code> is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -253,7 +232,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Common/Information.cs/#L183">View Source</a>
   </span>
   <a id="Tizen_System_Information_UnsetCallback_" data-uid="Tizen.System.Information.UnsetCallback*"></a>
-  <h4 id="Tizen_System_Information_UnsetCallback_System_String_System_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs__" data-uid="Tizen.System.Information.UnsetCallback(System.String,System.EventHandler{Tizen.System.RuntimeFeatureStatusChangedEventArgs})">UnsetCallback(string, EventHandler&lt;RuntimeFeatureStatusChangedEventArgs&gt;)</h4>
+  <h4 id="Tizen_System_Information_UnsetCallback_System_String_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs__" data-uid="Tizen.System.Information.UnsetCallback(System.String,EventHandler{Tizen.System.RuntimeFeatureStatusChangedEventArgs})">UnsetCallback(string, EventHandler&lt;RuntimeFeatureStatusChangedEventArgs&gt;)</h4>
   <div class="markdown level1 summary"><p>Unregisters a change event callback for given runtime feature key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -278,37 +257,16 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.System.RuntimeFeatureStatusChangedEventArgs.html">RuntimeFeatureStatusChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.RuntimeFeatureStatusChangedEventArgs.html">RuntimeFeatureStatusChangedEventArgs</a>&gt;</td>
         <td><span class="parametername">callback</span></td>
         <td><p>The callback function to unsubscribe.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_System_Information_UnsetCallback_System_String_System_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs___remarks">Remarks</h5>
+  <h5 id="Tizen_System_Information_UnsetCallback_System_String_EventHandler_Tizen_System_RuntimeFeatureStatusChangedEventArgs___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This function is only for runtime feature.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the <code data-dev-comment-type="paramref" class="paramref">key</code> is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the feature related <code data-dev-comment-type="paramref" class="paramref">key</code> is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
