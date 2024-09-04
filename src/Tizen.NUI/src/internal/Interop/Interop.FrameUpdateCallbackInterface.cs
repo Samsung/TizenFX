@@ -24,6 +24,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FrameCallbackInterface")]
             public static extern global::System.IntPtr newFrameUpdateCallbackInterface();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FrameCallbackInterface")]
+            public static extern void DeleteFrameUpdateCallbackInterface(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_director_connect_with_return")]
             public static extern void FrameUpdateCallbackInterfaceDirectorConnectV1(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.FrameUpdateCallbackInterface.DelegateFrameUpdateCallbackInterfaceV1 delegate1);
 

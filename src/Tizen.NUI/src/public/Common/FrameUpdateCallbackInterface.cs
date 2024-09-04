@@ -49,6 +49,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.FrameUpdateCallbackInterface.DeleteFrameUpdateCallbackInterface(swigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint UpdateCallbackVersion => onUpdateCallbackVersion;

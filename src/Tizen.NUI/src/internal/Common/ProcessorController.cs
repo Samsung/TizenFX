@@ -52,6 +52,14 @@ namespace Tizen.NUI
         {
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.ProcessorController.DeleteProcessorController(swigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ProcessorEventHandler();
 
