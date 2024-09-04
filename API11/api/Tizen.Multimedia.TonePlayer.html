@@ -117,7 +117,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.AudioIO/TonePlayer/TonePlayer.cs/#L65">View Source</a>
   </span>
   <a id="Tizen_Multimedia_TonePlayer_StartAsync_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync*"></a>
-  <h4 id="Tizen_Multimedia_TonePlayer_StartAsync_Tizen_Multimedia_ToneType_Tizen_Multimedia_AudioStreamPolicy_System_Int32_CancellationToken_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync(Tizen.Multimedia.ToneType,Tizen.Multimedia.AudioStreamPolicy,System.Int32,CancellationToken)">StartAsync(ToneType, AudioStreamPolicy, int, CancellationToken)</h4>
+  <h4 id="Tizen_Multimedia_TonePlayer_StartAsync_Tizen_Multimedia_ToneType_Tizen_Multimedia_AudioStreamPolicy_System_Int32_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.TonePlayer.StartAsync(Tizen.Multimedia.ToneType,Tizen.Multimedia.AudioStreamPolicy,System.Int32,System.Threading.CancellationToken)">StartAsync(ToneType, AudioStreamPolicy, int, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Plays a tone, asynchronously.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -154,7 +154,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The cancellation token which can be used to stop playing the tone.</p>
 </td>
@@ -171,8 +171,49 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">durationMilliseconds</code> is less than -1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Any invalid operations occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is not a supported type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -233,8 +274,49 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">durationMilliseconds</code> is less than -1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Any invalid operations occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">tone</code> is not a supported type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>

@@ -164,6 +164,50 @@ information about the file to be generated.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">imageConfig</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is <a class="xref" href="Tizen.Multimedia.Vision.BarcodeType.html#Tizen_Multimedia_Vision_BarcodeType_QR">QR</a>.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains illegal characters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>No permission to access a file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">config</code> already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_BarcodeGenerator_GenerateImage_System_String_Tizen_Multimedia_Vision_BarcodeType_Tizen_Multimedia_Vision_BarcodeImageConfiguration_Tizen_Multimedia_Vision_BarcodeGenerationConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html">BarcodeGenerationConfiguration</a></div>
@@ -211,6 +255,45 @@ information about the file to be generated.</p>
         <td><span class="parametername">imageConfig</span></td>
         <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.BarcodeImageConfiguration.html">BarcodeImageConfiguration</a> that contains
 information about the file to be generated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">imageConfig</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is <a class="xref" href="Tizen.Multimedia.Vision.BarcodeType.html#Tizen_Multimedia_Vision_BarcodeType_QR">QR</a>.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains illegal characters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>No permission to access a file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -276,6 +359,50 @@ information about the file to be generated.</p>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html#Tizen_Multimedia_Vision_BarcodeGenerationConfiguration_TextVisibility">TextVisibility</a> must be <a class="xref" href="Tizen.Multimedia.Visibility.html#Tizen_Multimedia_Visibility_Invisible">Invisible</a>,
 because the text visibility is not supported in the QR code.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">qrConfig</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">imageConfig</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains characters which are illegal by the <a class="xref" href="Tizen.Multimedia.Vision.QrMode.html">QrMode</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>No permission to access a file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.<br>
+-or-<br>
+<a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html#Tizen_Multimedia_Vision_BarcodeGenerationConfiguration_TextVisibility">TextVisibility</a> is the <a class="xref" href="Tizen.Multimedia.Visibility.html#Tizen_Multimedia_Visibility_Visible">Visible</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">config</code> already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_BarcodeGenerator_GenerateImage_System_String_Tizen_Multimedia_Vision_QrConfiguration_Tizen_Multimedia_Vision_BarcodeImageConfiguration_Tizen_Multimedia_Vision_BarcodeGenerationConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html">BarcodeGenerationConfiguration</a></div>
@@ -330,6 +457,43 @@ because the text visibility is not supported in the QR code.</p>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html#Tizen_Multimedia_Vision_BarcodeGenerationConfiguration_TextVisibility">TextVisibility</a> must be <a class="xref" href="Tizen.Multimedia.Visibility.html#Tizen_Multimedia_Visibility_Invisible">Invisible</a>,
 because the text visibility is not supported in the QR code.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">qrConfig</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">imageConfig</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains characters which are illegal by the <a class="xref" href="Tizen.Multimedia.Vision.QrMode.html">QrMode</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>No permission to access a file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_BarcodeGenerator_GenerateImage_System_String_Tizen_Multimedia_Vision_QrConfiguration_Tizen_Multimedia_Vision_BarcodeImageConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.QrMode.html">QrMode</a></div>
@@ -396,6 +560,43 @@ because the text visibility is not supported in the QR code.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is <a class="xref" href="Tizen.Multimedia.Vision.BarcodeType.html#Tizen_Multimedia_Vision_BarcodeType_QR">QR</a>.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains illegal characters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">config</code> already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_BarcodeGenerator_GenerateSource_System_String_Tizen_Multimedia_Vision_BarcodeType_Tizen_Multimedia_Vision_BarcodeGenerationConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html">BarcodeGenerationConfiguration</a></div>
@@ -452,6 +653,38 @@ because the text visibility is not supported in the QR code.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><p><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> containing the generated barcode image.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is <a class="xref" href="Tizen.Multimedia.Vision.BarcodeType.html#Tizen_Multimedia_Vision_BarcodeType_QR">QR</a>.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains illegal characters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -526,6 +759,43 @@ because the text visibility is not supported in the QR code.</p>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html#Tizen_Multimedia_Vision_BarcodeGenerationConfiguration_TextVisibility">TextVisibility</a> must be <a class="xref" href="Tizen.Multimedia.Visibility.html#Tizen_Multimedia_Visibility_Invisible">Invisible</a>,
 because the text visibility is not supported in the QR code.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">qrConfig</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains characters which are illegal by the <a class="xref" href="Tizen.Multimedia.Vision.QrMode.html">QrMode</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.<br>
+-or-<br>
+<a class="xref" href="Tizen.Multimedia.Vision.BarcodeGenerationConfiguration.html#Tizen_Multimedia_Vision_BarcodeGenerationConfiguration_TextVisibility">TextVisibility</a> is the <a class="xref" href="Tizen.Multimedia.Visibility.html#Tizen_Multimedia_Visibility_Visible">Visible</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">config</code> already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_BarcodeGenerator_GenerateSource_System_String_Tizen_Multimedia_Vision_QrConfiguration_Tizen_Multimedia_Vision_BarcodeGenerationConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.QrMode.html">QrMode</a></div>
@@ -582,6 +852,36 @@ because the text visibility is not supported in the QR code.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a></td>
         <td><p><a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> containing the generated QR image.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">qrConfig</code> is null.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">message</code> is too long.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">message</code> contains characters which are illegal by the <a class="xref" href="Tizen.Multimedia.Vision.QrMode.html">QrMode</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
 </td>
       </tr>
     </tbody>

@@ -110,6 +110,12 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -149,6 +155,47 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the ESSID is passed as null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the method failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -179,6 +226,47 @@
         <td><span class="xref">string</span></td>
         <td><span class="parametername">essid</span></td>
         <td><p>The Extended Service Set Identifier of the access point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the ESSID is passed as null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the method failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -267,6 +355,37 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void CancelWps()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -293,7 +412,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the connect method is done or not.</p>
 </td>
       </tr>
@@ -312,8 +431,33 @@
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi connection is now in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
       <tr>
@@ -367,7 +511,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the ConnectWps method is done or not.</p>
 </td>
       </tr>
@@ -386,8 +530,53 @@
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the WpsPinInfo object is constructed with a null pin.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Thrown when the WpsPinInfo object is constructed with a pin which is an empty string or more than 7 characters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the method failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi connection is now in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>Thrown when the timeout of WPS connection is expired.</p>
 </td>
       </tr>
     </tbody>
@@ -436,7 +625,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A task which contains Connected access point information.</p>
 </td>
       </tr>
@@ -456,8 +645,48 @@ This method must be called from MainThread.</p>
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the WpsPinInfo object is constructed with a null pin.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Thrown when the WpsPinInfo object is constructed with a pin which is not of 4 or 8 characters long.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the method failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi connection is now in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>Thrown when the timeout of WPS connection is expired.</p>
 </td>
       </tr>
     </tbody>
@@ -488,7 +717,7 @@ This method must be called from MainThread.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the disconnect method is done or not.</p>
 </td>
       </tr>
@@ -497,6 +726,42 @@ This method must be called from MainThread.</p>
   <h5 id="Tizen_Network_WiFi_WiFiAP_DisconnectAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -546,6 +811,42 @@ If an AP is connected, then the connection information will be stored. This info
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ForgetAP()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -573,7 +874,7 @@ If an AP is connected, then the connection information will be stored. This info
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the disconnect method is done or not.</p>
 </td>
       </tr>
@@ -582,6 +883,37 @@ If an AP is connected, then the connection information will be stored. This info
   <h5 id="Tizen_Network_WiFi_WiFiAP_ForgetAPAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -598,6 +930,37 @@ If an AP is connected, then the connection information will be stored. This info
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Refresh()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -615,31 +978,49 @@ When a AP information is changed, the change will not be applied until this meth
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Update()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>Thrown when the object instance is disposed or released.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when the system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

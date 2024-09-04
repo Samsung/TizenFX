@@ -114,7 +114,7 @@
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a></div>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -147,6 +147,27 @@
         <td><span class="parametername">serviceType</span></td>
         <td><p>The DNS-SD service type. It is expressed as a type followed by the protocol, separated by a dot (For example, &quot;_ftp._tcp&quot;).
 It must begin with an underscore followed by 1-15 characters, which may be letters, digits, or hyphens.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown while setting this property when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the serviceType is set to null.</p>
 </td>
       </tr>
     </tbody>
@@ -224,6 +245,32 @@ In case of an error, null object will be returned.</p>
 It may be up to 63 bytes.
 In case of an error, null will be returned during get and exception will be thrown during set.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown while setting this property when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the name value is set to null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown while setting this property when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -259,6 +306,32 @@ In case of an error, null will be returned during get and exception will be thro
   <div class="markdown level1 remarks"><p>Set the port for only an unregistered service created locally. The default value of the port is 0.
 In case of an error, -1 will be returned during get and exception will be thrown during set.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown while setting this property when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the value of port is set to less than 0 or more than 65535.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown while setting this property when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -340,6 +413,32 @@ In case of an error, null will be returned.</p>
   <h5 id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_System_String_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>TXT record should be added after registering the local service using RegisterService().</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the value of the key is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -359,6 +458,27 @@ In case of an error, null will be returned.</p>
   <h5 id="Tizen_Network_Nsd_DnssdService_DeregisterService_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>A local service registered using RegisterService() must be passed.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -423,6 +543,27 @@ In case of an error, null will be returned.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -439,6 +580,32 @@ In case of an error, null will be returned.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RegisterService()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -473,6 +640,32 @@ In case of an error, null will be returned.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the value of the key is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -482,29 +675,7 @@ In case of an error, null will be returned.</p>
       <a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a>
   </div>
   <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

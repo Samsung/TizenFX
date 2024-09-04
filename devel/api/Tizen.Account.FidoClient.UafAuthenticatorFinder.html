@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class UafAuthenticatorFinder</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public static class UafAuthenticatorFinder</code></pre>
   </div>
 
 
@@ -123,7 +124,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;AuthenticatorInformation&gt;&gt; DiscoverAuthenticatorsAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public static Task&lt;IEnumerable&lt;AuthenticatorInformation&gt;&gt; DiscoverAuthenticatorsAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -135,7 +137,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorInformation.html">AuthenticatorInformation</a>&gt;&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorInformation.html">AuthenticatorInformation</a>&gt;&gt;</td>
         <td><p>Enumerable list of authenticators</p>
 </td>
       </tr>
@@ -149,6 +151,27 @@
         string title = authInfo.Title;
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application does not have privilege to access this method</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>FIDO is not supported</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>

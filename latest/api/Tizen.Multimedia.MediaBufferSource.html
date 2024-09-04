@@ -165,6 +165,31 @@ with the specified length and the specified offset.</p>
   <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
 If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">offset</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">length</code> is equal to or less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">offset</code>+<code data-dev-comment-type="paramref" class="paramref">length</code> is greater than buffer.Length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte___System_Int32_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
@@ -207,6 +232,22 @@ If you provide invalid data, you won't receive an error until <a class="xref" hr
   <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
 If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte____seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
@@ -249,6 +290,24 @@ If you provide invalid data, you won't receive an error until <a class="xref" hr
   <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
 If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">length</code> is zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">length</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
@@ -358,28 +417,6 @@ If you provide invalid data, you won't receive an error until <a class="xref" hr
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
