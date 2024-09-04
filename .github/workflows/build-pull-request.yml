@@ -72,7 +72,7 @@ jobs:
         dotnet-version: 3.1.x
 
     - name: Download Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: reports
         path: Artifacts
