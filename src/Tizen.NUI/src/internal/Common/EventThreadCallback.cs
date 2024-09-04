@@ -31,7 +31,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            //NDalicManualPINVOKE.DeleteEventThreadCallback(swigCPtr);
+            Interop.EventThreadCallback.DeleteEventThreadCallback(swigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         public EventThreadCallback(CallbackDelegate func) : this(Interop.EventThreadCallback.NewEventThreadCallback(func), true)
