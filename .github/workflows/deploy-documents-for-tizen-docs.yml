@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 
 env:
-  DOCFX_FILE: docfx_tizen_docs.json
   DEPLOY_BRANCH: tizen-docs-pages
   CACHE_NAME: docfx-tizen-docs-pages-site
 
