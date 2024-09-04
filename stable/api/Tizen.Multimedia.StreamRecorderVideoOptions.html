@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StreamRecorderVideoOptions</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public class StreamRecorderVideoOptions</code></pre>
   </div>
 
 
@@ -117,14 +118,15 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.StreamRecorder/StreamRecorder/StreamRecorderVideoOptions.cs/#L85">View Source</a>
   </span>
   <a id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_" data-uid="Tizen.Multimedia.StreamRecorderVideoOptions.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.StreamRecorderVideoOptions.#ctor(Tizen.Multimedia.RecorderVideoCodec,Size,Tizen.Multimedia.StreamRecorderVideoFormat,System.Int32,System.Int32)">StreamRecorderVideoOptions(RecorderVideoCodec, Size, StreamRecorderVideoFormat, int, int)</h4>
+  <h4 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.StreamRecorderVideoOptions.#ctor(Tizen.Multimedia.RecorderVideoCodec,Tizen.Multimedia.Size,Tizen.Multimedia.StreamRecorderVideoFormat,System.Int32,System.Int32)">StreamRecorderVideoOptions(RecorderVideoCodec, Size, StreamRecorderVideoFormat, int, int)</h4>
   <div class="markdown level1 summary"><p>Initialize a new instance of the <a class="xref" href="Tizen.Multimedia.StreamRecorderVideoOptions.html">StreamRecorderVideoOptions</a> class with the specified
 codec, resolution, source format, frame rate, and bit rate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution, StreamRecorderVideoFormat sourceFormat, int frameRate, int bitRate)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution, StreamRecorderVideoFormat sourceFormat, int frameRate, int bitRate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -143,7 +145,7 @@ codec, resolution, source format, frame rate, and bit rate.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Size</span></td>
+        <td><a class="xref" href="Tizen.Multimedia.Size.html">Size</a></td>
         <td><span class="parametername">resolution</span></td>
         <td><p>The resolution of video recording.</p>
 </td>
@@ -168,7 +170,34 @@ codec, resolution, source format, frame rate, and bit rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32_System_Int32__seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">codec</code> is not valid.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">sourceFormat</code> is not valid.<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Width or height of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">frameRate</code> is less than or equal to zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">bitRate</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html">StreamRecorderOptions</a></div>
@@ -182,14 +211,15 @@ codec, resolution, source format, frame rate, and bit rate.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.StreamRecorder/StreamRecorder/StreamRecorderVideoOptions.cs/#L56">View Source</a>
   </span>
   <a id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_" data-uid="Tizen.Multimedia.StreamRecorderVideoOptions.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32_" data-uid="Tizen.Multimedia.StreamRecorderVideoOptions.#ctor(Tizen.Multimedia.RecorderVideoCodec,Size,Tizen.Multimedia.StreamRecorderVideoFormat,System.Int32)">StreamRecorderVideoOptions(RecorderVideoCodec, Size, StreamRecorderVideoFormat, int)</h4>
+  <h4 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32_" data-uid="Tizen.Multimedia.StreamRecorderVideoOptions.#ctor(Tizen.Multimedia.RecorderVideoCodec,Tizen.Multimedia.Size,Tizen.Multimedia.StreamRecorderVideoFormat,System.Int32)">StreamRecorderVideoOptions(RecorderVideoCodec, Size, StreamRecorderVideoFormat, int)</h4>
   <div class="markdown level1 summary"><p>Initialize a new instance of the <a class="xref" href="Tizen.Multimedia.StreamRecorderVideoOptions.html">StreamRecorderVideoOptions</a> class with the specified
 codec, resolution, source format, and frame rate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution, StreamRecorderVideoFormat sourceFormat, int frameRate)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution, StreamRecorderVideoFormat sourceFormat, int frameRate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -208,7 +238,7 @@ codec, resolution, source format, and frame rate.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Size</span></td>
+        <td><a class="xref" href="Tizen.Multimedia.Size.html">Size</a></td>
         <td><span class="parametername">resolution</span></td>
         <td><p>The resolution of video recording.</p>
 </td>
@@ -227,10 +257,35 @@ codec, resolution, source format, and frame rate.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32__remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.StreamRecorderVideoOptions.html#Tizen_Multimedia_StreamRecorderVideoOptions_BitRate">BitRate</a> will be set as default.</p>
 </div>
-  <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32__seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">codec</code> is not valid.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">sourceFormat</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Width or height of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">frameRate</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions__ctor_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_Size_Tizen_Multimedia_StreamRecorderVideoFormat_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html">StreamRecorderOptions</a></div>
@@ -252,7 +307,8 @@ codec, resolution, source format, and frame rate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int BitRate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public int BitRate { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -266,6 +322,22 @@ codec, resolution, source format, and frame rate.</p>
       <tr>
         <td><span class="xref">int</span></td>
         <td><p>The bit rate value for video stream recording. The default is 0.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.</p>
 </td>
       </tr>
     </tbody>
@@ -290,7 +362,8 @@ codec, resolution, source format, and frame rate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RecorderVideoCodec Codec { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public RecorderVideoCodec Codec { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -304,6 +377,22 @@ codec, resolution, source format, and frame rate.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.RecorderVideoCodec.html">RecorderVideoCodec</a></td>
         <td><p>The codec for video stream recording.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
 </td>
       </tr>
     </tbody>
@@ -326,7 +415,8 @@ codec, resolution, source format, and frame rate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int FrameRate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public int FrameRate { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -340,6 +430,22 @@ codec, resolution, source format, and frame rate.</p>
       <tr>
         <td><span class="xref">int</span></td>
         <td><p>The frame rate value for video stream recording.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -364,7 +470,8 @@ codec, resolution, source format, and frame rate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Size Resolution { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public Size Resolution { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -376,8 +483,24 @@ codec, resolution, source format, and frame rate.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Size</span></td>
+        <td><a class="xref" href="Tizen.Multimedia.Size.html">Size</a></td>
         <td><p>The output resolution for video stream recording.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Width or height of <code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -400,7 +523,8 @@ codec, resolution, source format, and frame rate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamRecorderVideoFormat SourceFormat { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public StreamRecorderVideoFormat SourceFormat { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -418,6 +542,22 @@ codec, resolution, source format, and frame rate.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_StreamRecorderVideoOptions_SourceFormat_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>
@@ -428,28 +568,6 @@ codec, resolution, source format, and frame rate.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>

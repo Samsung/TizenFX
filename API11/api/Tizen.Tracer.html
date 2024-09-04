@@ -117,13 +117,13 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Tracer/Tizen/Tracer.cs/#L65">View Source</a>
   </span>
   <a id="Tizen_Tracer_AsyncBegin_" data-uid="Tizen.Tracer.AsyncBegin*"></a>
-  <h4 id="Tizen_Tracer_AsyncBegin_System_Int32_String_" data-uid="Tizen.Tracer.AsyncBegin(System.Int32,String)">AsyncBegin(int, String)</h4>
+  <h4 id="Tizen_Tracer_AsyncBegin_System_Int32_System_String_" data-uid="Tizen.Tracer.AsyncBegin(System.Int32,System.String)">AsyncBegin(int, string)</h4>
   <div class="markdown level1 summary"><p>Writes a trace event to indicate that an asynchronous event has begun.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AsyncBegin(int cookie, String name)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AsyncBegin(int cookie, string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -142,19 +142,19 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">name</span></td>
         <td><p>The name of an event (optionally containing format specifiers).</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Tracer_AsyncBegin_System_Int32_String__remarks">Remarks</h5>
+  <h5 id="Tizen_Tracer_AsyncBegin_System_Int32_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFacts.GetLastResult() method.</p>
 </div>
-  <h5 id="Tizen_Tracer_AsyncBegin_System_Int32_String__seealso">See Also</h5>
+  <h5 id="Tizen_Tracer_AsyncBegin_System_Int32_System_String__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_AsyncEnd_System_Int32_String_">AsyncEnd(int, String)</a></div>
+      <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_AsyncEnd_System_Int32_System_String_">AsyncEnd(int, string)</a></div>
   </div>
 
 
@@ -164,13 +164,13 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Tracer/Tizen/Tracer.cs/#L81">View Source</a>
   </span>
   <a id="Tizen_Tracer_AsyncEnd_" data-uid="Tizen.Tracer.AsyncEnd*"></a>
-  <h4 id="Tizen_Tracer_AsyncEnd_System_Int32_String_" data-uid="Tizen.Tracer.AsyncEnd(System.Int32,String)">AsyncEnd(int, String)</h4>
+  <h4 id="Tizen_Tracer_AsyncEnd_System_Int32_System_String_" data-uid="Tizen.Tracer.AsyncEnd(System.Int32,System.String)">AsyncEnd(int, string)</h4>
   <div class="markdown level1 summary"><p>Writes a trace event to indicate that an asynchronous event has ended.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AsyncEnd(int cookie, String name)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AsyncEnd(int cookie, string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -189,20 +189,20 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">name</span></td>
         <td><p>The name of an event (optionally containing format specifiers).</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Tracer_AsyncEnd_System_Int32_String__remarks">Remarks</h5>
+  <h5 id="Tizen_Tracer_AsyncEnd_System_Int32_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Tizen.Tracer.AsyncEnd() ends matched Tizen.Tracer.AsyncBegin() which has the same cookie and name.
 The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFacts.GetLastResult() method.</p>
 </div>
-  <h5 id="Tizen_Tracer_AsyncEnd_System_Int32_String__seealso">See Also</h5>
+  <h5 id="Tizen_Tracer_AsyncEnd_System_Int32_System_String__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_AsyncBegin_System_Int32_String_">AsyncBegin(int, String)</a></div>
+      <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_AsyncBegin_System_Int32_System_String_">AsyncBegin(int, string)</a></div>
   </div>
 
 
@@ -212,13 +212,13 @@ The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFa
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Tracer/Tizen/Tracer.cs/#L36">View Source</a>
   </span>
   <a id="Tizen_Tracer_Begin_" data-uid="Tizen.Tracer.Begin*"></a>
-  <h4 id="Tizen_Tracer_Begin_String_" data-uid="Tizen.Tracer.Begin(String)">Begin(String)</h4>
+  <h4 id="Tizen_Tracer_Begin_System_String_" data-uid="Tizen.Tracer.Begin(System.String)">Begin(string)</h4>
   <div class="markdown level1 summary"><p>Writes a trace event to indicate that a synchronous event has begun.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Begin(String name)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Begin(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -231,17 +231,17 @@ The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFa
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">name</span></td>
         <td><p>The name of an event (optionally containing format specifiers).</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Tracer_Begin_String__remarks">Remarks</h5>
+  <h5 id="Tizen_Tracer_Begin_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFacts.GetLastResult() method.</p>
 </div>
-  <h5 id="Tizen_Tracer_Begin_String__seealso">See Also</h5>
+  <h5 id="Tizen_Tracer_Begin_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_End">End()</a></div>
   </div>
@@ -267,7 +267,7 @@ The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFa
 </div>
   <h5 id="Tizen_Tracer_End_seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_Begin_String_">Begin(String)</a></div>
+      <div><a class="xref" href="Tizen.Tracer.html#Tizen_Tracer_Begin_System_String_">Begin(string)</a></div>
   </div>
 
 
@@ -277,13 +277,13 @@ The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFa
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Tracer/Tizen/Tracer.cs/#L95">View Source</a>
   </span>
   <a id="Tizen_Tracer_TraceValue_" data-uid="Tizen.Tracer.TraceValue*"></a>
-  <h4 id="Tizen_Tracer_TraceValue_System_Int32_String_" data-uid="Tizen.Tracer.TraceValue(System.Int32,String)">TraceValue(int, String)</h4>
+  <h4 id="Tizen_Tracer_TraceValue_System_Int32_System_String_" data-uid="Tizen.Tracer.TraceValue(System.Int32,System.String)">TraceValue(int, string)</h4>
   <div class="markdown level1 summary"><p>Writes a trace event to track change of an integer value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void TraceValue(int value, String name)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void TraceValue(int value, string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -302,14 +302,14 @@ The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFa
 </td>
       </tr>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">name</span></td>
         <td><p>The name of an event (optionally containing format specifiers).</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Tracer_TraceValue_System_Int32_String__remarks">Remarks</h5>
+  <h5 id="Tizen_Tracer_TraceValue_System_Int32_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFacts.GetLastResult() method.</p>
 </div>
 

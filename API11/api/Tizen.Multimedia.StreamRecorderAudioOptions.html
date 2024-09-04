@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StreamRecorderAudioOptions</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public class StreamRecorderAudioOptions</code></pre>
   </div>
 
 
@@ -124,7 +125,8 @@ codec, sample rate, bit rate, and channel value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamRecorderAudioOptions(RecorderAudioCodec codec, int sampleRate, int bitRate, int channels)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public StreamRecorderAudioOptions(RecorderAudioCodec codec, int sampleRate, int bitRate, int channels)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -162,6 +164,31 @@ codec, sample rate, bit rate, and channel value.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">codec</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sampleRate</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">bitRate</code> is less than or equal to zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">channels</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_StreamRecorderAudioOptions__ctor_Tizen_Multimedia_RecorderAudioCodec_System_Int32_System_Int32_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>
@@ -182,7 +209,8 @@ codec, sample rate, bit rate, and channel value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamRecorderAudioOptions(RecorderAudioCodec codec)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public StreamRecorderAudioOptions(RecorderAudioCodec codec)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -205,6 +233,22 @@ codec, sample rate, bit rate, and channel value.</p>
   <h5 id="Tizen_Multimedia_StreamRecorderAudioOptions__ctor_Tizen_Multimedia_RecorderAudioCodec__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.StreamRecorderAudioOptions.html#Tizen_Multimedia_StreamRecorderAudioOptions_SampleRate">SampleRate</a>, <a class="xref" href="Tizen.Multimedia.StreamRecorderAudioOptions.html#Tizen_Multimedia_StreamRecorderAudioOptions_BitRate">BitRate</a> and <a class="xref" href="Tizen.Multimedia.StreamRecorderAudioOptions.html#Tizen_Multimedia_StreamRecorderAudioOptions_Channels">Channels</a> will be set as default.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">codec</code> is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_StreamRecorderAudioOptions__ctor_Tizen_Multimedia_RecorderAudioCodec__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>
@@ -227,7 +271,8 @@ codec, sample rate, bit rate, and channel value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int BitRate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public int BitRate { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -241,6 +286,22 @@ codec, sample rate, bit rate, and channel value.</p>
       <tr>
         <td><span class="xref">int</span></td>
         <td><p>The bit rate value for audio stream recording. The default is 128000.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -265,7 +326,8 @@ codec, sample rate, bit rate, and channel value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Channels { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public int Channels { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -279,6 +341,22 @@ codec, sample rate, bit rate, and channel value.</p>
       <tr>
         <td><span class="xref">int</span></td>
         <td><p>The number of audio channels for audio stream recording. The default is 2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -303,7 +381,8 @@ codec, sample rate, bit rate, and channel value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RecorderAudioCodec Codec { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public RecorderAudioCodec Codec { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -317,6 +396,22 @@ codec, sample rate, bit rate, and channel value.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.RecorderAudioCodec.html">RecorderAudioCodec</a></td>
         <td><p>The codec for audio stream recording.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
 </td>
       </tr>
     </tbody>
@@ -339,7 +434,8 @@ codec, sample rate, bit rate, and channel value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int SampleRate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
+public int SampleRate { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -360,6 +456,22 @@ codec, sample rate, bit rate, and channel value.</p>
   <h5 id="Tizen_Multimedia_StreamRecorderAudioOptions_SampleRate_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the value is zero, the sample rate will be decided based on input buffers.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_StreamRecorderAudioOptions_SampleRate_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>
@@ -370,28 +482,6 @@ codec, sample rate, bit rate, and channel value.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a></div>

@@ -136,7 +136,7 @@ Keys are always text strings and the value can be any one of the four types: int
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>The list of keys.</p>
 </td>
       </tr>
@@ -213,6 +213,27 @@ Keys are always text strings and the value can be any one of the four types: int
         Console.WriteLine(&quot;user {0}&quot;, value);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -288,6 +309,32 @@ Note that this is a generic method.</p>
         Console.WriteLine(&quot;user {0}&quot;, value);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown if the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -332,7 +379,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">WeakReference&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
+        <td><span class="xref">System.WeakReference&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
         <td><p>The event context of respective key.</p>
 </td>
       </tr>
@@ -359,6 +406,27 @@ Note that this is a generic method.</p>
         context.Changed -= Preference_PreferenceChanged;
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown if the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the key is invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a></div>
@@ -404,6 +472,27 @@ Note that this is a generic method.</p>
         string value = Preference.Remove(&quot;active_user&quot;);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown if the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -427,6 +516,22 @@ Note that this is a generic method.</p>
     Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);
     Preference.RemoveAll();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -477,6 +582,27 @@ Data types for supported values are: integer, double, string, and bool.</p>
     Preference.Set(&quot;default_volume&quot;, 10);
     Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>

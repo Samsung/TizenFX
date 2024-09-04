@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class NUIWatchApplication : CoreApplication</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public class NUIWatchApplication : CoreApplication, IDisposable</code></pre>
   </div>
 
 
@@ -112,6 +113,12 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -125,7 +132,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NUIWatchApplication()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NUIWatchApplication()</code></pre>
   </div>
 
 
@@ -141,7 +149,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NUIWatchApplication(string stylesheet)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public NUIWatchApplication(string stylesheet)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -176,7 +185,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Window Window { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Window Window { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,7 +219,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Exit()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override void Exit()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_Exit">CoreApplication.Exit()</a></div>
@@ -227,7 +238,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnAmbientChanged(NUIWatchApplication.AmbientChangedEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected virtual void OnAmbientChanged(NUIWatchApplication.AmbientChangedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -260,7 +272,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnAmbientTick(NUIWatchApplication.AmbientTickEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected virtual void OnAmbientTick(NUIWatchApplication.AmbientTickEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -293,7 +306,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnAppControlReceived(AppControlReceivedEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnAppControlReceived(AppControlReceivedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -328,7 +342,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnCreate()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnCreate()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_OnCreate">CoreApplication.OnCreate()</a></div>
@@ -346,7 +361,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnLocaleChanged(LocaleChangedEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnLocaleChanged(LocaleChangedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -381,7 +397,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnLowBattery(LowBatteryEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnLowBattery(LowBatteryEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -416,7 +433,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnLowMemory(LowMemoryEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnLowMemory(LowMemoryEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -451,7 +469,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnPause()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected virtual void OnPause()</code></pre>
   </div>
 
 
@@ -467,7 +486,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnPreCreate()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected virtual void OnPreCreate()</code></pre>
   </div>
 
 
@@ -483,7 +503,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -518,7 +539,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnResume()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected virtual void OnResume()</code></pre>
   </div>
 
 
@@ -534,7 +556,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnTerminate()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnTerminate()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_OnTerminate">CoreApplication.OnTerminate()</a></div>
@@ -552,7 +575,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void OnTimeTick(NUIWatchApplication.TimeTickEventArgs e)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected virtual void OnTimeTick(NUIWatchApplication.TimeTickEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -585,7 +609,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Run(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override void Run(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -622,7 +647,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler AmbientChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler AmbientChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -634,7 +660,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -653,7 +679,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler AmbientTick</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler AmbientTick</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -665,7 +692,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -683,7 +710,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Paused</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler Paused</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -695,7 +723,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -713,7 +741,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Resumed</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler Resumed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -725,7 +754,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -743,7 +772,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler TimeTick</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler TimeTick</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -755,7 +785,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -764,27 +794,9 @@
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
