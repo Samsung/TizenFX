@@ -33,6 +33,7 @@ jobs:
 
     - name: Clone TizenFX sources
       run: |
+        dotnet --version
         ./build.sh clone
 
     - name: Cache DocFX output
