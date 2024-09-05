@@ -15,7 +15,6 @@
  */
 
 using System.Collections.Generic;
-using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {

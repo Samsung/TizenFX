@@ -29,6 +29,16 @@ namespace Tizen.Security.WebAuthn
     /// <since_tizen> 7 </since_tizen>
     public static class Authenticator
     {
+        private static bool _apiVersionSet = false;
+        private static bool _busy = false;
+        private static object _userData = null;
+        private static WauthnDisplayQrcodeCallback _qrCodeCallback;
+        private static WauthnMcOnResponseCallback _mcResponseCallback;
+        private static WauthnGaOnResponseCallback _gaResponseCallback;
+        private static WauthnUpdateLinkedDataCallback _linkedDataCallback;
+        private static WauthnMcCallbacks _wauthnMcCallbacks;
+        private static WauthnGaCallbacks _wauthnGaCallbacks;
+
         #region Public API
         /// <summary>
         /// Sets API version that the caller uses
@@ -40,7 +50,9 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="NotSupportedException">The specified API version or required feature is not supported</exception>
         public static void SetApiVersion(int apiVersionNumber)
         {
-            throw new NotImplementedException();
+            int ret = Libwebauthn.SetApiVersion(apiVersionNumber);
+            CheckErrNThrow(ret, "Set API version");
+            _apiVersionSet = true;
         }
 
         /// <summary>
@@ -52,7 +64,10 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="NotSupportedException">The required feature is not supported</exception>
         public static AuthenticatorTransport SupportedAuthenticators()
         {
-            throw new NotImplementedException();
+            int ret = Libwebauthn.SupportedAuthenticators(out uint supported);
+            CheckErrNThrow(ret, "Get supported authenticators");
+
+            return (AuthenticatorTransport)supported;
         }
 
         /// <summary>
@@ -84,7 +99,35 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="OperationCanceledException">Canceled by a cancel request</exception>
         public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, McCallbacks callbacks)
         {
-            throw new NotImplementedException();
+            CheckPreconditions();
+            try
+            {
+                CheckNullNThrow(clientData);
+                CheckNullNThrow(clientData.JsonData);
+                CheckNullNThrow(options);
+                CheckNullNThrow(options.Rp);
+                CheckNullNThrow(options.User);
+                CheckNullNThrow(options.PubkeyCredParams);
+                CheckNullNThrow(callbacks);
+                CheckNullNThrow(callbacks.QrcodeCallback);
+                CheckNullNThrow(callbacks.ResponseCallback);
+                CheckNullNThrow(callbacks.LinkedDataCallback);
+
+                // Create callback wrappers
+                WrapMcCallbacks(callbacks);
+                AuthenticatorStorage.SetDataForMakeCredential(clientData, options);
+
+                int ret = Libwebauthn.MakeCredential(
+                    AuthenticatorStorage.WauthnClientData,
+                    AuthenticatorStorage.WauthnPubkeyCredCreationOptions,
+                    _wauthnMcCallbacks);
+                CheckErrNThrow(ret, "Make Credential");
+            }
+            catch
+            {
+                Cleanup();
+                throw;
+            }
         }
 
         /// <summary>
@@ -116,7 +159,32 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="OperationCanceledException">Canceled by a cancel request</exception>
         public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GaCallbacks callbacks)
         {
-            throw new NotImplementedException();
+            CheckPreconditions();
+            try
+            {
+                CheckNullNThrow(clientData);
+                CheckNullNThrow(clientData.JsonData);
+                CheckNullNThrow(options);
+                CheckNullNThrow(callbacks);
+                CheckNullNThrow(callbacks.QrcodeCallback);
+                CheckNullNThrow(callbacks.ResponseCallback);
+                CheckNullNThrow(callbacks.LinkedDataCallback);
+
+                // Create callback wrappers
+                WrapGaCallbacks(callbacks);
+                AuthenticatorStorage.SetDataForGetAssertion(clientData, options);
+
+                int ret = Libwebauthn.GetAssertion(
+                    AuthenticatorStorage.WauthnClientData,
+                    AuthenticatorStorage.WauthnPubkeyCredRequestOptions,
+                    _wauthnGaCallbacks);
+                CheckErrNThrow(ret, "Get Assertion");
+            }
+            catch
+            {
+                Cleanup();
+                throw;
+            }
         }
 
         /// <summary>
@@ -128,7 +196,94 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="InvalidOperationException">Not allowed in the current context</exception>
         public static void Cancel()
         {
-            throw new NotImplementedException();
+            int ret = Libwebauthn.Cancel();
+            CheckErrNThrow(ret, "Cancel operation");
+        }
+
+        #endregion
+        #region Helper methods
+
+        private static void WrapMcCallbacks(McCallbacks callbacks)
+        {
+            _userData = callbacks.UserData;
+
+            void qrCodeWrapper(string qrContents, IntPtr _)
+            {
+                callbacks.QrcodeCallback(qrContents, _userData);
+            }
+
+            void onResponseWrapper(WauthnPubkeyCredentialAttestation pubkeyCred, WauthnError result, IntPtr _)
+            {
+                PubkeyCredentialAttestation pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
+                callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
+
+                if (result != WauthnError.None)
+                    Cleanup();
+            }
+
+            void linkedDataWrapper(IntPtr linkedData, WauthnError result, IntPtr _)
+            {
+                HybridLinkedData linkedDataManaged = linkedData != IntPtr.Zero ? new(Marshal.PtrToStructure<WauthnHybridLinkedData>(linkedData)) : null;
+                callbacks.LinkedDataCallback(linkedDataManaged, result, _userData);
+
+                if (result != WauthnError.NoneAndWait)
+                    Cleanup();
+            }
+
+            _qrCodeCallback = new WauthnDisplayQrcodeCallback(qrCodeWrapper);
+            _mcResponseCallback = new WauthnMcOnResponseCallback(onResponseWrapper);
+            _linkedDataCallback = new WauthnUpdateLinkedDataCallback(linkedDataWrapper);
+
+            _wauthnMcCallbacks = new WauthnMcCallbacks(_qrCodeCallback, _mcResponseCallback, _linkedDataCallback);
+        }
+
+        private static void WrapGaCallbacks(GaCallbacks callbacks)
+        {
+            _userData = callbacks.UserData;
+
+            void qrCodeWrapper(string qrContents, IntPtr _)
+            {
+                callbacks.QrcodeCallback(qrContents, _userData);
+            }
+
+            void onResponseWrapper(WauthnPubkeyCredentialAssertion pubkeyCred, WauthnError result, IntPtr _)
+            {
+                PubkeyCredentialAssertion pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
+                callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
+
+                if (result != WauthnError.None)
+                    Cleanup();
+            }
+
+            void linkedDataWrapper(IntPtr linkedData, WauthnError result, IntPtr _)
+            {
+                HybridLinkedData linkedDataManaged = linkedData != IntPtr.Zero ? new(Marshal.PtrToStructure<WauthnHybridLinkedData>(linkedData)) : null;
+                callbacks.LinkedDataCallback(linkedDataManaged, result, _userData);
+
+                if (result != WauthnError.NoneAndWait)
+                    Cleanup();
+            }
+            _qrCodeCallback = new WauthnDisplayQrcodeCallback(qrCodeWrapper);
+            _gaResponseCallback = new WauthnGaOnResponseCallback(onResponseWrapper);
+            _linkedDataCallback = new WauthnUpdateLinkedDataCallback(linkedDataWrapper);
+
+            _wauthnGaCallbacks = new WauthnGaCallbacks(_qrCodeCallback, _gaResponseCallback, _linkedDataCallback);
+        }
+
+        private static void CheckPreconditions()
+        {
+            if (!_apiVersionSet)
+                throw new InvalidOperationException("API version not set");
+            if (_busy)
+                throw new InvalidOperationException("Authenticator busy");
+
+            _busy = true;
+        }
+
+        private static void Cleanup()
+        {
+            _busy = false;
+            AuthenticatorStorage.Cleanup();
         }
 
         #endregion
