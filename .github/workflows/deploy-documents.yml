@@ -50,26 +50,27 @@ jobs:
         ./build.sh build
         ./build.sh index
 
-    - name: Archive Artifacts
-      run: |
-        tar cfz site.tar.gz _site/
-    - uses: actions/upload-artifact@v2
-      with:
-        name: documents
-        path: site.tar.gz
+    # - name: Archive Artifacts
+    #   run: |
+    #     tar cfz site.tar.gz _site/
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: documents
+    #     path: site.tar.gz
 
-  deploy:
-    needs: [build]
-    runs-on: ubuntu-20.04
+  # deploy:
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: documents
+    # steps:
+    # - uses: actions/download-artifact@v2
+    #   with:
+    #     name: documents
 
-    - name: Extract Artifacts
-      run: |
-        tar xfz site.tar.gz
+    # - name: Extract Artifacts
+    #   run: |
+    #     tar xfz site.tar.gz
+
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
