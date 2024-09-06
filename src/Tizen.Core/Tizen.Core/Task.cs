@@ -21,38 +21,49 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Tizen.Core
-{
+{   
     /// <summary>
-    /// Represents the Tizen Core Task.
+    /// Represents the task used for creating, running and terminating the thread with the main loop. 
+    /// The state of the task can be changed as follows: Constructed -> Running -> Terminated. 
+    /// To start the task, use 'Task.Run()' method. Once started, the task enters into 'Running' state. To terminate the task, use 'Task.Quit()' method. 
+    /// After termination, the task returns back to 'Constructed' state.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreTask : IDisposable
+    public class Task : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
-        private static readonly ConcurrentDictionary<string, TCoreTask> _coreTaskMap = new ConcurrentDictionary<string, TCoreTask>();
-        private static readonly ConcurrentDictionary<int, Func<Task>> _taskMap = new ConcurrentDictionary<int, Func<Task>>();
+        private static readonly ConcurrentDictionary<string, Task> _coreTaskMap = new ConcurrentDictionary<string, Task>();
+        private static readonly ConcurrentDictionary<int, Func<System.Threading.Tasks.Task>> _taskMap = new ConcurrentDictionary<int, Func<System.Threading.Tasks.Task>>();
         private static readonly ConcurrentDictionary<int, Action> _actionkMap = new ConcurrentDictionary<int, Action>();
         private static readonly ConcurrentDictionary<int, TimerSource> _timerMap = new ConcurrentDictionary<int, TimerSource>();
-        private static readonly ConcurrentDictionary<int, ChannelSource> _channelMap = new ConcurrentDictionary<int, ChannelSource>();
-        private static readonly ConcurrentDictionary<int, EventSource> _eventMap = new ConcurrentDictionary<int, EventSource>(); 
+        private static readonly ConcurrentDictionary<int, ChannelReceiver> _channelMap = new ConcurrentDictionary<int, ChannelReceiver>();
+        private static readonly ConcurrentDictionary<int, Event> _eventMap = new ConcurrentDictionary<int, Event>(); 
         private static Object _idLock = new Object();
-        private static int _id = 0;
+        private static int _id = 1;
 
         /// <summary>
-        /// Initializes the TCoreTask class.
+        /// Initializes the Task class.
         /// </summary>
-        /// <param name="id">The ID of the core task.</param>
+        /// <param name="id">The ID of the task.</param>
+        /// <exception cref="ArgumentException">Thrown when the id argument is invalid or already exists.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <remarks>
+        /// The constructor throws an exception when the id already exists.
+        /// By default, the task creates a thread. However, if the id is main, it works without creating a thread. 
+        /// The 'main' task will be operated in the main thread.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var coreTask = new TCoreTask("Worker");
-        /// coreTask.Run();
+        /// TizenCore.Initialize();
+        /// var task = new Task("Worker");
+        /// task.Run();
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreTask(string id)
+        public Task(string id)
         {
             bool useThread = (id == "main") ? false : true;
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.TaskCreate(id, useThread, out  _handle);
@@ -60,42 +71,40 @@ namespace Tizen.Core
             _coreTaskMap[id] = this;
         }
 
-        private TCoreTask(IntPtr handle)
+        internal Task(IntPtr handle)
         {
             _handle = handle;
             _disposed = true;
         }
 
         /// <summary>
-        /// Finalizes the TCoreTask class.
+        /// Finalizes the Task class.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        ~TCoreTask()
+        ~Task()
         {
              Dispose(false);
         }
 
+
         /// <summary>
-        /// Dispatches an asynchronous message to a main loop of the TCoreTask.
+        /// Posts an action to be executed later.
         /// </summary>
-        /// <remarks>
-        /// The asynchronous message will be delivered to the main loop of the TCoreTask.
-        /// </remarks>
-        /// <param name="action">The action callback.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <param name="action">The action callback to post.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the action argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <remarks>
+        /// The action will be stored in the internal map using its unique identifier.
+        /// Then it will be added as an idle job to the main loop of the task..
+        /// The action callback will be executed by the main loop of the task.
+        /// If there was any error during this process, an appropriate exception will be thrown.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var coreTask = TCoreTask.Find("Test");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = new TCoreTask("Test");
-        ///   coreTask.Run();
-        /// }
-        /// 
-        /// coreTask.Post(() =>
+        /// var task = TizenCore.Find("Test") ?? TizenCore.Spawn("Test");
+        /// task.Post(() =>
         /// {
         ///   Console.WriteLine("Test task");
         /// });
@@ -113,6 +122,7 @@ namespace Tizen.Core
             int id;
             lock (_idLock)
             {
+                if (_id + 1 < 0) _id = 1;
                 id = _id++;
             }
             _actionkMap[id] = action;
@@ -121,27 +131,25 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Dispatches an asynchronous message to a main loop of the TCoreTask.
+        /// Posts a task to be executed later.
         /// </summary>
-        /// <remarks>
-        /// The asynchronous message will be delivered to the main loop of the TCoreTask.
-        /// </remarks>
-        /// <param name="task">The task function.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <param name="task">The task to post.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the task argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <remarks>
+        /// The task will be stored in the internal map using its unique identifier.
+        /// Then it will be added as an idle job to the main loop of the task.
+        /// If there was any error during this process, the task will be removed from the map and an appropriate exception will be thrown.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
-        /// var coreTask = TCoreTask.Find("Sender");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spwan("Sender");
-        /// }
+        /// var channel = new Channel();
+        /// var task = TizenCore.Find("Sender") ?? TizenCore.Spawn("Sender");
         /// 
         /// int id = 0;
-        /// coreTask.Send(async () =>
+        /// task.Post(async () =>
         /// {
         ///   var channelObject = await channel.Receiver.Receive();
         ///   var message = (string)channelObject.Data;
@@ -151,7 +159,7 @@ namespace Tizen.Core
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public void Send(Func<Task> task)
+        public void Post(Func<System.Threading.Tasks.Task> task)
         {
             if (task == null)
             {
@@ -161,6 +169,7 @@ namespace Tizen.Core
             int id;
             lock (_idLock)
             {
+                if (_id + 1 < 0) _id = 1;
                 id = _id++;
             }
             _taskMap[id] = task;
@@ -173,44 +182,43 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Adds a timer to a main loop of the TCoreTask.
+        /// Adds a recurring timer to a main loop of the task.
         /// </summary>
         /// <param name="interval">The interval of the timer in milliseconds.</param>
-        /// <param name="handler">The timer handler.</param>
-        /// <returns>The registered timer ID.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <param name="callback">The recurring timer callback function which returns whether or not to continue triggering the timer.</param>
+        /// <returns>The registered timer ID to be used with <see cref="RemoveTimer"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the callback argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <remarks>
+        /// The callback function will be called every time the specified interval elapses. It should return true to keep the timer running, otherwise the timer will be stopped.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var coreTask = TCoreTask.Find("TimerTask");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("TimerTask");
-        /// }
-        /// 
-        /// var timerId = coreTask.AddTimer(1000, () => {
-        ///   Console.WriteLine("Timer handler is invoked");
+        /// var task = TizenCore.Find("TimerTask") ?? TizenCore.Spawn("TimerTask");
+        /// var timerId = task.AddTimer(1000, () => {
+        ///   Console.WriteLine("Timer callback is invoked");
         ///   return true;
         /// });
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public int AddTimer(uint interval, Func<bool> handler)
+        public int AddTimer(uint interval, Func<bool> callback)
         {
-            if (handler == null)
+            if (callback == null)
             {
-                throw new ArgumentNullException(nameof(handler));
+                throw new ArgumentNullException(nameof(callback));
             }
 
             int id;
             lock (_idLock)
             {
+                if (_id + 1 < 0) _id = 1;
                 id = _id++;
             }
-            var timerSource = new TimerSource(id, IntPtr.Zero, handler);
+            var timerSource = new TimerSource(id, IntPtr.Zero, callback);
             _timerMap[id] = timerSource;
             lock (timerSource)
             {
@@ -227,24 +235,20 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Removes the registered timer from the main loop of the TCoreTask.
+        /// Removes the registered timer from the main loop of the task.
+        /// If the specified timer was already stopped, no action occurs.
         /// </summary>
         /// <param name="id">The registered timer ID.</param>
         /// <example>
         /// <code>
         /// 
-        /// var coreTask = TCoreTask.Find("TimerTask");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("TimerTask");
-        /// }
-        /// 
-        /// var timerId = coreTask.AddTimer(1000, () => {
+        /// var task = TizenCore.Find("TimerTask") ?? TizenCore.Spawn("TimerTask");
+        /// var timerId = task.AddTimer(1000, () => {
         ///   Console.WriteLine("Timer handler is invoked");
         ///   return true;
         /// });
         /// ...
-        /// coreTask.RemoveTimer(timerId);
+        /// task.RemoveTimer(timerId);
         /// 
         /// </code>
         /// </example>
@@ -265,34 +269,27 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Adds a channel receiver to a main loop of the TCoreTask.
+        /// Adds a channel receiver to a main loop of the task.
         /// </summary>
         /// <param name="receiver">The channel receiver instance.</param>
-        /// <returns>The registered source ID.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
-        /// var coreTask = TCoreTask.Find("ReceivingTask");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("ReceivingThread");
-        /// }
-        /// 
+        /// var channel = new Channel();
+        /// var task = TizenCore.Find("ReceivingTask") ?? TizenCore.Spawn("ReceivingTask");
         /// var receiver = channel.Receiver;
         /// receiver.Received += (sender, args) => {
         ///   Console.WriteLine("OnChannelMessageReceived. Message = " + (string)args.Data);
         /// };
-        /// 
-        /// var sourceId = coreTask.AddChannelReceiver(receiver);
+        /// task.AddChannelReceiver(receiver);
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public int AddChannelReceiver(TCoreChannelReceiver receiver)
+        public void AddChannelReceiver(ChannelReceiver receiver)
         {
             if (receiver == null) { throw new ArgumentNullException(nameof(receiver)); }
 
@@ -304,11 +301,12 @@ namespace Tizen.Core
             int id;
             lock (_idLock)
             {
+                if (_id + 1 < 0) _id = 1;
                 id = _id++;
             }
-            var channelSource = new ChannelSource(id, IntPtr.Zero, receiver);
-            _channelMap[id] = channelSource;
-            lock (channelSource)
+            receiver.Id = id;
+            _channelMap[id] = receiver;
+            lock (receiver)
             {
                 Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddChannel(_handle, receiver.Handle, NativeChannelReceiveCallback, (IntPtr)id, out IntPtr handle);
                 if (error != Interop.LibTizenCore.ErrorCode.None)
@@ -317,81 +315,87 @@ namespace Tizen.Core
                     TCoreErrorFactory.CheckAndThrownException(error, "Failed to add a channel to the task");
                 }
 
-                channelSource.Handle = handle;
+                receiver.Source = handle;
                 receiver.Handle = IntPtr.Zero;
             }
-            return id;
         }
 
         /// <summary>
-        /// Removes the registered channel receiver from the main loop of the TCoreTask..
+        /// Removes the registered channel receiver from the main loop of the task.
         /// </summary>
-        /// <param name="id">The registered source ID.</param>
+        /// <param name="receiver">The channel receiver instance.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
-        /// var coreTask = TCoreTask.Find("ReceivingTask");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("ReceivingThread");
-        /// }
-        /// 
+        /// var channel = new Channel();
+        /// var task = TizenCore.Find("ReceivingTask") ?? TizenCore.Spawn("ReceivingTask");
         /// var receiver = channel.Receiver;
         /// receiver.Received += (sender, args) => {
         ///   Console.WriteLine("OnChannelMessageReceived. Message = " + (string)args.Data);
         /// };
         /// 
-        /// var sourceId = coreTask.AddChannelReceiver(receiver);
-        /// ...
-        /// coreTask.RemoveChannelReceiver(sourceId);
+        /// task.AddChannelReceiver(receiver);
+        /// task.RemoveChannelReceiver(receiver);
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public void RemoveChannelReceiver(int id)
+        public void RemoveChannelReceiver(ChannelReceiver receiver)
         {
-            if (_channelMap.TryRemove(id, out var channelSource))
+            if (receiver == null)
             {
-                lock (channelSource)
+                throw new ArgumentNullException(nameof(receiver));
+            }
+
+            if (receiver.Id == 0 || receiver.Source == IntPtr.Zero)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
+            if (_channelMap.TryRemove(receiver.Id, out var _))
+            {
+                lock (receiver)
                 {
-                    if (channelSource.Handle != IntPtr.Zero)
+                    if (receiver.Source != IntPtr.Zero)
                     {
-                        Interop.LibTizenCore.TizenCore.RemoveSource(_handle, channelSource.Handle);
-                        channelSource.Handle = IntPtr.Zero;
+                        Interop.LibTizenCore.TizenCore.RemoveSource(_handle, receiver.Source);
+                        receiver.Source = IntPtr.Zero;
+                        receiver.Id = 0;
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Adds an event to a main loop of the TCoreTask.
+        /// Adds an event to a main loop of the task.
+        /// If the event is successfully added, its unique identifier is assigned to the event. The identifier can then be used later to identify the specific event among others. 
         /// </summary>
-        /// <param name="coreEvent">The TCoreEvent instance.</param>
-        /// <returns>The registered source ID.</returns>
+        /// <param name="coreEvent">The event instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <remarks>
+        /// This method allows you to associate an event with a specific task. By adding an event to a task's main loop, other threads can utilize this event to communicate with the task.
+        /// However, note that once an event is attached to a task, it cannot be reused or attached to another task. 
+        /// If the argument passed to this method is null, an exception will be thrown. Additionally, if the event has been previously added, an argument exception will be raised.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var coreEvent = new TCoreEvent();
+        /// var coreEvent = new Event();
         /// coreEvent.EventReceived += (sender, args) => {
         ///   Console.WriteLine("OnEventReceived. ID = {}, Message = {}", args.Id, (string)args.Data);
         /// };
         /// 
-        /// var coreTask = TCoreTask.Find("EventTask");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("EventTask");
-        /// }
-        /// 
-        /// int sourceId = coreTask.AddEvent(coreEvent);
+        /// var task = TizenCore.Find("EventTask") ?? TizenCore.Spawn("EventTask");
+        /// task.AddEvent(coreEvent);
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public int AddEvent(TCoreEvent coreEvent)
+        public void AddEvent(Event coreEvent)
         {
             if (coreEvent == null)
             {
@@ -406,11 +410,15 @@ namespace Tizen.Core
             int id;
             lock (_idLock)
             {
+                if (_id + 1 < 0)
+                {
+                    _id = 1;
+                }
                 id = _id++;
             }
-            var eventSource = new EventSource(id, IntPtr.Zero, coreEvent);
-            _eventMap[id] = eventSource;
-            lock (eventSource)
+            coreEvent.Id = id;
+            _eventMap[id] = coreEvent;
+            lock (coreEvent)
             {
                 Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddEvent(_handle, coreEvent.Handle, out IntPtr handle);
                 if (error != Interop.LibTizenCore.ErrorCode.None)
@@ -419,54 +427,61 @@ namespace Tizen.Core
                     TCoreErrorFactory.CheckAndThrownException(error, "Failed to add an event to the task");
                 }
 
-                eventSource.Handle = handle;
+                coreEvent.Source = handle;
                 coreEvent.Handle = IntPtr.Zero;
             }
-            return id;
         }
 
         /// <summary>
-        /// Removes the registered event from the main loop of the TCoreTask.
+        /// Removes the registered event from the main loop of the task.
         /// </summary>
-        /// <param name="id">The registered source ID.</param>
+        /// <param name="coreEvent">The event instance.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <example>
         /// <code>
         /// 
-        /// var coreEvent = new TCoreEvent();
+        /// var coreEvent = new Event();
         /// coreEvent.EventReceived += (sender, args) => {
         ///   Console.WriteLine("OnEventReceived. ID = {}, Message = {}", args.Id, (string)args.Data);
         /// };
         /// 
-        /// var coreTask = TCoreTask.Find("EventTask");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("EventTask");
-        /// }
-        /// 
-        /// int sourceId = coreTask.AddEvent(coreEvent);
-        /// ...
-        /// coreTask.RemoveEvent(sourceId);
+        /// var task = TizenCore.Find("EventTask") ?? TizenCore.Spawn("EventTask");
+        /// task.AddEvent(coreEvent);
+        /// task.RemoveEvent(coreEvent);
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public void RemoveEvent(int id)
+        public void RemoveEvent(Event coreEvent)
         {
-            if (_eventMap.TryRemove(id, out var eventSource))
+            if (coreEvent == null)
             {
-                lock (eventSource)
+                throw new ArgumentNullException(nameof(coreEvent));
+            }
+
+            if (coreEvent.Id == 0 || coreEvent.Source == IntPtr.Zero)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
+            if (_eventMap.TryRemove(coreEvent.Id, out var _))
+            {
+                lock (coreEvent)
                 {
-                    if (eventSource.Handle != IntPtr.Zero)
+                    if (coreEvent.Source != IntPtr.Zero)
                     {
-                        Interop.LibTizenCore.TizenCore.RemoveSource(_handle, eventSource.Handle);
-                        eventSource.Handle = IntPtr.Zero;
+                        Interop.LibTizenCore.TizenCore.RemoveSource(_handle, coreEvent.Source);
+                        coreEvent.Source = IntPtr.Zero;
+                        coreEvent.Id = 0;
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Emits the event object to a main loop of the TCoreTask.
+        /// Emits the event object to all registered event handlers of the task. 
+        /// It's similar to Event.Emit(), but EmitAllEvent() sends the event object to every event handler of the task while Event.Emit() sends the event object only to the target event's event handler.
         /// </summary>
         /// <param name="eventObject">The event object instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
@@ -478,18 +493,14 @@ namespace Tizen.Core
         /// string message = "Test Event";
         /// using (var eventObject = new TCoreEventObject(id++, message))
         /// {
-        ///   var coreTask = TCoreTask.Find("EventTask");
-        ///   if (coreTask == null)
-        ///   {
-        ///     coreTask = TCoreTask.Spawn("EventTask");
-        ///   }
-        ///   coreTask.EmitEvent(eventObject);
+        ///   var task = TizenCore.Find("EventTask") ?? TizenCore.Spawn("EventTask");
+        ///   task.EmitEvent(eventObject);
         /// }
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public void EmitEvent(TCoreEventObject eventObject)
+        public void EmitEvent(EventObject eventObject)
         {
             if (eventObject == null)
             {
@@ -504,7 +515,7 @@ namespace Tizen.Core
         private static bool NativeTaskCallback(IntPtr userData)
         {
             int taskId = (int)userData;
-            if (_taskMap.TryRemove(taskId, out Func<Task> task))
+            if (_taskMap.TryRemove(taskId, out Func<System.Threading.Tasks.Task> task))
             {
                 task();
             }
@@ -546,101 +557,36 @@ namespace Tizen.Core
         private static void NativeChannelReceiveCallback(IntPtr nativeObject, IntPtr userData)
         {
             int channelId = (int)userData;
-            if (_channelMap.TryGetValue(channelId, out ChannelSource channelSource))
+            if (_channelMap.TryGetValue(channelId, out ChannelReceiver receiver))
             {
-                lock (channelSource)
+                lock (receiver)
                 {
-                    if (channelSource.Handle != IntPtr.Zero)
+                    if (receiver.Source != IntPtr.Zero)
                     {
-                        using (var channelObject = new TCoreChannelObject(nativeObject))
+                        using (var channelObject = new ChannelObject(nativeObject))
                         {
-                            var eventArgs = new TCoreChannelReceivedEventArgs(channelObject);
-                            channelSource.ChannelReceiver.InvokeEventHandler(null, eventArgs);
+                            var eventArgs = new ChannelReceivedEventArgs(channelObject);
+                            receiver.InvokeEventHandler(null, eventArgs);
                         }
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// Finds the TCoreTask instance.
-        /// </summary>
-        /// <param name="id">The ID of the TCoreTask.</param>
-        /// <example>
-        /// <code>
-        /// 
-        /// var coreTask = TCoreTask.Find("Test");
-        /// if (coreTask == null)
-        /// {
-        ///   coreTask = TCoreTask.Spawn("Test");
-        /// }
-        /// 
-        /// </code>
-        /// </example>
-        /// <returns>On success the TCoreTask instance, othwerwise null.</returns>
-        public static TCoreTask Find(string id)
+        internal static Task Find(string id)
         {
-            if (_coreTaskMap.TryGetValue(id, out TCoreTask task)) { return task; }
+            if (_coreTaskMap.TryGetValue(id, out Task task)) { return task; }
 
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.Find(id, out IntPtr handle);
             if (error == Interop.LibTizenCore.ErrorCode.None)
             {
-                return new TCoreTask(handle);
+                return new Task(handle);
             }
 
             return null;
         }
 
-        /// <summary>
-        /// Finds the TCoreTask instance from this thread.
-        /// </summary>
-        /// <returns>On success the TCoreTask instance, othwerwise null.</returns>
-        /// <example>
-        /// <code>
-        /// 
-        /// var coreTask = TCoreTask.FindFromThisThread();
-        /// if (coreTask != null)
-        /// {
-        ///   coreTask.Post(() => {
-        ///     Console.WriteLine("Idler invoked");
-        ///   });
-        /// }
-        /// 
-        /// </code>
-        /// </example>
-        /// <since_tizen> 12 </since_tizen>
-        public static TCoreTask FindFromThisThread()
-        {
-            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.FindFromThisThread(out IntPtr handle);
-            if (error == Interop.LibTizenCore.ErrorCode.None)
-            {
-                return new TCoreTask(handle);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Creates and Runs the TCoreTask.
-        /// </summary>
-        /// <param name="id">The ID of the TCoreTask.</param>
-        /// <returns>On succes the created TCoreTask instance, othwerwise null.</returns>
-        /// <example>
-        /// <code>
-        /// 
-        /// var coreTask = TCoreTask.Spawn("Worker");
-        /// if (coreTask != null)
-        /// {
-        ///   coreTask.AddTimer(5000, () => {
-        ///     Console.WriteLine("Timer expired");
-        ///     return true;
-        ///   });
-        /// }
-        /// 
-        /// </code>
-        /// </example>
-        /// <since_tizen> 12 </since_tizen>
-        public static TCoreTask Spawn(string id)
+        internal static Task Spawn(string id)
         {
             if (id == "main")
             {
@@ -648,7 +594,7 @@ namespace Tizen.Core
                 return null;
             }
 
-            var task = new TCoreTask(id);
+            var task = new Task(id);
             task.Run();
             return task;
         }
@@ -666,9 +612,9 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Runs the main loop of the TCoreTask.
+        /// Runs the main loop of the task.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when the native handle is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the unmanaged handle is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
@@ -686,10 +632,16 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Quits the main loop of the TCoreTask.
+        /// Quits the main loop of the task.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when the native handle is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the unmanaged handle is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <remarks>
+        /// This function can be called from any thread.
+        /// It requests the task to finish the current iteration of its loop and stop running.
+        /// All pending events in the event queue will be processed before quitting. Once the task is quit, it cannot be restarted. 
+        /// To start another task, you need to create a new one and call the <see cref="Run"/> method on it.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
@@ -760,38 +712,6 @@ namespace Tizen.Core
             public IntPtr Handle { get; set; }
 
             public Func<bool> Handler { get; set; }
-        }
-
-        internal class ChannelSource
-        {
-            public ChannelSource(int id, IntPtr handle, TCoreChannelReceiver channelReceiver)
-            {
-                Id = id;
-                Handle = handle;
-                ChannelReceiver = channelReceiver;
-            }
-
-            public int Id { get; set; }
-
-            public IntPtr Handle { get; set; }
-
-            public TCoreChannelReceiver ChannelReceiver { get; set; }
-        }
-
-        internal class EventSource
-        {
-            public EventSource(int id, IntPtr handle, TCoreEvent coreEvent)
-            {
-                Id = id;
-                Handle = handle;
-                CoreEvent = coreEvent;
-            }
-
-            public int Id { get; set; }
-
-            public IntPtr Handle { get; set; }
-
-            public TCoreEvent CoreEvent { get; set; }
         }
     }
 }

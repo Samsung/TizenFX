@@ -19,28 +19,28 @@ using System;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents the TCoreEvent class.
+    /// Represents the event using for broadcasting events.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreEvent : IDisposable
+    public class Event : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
         private Interop.LibTizenCore.TizenCoreEvent.EventHandlerCallback _callback = null;
 
         /// <summary>
-        /// Constructor for creating a new TCoreEvent instance.
+        /// Constructor for creating a new event instance.
         /// </summary>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
         /// <code>
         /// 
-        /// var coreEvent = new TCoreEvent();
+        /// var coreEvent = new Event();
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreEvent()
+        public Event()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreEvent.Create(out _handle);
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to create event");
@@ -48,21 +48,24 @@ namespace Tizen.Core
             _callback = new Interop.LibTizenCore.TizenCoreEvent.EventHandlerCallback(EventHandlerCallback);
             error = Interop.LibTizenCore.TizenCoreEvent.AddHandler(_handle, _callback, IntPtr.Zero, out IntPtr _);
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to add event handler");
+
+            Source = IntPtr.Zero;
+            Id = 0;
         }
 
         /// <summary>
-        /// Finalizer of the class TCoreEvent.
+        /// Finalizer of the class Event.
         /// </summary>
-        ~TCoreEvent()
+        ~Event()
         {
             Dispose(false);
         }
 
         private bool EventHandlerCallback(IntPtr eventData, IntPtr userData)
         {
-            using (var eventObject = new TCoreEventObject(eventData))
+            using (var eventObject = new EventObject(eventData))
             {
-                EventReceived?.Invoke(this, new TCoreEventArgs(eventObject));
+                EventReceived?.Invoke(this, new EventReceivedEventArgs(eventObject));
             }
             return true;
         }
@@ -71,12 +74,12 @@ namespace Tizen.Core
         /// Occurrs whenever the event is received in the main loop of the task.
         /// </summary>
         /// <remarks>
-        /// The registered event handler will be invoked when the TCoreEvent is added to the specific task.
+        /// The registered event handler will be invoked when the event is added to the specific task.
         /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var coreEvent = new TCoreEvent();
+        /// var coreEvent = new Event();
         /// coreEvent.EventReceived += (s, e) => {
         ///   Console.WriteLine("OnEventReceived. Message = {}", (string)e.Data);
         /// };
@@ -84,36 +87,40 @@ namespace Tizen.Core
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public event EventHandler<TCoreEventArgs> EventReceived;
+        public event EventHandler<EventReceivedEventArgs> EventReceived;
 
         /// <summary>
-        /// Emits an event object.
+        /// Emits an event object to the event.
+        /// The emitted event object is queued and delivered to the registered EventHandlers on the main loop of the task.
         /// </summary>
         /// <param name="eventObject">The event object instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <remarks>
+        /// If the event is not added to the task, the emitted event object will be pended until the event is added to the task.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var coreEvent = new TCoreEvent();
+        /// var coreEvent = new Event();
         /// coreEvent.EventReceived += (s, e) => {
         ///   Console.WriteLine("OnEventReceived. Message = {}", (string)e.Data);
         /// };
         /// 
-        /// var coreTask = TCoreTask.Find("EventTask");
-        /// if (coreTask != null)
+        /// var task = TizenCore.Find("EventTask");
+        /// if (task != null)
         /// {
-        ///   coreTask.AddEvent(coreEvent);
+        ///   task.AddEvent(coreEvent);
         ///   string message = "Test Event";
-        ///   using (var eventObject = new TCoreEventObject(1, message))
+        ///   using (var eventObject = new EventObject(1, message))
         ///   {
-        ///     coreTask.EmitEvent(eventObject);
+        ///     coreEvent.Emit(eventObject);
         ///   }
         /// }
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public void Emit(TCoreEventObject eventObject)
+        public void Emit(EventObject eventObject)
         {
             if (eventObject == null)
             {
@@ -126,6 +133,8 @@ namespace Tizen.Core
         }
 
         internal IntPtr Handle { get { return _handle; } set { _handle = value; } }
+        internal IntPtr Source { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         /// Release any unmanaged resources used by this object.

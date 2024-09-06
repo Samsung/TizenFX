@@ -19,22 +19,22 @@ using System;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents the TCoreChannelSender class.
+    /// Represents the channel sender used for inter-task communication.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreChannelSender : IDisposable
+    public class ChannelSender : IDisposable
     {
         private bool _disposed = false;
 
-        internal TCoreChannelSender(IntPtr handle)
+        internal ChannelSender(IntPtr handle)
         {
             Handle = handle;
         }
 
         /// <summary>
-        /// Finalizer of the class TCoreChannelSender.
+        /// Finalizer of the class ChannelSender.
         /// </summary>
-        ~TCoreChannelSender()
+        ~ChannelSender()
         {
             Dispose(false);
         }
@@ -44,13 +44,16 @@ namespace Tizen.Core
         /// </summary>
         /// <param name="channelObject">The channel object instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <remarks>
+        /// It's important to call the Dispose() method on the passed channel object to release resources.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
+        /// var channel = new Channel();
         /// var sender = channel.Sender;
         /// string message = "Test";
-        /// using (var channelObject = new TCoreChannelObject(1, message))
+        /// using (var channelObject = new ChannelObject(1, message))
         /// {
         ///   sender.Send(channelObject);
         /// }
@@ -58,7 +61,7 @@ namespace Tizen.Core
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public void Send(TCoreChannelObject channelObject)
+        public void Send(ChannelObject channelObject)
         {
             if (channelObject == null)
             {
@@ -71,27 +74,27 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Creates and returns a copy of the TCoreChannelSender object.
+        /// Creates and returns a copy of the channel sender object.
         /// </summary>
-        /// <returns>A newly created TCoreChannelSender instance.</returns>
+        /// <returns>A newly created channel sender instance.</returns>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
+        /// var channel = new Channel();
         /// var sender = channel.Sender;
         /// var clonedSender = sender.Clone();
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreChannelSender Clone()
+        public ChannelSender Clone()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.SenderClone(Handle, out IntPtr clonedHandle);
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to clone channel sender");
 
-            return new TCoreChannelSender(clonedHandle);
+            return new ChannelSender(clonedHandle);
         }
 
         internal IntPtr Handle { get; private set; }

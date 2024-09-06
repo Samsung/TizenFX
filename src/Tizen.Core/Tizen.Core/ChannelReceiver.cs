@@ -20,22 +20,24 @@ using System.Threading.Tasks;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents the TCoreChannelReceiver class.
+    /// Represents the channel receiver used for inter-task communication.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreChannelReceiver : IDisposable
+    public class ChannelReceiver : IDisposable
     {
         private bool _disposed = false;
 
-        internal TCoreChannelReceiver(IntPtr handle)
+        internal ChannelReceiver(IntPtr handle)
         {
             Handle = handle;
+            Source = IntPtr.Zero;
+            Id = 0;
         }
 
         /// <summary>
-        /// Finalizer of the class TCoreChannelReceiver.
+        /// Finalizer of the class ChannelReceiver.
         /// </summary>
-        ~TCoreChannelReceiver()
+        ~ChannelReceiver()
         {
             Dispose(false);
         }
@@ -44,12 +46,12 @@ namespace Tizen.Core
         /// Occurrs whenever the channel object is received in the main loop of the task.
         /// </summary>
         /// <remarks>
-        /// The registered event handler will be invoked when the TCoreChannelReceiver is added to the specific task.
+        /// The registered event handler will be invoked when the channel receiver is added to the specific task.
         /// </remarks>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
+        /// var channel = new Channel();
         /// var sender = channel.Sender;
         /// sender.Received += (s, e) => {
         ///   Console.WriteLine("OnChannelObjectReceived. Message = {}", (string)e.Data);
@@ -58,18 +60,18 @@ namespace Tizen.Core
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public event EventHandler<TCoreChannelReceivedEventArgs> Received;
+        public event EventHandler<ChannelReceivedEventArgs> Received;
 
         /// <summary>
         /// Receives the channel object from the sender asynchronously.
         /// </summary>
-        /// <returns>The received TCoreChannelObject.</returns>
+        /// <returns>The received channel object.</returns>
         /// <example>
         /// <code>
         /// 
-        /// var channel = new TCoreChannel();
-        /// var coreTask = TCoreTask.Find("Test");
-        /// coreTask.Send(async () => {
+        /// var channel = new Channel();
+        /// var task = TizenCore.Find("Test");
+        /// task.Send(async () => {
         ///   var channelObject = await channel.Receiver.Receive();
         ///   Console.WriteLine("Message = {}", (string)channelObject.Data);
         /// });
@@ -77,19 +79,21 @@ namespace Tizen.Core
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public async Task<TCoreChannelObject> Receive()
+        public async Task<ChannelObject> Receive()
         {
-            return await Task.Run(() =>
+            return await System.Threading.Tasks.Task.Run(() =>
             {
                 Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.ReceiverReceive(Handle, out IntPtr channelObject);
                 TCoreErrorFactory.CheckAndThrownException(error, "Failed to receive channel object");
-                return new TCoreChannelObject(channelObject);
+                return new ChannelObject(channelObject);
             }).ConfigureAwait(false);
         }
 
         internal IntPtr Handle { get; set; }
+        internal IntPtr Source { get; set; }
+        internal int Id { get; set; }
 
-        internal void InvokeEventHandler(object sender, TCoreChannelReceivedEventArgs e)
+        internal void InvokeEventHandler(object sender, ChannelReceivedEventArgs e)
         {
             Received?.Invoke(sender, e);
         }

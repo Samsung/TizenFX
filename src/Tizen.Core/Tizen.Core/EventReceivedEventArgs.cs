@@ -22,9 +22,9 @@ namespace Tizen.Core
     /// Arguments for the event raised when the event data is received.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreEventArgs : EventArgs
+    public class EventReceivedEventArgs : System.EventArgs
     {
-        internal TCoreEventArgs(TCoreEventObject eventObject)
+        internal EventReceivedEventArgs(EventObject eventObject)
         {
             if (eventObject == null)
             {

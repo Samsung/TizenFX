@@ -22,7 +22,7 @@ namespace Tizen.Core
     /// The class for managing communication channels between tasks of Tizen Core.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreChannel : IDisposable
+    public class Channel : IDisposable
     {
         private bool _disposed = false;
 
@@ -35,7 +35,7 @@ namespace Tizen.Core
         /// 
         /// try
         /// {
-        ///   var channel = new TCoreChannel();
+        ///   var channel = new Channel();
         /// }
         /// catch (OutOfMemoryException)
         /// {
@@ -45,33 +45,33 @@ namespace Tizen.Core
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreChannel()
+        public Channel()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.MakePair(out IntPtr sender, out IntPtr receiver);
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to make a channel pair");
-            Sender = new TCoreChannelSender(sender);
-            Receiver = new TCoreChannelReceiver(receiver);
+            Sender = new ChannelSender(sender);
+            Receiver = new ChannelReceiver(receiver);
         }
 
         /// <summary>
-        /// Finalizer of the class TCoreChannel.
+        /// Finalizer of the class Channel.
         /// </summary>
-        ~TCoreChannel()
+        ~Channel()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Gets the TCoreChannelSender instance.
+        /// Gets the channel sender instance.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreChannelSender Sender { get; private set; }
+        public ChannelSender Sender { get; private set; }
 
         /// <summary>
-        /// Gets the TCoreChannelReceiver instance. 
+        /// Gets the channel receiver instance. 
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreChannelReceiver Receiver { get; private set; }
+        public ChannelReceiver Receiver { get; private set; }
 
         /// <summary>
         /// Release any unmanaged resources used by this object.

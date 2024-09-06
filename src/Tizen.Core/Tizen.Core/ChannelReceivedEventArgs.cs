@@ -24,7 +24,7 @@ namespace Tizen.Core
     /// <since_tizen> 12 </since_tizen>
     public class TCoreChannelReceivedEventArgs : EventArgs
     {
-        internal TCoreChannelReceivedEventArgs(TCoreChannelObject channelObject)
+        internal TCoreChannelReceivedEventArgs(ChannelObject channelObject)
         {
             if (channelObject == null)
             {

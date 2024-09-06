@@ -16,24 +16,24 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Runtime.InteropServices;
 
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents a channel object used for inter-task communication.
+    /// Represents an event object used for broadcasting the event.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreChannelObject : IDisposable
+    public class EventObject : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
         private static readonly ConcurrentDictionary<int, object> _dataMap = new ConcurrentDictionary<int, object>();
         private static readonly object _dataLock = new object();
         private static int _dataId = 0;
+        private static Interop.LibTizenCore.TizenCoreEvent.EventObjectDestroyCallback _destroyCallback = new Interop.LibTizenCore.TizenCoreEvent.EventObjectDestroyCallback(NativeObjectDestroyCallback);
 
         /// <summary>
-        /// // Constructor for creating a new channel object with specified ID and data.
+        /// Constructor for creating a new event object with specified ID and data.
         /// </summary>
         /// <param name="id">The ID.</param>
         /// <param name="data">The data object.</param>
@@ -42,61 +42,60 @@ namespace Tizen.Core
         /// <code>
         /// 
         /// int id = 0;
-        /// string message = "Test message";
-        /// var channelObject = new TCoreChannel(id++, message);
+        /// string message = "Test event";
+        /// var eventObject = new EventObject(id++, message);
         /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
-        public TCoreChannelObject(int id, object data)
+        public EventObject(int id, object data)
         {
-            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.ObjectCreate(out _handle);
+            int dataId;
+            lock (_dataLock)
+            {
+                dataId = _dataId++;
+            }
+
+            _dataMap[dataId] = data;
+            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreEvent.ObjectCreate(out _handle, id, (IntPtr)dataId);
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to create channel object");
-            Id = id;
-            Data = data;
-            IsUsed = false;
+
+            Interop.LibTizenCore.TizenCoreEvent.ObjectSetDestroyCallback(_handle, _destroyCallback, (IntPtr)dataId);
         }
 
-        internal TCoreChannelObject(IntPtr handle)
+        internal EventObject(IntPtr handle)
         {
             _handle = handle;
-            IsUsed = false;
         }
 
         /// <summary>
-        /// Finalizer of the class TCoreChannelObject.
+        /// Finalizer of the class EventObject.
         /// </summary>
-        ~TCoreChannelObject()
+        ~EventObject()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Gets and sets the ID.
+        /// Gets the ID of the event object.
         /// </summary>
-        /// <since_tizen> 12 </since_tizen>
         public int Id
         {
             get
             {
-                Interop.LibTizenCore.TizenCoreChannel.ObjectGetId(_handle, out int id);
+                Interop.LibTizenCore.TizenCoreEvent.ObjectGetId(_handle, out int id);
                 return id;
             }
-            set
-            {
-                Interop.LibTizenCore.TizenCoreChannel.ObjectSetId(_handle, value); 
-            }            
         }
 
         /// <summary>
-        /// Gets and sets the data object.
+        /// Gets the Data of the event object.
         /// </summary>
-        /// <since_tizen> 12 </since_tizen>
         public object Data
         {
             get
             {
-                Interop.LibTizenCore.TizenCoreChannel.ObjectGetData(_handle, out IntPtr handle);
+                Interop.LibTizenCore.TizenCoreEvent.ObjectGetData(_handle, out IntPtr handle);
                 int id = (int)handle;
                 if (_dataMap.TryGetValue(id, out var data))
                 {
@@ -104,33 +103,9 @@ namespace Tizen.Core
                 }
                 return null;
             }
-            set
-            {
-                int id;
-                lock (_dataLock)
-                {
-                    id = _dataId++;
-                }
-                _dataMap[id] = value;
-                Interop.LibTizenCore.TizenCoreChannel.ObjectSetData(_handle, (IntPtr)id);
-            }
         }
 
-        /// <summary>
-        /// Gets the name of the sender task.
-        /// </summary>
-        /// <since_tizen> 12 </since_tizen>
-        public string Sender {
-            get
-            {
-                Interop.LibTizenCore.TizenCoreChannel.ObjectGetSenderTaskName(_handle, out IntPtr taskName);
-                return Marshal.PtrToStringAnsi(taskName);
-            }
-        }
-
-        internal bool IsUsed { set; get; }
-
-        internal IntPtr Handle { get { return _handle; } }
+        internal IntPtr Handle { get { return _handle; } set { _handle = value; } }
 
         /// <summary>
         /// Release any unmanaged resources used by this object.
@@ -145,14 +120,7 @@ namespace Tizen.Core
                 {
                     if (_handle != IntPtr.Zero)
                     {
-                        if (!IsUsed)
-                        {
-                            Interop.LibTizenCore.TizenCoreChannel.ObjectGetData(_handle, out IntPtr handle);
-                            int id = (int)handle;
-                            _dataMap.TryRemove(id, out var data);
-                        }
-
-                        Interop.LibTizenCore.TizenCoreChannel.ObjectDestroy(_handle);
+                        Interop.LibTizenCore.TizenCoreEvent.ObjectDestroy(_handle);
                         _handle = IntPtr.Zero;
                     }
                 }
@@ -169,6 +137,12 @@ namespace Tizen.Core
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        private static void NativeObjectDestroyCallback(IntPtr eventData, IntPtr userData)
+        {
+            int dataId = (int)eventData;
+            _dataMap.TryRemove(dataId, out var _);
         }
     }
 }
