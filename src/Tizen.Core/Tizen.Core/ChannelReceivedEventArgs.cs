@@ -22,9 +22,9 @@ namespace Tizen.Core
     /// Arguments for the event raised when the channel data is received.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class TCoreChannelReceivedEventArgs : EventArgs
+    public class ChannelReceivedEventArgs : System.EventArgs
     {
-        internal TCoreChannelReceivedEventArgs(ChannelObject channelObject)
+        internal ChannelReceivedEventArgs(ChannelObject channelObject)
         {
             if (channelObject == null)
             {

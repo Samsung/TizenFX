@@ -22,7 +22,9 @@ namespace Tizen.Core
     /// Represents the event using for broadcasting events.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
+#pragma warning disable CA1716
     public class Event : IDisposable
+#pragma warning restore CA1716
     {
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
