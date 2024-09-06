@@ -52,8 +52,8 @@ namespace Tizen.Core
         /// <code>
         /// 
         /// var channel = new Channel();
-        /// var sender = channel.Sender;
-        /// sender.Received += (s, e) => {
+        /// var receiver = channel.Receiver;
+        /// receiver.Received += (s, e) => {
         ///   Console.WriteLine("OnChannelObjectReceived. Message = {}", (string)e.Data);
         /// };
         /// 
