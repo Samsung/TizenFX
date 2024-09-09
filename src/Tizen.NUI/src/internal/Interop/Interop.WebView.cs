@@ -330,15 +330,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetPlainTextAsynchronously")]
             public static extern void GetPlainTextAsynchronously(global::System.Runtime.InteropServices.HandleRef webViewRef, global::System.Runtime.InteropServices.HandleRef callbackRef);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_WebAuthenticationCancel")]
-            public static extern void WebAuthenticationCancel(global::System.Runtime.InteropServices.HandleRef webViewRef);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterWebAuthDisplayQRCallback")]
-            public static extern void RegisterWebAuthDisplayQRCallback(global::System.Runtime.InteropServices.HandleRef webViewRef, global::System.Runtime.InteropServices.HandleRef callbackRef);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterWebAuthResponseCallback")]
-            public static extern void RegisterWebAuthResponseCallback(global::System.Runtime.InteropServices.HandleRef webViewRef, global::System.Runtime.InteropServices.HandleRef callbackRef);
         }
     }
 }
