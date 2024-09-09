@@ -1462,6 +1462,7 @@ namespace Tizen.Uix.InputMethod
         /// Called when the device is rotated.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14. Please use Window.Resized instead.")]
         public static event EventHandler<RotationChangedEventArgs> RotationChanged
         {
             add
