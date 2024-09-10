@@ -215,7 +215,8 @@ namespace Tizen.Multimedia
             DateRecorded = extractor.GetMetadata(MetadataExtractorAttr.RecordingDate);
             Rotation = extractor.GetMetadata(MetadataExtractorAttr.Rotate);
             Content360 = extractor.GetMetadata(MetadataExtractorAttr.ContentFor360);
-            StitchedContent360 = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.StitchedContentFor360));
+            var stitched = ValueConverter.ToNullableInt(extractor.GetMetadata(MetadataExtractorAttr.StitchedContentFor360));
+            StitchedContent360 = stitched == 0 || stitched == null ? null : stitched;
 
             _description = new Lazy<string>(() => ObjectDescriptionBuilder.BuildWithProperties(this));
         }
