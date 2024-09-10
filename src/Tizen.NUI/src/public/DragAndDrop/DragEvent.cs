@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -60,24 +61,11 @@ namespace Tizen.NUI
         /// The drag data to send
         /// </summary>
         public string Data { get; set; }
-    }
 
-    /// <summary>
-    /// This specifies drag info
-    /// </summary>
-    // Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1815: Override equals and operator equals on value types")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct DragInfo
-    {
         /// <summary>
-        /// The mime types of drag data
+        /// The mime types and drag data set
         /// </summary>
-        public string [] MimeTypes { get; set; }
-        /// <summary>
-        /// The drag data to send
-        /// </summary>
-        public string Data { get; set; }
+        public Dictionary<string, string> DataMap;
     }
 
     /// <summary>
@@ -124,32 +112,12 @@ namespace Tizen.NUI
         /// The mime type of drag object
         /// </summary>
         public string MimeType { get; set; }
-        /// <summary>
-        /// The drag data to receive
-        /// </summary>
-        public string Data { get; set; }
-    }
 
-    /// <summary>
-    /// This specifies drag info event.
-    /// </summary>
-    // Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1815: Override equals and operator equals on value types")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct DragInfoEvent
-    {
-        /// <summary>
-        /// The drag event type
-        /// </summary>
-        public DragType DragType { get; set; }
-        /// <summary>
-        /// The drag object position in target view
-        /// </summary>
-        public Position Position  { get; set; }
         /// <summary>
         /// The mime types of drag object
         /// </summary>
         public string [] MimeTypes { get; set; }
+
         /// <summary>
         /// The drag data to receive
         /// </summary>
