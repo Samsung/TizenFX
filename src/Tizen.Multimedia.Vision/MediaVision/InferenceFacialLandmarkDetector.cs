@@ -67,7 +67,7 @@ namespace Tizen.Multimedia.Vision
         /// Detects facial landmark on the source image synchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Point"/> will be empty.
+        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Position"/> will be empty.
         /// </remarks>
         /// <param name="source">The image data to detect facial landmark.</param>
         /// <returns>A label of detected facial landmark.</returns>
@@ -92,7 +92,7 @@ namespace Tizen.Multimedia.Vision
         /// Detects facial landmark on the source image asynchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Point"/> will be empty.<br/>
+        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Position"/> will be empty.<br/>
         /// This API uses about twice as much memory as <see cref="InferenceFacialLandmarkDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect facial landmark.</param>
@@ -120,15 +120,15 @@ namespace Tizen.Multimedia.Vision
         /// Requests to detect facial landmark on the given source image.<br/>
         /// </summary>
         /// <remarks>
-        /// This API is not guranteed that inference is done when this method returns. The user can get the result by using <see cref="GetPoint"/>.<br/>
+        /// This API is not guranteed that inference is done when this method returns. The user can get the result by using <see cref="GetPosition"/>.<br/>
         /// And the user call this API again before the previous one is finished internally, API call will be ignored until the previous one is finished.<br/>
-        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Point"/> will be empty.<br/>
+        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Position"/> will be empty.<br/>
         /// Note that this API could use about twice as much memory as <see cref="InferenceFacialLandmarkDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect facial landmark.</param>
         /// <exception cref="ObjectDisposedException">The InferenceFacialLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <seealso cref="GetPoint"/>
+        /// <seealso cref="GetPosition"/>
         /// <since_tizen> 12 </since_tizen>
         public void RequestInference(MediaVisionSource source)
         {
@@ -143,17 +143,17 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets the point as a result of <see cref="RequestInference"/>.
+        /// Gets the position as a result of <see cref="RequestInference"/>.
         /// </summary>
         /// <remarks>
-        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Point"/> will be empty.<br/>
+        /// If there's no detected facial landmark, <see cref="InferenceFacialLandmarkDetectorResult.Position"/> will be empty.<br/>
         /// This API uses about twice as much memory as <see cref="InferenceFacialLandmarkDetector.Inference"/>.
         /// </remarks>
-        /// <returns>A point of detected facial landmark.</returns>
+        /// <returns>A position of detected facial landmark.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFacialLandmarkDetector already has been disposed.</exception>
         /// <seealso cref="RequestInference"/>
         /// <since_tizen> 12 </since_tizen>
-        public InferenceFacialLandmarkDetectorResult GetPoint()
+        public InferenceFacialLandmarkDetectorResult GetPosition()
         {
             return new InferenceFacialLandmarkDetectorResult(_handle);
         }

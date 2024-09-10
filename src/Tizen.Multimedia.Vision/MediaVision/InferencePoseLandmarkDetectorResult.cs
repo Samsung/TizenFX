@@ -33,15 +33,15 @@ namespace Tizen.Multimedia.Vision
                 Validate("Failed to get result count.");
 
             RequestOrder = requestOrder;
-            var points = new List<Point>();
+            var positions = new List<Point>();
 
             for (uint i = 0 ; i < count ; i++)
             {
-                InteropPLD.GetPoint(handle, i, out uint x, out uint y).Validate("Failed to get point.");
-                points.Add(new Point((int)x, (int)y));
+                InteropPLD.GetPosition(handle, i, out uint x, out uint y).Validate("Failed to get position.");
+                positions.Add(new Point((int)x, (int)y));
             }
 
-            Point = points;
+            Position = positions;
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace Tizen.Multimedia.Vision
         public ulong RequestOrder { get; }
 
         /// <summary>
-        /// Gets the point of the detected pose landmark.
+        /// Gets the position of the detected pose landmark.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public IEnumerable<Point> Point { get; }
+        public IEnumerable<Point> Position { get; }
     }
 }
