@@ -51,7 +51,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
-        private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
+        // TODO : Re-open this API when we resolve Animation issue.
+        // private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
 
         internal virtual LayoutItem CreateDefaultLayout()
         {
@@ -1143,12 +1144,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal void RemoveChild(View child)
         {
-            // If the view had focus, it clears focus.
-            if (child == FocusManager.Instance.GetCurrentFocusView())
-            {
-                Tizen.Log.Debug("NUI", $"ClearFocus due to View id:({child.ID}) removed from scene\n");
-                FocusManager.Instance.ClearFocus();
-            }
             // Do actual child removal
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1217,7 +1212,8 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateBackgroundExtraData(object source, EventArgs e)
         {
             // Note : To allow event attachment during UpdateBackgroundExtraData, let we make flag as false before call UpdateBackgroundExtraData().
-            backgroundExtraDataUpdateProcessAttachedFlag = false;
+            // TODO : Re-open this API when we resolve Animation issue.
+            // backgroundExtraDataUpdateProcessAttachedFlag = false;
             UpdateBackgroundExtraData();
         }
 
@@ -1360,76 +1356,90 @@ namespace Tizen.NUI.BaseComponents
 
             //_mergedStyle = null;
 
-            internalMaximumSize?.Dispose();
-            internalMaximumSize = null;
-            internalMinimumSize?.Dispose();
-            internalMinimumSize = null;
-            internalMargin?.Dispose();
-            internalMargin = null;
-            internalPadding?.Dispose();
-            internalPadding = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCellIndex?.Dispose();
-            internalCellIndex = null;
-            internalBackgroundColor?.Dispose();
-            internalBackgroundColor = null;
-            internalColor?.Dispose();
-            internalColor = null;
-            internalPivotPoint?.Dispose();
-            internalPivotPoint = null;
-            internalPosition?.Dispose();
-            internalPosition = null;
-            internalPosition2D?.Dispose();
-            internalPosition2D = null;
-            internalScale?.Dispose();
-            internalScale = null;
-            internalSize?.Dispose();
-            internalSize = null;
-            internalSize2D?.Dispose();
-            internalSize2D = null;
-
-            panGestureDetector?.Dispose();
-            panGestureDetector = null;
-            longGestureDetector?.Dispose();
-            longGestureDetector = null;
-            pinchGestureDetector?.Dispose();
-            pinchGestureDetector = null;
-            tapGestureDetector?.Dispose();
-            tapGestureDetector = null;
-            rotationGestureDetector?.Dispose();
-            rotationGestureDetector = null;
-
-            internalCurrentParentOrigin?.Dispose();
-            internalCurrentParentOrigin = null;
-            internalCurrentAnchorPoint?.Dispose();
-            internalCurrentAnchorPoint = null;
-            internalTargetSize?.Dispose();
-            internalTargetSize = null;
-            internalCurrentSize?.Dispose();
-            internalCurrentSize = null;
-            internalCurrentPosition?.Dispose();
-            internalCurrentPosition = null;
-            internalCurrentWorldPosition?.Dispose();
-            internalCurrentWorldPosition = null;
-            internalCurrentScale?.Dispose();
-            internalCurrentScale = null;
-            internalCurrentWorldScale?.Dispose();
-            internalCurrentWorldScale = null;
-            internalCurrentColor?.Dispose();
-            internalCurrentColor = null;
-            internalCurrentWorldColor?.Dispose();
-            internalCurrentWorldColor = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCurrentScreenPosition?.Dispose();
-            internalCurrentScreenPosition = null;
-
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                internalMaximumSize?.Dispose();
+                internalMaximumSize = null;
+                internalMinimumSize?.Dispose();
+                internalMinimumSize = null;
+                internalMargin?.Dispose();
+                internalMargin = null;
+                internalPadding?.Dispose();
+                internalPadding = null;
+                internalSizeModeFactor?.Dispose();
+                internalSizeModeFactor = null;
+                internalCellIndex?.Dispose();
+                internalCellIndex = null;
+                internalBackgroundColor?.Dispose();
+                internalBackgroundColor = null;
+                internalColor?.Dispose();
+                internalColor = null;
+                internalPivotPoint?.Dispose();
+                internalPivotPoint = null;
+                internalPosition?.Dispose();
+                internalPosition = null;
+                internalPosition2D?.Dispose();
+                internalPosition2D = null;
+                internalScale?.Dispose();
+                internalScale = null;
+                internalSize?.Dispose();
+                internalSize = null;
+                internalSize2D?.Dispose();
+                internalSize2D = null;
+
+                panGestureDetector?.Dispose();
+                panGestureDetector = null;
+                longGestureDetector?.Dispose();
+                longGestureDetector = null;
+                pinchGestureDetector?.Dispose();
+                pinchGestureDetector = null;
+                tapGestureDetector?.Dispose();
+                tapGestureDetector = null;
+                rotationGestureDetector?.Dispose();
+                rotationGestureDetector = null;
+
+                internalCurrentParentOrigin?.Dispose();
+                internalCurrentParentOrigin = null;
+                internalCurrentAnchorPoint?.Dispose();
+                internalCurrentAnchorPoint = null;
+                internalTargetSize?.Dispose();
+                internalTargetSize = null;
+                internalCurrentSize?.Dispose();
+                internalCurrentSize = null;
+                internalCurrentPosition?.Dispose();
+                internalCurrentPosition = null;
+                internalCurrentWorldPosition?.Dispose();
+                internalCurrentWorldPosition = null;
+                internalCurrentScale?.Dispose();
+                internalCurrentScale = null;
+                internalCurrentWorldScale?.Dispose();
+                internalCurrentWorldScale = null;
+                internalCurrentColor?.Dispose();
+                internalCurrentColor = null;
+                internalCurrentWorldColor?.Dispose();
+                internalCurrentWorldColor = null;
+                internalSizeModeFactor?.Dispose();
+                internalSizeModeFactor = null;
+                internalCurrentScreenPosition?.Dispose();
+                internalCurrentScreenPosition = null;
+
+                if (visualContainers != null)
+                {
+                    foreach (var visualContainer in visualContainers)
+                    {
+                        visualContainer?.Dispose();
+                    }
+                    visualContainers = null;
+                }
+
+                foreach (View view in Children)
+                {
+                    view.InternalParent = null;
+                }
+
                 if (themeData != null)
                 {
                     themeData.selectorData?.Reset(this);
@@ -1455,11 +1465,6 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
 
             DisConnectFromSignals();
-
-            foreach (View view in Children)
-            {
-                view.InternalParent = null;
-            }
 
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
@@ -1614,6 +1619,14 @@ namespace Tizen.NUI.BaseComponents
                 hitTestResultDataCallback = null;
             }
 
+            if (visibilityChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
+
+                Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                visibilityChangedEventCallback = null;
+            }
 
             if (interceptTouchDataCallback != null)
             {
@@ -1622,6 +1635,15 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 interceptTouchDataCallback = null;
+            }
+
+            if (layoutDirectionChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
+
+                Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                layoutDirectionChangedEventCallback = null;
             }
 
             if (touchDataCallback != null)
@@ -1680,6 +1702,97 @@ namespace Tizen.NUI.BaseComponents
                 backgroundResourceLoadedCallback = null;
             }
 
+            // For ViewAccessibility
+            if (gestureInfoCallback != null)
+            {
+                NUILog.Debug($"[Dispose] gestureInfoCallback");
+
+                gestureInfoSignal?.Disconnect(gestureInfoCallback);
+                gestureInfoSignal?.Dispose();
+                gestureInfoSignal = null;
+                gestureInfoCallback = null;
+            }
+
+            if (getDescriptionCallback != null)
+            {
+                NUILog.Debug($"[Dispose] getDescriptionCallback");
+
+                getDescriptionSignal?.Disconnect(getDescriptionCallback);
+                getDescriptionSignal?.Dispose();
+                getDescriptionSignal = null;
+                getDescriptionCallback = null;
+            }
+
+            if (getNameCallback != null)
+            {
+                NUILog.Debug($"[Dispose] getNameCallback");
+
+                getNameSignal?.Disconnect(getNameCallback);
+                getNameSignal?.Dispose();
+                getNameSignal = null;
+                getNameCallback = null;
+            }
+
+            if (activateCallback != null)
+            {
+                NUILog.Debug($"[Dispose] activateCallback");
+
+                ActivateSignal?.Disconnect(activateCallback);
+                ActivateSignal?.Dispose();
+                ActivateSignal = null;
+                activateCallback = null;
+            }
+
+            if (readingSkippedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingSkippedCallback");
+                
+                ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
+                ReadingSkippedSignal?.Dispose();
+                ReadingSkippedSignal = null;
+                readingSkippedCallback = null;
+            }
+
+            if (readingPausedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingPausedCallback");
+
+                ReadingPausedSignal?.Disconnect(readingPausedCallback);
+                ReadingPausedSignal?.Dispose();
+                ReadingPausedSignal = null;
+                readingPausedCallback = null;
+            }
+
+            if (readingResumedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingResumedCallback");
+
+                ReadingResumedSignal?.Disconnect(readingResumedCallback);
+                ReadingResumedSignal?.Dispose();
+                ReadingResumedSignal = null;
+                readingResumedCallback = null;
+            }
+
+            if (readingCancelledCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingCancelledCallback");
+
+                ReadingCancelledSignal?.Disconnect(readingCancelledCallback);
+                ReadingCancelledSignal?.Dispose();
+                ReadingCancelledSignal = null;
+                readingCancelledCallback = null;
+            }
+
+            if (readingStoppedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingStoppedCallback");
+
+                ReadingStoppedSignal?.Disconnect(readingStoppedCallback);
+                ReadingStoppedSignal?.Dispose();
+                ReadingStoppedSignal = null;
+                readingStoppedCallback = null;
+            }
+
             NDalicPINVOKE.ThrowExceptionIfExists();
             NUILog.Debug($"[Dispose] DisConnectFromSignals END");
         }
@@ -1688,7 +1801,7 @@ namespace Tizen.NUI.BaseComponents
         /// Apply initial style to the view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void InitializeStyle(ViewStyle style = null)
+        protected void InitializeStyle(ViewStyle style = null)
         {
             if (style == null && ThemeManager.InitialThemeDisabled)
             {

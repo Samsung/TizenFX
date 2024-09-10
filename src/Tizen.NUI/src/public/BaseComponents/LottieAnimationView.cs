@@ -77,6 +77,7 @@ namespace Tizen.NUI.BaseComponents
             currentStates.loopCount = 1;
             currentStates.loopMode = LoopingModeType.Restart;
             currentStates.stopEndAction = StopBehaviorType.CurrentFrame;
+            currentStates.frameSpeedFactor = 1.0f;
             currentStates.framePlayRangeMin = -1;
             currentStates.framePlayRangeMax = -1;
             currentStates.totalFrame = -1;
@@ -216,6 +217,7 @@ namespace Tizen.NUI.BaseComponents
                 using PropertyValue synchronousLoading = new PropertyValue(currentStates.synchronousLoading);
                 using PropertyValue enableFrameCache = new PropertyValue(currentStates.enableFrameCache);
                 using PropertyValue notifyAfterRasterization = new PropertyValue(currentStates.notifyAfterRasterization);
+                using PropertyValue frameSpeedFactor = new PropertyValue(currentStates.frameSpeedFactor);
 
                 map.Add(Visual.Property.Type, type)
                     .Add(ImageVisualProperty.URL, url)
@@ -225,7 +227,8 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown)
                     .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading)
                     .Add(ImageVisualProperty.EnableFrameCache, enableFrameCache)
-                    .Add(ImageVisualProperty.NotifyAfterRasterization, notifyAfterRasterization);
+                    .Add(ImageVisualProperty.NotifyAfterRasterization, notifyAfterRasterization)
+                    .Add(ImageVisualProperty.FrameSpeedFactor, frameSpeedFactor);
 
                 if (currentStates.desiredWidth > 0)
                 {
@@ -779,6 +782,53 @@ namespace Tizen.NUI.BaseComponents
                 return currentStates.notifyAfterRasterization;
             }
         }
+
+        /// <summary>
+        /// Specifies a speed factor for the animated image frame.
+        /// </summary>
+        /// <remarks>
+        /// The speed factor is a multiplier of the normal velocity of the animation. Values between [0,1] will
+        /// slow down the animation and values above one will speed up the animation.
+        ///
+        /// The range of this value is clamped between [0.01f ~ 100.0f].
+        ///
+        /// Inhouse API.
+        /// The default is 1.0f.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FrameSpeedFactor
+        {
+            get
+            {
+                return InternalFrameSpeedFactor;
+            }
+            set
+            {
+                InternalFrameSpeedFactor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFrameSpeedFactor
+        {
+            set
+            {
+                if (currentStates.frameSpeedFactor != value)
+                {
+                    currentStates.changed = true;
+                    currentStates.frameSpeedFactor = value;
+
+                    NUILog.Debug($"<[{GetId()}]SET currentStates.FrameSpeedFactor={currentStates.frameSpeedFactor}>");
+
+                    Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor);
+                }
+            }
+            get
+            {
+                NUILog.Debug($"FrameSpeedFactor get! {currentStates.frameSpeedFactor}");
+                return currentStates.frameSpeedFactor;
+            }
+        }
         #endregion Property
 
 
@@ -1103,6 +1153,7 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue(currentStates.synchronousLoading), false);
                 UpdateImage(ImageVisualProperty.EnableFrameCache, new PropertyValue(currentStates.enableFrameCache), false);
                 UpdateImage(ImageVisualProperty.NotifyAfterRasterization, new PropertyValue(currentStates.notifyAfterRasterization), false);
+                UpdateImage(ImageVisualProperty.FrameSpeedFactor, new PropertyValue(currentStates.frameSpeedFactor), false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -1166,11 +1217,8 @@ namespace Tizen.NUI.BaseComponents
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
-                    visualEvent.Disconnect(visualEventSignalCallback);
-                    if (visualEvent?.Empty() == true)
-                    {
-                        visualEventSignalCallback = null;
-                    }
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    visualEventSignalCallback = null;
                 }
             }
         }
@@ -1309,7 +1357,19 @@ namespace Tizen.NUI.BaseComponents
             /// Transform opacity of the Layer and Group object, Type of float
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            TransformOpacity
+            TransformOpacity,
+
+            /// <summary>
+            /// Trim Start property of Shape object, Type of float, Value range of [0..100]
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TrimStart,
+
+            /// <summary>
+            /// Trim End property of Shape object, Type of float, Type of <see cref="Vector2"/>, Value range of [0..100]
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TrimEnd
         };
 
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -1440,6 +1500,7 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.TransformAnchor):
                 case (int)(VectorProperty.TransformPosition):
                 case (int)(VectorProperty.TransformScale):
+                case (int)(VectorProperty.TrimEnd):
                     Vector2 tmpVector2 = new Vector2(-1, -1);
                     if ((ret != null) && ret.Get(tmpVector2))
                     {
@@ -1453,6 +1514,7 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.StrokeWidth):
                 case (int)(VectorProperty.TransformRotation):
                 case (int)(VectorProperty.TransformOpacity):
+                case (int)(VectorProperty.TrimStart):
                     float tmpFloat = -1;
                     if ((ret != null) && ret.Get(out tmpFloat))
                     {
@@ -1463,7 +1525,6 @@ namespace Tizen.NUI.BaseComponents
                     //do nothing
                     break;
             }
-            ret?.Dispose();
         }
 
         internal void FlushLottieMessages()
@@ -1485,6 +1546,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.RedrawInScalingDown,
             ImageVisualProperty.EnableFrameCache,
             ImageVisualProperty.NotifyAfterRasterization,
+            ImageVisualProperty.FrameSpeedFactor,
         };
 
         private struct states
@@ -1493,6 +1555,7 @@ namespace Tizen.NUI.BaseComponents
             internal int loopCount;
             internal LoopingModeType loopMode;
             internal StopBehaviorType stopEndAction;
+            internal float frameSpeedFactor;
             internal int framePlayRangeMin;
             internal int framePlayRangeMax;
             internal int totalFrame;
@@ -1510,7 +1573,6 @@ namespace Tizen.NUI.BaseComponents
         };
         private states currentStates;
 
-        private const string tag = "NUITEST";
         private event EventHandler finishedEventHandler;
 
         private void OnFinished()

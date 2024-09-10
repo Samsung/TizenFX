@@ -108,7 +108,7 @@ namespace Tizen.NUI.Xaml
             if (string.IsNullOrEmpty(xaml))
                 throw new XamlParseException(string.Format("No embeddedresource found for {0}", path), new XmlLineInfo());
             Type type = typeof(T);
-            T ret = (T)type.Assembly.CreateInstance(type.FullName);
+            T ret = (T)type.Assembly.CreateInstance(type.FullName) ?? default(T);
 
             NameScopeExtensions.PushElement(ret);
 
@@ -440,9 +440,10 @@ namespace Tizen.NUI.Xaml
         //part of the legacy as well...
         static string ReadResourceAsXaml(Type type, Assembly assembly, string likelyTargetName, bool validate = false)
         {
-            using (var stream = assembly.GetManifestResourceStream(likelyTargetName))
-            using (var reader = new StreamReader(stream))
+            using var stream = assembly.GetManifestResourceStream(likelyTargetName);
+            if (stream != null)
             {
+                using var reader = new StreamReader(stream);
                 if (validate)
                 {
                     // terrible validation of XML. Unfortunately it will probably work most of the time since comments

@@ -21,20 +21,33 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.ResponsePolicyDecided.
+    /// Event arguments that passed via the WebView.ResponsePolicyDecided,
+    /// WebView.NavigationPolicyDecided or WebView.NewWindowPolicyDecided.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebViewPolicyDecidedEventArgs : EventArgs
     {
         internal WebViewPolicyDecidedEventArgs(WebPolicyDecisionMaker maker)
         {
-            ResponsePolicyDecisionMaker = maker;
+            PolicyDecisionMaker = maker;
         }
 
         /// <summary>
-        /// The response policy decision maker.
+        /// Deprecated. The response policy decision maker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPolicyDecisionMaker ResponsePolicyDecisionMaker { get; }
+        public WebPolicyDecisionMaker ResponsePolicyDecisionMaker
+        {
+            get
+            {
+                return PolicyDecisionMaker;
+            }
+        }
+
+        /// <summary>
+        /// The policy decision maker.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebPolicyDecisionMaker PolicyDecisionMaker { get; }
     }
 }

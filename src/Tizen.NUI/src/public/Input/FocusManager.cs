@@ -615,7 +615,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.FocusManager.Get();
 
-            if(cPtr == global::System.IntPtr.Zero)
+            if (cPtr == global::System.IntPtr.Zero)
             {
                 NUILog.ErrorBacktrace("FocusManager.Instance called before Application created, or after Application terminated!");
             }
@@ -752,7 +752,7 @@ namespace Tizen.NUI
 
             focusChangingEventHandler?.Invoke(this, e);
 
-            if (originallyProposed != e.Proposed)
+            if (originallyProposed != e.Proposed && e.Proposed != null)
             {
                 //when user has changed Proposed
                 return e.Proposed.GetPtrfromView();

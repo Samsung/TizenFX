@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The WeakEvent without holding strong reference of event handler.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 12 </since_tizen>
     public class WeakEvent<T> where T : Delegate
     {
         private const int addThreshold = 1000; // Experimetal constant
@@ -34,17 +34,22 @@ namespace Tizen.NUI
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
         /// <summary>
-        /// The count of currently added event handlers.
+        /// The count of currently stored event handlers.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         protected int Count => handlers.Count;
 
         /// <summary>
         /// Add an event handler.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public virtual void Add(T handler)
         {
+            if (handler == null)
+            {
+                // Do nothing.
+                return;
+            }
             handlers.Add(new WeakHandler<T>(handler));
             OnCountIncreased();
 
@@ -52,24 +57,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Remove last added event handler.
+        /// Remove last stored event handler equal to <paramref name="handler"/>.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public virtual void Remove(T handler)
         {
+            if (handler == null)
+            {
+                // Do nothing.
+                return;
+            }
+
             int lastIndex = handlers.FindLastIndex(item => item.Equals(handler));
 
             if (lastIndex >= 0)
             {
                 handlers.RemoveAt(lastIndex);
-                OnCountDicreased();
+                OnCountDecreased();
             }
         }
 
         /// <summary>
         /// Invoke event handlers.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         public void Invoke(object sender, object args)
         {
             // Iterate copied one to prevent addition/removal item in the handler call.
@@ -84,9 +95,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Invoked when the event handler count is increased.
+        /// Invoked when the event handler count is increased - a new event handler has been added.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 12 </since_tizen>
         protected virtual void OnCountIncreased()
         {
         }
@@ -94,7 +105,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoked when the event handler count is decreased.
         /// </summary>
-        protected virtual void OnCountDicreased()
+        /// <remarks>
+        /// The event handler count decreases when an event handler is removed
+        ///  with <see cref="Remove(T)"/> or after detecting that it is no longer valid.
+        /// </remarks>
+        /// <since_tizen> 12 </since_tizen>
+        protected virtual void OnCountDecreased()
         {
         }
 
@@ -113,7 +129,7 @@ namespace Tizen.NUI
             cleanUpAddCount = 0;
             int count = handlers.Count;
             handlers.RemoveAll(item => !item.IsAlive);
-            if (count > handlers.Count) OnCountDicreased();
+            if (count > handlers.Count) OnCountDecreased();
         }
 
         internal class WeakHandler<U> where U : Delegate

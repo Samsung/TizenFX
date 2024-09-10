@@ -121,9 +121,10 @@ namespace Tizen.NUI
             remove
             {
                 clipboardDataSelectedEventHandler -= value;
-                if (clipboardDataSelectedEventHandler == null && ClipboardDataSelectedSignal().Empty() == false)
+                if (clipboardDataSelectedEventHandler == null && clipboardDataSelectedCallback != null)
                 {
                     ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                    clipboardDataSelectedCallback = null;
                 }
             }
         }
@@ -142,9 +143,10 @@ namespace Tizen.NUI
             remove
             {
                 clipboardDataReceivedEventHandler -= value;
-                if (clipboardDataReceivedEventHandler == null && ClipboardDataReceivedSignal().Empty() == false)
+                if (clipboardDataReceivedEventHandler == null && clipboardDataReceivedCallback != null)
                 {
                     ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
+                    clipboardDataReceivedCallback = null;
                 }
             }
         }

@@ -25,6 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to recognize faces, face expressions, and eye condition on image sources.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class FaceRecognizer
     {
 
@@ -44,6 +45,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel)
         {
@@ -67,6 +69,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel, Rectangle bound)
         {
@@ -94,6 +97,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel, FaceRecognitionConfiguration config)
         {
@@ -123,6 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException"><paramref name="recognitionModel"/> is untrained model.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FaceRecognitionResult> RecognizeAsync(MediaVisionSource source,
             FaceRecognitionModel recognitionModel, Rectangle bound, FaceRecognitionConfiguration config)
         {
@@ -216,6 +221,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source,
             Rectangle bound)
         {
@@ -238,6 +244,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<EyeCondition> RecognizeEyeConditionAsync(MediaVisionSource source,
             Rectangle bound, FaceRecognitionConfiguration config)
         {
@@ -278,6 +285,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source,
             Rectangle bound)
         {
@@ -300,6 +308,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FacialExpression> RecognizeFacialExpressionAsync(MediaVisionSource source,
             Rectangle bound, FaceRecognitionConfiguration config)
         {

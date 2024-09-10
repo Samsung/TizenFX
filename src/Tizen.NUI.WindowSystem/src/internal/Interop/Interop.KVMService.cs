@@ -11,7 +11,7 @@ namespace Tizen.NUI.WindowSystem.Shell
             const string lib = "libtzsh_kvm_service.so.0";
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_create")]
-            internal static extern IntPtr Create(IntPtr tzsh, IntPtr win);
+            internal static extern IntPtr Create(IntPtr tzsh, uint win);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_destroy")]
             internal static extern int Destroy(IntPtr kvmService);
@@ -36,6 +36,9 @@ namespace Tizen.NUI.WindowSystem.Shell
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_secondary_selection_unset")]
             internal static extern int UnsetSecondarySelection(IntPtr kvmService);
+
+            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_perform_drop_target")]
+            internal static extern int PerformDropTarget(IntPtr kvmService, uint drop_target);
 
             internal delegate void KVMDragStartEventCallback(IntPtr data, IntPtr kvmService);
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_drag_start_cb_set")]

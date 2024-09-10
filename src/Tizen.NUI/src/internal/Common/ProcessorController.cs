@@ -34,7 +34,7 @@ namespace Tizen.NUI
     internal sealed class ProcessorController : Disposable
     {
         private static ProcessorController instance = null;
-        private bool initialized = false;
+        private static bool initialized = false;
 
         private ProcessorController() : this(true)
         {
@@ -50,6 +50,14 @@ namespace Tizen.NUI
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.ProcessorController.DeleteProcessorController(swigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -75,7 +83,7 @@ namespace Tizen.NUI
         public event EventHandler ProcessorEvent;
         public event EventHandler LayoutProcessorEvent;
 
-        public bool Initialized => initialized;
+        public static bool Initialized => initialized;
 
         public static ProcessorController Instance
         {
@@ -83,7 +91,11 @@ namespace Tizen.NUI
             {
                 if (instance == null)
                 {
-                    instance = new ProcessorController(false);
+                    // Create an instance of ProcessorController with Initialize.
+                    // Legacy note : We were call Initialize() at internal/Application/Application.cs OnApplicationInit().
+                    // Since DisposeQueue can use this class before Application initialized.
+                    // But now, we just make ProcessorController.Initialized state as static. So we don't need to call Initialize() at Application.cs.
+                    instance = new ProcessorController(true);
                 }
                 return instance;
             }
@@ -91,7 +103,7 @@ namespace Tizen.NUI
 
         public void Initialize()
         {
-            if (initialized == false)
+            if (initialized == false) // We only allow single instance ProcessorController
             {
                 initialized = true;
 
@@ -108,7 +120,7 @@ namespace Tizen.NUI
             }
         }
 
-        public void Process()
+        private void Process()
         {
             // Let us add once event into 1 index during 0 event invoke
             onceEventIndex = 1;
@@ -146,7 +158,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Awake ProcessorController.
-        /// It will call ProcessController.processorCallback and ProcessController.processorPostCallback hardly.
+        /// It will call ProcessorController.processorCallback and ProcessorController.processorPostCallback hardly.
         /// </summary>
         /// <note>
         /// When event thread is not in idle state, This function will be ignored.

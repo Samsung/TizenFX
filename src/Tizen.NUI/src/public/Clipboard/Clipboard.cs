@@ -214,11 +214,13 @@ namespace Tizen.NUI
                 if (clipboardDataReceivedCallback != null)
                 {
                     this.ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
+                    clipboardDataReceivedCallback = null;
                 }
 
                 if (clipboardDataSelectedCallback != null)
                 {
                     this.ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                    clipboardDataSelectedCallback = null;
                 }
             }
 

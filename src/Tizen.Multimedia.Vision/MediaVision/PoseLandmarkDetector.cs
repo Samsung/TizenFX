@@ -30,12 +30,14 @@ namespace Tizen.Multimedia.Vision
     /// Represents a Landmark in pose detection.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public struct Landmark
     {
         /// <summary>
         /// Represents a location in the 2D space.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Point Location
         {
             get;
@@ -45,6 +47,7 @@ namespace Tizen.Multimedia.Vision
         /// Confidence score of point.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public float Score
         {
             get;
@@ -55,6 +58,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to detect Pose landmarks on image source using inference engine.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class PoseLandmarkDetector
     {
         /// <summary>
@@ -77,6 +81,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<Landmark[,]> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {

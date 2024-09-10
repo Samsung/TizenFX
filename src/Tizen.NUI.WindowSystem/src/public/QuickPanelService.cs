@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Shell
 {
@@ -103,7 +104,42 @@ namespace Tizen.NUI.WindowSystem.Shell
 
             _tzsh = tzShell;
             _tzshWin = win.GetNativeId();
-            _tzshQpService = Interop.QuickPanelService.CreateWithType(_tzsh.GetNativeHandle(), (IntPtr)_tzshWin, (int)type);
+            _tzshQpService = Interop.QuickPanelService.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
+            if (_tzshQpService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+        }
+
+        /// <summary>
+        /// Creates a new Quickpanel Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TzShell instance.</param>
+        /// <param name="win">The window provider for the quickpanel service.</param>
+        /// <param name="type">The type of quickpanel service.</param>
+        /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public QuickPanelService(TizenShell tzShell, IWindowProvider win, Types type)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _tzshQpService = Interop.QuickPanelService.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
             if (_tzshQpService == IntPtr.Zero)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();

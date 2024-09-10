@@ -329,6 +329,11 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         FitWidth,
+        /// <summary>
+        /// The visual should not use fitting mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        DontCare,
     }
 
     /// <summary>
@@ -658,16 +663,24 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int MixColor = NDalic.ColorVisualMixColor;
+
         /// <summary>
         /// Whether to render if the MixColor is transparent.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int RenderIfTransparent = NDalic.ColorVisualMixColor + 1;
+
         /// <summary>
-        /// Then radius value for the area to blur.
+        /// The radius value for the area to blur.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int BlurRadius = NDalic.ColorVisualMixColor + 2;
+
+        /// <summary>
+        /// The policy value for the cutout of the visual.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int CutoutPolicy = NDalic.ColorVisualMixColor + 3;
     }
 
     /// <summary>
@@ -1010,6 +1023,29 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int NotifyAfterRasterization = NDalic.ImageVisualOrientationCorrection + 17;
+
+        /// <summary>
+        /// @brief Whether to synchronize image texture size to visual size.
+        /// @details Name "synchronousSizing", type Property::BOOLEAN.
+        /// If this property is true, ImageVisual ignores mDesiredSize.
+        /// @note Used by the ImageVisual. The default is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int SynchronousSizing = NDalic.ImageVisualOrientationCorrection + 18;
+
+        /// <summary>
+        /// @brief Specifies a speed factor for the animated image frame.
+        /// @details Name "frameSpeedFactor", type Property::FLOAT.
+        ///
+        /// The speed factor is a multiplier of the normal velocity of the animation. Values between [0,1] will
+        /// slow down the animation and values above one will speed up the animation.
+        ///
+        /// @note The range of this value is clamped between [0.01f ~ 100.0f].
+        /// It might be supported out of bound, and negative value in future.
+        /// @note Used by the ImageVisual and AnimatedVectorImageVisual. The default is 1.0f.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int FrameSpeedFactor = NDalic.ImageVisualOrientationCorrection + 19;
     }
 
     /// <summary>
@@ -1364,5 +1400,34 @@ namespace Tizen.NUI
         ///  The color is multiplied by another one.
         /// </summary>
         Multiply
+    };
+
+    /// <summary>
+    /// Defines how a colorvisual cutout
+    /// </summary>
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ColorVisualCutoutPolicyType
+    {
+        /// <summary>
+        /// No cutout. (default)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None,
+        /// <summary>
+        /// Cutout as bounding box of view
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutView,
+        /// <summary>
+        /// Cutout as bounding box of view, include corner radius.
+        /// </summary>
+        /// <remarks>
+        /// The CornerRadius and CornerRadiusPolicy will be used color visual itself's value.
+        /// If you are using this policy at Tizen.NUI.Visuals.ColorVisual, please be careful that CornerRadius value
+        /// is not same as View.CornerRadius.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutViewWithCornerRadius,
     };
 }

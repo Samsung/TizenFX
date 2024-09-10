@@ -284,5 +284,34 @@ namespace Tizen.NUI.Devel.Tests
 
             testView.Dispose();
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("internal API test in Ubuntu, AnimatedImageView.FrameSpeedFactor")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.AnimatedImageView.FrameSpeedFactor")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void FrameSpeedFactor_SET_GET_VALUE()
+        {
+            /* TEST CODE */
+            AnimatedImageView testView = new AnimatedImageView();
+
+            Assert.AreEqual(1.0f, testView.FrameSpeedFactor, "FrameSpeedFactor should be 1.0f when ResourceUrl is not setup");
+
+            testView.ResourceUrl = animated_image_path;
+
+            Assert.AreEqual(1.0f, testView.FrameSpeedFactor, "FrameSpeedFactor should be 1.0f even ResourceUrl is setup");
+
+            float expectSpeedFactor = 3.0f;
+            testView.FrameSpeedFactor = expectSpeedFactor;
+            Assert.AreEqual(expectSpeedFactor, testView.FrameSpeedFactor, "FrameSpeedFactor doesn't matched!");
+
+            expectSpeedFactor = 0.5f;
+            testView.FrameSpeedFactor = expectSpeedFactor;
+            Assert.AreEqual(expectSpeedFactor, testView.FrameSpeedFactor, "FrameSpeedFactor doesn't matched!");
+
+            testView.Dispose();
+        }
     }
 }
