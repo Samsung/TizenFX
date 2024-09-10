@@ -56,12 +56,5 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public IEnumerable<string> Labels { get; }
-
-        /// <summary>
-        /// Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 12 </since_tizen>
-        public override string ToString() => $"Label={Labels}";
     }
 }
