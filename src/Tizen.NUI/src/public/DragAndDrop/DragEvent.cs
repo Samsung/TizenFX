@@ -65,6 +65,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The mime types and drag data set
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Dictionary<string, string> DataMap;
     }
 
@@ -116,6 +117,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The mime types of drag object
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string [] MimeTypes { get; set; }
 
         /// <summary>

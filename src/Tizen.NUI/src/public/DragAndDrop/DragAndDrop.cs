@@ -34,6 +34,7 @@ namespace Tizen.NUI
         public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
         private delegate void InternalSourceEventHandler(int sourceEventType);
         public delegate void DragAndDropEventHandler(View targetView, DragEvent navtiveDragEvent);
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent navtiveDragEvent);
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr navtiveDragEvent);
         private InternalSourceEventHandler sourceEventCb;
@@ -257,7 +258,7 @@ namespace Tizen.NUI
                 string [] mimeTypes;
                 string [] dataSet;
 
-                if (string.IsNullOrEmpty(dragData.MimeType))
+                if (string.IsNullOrEmpty(dragData.MimeType) && dragData.DataMap != null)
                 {
                     mimeTypes = dragData.DataMap.Keys.ToArray();
                     dataSet = dragData.DataMap.Values.ToArray();
@@ -287,15 +288,7 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public void AddListener(View targetView, DragAndDropEventHandler callback)
         {
-            InternalDragAndDropEventHandler cb = (navtiveDragEvent) => ProcessDragEventTargetCallback(navtiveDragEvent, targetView, callback);
-
-            targetEventDictionary.Add(targetView, cb);
-
-            if (!Interop.DragAndDrop.AddListener(SwigCPtr, View.getCPtr(targetView), "*/*",
-                                                 new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
-            {
-                 throw new InvalidOperationException("Fail to AddListener for View");
-            }
+            AddListener(targetView, "*/*", callback);
         }
 
         /// <summary>
@@ -348,15 +341,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddListener(Window targetWindow, DragAndDropWindowEventHandler callback)
         {
-            InternalDragAndDropEventHandler cb = (navtiveDragEvent) => ProcessDragEventWindowCallback(navtiveDragEvent, targetWindow, callback);
-
-            targetWindowEventDictionary.Add(targetWindow, cb);
-
-            if (!Interop.DragAndDrop.WindowAddListener(SwigCPtr, Window.getCPtr(targetWindow), "*/*",
-                                                       new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
-            {
-                 throw new InvalidOperationException("Fail to AddListener for Window");
-            }
+            AddListener(targetWindow, "*/*", callback);
         }
 
         /// <summary>
