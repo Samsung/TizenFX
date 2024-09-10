@@ -586,7 +586,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the RTP payload type of given <paramref name="codec"/>.
         /// </summary>
         /// <param name="codec">The transceiver codec.</param>
-        /// <value>The RTP payload type.</value>
+        /// <returns>The RTP payload type.</returns>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="SupportedTransceiverCodecs"/>
