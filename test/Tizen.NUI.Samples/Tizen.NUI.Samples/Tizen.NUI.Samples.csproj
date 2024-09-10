@@ -4,8 +4,10 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Tizen.NUI.Samples</RootNamespace>
-    <AssemblyName>Tizen.NUI.Samples</AssemblyName>
+    <AssemblyName>NuiSample</AssemblyName>
     <StartupObject>Tizen.NUI.Samples.Application</StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NuiSample.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,4 +51,3 @@
   </ItemGroup>
 
 </Project>
-

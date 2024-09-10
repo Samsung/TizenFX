@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using System.Collections.ObjectModel;
+using System;
 
 namespace Tizen.Multimedia.Vision
 {
@@ -22,6 +22,7 @@ namespace Tizen.Multimedia.Vision
     /// <see cref="ObjectDetector"/>.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class ObjectDetectionResult
     {
         internal ObjectDetectionResult(int indice, string name, float confidence,
@@ -37,24 +38,28 @@ namespace Tizen.Multimedia.Vision
         /// Gets the indice of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int Indice { get; }
 
         /// <summary>
         /// Gets the name of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string Name { get; }
 
         /// <summary>
         /// Gets the confidence of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public float Confidence { get; }
 
         /// <summary>
         /// Gets the location of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Rectangle Location { get; }
     }
 }

@@ -1356,85 +1356,90 @@ namespace Tizen.NUI.BaseComponents
 
             //_mergedStyle = null;
 
-            internalMaximumSize?.Dispose();
-            internalMaximumSize = null;
-            internalMinimumSize?.Dispose();
-            internalMinimumSize = null;
-            internalMargin?.Dispose();
-            internalMargin = null;
-            internalPadding?.Dispose();
-            internalPadding = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCellIndex?.Dispose();
-            internalCellIndex = null;
-            internalBackgroundColor?.Dispose();
-            internalBackgroundColor = null;
-            internalColor?.Dispose();
-            internalColor = null;
-            internalPivotPoint?.Dispose();
-            internalPivotPoint = null;
-            internalPosition?.Dispose();
-            internalPosition = null;
-            internalPosition2D?.Dispose();
-            internalPosition2D = null;
-            internalScale?.Dispose();
-            internalScale = null;
-            internalSize?.Dispose();
-            internalSize = null;
-            internalSize2D?.Dispose();
-            internalSize2D = null;
-
-            panGestureDetector?.Dispose();
-            panGestureDetector = null;
-            longGestureDetector?.Dispose();
-            longGestureDetector = null;
-            pinchGestureDetector?.Dispose();
-            pinchGestureDetector = null;
-            tapGestureDetector?.Dispose();
-            tapGestureDetector = null;
-            rotationGestureDetector?.Dispose();
-            rotationGestureDetector = null;
-
-            internalCurrentParentOrigin?.Dispose();
-            internalCurrentParentOrigin = null;
-            internalCurrentAnchorPoint?.Dispose();
-            internalCurrentAnchorPoint = null;
-            internalTargetSize?.Dispose();
-            internalTargetSize = null;
-            internalCurrentSize?.Dispose();
-            internalCurrentSize = null;
-            internalCurrentPosition?.Dispose();
-            internalCurrentPosition = null;
-            internalCurrentWorldPosition?.Dispose();
-            internalCurrentWorldPosition = null;
-            internalCurrentScale?.Dispose();
-            internalCurrentScale = null;
-            internalCurrentWorldScale?.Dispose();
-            internalCurrentWorldScale = null;
-            internalCurrentColor?.Dispose();
-            internalCurrentColor = null;
-            internalCurrentWorldColor?.Dispose();
-            internalCurrentWorldColor = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCurrentScreenPosition?.Dispose();
-            internalCurrentScreenPosition = null;
-
-            if (visualContainers != null)
-            {
-                foreach (var visualContainer in visualContainers)
-                {
-                    visualContainer?.Dispose();
-                }
-                visualContainers = null;
-            }
-
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                internalMaximumSize?.Dispose();
+                internalMaximumSize = null;
+                internalMinimumSize?.Dispose();
+                internalMinimumSize = null;
+                internalMargin?.Dispose();
+                internalMargin = null;
+                internalPadding?.Dispose();
+                internalPadding = null;
+                internalSizeModeFactor?.Dispose();
+                internalSizeModeFactor = null;
+                internalCellIndex?.Dispose();
+                internalCellIndex = null;
+                internalBackgroundColor?.Dispose();
+                internalBackgroundColor = null;
+                internalColor?.Dispose();
+                internalColor = null;
+                internalPivotPoint?.Dispose();
+                internalPivotPoint = null;
+                internalPosition?.Dispose();
+                internalPosition = null;
+                internalPosition2D?.Dispose();
+                internalPosition2D = null;
+                internalScale?.Dispose();
+                internalScale = null;
+                internalSize?.Dispose();
+                internalSize = null;
+                internalSize2D?.Dispose();
+                internalSize2D = null;
+
+                panGestureDetector?.Dispose();
+                panGestureDetector = null;
+                longGestureDetector?.Dispose();
+                longGestureDetector = null;
+                pinchGestureDetector?.Dispose();
+                pinchGestureDetector = null;
+                tapGestureDetector?.Dispose();
+                tapGestureDetector = null;
+                rotationGestureDetector?.Dispose();
+                rotationGestureDetector = null;
+
+                internalCurrentParentOrigin?.Dispose();
+                internalCurrentParentOrigin = null;
+                internalCurrentAnchorPoint?.Dispose();
+                internalCurrentAnchorPoint = null;
+                internalTargetSize?.Dispose();
+                internalTargetSize = null;
+                internalCurrentSize?.Dispose();
+                internalCurrentSize = null;
+                internalCurrentPosition?.Dispose();
+                internalCurrentPosition = null;
+                internalCurrentWorldPosition?.Dispose();
+                internalCurrentWorldPosition = null;
+                internalCurrentScale?.Dispose();
+                internalCurrentScale = null;
+                internalCurrentWorldScale?.Dispose();
+                internalCurrentWorldScale = null;
+                internalCurrentColor?.Dispose();
+                internalCurrentColor = null;
+                internalCurrentWorldColor?.Dispose();
+                internalCurrentWorldColor = null;
+                internalSizeModeFactor?.Dispose();
+                internalSizeModeFactor = null;
+                internalCurrentScreenPosition?.Dispose();
+                internalCurrentScreenPosition = null;
+
+                if (visualContainers != null)
+                {
+                    foreach (var visualContainer in visualContainers)
+                    {
+                        visualContainer?.Dispose();
+                    }
+                    visualContainers = null;
+                }
+
+                foreach (View view in Children)
+                {
+                    view.InternalParent = null;
+                }
+
                 if (themeData != null)
                 {
                     themeData.selectorData?.Reset(this);
@@ -1460,11 +1465,6 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
 
             DisConnectFromSignals();
-
-            foreach (View view in Children)
-            {
-                if (view != null) { view.InternalParent = null; }
-            }
 
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 

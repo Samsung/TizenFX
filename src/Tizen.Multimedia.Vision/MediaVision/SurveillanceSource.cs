@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Vision
     /// <seealso cref="PersonAppearanceDetector"/>
     /// <seealso cref="PersonRecognizer"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class SurveillanceSource
     {
         private static int _nextStreamId = int.MinValue;
@@ -47,6 +48,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="SurveillanceSource"/> class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public SurveillanceSource()
         {
             StreamId = GetNextStreamId();
@@ -65,6 +67,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="PersonAppearanceDetector.AddSource(SurveillanceSource, PersonAppearanceDetectionConfiguration)"/>
         /// <seealso cref="PersonRecognizer.AddSource(SurveillanceSource, PersonRecognitionConfiguration)"/>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Push(MediaVisionSource source)
         {
             if (source == null)

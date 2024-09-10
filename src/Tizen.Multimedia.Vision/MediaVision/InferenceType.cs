@@ -22,6 +22,7 @@ namespace Tizen.Multimedia.Vision
     /// Specifies the type of inference backend.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public enum InferenceBackendType
     {
         /// <summary>
@@ -77,6 +78,7 @@ namespace Tizen.Multimedia.Vision
     /// Specifies the target device which is used for running <see cref="InferenceModelConfiguration.Backend"/>.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public enum InferenceTargetDevice
     {
         /// <summary>
@@ -99,6 +101,7 @@ namespace Tizen.Multimedia.Vision
     /// Specifies the data type.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public enum InferenceDataType
     {
         /// <summary>

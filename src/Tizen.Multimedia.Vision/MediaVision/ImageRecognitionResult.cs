@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents a result of RecognizeAsync operations of <see cref="ImageRecognizer"/>.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class ImageRecognitionResult
     {
 
@@ -34,12 +37,14 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <value>The region of recognized image object if successful, otherwise null.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Quadrangle Region { get; }
 
         /// <summary>
         /// Gets the value indicating the recognition is successful.
         /// </summary>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public bool Success { get; }
     }
 }
