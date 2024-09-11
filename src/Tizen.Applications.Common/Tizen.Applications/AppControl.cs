@@ -102,7 +102,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes the instance of the AppControl class with the SafeAppControlHandle.
         /// </summary>
-        /// <param name="handle"></param>
+        /// <param name="handle">A reference to the SafeAppControlHandle object.</param>
         /// <since_tizen> 3 </since_tizen>
         public AppControl(SafeAppControlHandle handle)
         {
@@ -169,6 +169,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the SafeAppControlHandle instance.
         /// </summary>
+        /// <value>
+        /// This property returns a reference to the underlying SafeAppControlHandle object.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public SafeAppControlHandle SafeAppControlHandle
         {
@@ -227,7 +230,8 @@ namespace Tizen.Applications
         /// Gets and sets the explicit MIME type of the data.
         /// </summary>
         /// <value>
-        /// (if the mime is null for setter, it clears the previous value.)
+        /// This property returns the explicitly set MIME type of the data. If no explicit MIME type is set, it will return null.
+        /// (Setting this property to null will clear any previously set explicit MIME types.)
         /// </value>
         /// <example>
         /// <code>
@@ -328,7 +332,8 @@ namespace Tizen.Applications
         /// Gets and sets the explicit category.
         /// </summary>
         /// <value>
-        /// (if the category is null for setter, it clears the previous value.)
+        /// This property returns the explicitly set category. If no explicit category is set, it will return null.
+        /// (Setting this property to null will clear any previously set explicit categories.)
         /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string Category
@@ -363,7 +368,8 @@ namespace Tizen.Applications
         /// Gets and sets the application ID to explicitly launch.
         /// </summary>
         /// <value>
-        /// (if the application ID is null for setter, it clears the previous value.)
+        /// This property returns the explicitly set application ID. If no explicit application ID is set, it will return null.
+        /// (Setting this property to null will clear any previously set explicit application IDs.)
         /// </value>
         /// <example>
         /// <code>
@@ -446,7 +452,7 @@ namespace Tizen.Applications
         /// Gets the collection of the extra data.
         /// </summary>
         /// <value>
-        /// Extra data for communication between AppControls.
+        /// The ExtraData property provides access to a collection of key-value pairs representing additional data associated with the application control.
         /// </value>
         /// <example>
         /// <code>
@@ -1023,9 +1029,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets the window position.
+        /// Sets the position and size of the window.
         /// </summary>
-        /// <param name="windowPosition">The window position object.</param>
+        /// <param name="windowPosition">A structure containing the coordinates and dimensions of the window.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the invalid operation error occurs.</exception>
@@ -1054,7 +1060,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the window position.
         /// </summary>
-        /// <returns>The window position.</returns>
+        /// <returns>A structure containing the coordinates and dimensions of the window.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the invalid operation error occurs.</exception>
         /// <since_tizen> 11 </since_tizen>
         public WindowPosition GetWindowPosition()
@@ -1357,9 +1363,13 @@ namespace Tizen.Applications
             }
 
             /// <summary>
-            /// Removes the extra data.
+            /// Deletes a particular piece of extra data from the collection.
             /// </summary>
-            /// <param name="key">The name of the extra data.</param>
+            /// <param name="key">Identifier of the data to remove.</param>
+            /// <remarks>
+            /// This method enables removal of individual items from the ExtraData collection.
+            /// It accepts only non-empty strings as valid input parameters.
+            /// </remarks>
             /// <exception cref="ArgumentNullException">Thrown when the key is a zero-length string.</exception>
             /// <exception cref="KeyNotFoundException">Thrown when the key is not found.</exception>
             /// <exception cref="ArgumentException">Thrown when the key is rejected.</exception>
