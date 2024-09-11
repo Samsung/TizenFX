@@ -291,6 +291,10 @@ internal static partial class Interop
         [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_data_set_tensor_data", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError SetTensorData(IntPtr data, int index, byte[] raw_data, int data_size);
 
+        /* int ml_tensors_data_get_info (const ml_tensors_data_h data, ml_tensors_info_h *info) */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_data_get_info", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetInfo(IntPtr data, out IntPtr info);
+
         /* int ml_check_nnfw_availability (ml_nnfw_type_e nnfw, ml_nnfw_hw_e hw, bool *available); */
         [DllImport(Libraries.MlSingle, EntryPoint = "ml_check_nnfw_availability", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError CheckNNFWAvailability(NNFWType nnfw, HWType hw, out bool available);
@@ -306,5 +310,64 @@ internal static partial class Interop
         {
             return (val != IntPtr.Zero) ? Marshal.PtrToStringAnsi(val) : string.Empty;
         }
+
+        internal static int IntPtrToInt(IntPtr val)
+        {
+            return (val != IntPtr.Zero) ? Marshal.ReadInt32(val) : 0;
+        }
+
+        internal static IntPtr StringToIntPtr(string str)
+        {
+            return string.IsNullOrEmpty(str) ? IntPtr.Zero : Marshal.StringToHGlobalAnsi(str);
+        }
+
+        internal static IntPtr IntToIntPtr(int val)
+        {
+            IntPtr handle = Marshal.AllocHGlobal(sizeof(int));
+
+            byte[] byteVal = BitConverter.GetBytes(val);
+            Marshal.Copy(byteVal, 0, handle, byteVal.Length);
+            return handle;
+        }
+
+        /* int ml_information_destroy (ml_information_h ml_info); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_information_destroy", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError DestroyInformation(IntPtr info);
+
+        /* int ml_information_get (ml_information_h ml_info, const char *key, void **value); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_information_get", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetInformationValue(IntPtr info, IntPtr key, out IntPtr value);
+
+        /* int ml_information_list_destroy (ml_information_list_h ml_info_list); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_information_list_destroy", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError DestroyInformationList(IntPtr info_list);
+
+        /* int ml_information_list_length (ml_information_list_h ml_info_list, unsigned int *length); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_information_list_length", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetInformationListLength(IntPtr info_list, out int length);
+
+        /* int ml_information_list_get (ml_information_list_h ml_info_list, unsigned int index, ml_information_h *ml_info); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_information_list_get", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetInformation(IntPtr info_list, int index, out IntPtr info);
+
+        /* typedef void (*ml_data_destroy_cb) (void *data);*/
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DataDestroyCallback(IntPtr user_data);
+
+        /* int ml_option_create (ml_option_h *option); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_option_create", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError CreateOption(out IntPtr option);
+
+        /* int ml_option_destroy (ml_option_h option); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_option_destroy", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError DestroyOption(IntPtr option);
+
+        /* int ml_option_set (ml_option_h option, const char *key, void *value, ml_data_destroy_cb destroy); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_option_set", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError SetOptionValue(IntPtr option, IntPtr key, IntPtr value, DataDestroyCallback cb);
+
+        /* int ml_option_get (ml_option_h option, const char *key, void **value); */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_option_get", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError GetOptionValue(IntPtr option, IntPtr key, out IntPtr value);
     }
 }
