@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
 
@@ -55,7 +55,7 @@ jobs:
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       if: ${{ always() }}
       with:
         name: reports
@@ -64,7 +64,7 @@ jobs:
 
   check-api:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -72,7 +72,7 @@ jobs:
         dotnet-version: 3.1.x
 
     - name: Download Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: reports
         path: Artifacts
@@ -120,7 +120,7 @@ jobs:
         base-file: Artifacts/base-api.json
         output: Artifacts/api-comp.json
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: reports
         path: Artifacts/api-comp.json

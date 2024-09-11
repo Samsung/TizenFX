@@ -38,18 +38,17 @@ jobs:
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
-
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: documents
         path: site.tar.gz
 
   deploy:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: documents
 
