@@ -89,7 +89,7 @@ namespace NUIDnDMultiWindow
                 Tizen.Log.Debug("NUIDnDMultiWindow", "StartDragAndDrop");
                 shadowView = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png");
                 shadowView.Size = new Size(150, 150);
-                DragData dragData;
+                DragData dragData = new DragData();
                 dragData.MimeType = "text/uri-list";
                 dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
                 dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceApp_SourceFunc);
