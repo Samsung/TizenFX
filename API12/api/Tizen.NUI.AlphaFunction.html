@@ -120,10 +120,25 @@ the animation before computing the final animation value.</p>
     </dd>
   </dl>
 
+  <h5 id="Tizen_NUI_AlphaFunction_examples"><strong>Examples</strong></h5>
+  <pre><code>    View view = new View()
+    {
+        Size2D = new Size2D(100, 100),
+        Position2D = new Position2D(100, 100),
+        BackgroundColor = Color.Red,
+    };
+    Window.Default.Add(view);
+    Animation animation = new Animation();
+    const float destinationValue = 300.0f;
+    const int startTime = 0; // animation starts at 0 second point. no delay.
+    const int endTime = 5000; // animation ends at 5 second point.
+    animation.AnimateTo(view, &quot;PositionX&quot;, destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn));
+    animation.Play();</code></pre>
+
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L63">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
   <h4 id="Tizen_NUI_AlphaFunction__ctor" data-uid="Tizen.NUI.AlphaFunction.#ctor">AlphaFunction()</h4>
@@ -140,7 +155,7 @@ Creates an alpha function object with the default built-in alpha function.<br></
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L38">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L53">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
   <h4 id="Tizen_NUI_AlphaFunction__ctor_System_Delegate_" data-uid="Tizen.NUI.AlphaFunction.#ctor(System.Delegate)">AlphaFunction(Delegate)</h4>
@@ -175,7 +190,7 @@ Creates an alpha function object with the user-defined alpha function.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L59">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L74">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
   <h4 id="Tizen_NUI_AlphaFunction__ctor_Tizen_NUI_AlphaFunction_BuiltinFunctions_" data-uid="Tizen.NUI.AlphaFunction.#ctor(Tizen.NUI.AlphaFunction.BuiltinFunctions)">AlphaFunction(BuiltinFunctions)</h4>
@@ -210,7 +225,7 @@ Creates an alpha function object with the built-in alpha function passed as a pa
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
   <h4 id="Tizen_NUI_AlphaFunction__ctor_Tizen_NUI_Vector2_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.AlphaFunction.#ctor(Tizen.NUI.Vector2,Tizen.NUI.Vector2)">AlphaFunction(Vector2, Vector2)</h4>
@@ -256,7 +271,7 @@ Creates a bezier alpha function. The bezier will have the first point at (0,0) a
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L198">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L213">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction_GetBezierControlPoints_" data-uid="Tizen.NUI.AlphaFunction.GetBezierControlPoints*"></a>
   <h4 id="Tizen_NUI_AlphaFunction_GetBezierControlPoints_Tizen_NUI_Vector2__Tizen_NUI_Vector2__" data-uid="Tizen.NUI.AlphaFunction.GetBezierControlPoints(Tizen.NUI.Vector2@,Tizen.NUI.Vector2@)">GetBezierControlPoints(out Vector2, out Vector2)</h4>
@@ -296,7 +311,7 @@ Creates a bezier alpha function. The bezier will have the first point at (0,0) a
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L213">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L228">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction_GetBuiltinFunction_" data-uid="Tizen.NUI.AlphaFunction.GetBuiltinFunction*"></a>
   <h4 id="Tizen_NUI_AlphaFunction_GetBuiltinFunction" data-uid="Tizen.NUI.AlphaFunction.GetBuiltinFunction">GetBuiltinFunction()</h4>
@@ -329,7 +344,7 @@ In case no built-in function has been specified, it will return AlphaFunction::D
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L225">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L240">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction_GetMode_" data-uid="Tizen.NUI.AlphaFunction.GetMode*"></a>
   <h4 id="Tizen_NUI_AlphaFunction_GetMode" data-uid="Tizen.NUI.AlphaFunction.GetMode">GetMode()</h4>
@@ -372,7 +387,7 @@ In case no built-in function has been specified, it will return AlphaFunction::D
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/AlphaFunction.cs/#L44" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

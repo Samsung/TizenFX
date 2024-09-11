@@ -110,7 +110,10 @@ Understanding an animation as a parametric function over time, the alpha functio
 the animation before computing the final animation value.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></h4>
-      <section><p>Animatable.</p>
+      <section><p>The class that represents an object capable of animation is the parent class of the minimum unit of visual, View.
+When a property is an animatable property, it means that its value can change continuously as the target of an animation.
+In this case, if a property notification callback is set, you can receive the callback according to the changing values.
+Additionally, users can also add their own properties.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.AnimatedImageVisual.html">AnimatedImageVisual</a></h4>
       <section><p>A class encapsulating the property map of the animated image (AGIF) visual.</p>
@@ -736,7 +739,7 @@ Interface that defines a layout Parent. Enables a layout child to access methods
     <h3 id="enums">Enums
 </h3>
       <h4><a class="xref" href="Tizen.NUI.AlphaFunction.BuiltinFunctions.html">AlphaFunction.BuiltinFunctions</a></h4>
-      <section><p>This specifies the various types of BuiltinFunctions.</p>
+      <section><p>This specifies the various types of built-in alpha functions available for animations.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.AlphaFunction.Modes.html">AlphaFunction.Modes</a></h4>
       <section><p>This specifies which mode is set for AlphaFunction.</p>
