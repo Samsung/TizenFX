@@ -1318,36 +1318,40 @@ namespace Tizen.NUI.BaseComponents
         /// RemoveFrontInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RemoveFrontInsetProperty = null;
+        internal static void SetInternalRemoveFrontInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveFrontInset, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr,  TextField.Property.RemoveFrontInset, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRemoveFrontInsetProperty(BindableObject bindable)
         {
             var textField = (TextField)bindable;
+
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveFrontInset);
-        }));
+        }
 
         /// <summary>
         /// RemoveBackInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RemoveBackInsetProperty = null;
+        internal static void SetInternalRemoveBackInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textField = (TextField)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveBackInset, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRemoveBackInsetProperty(BindableObject bindable)
         {
             var textField = (TextField)bindable;
+
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveBackInset);
-        }));
+        }
     }
 }

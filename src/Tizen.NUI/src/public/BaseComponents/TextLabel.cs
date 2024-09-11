@@ -641,7 +641,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
             {
-                SetValue(FontStyleProperty, fontStyleMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontStyleProperty, fontStyleMap);
+                }
+                else
+                {
+                    SetInternalFontStyleProperty(this, null, fontStyleMap);
+                }
             }
         }
 
@@ -656,7 +663,7 @@ namespace Tizen.NUI.BaseComponents
         public FontStyle GetFontStyle()
         {
             FontStyle fontStyle;
-            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            using (var fontStyleMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(FontStyleProperty) : (PropertyMap)GetInternalFontStyleProperty(this))
             {
                 fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
             }
@@ -889,11 +896,16 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("offset", value);
-
                     var shadowMap = Shadow;
                     shadowMap.Merge(map);
-
-                    SetValue(ShadowProperty, shadowMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(ShadowProperty, shadowMap);
+                    }
+                    else
+                    {
+                        SetInternalShadowProperty(this, null, shadowMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -961,7 +973,14 @@ namespace Tizen.NUI.BaseComponents
                     map.Add("color", value);
                     var shadowMap = Shadow;
                     shadowMap.Merge(map);
-                    SetValue(ShadowProperty, shadowMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(ShadowProperty, shadowMap);
+                    }
+                    else
+                    {
+                        SetInternalShadowProperty(this, null, shadowMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -1021,9 +1040,16 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("enable", value);
-                    var undelineMap = Underline;
-                    undelineMap.Merge(map);
-                    SetValue(UnderlineProperty, undelineMap);
+                    var underlineMap = Underline;
+                    underlineMap.Merge(map);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(UnderlineProperty, underlineMap);
+                    }
+                    else
+                    {
+                        SetInternalUnderlineProperty(this, null, underlineMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -1089,9 +1115,16 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("color", value);
-                    var undelineMap = Underline;
-                    undelineMap.Merge(map);
-                    SetValue(UnderlineProperty, undelineMap);
+                    var underlineMap = Underline;
+                    underlineMap.Merge(map);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(UnderlineProperty, underlineMap);
+                    }
+                    else
+                    {
+                        SetInternalUnderlineProperty(this, null, underlineMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -1151,9 +1184,17 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("height", value);
-                    var undelineMap = Underline;
-                    undelineMap.Merge(map);
-                    SetValue(UnderlineProperty, undelineMap);
+                    var underlineMap = Underline;
+                    underlineMap.Merge(map);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(UnderlineProperty, underlineMap);
+                    }
+                    else
+                    {
+                        SetInternalUnderlineProperty(this, null, underlineMap);
+                    }
+
                     NotifyPropertyChanged();
                 }
             }
@@ -1444,7 +1485,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
             {
-                SetValue(UnderlineProperty, underlineMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderlineProperty, underlineMap);
+                }
+                else
+                {
+                    SetInternalUnderlineProperty(this, null, underlineMap);
+                }
             }
         }
 
@@ -1459,7 +1507,7 @@ namespace Tizen.NUI.BaseComponents
         public Underline GetUnderline()
         {
             Underline underline;
-            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            using (var underlineMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(UnderlineProperty) : (PropertyMap)GetInternalUnderlineProperty(this))
             {
                 underline = TextMapHelper.GetUnderlineStruct(underlineMap);
             }
@@ -1527,7 +1575,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
             {
-                SetValue(ShadowProperty, shadowMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ShadowProperty, shadowMap);
+                }
+                else
+                {
+                    SetInternalShadowProperty(this, null, shadowMap);
+                }
             }
         }
 
@@ -1542,7 +1597,7 @@ namespace Tizen.NUI.BaseComponents
         public Tizen.NUI.Text.Shadow GetShadow()
         {
             Tizen.NUI.Text.Shadow shadow;
-            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            using (var shadowMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(ShadowProperty) : (PropertyMap)GetInternalShadowProperty(this))
             {
                 shadow = TextMapHelper.GetShadowStruct(shadowMap);
             }
@@ -1672,7 +1727,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
             {
-                SetValue(OutlineProperty, outlineMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(OutlineProperty, outlineMap);
+                }
+                else
+                {
+                    SetInternalOutlineProperty(this, null, outlineMap);
+                }
             }
         }
 
@@ -1687,7 +1749,7 @@ namespace Tizen.NUI.BaseComponents
         public Outline GetOutline()
         {
             Outline outline;
-            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            using (var outlineMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(OutlineProperty) : (PropertyMap)GetInternalOutlineProperty(this))
             {
                 outline = TextMapHelper.GetOutlineStruct(outlineMap);
             }
@@ -2098,7 +2160,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var textFitMap = TextMapHelper.GetTextFitMap(textFit))
             {
-                SetValue(TextFitProperty, textFitMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextFitProperty, textFitMap);
+                }
+                else
+                {
+                    SetInternalTextFitProperty(this, null, textFitMap);
+                }
             }
         }
 
@@ -2115,7 +2184,7 @@ namespace Tizen.NUI.BaseComponents
         public TextFit GetTextFit()
         {
             TextFit textFit;
-            using (var textFitMap = (PropertyMap)GetValue(TextFitProperty))
+            using (var textFitMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(TextFitProperty) : (PropertyMap)GetInternalTextFitProperty(this))
             {
                 textFit = TextMapHelper.GetTextFitStruct(textFitMap);
             }
