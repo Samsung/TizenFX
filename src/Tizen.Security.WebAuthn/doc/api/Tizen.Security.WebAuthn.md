@@ -1,12 +1,12 @@
 ---
-uid: Tizen.Security.WebAuthm
+uid: Tizen.Security.WebAuthn
 summary: The Web Authentication module provides a C# API enabling the creation and use of
 strong, attested, scoped, public key-based credentials by web applications, for the
 purpose of strongly authenticating users
 remarks: *content
 ---
 ## Overview
-It provides an Authenticator cclass containing methods for creating public key-based credentials
+It provides an Authenticator class containing methods for creating public key-based credentials
 (Authenticator.MakeCredential()) and using them (Authenticator.GetAssertion()). Both these operation
 are performed asynchronously. Callbacks passed as arguments are used to notify about the progress
 or when user's interaction is necessary. Due to significant amount of time required to complete both

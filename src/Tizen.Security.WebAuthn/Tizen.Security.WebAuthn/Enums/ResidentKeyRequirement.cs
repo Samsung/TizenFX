@@ -17,29 +17,29 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn resident key requirement value
+    /// WebAuthn resident key requirement value.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#enum-residentKeyRequirement
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum ResidentKeyRequirement
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None                        = 0,
         /// <summary>
-        /// Resident key discouraged
+        /// Resident key discouraged.
         /// </summary>
         Discouraged                 = 1,
         /// <summary>
-        /// Resident key preferred
+        /// Resident key preferred.
         /// </summary>
         Preferred                   = 2,
         /// <summary>
-        /// Resident key required
+        /// Resident key required.
         /// </summary>
         Required                    = 3,
     }

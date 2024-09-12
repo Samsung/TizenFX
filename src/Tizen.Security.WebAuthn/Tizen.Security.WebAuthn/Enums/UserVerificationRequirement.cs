@@ -17,29 +17,29 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn user verification requirement value
+    /// WebAuthn user verification requirement value.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#enumdef-userverificationrequirement
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum UserVerificationRequirement
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None                        = 0,
         /// <summary>
-        /// User verification required
+        /// User verification required.
         /// </summary>
         Required                    = 1,
         /// <summary>
-        /// User verification preferred
+        /// User verification preferred.
         /// </summary>
         Preferred                   = 2,
         /// <summary>
-        /// User verification discouraged
+        /// User verification discouraged.
         /// </summary>
         Discouraged                 = 3,
     }

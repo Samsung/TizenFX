@@ -19,21 +19,21 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Public key credential descriptor
+    /// Public key credential descriptor.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialdescriptor
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class PubkeyCredDescriptor
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PubkeyCredDescriptor"/> class.
         /// </summary>
-        /// <param name="type">The type of the public key credential</param>
-        /// <param name="id">The credential ID of the public key credential</param>
-        /// <param name="transport">To represent multiple transports, this enum can be ORed multiple times</param>
+        /// <param name="type">The type of the public key credential.</param>
+        /// <param name="id">The credential ID of the public key credential.</param>
+        /// <param name="transport">To represent multiple transports, this enum can be ORed multiple times.</param>
         public PubkeyCredDescriptor(PubkeyCredType type, byte[] id, AuthenticatorTransport transport)
         {
             Type = type;
@@ -41,15 +41,15 @@ namespace Tizen.Security.WebAuthn
             Transport = transport;
         }
         /// <summary>
-        /// The type of the public key credential
+        /// The type of the public key credential.
         /// </summary>
         public PubkeyCredType Type { get; init; }
         /// <summary>
-        /// The credential ID of the public key credential
+        /// The credential ID of the public key credential.
         /// </summary>
         public byte[] Id { get; init; }
         /// <summary>
-        /// Transport types
+        /// Transport types.
         /// </summary>
         public AuthenticatorTransport Transport { get; init; }
     }

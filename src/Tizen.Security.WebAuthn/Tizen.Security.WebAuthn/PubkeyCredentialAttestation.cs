@@ -22,14 +22,14 @@ using static Interop;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// publickey_credential response for MakeCredential()
+    /// publickey_credential response for MakeCredential().
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#iface-pkcredential
     /// https://www.w3.org/TR/webauthn-3/#sctn-credentialcreationoptions-extension
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class PubkeyCredentialAttestation
     {
         internal PubkeyCredentialAttestation(WauthnPubkeyCredentialAttestation attestation)
@@ -68,23 +68,23 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// The base64url encoding of credential’s identifier
+        /// The base64url encoding of credential’s identifier.
         /// </summary>
         public byte[] Id { get; init; }
         /// <summary>
-        /// The credential’s type
+        /// The credential’s type.
         /// </summary>
         public PubkeyCredType Type { get; init; }
         /// <summary>
-        /// The raw value of credential’s identifier
+        /// The raw value of credential’s identifier.
         /// </summary>
         public byte[] RawId { get; init; }
         /// <summary>
-        /// Authenticator's response
+        /// Authenticator's response.
         /// </summary>
         public AuthenticatorAttestationResponse Response { get; init; }
         /// <summary>
-        /// Authenticator attachment modality
+        /// Authenticator attachment modality.
         /// </summary>
         public AuthenticatorAttachment AuthenticatorAttachment { get; init; }
         /// <summary>

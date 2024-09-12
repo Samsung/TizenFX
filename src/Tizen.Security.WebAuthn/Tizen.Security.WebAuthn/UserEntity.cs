@@ -19,25 +19,25 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// User entity
+    /// User entity.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialuserentity
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class UserEntity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RpEntity"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="name">A human-palatable name for the entity</param>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="name">A human-palatable name for the entity.</param>
         /// <param name="id">
         /// The ID of the user account. An ID is a byte sequence with a maximum size of 64 bytes,
-        /// and is not meant to be displayed to the user
+        /// and is not meant to be displayed to the user.
         /// </param>
-        /// <param name="displayName">A human-palatable name for the user account, intended only for display</param>
+        /// <param name="displayName">A human-palatable name for the user account, intended only for display.</param>
         public UserEntity(string name, byte[] id, string displayName)
         {
             Name = name;
@@ -46,15 +46,15 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// A human-palatable name for the entity
+        /// A human-palatable name for the entity.
         /// </summary>
         public string Name { get; init; }
         /// <summary>
-        /// The ID of the user account
+        /// The ID of the user account.
         /// </summary>
         public byte[] Id { get; init; }
         /// <summary>
-        /// A human-palatable name for the user account, intended only for display
+        /// A human-palatable name for the user account, intended only for display.
         /// </summary>
         public string DisplayName { get; init; }
     }

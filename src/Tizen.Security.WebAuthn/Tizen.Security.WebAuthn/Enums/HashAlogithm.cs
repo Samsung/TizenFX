@@ -24,7 +24,7 @@ namespace Tizen.Security.WebAuthn
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#collectedclientdata-hash-of-the-serialized-client-data
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum HashAlgorithm
     {
         /// <summary>

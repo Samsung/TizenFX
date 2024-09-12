@@ -24,9 +24,9 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Public web authentication API
+    /// Public web authentication API.
     /// </summary>
-    /// <since_tizen> 7 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public static class Authenticator
     {
         private static bool _apiVersionSet = false;
@@ -41,13 +41,13 @@ namespace Tizen.Security.WebAuthn
 
         #region Public API
         /// <summary>
-        /// Sets API version that the caller uses
+        /// Sets API version that the caller uses.
         /// </summary>
-        /// <since_tizen> 7 </since_tizen>
-        /// <remarks>This method must be called before other methods are called</remarks>
+        /// <since_tizen> 12 </since_tizen>
+        /// <remarks>This method must be called before other methods are called.</remarks>
         /// <feature>http://tizen.org/feature/security.webauthn</feature>
-        /// <param name="apiVersionNumber">API version number to set. Use <see cref="ApiVersionNumber"/> as an input</param>
-        /// <exception cref="NotSupportedException">The specified API version or required feature is not supported</exception>
+        /// <param name="apiVersionNumber">API version number to set. Use <see cref="ApiVersionNumber"/> as an input.</param>
+        /// <exception cref="NotSupportedException">The specified API version or required feature is not supported.</exception>
         public static void SetApiVersion(int apiVersionNumber)
         {
             int ret = Libwebauthn.SetApiVersion(apiVersionNumber);
@@ -56,12 +56,12 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Gets information on authenticator types that the client platform supports
+        /// Gets information on authenticator types that the client platform supports.
         /// </summary>
-        /// <since_tizen> 7 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <feature>http://tizen.org/feature/security.webauthn</feature>
-        /// <returns>An enum with the collection of all supported authenticator types</returns>
-        /// <exception cref="NotSupportedException">The required feature is not supported</exception>
+        /// <returns>An enum with the collection of all supported authenticator types.</returns>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static AuthenticatorTransport SupportedAuthenticators()
         {
             int ret = Libwebauthn.SupportedAuthenticators(out uint supported);
@@ -71,13 +71,13 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Makes a new web authentication credential and stores it to authenticator
+        /// Makes a new web authentication credential and stores it to authenticator.
         /// </summary>
         /// <remarks>
         /// Refer to the following W3C specification for more information.
         /// https://www.w3.org/TR/webauthn-3/#sctn-createCredential
         /// </remarks>
-        /// <since_tizen> 7 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
@@ -89,14 +89,14 @@ namespace Tizen.Security.WebAuthn
         /// http://tizen.org/feature/network.ethernet
         /// http://tizen.org/feature/network.telephony
         /// </feature>
-        /// <param name="clientData">UTF-8 encoded JSON serialization of the client data</param>
-        /// <param name="options">Specifies the desired attributes of the to-be-created public key credential</param>
-        /// <param name="callbacks">The callback functions to be invoked</param>
-        /// <exception cref="NotSupportedException">The required feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">Required privilege is missing</exception>
-        /// <exception cref="ArgumentException">Input parameter is invalid</exception>
-        /// <exception cref="InvalidOperationException">Operation invalid in current state</exception>
-        /// <exception cref="OperationCanceledException">Canceled by a cancel request</exception>
+        /// <param name="clientData">UTF-8 encoded JSON serialization of the client data.</param>
+        /// <param name="options">Specifies the desired attributes of the to-be-created public key credential.</param>
+        /// <param name="callbacks">The callback functions to be invoked.</param>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Required privilege is missing.</exception>
+        /// <exception cref="ArgumentException">Input parameter is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Operation invalid in current state.</exception>
+        /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
         public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, McCallbacks callbacks)
         {
             CheckPreconditions();
@@ -131,13 +131,13 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Gets assertion from the authenticator
+        /// Gets assertion from the authenticator.
         /// </summary>
         /// <remarks>
         /// Refer to the following W3C specification for more information.
         /// https://www.w3.org/TR/webauthn-3/#sctn-getAssertion
         /// </remarks>
-        /// <since_tizen> 7 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
@@ -149,14 +149,14 @@ namespace Tizen.Security.WebAuthn
         /// http://tizen.org/feature/network.ethernet
         /// http://tizen.org/feature/network.telephony
         /// </feature>
-        /// <param name="clientData">UTF-8 encoded JSON serialization of the client data</param>
-        /// <param name="options">Specifies the desired attributes of the public key credential to discover</param>
-        /// <param name="callbacks">The callback functions to be invoked</param>
-        /// <exception cref="NotSupportedException">The required feature is not supported</exception>
-        /// <exception cref="UnauthorizedAccessException">Required privilege is missing</exception>
-        /// <exception cref="ArgumentException">Input parameter is invalid</exception>
-        /// <exception cref="InvalidOperationException">Operation invalid in current state</exception>
-        /// <exception cref="OperationCanceledException">Canceled by a cancel request</exception>
+        /// <param name="clientData">UTF-8 encoded JSON serialization of the client data.</param>
+        /// <param name="options">Specifies the desired attributes of the public key credential to discover.</param>
+        /// <param name="callbacks">The callback functions to be invoked.</param>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Required privilege is missing.</exception>
+        /// <exception cref="ArgumentException">Input parameter is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Operation invalid in current state.</exception>
+        /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
         public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GaCallbacks callbacks)
         {
             CheckPreconditions();
@@ -188,12 +188,12 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Stops the previous MakeCredential or GetAssertion call
+        /// Stops the previous MakeCredential or GetAssertion call.
         /// </summary>
-        /// <since_tizen> 7 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <feature>http://tizen.org/feature/security.webauthn</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Not allowed in the current context</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Not allowed in the current context.</exception>
         public static void Cancel()
         {
             int ret = Libwebauthn.Cancel();
@@ -289,9 +289,9 @@ namespace Tizen.Security.WebAuthn
         #endregion
 
         /// <summary>
-        /// Current API version
+        /// Current API version.
         /// </summary>
-        /// <since_tizen> 7 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         public static int ApiVersionNumber { get; } = 0x00000001;
     }
 }

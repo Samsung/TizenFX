@@ -17,25 +17,25 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn authentication attachment value
+    /// WebAuthn authentication attachment value.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#enumdef-authenticatorattachment
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum AuthenticatorAttachment
     {
         /// <summary>
-        /// No attachment
+        /// No attachment.
         /// </summary>
         None                        = 0,
         /// <summary>
-        /// Platform attachment
+        /// Platform attachment.
         /// </summary>
         Platform                    = 1,
         /// <summary>
-        /// Cross-platform attachment
+        /// Cross-platform attachment.
         /// </summary>
         CrossPlatform               = 2,
     }

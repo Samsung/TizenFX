@@ -17,21 +17,21 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Relying Party entity
+    /// Relying Party entity.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialrpentity
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class RpEntity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RpEntity"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="name">The name of RP</param>
-        /// <param name="id">The RPID</param>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="name">The name of RP.</param>
+        /// <param name="id">The RPID.</param>
         public RpEntity(string name, string id)
         {
             Name = name;
@@ -39,11 +39,11 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// The name of RP
+        /// The name of RP.
         /// </summary>
         public string Name { get; init; }
         /// <summary>
-        /// The RPID
+        /// The RPID.
         /// </summary>
         public string Id { get; init; }
     }

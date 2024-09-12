@@ -19,13 +19,13 @@ using static Interop;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// The response of MakeCredential()
+    /// The response of MakeCredential().
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#authenticatorattestationresponse
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class AuthenticatorAttestationResponse
     {
         internal AuthenticatorAttestationResponse(WauthnAuthenticatorAttestationResponse wauthnResponse)
@@ -39,15 +39,15 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// JSON-compatible serialization of client data
+        /// JSON-compatible serialization of client data.
         /// </summary>
         public byte[] ClientDataJson { get; init; }
         /// <summary>
-        /// The CBOR encoded Attestation Object to be returned to the RP
+        /// The CBOR encoded Attestation Object to be returned to the RP.
         /// </summary>
         public byte[] AttestationObject { get; init; }
         /// <summary>
-        /// To represent multiple transports, <see cref="AuthenticatorTransport"/> can be ORed multiple times
+        /// To represent multiple transports, <see cref="AuthenticatorTransport"/> can be ORed multiple times.
         /// </summary>
         public AuthenticatorTransport Transports { get; init; }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Tizen.Security.WebAuthn
         /// </summary>
         public byte[] SubjectPubkeyInfo { get; init; }
         /// <summary>
-        /// The COSEAlgorithmIdentifier of the new credential
+        /// The COSEAlgorithmIdentifier of the new credential.
         /// </summary>
         public CoseAlgorithm PubkeyAlg { get; init; }
 

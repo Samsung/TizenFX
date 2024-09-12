@@ -20,20 +20,20 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Authenticator extension
+    /// Authenticator extension.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class AuthenticationExt
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationExt"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <param name="extensionId">
-        /// Extension Identifier defined in the following registry.
+        /// Extension Identifier defined in the following registry:
         /// https://www.iana.org/assignments/webauthn/webauthn.xhtml#webauthn-extension-ids
         /// </param>
-        /// <param name="extensionValue">Extension value</param>
+        /// <param name="extensionValue">Extension value.</param>
         public AuthenticationExt(byte[] extensionId, byte[] extensionValue)
         {
             ExtensionId = extensionId;
@@ -47,11 +47,11 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Extension identifier
+        /// Extension identifier.
         /// </summary>
         public byte[] ExtensionId { get; init; }
         /// <summary>
-        /// Extension value
+        /// Extension value.
         /// </summary>
         public byte[] ExtensionValue { get; init; }
     }

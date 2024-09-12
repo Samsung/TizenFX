@@ -19,33 +19,33 @@ using System.Collections.Generic;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Get assertion options
+    /// Get assertion options.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#dictionary-assertion-options
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class PubkeyCredRequestOptions
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PubkeyCredRequestOptions"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <param name="timeout">
         /// Specifies a time, in milliseconds, that the Relying Party is willing to wait for the
         /// call to complete. This is treated as a hint, and MAY be overridden by the client.
         /// The value, '0', means no timeout is set. (optional)
         /// </param>
         /// <param name="rpId">
-        /// Specifies the RP ID claimed by the Relying Party (optional)
+        /// Specifies the RP ID claimed by the Relying Party. (optional)
         /// </param>
         /// <param name="allowCredentials">
-        /// Used by the client to find authenticators eligible for this authentication ceremony (optional)
+        /// Used by the client to find authenticators eligible for this authentication ceremony. (optional)
         /// </param>
         /// <param name="userVerification">
         /// Specifies the Relying Party's requirements regarding user verification for the
-        /// GetAssertion() operation. The default value is <see cref="UserVerificationRequirement.Preferred"/> (optional)
+        /// GetAssertion() operation. The default value is <see cref="UserVerificationRequirement.Preferred"/>. (optional)
         /// </param>
         /// <param name="hints">
         /// Contains zero or more elements from <see cref="PubkeyCredHint"/> to
@@ -53,12 +53,12 @@ namespace Tizen.Security.WebAuthn
         /// </param>
         /// <param name="attestation">
         /// The Relying Party MAY use this argument to specify a preference regarding
-        /// attestation conveyance. The default value is <see cref="AttestationPref.None"/> (optional)
+        /// attestation conveyance. The default value is <see cref="AttestationPref.None"/>. (optional)
         /// </param>
         /// <param name="attestationFormats">
         /// The Relying Party MAY use this argument to specify a preference regarding the attestation
         /// statement format used by the authenticator. The default value is the empty list,
-        /// which indicates no preference (optional)
+        /// which indicates no preference. (optional)
         /// </param>
         /// <param name="extensions">
         /// The Relying Party MAY use this argument to provide client extension inputs requesting
@@ -66,18 +66,18 @@ namespace Tizen.Security.WebAuthn
         /// </param>
         /// <param name="linkedDevice">
         /// Linked Device Connection Info. Optional.
-        /// If not null, the state assisted transaction will start
+        /// If not null, the state assisted transaction will start.
         /// </param>
         public PubkeyCredRequestOptions(
-            ulong timeout,
-            string rpId,
-            IEnumerable<PubkeyCredDescriptor> allowCredentials,
-            UserVerificationRequirement userVerification,
-            IEnumerable<PubkeyCredHint> hints,
-            AttestationPref attestation,
-            IEnumerable<byte[]> attestationFormats,
-            IEnumerable<AuthenticationExt> extensions,
-            HybridLinkedData linkedDevice)
+            ulong timeout = 0,
+            string rpId = null,
+            IEnumerable<PubkeyCredDescriptor> allowCredentials = null,
+            UserVerificationRequirement userVerification = UserVerificationRequirement.Preferred,
+            IEnumerable<PubkeyCredHint> hints = null,
+            AttestationPref attestation = AttestationPref.None,
+            IEnumerable<byte[]> attestationFormats = null,
+            IEnumerable<AuthenticationExt> extensions = null,
+            HybridLinkedData linkedDevice = null)
         {
             Timeout = timeout;
             RpId = rpId;
@@ -97,36 +97,36 @@ namespace Tizen.Security.WebAuthn
         /// </summary>
         public ulong Timeout { get; init; }
         /// <summary>
-        /// Specifies the RP ID claimed by the Relying Party
+        /// Specifies the RP ID claimed by the Relying Party.
         /// </summary>
         public string RpId { get; init; }
         /// <summary>
-        /// Used by the client to find authenticators eligible for this authentication ceremony
+        /// Used by the client to find authenticators eligible for this authentication ceremony.
         /// </summary>
         public IEnumerable<PubkeyCredDescriptor> AllowCredentials { get; init; }
         /// <summary>
-        /// Specifies the Relying Party's requirements regarding user verification for the GetAssertion() operation
+        /// Specifies the Relying Party's requirements regarding user verification for the GetAssertion() operation.
         /// </summary>
         public UserVerificationRequirement UserVerification { get; init; }
         /// <summary>
         /// Contains zero or more elements from <see cref="PubkeyCredHint"/> to
-        /// guide the user agent in interacting with the user
+        /// guide the user agent in interacting with the user.
         /// </summary>
         public IEnumerable<PubkeyCredHint> Hints { get; init; }
         /// <summary>
-        /// Specifies a preference regarding attestation conveyance
+        /// Specifies a preference regarding attestation conveyance.
         /// </summary>
         public AttestationPref Attestation { get; init; }
         /// <summary>
-        /// Specifies a preference regarding the attestation statement format used by the authenticator
+        /// Specifies a preference regarding the attestation statement format used by the authenticator.
         /// </summary>
         public IEnumerable<byte[]> AttestationFormats { get; init; }
         /// <summary>
-        /// Client extension inputs requesting additional processing by the client and authenticator
+        /// Client extension inputs requesting additional processing by the client and authenticator.
         /// </summary>
         public IEnumerable<AuthenticationExt> Extensions { get; init; }
         /// <summary>
-        /// Linked Device Connection Info. If not null, the state assisted transaction will start
+        /// Linked Device Connection Info. If not null, the state assisted transaction will start.
         /// </summary>
         public HybridLinkedData LinkedDevice { get; init; }
     }

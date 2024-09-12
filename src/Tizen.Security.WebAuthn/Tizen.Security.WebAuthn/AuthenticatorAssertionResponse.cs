@@ -19,13 +19,13 @@ using static Interop;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// The response of GetAssertion()
+    /// The response of GetAssertion().
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#authenticatorassertionresponse
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class AuthenticatorAssertionResponse
     {
         internal AuthenticatorAssertionResponse(WauthnAuthenticatorAssertionResponse wauthnResponse)
@@ -38,7 +38,7 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// JSON-compatible serialization of client data
+        /// JSON-compatible serialization of client data.
         /// </summary>
         public byte[] ClientDataJson { get; init; }
         /// <summary>
@@ -53,12 +53,12 @@ namespace Tizen.Security.WebAuthn
         public byte[] Signature { get; init; }
         /// <summary>
         /// The user handle returned from the authenticator,
-        /// or null if the authenticator did not return a user handle
+        /// or null if the authenticator did not return a user handle.
         /// </summary>
         public byte[] UserHandle { get; init; }
         /// <summary>
         /// This OPTIONAL attribute contains an attestation object,
-        /// if the authenticator supports attestation in assertions
+        /// if the authenticator supports attestation in assertions.
         /// </summary>
         public byte[] AttestationObject { get; init; }
     }

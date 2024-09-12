@@ -19,21 +19,21 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Client data JSON
+    /// Client data JSON.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification about how to encode jsonData.
     /// https://www.w3.org/TR/webauthn-3/#collectedclientdata-json-compatible-serialization-of-client-data
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class ClientData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientData"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="jsonData">UTF-8 encoded JSON serialization of the client data</param>
-        /// <param name="hashAlgo">Hash algorithm used to hash the JsonData property</param>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="jsonData">UTF-8 encoded JSON serialization of the client data.</param>
+        /// <param name="hashAlgo">Hash algorithm used to hash the JsonData property.</param>
         public ClientData(byte[] jsonData, HashAlgorithm hashAlgo)
         {
             JsonData = jsonData;
@@ -41,11 +41,11 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// UTF-8 encoded JSON serialization of the client data
+        /// UTF-8 encoded JSON serialization of the client data.
         /// </summary>
         public byte[] JsonData { get; init; }
         /// <summary>
-        /// Hash algorithm used to hash the JsonData property
+        /// Hash algorithm used to hash the JsonData property.
         /// </summary>
         public HashAlgorithm HashAlgo{ get; init; }
     }

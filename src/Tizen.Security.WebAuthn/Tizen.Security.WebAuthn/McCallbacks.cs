@@ -20,18 +20,18 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Callback function list used to make credential
+    /// Callback function list used to make credential.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class McCallbacks
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="McCallbacks"/> class.
         /// </summary>
         /// <remarks>
-        /// Provided callbacks MUST NOT THROW
+        /// Provided callbacks MUST NOT THROW.
         /// </remarks>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <param name="qrcodeCallback">
         /// Callback function for displaying QR code.
         /// The qr_contents are encoded as you can see in the encodeQRContents() function of the
@@ -68,7 +68,7 @@ namespace Tizen.Security.WebAuthn
         ///  * - authenticator does not respond during state assisted transactions due to
         ///  *   lack of push notifications support (e.g. missing Google Account).
         /// </param>
-        /// <param name="userData">User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/></param>
+        /// <param name="userData">User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.</param>
         public McCallbacks(
             Action<string, object> qrcodeCallback,
             Action<PubkeyCredentialAttestation, WauthnError, object> responseCallback,
@@ -82,19 +82,19 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Callback function for displaying QR code
+        /// Callback function for displaying QR code.
         /// </summary>
         public Action<string, object> QrcodeCallback { get; init; }
         /// <summary>
-        /// Callback function for getting the final response
+        /// Callback function for getting the final response.
         /// </summary>
         public Action<PubkeyCredentialAttestation, WauthnError, object> ResponseCallback { get; init; }
         /// <summary>
-        /// Callback function for getting the updated linked device data
+        /// Callback function for getting the updated linked device data.
         /// </summary>
         public Action<HybridLinkedData, WauthnError, object> LinkedDataCallback { get; init; }
         /// <summary>
-        /// User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>
+        /// User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.
         /// </summary>
         public object UserData { get; init; }
     }

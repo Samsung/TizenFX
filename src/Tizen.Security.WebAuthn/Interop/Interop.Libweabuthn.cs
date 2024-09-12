@@ -19,6 +19,11 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
+    internal static partial class Libraries
+    {
+        public const string Libwebauthn = "libwebauthn-client.so.1.0.1";
+    }
+    
     internal static partial class Libwebauthn
     {
         [DllImport(Libraries.Libwebauthn, EntryPoint = "wauthn_set_api_version", CallingConvention = CallingConvention.Cdecl)]

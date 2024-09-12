@@ -20,24 +20,24 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Make credential options
+    /// Make credential options.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialcreationoptions
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class PubkeyCredCreationOptions
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PubkeyCredCreationOptions"/> class.
         /// </summary>
-        /// /// <since_tizen> 9 </since_tizen>
-        /// <param name="rp">Contains a name and an identifier for the Relying Party responsible for the request</param>
-        /// <param name="user">Contains names and an identifier for the user account performing the registration</param>
+        /// /// <since_tizen> 12 </since_tizen>
+        /// <param name="rp">Contains a name and an identifier for the Relying Party responsible for the request.</param>
+        /// <param name="user">Contains names and an identifier for the user account performing the registration.</param>
         /// <param name="pubkeyCredParams">
         /// Lists the key types and signature algorithms the Relying Party supports,
-        /// ordered from most preferred to least preferred
+        /// ordered from most preferred to least preferred.
         /// </param>
         /// <param name="timeout">
         /// Specifies a time, in milliseconds,
@@ -59,12 +59,12 @@ namespace Tizen.Security.WebAuthn
         /// </param>
         /// <param name="attestation">
         /// The Relying Party MAY use this argument to specify a preference regarding attestation conveyance.
-        /// The default value is <see cref="AttestationPref.None"/> (optional)
+        /// The default value is <see cref="AttestationPref.None"/>. (optional)
         /// </param>
         /// <param name="attestationFormats">
         /// The Relying Party MAY use this argument to specify a preference regarding the attestation
         /// statement format used by the authenticator. The default value is the empty list, which
-        /// indicates no preference (optional)
+        /// indicates no preference. (optional)
         /// </param>
         /// <param name="extensions">
         /// The Relying Party MAY use this argument to provide client extension inputs requesting
@@ -78,14 +78,14 @@ namespace Tizen.Security.WebAuthn
             RpEntity rp,
             UserEntity user,
             IEnumerable<PubkeyCredParam> pubkeyCredParams,
-            ulong timeout,
-            IEnumerable<PubkeyCredDescriptor> excludeCredentials,
-            AuthenticationSelCri authenticatorSelection,
-            IEnumerable<PubkeyCredHint> hints,
-            AttestationPref attestation,
-            IEnumerable<byte[]> attestationFormats,
-            IEnumerable<AuthenticationExt> extensions,
-            HybridLinkedData linkedDevice)
+            ulong timeout = 0,
+            IEnumerable<PubkeyCredDescriptor> excludeCredentials = null,
+            AuthenticationSelCri authenticatorSelection = null,
+            IEnumerable<PubkeyCredHint> hints = null,
+            AttestationPref attestation = AttestationPref.None,
+            IEnumerable<byte[]> attestationFormats = null,
+            IEnumerable<AuthenticationExt> extensions = null,
+            HybridLinkedData linkedDevice = null)
         {
             Rp = rp;
             User = user;
@@ -101,16 +101,16 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Contains a name and an identifier for the Relying Party responsible for the request
+        /// Contains a name and an identifier for the Relying Party responsible for the request.
         /// </summary>
         public RpEntity Rp { get; init; }
         /// <summary>
-        /// Contains names and an identifier for the user account performing the registration
+        /// Contains names and an identifier for the user account performing the registration.
         /// </summary>
         public UserEntity User { get; init; }
         /// <summary>
         /// Lists the key types and signature algorithms the Relying Party supports,
-        /// ordered from most preferred to least preferred
+        /// ordered from most preferred to least preferred.
         /// </summary>
         public IEnumerable<PubkeyCredParam> PubkeyCredParams { get; init; }
         /// <summary>
@@ -125,7 +125,7 @@ namespace Tizen.Security.WebAuthn
         public IEnumerable<PubkeyCredDescriptor> ExcludeCredentials { get; init; }
         /// <summary>
         /// Specifies capabilities and settings that the authenticator MUST or SHOULD satisfy
-        /// to participate in this operation
+        /// to participate in this operation.
         /// </summary>
         public AuthenticationSelCri AuthenticatorSelection { get; init; }
         /// <summary>
@@ -134,15 +134,15 @@ namespace Tizen.Security.WebAuthn
         /// </summary>
         public IEnumerable<PubkeyCredHint> Hints { get; init; }
         /// <summary>
-        /// Specifies a preference regarding attestation conveyance
+        /// Specifies a preference regarding attestation conveyance.
         /// </summary>
         public AttestationPref Attestation { get; init; }
         /// <summary>
-        /// Specifies a preference regarding the attestation statement format used by the authenticator
+        /// Specifies a preference regarding the attestation statement format used by the authenticator.
         /// </summary>
         public IEnumerable<byte[]> AttestationFormats { get; init; }
         /// <summary>
-        /// Client extension inputs requesting additional processing by the client and authenticator
+        /// Client extension inputs requesting additional processing by the client and authenticator.
         /// </summary>
         public IEnumerable<AuthenticationExt> Extensions { get; init; }
         /// <summary>

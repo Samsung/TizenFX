@@ -17,32 +17,32 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Parameter for credential generation
+    /// Parameter for credential generation.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialparameters
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class PubkeyCredParam
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PubkeyCredParam"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="type">Well-known credential type specifying a credential to create</param>
-        /// <param name="alg">Well-known COSE algorithm specifying the algorithm to use for the credential</param>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="type">Well-known credential type specifying a credential to create.</param>
+        /// <param name="alg">Well-known COSE algorithm specifying the algorithm to use for the credential.</param>
         public PubkeyCredParam(PubkeyCredType type, CoseAlgorithm alg)
         {
             Type = type;
             Alg = alg;
         }
         /// <summary>
-        /// Well-known credential type specifying a credential to create
+        /// Well-known credential type specifying a credential to create.
         /// </summary>
         public PubkeyCredType Type { get; init; }
         /// <summary>
-        /// Well-known COSE algorithm specifying the algorithm to use for the credential
+        /// Well-known COSE algorithm specifying the algorithm to use for the credential.
         /// </summary>
         public CoseAlgorithm Alg { get; init; }
     }

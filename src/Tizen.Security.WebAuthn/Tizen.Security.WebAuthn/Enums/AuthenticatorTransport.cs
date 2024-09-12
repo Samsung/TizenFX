@@ -19,43 +19,43 @@ using System;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn authenticator transports
+    /// WebAuthn authenticator transports.
     /// </summary>
     /// <remarks>
     /// Multiple transport values can be combined using bit-wise operation.
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#enum-transport
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     [Flags]
     public enum AuthenticatorTransport : uint
     {
         /// <summary>
-        /// No transport specified
+        /// No transport specified.
         /// </summary>
         None                        = 0x00000000,
         /// <summary>
-        /// Authenticator reachable over USB
+        /// Authenticator reachable over USB.
         /// </summary>
         Usb                         = 0x00000001,
         /// <summary>
-        /// Authenticator reachable over NFC
+        /// Authenticator reachable over NFC.
         /// </summary>
         Nfc                         = 0x00000002,
         /// <summary>
-        /// Authenticator reachable over BLE
+        /// Authenticator reachable over BLE.
         /// </summary>
         Ble                         = 0x00000004,
         /// <summary>
-        /// Authenticator reachable using Smart Card
+        /// Authenticator reachable using Smart Card.
         /// </summary>
         Smartcard                   = 0x00000008,
         /// <summary>
-        /// Authenticator reachable using a combination of mechanisms
+        /// Authenticator reachable using a combination of mechanisms.
         /// </summary>
         Hybrid                      = 0x00000010,
         /// <summary>
-        /// Authenticator reachable using a client device-specific transport
+        /// Authenticator reachable using a client device-specific transport.
         /// </summary>
         Internal                    = 0x00000020,
     }

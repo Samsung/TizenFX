@@ -20,7 +20,7 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Linked device data
+    /// Linked device data.
     /// </summary>
     /// <remarks>
     /// The linked device data is used for state assisted transaction.
@@ -38,20 +38,20 @@ namespace Tizen.Security.WebAuthn
     /// For more information about state assisted transaction, refer to the following.
     /// https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class HybridLinkedData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HybridLinkedData"/> class.
         /// </summary>
-        /// <param name="contactId">CBOR:"1"</param>
-        /// <param name="linkId">CBOR:"2"</param>
-        /// <param name="linkSecret">CBOR:"3"</param>
-        /// <param name="authenticatorPubkey">CBOR:"4"</param>
-        /// <param name="authenticatorName">CBOR:"5"</param>
-        /// <param name="signature">CBOR:"6"</param>
-        /// <param name="tunnelServerDomain">Domain String of tunnel server</param>
-        /// <param name="identityKey">Identity Key created during QR initiated transaction</param>
+        /// <param name="contactId">CBOR:"1".</param>
+        /// <param name="linkId">CBOR:"2".</param>
+        /// <param name="linkSecret">CBOR:"3".</param>
+        /// <param name="authenticatorPubkey">CBOR:"4".</param>
+        /// <param name="authenticatorName">CBOR:"5".</param>
+        /// <param name="signature">CBOR:"6".</param>
+        /// <param name="tunnelServerDomain">Domain String of tunnel server.</param>
+        /// <param name="identityKey">Identity Key created during QR initiated transaction.</param>
         public HybridLinkedData(
             byte[] contactId,
             byte[] linkId,
@@ -85,35 +85,35 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// CBOR:"1"
+        /// CBOR:"1".
         /// </summary>
         public byte[] ContactId { get; init; }
         /// <summary>
-        /// CBOR:"3"
+        /// CBOR:"3".
         /// </summary>
         public byte[] LinkId { get; init; }
         /// <summary>
-        /// CBOR:"3"
+        /// CBOR:"3".
         /// </summary>
         public byte[] LinkSecret { get; init; }
         /// <summary>
-        /// CBOR:"4"
+        /// CBOR:"4".
         /// </summary>
         public byte[] AuthenticatorPubkey { get; init; }
         /// <summary>
-        /// CBOR:"5"
+        /// CBOR:"5".
         /// </summary>
         public byte[] AuthenticatorName { get; init; }
         /// <summary>
-        /// CBOR:"6"
+        /// CBOR:"6".
         /// </summary>
         public byte[] Signature { get; init; }
         /// <summary>
-        /// Domain String of tunnel server
+        /// Domain String of tunnel server.
         /// </summary>
         public byte[] TunnelServerDomain { get; init; }
         /// <summary>
-        /// Identity Key created during QR initiated transaction
+        /// Identity Key created during QR initiated transaction.
         /// </summary>
         public byte[] IdentityKey { get; init; }
     }

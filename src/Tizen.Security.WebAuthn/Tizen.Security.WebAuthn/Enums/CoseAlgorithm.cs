@@ -17,13 +17,13 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn COSE (CBOR Object Signing and Encryption) algorithms
+    /// WebAuthn COSE (CBOR Object Signing and Encryption) algorithms.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#sctn-alg-identifier
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum CoseAlgorithm
     {
         /// <summary>

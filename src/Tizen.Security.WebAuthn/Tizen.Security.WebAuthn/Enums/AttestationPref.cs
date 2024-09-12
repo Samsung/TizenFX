@@ -17,29 +17,29 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn attestation preference
+    /// WebAuthn attestation preference.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#enumdef-attestationconveyancepreference
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum AttestationPref
     {
         /// <summary>
-        /// Relying party not interested in authenticator attestation
+        /// Relying party not interested in authenticator attestation.
         /// </summary>
         None                        = 0,
         /// <summary>
-        /// Indirect attestation preferred
+        /// Indirect attestation preferred.
         /// </summary>
         Indirect                    = 1,
         /// <summary>
-        /// Direct attestation preferred
+        /// Direct attestation preferred.
         /// </summary>
         Direct                      = 2,
         /// <summary>
-        /// Enterprise attestation preferred
+        /// Enterprise attestation preferred.
         /// </summary>
         Enterprise                  = 3,
     }

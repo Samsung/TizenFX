@@ -17,29 +17,29 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn public key credential hint value
+    /// WebAuthn public key credential hint value.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#enumdef-publickeycredentialhints
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public enum PubkeyCredHint
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None                        = 0,
         /// <summary>
-        /// Physical security key
+        /// Physical security key.
         /// </summary>
         SecurityKey                 = 1,
         /// <summary>
-        /// Platform authenticator attached to a client device
+        /// Platform authenticator attached to a client device.
         /// </summary>
         ClientDevice                = 2,
         /// <summary>
-        /// General-purpose authenticator
+        /// General-purpose authenticator.
         /// </summary>
         Hybrid                      = 3, // Hybrid
     }

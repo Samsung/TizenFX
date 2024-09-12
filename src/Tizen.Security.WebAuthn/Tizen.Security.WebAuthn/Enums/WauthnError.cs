@@ -20,72 +20,72 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// WebAuthn error code
+    /// WebAuthn error code.
     /// </summary>
     public enum WauthnError
     {
         /// <summary>
-        /// Successful
+        /// Successful.
         /// </summary>
         None                    = ErrorCode.None,
         /// <summary>
-        /// Unknown error
+        /// Unknown error.
         /// </summary>
         Unknown                 = ErrorCode.Unknown,
         /// <summary>
-        /// Invalid function parameter
+        /// Invalid function parameter.
         /// </summary>
         InvalidParameter        = ErrorCode.InvalidParameter,
         /// <summary>
-        /// Permission denied
+        /// Permission denied.
         /// </summary>
         PermissionDenied        = ErrorCode.PermissionDenied,
         /// <summary>
-        /// Not supported operation
+        /// Not supported operation.
         /// </summary>
         NotSupported            = ErrorCode.NotSupported,
         /// <summary>
-        /// Memory error
+        /// Memory error.
         /// </summary>
         OutOfMemory             = ErrorCode.OutOfMemory,
         /// <summary>
-        /// Canceled by cancel request
+        /// Canceled by cancel request.
         /// </summary>
         Canceled                = ErrorCode.Canceled,
         /// <summary>
-        /// Timeout
+        /// Timeout.
         /// </summary>
         TimedOut                = ErrorCode.TimedOut,
         /// <summary>
-        /// Authenticator is uncontactable
+        /// Authenticator is uncontactable.
         /// </summary>
         ConnectionRefused       = ErrorCode.ConnectionRefused,
         /// <summary>
-        /// Successful and needs to wait for other result
+        /// Successful and needs to wait for other result.
         /// </summary>
         NoneAndWait             = TizenErrorWebAuthn | 0x01,
         /// <summary>
-        /// Not allowed in the current context
+        /// Not allowed in the current context.
         /// </summary>
         NotAllowed              = TizenErrorWebAuthn | 0x02,
         /// <summary>
-        /// Invalid State
+        /// Invalid State.
         /// </summary>
         InvalidState            = TizenErrorWebAuthn | 0x03,
         /// <summary>
-        /// Encoding operation failed
+        /// Encoding operation failed.
         /// </summary>
         EncodingFailed          = TizenErrorWebAuthn | 0x04,
         /// <summary>
-        /// Socket error
+        /// Socket error.
         /// </summary>
         Socket                  = TizenErrorWebAuthn | 0x05,
         /// <summary>
-        /// Socket operation on non-socket error
+        /// Socket operation on non-socket error.
         /// </summary>
         NoSuchDevice            = TizenErrorWebAuthn | 0x06,
         /// <summary>
-        /// Socket access denied
+        /// Socket access denied.
         /// </summary>
         AccessDenied            = TizenErrorWebAuthn | 0x07,
     }

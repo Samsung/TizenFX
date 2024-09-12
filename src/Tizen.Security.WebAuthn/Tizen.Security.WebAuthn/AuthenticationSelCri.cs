@@ -17,19 +17,19 @@
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Authenticator selection criteria
+    /// Authenticator selection criteria.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 12 </since_tizen>
     public class AuthenticationSelCri
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationSelCri"/> class.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        /// <param name="attachment">Authenticator attachment modality</param>
-        /// <param name="residentKey">Specifies the extent to which the Relying Party desires to create a client-side discoverable credential</param>
-        /// <param name="requireResidentKey">Relying Parties SHOULD set it to true if, and only if, residentKey is set to required</param>
-        /// <param name="userVerification">Specifies the Relying Party's requirements regarding user verification</param>
+        /// <since_tizen> 12 </since_tizen>
+        /// <param name="attachment">Authenticator attachment modality.</param>
+        /// <param name="residentKey">Specifies the extent to which the Relying Party desires to create a client-side discoverable credential.</param>
+        /// <param name="requireResidentKey">Relying Parties SHOULD set it to true if, and only if, residentKey is set to required.</param>
+        /// <param name="userVerification">Specifies the Relying Party's requirements regarding user verification.</param>
         public AuthenticationSelCri(
             AuthenticatorAttachment attachment,
             ResidentKeyRequirement residentKey,
@@ -43,19 +43,19 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Authenticator attachment modality
+        /// Authenticator attachment modality.
         /// </summary>
         public AuthenticatorAttachment Attachment { get; init; }
         /// <summary>
-        /// The extent to which the Relying Party desires to create a client-side discoverable credential
+        /// The extent to which the Relying Party desires to create a client-side discoverable credential.
         /// </summary>
         public ResidentKeyRequirement ResidentKey { get; init; }
         /// <summary>
-        /// Whether residentKey is required
+        /// Whether residentKey is required.
         /// </summary>
         public bool RequireResidentKey { get; init; }
         /// <summary>
-        /// The Relying Party's requirements regarding user verification
+        /// The Relying Party's requirements regarding user verification.
         /// </summary>
         public UserVerificationRequirement UserVerification { get; init; }
     }
