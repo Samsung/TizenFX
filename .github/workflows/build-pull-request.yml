@@ -55,7 +55,7 @@ jobs:
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       if: ${{ always() }}
       with:
         name: reports
@@ -72,7 +72,7 @@ jobs:
         dotnet-version: 3.1.x
 
     - name: Download Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: reports
         path: Artifacts
@@ -120,7 +120,7 @@ jobs:
         base-file: Artifacts/base-api.json
         output: Artifacts/api-comp.json
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: reports
         path: Artifacts/api-comp.json

@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -60,6 +61,12 @@ namespace Tizen.NUI
         /// The drag data to send
         /// </summary>
         public string Data { get; set; }
+
+        /// <summary>
+        /// The mime types and drag data set
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, string> DataMap;
     }
 
     /// <summary>
@@ -106,6 +113,13 @@ namespace Tizen.NUI
         /// The mime type of drag object
         /// </summary>
         public string MimeType { get; set; }
+
+        /// <summary>
+        /// The mime types of drag object
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string [] MimeTypes { get; set; }
+
         /// <summary>
         /// The drag data to receive
         /// </summary>
