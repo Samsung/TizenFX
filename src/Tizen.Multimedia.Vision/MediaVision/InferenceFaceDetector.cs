@@ -22,7 +22,7 @@ using InteropFD = Interop.MediaVision.InferenceFaceDetection;
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
-    /// Provides the ability to detect face.
+    /// Provides the ability to detect faces.
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.inference</feature>
     /// <feature>http://tizen.org/feature/vision.inference.face</feature>
@@ -64,13 +64,13 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects face on the source image synchronously.
+        /// Detects faces on the source image synchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected face, <see cref="InferenceFaceDetectorResult.BoundBox"/> will be empty.
+        /// <see cref="InferenceFaceDetectorResult.BoundingBoxes"/> can be empty, if there's no detected face.
         /// </remarks>
-        /// <param name="source">The image data to detect face.</param>
-        /// <returns>A label of detected face.</returns>
+        /// <param name="source">The image data to detect faces.</param>
+        /// <returns>The BoundBoxes of detected face.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFaceDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -89,13 +89,13 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects face on the source image asynchronously.
+        /// Detects faces on the source image asynchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected face, <see cref="InferenceFaceDetectorResult.BoundBox"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
+        /// <see cref="InferenceFaceDetectorResult.BoundingBoxes"/> can be empty, if there's no detected face.<br/>
+        /// This method uses about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
         /// </remarks>
-        /// <param name="source">The image data to detect face.</param>
+        /// <param name="source">The image data to detect faces.</param>
         /// <exception cref="ObjectDisposedException">The InferenceFaceDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -116,21 +116,23 @@ namespace Tizen.Multimedia.Vision
                 TaskScheduler.Default);
         }
 
+        private ulong _requestId = 1;
         /// <summary>
-        /// Requests to detect face on the given source image.<br/>
+        /// Requests detecting faces to get their bounding boxes asynchronously.
         /// </summary>
         /// <remarks>
-        /// This API is not guranteed that inference is done when this method returns. The user can get the result by using <see cref="GetBoundBox"/>.<br/>
-        /// And the user call this API again before the previous one is finished internally, API call will be ignored until the previous one is finished.<br/>
-        /// If there's no detected face, <see cref="InferenceFaceDetectorResult.BoundBox"/> will be empty.<br/>
-        /// Note that this API could use about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
+        /// This function does not guarantee that inference is done when this method returns. The user can get the result by using <see cref="GetRequestResults"/>.<br/>
+        /// If the user calls this method again before the previous one is finished internally, the call will be ignored.<br/>
+        /// <see cref="InferenceFaceDetectorResult.BoundingBoxes"/> can be empty, if there's no detected face.<br/>
+        /// Note that this method could use about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
         /// </remarks>
-        /// <param name="source">The image data to detect face.</param>
+        /// <param name="source">The image data to detect faces.</param>
+        /// <returns>The request id that indicates the order of request.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFaceDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <seealso cref="GetBoundBox"/>
+        /// <seealso cref="GetRequestResults"/>
         /// <since_tizen> 12 </since_tizen>
-        public void RequestInference(MediaVisionSource source)
+        public ulong RequestInference(MediaVisionSource source)
         {
             ValidateNotDisposed();
 
@@ -140,20 +142,22 @@ namespace Tizen.Multimedia.Vision
             }
 
             InteropFD.InferenceAsync(_handle, source.Handle).Validate("Failed to inference face detection.");
+
+            return _requestId++;
         }
 
         /// <summary>
-        /// Gets the bound box as a result of <see cref="RequestInference"/>.
+        /// Gets the bounding boxes as a result of <see cref="RequestInference"/>.
         /// </summary>
         /// <remarks>
-        /// If there's no detected face, <see cref="InferenceFaceDetectorResult.BoundBox"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
+        /// If there's no detected face, <see cref="InferenceFaceDetectorResult.BoundingBoxes"/> will be empty.<br/>
+        /// This method uses about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
         /// </remarks>
-        /// <returns>A bound box of detected face.</returns>
+        /// <returns>The bounding boxes of detected face.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFaceDetector already has been disposed.</exception>
         /// <seealso cref="RequestInference"/>
         /// <since_tizen> 12 </since_tizen>
-        public InferenceFaceDetectorResult GetBoundBox()
+        public InferenceFaceDetectorResult GetRequestResults()
         {
             return new InferenceFaceDetectorResult(_handle);
         }

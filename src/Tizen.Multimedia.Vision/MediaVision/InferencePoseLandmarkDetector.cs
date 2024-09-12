@@ -64,13 +64,13 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects pose landmark on the source image synchronously.
+        /// Detects pose landmarks on the source image synchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected pose landmark, <see cref="InferencePoseLandmarkDetectorResult.Position"/> will be empty.
+        /// <see cref="InferencePoseLandmarkDetectorResult.Points"/> can be empty, if there's no detected pose landmark.
         /// </remarks>
         /// <param name="source">The image data to detect pose landmark.</param>
-        /// <returns>A label of detected pose landmark.</returns>
+        /// <returns>The points of detected pose landmark.</returns>
         /// <exception cref="ObjectDisposedException">The InferencePoseLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -89,11 +89,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects pose landmark on the source image asynchronously.
+        /// Detects pose landmarks on the source image asynchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected pose landmark, <see cref="InferencePoseLandmarkDetectorResult.Position"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
+        /// <see cref="InferencePoseLandmarkDetectorResult.Points"/> can be empty, if there's no detected pose landmark.<br/>
+        /// This method uses about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect pose landmark.</param>
         /// <exception cref="ObjectDisposedException">The InferencePoseLandmarkDetector already has been disposed.</exception>
@@ -116,21 +116,23 @@ namespace Tizen.Multimedia.Vision
                 TaskScheduler.Default);
         }
 
+        private ulong _requestId = 1;
         /// <summary>
-        /// Requests to detect pose landmark on the given source image.<br/>
+        /// Requests detecting pose landmarks  to get their points asynchronously.
         /// </summary>
         /// <remarks>
-        /// This API is not guranteed that inference is done when this method returns. The user can get the result by using <see cref="GetPosition"/>.<br/>
-        /// And the user call this API again before the previous one is finished internally, API call will be ignored until the previous one is finished.<br/>
-        /// If there's no detected pose landmark, <see cref="InferencePoseLandmarkDetectorResult.Position"/> will be empty.<br/>
-        /// Note that this API could use about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
+        /// This function does not guarantee that inference is done when this method returns. The user can get the result by using <see cref="GetRequestResults"/>.<br/>
+        /// If the user calls this method again before the previous one is finished internally, the call will be ignored.<br/>
+        /// <see cref="InferencePoseLandmarkDetectorResult.Points"/> can be empty, if there's no detected pose landmark.<br/>
+        /// Note that this method could use about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect pose landmark.</param>
+        /// <returns>The request id that indicates the order of request.</returns>
         /// <exception cref="ObjectDisposedException">The InferencePoseLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <seealso cref="GetPosition"/>
+        /// <seealso cref="GetRequestResults"/>
         /// <since_tizen> 12 </since_tizen>
-        public void RequestInference(MediaVisionSource source)
+        public ulong RequestInference(MediaVisionSource source)
         {
             ValidateNotDisposed();
 
@@ -140,20 +142,22 @@ namespace Tizen.Multimedia.Vision
             }
 
             InteropPLD.InferenceAsync(_handle, source.Handle).Validate("Failed to inference pose landmark detection.");
+
+            return _requestId++;
         }
 
         /// <summary>
-        /// Gets the position as a result of <see cref="RequestInference"/>.
+        /// Gets the points as a result of <see cref="RequestInference"/>.
         /// </summary>
         /// <remarks>
-        /// If there's no detected pose landmark, <see cref="InferencePoseLandmarkDetectorResult.Position"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
+        /// If there's no detected pose landmark, <see cref="InferencePoseLandmarkDetectorResult.Points"/> will be empty.<br/>
+        /// This method uses about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
         /// </remarks>
-        /// <returns>A position of detected pose landmark.</returns>
+        /// <returns>The points of detected pose landmark.</returns>
         /// <exception cref="ObjectDisposedException">The InferencePoseLandmarkDetector already has been disposed.</exception>
         /// <seealso cref="RequestInference"/>
         /// <since_tizen> 12 </since_tizen>
-        public InferencePoseLandmarkDetectorResult GetPosition()
+        public InferencePoseLandmarkDetectorResult GetRequestResults()
         {
             return new InferencePoseLandmarkDetectorResult(_handle);
         }

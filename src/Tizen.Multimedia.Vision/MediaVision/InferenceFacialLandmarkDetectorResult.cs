@@ -29,32 +29,33 @@ namespace Tizen.Multimedia.Vision
     {
         internal InferenceFacialLandmarkDetectorResult(IntPtr handle)
         {
-            InteropFLD.GetResultCount(handle, out ulong requestOrder, out uint count).
+            InteropFLD.GetResultCount(handle, out ulong requestId, out uint count).
                 Validate("Failed to get result count.");
 
-            RequestOrder = requestOrder;
-            var positions = new List<Point>();
+            RequestId = requestId;
+            var points = new List<Point>();
 
             for (uint i = 0 ; i < count ; i++)
             {
-                InteropFLD.GetPosition(handle, i, out uint x, out uint y).Validate("Failed to get position.");
-                positions.Add(new Point((int)x, (int)y));
+                InteropFLD.GetPoints(handle, i, out uint x, out uint y).Validate("Failed to get points.");
+                points.Add(new Point((int)x, (int)y));
             }
 
-            Position = positions;
+            Points = points;
         }
 
         /// <summary>
-        /// Gets the requested order.
+        /// Gets the request id which is matched with request id of RequestInference() return value.<br/>
+        /// It represents the order of request.
         /// </summary>
-        /// <value>The requested order.</value>
+        /// <value>The request id that indicates the order of request.</value>
         /// <since_tizen> 12 </since_tizen>
-        public ulong RequestOrder { get; }
+        public ulong RequestId { get; }
 
         /// <summary>
-        /// Gets the position of the detected facial landmark.
+        /// Gets the points of the detected facial landmark.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public IEnumerable<Point> Position { get; }
+        public IEnumerable<Point> Points { get; }
     }
 }

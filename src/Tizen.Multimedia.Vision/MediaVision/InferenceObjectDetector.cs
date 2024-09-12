@@ -64,13 +64,13 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects object on the source image synchronously.
+        /// Detects objects on the source image synchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected object, <see cref="InferenceObjectDetectorResult.BoundBox"/> will be empty.
+        /// <see cref="InferenceObjectDetectorResult.BoundingBoxes"/> can be empty, if there's no detected object.
         /// </remarks>
         /// <param name="source">The image data to detect object.</param>
-        /// <returns>A label of detected object.</returns>
+        /// <returns>BoundBoxes of detected object.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceObjectDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -89,11 +89,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects object on the source image asynchronously.
+        /// Detects objects on the source image asynchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected object, <see cref="InferenceObjectDetectorResult.BoundBox"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
+        ///<see cref="InferenceObjectDetectorResult.BoundingBoxes"/> can be empty, if there's no detected object.<br/>
+        /// This method uses about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect object.</param>
         /// <exception cref="ObjectDisposedException">The InferenceObjectDetector already has been disposed.</exception>
@@ -116,21 +116,23 @@ namespace Tizen.Multimedia.Vision
                 TaskScheduler.Default);
         }
 
+        private ulong _requestId = 1;
         /// <summary>
-        /// Requests to detect object on the given source image.<br/>
+        /// Requests detecting objects to get their bounding boxes asynchronously.
         /// </summary>
         /// <remarks>
-        /// This API is not guranteed that inference is done when this method returns. The user can get the result by using <see cref="GetBoundBox"/>.<br/>
-        /// And the user call this API again before the previous one is finished internally, API call will be ignored until the previous one is finished.<br/>
-        /// If there's no detected object, <see cref="InferenceObjectDetectorResult.BoundBox"/> will be empty.<br/>
-        /// Note that this API could use about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
+        /// This function does not guarantee that inference is done when this method returns. The user can get the result by using <see cref="GetRequestResults"/>.<br/>
+        /// If the user calls this method again before the previous one is finished internally, the call will be ignored.<br/>
+        /// <see cref="InferenceObjectDetectorResult.BoundingBoxes"/> can be empty, if there's no detected object.<br/>
+        /// Note that this method could use about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect object.</param>
+        /// <returns>The request id that indicates the order of request.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceObjectDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <seealso cref="GetBoundBox"/>
+        /// <seealso cref="GetRequestResults"/>
         /// <since_tizen> 12 </since_tizen>
-        public void RequestInference(MediaVisionSource source)
+        public ulong RequestInference(MediaVisionSource source)
         {
             ValidateNotDisposed();
 
@@ -140,20 +142,22 @@ namespace Tizen.Multimedia.Vision
             }
 
             InteropOD.InferenceAsync(_handle, source.Handle).Validate("Failed to inference object detection.");
+
+            return _requestId++;
         }
 
         /// <summary>
-        /// Gets the bound box as a result of <see cref="RequestInference"/>.
+        /// Gets the bounding boxes as a result of <see cref="RequestInference"/>.
         /// </summary>
         /// <remarks>
-        /// If there's no detected object, <see cref="InferenceObjectDetectorResult.BoundBox"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
+        /// If there's no detected object, <see cref="InferenceObjectDetectorResult.BoundingBoxes"/> will be empty.<br/>
+        /// This method uses about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
         /// </remarks>
-        /// <returns>A bound box of detected object.</returns>
+        /// <returns>The bounding boxes of detected object.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceObjectDetector already has been disposed.</exception>
         /// <seealso cref="RequestInference"/>
         /// <since_tizen> 12 </since_tizen>
-        public InferenceObjectDetectorResult GetBoundBox()
+        public InferenceObjectDetectorResult GetRequestResults()
         {
             return new InferenceObjectDetectorResult(_handle);
         }

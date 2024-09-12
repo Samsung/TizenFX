@@ -29,15 +29,15 @@ namespace Tizen.Multimedia.Vision
     {
         internal InferenceImageClassifierResult(IntPtr handle)
         {
-            InteropIC.GetResultCount(handle, out ulong frameNumber, out uint count).
+            InteropIC.GetResultCount(handle, out ulong requestId, out uint count).
                 Validate("Failed to get result count.");
 
-            FrameNumber = frameNumber;
+            RequestId = requestId;
             var labels = new List<string>();
 
             for (uint i = 0 ; i < count ; i++)
             {
-                InteropIC.GetLabel(handle, i, out IntPtr label).Validate("Failed to get label.");
+                InteropIC.GetLabels(handle, i, out IntPtr label).Validate("Failed to get labels.");
                 labels.Add(Marshal.PtrToStringAnsi(label));
             }
 
@@ -45,11 +45,12 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets the frame number.
+        /// Gets the request id which is matched with request id of RequestInference() return value.<br/>
+        /// It represents the order of request.
         /// </summary>
-        /// <value>This means that this result is </value>
+        /// <value>The request id that indicates the order of request.</value>
         /// <since_tizen> 12 </since_tizen>
-        public ulong FrameNumber { get; }
+        public ulong RequestId { get; }
 
         /// <summary>
         /// Gets the labels of the classified image.

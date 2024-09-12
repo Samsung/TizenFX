@@ -64,13 +64,13 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Classifies image objects on the source image synchronously.
+        /// Classifies image synchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no classified image, <see cref="InferenceImageClassifierResult.Labels"/> will be empty.
+        /// <see cref="InferenceImageClassifierResult.Labels"/> can be empty, if image is not classified.
         /// </remarks>
         /// <param name="source">The image data to classify.</param>
-        /// <returns>A label of classified image.</returns>
+        /// <returns>The labels of classified image.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceImageClassifier already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -89,11 +89,11 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Classifies image objects on the source image asynchronously.
+        /// Classifies image asynchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no classified image, <see cref="InferenceImageClassifierResult.Labels"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
+        /// <see cref="InferenceImageClassifierResult.Labels"/> can be empty, if image is not classified.<br/>
+        /// This method uses about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to classify.</param>
         /// <exception cref="ObjectDisposedException">The InferenceImageClassifier already has been disposed.</exception>
@@ -116,21 +116,23 @@ namespace Tizen.Multimedia.Vision
                 TaskScheduler.Default);
         }
 
+        private ulong _requestId = 1;
         /// <summary>
-        /// Requests to classify image objects on the given source image.<br/>
+        /// Requests classifing image to get its labels asynchronously.
         /// </summary>
         /// <remarks>
-        /// This API is not guranteed that inference is done when this method returns. The user can get the result by using <see cref="GetLabel"/>.<br/>
-        /// And the user call this API again before the previous one is finished internally, API call will be ignored until the previous one is finished.<br/>
-        /// If there's no classified image, <see cref="InferenceImageClassifierResult.Labels"/> will be empty.<br/>
-        /// Note that this API could use about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
+        /// This function does not guarantee that inference is done when this method returns. The user can get the result by using <see cref="GetRequestResults"/>.<br/>
+        /// If the user calls this method again before the previous one is finished internally, the call will be ignored.<br/>
+        /// <see cref="InferenceImageClassifierResult.Labels"/> can be empty, if image is not classified.<br/>
+        /// Note that this method could use about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to classify.</param>
+        /// <returns>The request id that indicates the order of request.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceImageClassifier already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
-        /// <seealso cref="GetLabel"/>
+        /// <seealso cref="GetRequestResults"/>
         /// <since_tizen> 12 </since_tizen>
-        public void RequestInference(MediaVisionSource source)
+        public ulong RequestInference(MediaVisionSource source)
         {
             ValidateNotDisposed();
 
@@ -140,20 +142,22 @@ namespace Tizen.Multimedia.Vision
             }
 
             InteropIC.InferenceAsync(_handle, source.Handle).Validate("Failed to inference image classification.");
+
+            return _requestId++;
         }
 
         /// <summary>
-        /// Gets the label as a result of <see cref="RequestInference"/>.
+        /// Gets the labels as a result of <see cref="RequestInference"/>.
         /// </summary>
         /// <remarks>
-        /// If there's no classified image, <see cref="InferenceImageClassifierResult.Labels"/> will be empty.<br/>
-        /// This API uses about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
+        /// If image is not classified, <see cref="InferenceImageClassifierResult.Labels"/> will be empty.<br/>
+        /// This method uses about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
         /// </remarks>
-        /// <returns>A label of classified image.</returns>
+        /// <returns>The labels of classified image.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceImageClassifier already has been disposed.</exception>
         /// <seealso cref="RequestInference"/>
         /// <since_tizen> 12 </since_tizen>
-        public InferenceImageClassifierResult GetLabel()
+        public InferenceImageClassifierResult GetRequestResults()
         {
             return new InferenceImageClassifierResult(_handle);
         }

@@ -138,7 +138,7 @@ internal static partial class Interop
             internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestOrder, out uint count);
 
             [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_get_label")]
-            internal static extern MediaVisionError GetLabel(IntPtr handle, uint index, out IntPtr label);
+            internal static extern MediaVisionError GetLabels(IntPtr handle, uint index, out IntPtr label);
         }
 
         internal static partial class InferenceFaceDetection
@@ -163,10 +163,10 @@ internal static partial class Interop
             internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
 
             [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_get_result_count")]
-            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestOrder, out uint count);
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
 
             [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_get_bound_box")]
-            internal static extern MediaVisionError GetBoundBox(IntPtr handle, uint index, out int left, out int top, out int right, out int bottom);
+            internal static extern MediaVisionError GetBoundingBoxes(IntPtr handle, uint index, out int left, out int top, out int right, out int bottom);
         }
 
         internal static partial class InferenceObjectDetection
@@ -191,10 +191,10 @@ internal static partial class Interop
             internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
 
             [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_get_result_count")]
-            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestOrder, out uint count);
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
 
             [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_get_bound_box")]
-            internal static extern MediaVisionError GetBoundBox(IntPtr handle, uint index, out int left, out int top, out int right, out int bottom);
+            internal static extern MediaVisionError GetBoundingBoxes(IntPtr handle, uint index, out int left, out int top, out int right, out int bottom);
         }
 
         internal static partial class InferenceFacialLandmarkDetection
@@ -219,10 +219,10 @@ internal static partial class Interop
             internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
 
             [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_get_result_count")]
-            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestOrder, out uint count);
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
 
             [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_get_position")]
-            internal static extern MediaVisionError GetPosition(IntPtr handle, uint index, out uint posX, out uint posY);
+            internal static extern MediaVisionError GetPoints(IntPtr handle, uint index, out uint posX, out uint posY);
         }
 
         internal static partial class InferencePoseLandmarkDetection
@@ -247,10 +247,10 @@ internal static partial class Interop
             internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
 
             [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_get_result_count")]
-            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestOrder, out uint count);
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
 
             [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_get_position")]
-            internal static extern MediaVisionError GetPosition(IntPtr handle, uint index, out uint posX, out uint posY);
+            internal static extern MediaVisionError GetPoints(IntPtr handle, uint index, out uint posX, out uint posY);
         }
     }
 }

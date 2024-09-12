@@ -28,33 +28,34 @@ namespace Tizen.Multimedia.Vision
     {
         internal InferenceFaceDetectorResult(IntPtr handle)
         {
-            InteropFD.GetResultCount(handle, out ulong requestOrder, out uint count).
+            InteropFD.GetResultCount(handle, out ulong requestId, out uint count).
                 Validate("Failed to get result count.");
 
-            RequestOrder = requestOrder;
-            var boundBoxes = new List<Rectangle>();
+            RequestId = requestId;
+            var boundingBoxes = new List<Rectangle>();
 
             for (uint i = 0 ; i < count ; i++)
             {
-                InteropFD.GetBoundBox(handle, i, out int left, out int top, out int right, out int bottom).
-                    Validate("Failed to get bound box.");
-                boundBoxes.Add(new Rectangle(left, top, right - left, bottom - top));
+                InteropFD.GetBoundingBoxes(handle, i, out int left, out int top, out int right, out int bottom).
+                    Validate("Failed to get bounding boxes.");
+                boundingBoxes.Add(new Rectangle(left, top, right - left, bottom - top));
             }
 
-            BoundBox = boundBoxes;
+            BoundingBoxes = boundingBoxes;
         }
 
         /// <summary>
-        /// Gets the requested order.
+        /// Gets the request id which is matched with request id of RequestInference() return value.<br/>
+        /// It represents the order of request.
         /// </summary>
-        /// <value>The requested order.</value>
+        /// <value>The request id that indicates the order of request.</value>
         /// <since_tizen> 12 </since_tizen>
-        public ulong RequestOrder { get; }
+        public ulong RequestId { get; }
 
         /// <summary>
-        /// Gets the boundBox of the detected face.
+        /// Gets the bounding boxes of the detected face.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public IEnumerable<Rectangle> BoundBox { get; }
+        public IEnumerable<Rectangle> BoundingBoxes { get; }
     }
 }
