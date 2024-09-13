@@ -332,7 +332,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the session description for a local peer.
         /// </summary>
-        /// <returns>The local session descriptino string</returns>
+        /// <returns>The local session description string</returns>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="SetLocalDescription()"/>
         /// <since_tizen> 12 </since_tizen>
@@ -380,7 +380,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the session description of the remote peer's current offer or answer.
         /// </summary>
-        /// <value>The remote session descriptino string</value>
+        /// <value>The remote session description string</value>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="SetRemoteDescription"/>
         /// <since_tizen> 12 </since_tizen>
