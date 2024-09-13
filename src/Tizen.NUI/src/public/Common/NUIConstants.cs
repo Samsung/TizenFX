@@ -2312,5 +2312,11 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Background = 1,
+        /// <summary>
+        /// behind blur for the window.
+        /// It has a blur effect ot th beind area of except the window background.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Behind = 2,        
     }
 }
