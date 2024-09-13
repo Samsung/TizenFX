@@ -15,15 +15,18 @@
  *
  */
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Diagnostics.CodeAnalysis;
+using global::System.Runtime.InteropServices;
+using global::System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using System.ComponentModel;
 using Tizen.NUI.Binding;
+using Tizen.NUI;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
+    using NDalicPINVOKE = Tizen.NUI.NDalicPINVOKE;
+
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class ItemView : Scrollable
@@ -77,7 +80,7 @@ namespace Tizen.NUI
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.ItemView.DeleteItemView(swigCPtr);
         }
@@ -191,7 +194,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new View GetChildAt(uint index)
         {
-            View ret = new View(Interop.ActorInternal.GetChildAt(SwigCPtr, index), true);
+            View ret = new View(Tizen.NUI.Interop.ActorInternal.GetChildAt(SwigCPtr, index), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

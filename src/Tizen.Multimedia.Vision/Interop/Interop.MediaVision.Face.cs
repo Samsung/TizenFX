@@ -35,49 +35,49 @@ internal static partial class Interop
         {
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_detect")]
             internal static extern MediaVisionError Detect(IntPtr source, IntPtr engineCfg,
-                DetectedCallback detectedCb, IntPtr userData = default(IntPtr));
+                DetectedCallback detectedCb, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognize")]
             internal static extern MediaVisionError Recognize(IntPtr source, IntPtr recognitionModel, IntPtr engineCfg,
-                IntPtr faceLocation, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr));
+                IntPtr faceLocation, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognize")]
             internal static extern MediaVisionError Recognize(IntPtr source, IntPtr recognitionModel, IntPtr engineCfg,
-                ref Rectangle faceLocation, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr));
+                ref Rectangle faceLocation, RecognizedCallback recognizedCb, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_track")]
             internal static extern MediaVisionError Track(IntPtr source, IntPtr trackingModel, IntPtr engineCfg,
-                TrackedCallback trackedCb, bool doLearn, IntPtr userData = default(IntPtr));
+                TrackedCallback trackedCb, bool doLearn, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_eye_condition_recognize")]
             internal static extern MediaVisionError RecognizeEyeCondition(IntPtr source, IntPtr engineCfg,
-                Rectangle faceLocation, EyeConditionRecognizedCallback eyeConditionRecognizedCb, IntPtr userData = default(IntPtr));
+                Rectangle faceLocation, EyeConditionRecognizedCallback eyeConditionRecognizedCb, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_facial_expression_recognize")]
             internal static extern MediaVisionError RecognizeFacialExpression(IntPtr source, IntPtr engineCfg,
-                Rectangle faceLocation, MvFaceFacialExpressionRecognizedCallback expressionRecognizedCb,
+                Rectangle faceLocation, MvFaceFacialExpressionRecognizedCallback expressionRecognizedCb, // Deprecated in API 12
                 IntPtr userData = default(IntPtr));
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void DetectedCallback(IntPtr source, IntPtr engineCfg,
                 [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] Rectangle[] facesLocations,
-                int numberOfFaces, IntPtr userData);
+                int numberOfFaces, IntPtr userData); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void RecognizedCallback(IntPtr source, IntPtr recognitionModel,
-                IntPtr engineCfg, IntPtr faceLocation, IntPtr faceLabel, double confidence, IntPtr userData);
+                IntPtr engineCfg, IntPtr faceLocation, IntPtr faceLabel, double confidence, IntPtr userData); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void TrackedCallback(IntPtr source, IntPtr trackingModel, IntPtr engineCfg,
-                IntPtr location, double confidence, IntPtr userData);
+                IntPtr location, double confidence, IntPtr userData); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void EyeConditionRecognizedCallback(IntPtr source, IntPtr engineCfg,
-                Rectangle faceLocation, EyeCondition eyeCondition, IntPtr userData);
+                Rectangle faceLocation, EyeCondition eyeCondition, IntPtr userData); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void MvFaceFacialExpressionRecognizedCallback(IntPtr source,
-                IntPtr engineCfg, Rectangle faceLocation, FacialExpression facialExpression, IntPtr userData);
+                IntPtr engineCfg, Rectangle faceLocation, FacialExpression facialExpression, IntPtr userData); // Deprecated in API 12
         }
 
         /// <summary>
@@ -86,39 +86,39 @@ internal static partial class Interop
         internal static partial class FaceRecognitionModel
         {
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_create")]
-            internal static extern MediaVisionError Create(out IntPtr handle);
+            internal static extern MediaVisionError Create(out IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_destroy")]
-            internal static extern int Destroy(IntPtr handle);
+            internal static extern int Destroy(IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_clone")]
-            internal static extern int Clone(IntPtr src, out IntPtr dst);
+            internal static extern int Clone(IntPtr src, out IntPtr dst); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_save")]
-            internal static extern MediaVisionError Save(string fileName, IntPtr handle);
+            internal static extern MediaVisionError Save(string fileName, IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_load")]
-            internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_add")]
             internal static extern MediaVisionError Add(IntPtr source, IntPtr recognitionModel,
-                ref Rectangle exampleLocation, int faceLabel);
+                ref Rectangle exampleLocation, int faceLabel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_add")]
             internal static extern MediaVisionError Add(IntPtr source, IntPtr recognitionModel,
-                IntPtr exampleLocation, int faceLabel);
+                IntPtr exampleLocation, int faceLabel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_reset")]
-            internal static extern MediaVisionError Reset(IntPtr recognitionModel, IntPtr faceLabel = default(IntPtr));
+            internal static extern MediaVisionError Reset(IntPtr recognitionModel, IntPtr faceLabel = default(IntPtr)); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_reset")]
-            internal static extern MediaVisionError Remove(IntPtr recognitionModel, ref int faceLabel);
+            internal static extern MediaVisionError Remove(IntPtr recognitionModel, ref int faceLabel); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_learn")]
-            internal static extern MediaVisionError Learn(IntPtr engineCfg, IntPtr handle);
+            internal static extern MediaVisionError Learn(IntPtr engineCfg, IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_recognition_model_query_labels")]
-            internal static extern MediaVisionError QueryLabels(IntPtr handle, out IntPtr labels, out uint numberOfLabels);
+            internal static extern MediaVisionError QueryLabels(IntPtr handle, out IntPtr labels, out uint numberOfLabels); // Deprecated in API 12
         }
 
         /// <summary>
@@ -127,27 +127,27 @@ internal static partial class Interop
         internal static partial class FaceTrackingModel
         {
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_create")]
-            internal static extern MediaVisionError Create(out IntPtr handle);
+            internal static extern MediaVisionError Create(out IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_destroy")]
-            internal static extern int Destroy(IntPtr handle);
+            internal static extern int Destroy(IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_prepare")]
             internal static extern MediaVisionError Prepare(IntPtr trackingModel, IntPtr engineCfg,
-                IntPtr source, ref Quadrangle location);
+                IntPtr source, ref Quadrangle location); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_prepare")]
             internal static extern MediaVisionError Prepare(IntPtr trackingModel, IntPtr engineCfg,
-                IntPtr source, IntPtr location);
+                IntPtr source, IntPtr location); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_clone")]
-            internal static extern int Clone(IntPtr src, out IntPtr dst);
+            internal static extern int Clone(IntPtr src, out IntPtr dst); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_save")]
-            internal static extern MediaVisionError Save(string fileName, IntPtr handle);
+            internal static extern MediaVisionError Save(string fileName, IntPtr handle); // Deprecated in API 12
 
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_load")]
-            internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
+            internal static extern MediaVisionError Load(string fileName, out IntPtr handle); // Deprecated in API 12
         }
 
         /// <summary>

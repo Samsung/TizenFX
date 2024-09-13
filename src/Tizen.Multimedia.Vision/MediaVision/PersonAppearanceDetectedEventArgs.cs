@@ -23,12 +23,14 @@ namespace Tizen.Multimedia.Vision
     /// Provides data for the <see cref="PersonAppearanceDetector.Detected"/> event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class PersonAppearanceDetectedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonAppearanceDetectedEventArgs"/> class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public PersonAppearanceDetectedEventArgs(IEnumerable<Rectangle> appeared,
             IEnumerable<Rectangle> disappeared, IEnumerable<Rectangle> tracked)
         {
@@ -41,18 +43,21 @@ namespace Tizen.Multimedia.Vision
         /// Gets a set of rectangular regions where appearances of the persons were detected.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public IEnumerable<Rectangle> AppearanceAreas { get; }
 
         /// <summary>
         /// Gets a set of rectangular regions where disappearances of the persons were detected.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public IEnumerable<Rectangle> DisappearanceAreas { get; }
 
         /// <summary>
         /// Gets a set of rectangular regions where persons were tracked.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public IEnumerable<Rectangle> TrackedAreas { get; }
     }
 }

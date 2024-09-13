@@ -25,6 +25,21 @@ namespace Tizen.NUI
     /// Understanding an animation as a parametric function over time, the alpha function is applied to the parameter of
     /// the animation before computing the final animation value.
     /// </summary>
+    /// <example><code>
+    /// View view = new View()
+    /// {
+    ///     Size2D = new Size2D(100, 100),
+    ///     Position2D = new Position2D(100, 100),
+    ///     BackgroundColor = Color.Red,
+    /// };
+    /// Window.Default.Add(view);
+    /// Animation animation = new Animation();
+    /// const float destinationValue = 300.0f;
+    /// const int startTime = 0; // animation starts at 0 second point. no delay.
+    /// const int endTime = 5000; // animation ends at 5 second point.
+    /// animation.AnimateTo(view, "PositionX", destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn));
+    /// animation.Play();
+    /// </code></example>
     /// <since_tizen> 3 </since_tizen>
     public class AlphaFunction : Disposable
     {
@@ -85,24 +100,24 @@ namespace Tizen.NUI
         // }
 
         /// <summary>
-        /// This specifies the various types of BuiltinFunctions.
+        /// This specifies the various types of built-in alpha functions available for animations.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum BuiltinFunctions
         {
             /// <summary>
-            /// Linear.
+            /// Default alpha function. Linear alpha function.
             /// </summary>
             [Description("DEFAULT")]
             Default,
             /// <summary>
-            /// No transformation.
+            /// Linear alpha function. (No transformation)
             /// </summary>
             [Description("LINEAR")]
             Linear,
             /// <summary>
-            /// Reverse linear.
+            /// Reverse linear alpha function.
             /// </summary>
             [Description("REVERSE")]
             Reverse,

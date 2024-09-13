@@ -33,14 +33,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property__SWIG_0")]
             public static extern global::System.IntPtr NewProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property__SWIG_1")]
-            public static extern global::System.IntPtr NewProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property__SWIG_2")]
             public static extern global::System.IntPtr NewProperty(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property__SWIG_3")]
-            public static extern global::System.IntPtr NewProperty(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Property")]
             public static extern void DeleteProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -56,12 +50,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_propertyIndex_get")]
             public static extern int PropertyIndexGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_componentIndex_set")]
-            public static extern void ComponentIndexSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_componentIndex_get")]
-            public static extern int ComponentIndexGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Property_Array__SWIG_0")]
             public static extern global::System.IntPtr NewPropertyArray();

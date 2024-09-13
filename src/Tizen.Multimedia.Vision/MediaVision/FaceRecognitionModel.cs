@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceRecognitionModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -36,6 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceRecognitionModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceRecognitionModel");
@@ -58,6 +60,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceRecognitionModel(string modelPath)
         {
             if (modelPath == null)
@@ -82,6 +85,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int[] Labels
         {
             get
@@ -116,6 +120,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Save(string path)
         {
             if (path == null)
@@ -159,6 +164,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Add(MediaVisionSource source, int label)
         {
             if (source == null)
@@ -185,6 +191,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Add(MediaVisionSource source, int label, Rectangle area)
         {
             if (source == null)
@@ -204,6 +211,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public bool Remove(int label)
         {
             var ret = InteropModel.Remove(Handle, ref label);
@@ -222,6 +230,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Reset()
         {
             InteropModel.Reset(Handle).Validate("Failed to reset image example");
@@ -242,6 +251,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Learn()
         {
             Learn(null);
@@ -266,6 +276,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Learn(FaceRecognitionConfiguration config)
         {
             InteropModel.Learn(EngineConfiguration.GetHandle(config), Handle).
@@ -276,6 +287,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases all the resources used by the <see cref="FaceRecognitionModel"/> object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Dispose()
         {
             Dispose(true);
@@ -289,6 +301,7 @@ namespace Tizen.Multimedia.Vision
         /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

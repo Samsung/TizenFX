@@ -42,6 +42,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.FrameDelay,
             ImageVisualProperty.LoopCount,
             ImageVisualProperty.StopBehavior,
+            ImageVisualProperty.FrameSpeedFactor,
         };
         private List<string> resourceURLs = new List<string>();
         #endregion Private
@@ -281,6 +282,50 @@ namespace Tizen.NUI.BaseComponents
             {
                 using PropertyValue setValue = new PropertyValue((int)value);
                 UpdateImage(ImageVisualProperty.StopBehavior, setValue);
+            }
+        }
+
+        /// <summary>
+        /// Specifies a speed factor for the animated image frame.
+        /// </summary>
+        /// <remarks>
+        /// The speed factor is a multiplier of the normal velocity of the animation. Values between [0,1] will
+        /// slow down the animation and values above one will speed up the animation.
+        ///
+        /// The range of this value is clamped between [0.01f ~ 100.0f].
+        ///
+        /// Inhouse API.
+        /// The default is 1.0f.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FrameSpeedFactor
+        {
+            get
+            {
+                return InternalFrameSpeedFactor;
+            }
+            set
+            {
+                InternalFrameSpeedFactor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFrameSpeedFactor
+        {
+            get
+            {
+                float ret = 1.0f;
+
+                using PropertyValue frameSpeedFactor = GetCachedImageVisualProperty(ImageVisualProperty.FrameSpeedFactor);
+                frameSpeedFactor?.Get(out ret);
+
+                return ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.FrameSpeedFactor, setValue);
             }
         }
 

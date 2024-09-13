@@ -15,7 +15,7 @@
  *
  */
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     internal enum SnapType
     {
