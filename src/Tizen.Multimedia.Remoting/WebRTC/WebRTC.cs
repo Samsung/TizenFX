@@ -318,6 +318,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="CreateOfferAsync()"/>
         /// <seealso cref="CreateAnswerAsync()"/>
+        /// <seealso cref="GetLocalDescription()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetLocalDescription(string description)
         {
@@ -325,7 +326,31 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateIsNullOrEmpty(description, nameof(description));
 
-            NativeWebRTC.SetLocalDescription(Handle, description).ThrowIfFailed("Failed to set description.");
+            NativeWebRTC.SetLocalDescription(Handle, description).ThrowIfFailed("Failed to set local description.");
+        }
+
+        /// <summary>
+        /// Gets the session description for a local peer.
+        /// </summary>
+        /// <returns>The local session description string</returns>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SetLocalDescription()"/>
+        /// <since_tizen> 12 </since_tizen>
+        public string GetLocalDescription()
+        {
+            ValidateNotDisposed();
+
+            IntPtr description = IntPtr.Zero;
+            try
+            {
+                NativeWebRTC.GetLocalDescription(Handle, out description).ThrowIfFailed("Failed to get local description.");
+
+                return Marshal.PtrToStringAnsi(description);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(description);
+            }
         }
 
         /// <summary>
@@ -341,6 +366,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="CreateOfferAsync()"/>
         /// <seealso cref="CreateAnswerAsync()"/>
+        /// <seealso cref="GetRemoteDescription()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetRemoteDescription(string description)
         {
@@ -348,7 +374,31 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateIsNullOrEmpty(description, nameof(description));
 
-            NativeWebRTC.SetRemoteDescription(Handle, description).ThrowIfFailed("Failed to set description.");
+            NativeWebRTC.SetRemoteDescription(Handle, description).ThrowIfFailed("Failed to set remote description.");
+        }
+
+        /// <summary>
+        /// Gets the session description of the remote peer's current offer or answer.
+        /// </summary>
+        /// <value>The remote session description string</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SetRemoteDescription"/>
+        /// <since_tizen> 12 </since_tizen>
+        public string GetRemoteDescription()
+        {
+            ValidateNotDisposed();
+
+            IntPtr description = IntPtr.Zero;
+            try
+            {
+                NativeWebRTC.GetRemoteDescription(Handle, out description).ThrowIfFailed("Failed to get remote description.");
+
+                return Marshal.PtrToStringAnsi(description);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(description);
+            }
         }
 
         /// <summary>
