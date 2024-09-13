@@ -49,6 +49,10 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// A public constructor for the SsdpBrowser class to create a SsdpBrowser instance for the given target.
         /// </summary>
+        /// <remarks>
+        /// Use this constructor to create an instance of the SsdpBrowser class which allows you to discover devices and services on your network using SSDP.
+        /// You need to provide a target string representing the type of service you want to search for.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The target to browse for the service.</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
@@ -71,7 +75,8 @@ namespace Tizen.Network.Nsd
         /// Starts browsing the SSDP remote service.
         /// </summary>
         /// <remarks>
-        /// If there are any services available, the ServiceFound event will be invoked.
+        /// Once started, this method continuously scans for new services while keeping track of existing ones.
+        /// When a new service is found during the scanning process, the the ServiceFound event is raised.
         /// The application will keep browsing for the available or unavailable services until it calls StopDiscovery().
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
@@ -104,6 +109,10 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Stops browsing the SSDP remote service.
         /// </summary>
+        /// <remarks>
+        /// This method stops the ongoing discovery process initiated by calling the StartDiscovery() method.
+        /// After stopping the discovery process, no further updates regarding discovered services will be received through the ServiceFound event.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>

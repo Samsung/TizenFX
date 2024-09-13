@@ -28,7 +28,8 @@ namespace Tizen.Network.Nsd
         /// Starts browsing the DNS-SD/SSDP remote service.
         /// </summary>
         /// <remarks>
-        /// If there are any services available, the ServiceFound event will be invoked.
+        /// Once started, this method continuously scans for new services while keeping track of existing ones.
+        /// When a new service is found during the scanning process, the the ServiceFound event is raised.
         /// The application will keep browsing for the available or unavailable services until it calls StopDiscovery().
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
@@ -43,6 +44,10 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Stops browsing the DNS-SD/SSDP remote service.
         /// </summary>
+        /// <remarks>
+        /// This method stops the ongoing discovery process initiated by calling the StartDiscovery() method.
+        /// After stopping the discovery process, no further updates regarding discovered services will be received through the ServiceFound event.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>

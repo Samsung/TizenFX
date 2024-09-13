@@ -28,7 +28,7 @@ namespace Tizen.Network.Nsd
         /// Registers the DNS-SD/SSDP local service for publishing.
         /// </summary>
         /// <remarks>
-        /// A service that is created locally must be passed.
+        /// This method registers a local service that is instance for publication over the network using either DNS-SD or SSDP protocol.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
