@@ -70,7 +70,7 @@ namespace Tizen.Multimedia.Vision
         /// <see cref="InferenceFacialLandmarkDetectorResult.Points"/> can be empty, if there's no detected facial landmark.
         /// </remarks>
         /// <param name="source">The image data to detect facial landmarks.</param>
-        /// <returns>The points of detected facial landmarks.</returns>
+        /// <returns>The coordinates of detected facial landmarks.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFacialLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// Note that this method could use about twice as much memory as <see cref="InferenceFacialLandmarkDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect facial landmarks.</param>
-        /// <returns>The request id that indicates the order of request.</returns>
+        /// <returns>The request ID that indicates the order of requests.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFacialLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <seealso cref="GetRequestResults"/>

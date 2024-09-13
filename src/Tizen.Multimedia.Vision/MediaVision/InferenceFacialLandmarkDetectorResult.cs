@@ -45,15 +45,15 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets the request id which is matched with request id of RequestInference() return value.<br/>
+        /// Gets the request ID which is matched with request ID of RequestInference() return value.<br/>
         /// It represents the order of request.
         /// </summary>
-        /// <value>The request id that indicates the order of request.</value>
+        /// <value>The request ID that indicates the order of request.</value>
         /// <since_tizen> 12 </since_tizen>
         public ulong RequestId { get; }
 
         /// <summary>
-        /// Gets the points of the detected facial landmark.
+        /// Gets The coordinates of detected facial landmarks.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public IEnumerable<Point> Points { get; }

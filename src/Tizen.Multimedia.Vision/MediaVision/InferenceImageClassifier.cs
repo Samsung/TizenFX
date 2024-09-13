@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// Note that this method could use about twice as much memory as <see cref="InferenceImageClassifier.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to classify.</param>
-        /// <returns>The request id that indicates the order of request.</returns>
+        /// <returns>The request ID that indicates the order of requests.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceImageClassifier already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <seealso cref="GetRequestResults"/>

@@ -70,7 +70,7 @@ namespace Tizen.Multimedia.Vision
         /// <see cref="InferencePoseLandmarkDetectorResult.Points"/> can be empty, if there's no detected pose landmark.
         /// </remarks>
         /// <param name="source">The image data to detect pose landmark.</param>
-        /// <returns>The points of detected pose landmark.</returns>
+        /// <returns>The coordinates of detected pose landmarks.</returns>
         /// <exception cref="ObjectDisposedException">The InferencePoseLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// Note that this method could use about twice as much memory as <see cref="InferencePoseLandmarkDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect pose landmark.</param>
-        /// <returns>The request id that indicates the order of request.</returns>
+        /// <returns>The request ID that indicates the order of requests.</returns>
         /// <exception cref="ObjectDisposedException">The InferencePoseLandmarkDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <seealso cref="GetRequestResults"/>

@@ -70,7 +70,7 @@ namespace Tizen.Multimedia.Vision
         /// <see cref="InferenceFaceDetectorResult.BoundingBoxes"/> can be empty, if there's no detected face.
         /// </remarks>
         /// <param name="source">The image data to detect faces.</param>
-        /// <returns>The BoundBoxes of detected face.</returns>
+        /// <returns>The BoundingBoxes of detected face.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFaceDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// Note that this method could use about twice as much memory as <see cref="InferenceFaceDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect faces.</param>
-        /// <returns>The request id that indicates the order of request.</returns>
+        /// <returns>The request ID that indicates the order of requests.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceFaceDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <seealso cref="GetRequestResults"/>

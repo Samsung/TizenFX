@@ -70,7 +70,7 @@ namespace Tizen.Multimedia.Vision
         /// <see cref="InferenceObjectDetectorResult.BoundingBoxes"/> can be empty, if there's no detected object.
         /// </remarks>
         /// <param name="source">The image data to detect object.</param>
-        /// <returns>BoundBoxes of detected object.</returns>
+        /// <returns>BoundingBoxes of detected object.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceObjectDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <since_tizen> 12 </since_tizen>
@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// Note that this method could use about twice as much memory as <see cref="InferenceObjectDetector.Inference"/>.
         /// </remarks>
         /// <param name="source">The image data to detect object.</param>
-        /// <returns>The request id that indicates the order of request.</returns>
+        /// <returns>The request ID that indicates the order of requests.</returns>
         /// <exception cref="ObjectDisposedException">The InferenceObjectDetector already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <seealso cref="GetRequestResults"/>
