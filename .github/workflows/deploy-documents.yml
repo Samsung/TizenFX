@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     container:
-      image: tizendotnet/tizenfx-build-worker:2.4
+      image: tizendotnet/tizenfx-build-worker:2.5
       options: --ulimit nofile=10240:10240
 
     steps:
@@ -31,14 +31,13 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        cp docfx_config/docfx.json docfx.json
         ./build.sh restore
         ./build.sh build
         ./build.sh index
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: documents
         path: site.tar.gz
@@ -48,7 +47,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: documents
 

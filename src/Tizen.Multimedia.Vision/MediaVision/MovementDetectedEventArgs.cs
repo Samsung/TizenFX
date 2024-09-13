@@ -23,12 +23,14 @@ namespace Tizen.Multimedia.Vision
     /// Provides data for the <see cref="MovementDetector.Detected"/> event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class MovementDetectedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MovementDetectedEventArgs"/> class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public MovementDetectedEventArgs(IEnumerable<Rectangle> areas)
         {
             Areas = areas;
@@ -38,6 +40,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets a set of rectangular regions where movement was detected.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public IEnumerable<Rectangle> Areas { get; }
     }
 }

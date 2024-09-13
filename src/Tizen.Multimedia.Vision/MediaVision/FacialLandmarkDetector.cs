@@ -28,6 +28,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to detect facial landmarks on image source using inference engine.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class FacialLandmarkDetector
     {
         /// <summary>
@@ -51,6 +52,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<IEnumerable<Point>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {

@@ -321,29 +321,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Window GetObjectRegistry")]
-        [Property("SPEC", "Tizen.NUI.Window.GetObjectRegistry M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowGetObjectRegistry()
-        {
-            tlog.Debug(tag, $"WindowGetObjectRegistry START");
-            try
-            {
-                myWin.GetObjectRegistry();
-            }
-            catch (Exception e)
-            {
-                Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"WindowGetObjectRegistry END (OK)");
-            Assert.Pass("WindowGetObjectRegistry");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Window SetWindowSize")]
         [Property("SPEC", "Tizen.NUI.Window.SetWindowSize M")]
         [Property("SPEC_URL", "-")]

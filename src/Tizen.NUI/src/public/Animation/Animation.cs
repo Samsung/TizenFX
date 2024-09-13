@@ -35,6 +35,23 @@ namespace Tizen.NUI
     /// The overall animation time is superseded by the values given in the animation time used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br />
     /// If any of the individual calls to those functions exceeds the overall animation time (Duration), then the overall animation time is automatically extended.<br />
     /// </summary>
+    /// <example><code>
+    /// View view = new View()
+    /// {
+    ///     Size2D = new Size2D(100, 100),
+    ///     Position2D = new Position2D(100, 100),
+    ///     BackgroundColor = Color.Red,
+    /// };
+    ///
+    /// Window.Default.Add(view);
+    /// Animation animation = new Animation();
+    /// const float destinationValue = 300.0f;
+    /// const int startTime = 0; // animation starts at 0 second point. no delay.
+    /// const int endTime = 5000; // animation ends at 5 second point.
+    /// animation.AnimateTo(view, "PositionX", destinationValue, startTime, endTime); // position x animation.
+    /// animation.AnimateTo(view, "SizeHeight", destinationValue + 100, startTime + 1000, endTime + 2000); // size height animation.
+    /// animation.Play();
+    /// </code></example>
     /// <since_tizen> 3 </since_tizen>
     public class Animation : BaseHandle
     {
@@ -1252,6 +1269,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Plays the animation.
         /// </summary>
+        /// <example><code>
+        /// var animation = new Animation();
+        /// animation.Play();
+        /// </code></example>
         /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
@@ -1291,6 +1312,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Pauses the animation.
         /// </summary>
+        /// <example><code>
+        /// var animation = new Animation();
+        /// animation.Play();
+        /// animation.Pause();
+        /// </code></example>
         /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
@@ -1301,6 +1327,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Stops the animation.
         /// </summary>
+        /// <example><code>
+        /// var animation = new Animation();
+        /// animation.Play();
+        /// animation.Stop();
+        /// </code></example>
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {

@@ -31,6 +31,7 @@ namespace Tizen.Multimedia.Vision
     /// please use <see cref="DetectAsync(MediaVisionSource, InferenceModelConfiguration)"/>.
     /// </remarks>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class FaceDetector
     {
         /// <summary>
@@ -47,6 +48,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source)
         {
             return await DetectAsync(source, (FaceDetectionConfiguration)null);
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source,
             FaceDetectionConfiguration config)
         {
@@ -131,6 +134,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<IEnumerable<FaceDetectionResult>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {

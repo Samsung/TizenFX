@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="PersonAppearanceDetectionConfiguration"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class PersonAppearanceDetector : SurveillanceEngine
     {
         private const string KeyAppearedNumber = "NUMBER_OF_APPEARED_PERSONS";
@@ -42,6 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public PersonAppearanceDetector() : base(PersonAppearanceEventType)
         {
         }
@@ -51,6 +53,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public event EventHandler<PersonAppearanceDetectedEventArgs> Detected;
 
         private void RegisterEvent()
@@ -93,6 +96,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="PersonAppearanceDetector"/> has already been disposed of.</exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void AddSource(SurveillanceSource source)
         {
             AddSource(source, null);
@@ -111,6 +115,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void AddSource(SurveillanceSource source, PersonAppearanceDetectionConfiguration config)
         {
             RegisterEvent();

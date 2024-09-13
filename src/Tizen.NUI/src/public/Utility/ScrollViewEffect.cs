@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -23,6 +24,7 @@ namespace Tizen.NUI
     /// ScrollView instance.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ScrollViewEffect : BaseHandle
     {
 
@@ -30,6 +32,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollViewEffect() : this(Interop.ScrollView.NewScrollViewEffect(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -41,6 +44,7 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ScrollView.DeleteScrollViewEffect(swigCPtr);

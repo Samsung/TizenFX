@@ -25,6 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to track images on image sources.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class ImageTracker
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
         /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel)
         {
@@ -78,6 +80,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="ImageTrackingModel.SetTarget(ImageObject)"/>
         /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<Quadrangle> TrackAsync(MediaVisionSource source,
             ImageTrackingModel trackingModel, ImageTrackingConfiguration config)
         {

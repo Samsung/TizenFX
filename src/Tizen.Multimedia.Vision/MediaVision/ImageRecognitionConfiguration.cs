@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class ImageRecognitionConfiguration : EngineConfiguration
     {
         private const string KeySceneScaleFactor = "MV_IMAGE_RECOGNITION_SCENE_SCALE_FACTOR";
@@ -36,30 +37,35 @@ namespace Tizen.Multimedia.Vision
         /// A read-only field that represents the default value of <see cref="SceneScaleFactor"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultSceneScaleFactor = 1.2;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="SceneMaxKeyPoints"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly int DefaultSceneMaxKeypoints = 5000;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="MinKeyPointMatches"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly int DefaultMinKeyPointMatches = 30;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="RequiredMatchingPart"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultRequiredMatchPart = 0.05;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="TolerantPartMatchError"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultTolerantPartMatchError = 0.1;
 
         /// <summary>
@@ -67,6 +73,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public ImageRecognitionConfiguration() : base("image_recognition")
         {
         }
@@ -80,6 +87,7 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double SceneScaleFactor
         {
             get
@@ -103,6 +111,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int SceneMaxKeyPoints
         {
             get
@@ -130,6 +139,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="ImageRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int MinKeyPointMatches
         {
             get
@@ -164,6 +174,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double RequiredMatchingPart
         {
             get
@@ -195,6 +206,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double TolerantPartMatchError
         {
             get

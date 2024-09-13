@@ -21,8 +21,46 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// Animatable.
+    /// The class that represents an object capable of animation is the parent class of the minimum unit of visual, View. 
+    /// When a property is an animatable property, it means that its value can change continuously as the target of an animation. 
+    /// In this case, if a property notification callback is set, you can receive the callback according to the changing values. 
+    /// Additionally, users can also add their own properties.
     /// </summary>
+    /// <example><code>
+    /// View view = new View()
+    /// {
+    ///     Size2D = new Size2D(100, 100),
+    ///     Position2D = new Position2D(100, 100),
+    ///     BackgroundColor = Color.Red,
+    /// };
+    ///
+    /// Window.Default.Add(view);
+    /// Animation animation = new Animation();
+    /// const float destinationValue = 300.0f;
+    /// const int startTime = 0; // animation starts at 0 second point. no delay.
+    /// const int endTime = 5000; // animation ends at 5 second point.
+    /// animation.AnimateTo(view, "PositionX", destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSine));
+    /// animation.Play();
+    ///
+    /// PropertyNotification propertyNotification = view.AddPropertyNotification("position", PropertyCondition.Step(10.0f));
+    /// propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
+    /// {
+    ///     Animatable target = args.PropertyNotification.GetTarget();
+    ///     if (target is View viewTarget)
+    ///     {
+    ///         Tizen.Log.Debug("NUI", $"postion changed! ({viewTarget.CurrentPosition.X},{viewTarget.CurrentPosition.Y})");
+    ///     }
+    /// };
+    ///
+    /// Animatable animatable = new Animatable();
+    /// int myPropertyIndex = animatable.RegisterProperty("myProperty", new PropertyValue(100), PropertyAccessMode.ReadWrite);
+    /// animatable.GetProperty(myPropertyIndex).Get(out int aValue);
+    /// Tizen.Log.Debug("NUI", $"myProperty value : {aValue} (should be 100)");
+    ///
+    /// animatable.SetProperty(myPropertyIndex, new PropertyValue(200));
+    /// animatable.GetProperty(myPropertyIndex).Get(out aValue);
+    /// Tizen.Log.Debug("NUI", $"myProperty value : {aValue} (should be 200)");
+    /// </code></example>
     /// <since_tizen> 3 </since_tizen>
     public class Animatable : BaseHandle
     {

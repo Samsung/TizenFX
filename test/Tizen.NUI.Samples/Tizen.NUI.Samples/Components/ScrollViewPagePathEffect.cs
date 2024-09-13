@@ -16,8 +16,10 @@
  */
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using global::System.Runtime.InteropServices;
+using Tizen.NUI;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// <summary>
     /// ScrollView Page Path Effect.
@@ -30,16 +32,16 @@ namespace Tizen.NUI
     public class ScrollViewPagePathEffect : ScrollViewEffect
     {
 
-        internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewPagePathEffectUpcast(cPtr), cMemoryOwn)
+        internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Tizen.NUI.Interop.ScrollView.ScrollViewPagePathEffectUpcast(cPtr), cMemoryOwn)
         {
         }
 
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            Interop.ScrollView.DeleteScrollViewPagePathEffect(swigCPtr);
+            Tizen.NUI.Interop.ScrollView.DeleteScrollViewPagePathEffect(swigCPtr);
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Tizen.NUI
         /// <returns>A handle to a newly allocated Dali resource.</returns>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(Interop.ScrollView.ScrollViewPagePathEffectNew(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
+        public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(Tizen.NUI.Interop.ScrollView.ScrollViewPagePathEffectNew(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -74,7 +76,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyToPage(View page, uint pageOrder)
         {
-            Interop.ScrollView.ScrollViewPagePathEffectApplyToPage(SwigCPtr, View.getCPtr(page), pageOrder);
+            Tizen.NUI.Interop.ScrollView.ScrollViewPagePathEffectApplyToPage(SwigCPtr, View.getCPtr(page), pageOrder);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

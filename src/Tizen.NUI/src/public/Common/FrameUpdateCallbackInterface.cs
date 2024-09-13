@@ -49,6 +49,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.FrameUpdateCallbackInterface.DeleteFrameUpdateCallbackInterface(swigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint UpdateCallbackVersion => onUpdateCallbackVersion;
@@ -132,6 +140,45 @@ namespace Tizen.NUI
                 return false;
             }
             bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceBakePosition(proxyIntPtr, id, Vector3.getCPtr(position));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetOrientation(uint id, Rotation rotation)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetOrientation(proxyIntPtr, id, Rotation.getCPtr(rotation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetOrientation(uint id, Rotation rotation)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceSetOrientation(proxyIntPtr, id, Rotation.getCPtr(rotation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool BakeOrientation(uint id, Rotation rotation)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceBakeOrientation(proxyIntPtr, id, Rotation.getCPtr(rotation));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

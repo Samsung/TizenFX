@@ -15,12 +15,13 @@
  *
  */
 
-using System;
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
-using System.ComponentModel;
+using global::System.ComponentModel;
+using Tizen.NUI;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// <summary>
     /// Cube Transition Effect base class, used to apply custom effects to a
@@ -46,7 +47,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal CubeTransitionEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal CubeTransitionEffect(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -198,7 +199,7 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.CubeTransitionEffect.DeleteCubeTransitionEffect(swigCPtr);
         }
@@ -246,7 +247,7 @@ namespace Tizen.NUI
     internal class CubeTransitionEffectSignal : Disposable
     {
 
-        internal CubeTransitionEffectSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal CubeTransitionEffectSignal(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -271,22 +272,22 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Connect(System.Delegate func)
+        public void Connect(Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.CubeTransitionEffect.CubeTransitionEffectSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.CubeTransitionEffect.CubeTransitionEffectSignalConnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Disconnect(System.Delegate func)
+        public void Disconnect(Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
             {
-                Interop.CubeTransitionEffect.CubeTransitionEffectSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.CubeTransitionEffect.CubeTransitionEffectSignalDisconnect(SwigCPtr, new HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -295,7 +296,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(CubeTransitionEffect arg)
         {
-            Interop.TextField.TextFieldSignalEmit(SwigCPtr, CubeTransitionEffect.getCPtr(arg));
+            Tizen.NUI.Interop.TextField.TextFieldSignalEmit(SwigCPtr, CubeTransitionEffect.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -308,7 +309,7 @@ namespace Tizen.NUI
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.CubeTransitionEffect.DeleteCubeTransitionEffectSignal(swigCPtr);
         }
@@ -330,13 +331,13 @@ namespace Tizen.NUI
         }
 
 
-        internal CubeTransitionWaveEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal CubeTransitionWaveEffect(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.CubeTransitionWaveEffect.DeleteCubeTransitionWaveEffect(swigCPtr);
         }
@@ -358,13 +359,13 @@ namespace Tizen.NUI
         }
 
 
-        internal CubeTransitionCrossEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal CubeTransitionCrossEffect(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.CubeTransitionCrossEffect.DeleteCubeTransitionCrossEffect(swigCPtr);
         }
@@ -386,13 +387,13 @@ namespace Tizen.NUI
         }
 
 
-        internal CubeTransitionFoldEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal CubeTransitionFoldEffect(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.CubeTransitionFoldEffect.DeleteCubeTransitionFoldEffect(swigCPtr);
         }
