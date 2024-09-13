@@ -713,7 +713,7 @@ This MediaSource is not supported type of MediaSource.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L577">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L629">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback(Tizen.Multimedia.AudioStreamPolicy)">EnableAudioLoopback(AudioStreamPolicy)</h4>
@@ -801,7 +801,7 @@ This MediaSource is not Audio</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L629">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L681">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback(Tizen.Multimedia.Display)">EnableVideoLoopback(Display)</h4>
@@ -884,6 +884,154 @@ This MediaSource is not Video</p>
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L594">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.GetPayloadType*"></a>
+  <h4 id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_" data-uid="Tizen.Multimedia.Remoting.MediaSource.GetPayloadType(Tizen.Multimedia.Remoting.TransceiverCodec)">GetPayloadType(TransceiverCodec)</h4>
+  <div class="markdown level1 summary"><p>Gets the RTP payload type of given <code data-dev-comment-type="paramref" class="paramref">codec</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetPayloadType(TransceiverCodec codec)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.TransceiverCodec.html">TransceiverCodec</a></td>
+        <td><span class="parametername">codec</span></td>
+        <td><p>The transceiver codec.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The RTP payload type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html#Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs">SupportedTransceiverCodecs</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L570">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.SetPayloadType*"></a>
+  <h4 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32_" data-uid="Tizen.Multimedia.Remoting.MediaSource.SetPayloadType(Tizen.Multimedia.Remoting.TransceiverCodec,System.UInt32)">SetPayloadType(TransceiverCodec, uint)</h4>
+  <div class="markdown level1 summary"><p>Sets the RTP payload type of given <code data-dev-comment-type="paramref" class="paramref">codec</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPayloadType(TransceiverCodec codec, uint payloadType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.TransceiverCodec.html">TransceiverCodec</a></td>
+        <td><span class="parametername">codec</span></td>
+        <td><p>The transceiver codec.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">payloadType</span></td>
+        <td><p>The RTP payload type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><code data-dev-comment-type="paramref" class="paramref">payloadType</code> should be greater than or equal to 96 and less than or equal to 127.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">payloadType</code> is less than 96 or greater than 127.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html#Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs">SupportedTransceiverCodecs</a></div>
+  </div>
 
 
   <div style="margin-bottom: 15px"></div>
