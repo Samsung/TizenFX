@@ -39,7 +39,8 @@ namespace Tizen.Security.WebAuthn
         private static UnmanagedMemory _rpNameUnmanaged = new();
         private static UnmanagedMemory _rpIdUnmanaged = new();
         private static UnmanagedMemory _rpUnmanaged = new();
-        private static UnmanagedMemory _userNameUnmanaged = new ();
+        private static UnmanagedMemory _userNameUnmanaged = new();
+        private static UnmanagedMemory _userIdDataUnmanaged = new();
         private static UnmanagedMemory _userIdConstBufferUnmanaged = new();
         private static UnmanagedMemory _userDisplayNameUnmanaged = new();
         private static UnmanagedMemory _userUnmanaged = new();
@@ -197,7 +198,8 @@ namespace Tizen.Security.WebAuthn
         private static void CopyUser(UserEntity user)
         {
                 _userNameUnmanaged = new UnmanagedMemory(user.Name);
-                _userIdConstBufferUnmanaged = UnmanagedMemory.PinArray(user.Id);
+                _userIdDataUnmanaged = UnmanagedMemory.PinArray(user.Id);
+                _userIdConstBufferUnmanaged = new UnmanagedMemory(new WauthnConstBuffer(_userIdDataUnmanaged, (nuint)user.Id.Length));
                 _userDisplayNameUnmanaged = new UnmanagedMemory(user.DisplayName);
                 _userUnmanaged = new UnmanagedMemory(new WauthnUserEntity(
                     _userNameUnmanaged,
@@ -217,6 +219,9 @@ namespace Tizen.Security.WebAuthn
 
         private static void CopyCredentials(IEnumerable<PubkeyCredDescriptor> credentials)
         {
+            if (credentials is null || !credentials.Any())
+                return;
+
             var credentialsCount = credentials.Count();
             _credentialsIdUnmanagedDataArray = new UnmanagedMemory[credentialsCount];
             _credentialsIdUnmanagedConstBufferArray = new UnmanagedMemory[credentialsCount];
