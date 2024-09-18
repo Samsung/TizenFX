@@ -22,7 +22,7 @@ using Tizen.Applications;
 namespace Tizen.Security
 {
     /// <summary>
-    /// This class provides the information of the given privilege and the API version.
+    /// Stores the information on the given privilege and the API version.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public static class Privilege
@@ -50,14 +50,23 @@ namespace Tizen.Security
         /// Gets the display name of the given privilege.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns last token of the given privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
-        /// <param name="apiVersion">The API version.</param>
-        /// <param name="privilege">The privilege.</param>
-        /// <returns>The display name of the given privilege at the given API version.</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
-        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
+        /// <remarks>
+        /// If there's no matching privilege, then it returns last token of the given privilege.
+        /// Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.
+        /// </remarks>
+        /// <param name="apiVersion">API version of the application.</param>
+        /// <param name="privilege">Given privilege.</param>
+        /// <returns>Display name of the given privilege at the given API version.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when there is a null parameter.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when there is an invalid parameter, such as a non-existing <paramref name="privilege"/>.
+        /// </exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when an internal error occurs.
+        /// </exception>
         public static string GetDisplayName(string apiVersion, string privilege)
         {
             string displayName;
@@ -70,18 +79,29 @@ namespace Tizen.Security
         }
 
         /// <summary>
-        /// Gets the display name of the given privilege.
+        /// Gets the display name of the given privilege by type of application package.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns last token of the given privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</remarks>
-        /// <param name="apiVersion">The API version.</param>
-        /// <param name="privilege">The privilege.</param>
-        /// <param name="packageType">The type of application package.</param>
-        /// <returns>The display name of the given privilege at the given API version and the package type.</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
-        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
+        /// <remarks>
+        /// If there's no matching privilege, then it returns last token of the given privilege.
+        /// Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.
+        /// </remarks>
+        /// <param name="apiVersion">API version of the application.</param>
+        /// <param name="privilege">Given privilege.</param>
+        /// <param name="packageType">Type of application package.</param>
+        /// <returns>
+        /// Display name of the given privilege at the given API version and the package type.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when there is a null parameter.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when there is an invalid parameter, such as a non-existing <paramref name="privilege"/>.
+        /// </exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when an internal error occurs.
+        /// </exception>
         public static string GetDisplayName(string apiVersion, string privilege, PackageType packageType)
         {
             string displayName;
@@ -97,14 +117,23 @@ namespace Tizen.Security
         /// Gets the description of the given privilege.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
-        /// <param name="apiVersion">The API version.</param>
-        /// <param name="privilege">The privilege.</param>
-        /// <returns>The description of given privilege at the given API version</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
-        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
+        /// <remarks>
+        /// If there's no matching privilege, then it returns description string for undefined privilege.
+        /// Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.
+        /// </remarks>
+        /// <param name="apiVersion">API version of the application.</param>
+        /// <param name="privilege">Given privilege.</param>
+        /// <returns>Description of given privilege at the given API version</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when there is a null parameter.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when there is an invalid parameter, such as a non-existing <paramref name="privilege"/>.
+        /// </exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when an internal error occurs.
+        /// </exception>
         public static string GetDescription(string apiVersion, string privilege)
         {
             string description;
@@ -117,18 +146,29 @@ namespace Tizen.Security
         }
 
         /// <summary>
-        /// Gets the description of the given privilege.
+        /// Gets the description of the given privilege by type of application package.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>If there's no matching privilege, then it returns description string for undefined privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException. </remarks>
-        /// <param name="apiVersion">The API version.</param>
-        /// <param name="privilege">The privilege.</param>
-        /// <param name="packageType">The type of application package.</param>
-        /// <returns>The description of given privilege at the given API version and the package type.</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
-        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
+        /// <remarks>
+        /// If there's no matching privilege, then it returns description string for undefined privilege.
+        /// Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.
+        /// </remarks>
+        /// <param name="apiVersion">API version of the application.</param>
+        /// <param name="privilege">Given privilege.</param>
+        /// <param name="packageType">Type of application package.</param>
+        /// <returns>
+        /// Description of given privilege at the given API version and the package type.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when there is a null parameter.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when there is an invalid parameter, such as a non-existing <paramref name="privilege"/>.
+        /// </exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when an internal error occurs.
+        /// </exception>
         public static string GetDescription(string apiVersion, string privilege, PackageType packageType)
         {
             string description;
@@ -141,18 +181,26 @@ namespace Tizen.Security
         }
 
         /// <summary>
-        /// Gets the display name of the privacy group in which the given privilege is included.
+        /// [Obsolete("Please do not use! This method is deprecated")]
         /// </summary>
-        /// <feature>http://tizen.org/feature/security.privacy_privilege</feature>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="privilege">The privilege.</param>
-        /// <remarks>The privilege must be privacy related.</remarks>
-        /// <returns>The privacy group's display name that the given privilege is included in.</returns>
-        /// <exception cref="System.ArgumentNullException">Thrown when there is a null parameter.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter such as a non-existing privilege.</exception>
-        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
-        /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
-        /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
+        /// <feature>http://tizen.org/feature/security.privacy_privilege</feature>
+        /// <remarks>Given privilege must be privacy related.</remarks>
+        /// <param name="privilege">Given privilege.</param>
+        /// <returns>Privacy group's display name in which the given privilege is included.</returns>
+        /// <exception cref="System.NotSupportedException">
+        /// Thrown when required feature is not supported.
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when there is a null parameter.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when there is an invalid parameter, such as a non-existing <paramref name="privilege"/>.
+        /// </exception>
+        /// <exception cref="System.OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when an internal error occurs.
+        /// </exception>
         [Obsolete("Deprecated since API level 11.")]
         public static string GetPrivacyDisplayName(string privilege)
         {
