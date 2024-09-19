@@ -94,7 +94,7 @@ internal static partial class Interop
             internal static extern ErrorCode TaskCreate(string name, bool useThread, out IntPtr handle);
 
             // int tizen_core_task_destroy(tizen_core_task_h task);
-            [DllImport(Libraries.TizenCore, EntryPoint = "tizen_core_task_create")]
+            [DllImport(Libraries.TizenCore, EntryPoint = "tizen_core_task_destroy")]
             internal static extern ErrorCode TaskDestroy(IntPtr handle);
 
             // int tizen_core_task_run(tizen_core_task_h task);
