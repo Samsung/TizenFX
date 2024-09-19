@@ -188,7 +188,7 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Stops the previous MakeCredential or GetAssertion call.
+        /// Stops the previous <see cref="MakeCredential"/> or <see cref="GetAssertion"/> call.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <feature>http://tizen.org/feature/security.webauthn</feature>

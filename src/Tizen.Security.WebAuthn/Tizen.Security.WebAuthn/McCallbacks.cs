@@ -20,7 +20,7 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Callback function list used to make credential.
+    /// Callback function list used to make credential with <see cref="Authenticator.MakeCredential"/>.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public class McCallbacks
@@ -39,7 +39,7 @@ namespace Tizen.Security.WebAuthn
         /// https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-qr-initiated.
         /// The qr_contents is encoded like "FIDO:/0254318383..........7406596245".
         /// The image to be displayed shall be created from qr_contents
-        /// with media vision API(mv_barcode_generate_image()).
+        /// with media vision API (<see cref="Tizen.Multimedia.Vision.BarcodeGenerator"/>).
         /// If the request does not need to display a QR code
         /// then this callback function won't be invoked.
         /// </param>
