@@ -83,9 +83,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private static readonly WebContext context = new WebContext(Interop.WebView.GetWebContext(), false);
-        private static readonly WebCookieManager cookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
-
         private Color contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
@@ -189,6 +186,17 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
         /// <since_tizen> 9 </since_tizen>
         public WebView(string[] args) : this(Interop.WebView.New3(args?.Length ?? 0, args), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates a WebView with an args list and WebEngine type.
+        /// </summary>
+        /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
+        /// <param name="webEngineType">Can select the plugin of Web Engine type. Chromium or LWE.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebView(string[] args, WebEngineType webEngineType) : this(Interop.WebView.New4(args?.Length ?? 0, args, (int)webEngineType), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1071,6 +1079,25 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             All = Default | NodeData | ImageData,
+        }
+
+        /// <summary>
+        /// WebEngine type which can be set by a specific constructor of this WebView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum WebEngineType
+        {
+            /// <summary>
+            /// Chromium Web Engine type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Chromium = 0,
+
+            /// <summary>
+            /// LWE, Light Web Engine type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            LWE = 1,
         }
 
         /// <summary>
