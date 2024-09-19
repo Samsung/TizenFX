@@ -159,6 +159,8 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 12 </since_tizen>
         public InferenceObjectDetectorResult GetRequestResults()
         {
+            ValidateNotDisposed();
+
             return new InferenceObjectDetectorResult(_handle);
         }
 
