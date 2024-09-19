@@ -159,6 +159,8 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 12 </since_tizen>
         public InferenceImageClassifierResult GetRequestResults()
         {
+            ValidateNotDisposed();
+
             return new InferenceImageClassifierResult(_handle);
         }
 

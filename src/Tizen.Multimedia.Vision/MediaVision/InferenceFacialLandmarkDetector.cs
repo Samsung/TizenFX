@@ -158,6 +158,8 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 12 </since_tizen>
         public InferenceFacialLandmarkDetectorResult GetRequestResults()
         {
+            ValidateNotDisposed();
+
             return new InferenceFacialLandmarkDetectorResult(_handle);
         }
 
