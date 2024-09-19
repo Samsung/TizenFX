@@ -201,9 +201,6 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_selection")]
         internal static extern ErrorCode ImeSetSelection(int start, int end);
 
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_get_main_window")]
-        internal static extern IntPtr ImeGetMainWindow();
-
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_request_hide")]
         internal static extern ErrorCode ImeRequestHide();
 
@@ -218,9 +215,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_dotnet_flag")]
         internal static extern ErrorCode ImeSetDotnetFlag(bool set);
-
-        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_size")]
-        internal static extern ErrorCode ImeSetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_context_get_layout")]
         internal static extern ErrorCode ImeContextGetLayout(IntPtr context, out InputPanelLayout layout);

@@ -1462,6 +1462,7 @@ namespace Tizen.Uix.InputMethod
         /// Called when the device is rotated.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14. Please use Window.Resized instead.")]
         public static event EventHandler<RotationChangedEventArgs> RotationChanged
         {
             add
@@ -1875,34 +1876,6 @@ namespace Tizen.Uix.InputMethod
                 Log.Error(LogTag, "SetSelection Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
             }
-        }
-
-        /// <summary>
-        /// This API returns the input panel main window.
-        /// </summary>
-        /// <privilege>
-        /// http://tizen.org/privilege/ime
-        /// </privilege>
-        /// <returns>The input panel main window object on success, otherwise null.</returns>
-        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The IME main loop has not started yet.
-        /// 2) Operation failed.
-        /// </exception>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API10. Will be removed in API12.")]
-        public static EditorWindow GetMainWindow()
-        {
-            EditorWindow._handle = ImeGetMainWindow();
-            EditorWindow obj = new EditorWindow();
-            ErrorCode error = (ErrorCode)Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, "GetMainWindow Failed with error " + error);
-                throw InputMethodExceptionFactory.CreateException(error);
-            }
-            return obj;
         }
 
         /// <summary>

@@ -30,35 +30,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This constructor creates a property instance.
-        /// </summary>
-        /// <param name="animatable">A valid handle to the target object.</param>
-        /// <param name="propertyIndex">The index of a property.</param>
-        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for the main property (default is -1).</param>
-        public Property(Animatable animatable, int propertyIndex, int componentIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(animatable), propertyIndex, componentIndex), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// This constructor creates a property instance.<br />
         /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br />
         /// </summary>
         /// <param name="animatable">A valid handle to the target object.</param>
         /// <param name="propertyName">The property name.</param>
         public Property(Animatable animatable, string propertyName) : this(Interop.Property.NewProperty(Animatable.getCPtr(animatable), propertyName), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// This constructor creates a property instance.<br />
-        /// This performs a property index query and is therefore slower than constructing a property directly with the index.<br />
-        /// </summary>
-        /// <param name="animatable">A valid handle to the target object.</param>
-        /// <param name="propertyName">The property name.</param>
-        /// <param name="componentIndex">Index to a sub component of a property, for use with Vector2, Vector3 and Vector4. -1 for main property (default is -1).</param>
-        public Property(Animatable animatable, string propertyName, int componentIndex) : this(Interop.Property.NewProperty(Animatable.getCPtr(animatable), propertyName, componentIndex), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -80,24 +57,6 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Property.PropertyIndexGet(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the component index of the property.
-        /// </summary>
-        public int ComponentIndex
-        {
-            set
-            {
-                Interop.Property.ComponentIndexSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = Interop.Property.ComponentIndexGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

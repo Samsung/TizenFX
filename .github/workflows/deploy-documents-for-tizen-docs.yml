@@ -44,7 +44,7 @@ jobs:
         cp .gitattributes _site/
         tar cfz site.tar.gz _site/
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: documents
         path: site.tar.gz
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: documents
 

@@ -869,6 +869,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool SetNotificationLevel(NotificationLevel level)
         {
@@ -923,6 +925,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenOffMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/display</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 4 </since_tizen>
         public bool SetScreenOffMode(ScreenOffMode screenOffMode)
         {
@@ -948,6 +952,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="brightness">The preferred brightness (0 to 100).</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/display</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool SetBrightness(int brightness)
         {
@@ -1105,6 +1111,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to grab.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKeyTopmost(int DaliKey)
         {
@@ -1119,6 +1127,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKeyTopmost(int DaliKey)
         {
@@ -1137,6 +1147,8 @@ namespace Tizen.NUI
         /// <param name="DaliKey">The key code to grab.</param>
         /// <param name="GrabMode">The grab mode for the key.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
         {
@@ -1151,6 +1163,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKey(int DaliKey)
         {
@@ -2609,6 +2623,46 @@ namespace Tizen.NUI
             bool ret = Interop.Window.RelativeMotionUnGrab(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Sets or gets the window blur using window blur information.
+        /// 
+        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        /// This supports different types of blurring effects, including blurring the window's background only.
+        /// Or blurring the area surrounding the window while keeping the window itself clear.
+        /// The more information is written WindowBlurInfo struct.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WindowBlurInfo BlurInfo
+        {
+            get
+            {
+                IntPtr internalBlurInfo = Interop.Window.GetBlur(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                WindowBlurInfo blurInfo = new WindowBlurInfo();
+                blurInfo.BlurType = (WindowBlurType)Interop.WindowBlurInfo.GetBlurType(internalBlurInfo);
+                blurInfo.BlurRadius = Interop.WindowBlurInfo.GetBlurRadius(internalBlurInfo);
+                blurInfo.BackgroundCornerRadius = Interop.WindowBlurInfo.GetBackgroundCornerRadius(internalBlurInfo);
+
+                Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+
+                return blurInfo;
+            }
+            set
+            {
+                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                try {
+                    Interop.Window.SetBlur(SwigCPtr, internalBlurInfo);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                finally {
+                    Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+                }
+            }            
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
