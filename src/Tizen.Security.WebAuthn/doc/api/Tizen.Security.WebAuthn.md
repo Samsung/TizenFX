@@ -7,7 +7,7 @@ remarks: *content
 ---
 ## Overview
 It provides an [Authenticator](xref:Tizen.Security.WebAuthn.Authenticator) class containing methods for creating public key-based credentials
-([Authenticator.MakeCredential()](xref:Tizen.Security.WebAuthn.Authenticator.MakeCredential(Tizen.Security.WebAuthn.ClientData,Tizen.Security.WebAuthn.PubkeyCredCreationOptions,Tizen.Security.WebAuthn.McCallbacks))) and using them ([Authenticator.GetAssertion()](xref:Tizen.Security.WebAuthn.Authenticator.GetAssertion(Tizen.Security.WebAuthn.ClientData,Tizen.Security.WebAuthn.PubkeyCredRequestOptions,Tizen.Security.WebAuthn.GaCallbacks))). Both these operations are performed asynchronously. Callbacks passed as arguments are used to notify about the progress
+([Authenticator.MakeCredential()](xref:Tizen.Security.WebAuthn.Authenticator.MakeCredential(Tizen.Security.WebAuthn.ClientData,Tizen.Security.WebAuthn.PubkeyCredCreationOptions,Tizen.Security.WebAuthn.MakeCredentialCallbacks))) and using them ([Authenticator.GetAssertion()](xref:Tizen.Security.WebAuthn.Authenticator.GetAssertion(Tizen.Security.WebAuthn.ClientData,Tizen.Security.WebAuthn.PubkeyCredRequestOptions,Tizen.Security.WebAuthn.GetAssertionCallbacks))). Both these operations are performed asynchronously. Callbacks passed as arguments are used to notify about the progress
 or when user's interaction is necessary. Due to significant amount of time required to complete both
 requests, cancelation is also possible with the help of Authenticator.Cancel(). The module also
 provides a variety of data types based on W3C Web Authentication API (https://www.w3.org/TR/webauthn-3/) 

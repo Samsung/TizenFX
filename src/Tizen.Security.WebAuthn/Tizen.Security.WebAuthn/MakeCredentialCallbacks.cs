@@ -42,17 +42,18 @@ namespace Tizen.Security.WebAuthn
         /// If the request does not need to display a QR code
         /// then this callback function won't be invoked.
         /// </param>
-        /// <param name="responseCallback">Callback function for getting the final response.
+        /// <param name="responseCallback">
+        /// Callback function for getting the final response.
         /// Invoked when the response for the <see cref="Authenticator.MakeCredential"/> request
         /// needs to be returned. The result of this request may be one of the following:
         ///  * <see cref="WauthnError.None"/> if the request is completed well,
         ///  * <see cref="WauthnError.Canceled"/> if the request is cancelled by a Cancel() request.
         ///  * <see cref="WauthnError.InvalidState"/> if the server entered invalid state. Known causes:
-        ///  * - proxy issues,
-        ///  * - reached the limit of credentials stored by the authenticator.
+        ///    - proxy issues,
+        ///    - reached the limit of credentials stored by the authenticator.
         ///  * <see cref="WauthnError.TimedOut"/> if the request times out. Known causes:
-        ///  * - authenticator does not respond during state assisted transactions due to
-        ///  *   lack of push notifications support (e.g. missing Google Account).
+        ///    - authenticator does not respond during state assisted transactions due to
+        ///      lack of push notifications support (e.g. missing Google Account).
         /// </param>
         /// <param name="linkedDataCallback">
         /// Callback function for getting the updated linked device data. May be called multiple times.
@@ -61,11 +62,11 @@ namespace Tizen.Security.WebAuthn
         ///  * <see cref="WauthnError.None"/> if the request is completed well,
         ///  * <see cref="WauthnError.Canceled"/> if the request is cancelled by a Cancel() request.
         ///  * <see cref="WauthnError.InvalidState"/> if the server entered invalid state. Known causes:
-        ///  * - proxy issues,
-        ///  * - reached the limit of credentials stored by the authenticator.
+        ///    - proxy issues,
+        ///    - reached the limit of credentials stored by the authenticator.
         ///  * <see cref="WauthnError.TimedOut"/> if the request times out. Known causes:
-        ///  * - authenticator does not respond during state assisted transactions due to
-        ///  *   lack of push notifications support (e.g. missing Google Account).
+        ///    - authenticator does not respond during state assisted transactions due to
+        ///      lack of push notifications support (e.g. missing Google Account).
         /// </param>
         /// <param name="userData">User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.</param>
         public MakeCredentialCallbacks(
