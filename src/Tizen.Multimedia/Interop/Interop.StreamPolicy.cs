@@ -91,6 +91,20 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_stream_on_device_by_id")]
             internal static extern AudioManagerError IsStreamOnDevice(AudioStreamPolicyHandle streamInfo, int deviceId,
                 out bool isOn);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_effect_method_with_reference_by_id")]
+            internal static extern AudioManagerError SetSoundEffectWithReference(AudioStreamPolicyHandle streamInfo,
+                SoundEffectWithReferenceNative effect, int deviceId);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_effect_method_with_reference")]
+            internal static extern AudioManagerError GetSoundEffectWithReference(AudioStreamPolicyHandle streamInfo,
+                out SoundEffectWithReferenceNative effect, out int deviceId);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_effect_method")]
+            internal static extern AudioManagerError SetSoundEffect(AudioStreamPolicyHandle streamInfo, int effect);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_effect_method")]
+            internal static extern AudioManagerError GetSoundEffect(AudioStreamPolicyHandle streamInfo, out int effect);
         }
     }
 }

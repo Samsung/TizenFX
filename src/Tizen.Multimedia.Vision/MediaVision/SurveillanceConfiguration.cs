@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -22,6 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class SurveillanceEngineConfiguration : EngineConfiguration
     {
         internal SurveillanceEngineConfiguration() : base("face_recognition", "image_recognition")

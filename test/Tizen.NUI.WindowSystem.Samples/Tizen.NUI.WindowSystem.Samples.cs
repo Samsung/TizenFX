@@ -6,6 +6,7 @@ using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.NUI.WindowSystem;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Samples
 {
@@ -35,6 +36,10 @@ namespace Tizen.NUI.WindowSystem.Samples
         TextLabel textSoftkeyServiceExpand;
         TextLabel textSoftkeyServiceOpacity;
 
+        Shell.ScreensaverService screensaverService;
+        Button BtnScreensaverService;
+        TextLabel textScreensaverServiceTitle;
+		
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -59,7 +64,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             {
                 Text = "QuickPanelService",
                 Size = new Size(400, 100),
-                Position = new Position(100, 400),
+                Position = new Position(100, 340),
                 Margin = 10,
             };
 
@@ -67,7 +72,7 @@ namespace Tizen.NUI.WindowSystem.Samples
             {
                 Text = "SoftkeyClient",
                 Size = new Size(400, 100),
-                Position = new Position(100, 600),
+                Position = new Position(100, 480),
                 Margin = 10,
             };
 
@@ -75,7 +80,15 @@ namespace Tizen.NUI.WindowSystem.Samples
             {
                 Text = "SoftkeyService",
                 Size = new Size(400, 100),
-                Position = new Position(100, 800),
+                Position = new Position(100, 620),
+                Margin = 10,
+            };
+
+            BtnScreensaverService = new Button()
+            {
+                Text = "ScreensaverService",
+                Size = new Size(400, 100),
+                Position = new Position(100, 760),
                 Margin = 10,
             };
 
@@ -83,11 +96,13 @@ namespace Tizen.NUI.WindowSystem.Samples
             window.Add(BtnService);
             window.Add(BtnSoftkeyClient);
             window.Add(BtnSoftkeyService);
+            window.Add(BtnScreensaverService);
 
             BtnClient.ClickEvent += BtnClient_ClickEvent;
             BtnService.ClickEvent += BtnService_ClickEvent;
             BtnSoftkeyClient.ClickEvent += BtnSoftkeyClient_ClickEvent;
             BtnSoftkeyService.ClickEvent += BtnSoftkeyService_ClickEvent;
+            BtnScreensaverService.ClickEvent += BtnScreensaverService_ClickEvent;
 
             tzShell = new Shell.TizenShell();
 
@@ -121,9 +136,10 @@ namespace Tizen.NUI.WindowSystem.Samples
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
+            window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            qpClient = new Shell.QuickPanelClient(tzShell, window, Shell.QuickPanelClient.Types.SystemDefault);
+            qpClient = new Shell.QuickPanelClient(tzShell, (IWindowProvider)window, Shell.QuickPanelClient.Types.SystemDefault);
 
             qpClient.VisibleChanged += OnVisibleEvent;
             qpClient.OrientationChanged += OnOrientationEvent;
@@ -237,9 +253,10 @@ namespace Tizen.NUI.WindowSystem.Samples
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
+            window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            qpService = new Shell.QuickPanelService(tzShell, window, type);
+            qpService = new Shell.QuickPanelService(tzShell, (IWindowProvider)window, type);
             //if ((type == Shell.QuickPanelService.Types.ContextMenu) || (type == Shell.QuickPanelService.Types.AppsMenu))
                 //window.AddAuxiliaryHint("wm.policy.win.user.geometry", "1");
 
@@ -408,9 +425,10 @@ namespace Tizen.NUI.WindowSystem.Samples
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
+            window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            softkeyClient = new Shell.SoftkeyClient(tzShell, window);
+            softkeyClient = new Shell.SoftkeyClient(tzShell, (IWindowProvider)window);
 
             textSoftkeyClientVisible = new TextLabel($"Visible: {softkeyClient.Visible}");
             textSoftkeyClientVisible.Position = new Position(0, -100);
@@ -552,9 +570,10 @@ namespace Tizen.NUI.WindowSystem.Samples
 
             window.Remove(BtnService);
             window.Remove(BtnClient);
+            window.Remove(BtnScreensaverService);
             window.Remove(BtnSoftkeyService);
             window.Remove(BtnSoftkeyClient);
-            softkeyService = new Shell.SoftkeyService(tzShell, window);
+            softkeyService = new Shell.SoftkeyService(tzShell, (IWindowProvider)window);
 
             textSoftkeyServiceVisible = new TextLabel($"Visible: None");
             textSoftkeyServiceVisible.Position = new Position(0, -100);
@@ -644,6 +663,30 @@ namespace Tizen.NUI.WindowSystem.Samples
         private void BtnSoftkeyServiceHide_ClickEvent(object sender, Button.ClickEventArgs e)
         {
             softkeyService.Hide();
+        }
+
+        private void BtnScreensaverService_ClickEvent(object sender, Button.ClickEventArgs e)
+        {
+            Window window = NUIApplication.GetDefaultWindow();
+            window.WindowSize = new Size(1920, 1080);
+            window.WindowPosition = new Position(0, 0);
+
+            window.Remove(BtnService);
+            window.Remove(BtnClient);
+            window.Remove(BtnScreensaverService);
+            window.Remove(BtnSoftkeyService);
+            window.Remove(BtnSoftkeyClient);
+            screensaverService = new Shell.ScreensaverService(tzShell, (IWindowProvider)window);
+
+            textScreensaverServiceTitle = new TextLabel($"Screen Saver");
+            textScreensaverServiceTitle.Position = new Position(0, 0);
+            textScreensaverServiceTitle.HorizontalAlignment = HorizontalAlignment.Center;
+            textScreensaverServiceTitle.VerticalAlignment = VerticalAlignment.Center;
+            textScreensaverServiceTitle.TextColor = Color.Blue;
+            textScreensaverServiceTitle.PointSize = 12.0f;
+            textScreensaverServiceTitle.HeightResizePolicy = ResizePolicyType.FillToParent;
+            textScreensaverServiceTitle.WidthResizePolicy = ResizePolicyType.FillToParent;
+            window.Add(textScreensaverServiceTitle);
         }
 
         static void Main(string[] args)

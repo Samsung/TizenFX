@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents a result of <see cref="PersonRecognizer"/> instances.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class PersonRecognitionInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonRecognitionInfo"/> class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public PersonRecognitionInfo(Rectangle area, int label, double confidence)
         {
             Area = area;
@@ -37,18 +41,21 @@ namespace Tizen.Multimedia.Vision
         /// Gets the rectangular location where person face was recognized.
         /// </summary>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Rectangle Area { get; }
 
         /// <summary>
         /// Gets the label that correspond to the recognized person.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int Label { get; }
 
         /// <summary>
         /// Gets the confidence value that correspond to the recognized person.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double Confidence { get; }
     }
 }

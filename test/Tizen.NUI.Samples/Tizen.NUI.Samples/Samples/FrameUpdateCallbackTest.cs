@@ -65,6 +65,8 @@ namespace Tizen.NUI.Samples
         private const int DEFAULT_SPACE = 9;
         private const int DEVIDE_BAR_SIZE = 4;
 
+        private const float DEGREE_PER_POSITION = 0.05f;
+
         private const uint FRAME_UPDATE_CALLBACK_VERSION = 1u;
 
         public class FrameUpdateCallback : FrameUpdateCallbackInterface
@@ -268,17 +270,20 @@ namespace Tizen.NUI.Samples
 
                     // check views in screen are still moving or stopped.
                     float newPosition = viewPosition[i] + movement - lastMovement;
+                    float positionDiff = 0.0f;
                     if (i >= leftIndex && i <= rightIndex)
                     {
                         Vector3 previousPosition = new Vector3();
                         GetPosition(viewId[i], previousPosition);
-                        if (Math.Abs(previousPosition.X - newPosition) >= 1.0f)
+                        positionDiff = newPosition - previousPosition.X;
+                        if (Math.Abs(positionDiff) >= 1.0f)
                         {
                             isStillMoving = false;
                         }
                     }
-                    // update new position.
+                    // update new position and rotiation
                     SetPosition(viewId[i], new Vector3(newPosition, 0.0f, 0.0f));
+                    SetOrientation(viewId[i], new Rotation(new Radian(new Degree(positionDiff * DEGREE_PER_POSITION)), Vector3.ZAxis));
                     positionChanged = true;
                 }
                 isResetTouchedViewPossible = isStillMoving;

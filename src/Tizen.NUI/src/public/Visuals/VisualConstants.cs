@@ -1032,6 +1032,20 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int SynchronousSizing = NDalic.ImageVisualOrientationCorrection + 18;
+
+        /// <summary>
+        /// @brief Specifies a speed factor for the animated image frame.
+        /// @details Name "frameSpeedFactor", type Property::FLOAT.
+        ///
+        /// The speed factor is a multiplier of the normal velocity of the animation. Values between [0,1] will
+        /// slow down the animation and values above one will speed up the animation.
+        ///
+        /// @note The range of this value is clamped between [0.01f ~ 100.0f].
+        /// It might be supported out of bound, and negative value in future.
+        /// @note Used by the ImageVisual and AnimatedVectorImageVisual. The default is 1.0f.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int FrameSpeedFactor = NDalic.ImageVisualOrientationCorrection + 19;
     }
 
     /// <summary>

@@ -105,6 +105,27 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetSkyboxOrientation")]
             public static extern global::System.IntPtr GetSkyboxOrientation(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_StartCameraTransition_Index")]
+            public static extern void StartCameraTransitionByIndex(global::System.Runtime.InteropServices.HandleRef sceneView, uint index, int durationMilliSeconds, global::System.Runtime.InteropServices.HandleRef alphaFunction);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_StartCameraTransition_Name")]
+            public static extern void StartCameraTransitionByName(global::System.Runtime.InteropServices.HandleRef sceneView, string name, int durationMilliSeconds, global::System.Runtime.InteropServices.HandleRef alphaFunction);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CameraTransitionFinishedSignal_Connect")]
+            public static extern void CameraTransitionFinishedConnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CameraTransitionFinishedSignal_Disconnect")]
+            public static extern void CameraTransitionFinishedDisconnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Capture")]
+            public static extern int Capture(global::System.Runtime.InteropServices.HandleRef sceneView, global::System.Runtime.InteropServices.HandleRef camera, global::System.Runtime.InteropServices.HandleRef size);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CaptureFinishedSignal_Connect")]
+            public static extern void CaptureFinishedConnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CaptureFinishedSignal_Disconnect")]
+            public static extern void CaptureFinishedDisconnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
         }
     }
 }

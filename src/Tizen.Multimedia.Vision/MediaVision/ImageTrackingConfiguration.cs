@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class ImageTrackingConfiguration : ImageRecognitionConfiguration
     {
         private const string KeyHistoryAmount = "MV_IMAGE_TRACKING_HISTORY_AMOUNT";
@@ -36,36 +37,42 @@ namespace Tizen.Multimedia.Vision
         /// A read-only field that represents the default value of <see cref="HistoryAmount"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly int DefaultHistoryAmount = 3;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="ExpectedOffset"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultExpectedOffset = 0;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="IsStabilizationEnabled"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly bool DefaultStabilizationEnabled = true;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="StabilizationTolerantShift"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultStabilizationTolerantShift = 0.00006;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="StabilizationSpeed"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultStabilizationSpeed = 0.3;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="StabilizationAcceleration"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultStabilizationAcceleration = 0.1;
 
         /// <summary>
@@ -73,6 +80,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public ImageTrackingConfiguration()
         {
         }
@@ -87,6 +95,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int HistoryAmount
         {
             get
@@ -113,6 +122,7 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double ExpectedOffset
         {
             get
@@ -140,6 +150,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double StabilizationAcceleration
         {
             get
@@ -166,6 +177,7 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double StabilizationSpeed
         {
             get
@@ -191,6 +203,7 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double StabilizationTolerantShift
         {
             get
@@ -212,6 +225,7 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public bool IsStabilizationEnabled
         {
             get

@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class ImageFillConfiguration : EngineConfiguration
     {
         private const string KeyScaleFactor = "MV_IMAGE_RECOGNITION_OBJECT_SCALE_FACTOR";
@@ -32,12 +33,14 @@ namespace Tizen.Multimedia.Vision
         /// A read-only field that represents the default value of <see cref="ObjectScaleFactor"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly double DefaultScaleFactor = 1.2;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="ObjectMaxKeyPoints"/>.
         /// </summary>
         /// <since_tizen> 4</since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static readonly int DefaultMaxKeypoints = 1000;
 
         /// <summary>
@@ -45,6 +48,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public ImageFillConfiguration() : base("image_recognition")
         {
         }
@@ -56,6 +60,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageFillConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double ObjectScaleFactor
         {
             get
@@ -76,6 +81,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageFillConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int ObjectMaxKeyPoints
         {
             get

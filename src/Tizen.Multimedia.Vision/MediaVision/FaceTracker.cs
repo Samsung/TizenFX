@@ -25,6 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to track faces on image sources.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public static class FaceTracker
     {
 
@@ -51,6 +52,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException"><paramref name="trackingModel"/> is not prepared.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public static async Task<FaceTrackingResult> TrackAsync(MediaVisionSource source,
             FaceTrackingModel trackingModel, bool doLearn)
         {
