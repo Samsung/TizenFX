@@ -32,6 +32,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New_3")]
             public static extern global::System.IntPtr New3(int jarg1, string[] jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_New_4")]
+            public static extern global::System.IntPtr New4(int argc, string[] argv, int type);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetContext")]
             public static extern global::System.IntPtr GetWebContext();
 
