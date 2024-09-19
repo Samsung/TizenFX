@@ -159,6 +159,8 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 12 </since_tizen>
         public InferenceFaceDetectorResult GetRequestResults()
         {
+            ValidateNotDisposed();
+
             return new InferenceFaceDetectorResult(_handle);
         }
 
