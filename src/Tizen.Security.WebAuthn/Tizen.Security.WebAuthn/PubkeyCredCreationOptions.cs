@@ -75,16 +75,16 @@ namespace Tizen.Security.WebAuthn
         /// If not null, the state assisted transaction will start.
         /// </param>
         public PubkeyCredCreationOptions(
-            RpEntity rp,
+            RelyingPartyEntity rp,
             UserEntity user,
             IEnumerable<PubkeyCredParam> pubkeyCredParams,
             ulong timeout = 0,
             IEnumerable<PubkeyCredDescriptor> excludeCredentials = null,
-            AuthenticationSelCri authenticatorSelection = null,
+            AuthenticationSelectionCriteria authenticatorSelection = null,
             IEnumerable<PubkeyCredHint> hints = null,
             AttestationPref attestation = AttestationPref.None,
             IEnumerable<byte[]> attestationFormats = null,
-            IEnumerable<AuthenticationExt> extensions = null,
+            IEnumerable<AuthenticationExtension> extensions = null,
             HybridLinkedData linkedDevice = null)
         {
             Rp = rp;
@@ -103,7 +103,7 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Contains a name and an identifier for the Relying Party responsible for the request.
         /// </summary>
-        public RpEntity Rp { get; init; }
+        public RelyingPartyEntity Rp { get; init; }
         /// <summary>
         /// Contains names and an identifier for the user account performing the registration.
         /// </summary>
@@ -127,7 +127,7 @@ namespace Tizen.Security.WebAuthn
         /// Specifies capabilities and settings that the authenticator MUST or SHOULD satisfy
         /// to participate in this operation.
         /// </summary>
-        public AuthenticationSelCri AuthenticatorSelection { get; init; }
+        public AuthenticationSelectionCriteria AuthenticatorSelection { get; init; }
         /// <summary>
         /// Contains zero or more elements from <see cref="PubkeyCredHint"/> to
         /// guide the user agent in interacting with the user.
@@ -144,7 +144,7 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Client extension inputs requesting additional processing by the client and authenticator.
         /// </summary>
-        public IEnumerable<AuthenticationExt> Extensions { get; init; }
+        public IEnumerable<AuthenticationExtension> Extensions { get; init; }
         /// <summary>
         /// Linked Device Connection Info. If not null, the state assisted transaction will start.
         /// </summary>

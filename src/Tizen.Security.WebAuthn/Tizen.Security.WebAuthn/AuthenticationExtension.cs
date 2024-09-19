@@ -23,10 +23,10 @@ namespace Tizen.Security.WebAuthn
     /// Authenticator extension.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class AuthenticationExt
+    public class AuthenticationExtension
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthenticationExt"/> class.
+        /// Initializes a new instance of the <see cref="AuthenticationExtension"/> class.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <param name="extensionId">
@@ -34,13 +34,13 @@ namespace Tizen.Security.WebAuthn
         /// https://www.iana.org/assignments/webauthn/webauthn.xhtml#webauthn-extension-ids
         /// </param>
         /// <param name="extensionValue">Extension value.</param>
-        public AuthenticationExt(byte[] extensionId, byte[] extensionValue)
+        public AuthenticationExtension(byte[] extensionId, byte[] extensionValue)
         {
             ExtensionId = extensionId;
             ExtensionValue = extensionValue;
         }
 
-        internal AuthenticationExt(WauthnAuthenticationExt ext)
+        internal AuthenticationExtension(WauthnAuthenticationExt ext)
         {
             ExtensionId = NullSafeMarshal.PtrToArray(ext.extensionId);
             ExtensionValue = NullSafeMarshal.PtrToArray(ext.extensionValue);

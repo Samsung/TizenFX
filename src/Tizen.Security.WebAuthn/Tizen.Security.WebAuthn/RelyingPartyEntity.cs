@@ -24,15 +24,15 @@ namespace Tizen.Security.WebAuthn
     /// https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialrpentity
     /// </remarks>
     /// <since_tizen> 12 </since_tizen>
-    public class RpEntity
+    public class RelyingPartyEntity
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RpEntity"/> class.
+        /// Initializes a new instance of the <see cref="RelyingPartyEntity"/> class.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <param name="name">The name of RP.</param>
         /// <param name="id">The RPID.</param>
-        public RpEntity(string name, string id)
+        public RelyingPartyEntity(string name, string id)
         {
             Name = name;
             Id = id;

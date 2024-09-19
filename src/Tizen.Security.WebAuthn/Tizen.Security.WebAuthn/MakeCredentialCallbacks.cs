@@ -15,7 +15,6 @@
  */
 
 using System;
-using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {
@@ -23,10 +22,10 @@ namespace Tizen.Security.WebAuthn
     /// Callback function list used to make credential with <see cref="Authenticator.MakeCredential"/>.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class McCallbacks
+    public class MakeCredentialCallbacks
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="McCallbacks"/> class.
+        /// Initializes a new instance of the <see cref="MakeCredentialCallbacks"/> class.
         /// </summary>
         /// <remarks>
         /// Provided callbacks MUST NOT THROW.
@@ -44,8 +43,8 @@ namespace Tizen.Security.WebAuthn
         /// then this callback function won't be invoked.
         /// </param>
         /// <param name="responseCallback">Callback function for getting the final response.
-        /// Invoked when the response for the MakeCredential request needs to be returned.
-        /// The result of the MakeCredential request may be one of the following:
+        /// Invoked when the response for the <see cref="Authenticator.MakeCredential"/> request
+        /// needs to be returned. The result of this request may be one of the following:
         ///  * <see cref="WauthnError.None"/> if the request is completed well,
         ///  * <see cref="WauthnError.Canceled"/> if the request is cancelled by a Cancel() request.
         ///  * <see cref="WauthnError.InvalidState"/> if the server entered invalid state. Known causes:
@@ -56,7 +55,7 @@ namespace Tizen.Security.WebAuthn
         ///  *   lack of push notifications support (e.g. missing Google Account).
         /// </param>
         /// <param name="linkedDataCallback">
-        /// Callback function for getting the updated linked device data.
+        /// Callback function for getting the updated linked device data. May be called multiple times.
         /// Invoked when the response for the get assertion request needs to be returned.
         /// The result of the MakeCredential request may be one of the following:
         ///  * <see cref="WauthnError.None"/> if the request is completed well,
@@ -69,9 +68,9 @@ namespace Tizen.Security.WebAuthn
         ///  *   lack of push notifications support (e.g. missing Google Account).
         /// </param>
         /// <param name="userData">User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.</param>
-        public McCallbacks(
+        public MakeCredentialCallbacks(
             Action<string, object> qrcodeCallback,
-            Action<PubkeyCredentialAttestation, WauthnError, object> responseCallback,
+            Action<PubkeyCredAttestation, WauthnError, object> responseCallback,
             Action<HybridLinkedData, WauthnError, object> linkedDataCallback,
             object userData)
         {
@@ -88,7 +87,7 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Callback function for getting the final response.
         /// </summary>
-        public Action<PubkeyCredentialAttestation, WauthnError, object> ResponseCallback { get; init; }
+        public Action<PubkeyCredAttestation, WauthnError, object> ResponseCallback { get; init; }
         /// <summary>
         /// Callback function for getting the updated linked device data.
         /// </summary>

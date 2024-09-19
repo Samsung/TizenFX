@@ -20,17 +20,17 @@ namespace Tizen.Security.WebAuthn
     /// Authenticator selection criteria.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class AuthenticationSelCri
+    public class AuthenticationSelectionCriteria
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthenticationSelCri"/> class.
+        /// Initializes a new instance of the <see cref="AuthenticationSelectionCriteria"/> class.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <param name="attachment">Authenticator attachment modality.</param>
         /// <param name="residentKey">Specifies the extent to which the Relying Party desires to create a client-side discoverable credential.</param>
         /// <param name="requireResidentKey">Relying Parties SHOULD set it to true if, and only if, residentKey is set to required.</param>
         /// <param name="userVerification">Specifies the Relying Party's requirements regarding user verification.</param>
-        public AuthenticationSelCri(
+        public AuthenticationSelectionCriteria(
             AuthenticatorAttachment attachment,
             ResidentKeyRequirement residentKey,
             bool requireResidentKey,

@@ -29,7 +29,7 @@ namespace Tizen.Security.WebAuthn
     public class UserEntity
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RpEntity"/> class.
+        /// Initializes a new instance of the <see cref="RelyingPartyEntity"/> class.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <param name="name">A human-palatable name for the entity.</param>

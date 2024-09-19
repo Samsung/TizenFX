@@ -26,7 +26,7 @@ namespace Tizen.Security.WebAuthn
     /// The linked device data is used for state assisted transaction.
     /// From the successful QR initiated transaction, the linked device data
     /// might be returned from an authenticator to a webauthn client
-    /// via <see cref="PubkeyCredentialAttestation"/> or <see cref="PubkeyCredentialAssertion"/>.
+    /// via <see cref="PubkeyCredAttestation"/> or <see cref="PubkeyCredAssertion"/>.
     /// Then the client can store the linked device data and use it in the next call
     /// for <see cref="PubkeyCredCreationOptions"/> or <see cref="PubkeyCredRequestOptions"/>.
     /// Then the stated assisted transaction will start instead of QR initiated transaction.
@@ -44,6 +44,10 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Initializes a new instance of the <see cref="HybridLinkedData"/> class.
         /// </summary>
+        /// <remarks>
+        /// More information on the CBOR format can be found in the following specification:
+        /// https://www.rfc-editor.org/rfc/rfc8949.html
+        /// </remarks>
         /// <param name="contactId">CBOR:"1".</param>
         /// <param name="linkId">CBOR:"2".</param>
         /// <param name="linkSecret">CBOR:"3".</param>

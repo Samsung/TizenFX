@@ -188,7 +188,7 @@ namespace Tizen.Security.WebAuthn
                 _linkedDeviceUnmanaged);
         }
 
-        private static void CopyRp(RpEntity rp)
+        private static void CopyRp(RelyingPartyEntity rp)
         {
             _rpNameUnmanaged = new UnmanagedMemory(rp.Name);
             _rpIdUnmanaged = new UnmanagedMemory(rp.Id);
@@ -239,7 +239,7 @@ namespace Tizen.Security.WebAuthn
             _credentialsUnmanaged = new UnmanagedMemory(new WauthnPubkeyCredDescriptors((nuint)credentialsCount, _credentialsDescriptorsUnmanaged));
         }
 
-        private static void CopyAuthenticatorSelection(AuthenticationSelCri selection)
+        private static void CopyAuthenticatorSelection(AuthenticationSelectionCriteria selection)
         {
             if (selection is null)
                 return;
@@ -283,7 +283,7 @@ namespace Tizen.Security.WebAuthn
             _attestationFormatsUnmanaged = new UnmanagedMemory(new WauthnAttestationFormats((nuint)attestationFormatsCount, _attestationFormatsArrayUnmanaged));
         }
 
-        private static void CopyExtensions(IEnumerable<AuthenticationExt> extensions)
+        private static void CopyExtensions(IEnumerable<AuthenticationExtension> extensions)
         {
             if (extensions is null || !extensions.Any())
                 return;
@@ -297,7 +297,7 @@ namespace Tizen.Security.WebAuthn
 
             for (int i = 0; i < extensionCount; i++)
             {
-                AuthenticationExt ext = extensions.ElementAt(i);
+                AuthenticationExtension ext = extensions.ElementAt(i);
                 _extensionIdUnmanagedDataArray[i] = UnmanagedMemory.PinArray(ext.ExtensionId);
                 var extensionIdUnmanagedConstBuffer = new UnmanagedMemory(new WauthnConstBuffer(_extensionIdUnmanagedDataArray[i], (nuint)ext.ExtensionId.Length));
                 _extensionIdUnmanagedConstBufferArray[i] = extensionIdUnmanagedConstBuffer;

@@ -15,18 +15,17 @@
  */
 
 using System;
-using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// Callback function list used to get assertion.
+    /// Callback function list used to get assertion with <see cref="Authenticator.GetAssertion"/>.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public class GaCallbacks
+    public class GetAssertionCallbacks
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GaCallbacks"/> class.
+        /// Initializes a new instance of the <see cref="GetAssertionCallbacks"/> class.
         /// </summary>
         /// <remarks>
         /// Provided callbacks MUST NOT THROW.
@@ -39,7 +38,7 @@ namespace Tizen.Security.WebAuthn
         /// https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-qr-initiated.
         /// The qr_contents is encoded like "FIDO:/0254318383..........7406596245".
         /// The image to be displayed shall be created from qr_contents
-        /// with media vision API(mv_barcode_generate_image()).
+        /// with media vision API (<see cref="Tizen.Multimedia.Vision.BarcodeGenerator"/>).
         /// If the request does not need to display a QR code
         /// then this callback function won't be invoked.
         /// </param>
@@ -56,9 +55,9 @@ namespace Tizen.Security.WebAuthn
         ///  *   lack of push notifications support (e.g. missing Google Account).
         /// </param>
         /// <param name="linkedDataCallback">
-        /// Callback function for getting the updated linked device data.
-        /// Invoked when the response for the get assertion request needs to be returned.
-        /// The result of the MakeCredential request may be one of the following:
+        /// Callback function for getting the updated linked device data. May be called multiple times.
+        /// Invoked when the response for the <see cref="Authenticator.GetAssertion"/> request
+        /// needs to be returned. The result of this request may be one of the following:
         ///  * <see cref="WauthnError.None"/> if the request is completed well,
         ///  * <see cref="WauthnError.Canceled"/> if the request is cancelled by a Cancel() request.
         ///  * <see cref="WauthnError.InvalidState"/> if the server entered invalid state. Known causes:
@@ -69,9 +68,9 @@ namespace Tizen.Security.WebAuthn
         ///  *   lack of push notifications support (e.g. missing Google Account).
         /// </param>
         /// <param name="userData">User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.</param>
-        public GaCallbacks(
+        public GetAssertionCallbacks(
             Action<string, object> qrcodeCallback,
-            Action<PubkeyCredentialAssertion, WauthnError, object> responseCallback,
+            Action<PubkeyCredAssertion, WauthnError, object> responseCallback,
             Action<HybridLinkedData, WauthnError, object> linkedDataCallback,
             object userData)
         {
@@ -88,7 +87,7 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Callback function for getting the final response.
         /// </summary>
-        public Action<PubkeyCredentialAssertion, WauthnError, object> ResponseCallback { get; init; }
+        public Action<PubkeyCredAssertion, WauthnError, object> ResponseCallback { get; init; }
         /// <summary>
         /// Callback function for getting the updated linked device data.
         /// </summary>

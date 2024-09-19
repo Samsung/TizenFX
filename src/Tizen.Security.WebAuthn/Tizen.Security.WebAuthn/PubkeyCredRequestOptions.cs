@@ -76,7 +76,7 @@ namespace Tizen.Security.WebAuthn
             IEnumerable<PubkeyCredHint> hints = null,
             AttestationPref attestation = AttestationPref.None,
             IEnumerable<byte[]> attestationFormats = null,
-            IEnumerable<AuthenticationExt> extensions = null,
+            IEnumerable<AuthenticationExtension> extensions = null,
             HybridLinkedData linkedDevice = null)
         {
             Timeout = timeout;
@@ -124,7 +124,7 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Client extension inputs requesting additional processing by the client and authenticator.
         /// </summary>
-        public IEnumerable<AuthenticationExt> Extensions { get; init; }
+        public IEnumerable<AuthenticationExtension> Extensions { get; init; }
         /// <summary>
         /// Linked Device Connection Info. If not null, the state assisted transaction will start.
         /// </summary>

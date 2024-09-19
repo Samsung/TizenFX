@@ -22,37 +22,37 @@ using static Interop;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// publickey_credential response for GetAssertion().
+    /// Public key credential response for <see cref="Authenticator.MakeCredential"/>.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
     /// https://www.w3.org/TR/webauthn-3/#iface-pkcredential
-    /// https://www.w3.org/TR/webauthn-3/#sctn-credentialrequestoptions-extension
+    /// https://www.w3.org/TR/webauthn-3/#sctn-credentialcreationoptions-extension
     /// </remarks>
     /// <since_tizen> 12 </since_tizen>
-    public class PubkeyCredentialAssertion
+    public class PubkeyCredAttestation
     {
-        internal PubkeyCredentialAssertion(WauthnPubkeyCredentialAssertion assertion)
+        internal PubkeyCredAttestation(WauthnPubkeyCredentialAttestation attestation)
         {
-            Id = NullSafeMarshal.PtrToArray(assertion.id);
-            Type = assertion.type;
-            RawId = NullSafeMarshal.PtrToArray(assertion.rawId);
-            Response = assertion.response != IntPtr.Zero ? new AuthenticatorAssertionResponse(
-                Marshal.PtrToStructure<WauthnAuthenticatorAssertionResponse>(assertion.response)) :
+            Id = NullSafeMarshal.PtrToArray(attestation.id);
+            Type = attestation.type;
+            RawId = NullSafeMarshal.PtrToArray(attestation.rawId);
+            Response = attestation.response != IntPtr.Zero ?
+                new AuthenticatorAttestationResponse(Marshal.PtrToStructure<WauthnAuthenticatorAttestationResponse>(attestation.response)) :
                 null;
-            AuthenticatorAttachment = assertion.authenticatorAttachment;
+            AuthenticatorAttachment = attestation.authenticatorAttachment;
 
-            if (assertion.extensions != IntPtr.Zero)
+            if (attestation.extensions != IntPtr.Zero)
             {
-                var wauthnExts = Marshal.PtrToStructure<WauthnAuthenticationExts>(assertion.extensions);
-                var extensionsArray = new AuthenticationExt[wauthnExts.size];
+                var wauthnExts = Marshal.PtrToStructure<WauthnAuthenticationExts>(attestation.extensions);
+                var extensionsArray = new AuthenticationExtension[wauthnExts.size];
                 unsafe
                 {
                     var extPtr = (WauthnAuthenticationExt*)wauthnExts.descriptors;
                     for (int i = 0; i < (int)wauthnExts.size; i++)
                     {
                         var wauthnExt = Marshal.PtrToStructure<WauthnAuthenticationExt>(new IntPtr(extPtr + i * sizeof(WauthnAuthenticationExt)));
-                        extensionsArray[i] = new AuthenticationExt(wauthnExt);
+                        extensionsArray[i] = new AuthenticationExtension(wauthnExt);
                     }
                 }
                 Extensions = extensionsArray;
@@ -62,8 +62,8 @@ namespace Tizen.Security.WebAuthn
                 Extensions = null;
             }
 
-            LinkedDevice = assertion.linkedDevice != IntPtr.Zero ?
-                new HybridLinkedData(Marshal.PtrToStructure<WauthnHybridLinkedData>(assertion.linkedDevice)) :
+            LinkedDevice = attestation.linkedDevice != IntPtr.Zero ?
+                new HybridLinkedData(Marshal.PtrToStructure<WauthnHybridLinkedData>(attestation.linkedDevice)) :
                 null;
         }
 
@@ -82,19 +82,19 @@ namespace Tizen.Security.WebAuthn
         /// <summary>
         /// Authenticator's response.
         /// </summary>
-        public AuthenticatorAssertionResponse Response { get; init; }
+        public AuthenticatorAttestationResponse Response { get; init; }
         /// <summary>
         /// Authenticator attachment modality.
         /// </summary>
         public AuthenticatorAttachment AuthenticatorAttachment { get; init; }
         /// <summary>
         /// The results of processing client extensions requested by the Relying Party
-        /// upon the Relying Party's invocation of GetAssertion(). (optional)
+        /// upon the Relying Party's invocation of MakeCredential(). (optional)
         /// </summary>
-        public IEnumerable<AuthenticationExt> Extensions { get; init; }
+        public IEnumerable<AuthenticationExtension> Extensions { get; init; }
         /// <summary>
         /// Linked Device Connection Info (optional).
-        /// If not null, the caller has to store this value and use this
+        /// If not null, the caller has to store this value and use thi
         /// in the next transaction to invoke state assisted transaction.
         /// </summary>
         public HybridLinkedData LinkedDevice { get; init; }

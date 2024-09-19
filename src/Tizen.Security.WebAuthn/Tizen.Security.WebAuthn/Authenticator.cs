@@ -29,6 +29,7 @@ namespace Tizen.Security.WebAuthn
     /// <since_tizen> 12 </since_tizen>
     public static class Authenticator
     {
+        private const int API_VERSION_NUMBER = 0x00000001;
         private static bool _apiVersionSet = false;
         private static bool _busy = false;
         private static object _userData = null;
@@ -40,21 +41,6 @@ namespace Tizen.Security.WebAuthn
         private static WauthnGaCallbacks _wauthnGaCallbacks;
 
         #region Public API
-        /// <summary>
-        /// Sets API version that the caller uses.
-        /// </summary>
-        /// <since_tizen> 12 </since_tizen>
-        /// <remarks>This method must be called before other methods are called.</remarks>
-        /// <feature>http://tizen.org/feature/security.webauthn</feature>
-        /// <param name="apiVersionNumber">API version number to set. Use <see cref="ApiVersionNumber"/> as an input.</param>
-        /// <exception cref="NotSupportedException">The specified API version or required feature is not supported.</exception>
-        public static void SetApiVersion(int apiVersionNumber)
-        {
-            int ret = Libwebauthn.SetApiVersion(apiVersionNumber);
-            CheckErrNThrow(ret, "Set API version");
-            _apiVersionSet = true;
-        }
-
         /// <summary>
         /// Gets information on authenticator types that the client platform supports.
         /// </summary>
@@ -97,7 +83,7 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="ArgumentException">Input parameter is invalid.</exception>
         /// <exception cref="InvalidOperationException">Operation invalid in current state.</exception>
         /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
-        public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, McCallbacks callbacks)
+        public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, MakeCredentialCallbacks callbacks)
         {
             CheckPreconditions();
             try
@@ -157,7 +143,7 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="ArgumentException">Input parameter is invalid.</exception>
         /// <exception cref="InvalidOperationException">Operation invalid in current state.</exception>
         /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
-        public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GaCallbacks callbacks)
+        public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GetAssertionCallbacks callbacks)
         {
             CheckPreconditions();
             try
@@ -203,7 +189,13 @@ namespace Tizen.Security.WebAuthn
         #endregion
         #region Helper methods
 
-        private static void WrapMcCallbacks(McCallbacks callbacks)
+        private static void SetApiVersion(int apiVersionNumber)
+        {
+            int ret = Libwebauthn.SetApiVersion(apiVersionNumber);
+            CheckErrNThrow(ret, "Set API version");
+            _apiVersionSet = true;
+        }
+        private static void WrapMcCallbacks(MakeCredentialCallbacks callbacks)
         {
             _userData = callbacks.UserData;
 
@@ -214,7 +206,7 @@ namespace Tizen.Security.WebAuthn
 
             void onResponseWrapper(WauthnPubkeyCredentialAttestation pubkeyCred, WauthnError result, IntPtr _)
             {
-                PubkeyCredentialAttestation pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
+                PubkeyCredAttestation pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
                 callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
 
                 if (result != WauthnError.None)
@@ -237,7 +229,7 @@ namespace Tizen.Security.WebAuthn
             _wauthnMcCallbacks = new WauthnMcCallbacks(_qrCodeCallback, _mcResponseCallback, _linkedDataCallback);
         }
 
-        private static void WrapGaCallbacks(GaCallbacks callbacks)
+        private static void WrapGaCallbacks(GetAssertionCallbacks callbacks)
         {
             _userData = callbacks.UserData;
 
@@ -248,7 +240,7 @@ namespace Tizen.Security.WebAuthn
 
             void onResponseWrapper(WauthnPubkeyCredentialAssertion pubkeyCred, WauthnError result, IntPtr _)
             {
-                PubkeyCredentialAssertion pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
+                PubkeyCredAssertion pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
                 callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
 
                 if (result != WauthnError.None)
@@ -273,7 +265,7 @@ namespace Tizen.Security.WebAuthn
         private static void CheckPreconditions()
         {
             if (!_apiVersionSet)
-                throw new InvalidOperationException("API version not set");
+                SetApiVersion(API_VERSION_NUMBER);
             if (_busy)
                 throw new InvalidOperationException("Authenticator busy");
 
@@ -287,11 +279,5 @@ namespace Tizen.Security.WebAuthn
         }
 
         #endregion
-
-        /// <summary>
-        /// Current API version.
-        /// </summary>
-        /// <since_tizen> 12 </since_tizen>
-        public static int ApiVersionNumber { get; } = 0x00000001;
     }
 }
