@@ -46,11 +46,11 @@ namespace Tizen.Core
         /// Initializes the Task class.
         /// </summary>
         /// <param name="id">The ID of the task.</param>
-        /// <exception cref="ArgumentException">Thrown when the id argument is invalid or already exists.</exception>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="id"/> is invalid or a Task with that ID already exists.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <remarks>
         /// The constructor throws an exception when the id already exists.
-        /// By default, the task creates a thread. However, if the id is main, it works without creating a thread. 
+        /// By default, the task creates a thread. However, if the <paramref name="id"/> is "main", a thread is not created.
         /// The 'main' task will be operated in the main thread.
         /// </remarks>
         /// <example>
@@ -95,10 +95,9 @@ namespace Tizen.Core
         /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <remarks>
-        /// The action will be stored in the internal map using its unique identifier.
-        /// Then it will be added as an idle job to the main loop of the task..
         /// The action callback will be executed by the main loop of the task.
         /// If there was any error during this process, an appropriate exception will be thrown.
+        /// In order to prevent the <paramref name="action"/> from throwing an exception, you should add a try/catch block. If not, it may cause the application to crash or terminate.
         /// </remarks>
         /// <example>
         /// <code>
@@ -141,6 +140,7 @@ namespace Tizen.Core
         /// The task will be stored in the internal map using its unique identifier.
         /// Then it will be added as an idle job to the main loop of the task.
         /// If there was any error during this process, the task will be removed from the map and an appropriate exception will be thrown.
+        /// In order to prevent the <paramref name="task"/> from throwing an exception, you should add a try/catch block. If not, it may cause the application to crash or terminate.
         /// </remarks>
         /// <example>
         /// <code>
@@ -639,7 +639,7 @@ namespace Tizen.Core
         /// <remarks>
         /// This function can be called from any thread.
         /// It requests the task to finish the current iteration of its loop and stop running.
-        /// All pending events in the event queue will be processed before quitting. Once the task is quit, it cannot be restarted. 
+        /// All pending events in the event queue will be processed before quitting. Once the task quits, it's finished.
         /// To start another task, you need to create a new one and call the <see cref="Run"/> method on it.
         /// </remarks>
         /// <example>

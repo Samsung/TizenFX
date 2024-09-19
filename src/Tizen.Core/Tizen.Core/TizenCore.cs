@@ -78,11 +78,8 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finds the task instance from current thread.
+        /// Finds the task instance running in the thread of the caller or the "main" task.
         /// </summary>
-        /// <remarks>
-        /// If the current thread does not have the task, the method tries to find the 'main' task.
-        /// </remarks>
         /// <returns>On success the task instance, othwerwise null.</returns>
         /// <example>
         /// <code>
