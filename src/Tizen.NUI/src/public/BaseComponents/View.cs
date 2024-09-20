@@ -493,6 +493,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Creates a new instance of a view.
+        /// The default constructor for the View class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View() : this(ViewAccessibilityMode.Default)
@@ -505,7 +506,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(ViewStyle viewStyle) : this(Interop.View.New(), true, viewStyle)
         {
@@ -515,7 +516,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create a new instance of a View with setting the status of shown or hidden.
         /// </summary>
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(bool shown) : this(Interop.View.New(), true)
         {
@@ -571,7 +572,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LayoutSet
         {
@@ -586,7 +587,7 @@ namespace Tizen.NUI.BaseComponents
         /// Once a View has a Layout set then any children added to Views from then on will receive
         /// automatic Layouts.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool LayoutingDisabled { get; set; } = true;
 
@@ -638,7 +639,7 @@ namespace Tizen.NUI.BaseComponents
         /// please set <see cref="EnableControlState"/> to true.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when set null. </exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlState ControlState
         {
@@ -766,7 +767,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets / Sets the status of whether the view is excluded from its parent's layouting or not.
         /// </summary>
-        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ExcludeLayouting
         {
@@ -980,7 +981,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Get or set the border of background image.
         /// </summary>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle BackgroundImageBorder
         {
@@ -1010,7 +1011,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The background of view.
+        /// Gets or sets the background of the view.
+        /// This property value is the PropertyMap representing the background.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Background
@@ -1398,7 +1400,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The current state of the view.
+        /// Gets or sets the current state of the view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public States State
@@ -1488,6 +1490,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Displays a tooltip
+        /// This property allows setting the tooltip properties such as text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Tooltip
@@ -3492,8 +3495,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the view's ID.
-        /// Read-only
+        /// Gets The unique identifier of the view. (Read-only)
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint ID
@@ -3999,7 +4001,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///  Gets or sets the status of whether the width size is dependent on the height size.
+        /// Gets or sets the status of whether the width size is dependent on the height size.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool WidthForHeight
@@ -5219,7 +5221,7 @@ namespace Tizen.NUI.BaseComponents
         ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
         ///  Note: For Normal Quad images only.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BackgroundImageSynchronosLoading
         {
@@ -5274,7 +5276,7 @@ namespace Tizen.NUI.BaseComponents
         ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
         ///  Note: For Normal Quad images only.
         /// </summary>
-        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BackgroundImageSynchronousLoading
         {
@@ -5336,7 +5338,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 UpdateAreaHint
         {
@@ -5638,7 +5640,7 @@ namespace Tizen.NUI.BaseComponents
         /// Determines which blend equation will be used to render renderers of this actor.
         /// </summary>
         /// <returns>blend equation enum currently assigned</returns>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BlendEquationType BlendEquation
         {

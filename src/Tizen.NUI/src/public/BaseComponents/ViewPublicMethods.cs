@@ -303,6 +303,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Clears the background.
+        /// This method removes any background properties set on the view, such as color or image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void ClearBackground()
@@ -437,6 +438,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>Most resources are only loaded when the control is placed on the stage.
         /// </remarks>
+        /// <returns>True if all resources are ready, otherwise false.</returns>
         /// <since_tizen> 3 </since_tizen>
         public bool IsResourceReady()
         {
@@ -623,6 +625,11 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Adds a renderer to the view.
+        /// </summary>
+        /// <param name="renderer">The renderer to add.</param>
+        /// <returns>The index of the Renderer that was added to the view.</returns>
         /// <since_tizen> 3 </since_tizen>
         public uint AddRenderer(Renderer renderer)
         {
@@ -632,6 +639,14 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the renderer at the specified index.
+        /// </summary>
+        /// <param name="index">The index of the renderer to retrieve.</param>
+        /// <returns>A Renderer object at the specified index.</returns>
+        /// <remarks>
+        /// The index must be between 0 and GetRendererCount()-1
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Renderer GetRendererAt(uint index)
         {
@@ -649,6 +664,10 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// Removes the specified renderer from the view.
+        /// </summary>
+        /// <param name="renderer">The renderer to remove.</param>
         /// <since_tizen> 3 </since_tizen>
         public void RemoveRenderer(Renderer renderer)
         {
@@ -657,6 +676,10 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Removes a renderer at the specified index from the view.
+        /// </summary>
+        /// <param name="index">The index of the renderer to remove.</param>
         /// <since_tizen> 3 </since_tizen>
         public void RemoveRenderer(uint index)
         {
@@ -665,7 +688,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RotateBy(Degree angle, Vector3 axis)
         {
@@ -674,7 +697,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RotateBy(Radian angle, Vector3 axis)
         {
@@ -683,7 +706,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RotateBy(Rotation relativeRotation)
         {
@@ -692,7 +715,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScaleBy(Vector3 relativeScale)
         {
@@ -710,7 +733,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="up">The up vector after target look at. If it is null, up vector become +Y axis</param>
         /// <param name="localForward">The forward vector of view when it's orientation is not applied. If it is null, localForward vector become +Z axis</param>
         /// <param name="localUp">The up vector of view when it's orientation is not applied. If it is null, localUp vector become +Y axis</param>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LookAt(Vector3 target, Vector3 up = null, Vector3 localForward = null, Vector3 localUp = null)
         {
@@ -719,7 +742,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetColorMode(ColorMode colorMode)
         {
@@ -728,7 +751,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ObjectDump()
         {
