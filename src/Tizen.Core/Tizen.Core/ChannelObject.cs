@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 
 namespace Tizen.Core
 {
@@ -30,7 +31,7 @@ namespace Tizen.Core
         private bool _disposed = false;
         private static readonly ConcurrentDictionary<int, object> _dataMap = new ConcurrentDictionary<int, object>();
         private static readonly object _dataLock = new object();
-        private static int _dataId = 0;
+        private static int _dataId = 1;
 
         /// <summary>
         /// Constructor for creating a new channel object with specified ID and data.
@@ -109,8 +110,19 @@ namespace Tizen.Core
             set
             {
                 int id;
+                Interop.LibTizenCore.TizenCoreChannel.ObjectGetData(_handle, out IntPtr handle);
+                if (handle != IntPtr.Zero)
+                {
+                    id = (int)handle;
+                    _dataMap.TryRemove(id, out var _);
+                }
+
                 lock (_dataLock)
                 {
+                    if (_dataId + 1 < 0)
+                    {
+                        _dataId = 1;
+                    }
                     id = _dataId++;
                 }
                 _dataMap[id] = value;
