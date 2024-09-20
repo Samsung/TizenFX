@@ -567,6 +567,7 @@ namespace Tizen.Core
                         {
                             var eventArgs = new ChannelReceivedEventArgs(channelObject);
                             receiver.InvokeEventHandler(null, eventArgs);
+                            channelObject.IsUsed = true;
                         }
                     }
                 }
