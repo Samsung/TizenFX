@@ -68,6 +68,7 @@ namespace Tizen.Core
             using (var eventObject = new EventObject(eventData))
             {
                 EventReceived?.Invoke(this, new EventReceivedEventArgs(eventObject));
+                eventObject.Handle = IntPtr.Zero;
             }
             return true;
         }
