@@ -275,7 +275,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
         /// <summary>
-        /// Padding between cells.
+        /// Gets or sets the padding between cells in the TableView.
+        /// The padding vector specifying the horizontal and vertical padding.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 CellPadding
@@ -306,7 +307,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The number of layout rows.
+        /// This property allows setting the number of rows in the table view layout, which can affect how child views are arranged within the table.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap LayoutRows
@@ -337,7 +338,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The number of layout columns.
+        /// Gets or sets the number of layout columns.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap LayoutColumns
@@ -747,6 +748,7 @@ namespace Tizen.NUI.BaseComponents
 
             /// <summary>
             /// The default constructor.
+            /// Initializes the cell position with default values.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public CellPosition() : this(Interop.TableView.NewTableViewCellPosition(), true)
@@ -780,7 +782,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The index or position of a row.
+            /// Gets or sets the index or position of a row.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public uint RowIndex
@@ -795,7 +797,7 @@ namespace Tizen.NUI.BaseComponents
 
 
             /// <summary>
-            /// The index of a column.
+            /// Gets or sets the index of a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [Obsolete("Do not use this, that will be deprecated. Use ColumnIndex instead.")]
@@ -816,7 +818,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The index or position of a column.
+            ///  Gets or sets the index or position of a column.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public uint ColumnIndex
@@ -851,7 +853,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The span of a row.
+            /// Gets or sets the span of a row.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public uint RowSpan
@@ -865,7 +867,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The span of a column.
+            /// Gets or sets the span of a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             [Obsolete("Do not use this, that will be deprecated. Use ColumnSpan instead.")]
@@ -886,7 +888,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The span of a column.
+            /// Gets or sets the span of a column.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public uint ColumnSpan
