@@ -29,8 +29,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         private Color color; //The color value.
 
         /// <summary>
-        /// Initialize ColorStop.
+        /// Initializes a new instance of the ColorStop class with the specified offset and color.
         /// </summary>
+        /// <param name="offset">The offset at which the color stop applies.</param>
+        /// <param name="color">The color to apply at the specified offset.</param>
         /// <since_tizen> 9 </since_tizen>
         public ColorStop(float offset, Color color)
         {
@@ -39,7 +41,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// The relative position of the color. 
+        /// Gets or sets the relative position of the color stop along the gradient line.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public float Offset
@@ -55,7 +57,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// The color value.
+        /// Gets or sets the color value of the gradient stop.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Color Color
