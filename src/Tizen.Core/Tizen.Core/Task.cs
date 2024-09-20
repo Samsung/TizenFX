@@ -601,9 +601,17 @@ namespace Tizen.Core
                 task.Run();
                 return task;
             }
-            catch (Exception ex)
+            catch (ArgumentException)
             {
-                Log.Error("Exception occurs. message = " + ex.Message);
+                Log.Error("ArgumentException occurs");
+            }
+            catch (OutOfMemoryException)
+            {
+                Log.Error("OutOfMemoryException occurs");
+            }
+            catch (InvalidOperationException)
+            {
+                Log.Error("InvalidOperationException occurs");
             }
 
             return null;
