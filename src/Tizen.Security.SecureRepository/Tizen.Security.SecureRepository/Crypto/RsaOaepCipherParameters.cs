@@ -17,16 +17,16 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// A class for holding parameters for the RSA algorithm with the OAEP mode.
+    /// Holds parameters for the RSA algorithm with the OAEP mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class RsaOaepCipherParameters : CipherParameters
     {
         /// <summary>
-        /// A default constructor.
+        /// Initializes an instance of RsaOaepCipherParameters class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.RsaOaep.</remarks>
+        /// <remarks>CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.RsaOaep.</remarks>
         public RsaOaepCipherParameters() : base(CipherAlgorithmType.RsaOaep)
         {
         }

@@ -23,12 +23,15 @@ namespace Tizen.Security.SecureRepository.Crypto
     public enum CipherParameterName : int
     {
         /// <summary>
-        /// The Algorithm Type.
+        /// Algorithm Type.
         /// </summary>
         AlgorithmType = 0x01,
         /// <summary>
-        /// Initial Vector,  16B buffer (up to 2^64-1 bytes long in case of AES GCM).
+        /// Initial Vector.
         /// </summary>
+        /// <remarks>
+        /// 16B buffer (up to 2^64-1 bytes long in case of AES GCM).
+        /// </remarks>
         IV = 101,
         /// <summary>
         /// Integer - ctr length in bits.

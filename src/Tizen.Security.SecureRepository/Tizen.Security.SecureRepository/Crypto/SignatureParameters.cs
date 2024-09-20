@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// An abstract class for holding parameters for signing and verification.
+    /// Holds parameters for signing and verification.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     abstract public class SignatureParameters
@@ -28,8 +28,11 @@ namespace Tizen.Security.SecureRepository.Crypto
         private Dictionary<SignatureParameterName, int> _parameters;
 
         /// <summary>
-        /// The signature algorithm type.
+        /// Gets signature algorithm type.
         /// </summary>
+        /// <value>
+        /// Signature algorithm type.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public SignatureAlgorithmType SignatureAlgorithm
         {
@@ -37,8 +40,11 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// The hash algorithm used in signing anve verification.
+        /// Gets and sets hash algorithm.
         /// </summary>
+        /// <value>
+        /// Hash algorithm used in signing and verification.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public HashAlgorithm HashAlgorithm
         {
