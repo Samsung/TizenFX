@@ -55,12 +55,14 @@ namespace Tizen.Core
             Id = id;
             Data = data;
             IsUsed = false;
+            IsDestroyable = true;
         }
 
         internal ChannelObject(IntPtr handle)
         {
             _handle = handle;
             IsUsed = false;
+            IsDestroyable = true;
         }
 
         /// <summary>
@@ -128,6 +130,8 @@ namespace Tizen.Core
             }
         }
 
+        internal bool IsDestroyable { set; get; }
+
         internal bool IsUsed { set; get; }
 
         internal IntPtr Handle { get { return _handle; } }
@@ -152,7 +156,10 @@ namespace Tizen.Core
                             _dataMap.TryRemove(id, out var data);
                         }
 
-                        Interop.LibTizenCore.TizenCoreChannel.ObjectDestroy(_handle);
+                        if (IsDestroyable)
+                        {
+                            Interop.LibTizenCore.TizenCoreChannel.ObjectDestroy(_handle);
+                        }
                         _handle = IntPtr.Zero;
                     }
                 }
