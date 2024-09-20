@@ -402,7 +402,7 @@ namespace Tizen.Core
                 throw new ArgumentNullException(nameof(coreEvent));
             }
 
-            if (coreEvent.Handle == IntPtr.Zero)
+            if (coreEvent.Source != IntPtr.Zero)
             {
                 throw new ArgumentException("The event is already added");
             }
@@ -428,7 +428,6 @@ namespace Tizen.Core
                 }
 
                 coreEvent.Source = handle;
-                coreEvent.Handle = IntPtr.Zero;
             }
         }
 

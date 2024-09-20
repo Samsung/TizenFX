@@ -135,7 +135,7 @@ namespace Tizen.Core
             eventObject.Handle = IntPtr.Zero;
         }
 
-        internal IntPtr Handle { get { return _handle; } set { _handle = value; } }
+        internal IntPtr Handle { get { return _handle; } }
         internal IntPtr Source { get; set; }
         internal int Id { get; set; }
 
