@@ -163,7 +163,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLengthReached event.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
         {
@@ -552,7 +552,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLengthReached event arguments.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class MaxLengthReachedEventArgs : EventArgs
         {
@@ -561,7 +561,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// TextEditor.
             /// </summary>
-            /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public TextEditor TextEditor
             {

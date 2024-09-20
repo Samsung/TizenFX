@@ -39,6 +39,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ApplicationTransitionManager Instance for singleton
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ApplicationTransitionManager Instance
         {
             get

@@ -23,6 +23,7 @@ namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
     /// The base class of style attributes for a view.
+    /// This class provides a base for defining styles that can be applied to views.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public partial class ViewStyle : BindableObject, IDisposable
@@ -69,11 +70,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Create an empty style instance.
+        /// This constructor initializes an empty style object for a view.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public ViewStyle() { }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle(ViewStyle viewAttributes)
         {
@@ -102,7 +104,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(BackgroundImageProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Focusable
         {
@@ -133,7 +135,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(FocusableInTouchProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("This has been deprecated. Use Size instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2D
@@ -144,6 +146,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Defines view's opacity value.
+        /// This property allows you to specify different opacity values for various states of the view,
+        /// such as normal, pressed, focused, etc.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Selector<float?> Opacity
@@ -156,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(OpacityProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("This has been deprecated. Use Position instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2D
@@ -232,7 +236,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(PositionProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionX
         {
@@ -240,7 +244,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(PositionXProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionY
         {
@@ -248,7 +252,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(PositionYProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation Orientation
         {
@@ -256,7 +260,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(OrientationProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DrawModeType? DrawMode
         {
@@ -296,7 +300,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(HeightResizePolicyProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WidthForHeight
         {
@@ -304,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(WidthForHeightProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? HeightForWidth
         {
@@ -342,7 +346,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(MaximumSizeProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ClippingModeType? ClippingMode
         {
@@ -396,7 +400,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>View BackgroundBorder</summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Rectangle> BackgroundImageBorder
         {
@@ -551,7 +555,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Release instance.
+        /// Releases all resources used by the ViewStyle instance.
+        /// The Dispose method releases all resources used by the ViewStyle instance.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void Dispose()
@@ -600,9 +605,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Release instance.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
-        /// <param name="disposing"> If it true, the method has been called by a user's code. Otherwise the method has been called by the finalizer. </param>
+        /// <param name="disposing"> If it true, the method has been called by a user's code to release both managed and unmanaged resources. Otherwise the method has been called by the finalizer to release only unmanaged resources.</param>
         /// <since_tizen> 9 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
