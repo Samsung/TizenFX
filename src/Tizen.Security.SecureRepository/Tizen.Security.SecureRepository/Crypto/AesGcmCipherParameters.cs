@@ -19,26 +19,31 @@ using System;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// A class for holding parameters for the AES algorithm with the GCM mode.
+    /// Holds parameters for the AES algorithm with the GCM mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AesGcmCipherParameters : AesCipherParameters
     {
         /// <summary>
-        /// A default constructor.
+        /// Initializes an instance of AesGcmCipherParameters class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesGcm.</remarks>
+        /// <remarks>CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesGcm.</remarks>
         public AesGcmCipherParameters() : base(CipherAlgorithmType.AesGcm)
         {
         }
 
         /// <summary>
-        /// GCM tag length in bits.
+        /// Gets and sets GCM tag length.
         /// </summary>
+        /// <value>
+        /// GCM tag length in bits. One of {32, 64, 96, 104, 112, 120, 128} (optional),
+        /// if not present the length 128 is used.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>One of {32, 64, 96, 104, 112, 120, 128} (optional), if not present the length 128 is used.</remarks>
-        /// <exception cref="ArgumentOutOfRangeException">TagLength should be one of {32, 64, 96, 104, 112, 120, 128}.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when TagLength is not one of {32, 64, 96, 104, 112, 120, 128}.
+        /// </exception>
         public long TagLength
         {
             get
@@ -61,8 +66,11 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// Additional authentication data (optional).
+        /// Gets and sets additional authentication data.
         /// </summary>
+        /// <value>
+        /// Additional authentication data (optional).
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public byte[] AAD
         {
