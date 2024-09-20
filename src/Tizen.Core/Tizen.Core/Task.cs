@@ -48,6 +48,7 @@ namespace Tizen.Core
         /// <param name="id">The ID of the task.</param>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="id"/> is invalid or a Task with that ID already exists.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <remarks>
         /// The constructor throws an exception when the id already exists.
         /// By default, the task creates a thread. However, if the <paramref name="id"/> is "main", a thread is not created.
@@ -594,9 +595,18 @@ namespace Tizen.Core
                 return null;
             }
 
-            var task = new Task(id);
-            task.Run();
-            return task;
+            try
+            {
+                var task = new Task(id);
+                task.Run();
+                return task;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception occurs. message = " + ex.Message);
+            }
+
+            return null;
         }
 
         /// <summary>

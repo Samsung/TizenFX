@@ -38,6 +38,7 @@ namespace Tizen.Core
         /// <param name="id">The ID.</param>
         /// <param name="data">The data object.</param>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 

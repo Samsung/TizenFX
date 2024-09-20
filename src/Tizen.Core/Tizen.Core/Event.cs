@@ -34,6 +34,7 @@ namespace Tizen.Core
         /// Constructor for creating a new event instance.
         /// </summary>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 
@@ -98,6 +99,7 @@ namespace Tizen.Core
         /// </summary>
         /// <param name="eventObject">The event object instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <remarks>
         /// If the event is not added to the task, the emitted event object will be pended until the event is added to the task.
         /// </remarks>
@@ -131,6 +133,10 @@ namespace Tizen.Core
             }
 
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreEvent.Emit(_handle, eventObject.Handle);
+            if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+            {
+                error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+            }
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to emit event object");
             eventObject.Handle = IntPtr.Zero;
         }
