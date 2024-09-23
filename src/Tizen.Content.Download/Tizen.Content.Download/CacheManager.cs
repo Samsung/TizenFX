@@ -20,14 +20,15 @@ using System.ComponentModel;
 namespace Tizen.Content.Download
 {
     /// <summary>
-    /// The CacheManager class provides the functions to manage cache properties.
+    /// The CacheManager class provides the functions to manage cache properties,
+    /// allowing downloaded content to be reused without redownloading.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public static class CacheManager
     {
 
         /// <summary>
-        /// Clears per app download cache.
+        /// Clears all cached data related to downloads, resetting the cache to its initial state.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
