@@ -417,6 +417,20 @@ namespace Tizen.NUI.Text
         public float? Width { get; set; }
 
         /// <summary>
+        /// The offset in pixels of the offset (if null, the default value is 0, 0). <br />
+        /// If not provided then the offset is not enabled. <br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2? Offset { get; set; }
+
+        /// <summary>
+        /// The radius of blurring effect applied to the outline of the text. A higher value results in a more blurred outline. <br />
+        /// If not specified, the default value is 0 which means no blurring effect will be applied. <br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? BlurRadius { get; set; }
+
+        /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
@@ -430,7 +444,7 @@ namespace Tizen.NUI.Text
         /// <param name="other">The Outline to compare with the current Outline.</param>
         /// <returns>true if equal Outline, else false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Equals(Outline other) => Color == other.Color && Width == other.Width;
+        public bool Equals(Outline other) => Color == other.Color && Width == other.Width && Offset == other.Offset && BlurRadius == other.BlurRadius;
 
         /// <summary>
         /// The == operator.
