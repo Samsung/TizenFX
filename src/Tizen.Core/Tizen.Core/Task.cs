@@ -633,7 +633,6 @@ namespace Tizen.Core
         /// Runs the main loop of the task.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the unmanaged handle is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 
@@ -653,7 +652,6 @@ namespace Tizen.Core
         /// Quits the main loop of the task.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the unmanaged handle is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <remarks>
         /// This function can be called from any thread.
         /// It requests the task to finish the current iteration of its loop and stop running.
