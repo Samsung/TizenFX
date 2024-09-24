@@ -19,7 +19,7 @@ using System.IO;
 namespace Tizen.System
 {
     /// <summary>
-    /// The class for system memory information.
+    /// The class for memory usage information of the system.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class SystemMemoryUsage
@@ -27,7 +27,7 @@ namespace Tizen.System
         private Interop.RuntimeInfo.MemoryInfo Info;
 
         /// <summary>
-        /// The constructor of MemoryInformation class.
+        /// The constructor of MemoryInformation class. It internally call Update() on constructing an instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>
@@ -37,7 +37,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Total memory (KiB).
+        /// Total memory (KiB). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Total
@@ -49,7 +49,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Used memory (KiB).
+        /// Used memory (KiB). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Used
@@ -61,7 +61,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Free memory (KiB).
+        /// Free memory (KiB). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Free
@@ -73,7 +73,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Cache memory (KiB).
+        /// Cache memory (KiB). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Cache
@@ -85,7 +85,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Swap memory (KiB).
+        /// Swap memory (KiB). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Swap
