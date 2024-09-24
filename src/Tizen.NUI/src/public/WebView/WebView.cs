@@ -1088,10 +1088,15 @@ namespace Tizen.NUI.BaseComponents
         public enum WebEngineType
         {
             /// <summary>
-            /// Chromium Web Engine type.
+            /// Depend on environement value setting. (default)
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             UseSystemSetting = -1,
+
+            /// <summary>
+            /// Chromium Web Engine type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Chromium = 0,
 
             /// <summary>
