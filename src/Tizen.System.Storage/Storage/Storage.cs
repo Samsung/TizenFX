@@ -340,7 +340,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Absolute path for a given directory type in the storage.
+        /// Gets the absolute path to the root directory of the given storage.
         /// </summary>
         /// <remarks>
         /// The returned directory path may not exist, so you must make sure that it exists before using it.
