@@ -1091,6 +1091,7 @@ namespace Tizen.NUI.BaseComponents
             /// Chromium Web Engine type.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
+            UseSystemSetting = -1,
             Chromium = 0,
 
             /// <summary>
