@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private static string UltravioletSensorKey = "http://tizen.org/feature/sensor.ultraviolet";
 
         /// <summary>
-        /// Gets the value of the ultraviolet sensor.
+        /// Get the value of the ultraviolet sensor as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The ultraviolet index. </value>
         public float UltravioletIndex { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether the ultraviolet sensor is supported by the device.
+        /// Return true or false based on whether the ultraviolet sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of ultraviolet sensors available on the device.
+        /// Return the number of ultraviolet sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of ultraviolet sensors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.UltravioletSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.UltravioletSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.ultraviolet</feature>
@@ -70,7 +70,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular ultraviolet sensor in case of multiple sensors.
+        /// Index refers to a particular ultraviolet sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public UltravioletSensor(uint index = 0) : base(index)
         {
@@ -86,7 +87,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the ultraviolet sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<UltravioletSensorDataUpdatedEventArgs> DataUpdated;
 
 
