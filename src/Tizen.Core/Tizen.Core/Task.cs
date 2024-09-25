@@ -129,7 +129,11 @@ namespace Tizen.Core
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddIdleJob(_handle, NativeActionCallback, (IntPtr)id, out IntPtr handle);
             if (error != Interop.LibTizenCore.ErrorCode.None)
             {
-                throw new InvalidOperationException("Failed to add idle job");
+                if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                {
+                    error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+                }
+                TCoreErrorFactory.CheckAndThrownException(error, "Failed to add idle job");
             }
         }
 
@@ -181,7 +185,11 @@ namespace Tizen.Core
             if (error != Interop.LibTizenCore.ErrorCode.None)
             {
                 _taskMap.TryRemove(id, out var _);
-                throw new InvalidOperationException("Failed to add idle job");
+                if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                {
+                    error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+                }
+                TCoreErrorFactory.CheckAndThrownException(error, "Failed to add idle job");
             }            
         }
 
@@ -300,6 +308,11 @@ namespace Tizen.Core
 
             if (receiver.Handle == IntPtr.Zero)
             {
+                if (receiver.Source != IntPtr.Zero)
+                {
+                    throw new ArgumentException("The receiver is already added");
+                }
+
                 throw new ArgumentException("Invalid argument");
             }
 
@@ -412,9 +425,14 @@ namespace Tizen.Core
                 throw new ArgumentNullException(nameof(coreEvent));
             }
 
-            if (coreEvent.Source != IntPtr.Zero)
+            if (coreEvent.Handle == IntPtr.Zero)
             {
                 throw new ArgumentException("Invalid argument");
+            }
+
+            if (coreEvent.Source != IntPtr.Zero)
+            {
+                throw new ArgumentException("The event is already added");
             }
 
             int id;

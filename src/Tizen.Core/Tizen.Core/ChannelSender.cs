@@ -87,7 +87,7 @@ namespace Tizen.Core
         /// Creates and returns a copy of the channel sender object.
         /// </summary>
         /// <returns>A newly created channel sender instance.</returns>
-        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
         /// <code>
