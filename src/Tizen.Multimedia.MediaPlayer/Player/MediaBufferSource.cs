@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         private byte[] _buffer;
 
         /// <summary>
-        /// Initializes a new instance of the MediaBufferSource class with the specified buffer langth.
+        /// Initializes a new instance of the MediaBufferSource class with the specified buffer length.
         /// </summary>
         /// <param name="length">The value indicating the size of the buffer.</param>
         /// <exception cref="ArgumentOutOfRangeException">

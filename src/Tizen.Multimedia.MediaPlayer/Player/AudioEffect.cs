@@ -98,7 +98,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the number of equalizer bands available
+        /// Gets the number of equalizer bands available.
         /// </summary>
         /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     -or-<br/>
