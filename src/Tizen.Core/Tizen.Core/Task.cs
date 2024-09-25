@@ -93,7 +93,7 @@ namespace Tizen.Core
         /// </summary>
         /// <param name="action">The action callback to post.</param>
         /// <exception cref="ArgumentNullException">Thrown when the action argument is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <remarks>
         /// The action callback will be executed by the main loop of the task.
@@ -127,7 +127,14 @@ namespace Tizen.Core
             }
             _actionkMap[id] = action;
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddIdleJob(_handle, NativeActionCallback, (IntPtr)id, out IntPtr handle);
-            TCoreErrorFactory.CheckAndThrownException(error, "Failed to add idle job");
+            if (error != Interop.LibTizenCore.ErrorCode.None)
+            {
+                if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                {
+                    error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+                }
+                TCoreErrorFactory.CheckAndThrownException(error, "Failed to add idle job");
+            }
         }
 
         /// <summary>
@@ -135,7 +142,7 @@ namespace Tizen.Core
         /// </summary>
         /// <param name="task">The task to post.</param>
         /// <exception cref="ArgumentNullException">Thrown when the task argument is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <remarks>
         /// The task will be stored in the internal map using its unique identifier.
@@ -178,6 +185,10 @@ namespace Tizen.Core
             if (error != Interop.LibTizenCore.ErrorCode.None)
             {
                 _taskMap.TryRemove(id, out var _);
+                if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                {
+                    error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+                }
                 TCoreErrorFactory.CheckAndThrownException(error, "Failed to add idle job");
             }            
         }
@@ -189,7 +200,7 @@ namespace Tizen.Core
         /// <param name="callback">The recurring timer callback function which returns whether or not to continue triggering the timer.</param>
         /// <returns>The registered timer ID to be used with <see cref="RemoveTimer"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the callback argument is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of the instance is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <remarks>
         /// The callback function will be called every time the specified interval elapses. It should return true to keep the timer running, otherwise the timer will be stopped.
@@ -227,7 +238,7 @@ namespace Tizen.Core
                 if (error != Interop.LibTizenCore.ErrorCode.None)
                 {
                     _timerMap.TryRemove(id, out var _);
-                    TCoreErrorFactory.CheckAndThrownException(error, "Failed to add a timer");
+                    throw new InvalidOperationException("Failed to add timer");
                 }
 
                 timerSource.Handle = handle;
@@ -275,6 +286,7 @@ namespace Tizen.Core
         /// <param name="receiver">The channel receiver instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
         /// <code>
@@ -296,7 +308,12 @@ namespace Tizen.Core
 
             if (receiver.Handle == IntPtr.Zero)
             {
-                throw new ArgumentException("The receiver is already added");
+                if (receiver.Source != IntPtr.Zero)
+                {
+                    throw new ArgumentException("The receiver is already added");
+                }
+
+                throw new ArgumentException("Invalid argument");
             }
 
             int id;
@@ -313,6 +330,10 @@ namespace Tizen.Core
                 if (error != Interop.LibTizenCore.ErrorCode.None)
                 {
                     _channelMap.TryRemove(id, out var _);
+                    if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                    {
+                        error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+                    }
                     TCoreErrorFactory.CheckAndThrownException(error, "Failed to add a channel to the task");
                 }
 
@@ -376,6 +397,7 @@ namespace Tizen.Core
         /// <param name="coreEvent">The event instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <remarks>
         /// This method allows you to associate an event with a specific task. By adding an event to a task's main loop, other threads can utilize this event to communicate with the task.
@@ -403,6 +425,11 @@ namespace Tizen.Core
                 throw new ArgumentNullException(nameof(coreEvent));
             }
 
+            if (coreEvent.Handle == IntPtr.Zero)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             if (coreEvent.Source != IntPtr.Zero)
             {
                 throw new ArgumentException("The event is already added");
@@ -425,6 +452,10 @@ namespace Tizen.Core
                 if (error != Interop.LibTizenCore.ErrorCode.None)
                 {
                     _eventMap.TryRemove(id, out var _);
+                    if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                    {
+                        error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+                    }
                     TCoreErrorFactory.CheckAndThrownException(error, "Failed to add an event to the task");
                 }
 
@@ -486,6 +517,7 @@ namespace Tizen.Core
         /// <param name="eventObject">The event object instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 
@@ -507,8 +539,17 @@ namespace Tizen.Core
                 throw new ArgumentNullException(nameof(eventObject));
             }
 
+            if (eventObject.Handle == IntPtr.Zero)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.EmitEvent(_handle, eventObject.Handle);
-            TCoreErrorFactory.CheckAndThrownException(error, "Failed to emit event");
+            if (error != Interop.LibTizenCore.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to emit event");
+            }
+
             eventObject.Handle = IntPtr.Zero;
         }
 
@@ -632,7 +673,7 @@ namespace Tizen.Core
         /// <summary>
         /// Runs the main loop of the task.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when the unmanaged handle is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 
@@ -645,13 +686,16 @@ namespace Tizen.Core
         public void Run()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.TaskRun(_handle);
-            TCoreErrorFactory.CheckAndThrownException(error, "Failed to run task");
+            if (error != Interop.LibTizenCore.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to run task");
+            }
         }
 
         /// <summary>
         /// Quits the main loop of the task.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when the unmanaged handle is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <remarks>
         /// This function can be called from any thread.
         /// It requests the task to finish the current iteration of its loop and stop running.
@@ -674,7 +718,10 @@ namespace Tizen.Core
         public void Quit()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.TaskQuit(_handle);
-            TCoreErrorFactory.CheckAndThrownException(error, "Failed to quit task");
+            if (error != Interop.LibTizenCore.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to quit task");
+            }
         }
 
         /// <summary>
