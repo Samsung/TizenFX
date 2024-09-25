@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using static Interop;
@@ -81,27 +80,27 @@ namespace Tizen.Security.WebAuthn
         public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, MakeCredentialCallbacks callbacks)
         {
             CheckPreconditions();
+            CheckNullNThrow(clientData);
+            CheckNullNThrow(clientData.JsonData);
+            CheckNullNThrow(options);
+            CheckNullNThrow(options.Rp);
+            CheckNullNThrow(options.User);
+            CheckNullNThrow(options.PubkeyCredParams);
+            CheckNullNThrow(callbacks);
+            CheckNullNThrow(callbacks.QrcodeCallback);
+            CheckNullNThrow(callbacks.ResponseCallback);
+            CheckNullNThrow(callbacks.LinkedDataCallback);
+
             int id = unchecked(_callId++);
+            // Copy data to unmanaged memory
+            var storage = new AuthenticatorMakeCredentialStorage(clientData, options);
+            // Create callback wrappers
+            WrapMcCallbacks(callbacks, storage, id);
+            // Add the storage to a static dictionary to prevent GC from premature collecting
+            _apiCalls.Add(id, storage);
+
             try
             {
-                CheckNullNThrow(clientData);
-                CheckNullNThrow(clientData.JsonData);
-                CheckNullNThrow(options);
-                CheckNullNThrow(options.Rp);
-                CheckNullNThrow(options.User);
-                CheckNullNThrow(options.PubkeyCredParams);
-                CheckNullNThrow(callbacks);
-                CheckNullNThrow(callbacks.QrcodeCallback);
-                CheckNullNThrow(callbacks.ResponseCallback);
-                CheckNullNThrow(callbacks.LinkedDataCallback);
-
-                // Copy data to unmanaged memory
-                var storage = new AuthenticatorMakeCredentialStorage(clientData, options);
-                // Create callback wrappers
-                WrapMcCallbacks(callbacks, storage, id);
-                // Add the storage to a static dictionary to prevent GC from premature collecting
-                _apiCalls.Add(id, storage);
-
                 int ret = Libwebauthn.MakeCredential(
                     storage.WauthnClientData,
                     storage.WauthnPubkeyCredCreationOptions,
@@ -145,24 +144,24 @@ namespace Tizen.Security.WebAuthn
         public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GetAssertionCallbacks callbacks)
         {
             CheckPreconditions();
+            CheckNullNThrow(clientData);
+            CheckNullNThrow(clientData.JsonData);
+            CheckNullNThrow(options);
+            CheckNullNThrow(callbacks);
+            CheckNullNThrow(callbacks.QrcodeCallback);
+            CheckNullNThrow(callbacks.ResponseCallback);
+            CheckNullNThrow(callbacks.LinkedDataCallback);
+
             int id = unchecked(_callId++);
+            // Copy data to unmanaged memory
+            var storage =  new AuthenticatorGetAssertionStorage(clientData, options);
+            // Create callback wrappers
+            WrapGaCallbacks(callbacks, storage, id);
+            // Add the storage to a static dictionary to prevent GC from premature collecting
+            _apiCalls.Add(id, storage);
+
             try
             {
-                CheckNullNThrow(clientData);
-                CheckNullNThrow(clientData.JsonData);
-                CheckNullNThrow(options);
-                CheckNullNThrow(callbacks);
-                CheckNullNThrow(callbacks.QrcodeCallback);
-                CheckNullNThrow(callbacks.ResponseCallback);
-                CheckNullNThrow(callbacks.LinkedDataCallback);
-
-                // Copy data to unmanaged memory
-                var storage =  new AuthenticatorGetAssertionStorage(clientData, options);
-                // Create callback wrappers
-                WrapGaCallbacks(callbacks, storage, id);
-                // Add the storage to a static dictionary to prevent GC from premature collecting
-                _apiCalls.Add(id, storage);
-
                 int ret = Libwebauthn.GetAssertion(
                     storage.WauthnClientData,
                     storage.WauthnPubkeyCredRequestOptions,
@@ -274,9 +273,6 @@ namespace Tizen.Security.WebAuthn
 
         private static void Cleanup(int id)
         {
-            if (!_apiCalls.ContainsKey(id))
-                return;
-
             _apiCalls[id]?.Dispose();
             _apiCalls.Remove(id);
         }
