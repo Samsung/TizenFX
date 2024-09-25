@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using static Interop;
 using static Tizen.Security.WebAuthn.ErrorFactory;
@@ -29,17 +31,9 @@ namespace Tizen.Security.WebAuthn
     {
         private const int API_VERSION_NUMBER = 0x00000001;
         private static bool _apiVersionSet = false;
-        private static bool _busy = false;
-        private static bool _allowGetAssertionCall = false;
         private static object _userData = null;
-        private static WauthnDisplayQrcodeCallback _mcQrCodeCallback;
-        private static WauthnDisplayQrcodeCallback _gaQrCodeCallback;
-        private static WauthnMcOnResponseCallback _mcResponseCallback;
-        private static WauthnGaOnResponseCallback _gaResponseCallback;
-        private static WauthnUpdateLinkedDataCallback _mcLinkedDataCallback;
-        private static WauthnUpdateLinkedDataCallback _gaLinkedDataCallback;
-        private static WauthnMcCallbacks _wauthnMcCallbacks;
-        private static WauthnGaCallbacks _wauthnGaCallbacks;
+        private static Dictionary<int, IDisposable> _apiCalls = new();
+        private static int _callId = 0;
 
         #region Public API
         /// <summary>
@@ -86,7 +80,8 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
         public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, MakeCredentialCallbacks callbacks)
         {
-            CheckPreconditionsMc();
+            CheckPreconditions();
+            int id = unchecked(_callId++);
             try
             {
                 CheckNullNThrow(clientData);
@@ -100,19 +95,22 @@ namespace Tizen.Security.WebAuthn
                 CheckNullNThrow(callbacks.ResponseCallback);
                 CheckNullNThrow(callbacks.LinkedDataCallback);
 
+                // Copy data to unmanaged memory
+                var storage = new AuthenticatorMakeCredentialStorage(clientData, options);
                 // Create callback wrappers
-                WrapMcCallbacks(callbacks);
-                AuthenticatorMakeCredentialStorage.SetDataForMakeCredential(clientData, options);
+                WrapMcCallbacks(callbacks, storage, id);
+                // Add the storage to a static dictionary to prevent GC from premature collecting
+                _apiCalls.Add(id, storage);
 
                 int ret = Libwebauthn.MakeCredential(
-                    AuthenticatorMakeCredentialStorage.WauthnClientData,
-                    AuthenticatorMakeCredentialStorage.WauthnPubkeyCredCreationOptions,
-                    _wauthnMcCallbacks);
+                    storage.WauthnClientData,
+                    storage.WauthnPubkeyCredCreationOptions,
+                    storage.WauthnMcCallbacks);
                 CheckErrNThrow(ret, "Make Credential");
             }
             catch
             {
-                CleanupMc();
+                Cleanup(id);
                 throw;
             }
         }
@@ -146,7 +144,8 @@ namespace Tizen.Security.WebAuthn
         /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
         public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GetAssertionCallbacks callbacks)
         {
-            CheckPreconditionsGa();
+            CheckPreconditions();
+            int id = unchecked(_callId++);
             try
             {
                 CheckNullNThrow(clientData);
@@ -157,19 +156,22 @@ namespace Tizen.Security.WebAuthn
                 CheckNullNThrow(callbacks.ResponseCallback);
                 CheckNullNThrow(callbacks.LinkedDataCallback);
 
+                // Copy data to unmanaged memory
+                var storage =  new AuthenticatorGetAssertionStorage(clientData, options);
                 // Create callback wrappers
-                WrapGaCallbacks(callbacks);
-                AuthenticatorGetAssertionStorage.SetDataForGetAssertion(clientData, options);
+                WrapGaCallbacks(callbacks, storage, id);
+                // Add the storage to a static dictionary to prevent GC from premature collecting
+                _apiCalls.Add(id, storage);
 
                 int ret = Libwebauthn.GetAssertion(
-                    AuthenticatorGetAssertionStorage.WauthnClientData,
-                    AuthenticatorGetAssertionStorage.WauthnPubkeyCredRequestOptions,
-                    _wauthnGaCallbacks);
+                    storage.WauthnClientData,
+                    storage.WauthnPubkeyCredRequestOptions,
+                    storage.WauthnGaCallbacks);
                 CheckErrNThrow(ret, "Get Assertion");
             }
             catch
             {
-                CleanupGa();
+                Cleanup(id);
                 throw;
             }
         }
@@ -196,7 +198,7 @@ namespace Tizen.Security.WebAuthn
             CheckErrNThrow(ret, "Set API version");
             _apiVersionSet = true;
         }
-        private static void WrapMcCallbacks(MakeCredentialCallbacks callbacks)
+        private static void WrapMcCallbacks(MakeCredentialCallbacks callbacks, AuthenticatorMakeCredentialStorage storage, int id)
         {
             _userData = callbacks.UserData;
 
@@ -207,14 +209,11 @@ namespace Tizen.Security.WebAuthn
 
             void onResponseWrapper(WauthnPubkeyCredentialAttestation pubkeyCred, WauthnError result, IntPtr _)
             {
-                // Since receiving this response, the user can make a GetAssertion call even though the authenticator is technically busy
-                _allowGetAssertionCall = true;
-
                 PubkeyCredAttestation pubkeyCredManaged = pubkeyCred is not null ? new(pubkeyCred) : null;
                 callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
 
                 if (result != WauthnError.None)
-                    CleanupMc();
+                    Cleanup(id);
             }
 
             void linkedDataWrapper(IntPtr linkedData, WauthnError result, IntPtr _)
@@ -223,17 +222,17 @@ namespace Tizen.Security.WebAuthn
                 callbacks.LinkedDataCallback(linkedDataManaged, result, _userData);
 
                 if (result != WauthnError.NoneAndWait)
-                    CleanupMc();
+                    Cleanup(id);
             }
 
-            _mcQrCodeCallback = new WauthnDisplayQrcodeCallback(qrCodeWrapper);
-            _mcResponseCallback = new WauthnMcOnResponseCallback(onResponseWrapper);
-            _mcLinkedDataCallback = new WauthnUpdateLinkedDataCallback(linkedDataWrapper);
-
-            _wauthnMcCallbacks = new WauthnMcCallbacks(_mcQrCodeCallback, _mcResponseCallback, _mcLinkedDataCallback);
+            storage.SetCallbacks(
+                new WauthnDisplayQrcodeCallback(qrCodeWrapper),
+                new WauthnMcOnResponseCallback(onResponseWrapper),
+                new WauthnUpdateLinkedDataCallback(linkedDataWrapper)
+            );
         }
 
-        private static void WrapGaCallbacks(GetAssertionCallbacks callbacks)
+        private static void WrapGaCallbacks(GetAssertionCallbacks callbacks, AuthenticatorGetAssertionStorage storage, int id)
         {
             _userData = callbacks.UserData;
 
@@ -248,7 +247,7 @@ namespace Tizen.Security.WebAuthn
                 callbacks.ResponseCallback(pubkeyCredManaged, result, _userData);
 
                 if (result != WauthnError.None)
-                    CleanupGa();
+                    Cleanup(id);
             }
 
             void linkedDataWrapper(IntPtr linkedData, WauthnError result, IntPtr _)
@@ -257,48 +256,29 @@ namespace Tizen.Security.WebAuthn
                 callbacks.LinkedDataCallback(linkedDataManaged, result, _userData);
 
                 if (result != WauthnError.NoneAndWait)
-                    CleanupGa();
+                    Cleanup(id);
             }
-            _gaQrCodeCallback = new WauthnDisplayQrcodeCallback(qrCodeWrapper);
-            _gaResponseCallback = new WauthnGaOnResponseCallback(onResponseWrapper);
-            _gaLinkedDataCallback = new WauthnUpdateLinkedDataCallback(linkedDataWrapper);
 
-            _wauthnGaCallbacks = new WauthnGaCallbacks(_gaQrCodeCallback, _gaResponseCallback, _gaLinkedDataCallback);
+            storage.SetCallbacks(
+                new WauthnDisplayQrcodeCallback(qrCodeWrapper),
+                new WauthnGaOnResponseCallback(onResponseWrapper),
+                new WauthnUpdateLinkedDataCallback(linkedDataWrapper)
+            );
         }
 
-        private static void CheckPreconditionsMc()
+        private static void CheckPreconditions()
         {
             if (!_apiVersionSet)
                 SetApiVersion(API_VERSION_NUMBER);
-            if (_busy)
-                throw new InvalidOperationException("Authenticator busy");
-
-            _busy = true;
         }
 
-        private static void CheckPreconditionsGa()
+        private static void Cleanup(int id)
         {
-            if (!_apiVersionSet)
-                SetApiVersion(API_VERSION_NUMBER);
-            if (_busy && !_allowGetAssertionCall)
-                throw new InvalidOperationException("Authenticator busy");
+            if (!_apiCalls.ContainsKey(id))
+                return;
 
-            if (_allowGetAssertionCall)
-                _allowGetAssertionCall = false;
-            _busy = true;
-        }
-
-        private static void CleanupMc()
-        {
-            _busy = false;
-            _allowGetAssertionCall = false;
-            AuthenticatorMakeCredentialStorage.Cleanup();
-        }
-
-        private static void CleanupGa()
-        {
-            _busy = false;
-            AuthenticatorGetAssertionStorage.Cleanup();
+            _apiCalls[id]?.Dispose();
+            _apiCalls.Remove(id);
         }
 
         #endregion
