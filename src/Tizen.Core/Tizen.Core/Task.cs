@@ -300,7 +300,7 @@ namespace Tizen.Core
 
             if (receiver.Handle == IntPtr.Zero)
             {
-                throw new ArgumentException("The receiver is already added");
+                throw new ArgumentException("Invalid argument");
             }
 
             int id;
@@ -414,7 +414,7 @@ namespace Tizen.Core
 
             if (coreEvent.Source != IntPtr.Zero)
             {
-                throw new ArgumentException("The event is already added");
+                throw new ArgumentException("Invalid argument");
             }
 
             int id;
