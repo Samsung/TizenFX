@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the offset.
+        /// Gets the new byte position to seekings operationg.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ulong Offset { get; }
