@@ -36,19 +36,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The new theme's Id.
+        /// Gets the new theme's Id.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string ThemeId { get; }
 
         /// <summary>
-        /// The platform theme's Id.
+        /// Gets the platform theme's Id.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string PlatformThemeId { get; }
 
         /// <summary>
-        /// Whether this event is trigger by platform theme change.
+        /// Returns whether the event was triggered by a platform theme change.
+        /// The value is true if the event is triggered by a platform theme change, otherwise false.
         /// </summary>
         /// <seealso cref="NUIApplication.ThemeOptions.PlatformThemeEnabled"/>
         [EditorBrowsable(EditorBrowsableState.Never)]

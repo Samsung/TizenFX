@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of Hover class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Hover() : this(Interop.Hover.New(0u), true)

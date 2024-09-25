@@ -31,7 +31,7 @@ namespace Tizen.NUI
         private float? loopCount = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of AnimatedImageVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public AnimatedImageVisual() : base()

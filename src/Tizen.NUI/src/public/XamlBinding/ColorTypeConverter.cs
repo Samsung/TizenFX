@@ -22,7 +22,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.ColorTypeConverter")]
     [TypeConversion(typeof(Color))]
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Binding
         // HEX		#rgb, #argb, #rrggbb, #aarrggbb
         // float array      0.5,0.5,0.5,0.5
         // Predefined color	    case insensitive
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
@@ -95,7 +95,7 @@ namespace Tizen.NUI.Binding
             return (j << 4) | j;
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Color FromRgba(int r, int g, int b, int a)
         {
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Binding
             return new Color(red, green, blue, alpha);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Color FromRgb(int r, int g, int b)
         {
@@ -152,7 +152,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {

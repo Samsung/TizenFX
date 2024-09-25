@@ -46,7 +46,7 @@ namespace Tizen.NUI
         ResourceDictionary resources;
 
         /// <summary>
-        /// Create an empty theme.
+        /// The default constructor to create an empty theme.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Theme()

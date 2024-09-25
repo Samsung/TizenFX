@@ -156,7 +156,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// Finalizes the instance of the BaseHandle class.
+        /// This method implements the finalization pattern for proper disposal of resources.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // following this guide: https://docs.microsoft.com/ko-kr/dotnet/fundamentals/code-analysis/quality-rules/ca1063?view=vs-2019 (CA1063)
@@ -225,6 +226,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Equality operator
         /// </summary>
+        /// <param name="x">The first BaseHandle instance to compare.</param>
+        /// <param name="y">The second BaseHandle instance to compare.</param>
+        /// <returns>true if both instances are equal; otherwise false.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(BaseHandle x, BaseHandle y)
         {
@@ -254,8 +258,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inequality operator. Returns Null if either operand is Null
+        /// Inequality operator. Returns true if the operands are not equal, false otherwise. Returns true if either operand is null.
         /// </summary>
+        /// <param name="x">The first BaseHandle instance to compare.</param>
+        /// <param name="y">The second BaseHandle instance to compare.</param>
+        /// <returns>True if the operands are not equal, false otherwise. Returns true if either operand is null.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(BaseHandle x, BaseHandle y)
         {
@@ -263,9 +270,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical AND operator.<br />
-        /// It's possible when doing a  operator this function (opBitwiseAnd) is never called due to short circuiting.<br />
+        /// Logical AND operator.
+        /// It's possible when doing a logical AND operation, this function (opBitwiseAnd) might never be called due to short circuiting.
         /// </summary>
+        /// <param name="x">The first BaseHandle instance.</param>
+        /// <param name="y">The second BaseHandle instance.</param>
+        /// <returns>Returns the first BaseHandle instance if both instances are equal; otherwise, returns null.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static BaseHandle operator &(BaseHandle x, BaseHandle y)
         {
@@ -277,9 +287,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical OR operator for ||.<br />
-        /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.<br />
+        /// Logical OR operator for ||. 
+        /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.
         /// </summary>
+        /// <param name="x">The first BaseHandle to be compared.</param>
+        /// <param name="y">The second BaseHandle to be compared.</param>
+        /// <returns>A BaseHandle that contains either of the non-null bodies of the two operands.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static BaseHandle operator |(BaseHandle x, BaseHandle y)
         {
@@ -299,8 +312,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical ! operator
+        /// Logical ! operator for BaseHandle class.
         /// </summary>
+        /// <param name="x">The BaseHandle instance to check.</param>
+        /// <returns>True if the handle is null or has no body; otherwise, false.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator !(BaseHandle x)
         {
@@ -317,10 +332,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Equals
+        /// Compares the current instance with another object of the same type and returns true if they represent the same handle.
         /// </summary>
-        /// <param name="o">The object should be compared.</param>
-        /// <returns>True if equal.</returns>
+        /// <param name="o">The object to compare with the current instance.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
         /// <since_tizen> 5 </since_tizen>
         public override bool Equals(object o)
         {
@@ -361,12 +376,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Hidden API (Inhouse API).
         /// Dispose. 
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
         /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
         /// </remarks>
-        /// <param name="disposing">true in order to free managed objects</param>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         // Protected implementation of Dispose pattern.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
@@ -570,7 +586,12 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {

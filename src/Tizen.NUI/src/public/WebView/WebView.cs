@@ -164,7 +164,7 @@ namespace Tizen.NUI.BaseComponents
 
 
         /// <summary>
-        /// Creates a WebView.
+        /// Default constructor to create a WebView.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public WebView() : this(Interop.WebView.New(), true)

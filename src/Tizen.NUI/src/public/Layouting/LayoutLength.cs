@@ -20,14 +20,14 @@ using System;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
+    /// A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
     /// </summary>
     public struct LayoutLength : IEquatable<LayoutLength>
     {
         private float value;
 
         /// <summary>
-        /// [Draft] Constructor from an int
+        /// Constructor from an int
         /// </summary>
         /// <param name="value">Int to initialize with.</param>
         /// <since_tizen> 6 </since_tizen>
@@ -37,7 +37,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Constructor from a float
+        /// Constructor from a float
         /// </summary>
         /// <param name="value">Float to initialize with.</param>
         /// <since_tizen> 6 </since_tizen>
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Constructor from a LayoutLength
+        /// Constructor from a LayoutLength
         /// </summary>
         /// <param name="layoutLength">LayoutLength object to initialize with.</param>
         /// <since_tizen> 6 </since_tizen>
@@ -57,7 +57,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Return value as rounded value (whole number), best used as final output
+        /// Return value as rounded value (whole number), best used as final output
         /// </summary>
         /// <returns>The layout length value as a rounded whole number.</returns>
         /// <since_tizen> 6 </since_tizen>
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Return value as the raw decimal value, best used for calculations
+        /// Return value as the raw decimal value, best used for calculations
         /// </summary>
         /// <returns>The layout length value as the raw decimal value.</returns>
         /// <since_tizen> 6 </since_tizen>
@@ -77,7 +77,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] The == operator.
+        /// The == operator.
         /// </summary>
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value</param>
@@ -89,7 +89,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] The != operator.
+        /// The != operator.
         /// </summary>
         /// <param name="arg1">The first value.</param>
         /// <param name="arg2">The second value</param>
