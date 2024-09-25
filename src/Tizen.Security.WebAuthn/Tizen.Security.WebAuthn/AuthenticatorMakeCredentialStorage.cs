@@ -23,7 +23,7 @@ using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {
-    internal static class AuthenticatorStorage
+    internal static class AuthenticatorMakeCredentialStorage
     {
         #region Internal unmanaged memory
         private static UnmanagedMemory[] _credentialsIdUnmanagedDataArray;
@@ -78,12 +78,6 @@ namespace Tizen.Security.WebAuthn
         {
             CopyClientData(clientData);
             CopyCredCreationOptions(options);
-        }
-
-        public static void SetDataForGetAssertion(ClientData clientData, PubkeyCredRequestOptions options)
-        {
-            CopyClientData(clientData);
-            CopyCredRequestOptions(options);
         }
 
         public static void Cleanup()
@@ -167,25 +161,6 @@ namespace Tizen.Security.WebAuthn
                     _attestationFormatsUnmanaged,
                     _extensionsUnmanaged,
                     _linkedDeviceUnmanaged);
-        }
-
-        private static void CopyCredRequestOptions(PubkeyCredRequestOptions options)
-        {
-            CopyCredentials(options.AllowCredentials);
-            CopyHints(options.Hints);
-            CopyAttestationFormats(options.AttestationFormats);
-            CopyExtensions(options.Extensions);
-            CopyLinkedDevice(options.LinkedDevice);
-            WauthnPubkeyCredRequestOptions = new WauthnPubkeyCredRequestOptions(
-                (nuint)options.Timeout,
-                options.RpId,
-                _credentialsUnmanaged,
-                options.UserVerification,
-                _hintsUnmanaged,
-                options.Attestation,
-                _attestationFormatsUnmanaged,
-                _extensionsUnmanaged,
-                _linkedDeviceUnmanaged);
         }
 
         private static void CopyRp(RelyingPartyEntity rp)
@@ -365,6 +340,5 @@ namespace Tizen.Security.WebAuthn
 
         public static WauthnClientData WauthnClientData { get; private set; }
         public static WauthnPubkeyCredCreationOptions WauthnPubkeyCredCreationOptions { get; private set; }
-        public static WauthnPubkeyCredRequestOptions WauthnPubkeyCredRequestOptions { get; private set; }
     }
 }
