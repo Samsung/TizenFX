@@ -24,11 +24,11 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding.Internals
 {
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NameScope : INameScope
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty NameScopeProperty = BindableProperty.CreateAttached("NameScope", typeof(INameScope), typeof(NameScope), default(INameScope));
 
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Binding.Internals
             names.Remove(name);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static INameScope GetNameScope(BindableObject bindable)
         {
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Binding.Internals
         }
 
         /// <exception cref="ArgumentNullException"> Thrown when bindable is null. </exception>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetNameScope(BindableObject bindable, INameScope value)
         {

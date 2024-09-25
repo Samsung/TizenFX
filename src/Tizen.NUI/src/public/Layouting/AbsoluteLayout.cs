@@ -17,13 +17,13 @@
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class implements a absolute layout, allowing explicit positioning of children.
-    ///  Positions are from the top left of the layout and can be set using the View.Position and alike.
+    /// This class implements a absolute layout, allowing explicit positioning of children.
+    /// Positions are from the top left of the layout and can be set using the View.Position and alike.
     /// </summary>
     public class AbsoluteLayout : LayoutGroup
     {
         /// <summary>
-        /// [Draft] Constructor
+        /// The default constructor of AbsoluteLayout class
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AbsoluteLayout()
