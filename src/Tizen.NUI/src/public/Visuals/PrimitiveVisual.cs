@@ -37,7 +37,7 @@ namespace Tizen.NUI
         private Vector3 _lightPosition = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of PrimitiveVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PrimitiveVisual() : base()

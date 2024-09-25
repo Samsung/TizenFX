@@ -21,7 +21,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The Rotation class.
+    /// The Rotation class represents a rotation of a UI Component.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(RotationTypeConverter))]
@@ -29,7 +29,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of Rotation class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Rotation() : this(Interop.Rotation.NewRotation(), true)
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (0.0f,0.0f,0.0f,1.0f).
+        /// The identity rotation, which represents no rotation. Actual value is (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Rotation IDENTITY
@@ -414,6 +414,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Conjugates this rotation.
+        /// This method computes the conjugate of the current rotation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Conjugate()
@@ -424,6 +425,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inverts this rotation.
+        /// This method computes the invert of the current rotation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Invert()

@@ -43,7 +43,7 @@ namespace Tizen.NUI
         private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
 
         /// <summary>
-        /// Creates a Layer object.
+        /// Default constructor of Layer class to create a Layer object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Layer() : this(Interop.Layer.New(), true)
@@ -58,8 +58,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose Explicit or Implicit
+        /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -572,7 +577,7 @@ namespace Tizen.NUI
             LowerBelow(target);
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchorPoint(Vector3 anchorPoint)
         {
@@ -581,7 +586,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSize(float width, float height)
         {
@@ -590,7 +595,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetParentOrigin(Vector3 parentOrigin)
         {
@@ -599,7 +604,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {

@@ -35,7 +35,7 @@ namespace Tizen.NUI
         private TimePeriod timePeriod = null;
 
         /// <summary>
-        /// Create a TransitionBase
+        /// Default constructor to create a TransitionBase
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TransitionBase()

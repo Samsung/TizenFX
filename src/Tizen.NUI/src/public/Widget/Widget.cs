@@ -29,7 +29,7 @@ namespace Tizen.NUI
         internal WidgetImpl widgetImpl;
 
         /// <summary>
-        /// Creates a Widget handle.
+        /// Default constructor to create a Widget handle.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public Widget() : this(new WidgetImpl(), true)

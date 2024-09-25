@@ -32,7 +32,7 @@ namespace Tizen.NUI
         private static readonly Vector2 noExtents = new Vector2(0, 0);
 
         /// <summary>
-        /// Constructor
+        /// The default constructor of ShadowBase class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ShadowBase() : this(noOffset, noExtents)

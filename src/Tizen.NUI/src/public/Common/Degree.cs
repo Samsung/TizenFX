@@ -28,7 +28,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The constructor.
+        /// Default constructor of Degree class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Degree() : this(Interop.Degree.NewDegree(), true)
@@ -61,7 +61,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The value of degree.
+        /// Gets or sets the value of the degree.
+        /// This property value is the angle in degrees.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Value

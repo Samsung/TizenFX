@@ -44,7 +44,7 @@ namespace Tizen.NUI
         private bool? atlasing = false;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of ImageVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ImageVisual() : base()

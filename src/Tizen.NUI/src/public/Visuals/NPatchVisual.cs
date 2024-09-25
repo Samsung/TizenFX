@@ -28,7 +28,7 @@ namespace Tizen.NUI
         private Rectangle border = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of NPatchVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NPatchVisual() : base()
