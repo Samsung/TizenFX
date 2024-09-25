@@ -541,7 +541,7 @@ namespace Tizen.Core
 
             if (eventObject.Handle == IntPtr.Zero)
             {
-                throw new ArgumentException(nameof(eventObject));
+                throw new ArgumentException("Invalid argument");
             }
 
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.EmitEvent(_handle, eventObject.Handle);
