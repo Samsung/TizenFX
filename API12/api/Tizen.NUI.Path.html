@@ -89,8 +89,8 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>A 3D parametric curve.<br>
-Paths can be used to animate the position and orientation of actors.<br></p>
+  <div class="markdown level0 summary"><p>A 3D parametric curve.
+Paths can be used to animate the position and orientation of views.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -129,7 +129,7 @@ Paths can be used to animate the position and orientation of actors.<br></p>
   </span>
   <a id="Tizen_NUI_Path__ctor_" data-uid="Tizen.NUI.Path.#ctor*"></a>
   <h4 id="Tizen_NUI_Path__ctor" data-uid="Tizen.NUI.Path.#ctor">Path()</h4>
-  <div class="markdown level1 summary"><p>Creates an initialized path handle.</p>
+  <div class="markdown level1 summary"><p>The default constructor. Creates an initialized path handle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -143,11 +143,12 @@ Paths can be used to animate the position and orientation of actors.<br></p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L71">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_ControlPoints_" data-uid="Tizen.NUI.Path.ControlPoints*"></a>
   <h4 id="Tizen_NUI_Path_ControlPoints" data-uid="Tizen.NUI.Path.ControlPoints">ControlPoints</h4>
-  <div class="markdown level1 summary"><p>Enumeration for the ControlPoints.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the control points of the path.
+The property value represents the array of control points defining the path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -174,11 +175,12 @@ Paths can be used to animate the position and orientation of actors.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L47">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_Points_" data-uid="Tizen.NUI.Path.Points*"></a>
   <h4 id="Tizen_NUI_Path_Points" data-uid="Tizen.NUI.Path.Points">Points</h4>
-  <div class="markdown level1 summary"><p>Enumeration for the Points.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the array of points defining the path.
+The property value is a PropertyArray containing the points that define the path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -207,11 +209,11 @@ Paths can be used to animate the position and orientation of actors.<br></p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L105">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_AddControlPoint_" data-uid="Tizen.NUI.Path.AddControlPoint*"></a>
   <h4 id="Tizen_NUI_Path_AddControlPoint_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Path.AddControlPoint(Tizen.NUI.Vector3)">AddControlPoint(Vector3)</h4>
-  <div class="markdown level1 summary"><p>Adds a control point.</p>
+  <div class="markdown level1 summary"><p>Adds a control point to the path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -241,7 +243,7 @@ Paths can be used to animate the position and orientation of actors.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L92">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L94">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_AddPoint_" data-uid="Tizen.NUI.Path.AddPoint*"></a>
   <h4 id="Tizen_NUI_Path_AddPoint_Tizen_NUI_Position_" data-uid="Tizen.NUI.Path.AddPoint(Tizen.NUI.Position)">AddPoint(Position)</h4>
@@ -275,7 +277,7 @@ Paths can be used to animate the position and orientation of actors.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L119">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L121">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_GenerateControlPoints_" data-uid="Tizen.NUI.Path.GenerateControlPoints*"></a>
   <h4 id="Tizen_NUI_Path_GenerateControlPoints_System_Single_" data-uid="Tizen.NUI.Path.GenerateControlPoints(System.Single)">GenerateControlPoints(float)</h4>
@@ -314,7 +316,7 @@ The out control point is the length of the succeeding segment forward along this
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L155">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L159">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_GetControlPoint_" data-uid="Tizen.NUI.Path.GetControlPoint*"></a>
   <h4 id="Tizen_NUI_Path_GetControlPoint_System_UInt32_" data-uid="Tizen.NUI.Path.GetControlPoint(System.UInt32)">GetControlPoint(uint)</h4>
@@ -354,7 +356,8 @@ The out control point is the length of the succeeding segment forward along this
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
-        <td></td>
+        <td><p>The control point at the specified index.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -363,7 +366,7 @@ The out control point is the length of the succeeding segment forward along this
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L143">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L146">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_GetPoint_" data-uid="Tizen.NUI.Path.GetPoint*"></a>
   <h4 id="Tizen_NUI_Path_GetPoint_System_UInt32_" data-uid="Tizen.NUI.Path.GetPoint(System.UInt32)">GetPoint(uint)</h4>
@@ -403,7 +406,8 @@ The out control point is the length of the succeeding segment forward along this
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
-        <td></td>
+        <td><p>The interpolation point at the specified index.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -412,7 +416,7 @@ The out control point is the length of the succeeding segment forward along this
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L167">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L171">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_GetPointCount_" data-uid="Tizen.NUI.Path.GetPointCount*"></a>
   <h4 id="Tizen_NUI_Path_GetPointCount" data-uid="Tizen.NUI.Path.GetPointCount">GetPointCount()</h4>
@@ -444,7 +448,7 @@ The out control point is the length of the succeeding segment forward along this
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L132">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Animation/Path.cs/#L134">View Source</a>
   </span>
   <a id="Tizen_NUI_Path_Sample_" data-uid="Tizen.NUI.Path.Sample*"></a>
   <h4 id="Tizen_NUI_Path_Sample_System_Single_Tizen_NUI_Vector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Path.Sample(System.Single,Tizen.NUI.Vector3,Tizen.NUI.Vector3)">Sample(float, Vector3, Vector3)</h4>
