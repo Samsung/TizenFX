@@ -18,7 +18,7 @@ namespace Tizen.NUI.Samples
     int screenHeight;
 
     int addingInput;
-    private Window subWindow = null;
+    Window subWindow = null;
 
     private const string KEY_NUM_1 = "1";
     private const string KEY_NUM_2 = "2";
@@ -483,6 +483,15 @@ namespace Tizen.NUI.Samples
       log.Fatal(tag, $"OnSubWindowResizeCompleted() called!, width:{size.Width}, height:{size.Height}");
     }
 
+    bool testOnTick(object o, Timer.TickEventArgs e)
+    {
+      if(subWindow.IsBottom)
+      {
+        log.Fatal(tag, $"current bottom flag is true and change to false");
+        subWindow.IsBottom = false;
+      }
+      return false;
+    }
 
     public void OnSubWindowKeyEvent(object sender, Window.KeyEventArgs e)
     {
@@ -563,7 +572,7 @@ namespace Tizen.NUI.Samples
 
           case KEY_NUM_7:
             log.Fatal(tag, $"Always On Top Window Test");
-            if(mainWin.IsAlwaysOnTop)
+            if(subWindow.IsAlwaysOnTop)
             {
                 log.Fatal(tag, $"current AlwaysOnTop is true and change to false");
                 subWindow.IsAlwaysOnTop = false;
@@ -587,6 +596,21 @@ namespace Tizen.NUI.Samples
             break;
 
           case KEY_NUM_9:
+            log.Fatal(tag, $"Set Bottom Test");
+            if(subWindow.IsBottom)
+            {
+                log.Fatal(tag, $"current bottom flag is true and change to false");
+                subWindow.IsBottom = false;
+            }
+            else
+            {
+                log.Fatal(tag, $"current bottom is false and change to true");
+                subWindow.IsBottom = true;
+
+                Timer timer = new Timer(5000);
+                timer.Tick += testOnTick;
+                timer.Start();
+            }
             break;
 
           default:
