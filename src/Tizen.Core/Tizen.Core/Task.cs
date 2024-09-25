@@ -720,7 +720,7 @@ namespace Tizen.Core
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.TaskQuit(_handle);
             if (error != Interop.LibTizenCore.ErrorCode.None)
             {
-                throw new InvalidOperationException("Failed to run task");
+                throw new InvalidOperationException("Failed to quit task");
             }
         }
 
