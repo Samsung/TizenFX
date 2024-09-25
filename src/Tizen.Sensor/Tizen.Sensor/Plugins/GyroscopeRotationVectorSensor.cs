@@ -27,42 +27,42 @@ namespace Tizen.Sensor
         private const string GyroscopeRVKey = "http://tizen.org/feature/sensor.gyroscope_rotation_vector";
 
         /// <summary>
-        /// Gets the X component of the gyroscope rotation vector.
+        /// Get the X component of the gyroscope rotation vector.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Y component of the gyroscope rotation vector.
+        /// Get the Y component of the gyroscope rotation vector.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Z component of the gyroscope rotation vector.
+        /// Get the Z component of the gyroscope rotation vector.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the W component of the gyroscope rotation vector.
+        /// Get the W component of the gyroscope rotation vector.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> W </value>
         public float W { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the accuracy of the gyroscope rotation vector data.
+        /// Get the accuracy of the gyroscope rotation vector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; }
 
         /// <summary>
-        /// Returns true or false based on whether the gyroscope rotation vector sensor is supported by the device.
+        /// Return true or false based on whether the gyroscope rotation vector sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -76,7 +76,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of the gyroscope rotation vector sensors available on the device.
+        /// Return the number of the gyroscope rotation vector sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of accelerometer rotation vector sensors. </value>
@@ -90,7 +90,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.GyroscopeRotationVectorSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.GyroscopeRotationVectorSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gyroscope_rotation_vector</feature>
@@ -98,7 +98,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular gyroscope rotation vector sensor in case of multiple sensors.
+        /// Index refers to a particular gyroscope rotation vector sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public GyroscopeRotationVectorSensor(uint index = 0) : base(index)
         {
@@ -114,7 +115,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the gyroscope rotation vector sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<GyroscopeRotationVectorSensorDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

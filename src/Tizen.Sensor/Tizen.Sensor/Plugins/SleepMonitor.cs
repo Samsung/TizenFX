@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private static string SleepMonitorKey = "http://tizen.org/feature/sensor.sleep_monitor";
 
         /// <summary>
-        /// Gets the value of the sleep state.
+        /// Get the value of the sleep state as enum <see cref="SleepMonitorState"/> type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The sleep state. </value>
+        /// <value> The sleep state, <seealso cref="SleepMonitorState"/>. </value>
         public SleepMonitorState SleepState { get; private set; } = SleepMonitorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether the sleep monitor is supported by the device.
+        /// Return true or false based on whether the sleep monitor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of sleep monitors available on the device.
+        /// Return the number of sleep monitors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of sleep monitors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.SleepMonitor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.SleepMonitor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
@@ -73,7 +73,8 @@ namespace Tizen.Sensor
         /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular sleep monitor in case of multiple sensors.
+        /// Index refers to a particular sleep monitor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public SleepMonitor(uint index = 0) : base(index)
         {
@@ -89,7 +90,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the sleep monitor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<SleepMonitorDataUpdatedEventArgs> DataUpdated;
 
 
