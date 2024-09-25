@@ -66,6 +66,7 @@ namespace Tizen.Core
         /// Receives the channel object from the sender asynchronously.
         /// </summary>
         /// <returns>The received channel object.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 
@@ -84,7 +85,10 @@ namespace Tizen.Core
             return await System.Threading.Tasks.Task.Run(() =>
             {
                 Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.ReceiverReceive(Handle, out IntPtr channelObject);
-                TCoreErrorFactory.CheckAndThrownException(error, "Failed to receive channel object");
+                if (error != Interop.LibTizenCore.ErrorCode.None)
+                {
+                    throw new InvalidOperationException("Failed to receive channel object");
+                }
                 return new ChannelObject(channelObject);
             }).ConfigureAwait(false);
         }
