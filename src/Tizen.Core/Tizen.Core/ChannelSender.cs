@@ -72,7 +72,7 @@ namespace Tizen.Core
 
             if (channelObject.Handle == IntPtr.Zero)
             {
-                throw new ArgumentException(nameof(channelObject));
+                throw new ArgumentException("Invalid argument");
             }
 
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.SenderSend(Handle, channelObject.Handle);
@@ -102,6 +102,10 @@ namespace Tizen.Core
         public ChannelSender Clone()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.SenderClone(Handle, out IntPtr clonedHandle);
+            if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+            {
+                error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+            }
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to clone channel sender");
 
             return new ChannelSender(clonedHandle);
