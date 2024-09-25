@@ -2582,8 +2582,9 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Gets or sets a value indicating whether the window is alwats on top of other windows or not.
-        /// Its behavior is effective among windows with the same notification level.
+        /// Gets or sets a value indicating whether the window is always on top of other windows or not.
+        /// This is valid between windows that have no notification level or a notification level of 'none'.
+        /// If it has a notification level, this will not do anything.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsAlwaysOnTop
@@ -2597,6 +2598,27 @@ namespace Tizen.NUI
             set
             {
                 Interop.Window.SetAlwaysOnTop(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the window is the bottom of other windows or not.
+        /// If the enable flag is true, this window will be placed below other windows.
+        /// Otherwise, if it's called with a false value, it will be located above other windows..
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsBottom
+        {
+            get
+            {
+                bool ret = Interop.Window.IsBottom(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetBottom(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
