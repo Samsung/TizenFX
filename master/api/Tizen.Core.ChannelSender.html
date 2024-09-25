@@ -120,7 +120,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L92">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L102">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelSender_Clone_" data-uid="Tizen.Core.ChannelSender.Clone*"></a>
   <h4 id="Tizen_Core_ChannelSender_Clone" data-uid="Tizen.Core.ChannelSender.Clone">Clone()</h4>
@@ -162,8 +162,8 @@ var clonedSender = sender.Clone();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
 </td>
       </tr>
       <tr>
@@ -178,7 +178,7 @@ var clonedSender = sender.Clone();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L128">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L142">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelSender_Dispose_" data-uid="Tizen.Core.ChannelSender.Dispose*"></a>
   <h4 id="Tizen_Core_ChannelSender_Dispose" data-uid="Tizen.Core.ChannelSender.Dispose">Dispose()</h4>
@@ -194,7 +194,7 @@ var clonedSender = sender.Clone();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L107">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L121">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelSender_Dispose_" data-uid="Tizen.Core.ChannelSender.Dispose*"></a>
   <h4 id="Tizen_Core_ChannelSender_Dispose_System_Boolean_" data-uid="Tizen.Core.ChannelSender.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -244,7 +244,7 @@ var clonedSender = sender.Clone();</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L64">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelSender.cs/#L66">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelSender_Send_" data-uid="Tizen.Core.ChannelSender.Send*"></a>
   <h4 id="Tizen_Core_ChannelSender_Send_Tizen_Core_ChannelObject_" data-uid="Tizen.Core.ChannelSender.Send(Tizen.Core.ChannelObject)">Send(ChannelObject)</h4>
@@ -297,6 +297,16 @@ using (var channelObject = new ChannelObject(1, message))
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
         <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
 </td>
       </tr>
     </tbody>
