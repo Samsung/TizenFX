@@ -22,8 +22,11 @@ using NativeWebRTC = Interop.NativeWebRTC;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a audio, video custom source.
+    /// Represents a media source that makes audio, video data internally.
     /// </summary>
+    /// <remarks>
+    /// This supports the product infrastructure and is not intended to be used directly from application code.
+    /// </remarks>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
