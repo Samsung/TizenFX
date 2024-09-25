@@ -88,7 +88,7 @@ namespace Tizen.Core
                 Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.ReceiverReceive(Handle, out IntPtr channelObject);
                 if (error != Interop.LibTizenCore.ErrorCode.None)
                 {
-                    if (error != Interop.LibTizenCore.ErrorCode.InvalidParameter)
+                    if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
                     {
                         error = Interop.LibTizenCore.ErrorCode.InvalidContext;
                     }
