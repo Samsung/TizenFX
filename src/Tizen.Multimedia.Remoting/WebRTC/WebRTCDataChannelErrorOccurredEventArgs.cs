@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the error.
+        /// Gets the error of data channel.
         /// </summary>
         /// <value>The error.</value>
         /// <since_tizen> 9 </since_tizen>
