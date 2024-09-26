@@ -17,7 +17,7 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Defines the different types of application components available.
+    /// Enumeration for application component type.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public enum ApplicationComponentType

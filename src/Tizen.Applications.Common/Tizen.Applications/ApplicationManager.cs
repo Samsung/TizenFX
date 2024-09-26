@@ -554,6 +554,7 @@ namespace Tizen.Applications
         ///     Console.WriteLine("The application with ID '{0}' is not currently running.", applicationId);
         /// }
         /// </code>
+	/// </example>
         /// <since_tizen> 3 </since_tizen>
         public static bool IsRunning(string applicationId)
         {
