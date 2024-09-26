@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class is an event argument of the PreferenceChanged event.
+    /// This class represents the event arguments for the PreferenceChanged event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PreferenceChangedEventArgs : EventArgs
