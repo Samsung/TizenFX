@@ -31,7 +31,7 @@ namespace Tizen.Security.WebAuthn
         private const int API_VERSION_NUMBER = 0x00000001;
         private static bool _apiVersionSet = false;
         private static object _userData = null;
-        private static Dictionary<int, IDisposable> _apiCalls = new();
+        private static Dictionary<int, AuthenticatorStorage> _apiCalls = new();
         private static int _callId = 0;
 
         #region Public API
