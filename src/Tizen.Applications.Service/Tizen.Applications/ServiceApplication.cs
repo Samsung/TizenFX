@@ -48,6 +48,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Exits the main loop of the application without restarting.
         /// </summary>
+        /// <remarks>
+        /// This function terminates the current execution of the application by exiting its main loop. It does not trigger the app restart request.
+        /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ExitWithoutRestarting()
