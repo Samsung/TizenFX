@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.translatablePlaceholderTextFocused;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextProperty = null;
         internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
@@ -104,7 +104,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.TEXT);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PlaceholderTextProperty = null;
         internal static void SetInternalPlaceholderTextProperty(BindableObject bindable, object oldValue, object newValue)
@@ -123,7 +123,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderText);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PlaceholderTextFocusedProperty = null;
         internal static void SetInternalPlaceholderTextFocusedProperty(BindableObject bindable, object oldValue, object newValue)
@@ -142,7 +142,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderTextFocused);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FontFamilyProperty = null;
         internal static void SetInternalFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
@@ -159,7 +159,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.InternalFontFamily;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FontStyleProperty = null;
         internal static void SetInternalFontStyleProperty(BindableObject bindable, object oldValue, object newValue)
@@ -178,7 +178,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PointSizeProperty = null;
         internal static void SetInternalPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -197,7 +197,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.PointSize);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MaxLengthProperty = null;
         internal static void SetInternalMaxLengthProperty(BindableObject bindable, object oldValue, object newValue)
@@ -216,7 +216,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.MaxLength);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ExceedPolicyProperty = null;
         internal static void SetInternalExceedPolicyProperty(BindableObject bindable, object oldValue, object newValue)
@@ -235,7 +235,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.ExceedPolicy);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty HorizontalAlignmentProperty = null;
         internal static void SetInternalHorizontalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
             return temp.GetValueByDescription<HorizontalAlignment>();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty VerticalAlignmentProperty = null;
         internal static void SetInternalVerticalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
@@ -277,7 +277,7 @@ namespace Tizen.NUI.BaseComponents
             return temp.GetValueByDescription<VerticalAlignment>();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextColorProperty = null;
         internal static void SetInternalTextColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -301,7 +301,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.internalTextColor;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PlaceholderTextColorProperty = null;
         internal static void SetInternalPlaceholderTextColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -363,7 +363,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PrimaryCursorColorProperty = null;
         internal static void SetInternalPrimaryCursorColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -387,7 +387,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.internalPrimaryCursorColor;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SecondaryCursorColorProperty = null;
         internal static void SetInternalSecondaryCursorColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -411,7 +411,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.internalSecondaryCursorColor;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableCursorBlinkProperty = null;
         internal static void SetInternalEnableCursorBlinkProperty(BindableObject bindable, object oldValue, object newValue)
@@ -430,7 +430,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableCursorBlink);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CursorBlinkIntervalProperty = null;
         internal static void SetInternalCursorBlinkIntervalProperty(BindableObject bindable, object oldValue, object newValue)
@@ -449,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkInterval);
         }
         
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CursorBlinkDurationProperty = null;
         internal static void SetInternalCursorBlinkDurationProperty(BindableObject bindable, object oldValue, object newValue)
@@ -468,7 +468,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkDuration);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CursorWidthProperty = null;
         internal static void SetInternalCursorWidthProperty(BindableObject bindable, object oldValue, object newValue)
@@ -487,7 +487,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.CursorWidth);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty GrabHandleImageProperty = null;
         internal static void SetInternalGrabHandleImageProperty(BindableObject bindable, object oldValue, object newValue)
@@ -506,7 +506,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandleImage);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty GrabHandlePressedImageProperty = null;
         internal static void SetInternalGrabHandlePressedImageProperty(BindableObject bindable, object oldValue, object newValue)
@@ -525,7 +525,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandlePressedImage);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollThresholdProperty = null;
         internal static void SetInternalScrollThresholdProperty(BindableObject bindable, object oldValue, object newValue)
@@ -544,7 +544,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollThreshold);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollSpeedProperty = null;
         internal static void SetInternalScrollSpeedProperty(BindableObject bindable, object oldValue, object newValue)
@@ -581,7 +581,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHandleImageLeftProperty = null;
         internal static void SetInternalSelectionHandleImageLeftProperty(BindableObject bindable, object oldValue, object newValue)
@@ -600,7 +600,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHandleImageRightProperty = null;
         internal static void SetInternalSelectionHandleImageRightProperty(BindableObject bindable, object oldValue, object newValue)
@@ -619,7 +619,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHandlePressedImageLeftProperty = null;
         internal static void SetInternalSelectionHandlePressedImageLeftProperty(BindableObject bindable, object oldValue, object newValue)
@@ -638,7 +638,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHandlePressedImageRightProperty = null;
         internal static void SetInternalSelectionHandlePressedImageRightProperty(BindableObject bindable, object oldValue, object newValue)
@@ -657,7 +657,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHandleMarkerImageLeftProperty = null;
         internal static void SetInternalSelectionHandleMarkerImageLeftProperty(BindableObject bindable, object oldValue, object newValue)
@@ -676,7 +676,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHandleMarkerImageRightProperty = null;
         internal static void SetInternalSelectionHandleMarkerImageRightProperty(BindableObject bindable, object oldValue, object newValue)
@@ -695,7 +695,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionHighlightColorProperty = null;
         internal static void SetInternalSelectionHighlightColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -719,7 +719,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.internalSelectionHighlightColor;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DecorationBoundingBoxProperty = null;
         internal static void SetInternalDecorationBoundingBoxProperty(BindableObject bindable, object oldValue, object newValue)
@@ -738,7 +738,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputMethodSettingsProperty = null;
         internal static void SetInternalInputMethodSettingsProperty(BindableObject bindable, object oldValue, object newValue)
@@ -757,7 +757,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputColorProperty = null;
         internal static void SetInternalInputColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -781,7 +781,7 @@ namespace Tizen.NUI.BaseComponents
             return textField.internalInputColor;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableMarkupProperty = null;
         internal static void SetInternalEnableMarkupProperty(BindableObject bindable, object oldValue, object newValue)
@@ -800,7 +800,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableMarkup);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputFontFamilyProperty = null;
         internal static void SetInternalInputFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
@@ -819,7 +819,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputFontFamily);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputFontStyleProperty = null;
         internal static void SetInternalInputFontStyleProperty(BindableObject bindable, object oldValue, object newValue)
@@ -838,7 +838,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputPointSizeProperty = null;
         internal static void SetInternalInputPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -857,7 +857,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.InputPointSize);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnderlineProperty = null;
         internal static void SetInternalUnderlineProperty(BindableObject bindable, object oldValue, object newValue)
@@ -876,7 +876,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputUnderlineProperty = null;
         internal static void SetInternalInputUnderlineProperty(BindableObject bindable, object oldValue, object newValue)
@@ -895,7 +895,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputUnderline);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ShadowProperty = null;
         internal static void SetInternalShadowProperty(BindableObject bindable, object oldValue, object newValue)
@@ -914,7 +914,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputShadowProperty = null;
         internal static void SetInternalInputShadowProperty(BindableObject bindable, object oldValue, object newValue)
@@ -933,7 +933,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputShadow);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EmbossProperty = null;
         internal static void SetInternalEmbossProperty(BindableObject bindable, object oldValue, object newValue)
@@ -952,7 +952,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.EMBOSS);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputEmbossProperty = null;
         internal static void SetInternalInputEmbossProperty(BindableObject bindable, object oldValue, object newValue)
@@ -971,7 +971,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputEmboss);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OutlineProperty = null;
         internal static void SetInternalOutlineProperty(BindableObject bindable, object oldValue, object newValue)
@@ -990,7 +990,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputOutlineProperty = null;
         internal static void SetInternalInputOutlineProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1009,7 +1009,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputOutline);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty HiddenInputSettingsProperty = null;
         internal static void SetInternalHiddenInputSettingsProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1028,7 +1028,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PixelSizeProperty = null;
         internal static void SetInternalPixelSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1047,7 +1047,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.PixelSize);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableSelectionProperty = null;
         internal static void SetInternalEnableSelectionProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1066,7 +1066,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableSelection);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PlaceholderProperty = null;
         internal static void SetInternalPlaceholderProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1085,7 +1085,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EllipsisProperty = null;
         internal static void SetInternalEllipsisProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1123,7 +1123,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.EllipsisPosition);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableShiftSelectionProperty = null;
         internal static void SetInternalEnableShiftSelectionProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1142,7 +1142,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableShiftSelection);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = null;
         internal static void SetInternalMatchSystemLanguageDirectionProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1318,36 +1318,40 @@ namespace Tizen.NUI.BaseComponents
         /// RemoveFrontInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RemoveFrontInsetProperty = null;
+        internal static void SetInternalRemoveFrontInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveFrontInset, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr,  TextField.Property.RemoveFrontInset, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRemoveFrontInsetProperty(BindableObject bindable)
         {
             var textField = (TextField)bindable;
+
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveFrontInset);
-        }));
+        }
 
         /// <summary>
         /// RemoveBackInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RemoveBackInsetProperty = null;
+        internal static void SetInternalRemoveBackInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textField = (TextField)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveBackInset, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRemoveBackInsetProperty(BindableObject bindable)
         {
             var textField = (TextField)bindable;
+
             return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveBackInset);
-        }));
+        }
     }
 }

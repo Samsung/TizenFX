@@ -23,6 +23,24 @@ namespace Tizen.NUI
     /// A set of key frames for a property that can be animated using DALi animation.<br />
     /// This allows the generation of key frame objects from individual Property::Values.<br />
     /// </summary>
+    /// <example><code>
+    /// View view = new View()
+    /// {
+    ///     Size2D = new Size2D(100, 100),
+    ///     Position2D = new Position2D(100, 100),
+    ///     BackgroundColor = Color.Red,
+    /// };
+    ///
+    /// Window.Default.Add(view);
+    /// Animation animation = new Animation(5000); // 5s duration.
+    /// KeyFrames keyFrames = new KeyFrames();
+    /// keyFrames.Add(0.0f, new Rotation(new Radian(new Degree(-32.0f)), Vector3.ZAxis));
+    /// keyFrames.Add(0.3f, new Rotation(new Radian(new Degree(133.0f)), Vector3.ZAxis));
+    /// keyFrames.Add(0.75f, new Rotation(new Radian(new Degree(-12.0f)), Vector3.ZAxis));
+    /// keyFrames.Add(1.0f, new Rotation(new Radian(new Degree(135.0f)), Vector3.ZAxis));
+    /// animation.AnimateBetween(view, "Orientation", keyFrames);
+    /// animation.Play();
+    /// </code></example>
     /// <since_tizen> 3 </since_tizen>
     public class KeyFrames : BaseHandle
     {
@@ -108,6 +126,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the number of added key frame.
         /// </summary>
+        /// <returns>The number of key frames currently added to the KeyFrames object.</returns>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetKeyFrameCount()

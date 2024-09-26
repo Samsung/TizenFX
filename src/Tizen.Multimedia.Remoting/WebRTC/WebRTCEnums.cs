@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies errors.
+    /// Specifies WebRTC errors.
     /// </summary>
     /// <seealso cref="WebRTC.ErrorOccurred"/>
     /// <seealso cref="WebRTCErrorOccurredEventArgs"/>
@@ -361,7 +361,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies the display type.
+    /// Specifies the display mode that indicates the way of displaying video data.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public enum WebRTCDisplayMode
@@ -383,7 +383,8 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies the bundle policy.
+    /// Specifies the bundle policy that affects which media tracks are negotiated if the remote endpoint is not bundle-aware,
+    /// and what ICE candidates are gathered.
     /// </summary>
     /// <remarks>
     /// The details of bundle policy enum is described in https://www.w3.org/TR/webrtc/#rtcbundlepolicy-enum.
