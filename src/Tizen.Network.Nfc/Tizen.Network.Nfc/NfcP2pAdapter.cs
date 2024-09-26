@@ -21,7 +21,9 @@ using System.Collections.Generic;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// The class for the NFC P2P (Peer-to-Peer) mode. It allows applications to handle P2P informations.
+    /// The NfcP2pAdapter class provides methods for managing NFC peer-to-peer (P2P) communication.
+    /// It allows applications to initiate and receive P2P communication,
+    /// and to handle P2P information such as messages and connections. 
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
@@ -88,7 +90,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets the current connected P2P target.
+        /// The GetConnectedTarget method returns the currently connected P2P target. 
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The NfcP2p object.</returns>

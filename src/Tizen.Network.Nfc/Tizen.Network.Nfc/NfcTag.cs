@@ -22,7 +22,9 @@ using System.Threading.Tasks;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// The class for managing the Tag information.
+    /// The NfcTag class provides methods for managing tag information.
+    /// It allows applications to read and write tag information, and to handle tag events such as detection and removal.
+    /// This class is typically used in conjunction with the NfcManager class to manage tag communication.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcTag : IDisposable
