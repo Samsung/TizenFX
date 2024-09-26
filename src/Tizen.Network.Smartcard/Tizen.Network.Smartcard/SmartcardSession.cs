@@ -21,7 +21,8 @@ using System.Collections.Generic;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// The class for the Smartcard session information. It allows applications to handle the session information.
+    /// The SmartcardSession class provides information about the Smartcard session established with the Secure Element. 
+    /// Applications can use this class to manage the session, perform various operations, and interact with the Secure Element.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
@@ -36,7 +37,9 @@ namespace Tizen.Network.Smartcard
         private int _logicalChannel = 0;
 
         /// <summary>
-        /// The reader object that provides the given session.
+        /// The Reader property represents the SmartcardReader object associated with the current Smartcard session.
+        /// This property allows applications to access information about the reader that is providing the session,
+        /// such as its name and state. It can be useful for displaying relevant information to the user or for logging purposes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SmartcardReader Reader
@@ -60,7 +63,10 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// The Answer to Reset (ATR) of this secure element.
+        /// The Atr property represents the Answer to Reset (ATR) of the Secure Element associated with the current Smartcard session.
+        /// The ATR is a sequence of bytes sent by the Secure Element during the initial communication phase,
+        /// providing information about the card's characteristics and capabilities.
+        /// Applications can use this property to retrieve the ATR and analyze the card's properties.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Atr
@@ -87,7 +93,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Whether the session is closed.
+        /// The IsClosed property indicates whether the current Smartcard session is closed.
+        /// This property allows applications to check the status of the session and determine if it is still active or has been terminated.
+        /// Knowing the session's status is important for managing resources and ensuring proper communication with the Secure Element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsClosed
@@ -158,7 +166,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Closes the connection with the secure element.
+        /// The Close method terminates the connection with the Secure Element associated with the current Smartcard session.
+        /// This method ensures that any resources allocated for the session are released and the session is properly closed.
+        /// By calling this method, applications can free up resources and ensure that no further operations are performed on the session.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
@@ -175,7 +185,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Closes any channel opened on the given session.
+        /// The CloseChannels method closes all channels that have been opened within the current Smartcard session.
+        /// This method ensures that any active channels with the Secure Element are properly terminated.
+        /// By calling this method, applications can release resources and prevent potential conflicts or errors when interacting with the Smartcard.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>

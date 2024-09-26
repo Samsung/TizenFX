@@ -21,7 +21,9 @@ using System.Collections.Generic;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// The class for Smartcard reader information. It allows applications to handle the reader information.
+    /// The SmartcardReader class provides information about the Smartcard readers connected to the device.
+    /// Applications can use this class to obtain details about the available readers,
+    /// such as their names and states, and to manage interactions with the readers.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
@@ -33,7 +35,9 @@ namespace Tizen.Network.Smartcard
         private List<SmartcardSession> _sessionList = new List<SmartcardSession>();
 
         /// <summary>
-        /// The name of the reader.
+        /// The Name property represents the name of the Smartcard reader.
+        /// This property allows applications to retrieve the human-readable name assigned to the reader,
+        /// which can be useful for displaying information to the user or for logging purposes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Name
@@ -52,7 +56,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// The existence of a secure element.
+        /// The IsSecureElementPresent property indicates whether a Secure Element is currently present in the Smartcard reader.
+        /// This property allows applications to determine if there is a Smartcard inserted into the reader,
+        /// which can be useful for deciding whether to proceed with further operations or display appropriate messages to the user.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsSecureElementPresent
@@ -121,7 +127,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Connects to a secure element in the given reader.
+        /// The OpenSession method establishes a connection to the Secure Element in the specified Smartcard reader.
+        /// This method returns a SmartcardSession object, which represents the session with the Secure Element.
+        /// By calling this method, applications can initiate communication with the Secure Element and perform various operations.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The SmartcardSession object.</returns>
@@ -139,7 +147,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Closes all the sessions opened on the given reader.
+        /// The CloseSessions method closes all the open sessions associated with the specified Smartcard reader.
+        /// This method ensures that any active sessions with the Secure Element are properly terminated.
+        /// By calling this method, applications can release resources and prevent potential conflicts or errors when interacting with the Smartcard.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>

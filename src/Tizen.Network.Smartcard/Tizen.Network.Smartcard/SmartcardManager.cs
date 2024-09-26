@@ -21,14 +21,19 @@ using System.Threading.Tasks;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// The class for Smartcard management. It allows applications to use the Smartcard service.
+    /// The SmartcardManager class provides a interface for managing Smartcard services within Tizen applications.
+    /// It allows developers to interact with Smartcards, perform various operations,
+    /// and utilize the capabilities provided by the Smartcard framework.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
     static public class SmartcardManager
     {
         /// <summary>
-        /// Gets the list of available secure element readers.
+        /// The GetReaders method retrieves a list of available Smartcard readers.
+        /// This method returns a collection of SmartcardReader objects,
+        /// representing the different readers that are currently connected to the device.
+        /// Applications can use this method to enumerate the available readers and select one to establish a session with the Secure Element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>List of SmartcardReader objects.</returns>
