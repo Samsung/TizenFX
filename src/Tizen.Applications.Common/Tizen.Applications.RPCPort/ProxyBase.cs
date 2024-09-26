@@ -75,10 +75,8 @@ namespace Tizen.Applications.RPCPort
         /// <exception cref="InvalidIDException">Thrown if the specified application ID does not exist.</exception>
         /// <exception cref="InvalidIOException">Thrown in case of an internal input/output error during the connection process.</exception>
         /// <exception cref="PermissionDeniedException">Thrown when the required privileges are missing or access is otherwise restricted.</exception>
-        /// <privileges>
-        ///   <privilege>http://tizen.org/privilege/datasharing</privilege>
-        ///   <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-        /// </privileges>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 5 </since_tizen>
         protected void Connect(string appid, string port)
         {
@@ -102,10 +100,8 @@ namespace Tizen.Applications.RPCPort
         /// <exception cref="InvalidIDException">Thrown if the specified application ID does not exist.</exception>
         /// <exception cref="InvalidIOException">Thrown in case of an internal input/output error during the connection process.</exception>
         /// <exception cref="PermissionDeniedException">Thrown when the required privileges are missing or access is otherwise restricted.</exception>
-        /// <privileges>
-        ///   <privilege>http://tizen.org/privilege/datasharing</privilege>
-        ///   <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-        /// </privileges>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 8 </since_tizen>
         protected void ConnectSync(string appid, string port)
         {
