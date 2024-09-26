@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VideoView : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty VideoProperty = null;
         internal static void SetInternalVideoProperty(BindableObject bindable, object oldValue, object newValue)
@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty LoopingProperty = null;
         internal static void SetInternalLoopingProperty(BindableObject bindable, object oldValue, object newValue)
@@ -65,7 +65,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty MutedProperty = null;
         internal static void SetInternalMutedProperty(BindableObject bindable, object oldValue, object newValue)
@@ -84,7 +84,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty VolumeProperty = null;
         internal static void SetInternalVolumeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -103,7 +103,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty UnderlayProperty = null;
         internal static void SetInternalUnderlayProperty(BindableObject bindable, object oldValue, object newValue)
@@ -122,7 +122,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty ResourceUrlProperty = null;
         internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
@@ -533,8 +533,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
-        /// <param name="type">DisposeTypes</param>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {

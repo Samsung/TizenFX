@@ -125,6 +125,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.AlphaMaskURL,
             ImageVisualProperty.CropToMask,
             Visual.Property.VisualFittingMode,
+            ImageVisualProperty.SamplingMode,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
             ImageVisualProperty.ReleasePolicy,
@@ -1285,6 +1286,32 @@ namespace Tizen.NUI.BaseComponents
                 PropertyValue setValue = new PropertyValue((int)ret);
                 UpdateImage(Visual.Property.VisualFittingMode, setValue);
                 setValue?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br />
+        /// If not supplied, the default is SamplingModeType.BoxThenLinear.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplingModeType SamplingMode
+        {
+            get
+            {
+                int ret = (int)SamplingModeType.BoxThenLinear;
+
+                using PropertyValue samplingMode = GetCachedImageVisualProperty(ImageVisualProperty.SamplingMode);
+                samplingMode?.Get(out ret);
+
+                return (SamplingModeType)ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.SamplingMode, setValue);
+                NotifyPropertyChanged();
             }
         }
 
