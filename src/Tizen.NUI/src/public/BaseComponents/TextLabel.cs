@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, viewStyle)
         {
@@ -266,7 +266,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextLabel with setting the status of shown or hidden.
         /// </summary>
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(bool shown) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
@@ -290,7 +290,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
@@ -641,7 +641,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
             {
-                SetValue(FontStyleProperty, fontStyleMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontStyleProperty, fontStyleMap);
+                }
+                else
+                {
+                    SetInternalFontStyleProperty(this, null, fontStyleMap);
+                }
             }
         }
 
@@ -656,7 +663,7 @@ namespace Tizen.NUI.BaseComponents
         public FontStyle GetFontStyle()
         {
             FontStyle fontStyle;
-            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            using (var fontStyleMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(FontStyleProperty) : (PropertyMap)GetInternalFontStyleProperty(this))
             {
                 fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
             }
@@ -889,11 +896,16 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("offset", value);
-
                     var shadowMap = Shadow;
                     shadowMap.Merge(map);
-
-                    SetValue(ShadowProperty, shadowMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(ShadowProperty, shadowMap);
+                    }
+                    else
+                    {
+                        SetInternalShadowProperty(this, null, shadowMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -961,7 +973,14 @@ namespace Tizen.NUI.BaseComponents
                     map.Add("color", value);
                     var shadowMap = Shadow;
                     shadowMap.Merge(map);
-                    SetValue(ShadowProperty, shadowMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(ShadowProperty, shadowMap);
+                    }
+                    else
+                    {
+                        SetInternalShadowProperty(this, null, shadowMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -1021,9 +1040,16 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("enable", value);
-                    var undelineMap = Underline;
-                    undelineMap.Merge(map);
-                    SetValue(UnderlineProperty, undelineMap);
+                    var underlineMap = Underline;
+                    underlineMap.Merge(map);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(UnderlineProperty, underlineMap);
+                    }
+                    else
+                    {
+                        SetInternalUnderlineProperty(this, null, underlineMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -1089,9 +1115,16 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("color", value);
-                    var undelineMap = Underline;
-                    undelineMap.Merge(map);
-                    SetValue(UnderlineProperty, undelineMap);
+                    var underlineMap = Underline;
+                    underlineMap.Merge(map);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(UnderlineProperty, underlineMap);
+                    }
+                    else
+                    {
+                        SetInternalUnderlineProperty(this, null, underlineMap);
+                    }
                     NotifyPropertyChanged();
                 }
             }
@@ -1151,9 +1184,17 @@ namespace Tizen.NUI.BaseComponents
                 using (var map = new PropertyMap())
                 {
                     map.Add("height", value);
-                    var undelineMap = Underline;
-                    undelineMap.Merge(map);
-                    SetValue(UnderlineProperty, undelineMap);
+                    var underlineMap = Underline;
+                    underlineMap.Merge(map);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(UnderlineProperty, underlineMap);
+                    }
+                    else
+                    {
+                        SetInternalUnderlineProperty(this, null, underlineMap);
+                    }
+
                     NotifyPropertyChanged();
                 }
             }
@@ -1444,7 +1485,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
             {
-                SetValue(UnderlineProperty, underlineMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderlineProperty, underlineMap);
+                }
+                else
+                {
+                    SetInternalUnderlineProperty(this, null, underlineMap);
+                }
             }
         }
 
@@ -1459,7 +1507,7 @@ namespace Tizen.NUI.BaseComponents
         public Underline GetUnderline()
         {
             Underline underline;
-            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            using (var underlineMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(UnderlineProperty) : (PropertyMap)GetInternalUnderlineProperty(this))
             {
                 underline = TextMapHelper.GetUnderlineStruct(underlineMap);
             }
@@ -1527,7 +1575,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
             {
-                SetValue(ShadowProperty, shadowMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ShadowProperty, shadowMap);
+                }
+                else
+                {
+                    SetInternalShadowProperty(this, null, shadowMap);
+                }
             }
         }
 
@@ -1542,7 +1597,7 @@ namespace Tizen.NUI.BaseComponents
         public Tizen.NUI.Text.Shadow GetShadow()
         {
             Tizen.NUI.Text.Shadow shadow;
-            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            using (var shadowMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(ShadowProperty) : (PropertyMap)GetInternalShadowProperty(this))
             {
                 shadow = TextMapHelper.GetShadowStruct(shadowMap);
             }
@@ -1672,7 +1727,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
             {
-                SetValue(OutlineProperty, outlineMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(OutlineProperty, outlineMap);
+                }
+                else
+                {
+                    SetInternalOutlineProperty(this, null, outlineMap);
+                }
             }
         }
 
@@ -1687,7 +1749,7 @@ namespace Tizen.NUI.BaseComponents
         public Outline GetOutline()
         {
             Outline outline;
-            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            using (var outlineMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(OutlineProperty) : (PropertyMap)GetInternalOutlineProperty(this))
             {
                 outline = TextMapHelper.GetOutlineStruct(outlineMap);
             }
@@ -1904,7 +1966,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The line count of the text.
+        /// Gets the line count of the text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int LineCount
@@ -1955,7 +2017,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The direction of the text such as left to right or right to left.
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextDirection TextDirection
         {
@@ -1973,7 +2035,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The vertical line alignment of the text.
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalLineAlignment VerticalLineAlignment
         {
@@ -2044,7 +2106,7 @@ namespace Tizen.NUI.BaseComponents
         /// <item><term>fontSize (string)</term><description>The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")</description></item>
         /// </list>
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap TextFit
@@ -2098,7 +2160,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var textFitMap = TextMapHelper.GetTextFitMap(textFit))
             {
-                SetValue(TextFitProperty, textFitMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextFitProperty, textFitMap);
+                }
+                else
+                {
+                    SetInternalTextFitProperty(this, null, textFitMap);
+                }
             }
         }
 
@@ -2115,7 +2184,7 @@ namespace Tizen.NUI.BaseComponents
         public TextFit GetTextFit()
         {
             TextFit textFit;
-            using (var textFitMap = (PropertyMap)GetValue(TextFitProperty))
+            using (var textFitMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(TextFitProperty) : (PropertyMap)GetInternalTextFitProperty(this))
             {
                 textFit = TextMapHelper.GetTextFitStruct(textFitMap);
             }
@@ -2226,7 +2295,7 @@ namespace Tizen.NUI.BaseComponents
         /// The height of the line in points. <br />
         /// If the font size is larger than the line size, it works with the font size. <br />
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinLineSize
         {

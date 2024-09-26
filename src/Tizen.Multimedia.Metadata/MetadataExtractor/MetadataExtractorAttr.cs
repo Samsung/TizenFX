@@ -53,5 +53,6 @@ namespace Tizen.Multimedia
         VideoCodec,
         AudioCodec,
         ContentFor360,
+        StitchedContentFor360,
     }
 }

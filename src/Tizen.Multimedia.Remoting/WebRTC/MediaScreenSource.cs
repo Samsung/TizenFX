@@ -21,7 +21,7 @@ using NativeWebRTC = Interop.NativeWebRTC;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a screen source.
+    /// Represents a media source to share screen data.
     /// </summary>
     /// <remarks>
     /// MediaScreenSource is not allowed to be used by third-party applications due to the security reasons. (Since Tizen 7.0)

@@ -219,6 +219,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Creates the TextEditor control.
+        /// This returns a handle to the TextEditor control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TextEditor() : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
@@ -570,7 +571,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
             {
-                SetValue(FontStyleProperty, fontStyleMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontStyleProperty, fontStyleMap);
+                }
+                else
+                {
+                    SetInternalFontStyleProperty(this, null, fontStyleMap);
+                }
             }
         }
 
@@ -585,7 +593,7 @@ namespace Tizen.NUI.BaseComponents
         public FontStyle GetFontStyle()
         {
             FontStyle fontStyle;
-            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            using (var fontStyleMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(FontStyleProperty) : (PropertyMap)GetInternalFontStyleProperty(this))
             {
                 fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
             }
@@ -924,7 +932,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorWidth property.
+        /// Gets or sets the width of the cursor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int CursorWidth
@@ -1147,7 +1155,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var leftImageMap = TextMapHelper.GetFileNameMap(selectionHandleImage.LeftImageUrl))
                 {
-                    SetValue(SelectionHandleImageLeftProperty, leftImageMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(SelectionHandleImageLeftProperty, leftImageMap);
+                    }
+                    else
+                    {
+                        SetInternalSelectionHandleImageLeftProperty(this, null, leftImageMap);
+                    }
                 }
             }
 
@@ -1155,7 +1170,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var rightImageMap = TextMapHelper.GetFileNameMap(selectionHandleImage.RightImageUrl))
                 {
-                    SetValue(SelectionHandleImageRightProperty, rightImageMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(SelectionHandleImageRightProperty, rightImageMap);
+                    }
+                    else
+                    {
+                        SetInternalSelectionHandleImageRightProperty(this, null, rightImageMap);
+                    }
                 }
             }
         }
@@ -1171,8 +1193,8 @@ namespace Tizen.NUI.BaseComponents
         public SelectionHandleImage GetSelectionHandleImage()
         {
             SelectionHandleImage selectionHandleImage;
-            using (var leftImageMap = (PropertyMap)GetValue(SelectionHandleImageLeftProperty))
-            using (var rightImageMap = (PropertyMap)GetValue(SelectionHandleImageRightProperty))
+            using (var leftImageMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(SelectionHandleImageLeftProperty) : (PropertyMap)GetInternalSelectionHandleImageLeftProperty(this))
+            using (var rightImageMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(SelectionHandleImageRightProperty) : (PropertyMap)GetInternalSelectionHandleImageRightProperty(this))
             {
                 selectionHandleImage = TextMapHelper.GetSelectionHandleImageStruct(leftImageMap, rightImageMap);
             }
@@ -1274,7 +1296,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var leftImageMap = TextMapHelper.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl))
                 {
-                    SetValue(SelectionHandlePressedImageLeftProperty, leftImageMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(SelectionHandlePressedImageLeftProperty, leftImageMap);
+                    }
+                    else
+                    {
+                        SetInternalSelectionHandlePressedImageLeftProperty(this, null, leftImageMap);
+                    }
                 }
             }
 
@@ -1282,7 +1311,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var rightImageMap = TextMapHelper.GetFileNameMap(selectionHandlePressedImage.RightImageUrl))
                 {
-                    SetValue(SelectionHandlePressedImageRightProperty, rightImageMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(SelectionHandlePressedImageRightProperty, rightImageMap);
+                    }
+                    else
+                    {
+                        SetInternalSelectionHandlePressedImageRightProperty(this, null, rightImageMap);
+                    }
                 }
             }
         }
@@ -1298,8 +1334,8 @@ namespace Tizen.NUI.BaseComponents
         public SelectionHandleImage GetSelectionHandlePressedImage()
         {
             SelectionHandleImage selectionHandleImage;
-            using (var leftImageMap = (PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty))
-            using (var rightImageMap = (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty))
+            using (var leftImageMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty) : (PropertyMap)GetInternalSelectionHandlePressedImageLeftProperty(this))
+            using (var rightImageMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty) : (PropertyMap)GetInternalSelectionHandlePressedImageRightProperty(this))
             {
                 selectionHandleImage = TextMapHelper.GetSelectionHandleImageStruct(leftImageMap, rightImageMap);
             }
@@ -1401,7 +1437,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var leftImageMap = TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl))
                 {
-                    SetValue(SelectionHandleMarkerImageLeftProperty, leftImageMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(SelectionHandleMarkerImageLeftProperty, leftImageMap);
+                    }
+                    else
+                    {
+                        SetInternalSelectionHandleMarkerImageLeftProperty(this, null, leftImageMap);
+                    }
                 }
             }
 
@@ -1409,7 +1452,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var rightImageMap = TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl))
                 {
-                    SetValue(SelectionHandleMarkerImageRightProperty, rightImageMap);
+                    if (NUIApplication.IsUsingXaml)
+                    {
+                        SetValue(SelectionHandleMarkerImageRightProperty, rightImageMap);
+                    }
+                    else
+                    {
+                        SetInternalSelectionHandleMarkerImageRightProperty(this, null, rightImageMap);
+                    }
                 }
             }
         }
@@ -1425,8 +1475,8 @@ namespace Tizen.NUI.BaseComponents
         public SelectionHandleImage GetSelectionHandleMarkerImage()
         {
             SelectionHandleImage selectionHandleImage;
-            using (var leftImageMap = (PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty))
-            using (var rightImageMap = (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty))
+            using (var leftImageMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty) : (PropertyMap)GetInternalSelectionHandleMarkerImageLeftProperty(this))
+            using (var rightImageMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty) : (PropertyMap)GetInternalSelectionHandleMarkerImageRightProperty(this))
             {
                 selectionHandleImage = TextMapHelper.GetSelectionHandleImageStruct(leftImageMap, rightImageMap);
             }
@@ -1669,7 +1719,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
             {
-                SetValue(InputFontStyleProperty, fontStyleMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InputFontStyleProperty, fontStyleMap);
+                }
+                else
+                {
+                    SetInternalInputFontStyleProperty(this, null, fontStyleMap);
+                }
             }
         }
 
@@ -1881,7 +1938,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
             {
-                SetValue(UnderlineProperty, underlineMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderlineProperty, underlineMap);
+                }
+                else
+                {
+                    SetInternalUnderlineProperty(this, null, underlineMap);
+                }
             }
         }
 
@@ -1896,7 +1960,7 @@ namespace Tizen.NUI.BaseComponents
         public Underline GetUnderline()
         {
             Underline underline;
-            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            using (var underlineMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(UnderlineProperty) : (PropertyMap)GetInternalUnderlineProperty(this))
             {
                 underline = TextMapHelper.GetUnderlineStruct(underlineMap);
             }
@@ -1995,7 +2059,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
             {
-                SetValue(ShadowProperty, shadowMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ShadowProperty, shadowMap);
+                }
+                else
+                {
+                    SetInternalShadowProperty(this, null, shadowMap);
+                }
             }
         }
 
@@ -2010,7 +2081,7 @@ namespace Tizen.NUI.BaseComponents
         public Tizen.NUI.Text.Shadow GetShadow()
         {
             Tizen.NUI.Text.Shadow shadow;
-            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            using (var shadowMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(ShadowProperty) : (PropertyMap)GetInternalShadowProperty(this))
             {
                 shadow = TextMapHelper.GetShadowStruct(shadowMap);
             }
@@ -2172,7 +2243,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
             {
-                SetValue(OutlineProperty, outlineMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(OutlineProperty, outlineMap);
+                }
+                else
+                {
+                    SetInternalOutlineProperty(this, null, outlineMap);
+                }
             }
         }
 
@@ -2187,7 +2265,7 @@ namespace Tizen.NUI.BaseComponents
         public Outline GetOutline()
         {
             Outline outline;
-            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            using (var outlineMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(OutlineProperty) : (PropertyMap)GetInternalOutlineProperty(this))
             {
                 outline = TextMapHelper.GetOutlineStruct(outlineMap);
             }
@@ -2420,7 +2498,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The line count of the text.
+        /// Gets the line count of the text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int LineCount
@@ -3073,7 +3151,14 @@ namespace Tizen.NUI.BaseComponents
         {
             using (var placeholderMap = TextMapHelper.GetPlaceholderMap(placeholder))
             {
-                SetValue(PlaceholderProperty, placeholderMap);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PlaceholderProperty, placeholderMap);
+                }
+                else
+                {
+                    SetInternalPlaceholderProperty(this, null, placeholderMap);
+                }
             }
         }
 
@@ -3088,7 +3173,7 @@ namespace Tizen.NUI.BaseComponents
         public Placeholder GetPlaceholder()
         {
             Placeholder placeholder;
-            using (var placeholderMap = (PropertyMap)GetValue(PlaceholderProperty))
+            using (var placeholderMap = NUIApplication.IsUsingXaml ? (PropertyMap)GetValue(PlaceholderProperty) : (PropertyMap)GetInternalPlaceholderProperty(this))
             {
                 placeholder = TextMapHelper.GetPlaceholderStruct(placeholderMap);
             }
@@ -3474,7 +3559,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Select the whole text.
+        /// Selects the entire text within the TextEditor control.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void SelectWholeText()
@@ -3728,7 +3813,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {

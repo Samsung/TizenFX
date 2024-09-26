@@ -384,6 +384,12 @@ namespace Tizen.NUI.BaseComponents
             if (outline.Width != null)
                 map.Add("width", (float)outline.Width);
 
+            if (outline.Offset != null)
+                map.Add("offset", outline.Offset);
+
+            if (outline.BlurRadius != null)
+                map.Add("blurRadius", (float)outline.BlurRadius);
+
             return map;
         }
 
@@ -401,6 +407,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 outline.Color = GetColorFromMap(map, "color");
                 outline.Width = GetFloatFromMap(map, "width", 0.0f);
+                outline.Offset = GetVector2FromMap(map, "offset");
+                outline.BlurRadius = GetFloatFromMap(map, "blurRadius", 0.0f);
             }
 
             return outline;
