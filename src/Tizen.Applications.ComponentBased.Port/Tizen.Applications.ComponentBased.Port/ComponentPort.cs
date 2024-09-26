@@ -66,7 +66,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Gets the port name.
         /// </summary>
-                /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 9 </since_tizen>
         public string PortName
         {
             get;
