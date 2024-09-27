@@ -21,6 +21,23 @@ namespace Tizen.NUI
 {
     using global::System;
 
+    /// <summary>
+    /// NativeImageSource is a class for displaying an native image resource.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// NativeImageSource surface = new NativeImageSource(width, height, ColorDepth.Default);
+    ///
+    /// var buffer = surface.AcquireBuffer(ref bufferWidth, ref bufferHeight, ref bufferStride);
+    ///
+    /// /* Use buffer */
+    ///
+    /// surface.ReleaseBuffer();
+    ///
+    /// ImageUrl imageUrl = surface.GenerateUrl();
+    /// ImageView view = new ImageView(imageUrl.ToString());
+    /// </code>
+    /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NativeImageSource : NativeImageInterface
     {
