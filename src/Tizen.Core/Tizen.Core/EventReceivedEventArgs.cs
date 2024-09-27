@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.Core
 {
-    // <summary>
+    /// <summary>
     /// Represents the arguments passed to the event handler when the event data is received.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
