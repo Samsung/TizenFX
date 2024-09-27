@@ -31,6 +31,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <returns>
         /// <c>true</c> if the service component is successfully created; otherwise, <c>false</c>.
         /// </returns>
+        /// <since_tizen> 6 </since_tizen>
         public abstract bool OnCreate();
 
         /// <summary>
