@@ -70,7 +70,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class EventObject.
+        /// Finalizes an instance of the EventObject class.
         /// </summary>
         ~EventObject()
         {

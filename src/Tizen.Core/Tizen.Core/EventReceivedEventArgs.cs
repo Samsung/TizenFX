@@ -18,8 +18,8 @@ using System;
 
 namespace Tizen.Core
 {
-    /// <summary>
-    /// Arguments for the event raised when the event data is received.
+    // <summary>
+    /// Represents the arguments passed to the event handler when the event data is received.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public class EventReceivedEventArgs : System.EventArgs
