@@ -22,6 +22,11 @@ namespace Tizen.Network.Stc
 {
     /// <summary>
     /// A class for managing the Stc statistics information.
+    /// This class manages statistical information related to network usage.
+    /// It provides properties to access various details such as application ID, interface name,
+    /// time interval, interface type, counters for incoming and outgoing data, roaming status,
+    /// network protocol, and application state. This class also ensures proper resource management
+    /// through its Dispose method.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
 
