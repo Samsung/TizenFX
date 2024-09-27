@@ -1923,7 +1923,8 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal override void ApplyCornerRadius()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ApplyCornerRadius()
         {
             base.ApplyCornerRadius();
 
@@ -1940,7 +1941,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal override void ApplyBorderline()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ApplyBorderline()
         {
             base.ApplyBorderline();
 
