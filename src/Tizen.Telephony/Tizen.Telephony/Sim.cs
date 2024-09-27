@@ -21,6 +21,9 @@ namespace Tizen.Telephony
 {
     /// <summary>
     /// This class provides APIs that allow you to extract the information stored on a SIM card.
+    /// It includes properties such as IccId, which allows users to retrieve the Integrated
+    //  Circuit Card Identification (ICCID) of the SIM card. By leveraging these features,
+    /// developers can gather valuable information about the SIM card and incorporate it into their applications effectively.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Sim

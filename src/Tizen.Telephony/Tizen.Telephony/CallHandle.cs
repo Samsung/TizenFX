@@ -21,6 +21,9 @@ namespace Tizen.Telephony
 {
     /// <summary>
     /// This class provides the APIs to get the information about calls.
+    /// It contains several properties such as HandleId, Number, Type, Status, Direction, and ConferenceStatus,
+    /// which allow users to obtain specific details about a call. These properties can be accessed individually
+    /// to gain insights into aspects like the call handle ID, number, type, status, direction, and whether it is a conference call or not.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class CallHandle
