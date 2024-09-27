@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.System.html">System</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.System.MediaKey.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The class for receiving events of media keys.</p>
+  <div class="markdown level0 summary"><p>A class that provides methods for handling media key events.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -111,10 +111,14 @@
 
 
 
+  <h5 id="Tizen_System_MediaKey_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This class enables developers to receive and handle events triggered by various media keys such as play/pause, volume up/down, etc.
+By implementing the appropriate event handlers, applications can respond accordingly to user input from these keys.</p>
+</div>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.MediaKey/Tizen.System/MediaKey.cs/#L142">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.MediaKey/Tizen.System/MediaKey.cs/#L155">View Source</a>
   </span>
   <h4 id="Tizen_System_MediaKey_Event" data-uid="Tizen.System.MediaKey.Event">Event</h4>
   <div class="markdown level1 summary"><p>Adds or removes events for all media keys.</p>
@@ -139,6 +143,11 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_System_MediaKey_Event_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By subscribing to this event, you can receive notifications about user interactions with media keys such as play/pause, volume up/down, etc.
+To handle these events, you need to provide a callback function that implements the EventHandler&lt;MediaKeyEventArgs&gt; delegate.
+In case of failure while reserving or releasing the key, an InvalidOperationException will be thrown.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -167,7 +176,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.MediaKey/Tizen.System/MediaKey.cs/#L123" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.MediaKey/Tizen.System/MediaKey.cs/#L131" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

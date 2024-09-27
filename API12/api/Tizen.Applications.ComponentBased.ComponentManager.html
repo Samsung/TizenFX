@@ -114,11 +114,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L46">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_ComponentManager_GetInstalledComponentsAsync_" data-uid="Tizen.Applications.ComponentBased.ComponentManager.GetInstalledComponentsAsync*"></a>
   <h4 id="Tizen_Applications_ComponentBased_ComponentManager_GetInstalledComponentsAsync" data-uid="Tizen.Applications.ComponentBased.ComponentManager.GetInstalledComponentsAsync">GetInstalledComponentsAsync()</h4>
-  <div class="markdown level1 summary"><p>Gets the information of the installed components asynchronously.</p>
+  <div class="markdown level1 summary"><p>Asynchronously retrieves a list of installed components.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -136,7 +136,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.ComponentInfo.html">ComponentInfo</a>&gt;&gt;</td>
-        <td><p>The installed component info list.</p>
+        <td><p>A task that represents the asynchronous operation.
+The task result contains an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of the installed component information.</p>
 </td>
       </tr>
     </tbody>
@@ -152,22 +153,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid argument.</p>
+        <td><p>Thrown when an invalid argument is provided.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of the &quot;component not exist&quot; error or the system error.</p>
+        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when failed because of out of memory.</p>
+        <td><p>Thrown when the system runs out of memory.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because of permission denied.</p>
+        <td><p>Thrown when permission is denied to access the component information.</p>
 </td>
       </tr>
     </tbody>
@@ -177,11 +178,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L86">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L92">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_ComponentManager_GetRunningComponentsAsync_" data-uid="Tizen.Applications.ComponentBased.ComponentManager.GetRunningComponentsAsync*"></a>
   <h4 id="Tizen_Applications_ComponentBased_ComponentManager_GetRunningComponentsAsync" data-uid="Tizen.Applications.ComponentBased.ComponentManager.GetRunningComponentsAsync">GetRunningComponentsAsync()</h4>
-  <div class="markdown level1 summary"><p>Gets the information of the running components asynchronously.</p>
+  <div class="markdown level1 summary"><p>Asynchronously retrieves a list of currently running components.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -199,7 +200,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a>&gt;&gt;</td>
-        <td><p>The component running context list.</p>
+        <td><p>A task that represents the asynchronous operation.
+The task result contains an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of the running components.</p>
 </td>
       </tr>
     </tbody>
@@ -215,22 +217,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid argument.</p>
+        <td><p>Thrown when an invalid argument is provided.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of the &quot;component not exist&quot; error or the system error.</p>
+        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when failed because of out of memory.</p>
+        <td><p>Thrown when the system runs out of memory.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because of permission denied.</p>
+        <td><p>Thrown when permission is denied to access the running components.</p>
 </td>
       </tr>
     </tbody>
@@ -240,11 +242,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L130">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L138">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_ComponentManager_IsRunning_" data-uid="Tizen.Applications.ComponentBased.ComponentManager.IsRunning*"></a>
   <h4 id="Tizen_Applications_ComponentBased_ComponentManager_IsRunning_System_String_" data-uid="Tizen.Applications.ComponentBased.ComponentManager.IsRunning(System.String)">IsRunning(string)</h4>
-  <div class="markdown level1 summary"><p>Checks whether the component is running or not.</p>
+  <div class="markdown level1 summary"><p>Checks if a specified component is currently running.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -264,7 +266,7 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">componentId</span></td>
-        <td><p>Component ID.</p>
+        <td><p>The unique identifier of the component.</p>
 </td>
       </tr>
     </tbody>
@@ -280,7 +282,7 @@
     <tbody>
       <tr>
         <td><span class="xref">bool</span></td>
-        <td><p>Returns true if the component is running, otherwise false.</p>
+        <td><p>True if the component is running; otherwise, false.</p>
 </td>
       </tr>
     </tbody>
@@ -296,22 +298,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid argument.</p>
+        <td><p>Thrown when an invalid argument is provided.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of the &quot;component not exist&quot; error or the system error.</p>
+        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when failed because of out of memory.</p>
+        <td><p>Thrown when the system runs out of memory.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because of permission denied.</p>
+        <td><p>Thrown when permission is denied to access the component status.</p>
 </td>
       </tr>
     </tbody>
@@ -321,11 +323,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L155">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentManager.cs/#L163">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_ComponentManager_TerminateBackgroundComponent_" data-uid="Tizen.Applications.ComponentBased.ComponentManager.TerminateBackgroundComponent*"></a>
   <h4 id="Tizen_Applications_ComponentBased_ComponentManager_TerminateBackgroundComponent_Tizen_Applications_ComponentBased_ComponentRunningContext_" data-uid="Tizen.Applications.ComponentBased.ComponentManager.TerminateBackgroundComponent(Tizen.Applications.ComponentBased.ComponentRunningContext)">TerminateBackgroundComponent(ComponentRunningContext)</h4>
-  <div class="markdown level1 summary"><p>Terminates the component if it is running in the background.</p>
+  <div class="markdown level1 summary"><p>Requests to terminate a specified component that is running in the background.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -345,14 +347,14 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a></td>
         <td><span class="parametername">context</span></td>
-        <td><p>Component ID</p>
+        <td><p>The context of the running component to terminate.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_ComponentManager_TerminateBackgroundComponent_Tizen_Applications_ComponentBased_ComponentRunningContext__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This function returns after it just sends a request for terminating a background component.
-Platform will decide if the target component could be terminated or not according to the state of the target component.</p>
+  <div class="markdown level1 remarks"><p>This method sends a request to terminate a background component.
+The platform determines if the target component can be terminated based on its current state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -365,22 +367,22 @@ Platform will decide if the target component could be terminated or not accordin
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid argument.</p>
+        <td><p>Thrown when an invalid argument is provided.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of the &quot;component not exist&quot; error or the system error.</p>
+        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when failed because of out of memory.</p>
+        <td><p>Thrown when the system runs out of memory.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when failed because of permission denied.</p>
+        <td><p>Thrown when permission is denied to terminate the component.</p>
 </td>
       </tr>
     </tbody>
