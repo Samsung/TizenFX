@@ -219,6 +219,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Creates the TextEditor control.
+        /// This returns a handle to the TextEditor control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TextEditor() : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
@@ -931,7 +932,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorWidth property.
+        /// Gets or sets the width of the cursor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int CursorWidth
@@ -2497,7 +2498,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The line count of the text.
+        /// Gets the line count of the text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int LineCount
@@ -3558,7 +3559,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Select the whole text.
+        /// Selects the entire text within the TextEditor control.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void SelectWholeText()
@@ -3812,7 +3813,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {

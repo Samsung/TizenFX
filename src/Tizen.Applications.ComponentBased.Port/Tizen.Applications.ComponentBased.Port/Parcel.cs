@@ -86,7 +86,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Finalizer of the class Parcel.
+        /// Finalizes an instance of the Parcel class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         ~Parcel()
@@ -97,7 +97,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Releases all the resources used by the class parcel.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>>
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(disposing: true);

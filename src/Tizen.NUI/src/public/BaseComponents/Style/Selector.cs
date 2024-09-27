@@ -53,6 +53,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Create an empty selector.
+        /// This constructor returns an empty selector object which can be used to define various selectors for different states and conditions.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Selector()
@@ -149,9 +150,9 @@ namespace Tizen.NUI.BaseComponents
             set => Add(ControlState.DisabledFocused, value);
         }
         /// <summary>
-        /// SelectedFocused State.
+        /// Gets or sets the value associated with the SelectedFocused state.
         /// </summary>
-        /// <remark> This is for XAML. Do not ACR this. </remark>
+        /// <remark> This property is intended for internal use within XAML files and should not be subject to ACR.</remark>
         public T SelectedFocused
         {
             get => GetSafely(x => x.State == ControlState.SelectedFocused);
@@ -311,7 +312,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
-        /// <return> An enumerator that can be used to iterate through the collection. </return>
+        /// <returns> An enumerator that can be used to iterate through the collection. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerator<SelectorItem<T>> GetEnumerator()
         {
@@ -332,9 +333,10 @@ namespace Tizen.NUI.BaseComponents
         /// Get value by State.
         /// It will traverse from the first item to find proper fit when there is no perfect state match.
         /// </summary>
+        /// <param name="state">The state to query for the value.</param>
+        /// <param name="result">The output parameter to store the resulting value if found.</param>
         /// <exception cref="ArgumentNullException"> Thrown when state is null. </exception>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         /// <returns>True if the selector has a given state value, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetValue(ControlState state, out T result)
@@ -390,7 +392,10 @@ namespace Tizen.NUI.BaseComponents
             SelectorItems.Clear();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Converts the Selector object to its string representation.
+        /// </summary>
+        /// <returns>A string that represents the current selector.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString()
         {
@@ -408,8 +413,8 @@ namespace Tizen.NUI.BaseComponents
         /// Clone itself.
         /// If type T implements ICloneable, it calls Clone() method to clone values, otherwise use operator=.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <returns>A new Selector T instance that is a clone of the current selector.</returns>
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<T> Clone()
         {
@@ -466,6 +471,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
         /// <since_tizen> 9 </since_tizen>
         public override bool Equals(object other)
         {
@@ -497,6 +504,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
+        /// <returns>An integer value that specifies the hash code for this instance.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {

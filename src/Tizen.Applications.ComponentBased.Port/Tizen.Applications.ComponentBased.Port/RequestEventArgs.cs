@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
-    /// Arguments for the event raised when the request is received.
+    /// The arguments for the event raised when the request is received.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public class RequestEventArgs : EventArgs

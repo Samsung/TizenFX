@@ -26,7 +26,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class CustomView : ViewWrapper
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty FocusNavigationSupportProperty = null;
         internal static void SetInternalFocusNavigationSupportProperty(BindableObject bindable, object oldValue, object newValue)
@@ -43,7 +43,7 @@ namespace Tizen.NUI.BaseComponents
             return customView.IsKeyboardNavigationSupported();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty FocusGroupProperty = null;
         internal static void SetInternalFocusGroupProperty(BindableObject bindable, object oldValue, object newValue)

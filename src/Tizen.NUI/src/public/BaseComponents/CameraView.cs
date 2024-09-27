@@ -26,10 +26,20 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 9 </since_tizen>
     public class CameraView : View
     {
+        /// <summary>
+        /// Enumeration for specifying the display type of the CameraView.
+        /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public enum DisplayType
         {
+            /// <summary>
+            /// The camera view will be displayed using hardware overlay.
+            /// </summary>
             Window = 0,   //  HW overlay
+            
+            /// <summary>
+            /// The camera view will be displayed using texture stream.
+            /// </summary>
             Image     //  texture stream
         };
 
