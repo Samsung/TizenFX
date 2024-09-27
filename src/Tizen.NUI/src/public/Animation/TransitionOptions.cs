@@ -58,9 +58,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">true to release both managed and unmanaged resources. false to release only unmanaged resources.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {

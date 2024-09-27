@@ -22,6 +22,7 @@ namespace Tizen.Applications.Shortcut
     /// This class provides some functions to add or delete a shortcut.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class ShortcutManager
     {
         private const string LogTag = "Tizen.Applications.Shortcut";
@@ -38,6 +39,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Add(HomeShortcutInfo shortcut)
         {
             Interop.Shortcut.ErrorCode err = Interop.Shortcut.ErrorCode.None;
@@ -79,6 +81,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Add(WidgetShortcutInfo shortcut)
         {
             Interop.Shortcut.ErrorCode err = Interop.Shortcut.ErrorCode.None;
@@ -114,6 +117,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Delete(string shortcutName)
         {
             Interop.Shortcut.ErrorCode err = Interop.Shortcut.ErrorCode.None;
@@ -149,6 +153,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Delete(ShortcutInfo shortcut)
         {
             if (shortcut == null)

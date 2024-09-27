@@ -35,6 +35,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// Creates an initialized Shape.
+        /// This constructor initializes a new instance of the Shape class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Shape() : this(Interop.Shape.New(), true)
@@ -100,7 +101,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// The current fill rule of the shape.
+        /// Gets or sets the fill rule type for the shape.
+        /// The fill rule type which determines how the interior of a shape is determined.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public FillRuleType FillRule

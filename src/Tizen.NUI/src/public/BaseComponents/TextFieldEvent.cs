@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
         private bool invokeTextChanged = true;
 
         /// <summary>
-        /// The TextChanged event.
+        /// The TextChanged event is triggered whenever the text in the TextField changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TextChangedEventArgs> TextChanged
@@ -124,7 +124,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The MaxLengthReached event.
+        /// The MaxLengthReached event is triggered when the text entered in the TextField exceeds its maximum allowed length.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
@@ -429,7 +429,7 @@ namespace Tizen.NUI.BaseComponents
             private TextField textField;
 
             /// <summary>
-            /// TextField.
+            /// Gets or sets TextField.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TextField TextField
@@ -454,7 +454,7 @@ namespace Tizen.NUI.BaseComponents
             private TextField textField;
 
             /// <summary>
-            /// TextField.
+            /// Gets or sets TextField.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TextField TextField
