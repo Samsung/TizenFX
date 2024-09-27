@@ -34,6 +34,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The cellular profile object.</param>
+        /// <remarks>
+        /// This method creates a new cellular profile and adds it to the list of available profiles.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

@@ -82,7 +82,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// The RSSI.
+        /// The RSSI (Received Signal Strength Indicator).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>RSSI of the WiFi.</value>
@@ -177,7 +177,7 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Checks whether passphrase is required.
+        /// Checks whether passphrase is required. Indicates whether a passphrase is required for the WiFi network.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>True if a passphrase is required, otherwise false.</value>
@@ -216,10 +216,13 @@ namespace Tizen.Network.Connection
         }
 
         /// <summary>
-        /// Sets the passphrase of the Wi-Fi WPA.
+        /// Sets the passphrase of the Wi-Fi WPA. Configures the passphrase for the WPA security type of the Wi-Fi network.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="passphrase">The passphrase of Wi-Fi security.</param>
+        /// <remarks>
+        /// The passphrase is used to establish a secure connection to the Wi-Fi network.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
