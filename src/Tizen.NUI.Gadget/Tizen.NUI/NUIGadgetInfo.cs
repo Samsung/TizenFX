@@ -26,7 +26,7 @@ using SystemIO = System.IO;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// This class provides properties to get information the gadget.
+    /// This class provides properties to retrieve information the gadget.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
