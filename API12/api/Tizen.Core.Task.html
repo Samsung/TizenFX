@@ -127,7 +127,7 @@ After termination, the task returns back to 'Constructed' state.</p>
   </span>
   <a id="Tizen_Core_Task__ctor_" data-uid="Tizen.Core.Task.#ctor*"></a>
   <h4 id="Tizen_Core_Task__ctor_System_String_" data-uid="Tizen.Core.Task.#ctor(System.String)">Task(string)</h4>
-  <div class="markdown level1 summary"><p>Initializes the Task class.</p>
+  <div class="markdown level1 summary"><p>Initializes the Task class with the specified ID.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -147,15 +147,15 @@ After termination, the task returns back to 'Constructed' state.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">id</span></td>
-        <td><p>The ID of the task.</p>
+        <td><p>The unique identifier for the task.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Core_Task__ctor_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The constructor throws an exception when the id already exists.
-By default, the task creates a thread. However, if the <code data-dev-comment-type="paramref" class="paramref">id</code> is &quot;main&quot;, a thread is not created.
-The 'main' task will be operated in the main thread.</p>
+  <div class="markdown level1 remarks"><p>The constructor throws an exception when the ID already exists.
+By default, the task creates a separate thread. However, if the <code data-dev-comment-type="paramref" class="paramref">id</code> is set to &quot;main&quot;, no separate thread is created.
+In such case, the 'main' task will operate on the main application thread instead.</p>
 </div>
   <h5 id="Tizen_Core_Task__ctor_System_String__examples">Examples</h5>
   <pre><code>TizenCore.Initialize();
@@ -195,7 +195,7 @@ task.Run();</code></pre>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L665">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L666">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Running_" data-uid="Tizen.Core.Task.Running*"></a>
   <h4 id="Tizen_Core_Task_Running" data-uid="Tizen.Core.Task.Running">Running</h4>
@@ -228,7 +228,7 @@ task.Run();</code></pre>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L305">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L306">View Source</a>
   </span>
   <a id="Tizen_Core_Task_AddChannelReceiver_" data-uid="Tizen.Core.Task.AddChannelReceiver*"></a>
   <h4 id="Tizen_Core_Task_AddChannelReceiver_Tizen_Core_ChannelReceiver_" data-uid="Tizen.Core.Task.AddChannelReceiver(Tizen.Core.ChannelReceiver)">AddChannelReceiver(ChannelReceiver)</h4>
@@ -252,13 +252,14 @@ task.Run();</code></pre>
       <tr>
         <td><a class="xref" href="Tizen.Core.ChannelReceiver.html">ChannelReceiver</a></td>
         <td><span class="parametername">receiver</span></td>
-        <td><p>The channel receiver instance.</p>
+        <td><p>The channel receiver instance that needs to be added.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Core_Task_AddChannelReceiver_Tizen_Core_ChannelReceiver__examples">Examples</h5>
-  <pre><code>var channel = new Channel();
+  <p>In the following code snippet, we create a channel, find or spawn a task named &quot;ReceivingTask&quot;, and then add the channel receiver to the task's main loop by calling the 'AddChannelReceiver' method.</p>
+<pre><code>var channel = new Channel();
 var task = TizenCore.Find(&quot;ReceivingTask&quot;) ?? TizenCore.Spawn(&quot;ReceivingTask&quot;);
 var receiver = channel.Receiver;
 receiver.Received += (sender, args) => {
@@ -302,7 +303,7 @@ task.AddChannelReceiver(receiver);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L421">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L422">View Source</a>
   </span>
   <a id="Tizen_Core_Task_AddEvent_" data-uid="Tizen.Core.Task.AddEvent*"></a>
   <h4 id="Tizen_Core_Task_AddEvent_Tizen_Core_Event_" data-uid="Tizen.Core.Task.AddEvent(Tizen.Core.Event)">AddEvent(Event)</h4>
@@ -382,7 +383,7 @@ task.AddEvent(coreEvent);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L220">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L219">View Source</a>
   </span>
   <a id="Tizen_Core_Task_AddTimer_" data-uid="Tizen.Core.Task.AddTimer*"></a>
   <h4 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean__" data-uid="Tizen.Core.Task.AddTimer(System.UInt32,System.Func{System.Boolean})">AddTimer(uint, Func&lt;bool&gt;)</h4>
@@ -474,7 +475,7 @@ var timerId = task.AddTimer(1000, () => {
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L758">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L761">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Dispose_" data-uid="Tizen.Core.Task.Dispose*"></a>
   <h4 id="Tizen_Core_Task_Dispose" data-uid="Tizen.Core.Task.Dispose">Dispose()</h4>
@@ -490,7 +491,7 @@ var timerId = task.AddTimer(1000, () => {
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L732">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L735">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Dispose_" data-uid="Tizen.Core.Task.Dispose*"></a>
   <h4 id="Tizen_Core_Task_Dispose_System_Boolean_" data-uid="Tizen.Core.Task.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -524,7 +525,7 @@ var timerId = task.AddTimer(1000, () => {
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L535">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L536">View Source</a>
   </span>
   <a id="Tizen_Core_Task_EmitEvent_" data-uid="Tizen.Core.Task.EmitEvent*"></a>
   <h4 id="Tizen_Core_Task_EmitEvent_Tizen_Core_EventObject_" data-uid="Tizen.Core.Task.EmitEvent(Tizen.Core.EventObject)">EmitEvent(EventObject)</h4>
@@ -549,7 +550,7 @@ It's similar to Event.Emit(), but EmitAllEvent() sends the event object to every
       <tr>
         <td><a class="xref" href="Tizen.Core.EventObject.html">EventObject</a></td>
         <td><span class="parametername">eventObject</span></td>
-        <td><p>The event object instance.</p>
+        <td><p>The event object instance to be sent.</p>
 </td>
       </tr>
     </tbody>
@@ -610,7 +611,7 @@ using (var eventObject = new TCoreEventObject(id++, message))
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L114">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Post_" data-uid="Tizen.Core.Task.Post*"></a>
   <h4 id="Tizen_Core_Task_Post_System_Action_" data-uid="Tizen.Core.Task.Post(System.Action)">Post(Action)</h4>
@@ -682,7 +683,7 @@ task.Post(() =>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L170">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L169">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Post_" data-uid="Tizen.Core.Task.Post*"></a>
   <h4 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task__" data-uid="Tizen.Core.Task.Post(System.Func{System.Threading.Tasks.Task})">Post(Func&lt;Task&gt;)</h4>
@@ -760,7 +761,7 @@ task.Post(async () =>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L718">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L721">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Quit_" data-uid="Tizen.Core.Task.Quit*"></a>
   <h4 id="Tizen_Core_Task_Quit" data-uid="Tizen.Core.Task.Quit">Quit()</h4>
@@ -806,7 +807,7 @@ if (coreTask.Running)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L367">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L368">View Source</a>
   </span>
   <a id="Tizen_Core_Task_RemoveChannelReceiver_" data-uid="Tizen.Core.Task.RemoveChannelReceiver*"></a>
   <h4 id="Tizen_Core_Task_RemoveChannelReceiver_Tizen_Core_ChannelReceiver_" data-uid="Tizen.Core.Task.RemoveChannelReceiver(Tizen.Core.ChannelReceiver)">RemoveChannelReceiver(ChannelReceiver)</h4>
@@ -872,7 +873,7 @@ task.RemoveChannelReceiver(receiver);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L487">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L488">View Source</a>
   </span>
   <a id="Tizen_Core_Task_RemoveEvent_" data-uid="Tizen.Core.Task.RemoveEvent*"></a>
   <h4 id="Tizen_Core_Task_RemoveEvent_Tizen_Core_Event_" data-uid="Tizen.Core.Task.RemoveEvent(Tizen.Core.Event)">RemoveEvent(Event)</h4>
@@ -937,7 +938,7 @@ task.RemoveEvent(coreEvent);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L268">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L267">View Source</a>
   </span>
   <a id="Tizen_Core_Task_RemoveTimer_" data-uid="Tizen.Core.Task.RemoveTimer*"></a>
   <h4 id="Tizen_Core_Task_RemoveTimer_System_Int32_" data-uid="Tizen.Core.Task.RemoveTimer(System.Int32)">RemoveTimer(int)</h4>
@@ -981,7 +982,7 @@ task.RemoveTimer(timerId);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L686">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/Task.cs/#L689">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Run_" data-uid="Tizen.Core.Task.Run*"></a>
   <h4 id="Tizen_Core_Task_Run" data-uid="Tizen.Core.Task.Run">Run()</h4>
@@ -993,7 +994,11 @@ task.RemoveTimer(timerId);</code></pre>
     <pre><code class="lang-csharp hljs">public void Run()</code></pre>
   </div>
   <h5 id="Tizen_Core_Task_Run_examples">Examples</h5>
-  <pre><code>var coreTask = new TCoreTask(&quot;Runner&quot;);
+  <p>Here's an example that demonstrates how to create a Core Task and run its main loop:</p>
+<pre><code>// Create a Core Task named &quot;Runner&quot;
+var coreTask = new TCoreTask(&quot;Runner&quot;);
+
+// Start the main loop of the task
 coreTask.Run();</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>

@@ -89,8 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.ComponentBased.html">ComponentBased</a>.<a class="xref" href="Tizen.Applications.ComponentBased.Common.html">Common</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.ComponentBased.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This is a base-component class.
-It provides common functions of FrameComponent and ServiceComponent.</p>
+  <div class="markdown level0 summary"><p>Represents the base class for components, providing common functionalities for both FrameComponent and ServiceComponent.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -121,7 +120,8 @@ It provides common functions of FrameComponent and ServiceComponent.</p>
 
 
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level0 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
   <h3 id="properties">Properties
 </h3>
@@ -130,7 +130,7 @@ It provides common functions of FrameComponent and ServiceComponent.</p>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_ComponentId_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.ComponentId*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_ComponentId" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.ComponentId">ComponentId</h4>
-  <div class="markdown level1 summary"><p>A component ID</p>
+  <div class="markdown level1 summary"><p>Gets the ID of the component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -153,7 +153,8 @@ It provides common functions of FrameComponent and ServiceComponent.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_ComponentId_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -164,7 +165,7 @@ It provides common functions of FrameComponent and ServiceComponent.</p>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_Id_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.Id*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Id" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.Id">Id</h4>
-  <div class="markdown level1 summary"><p>A component instance ID.
+  <div class="markdown level1 summary"><p>Gets the unique instance ID of the component.
 It will be created after OnCreate method is invoked.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -188,7 +189,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Id_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -199,7 +201,7 @@ It will be created after OnCreate method is invoked.</p>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_Parent_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.Parent*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Parent" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.Parent">Parent</h4>
-  <div class="markdown level1 summary"><p>Parent object</p>
+  <div class="markdown level1 summary"><p>Gets the parent application object to which the component belongs.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -222,7 +224,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Parent_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -235,7 +238,7 @@ It will be created after OnCreate method is invoked.</p>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_Finish_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.Finish*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Finish" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.Finish">Finish()</h4>
-  <div class="markdown level1 summary"><p>Finish current component</p>
+  <div class="markdown level1 summary"><p>Finishes the current component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -243,7 +246,8 @@ It will be created after OnCreate method is invoked.</p>
     <pre><code class="lang-csharp hljs">public void Finish()</code></pre>
   </div>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_Finish_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -254,7 +258,7 @@ It will be created after OnCreate method is invoked.</p>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_OnRestoreContents_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.OnRestoreContents*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_OnRestoreContents_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.OnRestoreContents(Tizen.Applications.Bundle)">OnRestoreContents(Bundle)</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle behavior to restore the previous status.</p>
+  <div class="markdown level1 summary"><p>Override this method to handle restoring the previous state of the component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -274,13 +278,14 @@ It will be created after OnCreate method is invoked.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
         <td><span class="parametername">c</span></td>
-        <td><p>Contents. It can be used only in the callback. To use outside, make a copy.</p>
+        <td><p>A bundle containing the saved state of the component. It can only be used within the callback. To use it outside, create a copy.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_OnRestoreContents_Tizen_Applications_Bundle__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -291,7 +296,7 @@ It will be created after OnCreate method is invoked.</p>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_OnSaveContent_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.OnSaveContent*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_OnSaveContent_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.OnSaveContent(Tizen.Applications.Bundle)">OnSaveContent(Bundle)</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle behavior to save current status.</p>
+  <div class="markdown level1 summary"><p>Override this method to handle saving the current state of the component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -311,24 +316,25 @@ It will be created after OnCreate method is invoked.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
         <td><span class="parametername">c</span></td>
-        <td><p>Contents. It can be used only in the callback. To use outside, make a copy.</p>
+        <td><p>A bundle containing the current state of the component. It can only be used within the callback. To use it outside, create a copy.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_OnSaveContent_Tizen_Applications_Bundle__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/BaseComponent.cs/#L198">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/BaseComponent.cs/#L199">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_SendLaunchRequestAsync_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.SendLaunchRequestAsync*"></a>
   <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_SendLaunchRequestAsync_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.SendLaunchRequestAsync(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequestAsync(AppControl, AppControlReplyCallback)</h4>
-  <div class="markdown level1 summary"><p>Sends the launch request asynchronously.</p>
+  <div class="markdown level1 summary"><p>Sends a launch request asynchronously.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -348,13 +354,13 @@ It will be created after OnCreate method is invoked.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
         <td><span class="parametername">control</span></td>
-        <td><p>appcontrol object</p>
+        <td><p>The AppControl object representing the request details.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Applications.AppControlReplyCallback.html">AppControlReplyCallback</a></td>
         <td><span class="parametername">replyAfterLaunching</span></td>
-        <td><p>The callback function to be called when the reply is delivered.</p>
+        <td><p>The callback function to be invoked when the reply is received.</p>
 </td>
       </tr>
     </tbody>
@@ -370,13 +376,14 @@ It will be created after OnCreate method is invoked.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Applications.AppControlResult.html">AppControlResult</a>&gt;</td>
-        <td><p>A task with the result of the launch request.</p>
+        <td><p>A task representing the result of the launch request.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_SendLaunchRequestAsync_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To use group mode, you must use this function instead of SendLaunchRequestAsync().</p>
+  <div class="markdown level1 remarks"><p>Use this method to send a launch request with group mode enabled.
+If group mode is not required, you can use SendLaunchRequestAsync() instead.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -394,12 +401,12 @@ It will be created after OnCreate method is invoked.</p>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when fail to set component information to the AppControl.</p>
+        <td><p>Thrown when there is a failure in setting the component information in the AppControl.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
-        <td><p>Thrown when the application to run is not found.</p>
+        <td><p>Thrown when the target application is not found.</p>
 </td>
       </tr>
       <tr>
@@ -442,7 +449,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_DeviceOrientationChanged_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -475,7 +483,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_LocaleChanged_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -508,7 +517,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_LowBattery_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -541,7 +551,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_LowMemory_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -574,7 +585,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_RegionFormatChanged_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -607,7 +619,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_SuspendedStateChanged_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
@@ -640,7 +653,8 @@ It will be created after OnCreate method is invoked.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_ComponentBased_Common_BaseComponent_TimeZoneChanged_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This class cannot be registered by ComponentBased applications.</p>
+  <div class="markdown level1 remarks"><p>This class cannot be registered directly by ComponentBased applications.
+It serves as a base class to be inherited by other components.</p>
 </div>
 
 
