@@ -120,7 +120,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L136">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L140">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelReceiver_Dispose_" data-uid="Tizen.Core.ChannelReceiver.Dispose*"></a>
   <h4 id="Tizen_Core_ChannelReceiver_Dispose" data-uid="Tizen.Core.ChannelReceiver.Dispose">Dispose()</h4>
@@ -136,7 +136,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L119">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelReceiver_Dispose_" data-uid="Tizen.Core.ChannelReceiver.Dispose*"></a>
   <h4 id="Tizen_Core_ChannelReceiver_Dispose_System_Boolean_" data-uid="Tizen.Core.ChannelReceiver.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -174,7 +174,7 @@
   </span>
   <a id="Tizen_Core_ChannelReceiver_Finalize_" data-uid="Tizen.Core.ChannelReceiver.Finalize*"></a>
   <h4 id="Tizen_Core_ChannelReceiver_Finalize" data-uid="Tizen.Core.ChannelReceiver.Finalize">~ChannelReceiver()</h4>
-  <div class="markdown level1 summary"><p>Finalizer of the class ChannelReceiver.</p>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the ChannelReceiver class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -186,11 +186,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L84">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L88">View Source</a>
   </span>
   <a id="Tizen_Core_ChannelReceiver_Receive_" data-uid="Tizen.Core.ChannelReceiver.Receive*"></a>
   <h4 id="Tizen_Core_ChannelReceiver_Receive" data-uid="Tizen.Core.ChannelReceiver.Receive">Receive()</h4>
-  <div class="markdown level1 summary"><p>Receives the channel object from the sender asynchronously.</p>
+  <div class="markdown level1 summary"><p>Asynchronously receives the channel object from the sender.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -217,8 +217,12 @@
   <pre><code>var channel = new Channel();
 var task = TizenCore.Find(&quot;Test&quot;);
 task.Send(async () => {
-  var channelObject = await channel.Receiver.Receive();
-  Console.WriteLine(&quot;Message = {}&quot;, (string)channelObject.Data);
+  try {
+    var channelObject = await channel.Receiver.Receive();
+    Console.WriteLine(&quot;Message = {}&quot;, (string)channelObject.Data);
+  } catch (Exception e) {
+    Console.Error.WriteLine(&quot;Failed to receive message: {0}&quot;, e.ToString());
+  }
 });</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
@@ -237,7 +241,7 @@ task.Send(async () => {
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
+        <td><p>Thrown when failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -252,7 +256,7 @@ task.Send(async () => {
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Core/Tizen.Core/ChannelReceiver.cs/#L63">View Source</a>
   </span>
   <h4 id="Tizen_Core_ChannelReceiver_Received" data-uid="Tizen.Core.ChannelReceiver.Received">Received</h4>
-  <div class="markdown level1 summary"><p>Occurrs whenever the channel object is received in the main loop of the task.</p>
+  <div class="markdown level1 summary"><p>Occurs whenever a channel object is received in the main loop of the task.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -280,8 +284,8 @@ task.Send(async () => {
   <h5 id="Tizen_Core_ChannelReceiver_Received_examples">Examples</h5>
   <pre><code>var channel = new Channel();
 var receiver = channel.Receiver;
-receiver.Received += (s, e) => {
-  Console.WriteLine(&quot;OnChannelObjectReceived. Message = {}&quot;, (string)e.Data);
+receiver.Received += (sender, args) => {
+  Console.WriteLine(&quot;OnChannelObjectReceived. Message = {0}&quot;, (string)args.Data);
 };</code></pre>
 
 
