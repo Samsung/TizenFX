@@ -208,7 +208,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Connects to a specific RFCOMM based service on a remote Bluetooth device UUID.
+        /// Establishes a point-to-point communication link with a remote Bluetooth device via an RFCOMM channel identified by the specified UUID.
         /// </summary>
         /// <remarks>
         /// The bluetooth must be enabled, discoverable with StartDiscovery(), and bonded with the remote device using CreateBond(). The ConnectionStateChanged event is raised once this API is called.
@@ -266,7 +266,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Sends data to the connected device.
+        /// Sends raw binary data to the currently connected Bluetooth device over the established connection.
         /// </summary>
         /// <returns>The number of bytes written (zero indicates nothing was written).</returns>
         /// <remarks>
