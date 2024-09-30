@@ -31,14 +31,14 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the source ID.
+        /// Gets the source ID of media packet.
         /// </summary>
         /// <value>The source ID.</value>
         /// <since_tizen> 9 </since_tizen>
         public uint SourceId { get; }
 
         /// <summary>
-        /// Gets the media packet buffer status.
+        /// Gets the media packet buffer status that indicates underrun or overflow.
         /// </summary>
         /// <value>The media packet buffer status.</value>
         /// <since_tizen> 9 </since_tizen>

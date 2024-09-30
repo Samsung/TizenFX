@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the media type.
+        /// Gets the media stream track from reemote peer.
         /// </summary>
         /// <value>The media type.</value>
         /// <since_tizen> 9 </since_tizen>

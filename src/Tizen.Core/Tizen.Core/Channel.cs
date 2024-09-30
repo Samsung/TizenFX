@@ -21,28 +21,39 @@ namespace Tizen.Core
     /// <summary>
     /// The class for managing communication channels between tasks of Tizen Core.
     /// </summary>
+    /// <remarks>
+    /// Channels are essential in inter-task communications because they provide a reliable way to exchange messages and data.
+    /// By creating a channel, you can establish a connection between two tasks that need to communicate with each other.
+    /// Once created, both tasks can send and receive messages through the channel.
+    /// It's important to note that channels have a limited capacity, so make sure to handle message overflows appropriately.
+    /// Additionally, remember to close the channel once it's no longer needed to avoid resource leaks.
+    /// </remarks>
     /// <since_tizen> 12 </since_tizen>
     public class Channel : IDisposable
     {
         private bool _disposed = false;
 
         /// <summary>
-        /// Constructor for creating a new channel with a sender and a receiver.
+        /// Creates a new channel with a sender and a receiver.
         /// </summary>
+        /// <remarks>
+        /// This constructor initializes a new channel that enables communication between a sender and a receiver.
+        /// It throws exceptions if any errors occur during initialization due to insufficient memory or invalid operations.
+        /// </remarks>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
+        /// In the following code snippet, we attempt to initialize a new channel by calling the constructor.
+        /// However, if there is not enough memory available, an OutOfMemoryException is thrown. We handle this exception by displaying a message in the console.
         /// <code>
-        /// 
         /// try
         /// {
-        ///   var channel = new Channel();
+        ///    var channel = new Channel();
         /// }
         /// catch (OutOfMemoryException)
         /// {
-        ///   Console.WriteLine("Exception occurs");
+        ///    Console.WriteLine("Exception occurs");
         /// }
-        /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
@@ -55,7 +66,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class Channel.
+        /// Finalizes an instance of the Channel class.
         /// </summary>
         ~Channel()
         {
@@ -65,12 +76,21 @@ namespace Tizen.Core
         /// <summary>
         /// Gets the channel sender instance.
         /// </summary>
+        /// <remarks>
+        /// This property provides access to the channel sender instance that can be used to send messages through the specified channel.
+        /// It ensures that only one sender instance per channel exists in order to avoid any conflicts during message transmission.
+        /// </remarks>
         /// <since_tizen> 12 </since_tizen>
         public ChannelSender Sender { get; private set; }
 
         /// <summary>
-        /// Gets the channel receiver instance. 
+        /// Gets the channel receiver instance.
         /// </summary>
+        /// <remarks>
+        /// This property provides access to the channel receiver instance that handles incoming messages from other applications.
+        /// By utilizing this instance, you can subscribe to specific channels and receive notifications accordingly.
+        /// It is crucial to understand the concept of channels in order to effectively utilize this feature. For more details on channels, refer to the official documentation.
+        /// </remarks>
         /// <since_tizen> 12 </since_tizen>
         public ChannelReceiver Receiver { get; private set; }
 

@@ -199,7 +199,17 @@ namespace Tizen.NUI
         /// <summary>
         /// For caching algorithms where a client strongly prefers a cache-hit to reuse a cached image.
         /// </summary>
-        DontCare
+        DontCare,
+        /// <summary>
+        /// Use Lanczos resample algorithm.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Lanczos,
+        /// <summary>
+        /// Iteratively box filter to generate an image of 1/2, 1/4, 1/8 etc width and height and approximately the desired size, then apply Lanczos resample algorithm.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        BoxThenLanczos,
     }
 
     /// <summary>
