@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents the channel sender used for inter-task communication.
+    /// Represents the channel sender used for inter-task communication. It provides methods to send messages between tasks in order to facilitate task coordination.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public class ChannelSender : IDisposable
@@ -32,7 +32,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class ChannelSender.
+        /// Finalizes an instance of the ChannelSender class.
         /// </summary>
         ~ChannelSender()
         {
