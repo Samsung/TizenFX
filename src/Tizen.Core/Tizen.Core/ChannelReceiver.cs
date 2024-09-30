@@ -35,7 +35,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class ChannelReceiver.
+        /// Finalizes an instance of the ChannelReceiver class.
         /// </summary>
         ~ChannelReceiver()
         {
@@ -43,7 +43,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Occurrs whenever the channel object is received in the main loop of the task.
+        /// Occurs whenever a channel object is received in the main loop of the task.
         /// </summary>
         /// <remarks>
         /// The registered event handler will be invoked when the channel receiver is added to the specific task.
@@ -53,8 +53,8 @@ namespace Tizen.Core
         /// 
         /// var channel = new Channel();
         /// var receiver = channel.Receiver;
-        /// receiver.Received += (s, e) => {
-        ///   Console.WriteLine("OnChannelObjectReceived. Message = {}", (string)e.Data);
+        /// receiver.Received += (sender, args) => {
+        ///   Console.WriteLine("OnChannelObjectReceived. Message = {0}", (string)args.Data);
         /// };
         /// 
         /// </code>
@@ -63,19 +63,23 @@ namespace Tizen.Core
         public event EventHandler<ChannelReceivedEventArgs> Received;
 
         /// <summary>
-        /// Receives the channel object from the sender asynchronously.
+        /// Asynchronously receives the channel object from the sender.
         /// </summary>
         /// <returns>The received channel object.</returns>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed due to an invalid operation.</exception>
         /// <example>
         /// <code>
         /// 
         /// var channel = new Channel();
         /// var task = TizenCore.Find("Test");
         /// task.Send(async () => {
-        ///   var channelObject = await channel.Receiver.Receive();
-        ///   Console.WriteLine("Message = {}", (string)channelObject.Data);
+        ///   try {
+        ///     var channelObject = await channel.Receiver.Receive();
+        ///     Console.WriteLine("Message = {}", (string)channelObject.Data);
+        ///   } catch (Exception e) {
+        ///     Console.Error.WriteLine("Failed to receive message: {0}", e.ToString());
+        ///   }
         /// });
         /// 
         /// </code>
