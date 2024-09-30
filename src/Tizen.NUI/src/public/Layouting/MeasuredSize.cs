@@ -21,7 +21,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] Class that encodes a measurement and a measure state, which is set if the measured size is too small.
+    /// Class that encodes a measurement and a measure state, which is set if the measured size is too small.
     /// </summary>
     public struct MeasuredSize
     {

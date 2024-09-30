@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// Creates a VertexBuffer.
+        /// The constructor to creates a VertexBuffer.
         /// </summary>
         /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
         /// <since_tizen> 8 </since_tizen>

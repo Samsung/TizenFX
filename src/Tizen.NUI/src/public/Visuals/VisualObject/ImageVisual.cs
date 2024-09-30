@@ -332,6 +332,28 @@ namespace Tizen.NUI.Visuals
         }
 
         /// <summary>
+        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br />
+        /// If not supplied, the default is SamplingModeType.BoxThenLinear.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplingModeType SamplingMode
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode, new PropertyValue((int)value));
+            }
+            get
+            {
+                int ret = (int)SamplingModeType.BoxThenLinear;
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode);
+                propertyValue?.Get(out ret);
+                return (SamplingModeType)ret;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the desired image width.<br />
         /// If not specified, the actual image width is used.<br />
         /// For normal quad images only.<br />

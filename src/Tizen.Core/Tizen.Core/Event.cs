@@ -19,8 +19,13 @@ using System;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents the event using for broadcasting events.
+    /// Represents the event used for broadcasting events.
     /// </summary>
+    /// <remarks>
+    /// This class provides functionality for managing events that are broadcasted across multiple components in an application.
+    /// It enables communication between different parts of the code without resorting to direct references or global variables.
+    /// By implementing the IDisposable interface, it ensures proper resource management and prevents memory leaks.
+    /// </remarks>
     /// <since_tizen> 12 </since_tizen>
 #pragma warning disable CA1716
     public class Event : IDisposable
@@ -33,13 +38,16 @@ namespace Tizen.Core
         /// <summary>
         /// Constructor for creating a new event instance.
         /// </summary>
+        /// <remarks>
+        /// This constructor initializes a new event instance. It may throw exceptions if there are any issues during initialization such as running out of memory or performing an invalid operation.
+        /// </remarks>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
+        /// Here's an example showing how to create a new event instance:
         /// <code>
-        /// 
+        /// Create a new event instance
         /// var coreEvent = new Event();
-        /// 
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>
@@ -57,7 +65,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class Event.
+        /// Finalizes an instance of the Event class.
         /// </summary>
         ~Event()
         {

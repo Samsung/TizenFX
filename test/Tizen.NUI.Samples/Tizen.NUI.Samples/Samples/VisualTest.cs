@@ -90,6 +90,18 @@ namespace Tizen.NUI.Samples
                 {
                     focusIndicatorVisual.ResourceUrl = focusIndicatorImageUrl;
                 }
+                else if(e.Key.KeyPressedName == "6")
+                {
+                    View focusedView = FocusManager.Instance.GetCurrentFocusView();
+                    if(focusedView != null)
+                    {
+                        var thumbnailVisual = focusedView.FindVisualByName("thumbnailImage") as Visuals.ImageVisual;
+                        if(thumbnailVisual != null)
+                        {
+                            thumbnailVisual.SamplingMode = GetNextSamplingModeType(thumbnailVisual.SamplingMode);
+                        }
+                    }
+                }
             }
         }
 
@@ -314,6 +326,8 @@ namespace Tizen.NUI.Samples
 
                 SynchronousSizing = true,
 
+                SamplingMode = SamplingModeType.BoxThenLanczos,
+
                 OffsetXPolicy = VisualTransformPolicyType.Absolute,
                 OffsetYPolicy = VisualTransformPolicyType.Absolute,
                 WidthPolicy = VisualTransformPolicyType.Absolute,
@@ -389,6 +403,58 @@ namespace Tizen.NUI.Samples
             };
 
             return view;
+        }
+
+        static private SamplingModeType GetNextSamplingModeType(SamplingModeType currentSamplingMode)
+        {
+            SamplingModeType nextSamplingMode = SamplingModeType.DontCare;
+            switch(currentSamplingMode)
+            {
+                case SamplingModeType.Box:
+                {
+                    nextSamplingMode = SamplingModeType.Nearest;
+                    break;
+                }
+                case SamplingModeType.Nearest:
+                {
+                    nextSamplingMode = SamplingModeType.Linear;
+                    break;
+                }
+                case SamplingModeType.Linear:
+                {
+                    nextSamplingMode = SamplingModeType.BoxThenNearest;
+                    break;
+                }
+                case SamplingModeType.BoxThenNearest:
+                {
+                    nextSamplingMode = SamplingModeType.BoxThenLinear;
+                    break;
+                }
+                case SamplingModeType.BoxThenLinear:
+                {
+                    nextSamplingMode = SamplingModeType.Lanczos;
+                    break;
+                }
+                case SamplingModeType.Lanczos:
+                {
+                    nextSamplingMode = SamplingModeType.BoxThenLanczos;
+                    break;
+                }
+                case SamplingModeType.BoxThenLanczos:
+                {
+                    nextSamplingMode = SamplingModeType.DontCare;
+                    break;
+                }
+                case SamplingModeType.DontCare:
+                default:
+                {
+                    nextSamplingMode = SamplingModeType.Box;
+                    break;
+                }
+            }
+            Tizen.Log.Error("NUI", $"Change sampling mode from [{currentSamplingMode}] to [{nextSamplingMode}]\n");
+
+            return nextSamplingMode;
         }
     }
 }

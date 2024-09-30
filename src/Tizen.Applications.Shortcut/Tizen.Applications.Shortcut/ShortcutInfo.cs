@@ -16,28 +16,34 @@
 
 namespace Tizen.Applications.Shortcut
 {
+    using System;
+
     /// <summary>
     /// A class to get the information of the shortcut.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class ShortcutInfo
     {
         /// <summary>
         /// Gets or sets the name of the created shortcut icon.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string ShortcutName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the absolute path of an icon file for this shortcut.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string IconPath { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to allow or not allow duplication.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool IsAllowDuplicate { get; set; }
     }
 }

@@ -22,13 +22,15 @@ namespace Tizen.NUI
 {
     /// <summary>
     /// The Rectangle class.
+    /// This class is used to define and manipulate rectangular areas in graphics or UI components.
+    /// It manages the position (x, y coordinates) and size (width, height) of the rectangle, and provides various methods to set or inspect the properties of the rectangle.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(RectangleTypeConverter))]
     public class Rectangle : Disposable, ICloneable
     {
         /// <summary>
-        /// The constructor.
+        /// The default constructor of Rectangle class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle() : this(Interop.Rectangle.NewRectangle(), true)

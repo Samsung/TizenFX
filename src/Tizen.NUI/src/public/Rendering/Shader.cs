@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Shader.
+    /// Shader allows custom vertex and color transformations in the GPU.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Shader : Animatable
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Hint.
+        /// The Hint class is used to provide additional information to the shader.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public sealed class Hint

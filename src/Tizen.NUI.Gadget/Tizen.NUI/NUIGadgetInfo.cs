@@ -26,7 +26,7 @@ using SystemIO = System.IO;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// This class provides properties to get information the gadget.
+    /// This class provides properties to retrieve information the gadget.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -87,7 +87,11 @@ namespace Tizen.NUI
 
         internal Assembly Assembly { get; set; }
 
-        internal NUIGadgetAssembly NUIGadgetAssembly { get; set; }
+        /// <summary>
+        /// Gets the assembly of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public NUIGadgetAssembly NUIGadgetAssembly { get; set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {

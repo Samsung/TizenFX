@@ -34,7 +34,7 @@ namespace Tizen.NUI
         private Vector3 lightPosition = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of MeshVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public MeshVisual() : base()

@@ -39,7 +39,7 @@ namespace Tizen.NUI
         private PropertyMap background = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of TextVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TextVisual() : base()

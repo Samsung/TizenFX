@@ -53,7 +53,7 @@ namespace Tizen.NUI
         private event EventHandler<StateChangedEventArgs> stateChangedEventHandler;
 
         /// <summary>
-        /// State changed event.
+        /// The StateChanged event is triggered when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
@@ -288,13 +288,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// State changed argument.
+        /// This class represents the event arguments used when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// PrevState.
+            /// The previous state of the TTS player before the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TTSState PrevState
@@ -304,7 +304,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// NextState.
+            /// The new state of the TTS player after the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TTSState NextState
