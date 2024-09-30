@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private static string TemperatureSensorKey = "http://tizen.org/feature/sensor.temperature";
 
         /// <summary>
-        /// Gets the value of the temperature sensor.
+        /// Get the value of the temperature sensor as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Temperature (Celsius) </value>
         public float Temperature { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether the temperature sensor is supported by the device.
+        /// Return true or false based on whether the temperature sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of temperature sensors available on the device.
+        /// Return the number of temperature sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of temperature sensors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.TemperatureSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.TemperatureSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.temperature</feature>
@@ -70,7 +70,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular temperature sensor in case of multiple sensors.
+        /// Index refers to a particular temperature sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public TemperatureSensor(uint index = 0) : base(index)
         {
@@ -86,7 +87,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the temperature sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<TemperatureSensorDataUpdatedEventArgs> DataUpdated;
 
 
