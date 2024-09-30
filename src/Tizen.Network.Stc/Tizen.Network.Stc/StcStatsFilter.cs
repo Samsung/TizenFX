@@ -22,6 +22,9 @@ namespace Tizen.Network.Stc
 {
     /// <summary>
     /// A class for managing the Statistics Filters to match applications.
+    /// This class manages filters to match and retrieve network usage statistics for specific applications.
+    /// It allows setting properties such as application ID, time interval, interface type, and time period to refine the statistics data.
+    /// These filters are then converted to native handles for querying the actual network statistics.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class StatisticsFilter

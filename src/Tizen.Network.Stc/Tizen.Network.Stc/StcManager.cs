@@ -23,7 +23,9 @@ using System.ComponentModel;
 namespace Tizen.Network.Stc
 {
     /// <summary>
-    /// A class for managing the Stc handle.
+    /// A class for managing the Stc (Smart Traffic Control) handle.
+    /// This class provides a safe way to manage and release the Stc handle.
+    /// It includes methods to check the validity of the handle and to release it properly.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class SafeStcHandle : SafeHandle
@@ -45,7 +47,10 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Release the Stc handle
+        /// Releases the Stc (Statistics and Traffic Control) handle and deinitializes the Stc module.
+        /// This method attempts to deinitialize the Stc module using the current handle.
+        /// If the deinitialization is successful, it sets the handle to IntPtr.Zero and returns true.
+        /// Otherwise, it logs an error message and returns false.
         /// </summary>
         /// <returns>True if the handle is released successfully, otherwise false.</returns>
         protected override bool ReleaseHandle()
@@ -62,7 +67,9 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// A class which is used to manage Smart Traffic control (Stc).<br/>
+    /// A class which manages Smart Traffic Control (Stc) functionalities for Tizen devices.
+    /// It provides methods to get the Stc safe handle and retrieve network statistics information for applications within specified time ranges using a filter.
+    /// This class supports asynchronous operations for retrieving network statistics.
     /// </summary>
     public static class StcManager
     {
