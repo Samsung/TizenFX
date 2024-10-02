@@ -239,17 +239,13 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterDataChannelBufferedAmountLowThresholdCallback()
         {
-            if (_webRtcDataChannelBufferedAmountLowThresholdCallback == null)
+            _webRtcDataChannelBufferedAmountLowThresholdCallback = (dataChannelHanel, _) =>
             {
-                _webRtcDataChannelBufferedAmountLowThresholdCallback = (dataChannelHanel, _) =>
-                {
-                    _bufferedAmountLowThresholdOccurred?.Invoke(this, new EventArgs());
-                };
+                _bufferedAmountLowThresholdOccurred?.Invoke(this, new EventArgs());
+            };
 
-                NativeDataChannel.SetBufferedAmountLowThresholdCb(_handle, _bufferThreshold.Value,
-                _webRtcDataChannelBufferedAmountLowThresholdCallback).
+            NativeDataChannel.SetBufferedAmountLowThresholdCb(_handle, _bufferThreshold.Value, _webRtcDataChannelBufferedAmountLowThresholdCallback).
                 ThrowIfFailed("Failed to set buffered amount low threshold callback.");
-            }
         }
 
         private void UnregisterDataChannelBufferedAmountLowThresholdCallback()
