@@ -161,8 +161,6 @@ namespace Tizen.Multimedia.Remoting
                 ValidateNotDisposed();
 
                 _bufferThreshold = value;
-
-                RegisterDataChannelBufferedAmountLowThresholdCallback();
             }
         }
 
