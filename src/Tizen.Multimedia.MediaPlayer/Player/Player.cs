@@ -184,7 +184,7 @@ namespace Tizen.Multimedia
         #region Methods
 
         /// <summary>
-        /// Gets the streaming download progress.
+        /// Gets the download progress of the streaming contents.
         /// </summary>
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
@@ -211,7 +211,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the subtitle path for playback.
+        /// Sets the subtitle file path for playback.
         /// </summary>
         /// <param name="path">The absolute path of the subtitle file, it can be NULL in the <see cref="PlayerState.Idle"/> state.</param>
         /// <remarks>Only MicroDVD/SubViewer(*.sub), SAMI(*.smi), and SubRip(*.srt) subtitle formats are supported.
@@ -247,7 +247,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Removes the subtitle path.
+        /// Clears the the subtitle path of the media player.
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -262,7 +262,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the offset for the subtitle.
+        /// Sets the seek offset for the subtitle.
         /// </summary>
         /// <param name="offset">The value indicating a desired offset in milliseconds.</param>
         /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
@@ -410,7 +410,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Unprepares the player.
+        /// Unprepares the media player.
         /// </summary>
         /// <remarks>
         ///     The most recently used source is reset and is no longer associated with the player. Playback is no longer possible.
@@ -450,7 +450,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Starts or resumes playback.
+        /// Starts or resumes playing the media content.
         /// </summary>
         /// <remarks>
         /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.<br/>
@@ -505,7 +505,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Pauses the player.
+        /// Pauses playing the media content.
         /// </summary>
         /// <remarks>
         /// The player must be in the <see cref="PlayerState.Playing"/> state.
@@ -570,7 +570,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Captures a video frame, asynchronously.
+        /// Captures the current frame of the video being played, asynchronously.
         /// </summary>
         /// <returns>A task that represents the asynchronous capture operation.</returns>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
@@ -607,7 +607,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the play position in milliseconds.
+        /// Gets the current playback position in milliseconds of the media.
         /// </summary>
         /// <returns>The current position in milliseconds.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
@@ -673,7 +673,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the seek position for playback, asynchronously.
+        /// Sets the playback position in milliseconds of the player, asynchronously.
         /// </summary>
         /// <param name="position">The value indicating a desired position in milliseconds.</param>
         /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
@@ -701,7 +701,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the play position in nanoseconds.
+        /// Gets the current playback position in nanoseconds of the media.
         /// </summary>
         /// <returns>The current position in nanoseconds.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
@@ -725,7 +725,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the seek position in nanoseconds for playback, asynchronously.
+        /// Sets the playback position in nanoseconds of the player, asynchronously.
         /// </summary>
         /// <param name="position">The value indicating a desired position in nanoseconds.</param>
         /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
@@ -753,7 +753,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the playback rate.
+        /// Sets the playback rate of the player.
         /// </summary>
         /// <param name="rate">The value for the playback rate. Valid range is -5.0 to 5.0, inclusive.</param>
         /// <remarks>
@@ -793,7 +793,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Applies the audio stream policy.
+        /// Applies the specified audio stream policy to the player.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
         /// <remarks>
