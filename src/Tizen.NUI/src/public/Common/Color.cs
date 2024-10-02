@@ -24,6 +24,8 @@ namespace Tizen.NUI
 {
     /// <summary>
     /// The Color class.
+    /// This class represents a color using red, green, blue, and alpha components.
+    /// It provides methods to create and manipulate colors.
     /// </summary>
     [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
     public class Color : Disposable, ICloneable

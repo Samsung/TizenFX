@@ -28,7 +28,7 @@ namespace Tizen.NUI
         private int? variation = null;
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of InputMethod.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public InputMethod()

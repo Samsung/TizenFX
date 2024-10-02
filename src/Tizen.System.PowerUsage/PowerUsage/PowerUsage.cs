@@ -218,6 +218,18 @@ namespace Tizen.System
             return batteryUsage;
         }
 
+        /// <summary>
+        /// Gets the battery consumption in mAh (milli-Ampere hour) for specific resource from available data usage handle.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        /// <param name="dataHandle">Battery consumption data usage handle.</param>
+        /// <param name="rtype">Identifier of resource type. BLE, WiFi, CPU etc.</param>
+        /// <returns>Returns the battery usage in mAh(milli-Ampere hour) by a resource.</returns>
+        /// <feature>http://tizen.org/feature/battery</feature>
+        /// <privilege>http://tizen.org/privilege/systemmonitor</privilege>
+        /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
+        /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="NotSupportedException">In case power usage is not supported</exception>
         private static double GetPowerUsage(IntPtr dataHandle, PowerUsageResourceType rtype)
         {
             double batteryUsage = 0;

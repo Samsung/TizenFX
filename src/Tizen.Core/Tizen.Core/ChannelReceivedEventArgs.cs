@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Arguments for the event raised when an object has been received through a channel.
+    /// Represents the arguments for the event raised when an object has been received through a channel.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public class ChannelReceivedEventArgs : System.EventArgs

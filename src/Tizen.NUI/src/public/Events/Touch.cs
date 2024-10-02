@@ -253,7 +253,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Degree GetAngle(uint point)
         {
