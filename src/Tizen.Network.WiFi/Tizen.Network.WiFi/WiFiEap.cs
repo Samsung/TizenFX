@@ -137,6 +137,9 @@ namespace Tizen.Network.WiFi
 
         /// <summary>
         /// Gets the private key file of EAP.
+        /// Retrieves the file path of the private key used for Extensible Authentication Protocol (EAP) authentication.
+        /// This method returns the file path of the private key associated with the EAP configuration. The private key is used during the EAP handshake to securely authenticate the client.
+        /// Note that the returned file path is a string representation of the private key file path. Ensure that the file exists and is accessible before relying on its contents.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The file path of private key.</returns>
@@ -158,7 +161,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets the private key information of EAP.
+        /// Configures the private key file path and password for Extensible Authentication Protocol (EAP) authentication.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKeyFile">The file path of private key.</param>
@@ -183,7 +186,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the client certificate of EAP.
+        /// Retrieves the file path of the client certificate used for Extensible Authentication Protocol (EAP) authentication.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The file path of client certificate.</returns>
@@ -208,7 +211,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets the CA certificate of EAP.
+        /// Sets the Certificate Authority (CA) certificate file path for Extensible Authentication Protocol (EAP) authentication.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="clientCertFile">The file path of client certificate.</param>
@@ -284,7 +287,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets the user name of EAP.
+        /// Configures the username for the Extensible Authentication Protocol (EAP) passphrase.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="userName">The user name</param>
@@ -308,7 +311,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets the password of EAP.
+        /// Configures the password for the Extensible Authentication Protocol (EAP) passphrase.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="password">The password</param>
