@@ -52,6 +52,10 @@ namespace Tizen.Network.Connection
         /// Frees the handle.
         /// </summary>
         /// <returns>True if the handle is released successfully, otherwise false.</returns>
+        /// <remarks>
+        /// This method frees the handle, effectively releasing any resources associated with it.
+        /// It is important to call this method when the handle is no longer needed to avoid resource leaks.
+        /// </remarks>
         protected override bool ReleaseHandle()
         {
             this.SetHandle(IntPtr.Zero);
@@ -71,6 +75,9 @@ namespace Tizen.Network.Connection
         /// An event is called when the type of the current connection is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// It can be used to monitor the change in the current connection type.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -95,6 +102,9 @@ namespace Tizen.Network.Connection
         /// An event for the ethernet cable is plugged [in/out] event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// This event is only available on devices with Ethernet support.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
@@ -140,6 +150,9 @@ namespace Tizen.Network.Connection
         /// An event is called when the proxy address is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// It allows applications to be notified when the proxy address changes.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -178,6 +191,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="family">The address family.</param>
         /// <returns>IP address of the connection (global address in case of IPv6).</returns>
+        /// <remarks>
+        /// This method gets the IP address for the specified address family (IPv4 or IPv6).
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -241,6 +257,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The type of current network connection.</param>
         /// <returns>MAC address of the Wi-Fi or ethernet.</returns>
+        /// <remarks>
+        /// The MAC address can be used to identify the device on the network.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -263,6 +282,9 @@ namespace Tizen.Network.Connection
         /// <param name="connectionType">The type of connection (only WiFi and Cellular are supported).</param>
         /// <param name="statisticsType">The type of statistics.</param>
         /// <returns>The statistics information associated with statisticsType.</returns>
+        /// <remarks>
+        /// This API returns the statistics information for the given connection type and statistics type.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -308,6 +330,9 @@ namespace Tizen.Network.Connection
         /// <param name="interfaceName">The name of the network interface.</param>
         /// <param name="hostAddress">The IP address of the host.</param>
         /// <param name="gateway">The gateway address.</param>
+        /// <remarks>
+        /// This API adds a route to the system's routing table, specifying the address family, network interface, host address, and gateway.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.route</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -334,6 +359,9 @@ namespace Tizen.Network.Connection
         /// <param name="interfaceName">The name of network interface.</param>
         /// <param name="hostAddress">The IP address of the host.</param>
         /// <param name="gateway">The gateway address.</param>
+        /// <remarks>
+        /// This API removes the added route to the system's routing table.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.route</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -357,6 +385,9 @@ namespace Tizen.Network.Connection
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Instance of ConnectionItem.</value>
+        /// <remarks>
+        /// This property provides access to the current connection profile information.
+        /// </remarks>
         public static ConnectionItem CurrentConnection
         {
             get

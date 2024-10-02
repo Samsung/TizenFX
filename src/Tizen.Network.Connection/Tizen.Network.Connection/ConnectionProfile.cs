@@ -46,6 +46,10 @@ namespace Tizen.Network.Connection
         /// The event is called when the state of profile is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Applications can subscribe to this event to receive notifications when the state of a network profile changes.
+        /// This can be useful for updating UI elements or performing specific actions based on the current profile state.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
@@ -169,7 +173,6 @@ namespace Tizen.Network.Connection
             {
                 ProfileHandle = IntPtr.Zero;
             }
-            
         }
 
         internal void CheckDisposed()
@@ -266,6 +269,9 @@ namespace Tizen.Network.Connection
         /// Refreshes the profile information.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// This method updates the profile information to reflect the current state of the network profile.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
