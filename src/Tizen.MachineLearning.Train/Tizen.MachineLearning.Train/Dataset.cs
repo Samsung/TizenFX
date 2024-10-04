@@ -37,6 +37,9 @@ namespace Tizen.MachineLearning.Train
         private IntPtr handle = IntPtr.Zero;
         private bool disposed = false;
 
+        /// if false, model will be destroy dataset handle
+        private bool hasOwnership = true;
+
         /// <summary>
         ///  Constructs the dataset.
         /// </summary>
@@ -44,6 +47,9 @@ namespace Tizen.MachineLearning.Train
         public Dataset()
         {
             NNTrainerError ret = Interop.Dataset.Create(out handle);
+            if (ret != NNTrainerError.None) {
+                handle = IntPtr.Zero;
+            }
             NNTrainer.CheckException(ret, "Failed to create dataset instance");
             Log.Info(NNTrainer.Tag, "Create Dataset");
         }
@@ -82,6 +88,14 @@ namespace Tizen.MachineLearning.Train
             {
                 // release managed object
             }
+
+            disposed = true;
+
+            if (!hasOwnership){
+                Log.Info(NNTrainer.Tag, "Cannot destroy dataset already added in a Model. Model will destroy this dataset");
+                return;
+            }
+
             // release unmanaged object
             if (handle != IntPtr.Zero)
             {
@@ -92,7 +106,6 @@ namespace Tizen.MachineLearning.Train
 
                 handle = IntPtr.Zero;
             }
-            disposed = true;
         }
 
         /// <summary>
@@ -122,6 +135,11 @@ namespace Tizen.MachineLearning.Train
         internal IntPtr GetHandle()
         {
             return handle;
+        }
+
+        internal void RemoveOwnership()
+        {
+            this.hasOwnership = false;
         }
 
         /// <summary>
