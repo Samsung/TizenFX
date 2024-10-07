@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         private byte[] _buffer;
 
         /// <summary>
-        /// Initializes a new instance of the MediaBufferSource class with an allocated buffer.
+        /// Initializes a new instance of the MediaBufferSource class with the specified buffer length.
         /// </summary>
         /// <param name="length">The value indicating the size of the buffer.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -54,7 +54,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the MediaBufferSource class from the buffer.
+        /// Initializes a new instance of the MediaBufferSource class with the specified buffer.
         /// </summary>
         /// <param name="buffer">The source array to be copied into the buffer.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
@@ -65,7 +65,7 @@ namespace Tizen.Multimedia
 
         //TODO remove default parameter.
         /// <summary>
-        /// Initializes a new instance of the MediaBufferSource class from the buffer
+        /// Initializes a new instance of the MediaBufferSource class with buffer, length, and optional offset.
         /// with the specified length and the specified offset.
         /// </summary>
         /// <param name="buffer">The source array to be copied into the buffer.</param>
@@ -141,4 +141,3 @@ namespace Tizen.Multimedia
         }
     }
 }
-
