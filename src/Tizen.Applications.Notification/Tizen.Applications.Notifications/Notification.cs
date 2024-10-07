@@ -212,6 +212,9 @@ namespace Tizen.Applications.Notifications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CheckedValue { get; set; } = false;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PairingType { get; set; } = false;
+
         /// <summary>
         /// Gets or sets NotificationSafeHandle.
         /// </summary>
