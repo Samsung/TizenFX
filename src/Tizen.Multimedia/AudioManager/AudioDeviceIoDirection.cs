@@ -17,7 +17,9 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the audio device directions.
+    /// Defines the data flow directions for audio devices, indicating whether
+    /// a device is for input, output, or both. This helps in managing audio
+    /// interactions within applications effectively.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum AudioDeviceIoDirection

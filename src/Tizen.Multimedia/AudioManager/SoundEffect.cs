@@ -19,59 +19,73 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the sound effect types.
+    /// Defines the various types of sound effects that can be applied to audio processing.
+    /// Each sound effect type serves a specific purpose in enhancing audio quality for different scenarios.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public enum SoundEffectType
     {
         /// <summary>
-        /// Noise suppression for voice call.
+        /// Applies noise suppression specifically designed for voice calls,
+        /// reducing background noise to enhance the clarity of the speaker's voice.
         /// </summary>
         NoiseSuppression,
 
         /// <summary>
-        /// Auto Gain Control for normal capturing.
+        /// Implements Auto Gain Control (AGC) to automatically adjust the audio levels
+        /// during normal audio capturing, ensuring consistent volume regardless of input variations.
         /// </summary>
         AutoGainControl,
 
         /// <summary>
-        /// Noise suppression + Auto Gain Control.
+        /// Combines both Noise Suppression and Auto Gain Control,
+        /// providing a comprehensive solution for clear and balanced audio during calls or recordings.
         /// </summary>
         NsWithAgc,
 
         /// <summary>
-        /// Includes the output sound from the reference device in the recorded audio.
+        /// Captures and includes the output sound from a reference audio device
+        /// in the recorded audio, allowing for enhanced audio mixing and playback. j
+        /// This effect is particularly useful when used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
         /// </summary>
         /// <remarks>
-        /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
+        /// This effect should be used in conjunction with <see cref="SoundEffectInfo.ReferenceDevice"/>
+        /// to specify the audio source from which the reference sound is taken.
         /// </remarks>
         ReferenceCopy = 0x1001,
 
         /// <summary>
-        /// AEC (Acoustic Echo Cancellation) with Speex.
+        /// Implements Acoustic Echo Cancellation (AEC) using the Speex algorithm,
+        /// which helps to eliminate echo and improve voice clarity during calls or recordings.
         /// </summary>
         /// <remarks>
-        /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
+        /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>
+        /// to optimize echo cancellation based on the reference audio input.
         /// </remarks>
         AecSpeex,
 
         /// <summary>
-        /// AEC (Acoustic Echo Cancellation) with WebRTC.
+        /// Utilizes the WebRTC algorithm for Acoustic Echo Cancellation (AEC),
+        /// effectively reducing echo and enhancing the quality of audio communications.
         /// </summary>
         /// <remarks>
-        /// This effect should be used with <see cref="SoundEffectInfo.ReferenceDevice"/>.
+        /// This effect should be used together with <see cref="SoundEffectInfo.ReferenceDevice"/>
+        /// to ensure optimal performance in echo cancellation.
         /// </remarks>
         AecWebrtc
     }
 
     /// <summary>
-    /// Specifies the sound effect information.
+    /// Represents the configuration and parameters for applying sound effects to audio processing.
+    /// This structure allows you to specify the type of sound effect and, if necessary,
+    /// a reference audio device to enhance the audio processing capabilities.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public struct SoundEffectInfo
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="SoundEffectInfo"/>.
+        /// Initializes a new instance of the <see cref="SoundEffectInfo"/> structure
+        /// with the specified sound effect type. The reference device is set to null.
         /// </summary>
         /// <param name="type">The SoundEffectType.</param>
         /// <exception cref="ArgumentException">Invalid input enum type.</exception>
@@ -85,7 +99,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="SoundEffectInfo"/> with a reference audio device.
+        /// Initializes a new instance of the <see cref="SoundEffectInfo"/> structure
+        /// with the specified sound effect type and a reference audio device.
+        /// This allows for enhanced audio processing by using additional audio data from the specified device.
         /// </summary>
         /// <param name="type">The SoundEffectType.</param>
         /// <param name="device">The AudioDevice to be refered.</param>
@@ -99,13 +115,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// The SoundEffectType.
+        /// Gets the type of sound effect that will be applied, as specified in the <see cref="SoundEffectType"/> enum.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public SoundEffectType Type { get; }
 
         /// <summary>
-        /// The AudioDevice used by the SoundEffect as additional source of audio data.
+        /// Gets the reference audio device used by the sound effect as an additional source of audio data.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public AudioDevice ReferenceDevice { get; }

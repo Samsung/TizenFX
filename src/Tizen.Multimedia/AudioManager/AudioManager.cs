@@ -21,7 +21,10 @@ using System.ComponentModel;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to control volume levels and monitor audio devices.
+    /// Provides functionality to control volume levels and monitor the status of audio devices within the system.
+    /// The <see cref="AudioManager"/> class enables developers to retrieve the volume controller,
+    /// obtain a list of currently connected audio devices, and subscribe to events related to device connection changes
+    /// as well as audio stream status changes, thereby facilitating comprehensive audio management.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public static class AudioManager
@@ -32,14 +35,20 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the volume controller.
+        /// Gets the volume controller, which allows for adjustment and retrieval of the current audio volume level.
+        /// This property provides access to methods and properties that enable developers to manage volume settings
+        /// for different audio streams and ensure that the audio experience meets user preferences.
         /// </summary>
         /// <value>The <see cref="AudioVolume"/>.</value>
         /// <since_tizen> 3 </since_tizen>
         public static AudioVolume VolumeController { get; }
 
         /// <summary>
-        /// Gets the all devices currently connected.
+        /// Retrieves a collection of all audio devices currently connected to the system.
+        /// This method returns an <see cref="IEnumerable{AudioDevice}"/>, allowing developers to easily enumerate
+        /// through all available audio devices, such as speakers, microphones, and headphones.
+        /// It is useful for applications that need to adapt to changes in the audio environment or support
+        /// multiple audio output/input devices.
         /// </summary>
         /// <returns>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</returns>
         /// <since_tizen> 4 </since_tizen>
@@ -94,7 +103,9 @@ namespace Tizen.Multimedia
         private static readonly object _audioDeviceConnectionLock = new object();
 
         /// <summary>
-        /// Occurs when the state of a connection of an audio device changes.
+        /// Occurs when the state of an audio device connection changes, such as when a device is connected or disconnected.
+        /// Subscribing to this event allows developers to be notified of changes in the audio setup, enabling
+        /// dynamic adjustments in the application to accommodate new devices or handle disconnections accordingly.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeviceConnectionChanged
@@ -160,7 +171,12 @@ namespace Tizen.Multimedia
         private static readonly object _audioDeviceRunningLock = new object();
 
         /// <summary>
-        /// Occurs when the audio stream started actually to run on the device.
+        /// Occurs when an audio stream starts running on a connected audio device.
+        /// This event is triggered when a new audio stream begins after all previous streams have stopped.
+        /// It is important to note that if this event is invoked while an audio stream is still running,
+        /// it will not be triggered again until all streams have been stopped and a new one starts.
+        /// This is especially useful for managing audio playback scenarios where multiple audio streams
+        /// may be played sequentially.
         /// </summary>
         /// <remarks>
         /// If this event is invoked once and the audio stream is still running on the device,<br/>

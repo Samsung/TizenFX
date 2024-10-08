@@ -23,7 +23,11 @@ using System.ComponentModel;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to query the information of sound devices.
+    /// Represents an audio device in the system, providing functionality to query and manipulate its properties.
+    /// The <see cref="AudioDevice"/> class allows developers to interact with audio devices by retrieving
+    /// detailed information such as the device's ID, name, type, I/O direction, and its current running state.
+    /// Furthermore, it provides methods for getting and setting sample formats and rates, managing resampling options,
+    /// and restricting stream types to media-only, facilitating optimized audio handling for diverse applications.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AudioDevice
@@ -51,35 +55,47 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the ID of the device.
+        /// Gets the unique identifier of the audio device.
+        /// This ID serves as a reference to identify the device within the system and
+        /// is crucial for performing operations on specific devices.
         /// </summary>
         /// <value>The id of the device.</value>
         /// <since_tizen> 3 </since_tizen>
         public int Id => _id;
 
         /// <summary>
-        /// Gets the name of the device.
+        /// Gets the name of the audio device.
+        /// This property provides a human-readable identifier for the device,
+        /// which can be used in user interfaces or logs to display information
+        /// about the current audio output/input device.
         /// </summary>
         /// <value>The name of the device.</value>
         /// <since_tizen> 3 </since_tizen>
         public string Name { get; }
 
         /// <summary>
-        /// Gets the type of the device.
+        /// Gets the type of the audio device.
+        /// This property returns an enumerated value of type <see cref="AudioDeviceType"/>
+        /// that indicates the specific category of the device, such as speakers, microphones,
+        /// or headphones, which helps in distinguishing between different device functionalities.
         /// </summary>
         /// <value>The <see cref="AudioDeviceType"/> of the device.</value>
         /// <since_tizen> 3 </since_tizen>
         public AudioDeviceType Type => _type;
 
         /// <summary>
-        /// Gets the IO direction of the device.
+        /// Gets the input/output (I/O) direction of the audio device.
+        /// This property indicates whether the device is designed for input (recording) or output (playback),
+        /// allowing developers to manage device usage appropriately in their applications.
         /// </summary>
         /// <value>The IO direction of the device.</value>
         /// <since_tizen> 3 </since_tizen>
         public AudioDeviceIoDirection IoDirection => _ioDirection;
 
         /// <summary>
-        /// Gets the running state of the device.
+        /// Gets a value indicating whether the audio device is currently running.
+        /// This property checks the operational state of the device and returns <c>true</c>
+        /// if the device is active and processing audio, or <c>false</c> if it is idle or inactive.
         /// </summary>
         /// <value>true if the audio stream of device is running actually; otherwise, false.</value>
         /// <since_tizen> 5 </since_tizen>
@@ -95,7 +111,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the device's supported sample formats.
+        /// Retrieves a collection of audio sample formats supported by the device.
+        /// This method returns an enumerable list of <see cref="AudioSampleFormat"/> values
+        /// indicating the different audio formats the device can handle, enabling applications
+        /// to select a compatible format for audio processing.
         /// </summary>
         /// <returns>An IEnumerable&lt;AudioSampleFormat&gt; that contains supported sample formats.</returns>
         /// <remarks>
@@ -127,7 +146,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the device's sample format.
+        /// Sets the sample format for the audio device.
+        /// This method allows developers to specify a desired <see cref="AudioSampleFormat"/> for
+        /// audio playback or recording.
         /// </summary>
         /// <param name="format">The <see cref="AudioSampleFormat"/> to set to the device.</param>
         /// <remarks>
@@ -142,7 +163,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the device's sample format.
+        /// Gets the current sample format used by the audio device.
+        /// This method retrieves the current <see cref="AudioSampleFormat"/> the device is operating with,
+        /// allowing applications to verify or adjust to the active format being utilized for audio streams.
         /// </summary>
         /// <returns>The <see cref="AudioSampleFormat"/> of the device.</returns>
         /// <remarks>
@@ -195,7 +218,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the device's supported sample rates.
+        /// Retrieves the sample rates that the audio device supports.
+        /// This method returns an enumerable list of supported sample rates, allowing developers
+        /// to select an appropriate rate for audio processing based on the capabilities of the device.
         /// </summary>
         /// <returns>An IEnumerable&lt;uint&gt; that contains supported sample rates.</returns>
         /// <remarks>
@@ -229,7 +254,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the device's sample rate.
+        /// Sets the sample rate for the audio device.
+        /// This method allows you to specify a desired sample rate (in Hz) for audio playback or recording.
+        /// Choosing an appropriate sample rate is important for maintaining audio quality and ensuring compatibility
+        /// with audio data formats.
         /// </summary>
         /// <param name="rate">The sample rate to set to the device.</param>
         /// <remarks>
@@ -244,7 +272,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the device's sample rate.
+        /// Gets the current sample rate of the audio device.
+        /// This method retrieves the sample rate currently in use for audio processing, allowing
+        /// applications to ensure they are operating with the correct audio quality settings.
         /// </summary>
         /// <returns>The sample rate of the device.</returns>
         /// <remarks>
@@ -261,7 +291,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the device's 'avoid resampling' property.
+        /// Sets the 'avoid resampling' property for the audio device.
+        /// This property controls whether the device should avoid resampling audio data during playback.
+        /// Enabling this feature can help preserve audio quality by preventing alterations to audio that
+        /// may happen during playback.
         /// </summary>
         /// <param name="enable">The 'avoid resampling' value to set to the device.</param>
         /// <remarks>
@@ -279,7 +312,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the device's 'avoid resampling' property.
+        /// Gets the current state of the 'avoid resampling' property for the audio device.
+        /// This method returns whether the device is currently configured to avoid resampling audio data,
+        /// allowing developers to assess the current settings related to audio processing quality.
         /// </summary>
         /// <returns>The 'avoid resampling' property of the device.</returns>
         /// <remarks>
@@ -298,7 +333,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the restriction of stream type only for media.
+        /// Sets a restriction on the audio device to allow only media streams.
+        /// This method configures the device to accept only audio streams of type
+        /// <see cref="AudioStreamType.Media"/>. When enabled, the device will reject
+        /// any other stream types, ensuring that it is exclusively used for media playback.
         /// </summary>
         /// <param name="enable">The 'media stream only' value to set to the device.</param>
         /// <remarks>
@@ -315,7 +353,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the restriction of stream type only for media.
+        /// Retrieves the current restriction status of the audio device regarding media streams.
+        /// This method checks whether the device is currently configured to accept only media streams,
+        /// returning a boolean value that indicates the state of the restriction.
         /// </summary>
         /// <returns>The 'media stream only' property of the device.</returns>
         /// <remarks>
@@ -334,7 +374,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Returns a string that represents the current object.
+        /// Returns a string representation of the current instance.
+        /// This method provides a formatted string that includes key properties of the audio device,
+        /// such as its unique identifier, name, type, I/O direction, and running state.
+        /// This representation can be useful for logging, debugging, or displaying device information
+        /// in user interfaces.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         /// <since_tizen> 4 </since_tizen>
@@ -342,7 +386,9 @@ namespace Tizen.Multimedia
             $"Id={Id}, Name={Name}, Type={Type}, IoDirection={IoDirection}, IsRunning={IsRunning}";
 
         /// <summary>
-        /// Compares an object to an instance of <see cref="AudioDevice"/> for equality.
+        /// Compares the current instance of <see cref="AudioDevice"/> with another object for equality.
+        /// This method checks if the specified object is an instance of <see cref="AudioDevice"/>
+        /// and compares their unique identifiers to determine if they represent the same audio device.
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the two devices are equal; otherwise, false.</returns>
@@ -359,7 +405,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the hash code for this instance of <see cref="AudioDevice"/>.
+        /// Retrieves the hash code for the current instance of <see cref="AudioDevice"/>.
+        /// This method generates a hash code based on the unique identifier of the audio device,
+        /// which can be useful for storing instances in hash-based collections such as dictionaries
+        /// or hash sets.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="AudioDevice"/>.</returns>
         /// <since_tizen> 4 </since_tizen>

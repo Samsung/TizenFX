@@ -17,7 +17,10 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the audio stream focus states.
+    /// Represents the various states of audio stream focus within an application.
+    /// This enumeration defines the focus states that can be utilized to manage
+    /// audio playback effectively, ensuring that developers can track and respond
+    /// to changes in audio focus, which is crucial in multi-stream environments.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum AudioStreamFocusState
