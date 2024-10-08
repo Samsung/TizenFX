@@ -22,7 +22,8 @@ using System.Threading.Tasks;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// The class for managing the P2P target information.
+    /// The NfcP2p class provides methods for managing the P2P target information.
+    /// It allows applications to send and receive P2P messages, and to handle P2P connection events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcP2p : IDisposable
@@ -35,7 +36,9 @@ namespace Tizen.Network.Nfc
         private Interop.Nfc.P2pDataReceivedCallback _p2pDataReceivedCallback;
 
         /// <summary>
-        /// The event for receiving data from the NFC peer-to-peer target.
+        /// The P2pDataReceived event is triggered when data is received from an NFC peer-to-peer target.
+        /// The event handler receives a P2pDataReceivedEventArgs object containing the received data.
+        /// This event is typically used in conjunction with the NfcP2pAdapter class to handle incoming P2P messages.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<P2pDataReceivedEventArgs> P2pDataReceived
@@ -94,7 +97,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Sends data to the NFC peer-to-peer target.
+        /// The SendNdefMessageAsync method sends an NDEF message to an NFC peer-to-peer target.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="ndefMessage">The NfcNdefMessage object.</param>
@@ -144,7 +147,8 @@ namespace Tizen.Network.Nfc
     }
 
     /// <summary>
-    /// The class for managing the SNEP (Simple NDEF Exchange Protocol) information.
+    /// The NfcSnep class provides methods for managing SNEP (Simple NDEF Exchange Protocol) information.
+    /// It allows applications to send and receive SNEP messages, and to handle SNEP connection events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class NfcSnep : IDisposable
