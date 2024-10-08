@@ -92,6 +92,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Plays a wav file based on the specified <see cref="AudioStreamPolicy"/> with given repetition number.
         /// </summary>
+        /// <remarks>If loopCount is 0, it means infinite loops</remarks>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <param name="path">A file path to play.</param>
         /// <param name="streamPolicy">A <see cref="AudioStreamPolicy"/>.</param>
@@ -139,16 +140,8 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                if (loopCount > 1)
-                {
-                    Native.StartLoop(path, streamPolicy.Handle, loopCount, cb, IntPtr.Zero, out id).
-                        Validate("Failed to play with loop.");
-                }
-                else
-                {
-                    Native.Start(path, streamPolicy.Handle, cb, IntPtr.Zero, out id).
-                        Validate("Failed to play.");
-                }
+                Native.StartLoop(path, streamPolicy.Handle, loopCount, cb, IntPtr.Zero, out id).
+                    Validate("Failed to play with loop.");
 
                 using (RegisterCancellationAction(tcs, cancellationToken, id))
                 {
