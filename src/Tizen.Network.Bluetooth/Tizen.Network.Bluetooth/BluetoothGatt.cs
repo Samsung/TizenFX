@@ -674,7 +674,7 @@ namespace Tizen.Network.Bluetooth
         public string Uuid { get; }
 
         /// <summary>
-        /// Adds a characteristic to this service.
+        /// Associates a Bluetooth GATT Characteristic with this GATT Service.
         /// </summary>
         /// <param name="characteristic">The characteristic to be added.</param>
         /// <returns>true on success, false otherwise.</returns>
@@ -718,7 +718,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Includes a service to this service.
+        /// Registers a Bluetooth GATT Service within this existing GATT Primary Service.
         /// </summary>
         /// <param name="service">The service to be included.</param>
         /// <returns>true on success, false otherwise</returns>
@@ -997,7 +997,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Adds a descriptor to this characteristic.
+        /// Attaches a Bluetooth GATT Descriptor to this GATT Characteristic.
         /// </summary>
         /// <param name="descriptor">The descriptor to be added.</param>
         /// <returns>true on success, false otherwise.</returns>
