@@ -76,11 +76,20 @@ namespace Tizen.System
     {
         private static readonly object s_lock = new object();
         /// <summary>
-        /// Gets the battery charge percentage.
+        /// Gets the current device's invalid battery charge percentage as an interger value.
         /// </summary>
+        /// <remarks>
+        /// It returns an integer value from 0 to 100 that indicates remaining battery charge as a percentage of the maximum level.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <value>It returns an integer value from 0 to 100 that indicates the remaining
         /// battery charge as a percentage of the maximum level.</value>
+        /// <example>
+        /// <code>
+        /// Console.WriteLine("battery Percent is: {0}", Tizen.System.Battery.Percent);
+        /// </code>
+        /// </example>
+        /// <seealso cref="BatteryPercentChangedEventArgs"/>
         public static int Percent
         {
             get
@@ -95,9 +104,25 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Gets the current battery level.
+        /// Gets the current device's battery level status as a BatteryLevelStatus.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the current battery level status based on remaining battery capacity.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <value>The battery level status.</value>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// BatteryLevelStatus status = Battery.Level;
+        /// if (Battery.Percent == 0 && status == BatteryLevelStatus.Empty)
+        ///     ...
+        /// ...
+        /// </code>
+        /// </example>
+        /// <seealso cref="BatteryLevelStatus"/>
+        /// <seealso cref="BatteryLevelChangedEventArgs"/>
         public static BatteryLevelStatus Level
         {
             get
@@ -112,9 +137,20 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Gets the current charging state.
+        /// Gets the current device's charging state which the battery is charging.
         /// </summary>
+        /// <remarks>
+        /// Checks whether the battery is currently being charged or not.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// bool charging = Battery.IsCharging;
+        /// ...
+        /// </code>
+        /// </example>
+        /// <seealso cref="BatteryChargingStateChangedEventArgs"/>
         public static bool IsCharging
         {
             get
