@@ -65,6 +65,9 @@ namespace Tizen.MachineLearning.Train
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "modelConf is null");
 
             NNTrainerError ret = Interop.Model.ConstructWithConf(modelConf, out handle);
+            if (ret != NNTrainerError.None) {
+                handle = IntPtr.Zero;
+            }
             NNTrainer.CheckException(ret, "Failed to create model instance with modelConf");
             Log.Info(NNTrainer.Tag, "Created Model with Conf path: "+ modelConf);
         }
@@ -281,7 +284,7 @@ namespace Tizen.MachineLearning.Train
         public Layer GetLayer(string layerName)
         {
             IntPtr layerHandle = IntPtr.Zero;
-             if (string.IsNullOrEmpty(layerName))
+            if (string.IsNullOrEmpty(layerName))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layerName is null");
 
             NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
@@ -311,6 +314,7 @@ namespace Tizen.MachineLearning.Train
 
             NNTrainerError ret = Interop.Model.SetOptimizer(handle, optimizer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set optimizer");
+            optimizer.RemoveOwnership();
         }
 
         /// <summary>
@@ -335,6 +339,7 @@ namespace Tizen.MachineLearning.Train
 
             NNTrainerError ret = Interop.Model.SetDataset(handle, dataset.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set dataset");
+            dataset.RemoveOwnership();
         }
 
         internal static TensorsInfo CreateTensorsInfoFormHandle(IntPtr handle)
