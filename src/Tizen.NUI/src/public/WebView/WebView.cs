@@ -2982,8 +2982,9 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ApplyCornerRadius()
+        internal override void ApplyCornerRadius()
         {
             base.ApplyCornerRadius();
 
