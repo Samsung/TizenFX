@@ -32,6 +32,7 @@ namespace Tizen.Network.WiFi
         private IntPtr _configHandle = IntPtr.Zero;
         private bool _disposed = false;
         private WiFiEapConfiguration _eapConfig;
+        private readonly Object _lock = new Object();
 
         /// <summary>
         /// The name of the access point (AP).
@@ -241,12 +242,19 @@ namespace Tizen.Network.WiFi
 
         private void Dispose(bool disposing)
         {
-            if (_disposed)
-                return;
+            lock (_lock)
+            {
+                if (_disposed)
+                    return;
 
-            Interop.WiFi.Config.Destroy(_configHandle);
-            _configHandle = IntPtr.Zero;
-            _disposed = true;
+                if (disposing)
+                {
+                    Interop.WiFi.Config.Destroy(_configHandle);
+                    _configHandle = IntPtr.Zero;
+                }
+
+                _disposed = true;
+            }
         }
 
         internal IntPtr GetHandle()
