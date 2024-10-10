@@ -1259,7 +1259,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void ApplyCornerRadius()
+        internal virtual void ApplyCornerRadius()
         {
             if (backgroundExtraData == null) return;
 
@@ -1283,7 +1283,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void ApplyBorderline()
+        internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;
 

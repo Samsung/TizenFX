@@ -838,7 +838,7 @@ namespace Tizen.NUI.Scene3D
         /// Callback when CornerRadius property changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ApplyCornerRadius()
+        internal override void ApplyCornerRadius()
         {
             base.ApplyCornerRadius();
 
@@ -863,7 +863,7 @@ namespace Tizen.NUI.Scene3D
         /// Callback when Borderline property changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ApplyBorderline()
+        internal override void ApplyBorderline()
         {
             base.ApplyBorderline();
 
