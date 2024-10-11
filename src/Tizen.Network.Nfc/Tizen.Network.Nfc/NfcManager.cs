@@ -22,14 +22,16 @@ using Tizen.System;
 namespace Tizen.Network.Nfc
 {
     /// <summary>
-    /// A class for the NFC management. It allows applications to use the NFC service.
+    /// The NfcManager class provides methods for managing the NFC service in Tizen applications.
+    /// It allows applications to initialize and terminate the NFC service, register and unregister NFC tags, and handle NFC events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/nfc</privilege>
     static public class NfcManager
     {
         /// <summary>
-        /// Checks whether the NFC is supported.
+        /// The IsSupported property checks whether the NFC feature is supported on the device.
+        /// It returns a boolean value indicating whether the NFC service is available.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public bool IsSupported
@@ -57,7 +59,8 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The NFC Activation state.
+        /// The IsActivated property checks whether the NFC service is currently activated on the device.
+        /// It returns a boolean value indicating whether the NFC service is active.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public bool IsActivated
@@ -85,7 +88,8 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Tag Filter type.
+        /// The TagFilterType property specifies the type of tag filtering to be used by the NFC service.
+        /// It can be set to either NfcTagFilterType.All or NfcTagFilterType.NdefOnly, depending on the desired behavior.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public NfcTagFilterType TagFilterType
@@ -137,7 +141,8 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Secure Element type.
+        /// The SecureElementType property specifies the type of Secure Element (SE) to be used by the NFC service.
+        /// It can be set to either NfcSecureElementType.Uicc or NfcSecureElementType.Ese, depending on the desired behavior.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/nfc.cardemulation</privilege>
@@ -239,7 +244,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The cached NDEF message.
+        /// The CachedNdefMessage property returns the cached NDEF message, which is a representation of the data stored on an NFC tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public NfcNdefMessage CachedNdefMessage
@@ -267,7 +272,8 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets the Tag adapter object.
+        /// The GetTagAdapter method returns the Tag adapter object, which is used to manage NFC tags in the NFC service.
+        /// The Tag adapter provides methods for reading, writing, and formatting NFC tags.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public NfcTagAdapter GetTagAdapter()
@@ -294,7 +300,9 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets the P2P adapter object.
+        /// The GetP2pAdapter method returns the P2P adapter object,
+        /// which is used to manage NFC peer-to-peer (P2P) communication in the NFC service.
+        /// The P2P adapter provides methods for initiating and receiving P2P communication.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public NfcP2pAdapter GetP2pAdapter()
@@ -321,7 +329,9 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Gets the Card Emulation adapter object.
+        /// The GetCardEmulationAdapter method returns the Card Emulation adapter object,
+        /// which is used to manage NFC card emulation in the NFC service.
+        /// The Card Emulation adapter provides methods for registering and deregistering services, and for handling card emulation events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public NfcCardEmulationAdapter GetCardEmulationAdapter()
@@ -348,7 +358,7 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// Activates the NFC asynchronously.
+        /// The SetActivationAsync method activates or deactivates the NFC service asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task indicates whether the Activate method is done or not.</returns>
@@ -375,7 +385,8 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The Activation changed event.
+        /// The ActivationChanged event is triggered when the NFC activation state changes.
+        /// The event handler receives an ActivationChangedEventArgs object containing information about the activation state change.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<ActivationChangedEventArgs> ActivationChanged
@@ -423,7 +434,8 @@ namespace Tizen.Network.Nfc
         }
 
         /// <summary>
-        /// The NDEF discovered event.
+        /// The NdefMessageDiscovered event is triggered when an NDEF message is discovered by the NFC service.
+        /// The event handler receives an NdefMessageDiscoveredEventArgs object containing information about the discovered NDEF message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<NdefMessageDiscoveredEventArgs> NdefMessageDiscovered
