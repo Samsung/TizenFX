@@ -24,10 +24,12 @@ using Tizen.Applications.Exceptions;
 namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
-    /// Tizen Window System Shell.
-    /// This is a basic handle class for others in WsShell.
-    /// Others class in WsShell using this basic class to use TIzen Window System Shell.
+    /// Basic handle of Tizen Window System Shell.
     /// </summary>
+    /// <remarks>
+    /// This class is a basic handle class for other class in Tizen Window System Shell.
+    /// TizenShell serves as the entry point for interacting with the other subclass of Tizen Window System Shell.
+    /// </remarks>
     /// <since_tizen> 8 </since_tizen>
     public class TizenShell : IDisposable
     {
@@ -68,7 +70,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Creates a new Tizen Shell handle.
+        /// The constructor of TizenShell class.
         /// </summary>
         /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
@@ -84,7 +86,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Destructor.
+        /// The destructor of TizenShell class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         ~TizenShell()
@@ -97,7 +99,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Dispose.
+        /// Dispose the TizenShell instance explicitly.
         /// </summary>
         /// <exception cref="MemberAccessException">Thrown when private memeber is a corrupted.</exception>
         /// <since_tizen> 8 </since_tizen>
