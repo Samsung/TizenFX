@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// This class provides the methods for creating and verifying a signature.
+    /// Provides the methods for creating and verifying a signature.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Signature
@@ -27,7 +27,7 @@ namespace Tizen.Security.SecureRepository.Crypto
         private SignatureParameters _parameters;
 
         /// <summary>
-        /// A constructor of Signature that takes the algorithm specific parameters.
+        /// Initializes an instance of Signature class with SignatureParameters.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="parameters">The algorithm specific parameters.</param>
@@ -37,8 +37,11 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// The algorithm specific parameters.
+        /// Gets algorithm specific parameters.
         /// </summary>
+        /// <value>
+        /// Algorithm specific parameters.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public SignatureParameters Parameters
         {
@@ -50,30 +53,30 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// the signature.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="privateKeyAlias">The name of private key.</param>
-        /// <param name="password">
-        /// The password used in decrypting a private key value.
-        /// </param>
-        /// <param name="message">The message that is signed with a private key.</param>
-        /// <returns>A newly created signature.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// The privateKeyAlias or message is null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// The privateKeyAlias is invalid format.
-        /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The key-protecting password isn't matched.
-        /// The key does not exist with the privateKeyAlias.
-        /// </exception>
         /// <remarks>
-        /// The key type specified by the privateKeyAlias should be compatible with the
+        /// Key type specified by the privateKeyAlias should be compatible with the
         /// algorithm specified in Parameters.
         /// </remarks>
         /// <remarks>
         /// If the password of policy is provided during storing a key, the same password
         /// should be provided.
         /// </remarks>
+        /// <param name="privateKeyAlias">Name of a private key.</param>
+        /// <param name="password">
+        /// Password used in decrypting a private key value.
+        /// </param>
+        /// <param name="message">Message signed with a private key.</param>
+        /// <returns>Newly created signature.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="privateKeyAlias"/> or <paramref name="message"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="privateKeyAlias"/> has invalid format.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when key-protecting password does not match.
+        /// Thrown when key does not exist with given <paramref name="privateKeyAlias"/>.
+        /// </exception>
         public byte[] Sign(string privateKeyAlias, string password, byte[] message)
         {
             if (privateKeyAlias == null || message == null)
@@ -118,33 +121,34 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// the signature status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="publicKeyAlias">The name of public key.</param>
-        /// <param name="password">
-        /// The password used in decrypting a public key value.
-        /// </param>
-        /// <param name="message">The input on which the signature is created.</param>
-        /// <param name="signature">The signature that is verified with public key.</param>
-        /// <returns>
-        /// The signature status. True is returned when the signature is valid.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// The publicKeyAlias, message or signature is null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// The publicKeyAlias is invalid format.
-        /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The key-protecting password isn't matched.
-        /// The key does not exist with the publicKeyAlias.
-        /// </exception>
         /// <remarks>
-        /// The key type specified by publicKeyAlias should be compatible with the
+        /// Key type specified by publicKeyAlias should be compatible with the
         /// algorithm specified in Parameters.
         /// </remarks>
         /// <remarks>
         /// If password of policy is provided during storing a key, the same password
         /// should be provided.
         /// </remarks>
+        /// <param name="publicKeyAlias">Name of a public key.</param>
+        /// <param name="password">
+        /// Password used in decrypting a public key value.
+        /// </param>
+        /// <param name="message">Input message on which the signature is created.</param>
+        /// <param name="signature">Signature that is verified with public key.</param>
+        /// <returns>
+        /// Signature status. True if the signature is valid.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="publicKeyAlias"/>, <paramref name="message"/>
+        /// or <paramref name="signature"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="publicKeyAlias"/> has invalid format.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when key-protecting password does not match.
+        /// Thrown when key does not exist with given <paramref name="publicKeyAlias"/>.
+        /// </exception>
         public bool Verify(
             string publicKeyAlias, string password, byte[] message, byte[] signature)
         {

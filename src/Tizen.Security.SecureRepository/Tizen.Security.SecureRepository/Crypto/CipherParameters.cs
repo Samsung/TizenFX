@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// An abstract class for holding parameters for encryption and decryption.
+    /// Holds parameters for encryption and decryption.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     abstract public class CipherParameters
@@ -27,8 +27,11 @@ namespace Tizen.Security.SecureRepository.Crypto
         private SafeCipherParametersHandle _handle;
 
         /// <summary>
-        /// The Cipher algorithm type.
+        /// Gets cipher algorithm type.
         /// </summary>
+        /// <value>
+        /// Cipher algorithm type.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public CipherAlgorithmType Algorithm
         {

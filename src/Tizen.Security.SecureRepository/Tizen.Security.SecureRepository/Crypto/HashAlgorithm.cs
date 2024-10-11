@@ -23,23 +23,23 @@ namespace Tizen.Security.SecureRepository.Crypto
     public enum HashAlgorithm : int
     {
         /// <summary>
-        /// The no hash algorithm.
+        /// No hash algorithm.
         /// </summary>
         None = 0,
         /// <summary>
-        /// The hash algorithm SHA1.
+        /// SHA1 hash algorithm.
         /// </summary>
         Sha1,
         /// <summary>
-        /// The hash algorithm SHA256.
+        /// SHA256 hash algorithm.
         /// </summary>
         Sha256,
         /// <summary>
-        /// The hash algorithm SHA384.
+        /// SHA384 hash algorithm.
         /// </summary>
         Sha384,
         /// <summary>
-        /// The hash algorithm SHA512.
+        /// SHA512 hash algorithm.
         /// </summary>
         Sha512
     }
