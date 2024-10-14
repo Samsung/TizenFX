@@ -83,9 +83,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private static readonly WebContext context = new WebContext(Interop.WebView.GetWebContext(), false);
-        private static readonly WebCookieManager cookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
-
         private Color contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
@@ -162,9 +159,17 @@ namespace Tizen.NUI.BaseComponents
 
         private PlainTextReceivedCallback plainTextReceivedCallback;
 
+        private EventHandler<WebViewWebAuthDisplayQREventArgs> webAuthDisplayQREventHandler;
+        private WebViewWebAuthDisplayQRCallback webAuthDisplayQRCallback;
+        private EventHandler webAuthResponseEventHandler;
+        private WebViewWebAuthResponseCallback webAuthResponseCallback;
+
+        private EventHandler<WebViewUserMediaPermissionRequestEventArgs> userMediaPermissionRequestEventHandler;
+        private WebViewUserMediaPermissionRequestCallback userMediaPermissionRequestCallback;
+
 
         /// <summary>
-        /// Creates a WebView.
+        /// Default constructor to create a WebView.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public WebView() : this(Interop.WebView.New(), true)
@@ -189,6 +194,17 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
         /// <since_tizen> 9 </since_tizen>
         public WebView(string[] args) : this(Interop.WebView.New3(args?.Length ?? 0, args), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates a WebView with an args list and WebEngine type.
+        /// </summary>
+        /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
+        /// <param name="webEngineType">Can select the plugin of Web Engine type. Chromium or LWE.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebView(string[] args, WebEngineType webEngineType) : this(Interop.WebView.New4(args?.Length ?? 0, args, (int)webEngineType), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -325,6 +341,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void UserMediaPermissionCallback(IntPtr permission);
+
         /// <summary>
         /// The callback function that is invoked when hit test is finished.
         /// </summary>
@@ -392,6 +412,16 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewTextFoundCallback(uint count);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewWebAuthDisplayQRCallback(string contents);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewWebAuthResponseCallback();
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewUserMediaPermissionRequestCallback(IntPtr permission, string message);
+       
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -982,6 +1012,89 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Event to informs user application to display QR code popup for passkey scenario.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewWebAuthDisplayQREventArgs> WebAuthDisplayQR
+        {
+            add
+            {
+                if (webAuthDisplayQREventHandler == null)
+                {
+                    webAuthDisplayQRCallback = OnWebAuthDisplayQR;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(webAuthDisplayQRCallback);
+                    Interop.WebView.RegisterWebAuthDisplayQRCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                webAuthDisplayQREventHandler += value;
+            }
+            remove
+            {
+                webAuthDisplayQREventHandler -= value;
+                if (webAuthDisplayQREventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterWebAuthDisplayQRCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event to informs user application that the passkey registration and authentication has been successful.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler WebAuthResponse
+        {
+            add
+            {
+                if (webAuthResponseEventHandler == null)
+                {
+                    webAuthResponseCallback = OnWebAuthResponse;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(webAuthResponseCallback);
+                    Interop.WebView.RegisterWebAuthResponseCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                webAuthResponseEventHandler += value;
+            }
+            remove
+            {
+                webAuthResponseEventHandler -= value;
+                if (webAuthResponseEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterWebAuthResponseCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Event to UserMediaPermissionRequest.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewUserMediaPermissionRequestEventArgs> UserMediaPermissionRequest
+        {
+            add
+            {
+                if (userMediaPermissionRequestEventHandler == null)
+                {
+                    userMediaPermissionRequestCallback = OnUserMediaPermissionRequset;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(userMediaPermissionRequestCallback);
+                    Interop.WebView.RegisterUserMediaPermissionRequestCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                userMediaPermissionRequestEventHandler += value;
+            }
+            remove
+            {
+                userMediaPermissionRequestEventHandler -= value;
+                if (userMediaPermissionRequestEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterUserMediaPermissionRequestCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Options for searching texts.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1071,6 +1184,31 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             All = Default | NodeData | ImageData,
+        }
+
+        /// <summary>
+        /// WebEngine type which can be set by a specific constructor of this WebView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum WebEngineType
+        {
+            /// <summary>
+            /// Depend on environement value setting. (default)
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            UseSystemSetting = -1,
+
+            /// <summary>
+            /// Chromium Web Engine type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Chromium = 0,
+
+            /// <summary>
+            /// LWE, Light Web Engine type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            LWE = 1,
         }
 
         /// <summary>
@@ -2821,6 +2959,16 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// cancel in progress web authentication that is passkey operation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WebAuthenticationCancel()
+        {
+            Interop.WebView.WebAuthenticationCancel(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static WebView DownCast(BaseHandle handle)
         {
             WebView ret = new WebView(Interop.WebView.DownCast(BaseHandle.getCPtr(handle)), true);
@@ -2835,6 +2983,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal override void ApplyCornerRadius()
         {
             base.ApplyCornerRadius();
@@ -2981,5 +3130,21 @@ namespace Tizen.NUI.BaseComponents
         {
             textFoundEventHandler?.Invoke(this, new WebViewTextFoundEventArgs(count));
         }
+
+        private void OnWebAuthDisplayQR(string contents)
+        {
+            webAuthDisplayQREventHandler?.Invoke(this, new WebViewWebAuthDisplayQREventArgs(contents));
+        }
+
+        private void OnWebAuthResponse()
+        {
+            webAuthResponseEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnUserMediaPermissionRequset(IntPtr permission, string message)
+        {
+            userMediaPermissionRequestEventHandler?.Invoke(this, new WebViewUserMediaPermissionRequestEventArgs(new WebUserMediaPermissionRequest(permission, true), message));
+        }
+
     }
 }

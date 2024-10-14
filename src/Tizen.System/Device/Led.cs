@@ -46,10 +46,20 @@ namespace Tizen.System
         /// <summary>
         /// Gets the maximum brightness value of the LED that is located next to the camera.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the maximum brightness level of the back camera flash.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// Console.WriteLine("Led MaxBrightness is: {0}", Led.MaxBrightness);
+        /// </code>
+        /// </example>
         public static int MaxBrightness
         {
             get
@@ -107,7 +117,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Plays the LED that is located at the front of the device.
+        /// Plays the custom effect of the service LED that is located to the front of a device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="on">Turn on time in milliseconds.</param>
@@ -131,6 +141,7 @@ namespace Tizen.System
         ///     }
         /// </code>
         /// </example>
+        /// <seealso cref="Led.Stop()"/>
         public static void Play(int on, int off, Color color)
         {
             //looks like only blink option is supported. So hard coded to default blink option.
@@ -142,8 +153,11 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Stops the LED that is located at the front of the device.
+        /// Stops the custom effect of the service LED that is located to the front of a device.
         /// </summary>
+        /// <remarks>
+        /// The custom effect was started by Led.Play(int,int,Color).
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
@@ -161,7 +175,7 @@ namespace Tizen.System
         ///     }
         /// </code>
         /// </example>
-
+        /// <seealso cref="Led.Play(int,int,Color)"/>
         public static void Stop()
         {
             DeviceError res = (DeviceError)Interop.Device.DeviceLedStopCustom();
@@ -177,6 +191,20 @@ namespace Tizen.System
         /// StateChanged is raised when the LED state is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
+        /// <code>
+        /// public static async Task LedEventHandler()
+        /// {
+        ///     EventHandler&lt;LedBrightnessChangedEventArgs&gt; handler = null;
+        ///     handler = (object sender, LedBrightnessChangedEventArgs args) =>
+        ///     {
+        ///          Console.WriteLine("battery Level is: {0}", args.Brightness);
+        ///     }
+        ///     Led.BrightnessChanged += handler;
+        ///     await Task.Delay(20000);
+        /// }
+        /// </code>
+        /// </example>
         public static event EventHandler<LedBrightnessChangedEventArgs> BrightnessChanged
         {
             add

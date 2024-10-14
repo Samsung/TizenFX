@@ -20,7 +20,8 @@ using System.Collections.Generic;
 namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
-    /// This class provides methods and properties to get information of the component.
+    /// Provides methods and properties to retrieve information about a component in a Tizen application.
+    /// This class encapsulates details such as component ID, application ID, and other attributes.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class ComponentInfo : IDisposable
@@ -41,13 +42,13 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// A constructor of ComponentInfo that takes the component ID.
+        /// Initializes a new instance of the <see cref="ComponentInfo"/> class with the specified component ID.
         /// </summary>
-        /// <param name="componentId">Component ID.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>>
+        /// <param name="componentId">The ID of the component.</param>
+        /// <exception cref="ArgumentException">Thrown when the component ID is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
         public ComponentInfo(string componentId)
@@ -63,7 +64,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Destructor of the class.
+        /// Finalizes an instance of the <see cref="ComponentInfo"/> class.
         /// </summary>
         ~ComponentInfo()
         {
@@ -71,7 +72,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the component ID.
+        /// Gets the ID of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ComponentId
@@ -94,7 +95,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the application ID of the component.
+        /// Gets the application ID associated with the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ApplicationId
@@ -132,7 +133,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Checks whether the icon of the component should be displayed or not.
+        /// Checks whether the icon of the component should be displayed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool IsIconDisplayed
@@ -151,7 +152,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Checks whether the component should be managed by task-manager or not.
+        /// Checks whether the component is managed by the task manager.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool IsManagedByTaskManager
@@ -170,7 +171,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the absolute path of the icon image.
+        /// Gets the absolute path of the component's icon image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string IconPath
@@ -207,11 +208,11 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the localized label of the component for the given locale.
+        /// Gets the localized label of the component for a specified locale.
         /// </summary>
-        /// <param name="locale">Locale.</param>
-        /// <remarks>The format of locale is language and country code. (available value: "[2-letter lowercase language code (ISO 639-1)]-[2-letter lowercase country code (ISO 3166-alpha-2)]")</remarks>
-        /// <returns>The localized label.</returns>
+        /// <param name="locale">The locale in the format of language and country code (e.g., "en-US").</param>
+        /// <remarks>Available values are in the format "[2-letter lowercase language code (ISO 639-1)]-[2-letter lowercase country code (ISO 3166-alpha-2)]".</remarks>
+        /// <returns>The localized label corresponding to the specified locale.</returns>
         /// <since_tizen> 6 </since_tizen>
         public string GetLocalizedLabel(string locale)
         {
@@ -226,7 +227,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Releases all resources used by the ComponentInfo class.
+        /// Releases all resources used by the <see cref="ComponentInfo"/> class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
@@ -236,7 +237,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Releases all resources used by the ComponentInfo class.
+        /// Releases resources used by the <see cref="ComponentInfo"/> class.
         /// </summary>
         /// <param name="disposing">Disposing</param>
         /// <since_tizen> 6 </since_tizen>

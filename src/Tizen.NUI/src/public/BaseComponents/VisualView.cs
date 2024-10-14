@@ -49,13 +49,14 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Constructor.
+        /// This constructor initializes the VisualView with default behavior and support for touch events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public VisualView() : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
         {
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VisualView(ViewStyle viewStyle) : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport, viewStyle)
         {
@@ -99,6 +100,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Overrides the parent method.
+        /// This method is called by the framework when the instance is created.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
@@ -187,7 +189,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Removes all visuals of the visual view.
+        /// This method removes all visuals associated with the VisualView instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void RemoveAll()
@@ -410,7 +412,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// temporary fix to pass TCT.
+        /// Applies an animation to the specified visual map properties.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when visualMap is null. </exception>
         /// <since_tizen> 3 </since_tizen>

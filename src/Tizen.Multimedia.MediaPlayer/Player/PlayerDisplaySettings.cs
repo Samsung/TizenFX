@@ -53,7 +53,7 @@ namespace Tizen.Multimedia
         protected Player Player { get; }
 
         /// <summary>
-        /// Gets or sets the <see cref="PlayerDisplayMode"/>.
+        /// Gets or sets the <see cref="PlayerDisplayMode"/> of the player.
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
@@ -134,7 +134,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the roi(region of interest).
+        /// Sets the ROI(Region Of Interest) for the video display.
         /// </summary>
         /// <param name="roi">The region.</param>
         /// <remarks>

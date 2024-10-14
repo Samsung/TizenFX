@@ -1258,7 +1258,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
         }
 
-        /// TODO open as a protected level
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal virtual void ApplyCornerRadius()
         {
             if (backgroundExtraData == null) return;
@@ -1282,7 +1282,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// TODO open as a protected level
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;

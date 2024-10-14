@@ -75,9 +75,21 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The number of available display devices.
+        /// The number of available display devices connected to current device.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the number of display devices connected to the system.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// Console.WriteLine("Total number of Displays are: {0}", Display.NumberOfDisplays);
+        /// </code>
+        /// </example>
+        /// <seealso cref="Display.MaxBrightness"/>
+        /// <seealso cref="Display.Brightness"/>
         public static int NumberOfDisplays
         {
             get
@@ -120,6 +132,9 @@ namespace Tizen.System
         /// <summary>
         /// The maximum brightness value that can be set for the specific display.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the maximum brightness level of a specific display device.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <example>
         /// <code>
@@ -142,7 +157,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The brightness value of the display.
+        /// The brightness value of the specific display device.
         /// </summary>
         /// <remarks>
         /// The brightness value should be less than or equal to the MaxBrightness value.
@@ -150,12 +165,15 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+        /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to device not supported.</exception>
         /// <example>
         /// <code>
         ///     Display display = Display.Displays[0];
         ///     Console.WriteLine("Display current Brightness is: {0}", display.Brightness);
         /// </code>
         /// </example>
+        /// <seealso cref="Display.MaxBrightness"/>
         public int Brightness
         {
             get
@@ -179,9 +197,27 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// The current device display state.
+        /// The current device display state, including normal, dim, and off states.
         /// </summary>
+        /// <remarks>
+        /// When the display state is set, it should be checked the profile version and supported display state.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// DisplayState current = Display.State;
+        /// Console.WriteLine("Display current state is: {0}", current);
+        /// ...
+        /// Display.State = DisplayState.Normal;
+        /// ...
+        /// </code>
+        /// </example>
+        /// <seealso cref="Power.RequestLock"/>
+        /// <seealso cref="Power.ReleaseLock"/>
+        /// <seealso cref="DisplayState"/>
+        /// <seealso cref="DisplayStateChangedEventArgs"/>
         public static DisplayState State
         {
             get
@@ -218,7 +254,7 @@ namespace Tizen.System
         ///     {
         ///          Console.WriteLine("Display State is: {0}", args.State);
         ///     }
-        ///     Battery.StateChanged += handler;
+        ///     Display.StateChanged += handler;
         ///     await Task.Delay(20000);
         /// }
         /// </code>

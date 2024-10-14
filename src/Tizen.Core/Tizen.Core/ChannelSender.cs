@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Core
 {
     /// <summary>
-    /// Represents the channel sender used for inter-task communication.
+    /// Represents the channel sender used for inter-task communication. It provides methods to send messages between tasks in order to facilitate task coordination.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
     public class ChannelSender : IDisposable
@@ -32,7 +32,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class ChannelSender.
+        /// Finalizes an instance of the ChannelSender class.
         /// </summary>
         ~ChannelSender()
         {
@@ -44,6 +44,8 @@ namespace Tizen.Core
         /// </summary>
         /// <param name="channelObject">The channel object instance.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <remarks>
         /// It's important to call the Dispose() method on the passed channel object to release resources.
         /// </remarks>
@@ -68,8 +70,16 @@ namespace Tizen.Core
                 throw new ArgumentNullException(nameof(channelObject));
             }
 
+            if (channelObject.Handle == IntPtr.Zero)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.SenderSend(Handle, channelObject.Handle);
-            TCoreErrorFactory.CheckAndThrownException(error, "Failed to send channel object");
+            if (error != Interop.LibTizenCore.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to send channel object");
+            }
             channelObject.IsUsed = true;
         }
 
@@ -77,7 +87,7 @@ namespace Tizen.Core
         /// Creates and returns a copy of the channel sender object.
         /// </summary>
         /// <returns>A newly created channel sender instance.</returns>
-        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
         /// <code>
@@ -92,6 +102,10 @@ namespace Tizen.Core
         public ChannelSender Clone()
         {
             Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCoreChannel.SenderClone(Handle, out IntPtr clonedHandle);
+            if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
+            {
+                error = Interop.LibTizenCore.ErrorCode.InvalidContext;
+            }
             TCoreErrorFactory.CheckAndThrownException(error, "Failed to clone channel sender");
 
             return new ChannelSender(clonedHandle);

@@ -20,20 +20,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Arguments for the event raised when the NUIGadget lifecycle is changed.
+    /// Event arguments for the NUIGadget lifecycle change event.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIGadgetLifecycleChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// The NUIGadget object.
+        /// Gets the NUIGadget object that triggered the event.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public NUIGadget Gadget { get; internal set; }
 
         /// <summary>
-        /// The state of the NUIGadget lifecycle.
+        /// Gets the current state of the NUIGadget lifecycle.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public NUIGadgetLifecycleState State { get; internal set; }

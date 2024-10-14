@@ -142,7 +142,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// List of children of Container.
+        /// Gets the list of children of Container.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public List<View> Children

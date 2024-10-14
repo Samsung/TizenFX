@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The texture type.
+    /// The TextureType enumeration defines the types of textures.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum TextureType

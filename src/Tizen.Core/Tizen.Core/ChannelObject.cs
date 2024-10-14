@@ -24,6 +24,11 @@ namespace Tizen.Core
     /// <summary>
     /// Represents a channel object used for inter-task communication.
     /// </summary>
+    /// <remarks>
+    /// A channel object provides a mechanism for tasks to communicate with each other in a process. It allows sending messages between tasks without any race conditions.
+    /// To create a channel object, call the static method 'Create'. Once created, you can send and receive messages through the channel by calling the respective methods on the channel object.
+    /// When you are done using the channel object, remember to dispose it properly to avoid resource leaks.
+    /// </remarks>
     /// <since_tizen> 12 </since_tizen>
     public class ChannelObject : IDisposable
     {
@@ -40,6 +45,10 @@ namespace Tizen.Core
         /// <param name="data">The data object.</param>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <remarks>
+        /// This constructor creates a new channel object with the specified ID and data. It throws an OutOfMemoryException if there isn't enough memory available to allocate the object.
+        /// Additionally, it may throw an InvalidOperationException if the operation fails due to an invalid condition.
+        /// </remarks>
         /// <example>
         /// <code>
         /// 
@@ -68,7 +77,7 @@ namespace Tizen.Core
         }
 
         /// <summary>
-        /// Finalizer of the class ChannelObject.
+        /// Finalizes an instance of the ChannelObject class.
         /// </summary>
         ~ChannelObject()
         {
@@ -135,7 +144,8 @@ namespace Tizen.Core
         /// Gets the name of the sender task.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public string Sender {
+        public string Sender
+        {
             get
             {
                 Interop.LibTizenCore.TizenCoreChannel.ObjectGetSenderTaskName(_handle, out IntPtr taskName);

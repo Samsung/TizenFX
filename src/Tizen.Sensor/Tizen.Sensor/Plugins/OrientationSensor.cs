@@ -27,29 +27,30 @@ namespace Tizen.Sensor
         private static string OrientationSensorKey = "http://tizen.org/feature/sensor.tiltmeter";
 
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
+
         /// <summary>
-        /// Gets the azimuth component of the orientation.
+        /// Get the azimuth component value of the orientation as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Azimuth </value>
         public float Azimuth { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the pitch component of the orientation.
+        /// Get the pitch component value of the orientation as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Pitch </value>
         public float Pitch { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the roll component of the orientation.
+        /// Get the roll component value of the orientation as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Roll </value>
         public float Roll { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether the orientation sensor is supported by the device.
+        /// Return true or false based on whether the orientation sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -63,7 +64,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of orientation sensors available on the device.
+        /// Return the number of orientation sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of orientation sensors. </value>
@@ -77,7 +78,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.OrientationSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.OrientationSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.tiltmeter</feature>
@@ -85,7 +86,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular orientation sensor in case of multiple sensors.
+        /// Index refers to a particular orientation sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public OrientationSensor(uint index = 0) : base(index)
         {
@@ -101,11 +103,12 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the orientation sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<OrientationSensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
         /// An event handler for accuracy changed events.
+        /// If an event is added, a new accuracy change callback is registered for this sensor.
+        /// If an event is removed, accuracy change callback is unregistered for this sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged
