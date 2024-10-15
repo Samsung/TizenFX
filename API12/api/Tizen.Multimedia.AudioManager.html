@@ -89,7 +89,10 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the ability to control volume levels and monitor audio devices.</p>
+  <div class="markdown level0 summary"><p>Provides functionality to control volume levels and monitor the status of audio devices within the system.
+The <a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a> class enables developers to retrieve the volume controller,
+obtain a list of currently connected audio devices, and subscribe to events related to device connection changes
+as well as audio stream status changes, thereby facilitating comprehensive audio management.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -114,11 +117,13 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L44">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioManager_VolumeController_" data-uid="Tizen.Multimedia.AudioManager.VolumeController*"></a>
   <h4 id="Tizen_Multimedia_AudioManager_VolumeController" data-uid="Tizen.Multimedia.AudioManager.VolumeController">VolumeController</h4>
-  <div class="markdown level1 summary"><p>Gets the volume controller.</p>
+  <div class="markdown level1 summary"><p>Gets the volume controller, which allows for adjustment and retrieval of the current audio volume level.
+This property provides access to methods and properties that enable developers to manage volume settings
+for different audio streams and ensure that the audio experience meets user preferences.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -148,11 +153,15 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L55">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioManager_GetConnectedDevices_" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices*"></a>
   <h4 id="Tizen_Multimedia_AudioManager_GetConnectedDevices" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices">GetConnectedDevices()</h4>
-  <div class="markdown level1 summary"><p>Gets the all devices currently connected.</p>
+  <div class="markdown level1 summary"><p>Retrieves a collection of all audio devices currently connected to the system.
+This method returns an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>, allowing developers to easily enumerate
+through all available audio devices, such as speakers, microphones, and headphones.
+It is useful for applications that need to adapt to changes in the audio environment or support
+multiple audio output/input devices.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -182,10 +191,12 @@
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L100">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L111">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioManager_DeviceConnectionChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceConnectionChanged">DeviceConnectionChanged</h4>
-  <div class="markdown level1 summary"><p>Occurs when the state of a connection of an audio device changes.</p>
+  <div class="markdown level1 summary"><p>Occurs when the state of an audio device connection changes, such as when a device is connected or disconnected.
+Subscribing to this event allows developers to be notified of changes in the audio setup, enabling
+dynamic adjustments in the application to accommodate new devices or handle disconnections accordingly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -212,10 +223,15 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L174">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L190">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioManager_DeviceRunningChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceRunningChanged">DeviceRunningChanged</h4>
-  <div class="markdown level1 summary"><p>Occurs when the audio stream started actually to run on the device.</p>
+  <div class="markdown level1 summary"><p>Occurs when an audio stream starts running on a connected audio device.
+This event is triggered when a new audio stream begins after all previous streams have stopped.
+It is important to note that if this event is invoked while an audio stream is still running,
+it will not be triggered again until all streams have been stopped and a new one starts.
+This is especially useful for managing audio playback scenarios where multiple audio streams
+may be played sequentially.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -270,7 +286,7 @@ This event is invoked only when all streams are stopped and a new stream starts 
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

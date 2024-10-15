@@ -89,7 +89,13 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceConnectionChanged">DeviceConnectionChanged</a> event.</p>
+  <div class="markdown level0 summary"><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceConnectionChanged">DeviceConnectionChanged</a> event.
+This event is triggered when there is a change in the connection status of an audio device,
+such as when a device is connected or disconnected from the system.
+The <a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a> class encapsulates information
+about the device involved in the connection change and its current connection state,
+allowing developers to easily respond to changes in the audio subsystem and update
+application behavior accordingly.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -115,11 +121,15 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioDeviceConnectionChangedEventArgs.cs/#L38">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioDeviceConnectionChangedEventArgs.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDeviceConnectionChangedEventArgs_Device_" data-uid="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.Device*"></a>
   <h4 id="Tizen_Multimedia_AudioDeviceConnectionChangedEventArgs_Device" data-uid="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.Device">Device</h4>
-  <div class="markdown level1 summary"><p>Gets the device.</p>
+  <div class="markdown level1 summary"><p>Gets the device that is involved in the connection change.
+This property returns an instance of <a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a>, which represents
+the specific audio device that has been connected or disconnected.
+This information is essential for applications that need to manage multiple audio devices,
+allowing them to identify the affected device and adjust their functionality accordingly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -147,11 +157,16 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioDeviceConnectionChangedEventArgs.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioDeviceConnectionChangedEventArgs.cs/#L60">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDeviceConnectionChangedEventArgs_IsConnected_" data-uid="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.IsConnected*"></a>
   <h4 id="Tizen_Multimedia_AudioDeviceConnectionChangedEventArgs_IsConnected" data-uid="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.IsConnected">IsConnected</h4>
-  <div class="markdown level1 summary"><p>Gets the connection state of the device.</p>
+  <div class="markdown level1 summary"><p>Gets the current connection state of the device.
+This property indicates whether the audio device is currently connected to the system.
+It will return <code>true</code> if the device is connected and <code>false</code> if it has
+been disconnected. This information is crucial for determining the audio routing and
+playback options, enabling applications to appropriately react to the presence
+or absence of audio devices in the environment.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -186,7 +201,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioDeviceConnectionChangedEventArgs.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioDeviceConnectionChangedEventArgs.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

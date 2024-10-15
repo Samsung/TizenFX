@@ -89,7 +89,9 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Specifies the sound effect information.</p>
+  <div class="markdown level0 summary"><p>Represents the configuration and parameters for applying sound effects to audio processing.
+This structure allows you to specify the type of sound effect and, if necessary,
+a reference audio device to enhance the audio processing capabilities.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -102,11 +104,13 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L93">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L109">View Source</a>
   </span>
   <a id="Tizen_Multimedia_SoundEffectInfo__ctor_" data-uid="Tizen.Multimedia.SoundEffectInfo.#ctor*"></a>
   <h4 id="Tizen_Multimedia_SoundEffectInfo__ctor_Tizen_Multimedia_SoundEffectType_Tizen_Multimedia_AudioDevice_" data-uid="Tizen.Multimedia.SoundEffectInfo.#ctor(Tizen.Multimedia.SoundEffectType,Tizen.Multimedia.AudioDevice)">SoundEffectInfo(SoundEffectType, AudioDevice)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of <a class="xref" href="Tizen.Multimedia.SoundEffectInfo.html">SoundEffectInfo</a> with a reference audio device.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.SoundEffectInfo.html">SoundEffectInfo</a> structure
+with the specified sound effect type and a reference audio device.
+This allows for enhanced audio processing by using additional audio data from the specified device.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -142,11 +146,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L79">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L93">View Source</a>
   </span>
   <a id="Tizen_Multimedia_SoundEffectInfo__ctor_" data-uid="Tizen.Multimedia.SoundEffectInfo.#ctor*"></a>
   <h4 id="Tizen_Multimedia_SoundEffectInfo__ctor_Tizen_Multimedia_SoundEffectType_" data-uid="Tizen.Multimedia.SoundEffectInfo.#ctor(Tizen.Multimedia.SoundEffectType)">SoundEffectInfo(SoundEffectType)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of <a class="xref" href="Tizen.Multimedia.SoundEffectInfo.html">SoundEffectInfo</a>.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.SoundEffectInfo.html">SoundEffectInfo</a> structure
+with the specified sound effect type. The reference device is set to null.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -194,11 +199,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L111">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L127">View Source</a>
   </span>
   <a id="Tizen_Multimedia_SoundEffectInfo_ReferenceDevice_" data-uid="Tizen.Multimedia.SoundEffectInfo.ReferenceDevice*"></a>
   <h4 id="Tizen_Multimedia_SoundEffectInfo_ReferenceDevice" data-uid="Tizen.Multimedia.SoundEffectInfo.ReferenceDevice">ReferenceDevice</h4>
-  <div class="markdown level1 summary"><p>The AudioDevice used by the SoundEffect as additional source of audio data.</p>
+  <div class="markdown level1 summary"><p>Gets the reference audio device used by the sound effect as an additional source of audio data.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -225,11 +230,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L105">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L121">View Source</a>
   </span>
   <a id="Tizen_Multimedia_SoundEffectInfo_Type_" data-uid="Tizen.Multimedia.SoundEffectInfo.Type*"></a>
   <h4 id="Tizen_Multimedia_SoundEffectInfo_Type" data-uid="Tizen.Multimedia.SoundEffectInfo.Type">Type</h4>
-  <div class="markdown level1 summary"><p>The SoundEffectType.</p>
+  <div class="markdown level1 summary"><p>Gets the type of sound effect that will be applied, as specified in the <a class="xref" href="Tizen.Multimedia.SoundEffectType.html">SoundEffectType</a> enum.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -263,7 +268,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L71" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L84" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -89,7 +89,9 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Specifies the flags for the audio stream behaviors.</p>
+  <div class="markdown level0 summary"><p>Defines the flags that specify the behaviors of audio streams.
+This enumeration allows for a bitwise combination of its member values,
+enabling flexible configurations for audio playback and management.</p>
 <p>
 This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute that allows a bitwise combination of its member values.
 </p>
@@ -115,12 +117,18 @@ public enum AudioStreamBehaviors</code></pre>
     <tbody>
       <tr>
         <td id="Tizen_Multimedia_AudioStreamBehaviors_Fading">Fading</td>
-        <td><p>Fading.</p>
+        <td><p>Indicates that the audio stream should apply a fading effect
+during transitions. This behavior is useful for creating smoother
+audio experiences, such as gradually lowering the volume before
+stopping or increasing the volume when starting playback.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioStreamBehaviors_NoResume">NoResume</td>
-        <td><p>No Resume.</p>
+        <td><p>Indicates that the audio stream should not resume automatically
+after being paused or stopped. This flag can be used when
+explicit control over playback is desired, requiring the application
+to manually manage the resumption of audio playback.</p>
 </td>
       </tr>
     </tbody>
@@ -133,7 +141,7 @@ public enum AudioStreamBehaviors</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamBehaviors.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/AudioStreamBehaviors.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
