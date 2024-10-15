@@ -22,7 +22,10 @@ using System.Linq;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to control the sound stream.
+    /// Provides functionalities to control and manage sound streams within an application.
+    /// The <see cref="AudioStreamPolicy"/> class enables developers to set policies for
+    /// playback and recording audio streams, adjusting settings for focus and routing,
+    /// as well as configuring audio devices and sound effects.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AudioStreamPolicy : IDisposable
@@ -64,7 +67,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Occurs when the state of focus that belongs to the current AudioStreamPolicy is changed.
+        /// Occurs when the state of focus for the current <see cref="AudioStreamPolicy"/> changes.
+        /// This event allows subscribers to react to changes in audio focus state,
+        /// helping to manage audio playback or recording effectively.
         /// </summary>
         /// <remarks>
         /// The event is raised in the internal thread.

@@ -20,6 +20,12 @@ namespace Tizen.Multimedia
 {
     /// <summary>
     /// Provides data for the <see cref="AudioManager.DeviceConnectionChanged"/> event.
+    /// This event is triggered when there is a change in the connection status of an audio device,
+    /// such as when a device is connected or disconnected from the system.
+    /// The <see cref="AudioDeviceConnectionChangedEventArgs"/> class encapsulates information
+    /// about the device involved in the connection change and its current connection state,
+    /// allowing developers to easily respond to changes in the audio subsystem and update
+    /// application behavior accordingly.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AudioDeviceConnectionChangedEventArgs : EventArgs
@@ -31,14 +37,23 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the device.
+        /// Gets the device that is involved in the connection change.
+        /// This property returns an instance of <see cref="AudioDevice"/>, which represents
+        /// the specific audio device that has been connected or disconnected.
+        /// This information is essential for applications that need to manage multiple audio devices,
+        /// allowing them to identify the affected device and adjust their functionality accordingly.
         /// </summary>
         /// <value>The <see cref="AudioDevice"/>.</value>
         /// <since_tizen> 3 </since_tizen>
         public AudioDevice Device { get; }
 
         /// <summary>
-        /// Gets the connection state of the device.
+        /// Gets the current connection state of the device.
+        /// This property indicates whether the audio device is currently connected to the system.
+        /// It will return <c>true</c> if the device is connected and <c>false</c> if it has
+        /// been disconnected. This information is crucial for determining the audio routing and
+        /// playback options, enabling applications to appropriately react to the presence
+        /// or absence of audio devices in the environment.
         /// </summary>
         /// <value>true if the device is connected; otherwise, false.</value>
         /// <since_tizen> 3 </since_tizen>
