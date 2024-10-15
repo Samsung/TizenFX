@@ -17,7 +17,9 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the change reasons of the audio stream focus state.
+    /// Enumerates the reasons for changes in the focus state of an audio stream.
+    /// This enumeration provides specific contexts in which the audio stream
+    /// focus may be gained or lost, ensuring developers can respond appropriately.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum AudioStreamFocusChangedReason
