@@ -19,13 +19,18 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The exception that is thrown when noncompliance with the sound system policy happens.
+    /// Represents an exception that is thrown when there is a violation of the sound system policy.
+    /// This exception indicates that an operation has attempted to perform an action that
+    /// is not compliant with the established audio policies, which may affect audio playback or
+    /// manipulation within the application.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class AudioPolicyException : InvalidOperationException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioPolicyException"/> class.
+        /// Initializes a new instance of the <see cref="AudioPolicyException"/> class
+        /// without any error message. This constructor is typically used when the
+        /// exception is thrown without specific details about the error.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public AudioPolicyException()
@@ -33,7 +38,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioPolicyException"/> class with a specified error message.
+        /// Initializes a new instance of the <see cref="AudioPolicyException"/> class
+        /// with a specified error message. This message provides additional context
+        /// regarding the reason for the exception, which can be useful for debugging
+        /// and logging purposes.
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <since_tizen> 4 </since_tizen>
@@ -42,7 +50,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioPolicyException"/> class with a specified error message and inner exception.
+        /// Initializes a new instance of the <see cref="AudioPolicyException"/> class
+        /// with a specified error message and a reference to the inner exception
+        /// that is the cause of this exception.
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception..</param>
