@@ -244,6 +244,10 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            Context.RegisterDownloadStartedCallback(null);
+            Context.RegisterMimeOverriddenCallback(null);
+            Context.RegisterHttpRequestInterceptedCallback(null);
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
