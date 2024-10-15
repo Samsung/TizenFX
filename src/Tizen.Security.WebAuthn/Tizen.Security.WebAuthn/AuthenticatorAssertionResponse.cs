@@ -31,7 +31,7 @@ namespace Tizen.Security.WebAuthn
         internal AuthenticatorAssertionResponse(WauthnAuthenticatorAssertionResponse wauthnResponse)
         {
             ClientDataJson = NullSafeMarshal.PtrToArray(wauthnResponse.clientDataJson);
-            AuthenticatorData = NullSafeMarshal.PtrToArray(wauthnResponse.attestationObject);
+            AuthenticatorData = NullSafeMarshal.PtrToArray(wauthnResponse.authenticatorData);
             Signature = NullSafeMarshal.PtrToArray(wauthnResponse.signature);
             UserHandle = NullSafeMarshal.PtrToArray(wauthnResponse.userHandle);
             AttestationObject = NullSafeMarshal.PtrToArray(wauthnResponse.attestationObject);
