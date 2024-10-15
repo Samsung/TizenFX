@@ -110,19 +110,38 @@
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioDataDecoded">AudioDataDecoded</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a></h4>
-      <section><p>Provides the ability to query the information of sound devices.</p>
+      <section><p>Represents an audio device in the system, providing functionality to query and manipulate its properties.
+The <a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a> class allows developers to interact with audio devices by retrieving
+detailed information such as the device's ID, name, type, I/O direction, and its current running state.
+Furthermore, it provides methods for getting and setting sample formats and rates, managing resampling options,
+and restricting stream types to media-only, facilitating optimized audio handling for diverse applications.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a></h4>
-      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceConnectionChanged">DeviceConnectionChanged</a> event.</p>
+      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceConnectionChanged">DeviceConnectionChanged</a> event.
+This event is triggered when there is a change in the connection status of an audio device,
+such as when a device is connected or disconnected from the system.
+The <a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a> class encapsulates information
+about the device involved in the connection change and its current connection state,
+allowing developers to easily respond to changes in the audio subsystem and update
+application behavior accordingly.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a></h4>
-      <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceRunningChanged">DeviceRunningChanged</a> event.</p>
+      <section><p>Provides the data for the <a class="xref" href="Tizen.Multimedia.AudioManager.html#Tizen_Multimedia_AudioManager_DeviceRunningChanged">DeviceRunningChanged</a> event,
+which is triggered when the running state of an audio device changes.
+This class encapsulates information about the specific audio device
+that has undergone a state change, as well as its current running status,
+allowing subscribers to respond appropriately to changes in audio device activity.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a></h4>
-      <section><p>Provides the functionalities to control audio ducking.</p>
+      <section><p>Controls audio ducking for specific audio streams, allowing for dynamic
+adjustment of audio levels during playback. This class enables the activation
+and deactivation of ducking, monitors ducking state changes, and ensures proper
+privileges are in place for volume adjustments.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDuckingStateChangedEventArgs.html">AudioDuckingStateChangedEventArgs</a></h4>
-      <section><p>Provides data for the state change event of <a class="xref" href="Tizen.Multimedia.AudioDucking.html#Tizen_Multimedia_AudioDucking_DuckingStateChanged">DuckingStateChanged</a>.</p>
+      <section><p>Represents the event data for the <a class="xref" href="Tizen.Multimedia.AudioDucking.html#Tizen_Multimedia_AudioDucking_DuckingStateChanged">DuckingStateChanged</a> event,
+which is triggered when the ducking state of an audio stream changes.
+This class provides information about whether the audio stream is currently ducked or not.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioEffect.html">AudioEffect</a></h4>
       <section><p>Provides the ability to control the audio effects for <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>.</p>
@@ -131,7 +150,10 @@
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_StateChanged">StateChanged</a> event and the <a class="xref" href="Tizen.Multimedia.AudioPlayback.html#Tizen_Multimedia_AudioPlayback_StateChanged">StateChanged</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></h4>
-      <section><p>Provides the ability to control volume levels and monitor audio devices.</p>
+      <section><p>Provides functionality to control volume levels and monitor the status of audio devices within the system.
+The <a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a> class enables developers to retrieve the volume controller,
+obtain a list of currently connected audio devices, and subscribe to events related to device connection changes
+as well as audio stream status changes, thereby facilitating comprehensive audio management.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a></h4>
       <section><p>Represents an audio media format. This class cannot be inherited.</p>
@@ -149,13 +171,19 @@
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioPlayback.html#Tizen_Multimedia_AudioPlayback_BufferAvailable">BufferAvailable</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioPolicyException.html">AudioPolicyException</a></h4>
-      <section><p>The exception that is thrown when noncompliance with the sound system policy happens.</p>
+      <section><p>Represents an exception that is thrown when there is a violation of the sound system policy.
+This exception indicates that an operation has attempted to perform an action that
+is not compliant with the established audio policies, which may affect audio playback or
+manipulation within the application.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioRecorder.html">AudioRecorder</a></h4>
       <section><p>Provides the ability to control audio recording.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></h4>
-      <section><p>Provides the ability to control the sound stream.</p>
+      <section><p>Provides functionalities to control and manage sound streams within an application.
+The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> class enables developers to set policies for
+playback and recording audio streams, adjusting settings for focus and routing,
+as well as configuring audio devices and sound effects.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamPolicyFocusStateChangedEventArgs.html">AudioStreamPolicyFocusStateChangedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html#Tizen_Multimedia_AudioStreamPolicy_FocusStateChanged">FocusStateChanged</a> event.</p>
@@ -491,7 +519,9 @@ coordinates of top left corner, width and height.</p>
       <section><p>Represents a size in 2D space.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.SoundEffectInfo.html">SoundEffectInfo</a></h4>
-      <section><p>Specifies the sound effect information.</p>
+      <section><p>Represents the configuration and parameters for applying sound effects to audio processing.
+This structure allows you to specify the type of sound effect and, if necessary,
+a reference audio device to enhance the audio processing capabilities.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.VariantInfo.html">VariantInfo</a></h4>
       <section><p>Represents properties for the variant information.</p>
@@ -513,10 +543,18 @@ coordinates of top left corner, width and height.</p>
       <section><p>Specifies the audio channels.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceIoDirection.html">AudioDeviceIoDirection</a></h4>
-      <section><p>Specifies the audio device directions.</p>
+      <section><p>Defines the data flow directions for audio devices, indicating whether
+a device is for input, output, or both. This helps in managing audio
+interactions within applications effectively.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioDeviceType.html">AudioDeviceType</a></h4>
-      <section><p>Specifies the audio device types.</p>
+      <section><p>Represents the various types of audio devices available in the system.
+This enumeration categorizes audio devices based on their functionality and
+connection type, enabling developers to easily identify and utilize
+the appropriate audio device for their applications. The types include
+built-in speakers and microphones, external connections like audio jacks,
+Bluetooth, HDMI, USB audio, and network audio devices, facilitating
+effective audio management in diverse scenarios.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioIOState.html">AudioIOState</a></h4>
       <section><p>Specifies the states for the <a class="xref" href="Tizen.Multimedia.AudioPlayback.html">AudioPlayback</a>, <a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a>, and <a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a>.</p>
@@ -531,22 +569,32 @@ coordinates of top left corner, width and height.</p>
       <section><p>Specifies the audio sample types.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamBehaviors.html">AudioStreamBehaviors</a></h4>
-      <section><p>Specifies the flags for the audio stream behaviors.</p>
+      <section><p>Defines the flags that specify the behaviors of audio streams.
+This enumeration allows for a bitwise combination of its member values,
+enabling flexible configurations for audio playback and management.</p>
 <p>
 This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute that allows a bitwise combination of its member values.
 </p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamFocusChangedReason.html">AudioStreamFocusChangedReason</a></h4>
-      <section><p>Specifies the change reasons of the audio stream focus state.</p>
+      <section><p>Enumerates the reasons for changes in the focus state of an audio stream.
+This enumeration provides specific contexts in which the audio stream
+focus may be gained or lost, ensuring developers can respond appropriately.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamFocusOptions.html">AudioStreamFocusOptions</a></h4>
-      <section><p>Specifies the flags for the audio stream focus options.</p>
+      <section><p>Defines the flags for configuring audio stream focus options.
+This enumeration allows developers to specify different behaviors
+regarding how audio focus should be managed within an application
+or among multiple audio streams.</p>
 <p>
 This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute that allows a bitwise combination of its member values.
 </p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamFocusState.html">AudioStreamFocusState</a></h4>
-      <section><p>Specifies the audio stream focus states.</p>
+      <section><p>Represents the various states of audio stream focus within an application.
+This enumeration defines the focus states that can be utilized to manage
+audio playback effectively, ensuring that developers can track and respond
+to changes in audio focus, which is crucial in multi-stream environments.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a></h4>
       <section><p>Specifies the audio stream types.</p>
@@ -729,7 +777,8 @@ This enumeration has a <span class="xref">System.FlagsAttribute</span> attribute
       <section><p>Specifies the directions of rotation.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.SoundEffectType.html">SoundEffectType</a></h4>
-      <section><p>Specifies the sound effect types.</p>
+      <section><p>Defines the various types of sound effects that can be applied to audio processing.
+Each sound effect type serves a specific purpose in enhancing audio quality for different scenarios.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.StreamMetadataKey.html">StreamMetadataKey</a></h4>
       <section><p>Specifies keys for the metadata.</p>

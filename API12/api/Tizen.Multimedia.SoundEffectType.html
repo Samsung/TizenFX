@@ -89,7 +89,8 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Specifies the sound effect types.</p>
+  <div class="markdown level0 summary"><p>Defines the various types of sound effects that can be applied to audio processing.
+Each sound effect type serves a specific purpose in enhancing audio quality for different scenarios.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -111,32 +112,39 @@
     <tbody>
       <tr>
         <td id="Tizen_Multimedia_SoundEffectType_AecSpeex">AecSpeex</td>
-        <td><p>AEC (Acoustic Echo Cancellation) with Speex.</p>
+        <td><p>Implements Acoustic Echo Cancellation (AEC) using the Speex algorithm,
+which helps to eliminate echo and improve voice clarity during calls or recordings.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_SoundEffectType_AecWebrtc">AecWebrtc</td>
-        <td><p>AEC (Acoustic Echo Cancellation) with WebRTC.</p>
+        <td><p>Utilizes the WebRTC algorithm for Acoustic Echo Cancellation (AEC),
+effectively reducing echo and enhancing the quality of audio communications.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_SoundEffectType_AutoGainControl">AutoGainControl</td>
-        <td><p>Auto Gain Control for normal capturing.</p>
+        <td><p>Implements Auto Gain Control (AGC) to automatically adjust the audio levels
+during normal audio capturing, ensuring consistent volume regardless of input variations.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_SoundEffectType_NoiseSuppression">NoiseSuppression</td>
-        <td><p>Noise suppression for voice call.</p>
+        <td><p>Applies noise suppression specifically designed for voice calls,
+reducing background noise to enhance the clarity of the speaker's voice.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_SoundEffectType_NsWithAgc">NsWithAgc</td>
-        <td><p>Noise suppression + Auto Gain Control.</p>
+        <td><p>Combines both Noise Suppression and Auto Gain Control,
+providing a comprehensive solution for clear and balanced audio during calls or recordings.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_SoundEffectType_ReferenceCopy">ReferenceCopy</td>
-        <td><p>Includes the output sound from the reference device in the recorded audio.</p>
+        <td><p>Captures and includes the output sound from a reference audio device
+in the recorded audio, allowing for enhanced audio mixing and playback. j
+This effect is particularly useful when used with <a class="xref" href="Tizen.Multimedia.SoundEffectInfo.html#Tizen_Multimedia_SoundEffectInfo_ReferenceDevice">ReferenceDevice</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -149,7 +157,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia/AudioManager/SoundEffect.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
