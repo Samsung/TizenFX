@@ -1252,6 +1252,38 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
+        /// Creates a Wi-Fi Direct group with given SSID and sets up device as the group owner.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// If this succeeds, ConnectionStatusChanged event will be invoked with GroupCreated.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void CreateGroup(string ssid)
+        {
+            if (Globals.IsActivated)
+            {
+                WiFiDirectManagerImpl.Instance.CreateGroup(ssid);
+            }
+
+            else
+            {
+                Log.Error(Globals.LogTag, "Wifi-direct is not activated");
+                WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+            }
+        }
+
+        /// <summary>
         /// Destroys the Wi-Fi Direct group owned by a local device.If creating a group is in progress, this API cancels that process.
         /// </summary>
         /// <privilege>

@@ -973,6 +973,16 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
+        internal void CreateGroup(string ssid)
+        {
+            int ret = Interop.WiFiDirect.CreateGroupWithSsid(ssid);
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to create a WiFi-Direct group with ssid, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
         internal void DestroyGroup()
         {
             int ret = Interop.WiFiDirect.DestroyGroup();
