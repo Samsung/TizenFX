@@ -44,7 +44,7 @@ namespace Tizen.NUI.EXaml
             var type = dict.GetType();
             var method = type.GetMethods().FirstOrDefault(m => m.Name == "Add");
 
-            method.Invoke(dict, new object[] { key, value });
+            method?.Invoke(dict, new object[] { key, value });
         }
 
         private int parentIndex;
