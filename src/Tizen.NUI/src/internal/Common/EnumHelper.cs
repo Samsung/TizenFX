@@ -74,7 +74,7 @@ namespace Tizen.NUI
                 }
             }
 
-            var value = type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault().GetValue(null);
+            var value = type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault()?.GetValue(null);
             return value != null ? (T)value : default(T);
             //throw new ArgumentException($"{description} can't be found.", "Description");
         }
