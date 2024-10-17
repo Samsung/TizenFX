@@ -193,14 +193,11 @@ namespace Tizen.NUI
             }
 
             info.ExecutablePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/" + info.ExecutableFile;
-            Log.Warn("[DEBUG] ExecutablePath: " + info.ExecutablePath);
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/";
-            if (!File.Exists(info.ResourcePath))
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/" + info.ResourceType + "/";
+            if (!Directory.Exists(info.ResourcePath))
             {
-                info.ResourcePath += info.ResourceType + "/";
+                info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/";
             }
-
-            Log.Warn("[DEBUG] ResourcePath: " + info.ResourcePath);
             return info;
         }
     }
