@@ -113,6 +113,8 @@ internal static partial class Interop
         internal static extern int GetConnectedPeers(ConnectedPeerCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_create_group")]
         internal static extern int CreateGroup();
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_create_group_with_ssid")]
+        internal static extern int CreateGroupWithSsid(string ssid);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_destroy_group")]
         internal static extern int DestroyGroup();
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_group_owner")]
