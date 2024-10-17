@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
@@ -65,6 +66,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public string ResourcePath
+        {
+            get; private set;
+        }
+
+        /// <summary>
+        /// Gets the executable path of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public string ExecutablePath
         {
             get; private set;
         }
@@ -182,7 +192,15 @@ namespace Tizen.NUI
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
 
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+            info.ExecutablePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/" + info.ExecutableFile;
+            Log.Warn("[DEBUG] ExecutablePath: " + info.ExecutablePath);
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/";
+            if (!File.Exists(info.ResourcePath))
+            {
+                info.ResourcePath += info.ResourceType + "/";
+            }
+
+            Log.Warn("[DEBUG] ResourcePath: " + info.ResourcePath);
             return info;
         }
     }

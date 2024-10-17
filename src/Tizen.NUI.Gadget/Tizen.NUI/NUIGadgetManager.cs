@@ -234,9 +234,9 @@ namespace Tizen.NUI
                         if (info.Assembly == null)
                         {
 
-                            Log.Warn("NUIGadget.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
+                            Log.Warn("NUIGadget.Load(): " + info.ExecutablePath + " ++");
                             info.Assembly = Assembly.Load(SystemIO.Path.GetFileNameWithoutExtension(info.ExecutableFile));
-                            Log.Warn("NUIGadget.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                            Log.Warn("NUIGadget.Load(): " + info.ExecutablePath + " --");
                         }
                     }
                     else
