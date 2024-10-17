@@ -19,6 +19,9 @@ namespace Tizen.Telephony
 {
     /// <summary>
     /// This class contains the data related to the Notification event.
+    /// Each Notification type corresponds to a specific change in the telephony or network configuration,
+    /// allowing developers to react accordingly. By leveraging these notifications, applications can maintain
+    /// real-time awareness of critical telephony and network conditions, enhancing overall user experience.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ChangeNotificationEventArgs : EventArgs

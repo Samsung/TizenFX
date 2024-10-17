@@ -20,6 +20,8 @@ namespace Tizen.Telephony
 {
     /// <summary>
     /// The Network class provides APIs to obtain information about the current telephony service network.
+    /// It offers properties such as Lac, which allows users to retrieve the Location Area Code (LAC) of
+    /// the current location. Another property, CellId, enables users to obtain the cell identification number.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Network
