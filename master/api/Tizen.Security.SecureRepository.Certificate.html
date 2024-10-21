@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The class that represents a certificate.</p>
+  <div class="markdown level0 summary"><p>Represents a certificate.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -114,11 +114,11 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L62">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L60">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Certificate__ctor_" data-uid="Tizen.Security.SecureRepository.Certificate.#ctor*"></a>
   <h4 id="Tizen_Security_SecureRepository_Certificate__ctor_System_Byte___Tizen_Security_SecureRepository_DataFormat_" data-uid="Tizen.Security.SecureRepository.Certificate.#ctor(System.Byte[],Tizen.Security.SecureRepository.DataFormat)">Certificate(byte[], DataFormat)</h4>
-  <div class="markdown level1 summary"><p>A constructor of Certificate that takes the binary and its format.</p>
+  <div class="markdown level1 summary"><p>Initializes an instance of Certificate class with a binary and its data format.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -138,13 +138,13 @@
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">binary</span></td>
-        <td><p>The binary data of a certificate.</p>
+        <td><p>Binary data of a certificate.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.DataFormat.html">DataFormat</a></td>
         <td><span class="parametername">format</span></td>
-        <td><p>The format of the binary data.</p>
+        <td><p>Format of the binary data.</p>
 </td>
       </tr>
     </tbody>
@@ -156,11 +156,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L107">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L108">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Certificate_Binary_" data-uid="Tizen.Security.SecureRepository.Certificate.Binary*"></a>
   <h4 id="Tizen_Security_SecureRepository_Certificate_Binary" data-uid="Tizen.Security.SecureRepository.Certificate.Binary">Binary</h4>
-  <div class="markdown level1 summary"><p>The binary value of a certificate.</p>
+  <div class="markdown level1 summary"><p>Gets and sets binary value of a certificate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -178,7 +178,8 @@
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>Binary value of a certificate.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -187,11 +188,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L116">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L120">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Certificate_Format_" data-uid="Tizen.Security.SecureRepository.Certificate.Format*"></a>
   <h4 id="Tizen_Security_SecureRepository_Certificate_Format" data-uid="Tizen.Security.SecureRepository.Certificate.Format">Format</h4>
-  <div class="markdown level1 summary"><p>The format of the binary value.</p>
+  <div class="markdown level1 summary"><p>Gets and sets format of the binary value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -209,7 +210,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.DataFormat.html">DataFormat</a></td>
-        <td></td>
+        <td><p>Format of the binary value.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -220,7 +222,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L42">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Certificate.cs/#L40">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Certificate_Load_" data-uid="Tizen.Security.SecureRepository.Certificate.Load*"></a>
   <h4 id="Tizen_Security_SecureRepository_Certificate_Load_System_String_" data-uid="Tizen.Security.SecureRepository.Certificate.Load(System.String)">Load(string)</h4>
@@ -244,7 +246,7 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">filePath</span></td>
-        <td><p>The path of certificate file to be loaded.</p>
+        <td><p>Path of certificate file to be loaded.</p>
 </td>
       </tr>
     </tbody>
@@ -276,13 +278,13 @@
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The filePath should not be null</p>
+        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">filePath</code> is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Invalid certificate file format. Provided file path does not exist or
-cannot be accessed.</p>
+        <td><p>Thrown when a certificate has invalid file format.
+Thrown when provided file path does not exist or cannot be accessed.</p>
 </td>
       </tr>
     </tbody>
