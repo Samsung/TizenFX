@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a>.<a class="xref" href="Tizen.Security.SecureRepository.Crypto.html">Crypto</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This class provides the methods for creating and verifying a signature.</p>
+  <div class="markdown level0 summary"><p>Provides the methods for creating and verifying a signature.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -118,7 +118,7 @@
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Signature__ctor_" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.#ctor*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Signature__ctor_Tizen_Security_SecureRepository_Crypto_SignatureParameters_" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.#ctor(Tizen.Security.SecureRepository.Crypto.SignatureParameters)">Signature(SignatureParameters)</h4>
-  <div class="markdown level1 summary"><p>A constructor of Signature that takes the algorithm specific parameters.</p>
+  <div class="markdown level1 summary"><p>Initializes an instance of Signature class with SignatureParameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -150,11 +150,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Signature.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Signature.cs/#L46">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Signature_Parameters_" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.Parameters*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Signature_Parameters" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.Parameters">Parameters</h4>
-  <div class="markdown level1 summary"><p>The algorithm specific parameters.</p>
+  <div class="markdown level1 summary"><p>Gets algorithm specific parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -172,7 +172,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Crypto.SignatureParameters.html">SignatureParameters</a></td>
-        <td></td>
+        <td><p>Algorithm specific parameters.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -183,7 +184,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Signature.cs/#L77">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Signature.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Signature_Sign_" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.Sign*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Signature_Sign_System_String_System_String_System_Byte___" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.Sign(System.String,System.String,System.Byte[])">Sign(string, string, byte[])</h4>
@@ -208,19 +209,19 @@ the signature.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privateKeyAlias</span></td>
-        <td><p>The name of private key.</p>
+        <td><p>Name of a private key.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>The password used in decrypting a private key value.</p>
+        <td><p>Password used in decrypting a private key value.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">message</span></td>
-        <td><p>The message that is signed with a private key.</p>
+        <td><p>Message signed with a private key.</p>
 </td>
       </tr>
     </tbody>
@@ -236,13 +237,13 @@ the signature.</p>
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td><p>A newly created signature.</p>
+        <td><p>Newly created signature.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_Crypto_Signature_Sign_System_String_System_String_System_Byte____remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The key type specified by the privateKeyAlias should be compatible with the
+  <div class="markdown level1 remarks"><p>Key type specified by the privateKeyAlias should be compatible with the
 algorithm specified in Parameters.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -256,18 +257,18 @@ algorithm specified in Parameters.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The privateKeyAlias or message is null.</p>
+        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or <code data-dev-comment-type="paramref" class="paramref">message</code> is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The privateKeyAlias is invalid format.</p>
+        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> has invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The key-protecting password isn't matched.
-The key does not exist with the privateKeyAlias.</p>
+        <td><p>Thrown when key-protecting password does not match.
+Thrown when key does not exist with given <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code>.</p>
 </td>
       </tr>
     </tbody>
@@ -277,7 +278,7 @@ The key does not exist with the privateKeyAlias.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Signature.cs/#L148">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Signature.cs/#L152">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Signature_Verify_" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.Verify*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Signature_Verify_System_String_System_String_System_Byte___System_Byte___" data-uid="Tizen.Security.SecureRepository.Crypto.Signature.Verify(System.String,System.String,System.Byte[],System.Byte[])">Verify(string, string, byte[], byte[])</h4>
@@ -302,25 +303,25 @@ the signature status.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">publicKeyAlias</span></td>
-        <td><p>The name of public key.</p>
+        <td><p>Name of a public key.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>The password used in decrypting a public key value.</p>
+        <td><p>Password used in decrypting a public key value.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">message</span></td>
-        <td><p>The input on which the signature is created.</p>
+        <td><p>Input message on which the signature is created.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">signature</span></td>
-        <td><p>The signature that is verified with public key.</p>
+        <td><p>Signature that is verified with public key.</p>
 </td>
       </tr>
     </tbody>
@@ -336,13 +337,13 @@ the signature status.</p>
     <tbody>
       <tr>
         <td><span class="xref">bool</span></td>
-        <td><p>The signature status. True is returned when the signature is valid.</p>
+        <td><p>Signature status. True if the signature is valid.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_Crypto_Signature_Verify_System_String_System_String_System_Byte___System_Byte____remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The key type specified by publicKeyAlias should be compatible with the
+  <div class="markdown level1 remarks"><p>Key type specified by publicKeyAlias should be compatible with the
 algorithm specified in Parameters.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -356,18 +357,19 @@ algorithm specified in Parameters.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The publicKeyAlias, message or signature is null.</p>
+        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code>, <code data-dev-comment-type="paramref" class="paramref">message</code>
+or <code data-dev-comment-type="paramref" class="paramref">signature</code> is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The publicKeyAlias is invalid format.</p>
+        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> has invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The key-protecting password isn't matched.
-The key does not exist with the publicKeyAlias.</p>
+        <td><p>Thrown when key-protecting password does not match.
+Thrown when key does not exist with given <code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code>.</p>
 </td>
       </tr>
     </tbody>
