@@ -20,6 +20,9 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
 
+
+
+
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
