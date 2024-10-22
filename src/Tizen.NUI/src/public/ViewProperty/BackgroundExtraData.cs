@@ -34,6 +34,7 @@ namespace Tizen.NUI
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
             CornerRadius = other.CornerRadius;
+            CornerSquareness = other.CornerSquareness;
             CornerRadiusPolicy = other.CornerRadiusPolicy;
             BorderlineWidth = other.BorderlineWidth;
             BorderlineColor = other.BorderlineColor;
@@ -51,6 +52,9 @@ namespace Tizen.NUI
 
         /// <summary></summary>
         internal Vector4 CornerRadius { get; set; }
+
+        /// <summary></summary>
+        internal Vector4 CornerSquareness { get; set; }
 
         /// <summary>
         /// Whether the CornerRadius value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
@@ -77,6 +81,7 @@ namespace Tizen.NUI
             {
                 backgroundImageBorder?.Dispose();
                 CornerRadius?.Dispose();
+                CornerSquareness?.Dispose();
                 BorderlineColor?.Dispose();
             }
             disposed = true;

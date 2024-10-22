@@ -1225,6 +1225,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The squareness for the rounded corners of the View.
+        /// This will make squircle background and shadow edges.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        ///
+        /// Each squareness will clamp internally to the [0.0f to 1.0f].
+        /// If 0.0f, rounded corner applied.
+        /// If 1.0f, View will be rendered like a square.
+        /// </summary>
+        /// <remarks>
+        /// This property only be available when the CornerRadius property used. Otherwise, it will be ignored.
+        /// </remarks>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "CornerSquareness", new Vector4(0.6f, 0.6f, 0.0f, 0.0f));
+        /// </code>
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 CornerSquareness
+        {
+            get
+            {
+                return GetInternalCornerSqurenessProperty();
+            }
+            set
+            {
+                SetInternalCornerSqurenessProperty(value);
+                NotifyPropertyChanged();
+            }
+        }
+        internal void SetInternalCornerSqurenessProperty(Vector4 cornerSquareness)
+        {
+            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
+            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+        }
+        internal Vector4 GetInternalCornerSqurenessProperty()
+        {
+            return backgroundExtraData == null ? Vector4.Zero : backgroundExtraData.CornerSquareness;
+        }
+
+        /// <summary>
         /// The width for the borderline of the View.
         /// </summary>
         /// <remarks>
