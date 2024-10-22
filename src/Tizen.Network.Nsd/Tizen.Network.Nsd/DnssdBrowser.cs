@@ -49,6 +49,12 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// A public constructor for the DnssdBrowser class to create a DnssdBrowser instance for the given service type.
         /// </summary>
+        /// <remarks>
+        /// The DNSSD service type is expressed as type followed  by protocol separated by a dot(e.g. "_ftp._tcp").
+        /// It must begin with an underscore, followed by 1-15 characters.
+        /// The transport protocol must be "_tcp" or "_udp".
+        /// New service types should be registered at http://www.dns-sd.org/ServiceTypes.html.
+        /// </remarks>
         /// <param name="serviceType">The DNS-SD service type.</param>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>

@@ -53,6 +53,12 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// The constructor to create the DnssdService instance that sets the serviceType to a given value.
         /// </summary>
+        /// <remarks>
+        /// The DNSSD service type is expressed as type followed  by protocol separated by a dot(e.g. "_ftp._tcp").
+        /// It must begin with an underscore, followed by 1-15 characters.
+        /// The transport protocol must be "_tcp" or "_udp".
+        /// New service types should be registered at http://www.dns-sd.org/ServiceTypes.html.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="serviceType">The DNS-SD service type. It is expressed as a type followed by the protocol, separated by a dot (For example, "_ftp._tcp").
         /// It must begin with an underscore followed by 1-15 characters, which may be letters, digits, or hyphens.
@@ -247,10 +253,12 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// Adds the TXT record.
+        /// Adds the TXT record to DNNSD local service.
         /// </summary>
         /// <remarks>
+        /// TXT record gives additional information about the service.
         /// TXT record should be added after registering the local service using RegisterService().
+        /// Check Section 6 of http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt for details.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="key">The key of the TXT record. It must be a null-terminated string with 9 characters or fewer excluding null. It is case insensitive.</param>
@@ -299,7 +307,9 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Registers the DNS-SD local service for publishing.
         /// </summary>
+        /// <remark>
         /// Name of the service must be set.
+        /// </remark>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
@@ -396,6 +406,10 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This class manages the IP address properties of the DNS-SD service.
     /// </summary>
+    /// <remarks>
+    /// This class has two members, IPv4Address and IPv6Address.
+    /// Each value will be filled with 0 for empty IP address.
+    /// </remarks>
     /// <since_tizen> 4 </since_tizen>
     public class IPAddressInformation
     {

@@ -49,6 +49,10 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// The constructor to create the SsdpService instance that sets the target to a given value.
         /// </summary>
+        /// <remarks>
+        /// Use this constructor to create an instance of the SsdpService class with a specific target string representing the type of device or service.
+        /// The target parameter can be a device type or a service type as defined by the Universal Plug and Play (UPnP) Forum (http://www.upnp.org/).
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The SSDP local service's target. It may be a device type or a service type.</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
@@ -81,8 +85,10 @@ namespace Tizen.Network.Nsd
         /// Unique Service Name of the SSDP service.
         /// </summary>
         /// <remarks>
-        /// Set the USN for only an unregistered service created locally. If the service is already registered, the USN will not be set.
-        /// In case of an error, null will be returned during get and exception will be thrown during set.
+        /// This property contains the unique service name (USN) of the SSDP service.
+        /// It can be set only for an unregistered local service instance.
+        /// Setting the USN for a registered service will result in error.
+        /// If an error occurs while getting or setting the USN, null will be returned or an appropriate exception will be thrown respectively.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
@@ -124,8 +130,9 @@ namespace Tizen.Network.Nsd
         /// Target of the SSDP service.
         /// </summary>
         /// <remarks>
-        /// It may be a device type or a service type specified in the UPnP forum (http://upnp.org).
-        /// In case of an error, null will be returned.
+        /// This property holds the target string representing the type of device or service associated with the SSDP service.
+        /// It could be a device type or a service type defined by the Universal Plug and Play (UPnP) Forum (http://www.upnp.org/).
+        /// If an error occurs while accessing the Target property, null will be returned.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public string Target
@@ -148,8 +155,9 @@ namespace Tizen.Network.Nsd
         /// URL of the SSDP service.
         /// </summary>
         /// <remarks>
-        /// Set the URL for only an unregistered service created locally. If the service is already registered, the URL will not be set.
-        /// In case of an error, null will be returned during get and exception will be thrown during set.
+        /// Sets or get the Universal Resource Locator (URL) of the SSDP service.
+        /// It can be set only for an unregistered local service instance. Attempting to set the URL for a registered service will result in error.
+        /// If an error occurs while getting or setting the URL, null will be returned or an appropriate exception will be thrown respectively.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
@@ -191,8 +199,8 @@ namespace Tizen.Network.Nsd
         /// Registers the SSDP local service for publishing.
         /// </summary>
         /// <remarks>
-        /// A service created locally must be passed.
-        /// URL and USN of the service must be set before the RegisterService is called.
+        /// Before registering the service, make sure that you have created a valid local service object.
+        /// Also, remember to set the URL and USN properties of the service object before calling this method.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
@@ -223,7 +231,7 @@ namespace Tizen.Network.Nsd
         /// Deregisters the SSDP local service.
         /// </summary>
         /// <remarks>
-        /// A local service registered using RegisterService() must be passed.
+        /// Make sure that you pass the local service object that was used to register the service earlier using the RegisterService() method.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
