@@ -162,10 +162,14 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            if (attachedView.CornerRadius != null)
+            if (attachedView.CornerRadius != null || attachedView.CornerRadius != Vector4.Zero)
             {
                 map[Visual.Property.CornerRadius] = attachedView.CornerRadius == null ? new PropertyValue() : new PropertyValue(attachedView.CornerRadius);
                 map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
+            }
+            if (attachedView.CornerSquareness != null || attachedView.CornerSquareness != Vector4.Zero)
+            {
+                map[Visual.Property.CornerSquareness] = attachedView.CornerSquareness == null ? new PropertyValue() : new PropertyValue(attachedView.CornerSquareness);
             }
 
             return new PropertyValue(map);
