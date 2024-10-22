@@ -83,9 +83,6 @@ namespace Tizen.NUI
                     viewWrapperImpl.OnLayoutNegotiated = null;
                     viewWrapperImpl.OnStyleChange = null;
                     viewWrapperImpl.OnAccessibilityActivated = null;
-                    viewWrapperImpl.OnAccessibilityPan = null;
-                    viewWrapperImpl.OnAccessibilityValueChange = null;
-                    viewWrapperImpl.OnAccessibilityZoom = null;
                     viewWrapperImpl.OnFocusGained = null;
                     viewWrapperImpl.OnFocusLost = null;
                     viewWrapperImpl.GetNextFocusableView = null;

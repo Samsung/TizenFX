@@ -337,27 +337,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public virtual bool OnAccessibilityPan(PanGesture gesture)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26) ? Interop.ViewImplSignal.OnAccessibilityPanSwigExplicitViewImpl(SwigCPtr, PanGesture.getCPtr(gesture)) : Interop.ViewImplSignal.OnAccessibilityPan(SwigCPtr, PanGesture.getCPtr(gesture)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnAccessibilityValueChange(bool isIncrease)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28) ? Interop.ViewImplSignal.OnAccessibilityValueChangeSwigExplicitViewImpl(SwigCPtr, isIncrease) : Interop.ViewImplSignal.OnAccessibilityValueChange(SwigCPtr, isIncrease));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnAccessibilityZoom()
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29) ? Interop.ViewImplSignal.OnAccessibilityZoomSwigExplicitViewImpl(SwigCPtr) : Interop.ViewImplSignal.OnAccessibilityZoom(SwigCPtr));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public virtual void OnKeyInputFocusGained()
         {
             if (SwigDerivedClassHasMethod("OnKeyInputFocusGained", swigMethodTypes30)) Interop.ViewImplSignal.OnKeyInputFocusGainedSwigExplicitViewImpl(SwigCPtr); else Interop.ViewImplSignal.OnKeyInputFocusGained(SwigCPtr);
@@ -470,12 +449,6 @@ namespace Tizen.NUI
                 swigDelegate24 = new SwigDelegateViewImpl_24(SwigDirectorOnStyleChange);
             if (SwigDerivedClassHasMethod("OnAccessibilityActivated", swigMethodTypes25))
                 swigDelegate25 = new SwigDelegateViewImpl_25(SwigDirectorOnAccessibilityActivated);
-            if (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26))
-                swigDelegate26 = new SwigDelegateViewImpl_26(SwigDirectorOnAccessibilityPan);
-            if (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28))
-                swigDelegate28 = new SwigDelegateViewImpl_28(SwigDirectorOnAccessibilityValueChange);
-            if (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29))
-                swigDelegate29 = new SwigDelegateViewImpl_29(SwigDirectorOnAccessibilityZoom);
             if (SwigDerivedClassHasMethod("OnKeyInputFocusGained", swigMethodTypes30))
                 swigDelegate30 = new SwigDelegateViewImpl_30(SwigDirectorOnKeyInputFocusGained);
             if (SwigDerivedClassHasMethod("OnKeyInputFocusLost", swigMethodTypes31))
@@ -673,21 +646,6 @@ namespace Tizen.NUI
         private bool SwigDirectorOnAccessibilityActivated()
         {
             return OnAccessibilityActivated();
-        }
-
-        private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
-        {
-            return OnAccessibilityPan(new PanGesture(gesture, false));
-        }
-
-        private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
-        {
-            return OnAccessibilityValueChange(isIncrease);
-        }
-
-        private bool SwigDirectorOnAccessibilityZoom()
-        {
-            return OnAccessibilityZoom();
         }
 
         private void SwigDirectorOnKeyInputFocusGained()

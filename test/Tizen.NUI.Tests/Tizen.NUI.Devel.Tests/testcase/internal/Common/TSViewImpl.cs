@@ -296,52 +296,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ViewImpl OnAccessibilityValueChange.")]
-        [Property("SPEC", "Tizen.NUI.ViewImpl.OnAccessibilityValueChange M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewImplOnAccessibilityValueChange()
-        {
-            tlog.Debug(tag, $"ViewImplOnAccessibilityValueChange START");
-
-            var testingTarget = NDalic.GetImplementation(new View());
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
-
-            var result = testingTarget.OnAccessibilityValueChange(true);
-            Assert.IsTrue(!result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewImplOnAccessibilityValueChange (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ViewImpl OnAccessibilityZoom.")]
-        [Property("SPEC", "Tizen.NUI.ViewImpl.OnAccessibilityZoom M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewImplOnAccessibilityZoom()
-        {
-            tlog.Debug(tag, $"ViewImplOnAccessibilityZoom START");
-
-            var testingTarget = NDalic.GetImplementation(new View());
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
-
-            var result = testingTarget.OnAccessibilityZoom();
-            Assert.IsTrue(!result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewImplOnAccessibilityZoom (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("ViewImpl OnKeyboardEnter.")]
         [Property("SPEC", "Tizen.NUI.ViewImpl.OnKeyboardEnter M")]
         [Property("SPEC_URL", "-")]

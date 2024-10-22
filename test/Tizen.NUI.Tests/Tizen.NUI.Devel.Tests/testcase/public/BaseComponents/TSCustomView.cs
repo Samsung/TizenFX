@@ -25,21 +25,6 @@ namespace Tizen.NUI.Devel.Tests
                 base.AccessibilityDoAction(name);
             }
 
-            public void MyOnAccessibilityPan(PanGesture gestures)
-			{
-				base.OnAccessibilityPan(gestures);
-			}
-			
-            public void	MyOnAccessibilityValueChange(bool isIncrease)
-			{
-				base.OnAccessibilityValueChange(isIncrease);
-			}
-			
-			public void MyOnAccessibilityZoom()
-			{
-				base.OnAccessibilityZoom();	
-			}
-			
 			public void MyDisableGestureDetection(Gesture.GestureType type)
 			{
 				base.DisableGestureDetection(type);
@@ -170,40 +155,5 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"CustomViewAccessibilityDoAction END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("CustomView OnAccessibilityPan.")]
-        [Property("SPEC", "Tizen.NUI.CustomView.OnAccessibilityPan M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void CustomViewOnAccessibilityPan()
-        {
-            tlog.Debug(tag, $"CustomViewOnAccessibilityPan START");
-
-            var testingTarget = new MyCustomView("CustomView", CustomViewBehaviour.RequiresKeyboardNavigationSupport);
-            Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-            Assert.IsInstanceOf<CustomView>(testingTarget, "Should be an instance of CustomView type.");
-
-            using (View view = new View())
-            {
-                try
-                {
-                    testingTarget.MyOnAccessibilityPan(new PanGesture(view.SwigCPtr.Handle, false));
-                    testingTarget.MyOnAccessibilityValueChange(false);
-                    testingTarget.MyOnAccessibilityZoom();
-                    testingTarget.MyDisableGestureDetection(Gesture.GestureType.LongPress);				
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-			}
-
-			testingTarget.Dispose();
-            tlog.Debug(tag, $"CustomViewDispose END (OK)");
-        }		
     }
 }

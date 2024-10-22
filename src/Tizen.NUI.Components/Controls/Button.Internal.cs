@@ -20,7 +20,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components.Extension;
-using Tizen.NUI.Accessibility; // To use AccessibilityManager
 
 namespace Tizen.NUI.Components
 {
@@ -277,8 +276,6 @@ namespace Tizen.NUI.Components
             AccessibilityRole = Role.PushButton;
             AccessibilityHighlightable = true;
             EnableControlStatePropagation = true;
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Button");
 
             buttonText = CreateText();
             buttonIcon = CreateIcon();

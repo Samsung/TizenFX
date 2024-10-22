@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -963,8 +962,6 @@ namespace Tizen.NUI.Components
 
             WheelEvent += OnWheelEvent;
 
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
-
             SetKeyboardNavigationSupport(true);
         }
 
@@ -1808,17 +1805,6 @@ namespace Tizen.NUI.Components
         internal void BaseRemove(View view)
         {
             base.Remove(view);
-        }
-
-        internal override bool OnAccessibilityPan(PanGesture gestures)
-        {
-            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
-            {
-                return false;
-            }
-
-            OnPanGesture(gestures);
-            return true;
         }
 
         private float CustomScrollAlphaFunction(float progress)

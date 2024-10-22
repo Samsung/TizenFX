@@ -20,7 +20,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -267,8 +266,6 @@ namespace Tizen.NUI.Components
             AccessibilityRole = Role.ProgressBar;
 
             EnsureLottieView(lottieResource);
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
         }
 
         /// <inheritdoc/>

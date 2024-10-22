@@ -16,7 +16,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -127,7 +126,7 @@ namespace Tizen.NUI.Components
                     // Tizen.Log.Error("IconUrl only can set Icon is ImageView");
                     return;
                 }
-                (Icon as ImageView).ResourceUrl = value; 
+                (Icon as ImageView).ResourceUrl = value;
             }
         }
         */
@@ -154,7 +153,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemLabel = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 

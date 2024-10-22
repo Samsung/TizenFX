@@ -68,12 +68,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityActivatedDelegate();
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityZoomDelegate();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusGainedDelegate();
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusLostDelegate();
@@ -117,9 +111,6 @@ namespace Tizen.NUI
         public new OnLayoutNegotiatedDelegate OnLayoutNegotiated;
         public new OnStyleChangeDelegate OnStyleChange;
         public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
-        public new OnAccessibilityPanDelegate OnAccessibilityPan;
-        public new OnAccessibilityValueChangeDelegate OnAccessibilityValueChange;
-        public new OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnFocusGainedDelegate OnFocusGained;
         public OnFocusLostDelegate OnFocusLost;
         public new GetNextFocusableViewDelegate GetNextFocusableView;
@@ -289,9 +280,6 @@ namespace Tizen.NUI
             Delegate21 = new DelegateViewWrapperImpl_21(DirectorOnInitialize);
             Delegate24 = new DelegateViewWrapperImpl_24(DirectorOnStyleChange);
             Delegate25 = new DelegateViewWrapperImpl_25(DirectorOnAccessibilityActivated);
-            Delegate26 = new DelegateViewWrapperImpl_26(DirectorOnAccessibilityPan);
-            Delegate28 = new DelegateViewWrapperImpl_28(DirectorOnAccessibilityValueChange);
-            Delegate29 = new DelegateViewWrapperImpl_29(DirectorOnAccessibilityZoom);
             Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnFocusGained);
             Delegate31 = new DelegateViewWrapperImpl_31(DirectorOnFocusLost);
             Delegate32 = new DelegateViewWrapperImpl_32(DirectorGetNextFocusableActor);
@@ -507,24 +495,6 @@ namespace Tizen.NUI
         private bool DirectorOnAccessibilityActivated()
         {
             return OnAccessibilityActivated?.Invoke() ?? false;
-        }
-
-        private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
-        {
-            var panGesture = new PanGesture(gesture, false);
-            var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
-            panGesture.Dispose();
-            return ret;
-        }
-
-        private bool DirectorOnAccessibilityValueChange(bool isIncrease)
-        {
-            return OnAccessibilityValueChange?.Invoke(isIncrease) ?? false;
-        }
-
-        private bool DirectorOnAccessibilityZoom()
-        {
-            return OnAccessibilityZoom?.Invoke() ?? false;
         }
 
         private void DirectorOnFocusGained()
