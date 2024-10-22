@@ -550,6 +550,13 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int BorderlineOffset = NDalic.VisualPropertyMixColor + 7;
+
+            /// <summary>
+            /// The corner squareness of the visual.
+            /// Internally clamped between [0.0f to 1.0f]
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CornerSquareness = NDalic.VisualPropertyMixColor + 8;
         }
 
         /// <summary>
