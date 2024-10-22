@@ -33,7 +33,7 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Title of the notification.
+        /// Title text that is set to be displayed in the download notification.
         /// If a user tries to get before the setting, an empty string is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -67,7 +67,7 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Description of the notification.
+        /// Description text to be displayed in the download notification.
         /// If a user tries to get before the setting, an empty string is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -101,8 +101,8 @@ namespace Tizen.Content.Download
         }
 
         /// <summary>
-        /// Type of the notification.
-        /// If a user tries to get before the setting, the default NotificationType none is returned.
+        /// Type of notification to be displayed during the download process.
+        /// If a user tries to get before the setting, <see cref="NotificationType.None"/> is returned.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
