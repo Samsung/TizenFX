@@ -21,7 +21,10 @@ using System.Collections.Generic;
 namespace Tizen.Network.Smartcard
 {
     /// <summary>
-    /// The class for Smartcard channel information. It allows applications to handle the channel information.
+    /// The SmartcardChannel class represents a communication channel between the application and a Smartcard.
+    /// It provides properties and methods to handle channel-specific operations,
+    /// such as transmitting APDUs, retrieving responses, and checking channel states. 
+    /// This class also implements the IDisposable interface, allowing for proper resource management.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
@@ -32,7 +35,9 @@ namespace Tizen.Network.Smartcard
         private SmartcardSession _sessionObject;
 
         /// <summary>
-        /// Whether the kind of channel is basic.
+        /// The IsBasicChannel property indicates whether the channel is a basic channel.
+        /// Basic channels are used to communicate with the card's logical channel zero,
+        /// which is typically used for general-purpose applications.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsBasicChannel
@@ -50,7 +55,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Whether the kind of channel is logical.
+        /// The IsLogicalChannel property indicates whether the channel is a logical channel.
+        /// Logical channels are used to communicate with specific applications on the card,
+        /// other than the default basic channel.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsLogicalChannel
@@ -68,7 +75,8 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Whether the channel is closed.
+        /// The IsClosed property indicates whether the channel is currently closed.
+        /// If true, the channel is not open and cannot be used for communication with the Smartcard.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsClosed
@@ -86,7 +94,8 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// The session that has opened the given channel.
+        /// The Session property returns the SmartcardSession object that opened the current channel.
+        /// This allows applications to access session-specific information and methods.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SmartcardSession Session
@@ -147,7 +156,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Closes the given channel to the Secure Element.
+        /// The Close method closes the current channel to the Secure Element.
+        /// This method ensures that all resources allocated for the channel are released and that the channel is no longer available for communication.
+        /// Any subsequent attempts to use the channel after calling this method will result in an error.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
@@ -164,7 +175,8 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Gets the response to the select command.
+        /// The GetSelectedResponse method retrieves the response to the SELECT command sent during the opening of the channel.
+        /// This response contains information about the selected application on the Smartcard, such as its AID (Application Identifier).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array to retrieve the select response.</returns>
@@ -189,7 +201,8 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Transmits the APDU command (as per ISO/IEC 7816-4) to the secure element.
+        /// The Transmit method sends an APDU (Application Protocol Data Unit) command to the Secure Element and receives the corresponding response.
+        /// This method allows applications to communicate with the Smartcard by sending commands and processing the responses.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
@@ -216,7 +229,8 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Helper function to retrieve the response APDU of the previous transmit() call.
+        /// The GetTransmittedResponse method retrieves the response APDU from the previous Transmit method call.
+        /// This method allows applications to access the response data without having to store it separately.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
@@ -241,7 +255,9 @@ namespace Tizen.Network.Smartcard
         }
 
         /// <summary>
-        /// Performs a selection of the next applet on the given channel that matches to the partial application ID (AID).
+        /// The SelectNext method selects the next applet on the current channel that matches the partial Application Identifier (AID).
+        /// This method allows applications to switch between different applets on the Smartcard,
+        /// enabling interaction with multiple applications within a single session.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>True or false depending whether another applet with the partial application ID (AID).</returns>
