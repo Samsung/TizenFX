@@ -1262,7 +1262,7 @@ namespace Tizen.Network.WiFiDirect
         /// </feature>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
-        /// If this succeeds, ConnectionStatusChanged event will be invoked with GroupCreated.
+        /// If this succeeds, <see cref="ConnectionStatusChanged"/> event will be invoked with <see cref="WiFiDirectConnectionState.GroupCreated"/>.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
