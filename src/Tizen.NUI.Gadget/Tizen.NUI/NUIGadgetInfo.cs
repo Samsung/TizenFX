@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
@@ -65,6 +66,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public string ResourcePath
+        {
+            get; private set;
+        }
+
+        /// <summary>
+        /// Gets the allowed resourced path of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public string AllowedResourcePath
         {
             get; private set;
         }
@@ -183,6 +193,11 @@ namespace Tizen.NUI
             }
 
             info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+            info.AllowedResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/" + info.ResourceType + "/";
+            if (!Directory.Exists(info.AllowedResourcePath))
+            {
+                info.AllowedResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/";
+            }
             return info;
         }
     }

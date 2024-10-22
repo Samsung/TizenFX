@@ -62,11 +62,10 @@ namespace Tizen.NUI
                 Log.Warn("Load(): " + _assemblyPath + " ++");
                 NUIGadgetAssemblyLoadContext context = new NUIGadgetAssemblyLoadContext();
                 _assemblyRef = new WeakReference(context);
-                string directoryPath = SystemIO.Path.GetDirectoryName(_assemblyPath);
-                string fileName = SystemIO.Path.GetFileNameWithoutExtension(_assemblyPath);
-                string nativeImagePath = directoryPath + "/.native_image/" + fileName + ".ni.dll";
-                Log.Debug("NativeImagePath=" + nativeImagePath + ", AssemblyPath=" + _assemblyPath);
-                _assembly = context.LoadFromNativeImagePath(nativeImagePath, _assemblyPath);
+                using (FileStream stream = new FileStream(_assemblyPath, FileMode.Open, FileAccess.Read))
+                {
+                    _assembly = context.LoadFromStream(stream);
+                }
                 Log.Warn("Load(): " + _assemblyPath + " --");
             }
         }
