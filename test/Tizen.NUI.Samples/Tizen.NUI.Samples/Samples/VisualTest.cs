@@ -12,10 +12,13 @@ namespace Tizen.NUI.Samples
 
         static private readonly string focusIndicatorImageUrl = DEMO_IMAGE_DIR + "i_focus_stroke_tile_2unit.9.webp";
         static private readonly string[] ImageUrlList = {
-            DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-1.png",
-            DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-6.png",
-            DEMO_IMAGE_DIR + "Dali/DaliDemo/Kid1.svg",
+            //DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-1.png",
+            //DEMO_IMAGE_DIR + "AGIF/dog-anim.gif",
+            //DEMO_IMAGE_DIR + "Dali/DaliDemo/Kid1.svg",
             DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-2.jpg",
+            DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-3.jpg",
+            DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-4.jpg",
+            DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-5.jpg",
         };
 
         const float viewSizeWidth = 320.0f;
@@ -313,7 +316,13 @@ namespace Tizen.NUI.Samples
 
                 ResourceUrl = ImageUrlList[id % 4],
 
-                CornerRadius = new Vector4(8.0f, 8.0f, 8.0f, 8.0f),
+                CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+                CornerSquareness = new Vector4(0.6f, 0.6f, 0.6f, 0.6f),
+                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+
+                BorderlineWidth = 2.0f,
+                BorderlineColor = new Color(1.0f, 1.0f, 1.0f, 0.5f),
+                BorderlineOffset = -1.0f,
 
                 Origin = Visual.AlignType.BottomBegin,
                 PivotPoint = Visual.AlignType.Center,
