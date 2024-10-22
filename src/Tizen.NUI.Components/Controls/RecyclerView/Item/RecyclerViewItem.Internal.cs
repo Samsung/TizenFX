@@ -17,7 +17,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Accessibility; // To use AccessibilityManager
 
 namespace Tizen.NUI.Components
 {
@@ -197,8 +196,6 @@ namespace Tizen.NUI.Components
             base.OnInitialize();
             Layout = new AbsoluteLayout();
             UpdateState();
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ViewItem");
 
             AccessibilityRole = Role.ListItem;
             AccessibilityHighlightable = true;
