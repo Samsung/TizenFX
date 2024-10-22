@@ -489,7 +489,8 @@ class Scene3DSample : NUIApplication
                 {
                     if (mSceneView != null)
                     {
-                        mSceneView.CornerRadius = new Vector4(40.0f, 40.0f, 40.0f, 40.0f);
+                        mSceneView.CornerRadius = new Vector4(60.0f, 60.0f, 60.0f, 60.0f);
+                        mSceneView.CornerSquareness = new Vector4(0.6f, 0.6f, 0.6f, 0.6f);
                         mSceneView.CornerRadiusPolicy = VisualTransformPolicyType.Absolute;
                         mSceneView.BorderlineWidth = 20.0f;
                         mSceneView.BorderlineColor = new Vector4(1.0f, 1.0f, 1.0f, 0.2f);

@@ -1900,7 +1900,7 @@ namespace Tizen.NUI.BaseComponents
         internal static object GetInternalCornerRadiusProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.CornerRadius;
+            return view.backgroundExtraData == null ? Vector4.Zero : view.backgroundExtraData.CornerRadius;
         }
 
         /// <summary>
@@ -2660,6 +2660,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
                 using var cornerRadius = new PropertyValue(cornerRadiusValue);
+                using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
+                using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
                 using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
                 using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
                 using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
@@ -2667,6 +2669,7 @@ namespace Tizen.NUI.BaseComponents
                 using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
                 map.Add(Visual.Property.CornerRadius, cornerRadius)
+                   .Add(Visual.Property.CornerSquareness, cornerSquareness)
                    .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
                    .Add(Visual.Property.BorderlineWidth, borderlineWidth)
                    .Add(Visual.Property.BorderlineColor, borderlineColor)
@@ -2744,20 +2747,23 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            var map = new PropertyMap();
-            var colorType = new PropertyValue((int)Visual.Type.Color);
-            var mixColor = new PropertyValue(value);
-            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            var cornerRadius = new PropertyValue(cornerRadiusValue);
-            var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-            var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            var borderlineColor = new PropertyValue(borderlineColorValue);
-            var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
+            using var map = new PropertyMap();
+            using var colorType = new PropertyValue((int)Visual.Type.Color);
+            using var mixColor = new PropertyValue(value);
+            using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+            using var cornerRadius = new PropertyValue(cornerRadiusValue);
+            using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
+            using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
+            using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
+            using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
+            using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            using var borderlineColor = new PropertyValue(borderlineColorValue);
+            using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
             map.Add(Visual.Property.Type, colorType)
                .Add(ColorVisualProperty.MixColor, mixColor)
                .Add(Visual.Property.CornerRadius, cornerRadius)
+               .Add(Visual.Property.CornerSquareness, cornerSquareness)
                .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
                .Add(Visual.Property.BorderlineWidth, borderlineWidth)
                .Add(Visual.Property.BorderlineColor, borderlineColor)
@@ -2768,17 +2774,6 @@ namespace Tizen.NUI.BaseComponents
             var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
 
-            borderlineOffset?.Dispose();
-            borderlineColor?.Dispose();
-            borderlineColorValue?.Dispose();
-            borderlineWidth?.Dispose();
-            cornerRadiusPolicy?.Dispose();
-            cornerRadius?.Dispose();
-            cornerRadiusValue?.Dispose();
-            mixColor?.Dispose();
-            colorType?.Dispose();
-            map?.Dispose();
-            mapValue?.Dispose();
         }
 
         private void SetColor(Color value)
