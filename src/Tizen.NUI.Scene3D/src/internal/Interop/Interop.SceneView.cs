@@ -142,6 +142,9 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_BorderlineOffset_get")]
             public static extern int BorderlineOffsetGet();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_CornerSquareness_get")]
+            public static extern int CornerSquarenessGet();
         }
     }
 }
