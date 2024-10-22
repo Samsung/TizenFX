@@ -852,6 +852,11 @@ namespace Tizen.NUI.Scene3D
                     using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.CornerRadius);
                     SetProperty(Interop.SceneView.CornerRadiusGet(), setValue);
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.CornerSquareness);
+                    SetProperty(Interop.SceneView.CornerSquarenessGet(), setValue);
+                }
                 {
                     using var setValue = new Tizen.NUI.PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
                     SetProperty(Interop.SceneView.CornerRadiusPolicyGet(), setValue);

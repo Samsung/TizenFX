@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         static ImageView()
         {
-            if(NUIApplication.IsUsingXaml)
+            if (NUIApplication.IsUsingXaml)
             {
                 ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
 
@@ -1937,6 +1937,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
                 Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
         }
@@ -2248,6 +2252,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     cachedImagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
                     cachedImagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    using (var cornerSquareness = new PropertyValue(backgroundExtraData.CornerSquareness))
+                    {
+                        cachedImagePropertyMap[Visual.Property.CornerSquareness] = cornerSquareness;
+                    }
                 }
             }
 
