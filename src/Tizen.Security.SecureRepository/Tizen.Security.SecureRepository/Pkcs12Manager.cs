@@ -20,7 +20,7 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// This class provides the methods for storing and retrieving the Pkcs12 contents.
+    /// Provides methods for storing and retrieving Pkcs12 contents.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Pkcs12Manager : Manager
@@ -29,25 +29,28 @@ namespace Tizen.Security.SecureRepository
         /// Gets Pkcs12 contents from the secure repository.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="alias">The name of data to retrieve.</param>
-        /// <param name="keyPassword">
-        /// The password used in decrypting a private key value. If password of
-        /// keyPolicy is provided in SavePkcs12(), the same password should be provided.
-        /// </param>
+        /// <remarks>
+        /// If password of keyPolicy is provided in SavePkcs12(),
+        /// the same password should be provided in as keyPassword argument.
+        /// </remarks>
+        /// <remarks>
+        /// If password of certificatePolicy is provided in SavePkcs12(),
+        /// the same password should be provided in as cerificatePassword argument.
+        /// </remarks>
+        /// <param name="alias">Name of data to retrieve.</param>
+        /// <param name="keyPassword">Password used in decrypting a private key value.</param>
         /// <param name="cerificatePassword">
-        /// The password used in decrypting a certificate value. If password of
-        /// certificatePolicy is provided in SavePkcs12(), the same password should be
-        /// provided.
+        /// Password used in decrypting a certificate value.
         /// </param>
-        /// <returns>A Pkcs12 data specified by alias.</returns>
-        /// <exception cref="ArgumentNullException">The alias argument is null.</exception>
+        /// <returns>Pkcs12 data specified by alias.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="alias"/> argument is null.</exception>
         /// <exception cref="ArgumentException">
-        /// The alias argument is in the invalid format.
+        /// Thrown when <paramref name="alias"/> argument has an invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Pkcs12 does not exist with the alias.
-        /// Optional password of key in Pkcs12 isn't matched.
-        /// Optional password of certificate in Pkcs12 isn't matched.
+        /// Thrown when Pkcs12 does not exist with given <paramref name="alias"/>.
+        /// Thrown when optional password of key in Pkcs12 does not match.
+        /// Thrown when optional password of certificate in Pkcs12 does not match.
         /// </exception>
         static public Pkcs12 Get(
             string alias, string keyPassword, string cerificatePassword)
@@ -73,24 +76,23 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Stores PKCS12's contents inside key manager based on the provided policies.
-        /// All items from the PKCS12 will use the same alias.
+        /// Stores PKCS12's contents inside key manager based on provided policies.
+        /// All items from PKCS12 will use the same alias.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="alias">The name of a data to be stored.</param>
-        /// <param name="pkcs12">The pkcs12 data to be stored.</param>
-        /// <param name="keyPolicy">
-        /// The policy about how to store pkcs's private key.
-        /// </param>
-        /// <param name="certificatePolicy">
-        /// The policy about how to store pkcs's certificate.
-        /// </param>
-        /// <exception cref="ArgumentNullException">Any of argument is null.</exception>
+        /// <param name="alias">Name of a data to be stored.</param>
+        /// <param name="pkcs12">pkcs12 data to be stored.</param>
+        /// <param name="keyPolicy">Pkcs' private key storing policy.</param>
+        /// <param name="certificatePolicy">Pkcs' certificate storing policy.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when any provided argument is null.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// The alias argument is in the invalid format. Pkcs12 argument is in the invalid format.
+        /// Thrown when <paramref name="alias"/> or
+        /// <paramref name="pkcs12"/> argument has an invalid format.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Pkcs12 with alias does already exist.
+        /// Thrown when pkcs12 with given <paramref name="alias"/> already exists.
         /// </exception>
         static public void Save(
             string alias, Pkcs12 pkcs12, Policy keyPolicy, Policy certificatePolicy)
