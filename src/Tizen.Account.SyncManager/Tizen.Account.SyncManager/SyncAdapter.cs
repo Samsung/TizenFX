@@ -42,7 +42,6 @@ namespace Tizen.Account.SyncManager
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="syncParameters"> The sync job parameters corresponding to the sync request. </param>
-        [Obsolete("Deprecated since API12. Might be removed in API14")]
         public delegate void CancelSyncCallback(SyncJobData syncParameters);
 
         /// <summary>
