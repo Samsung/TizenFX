@@ -25,49 +25,38 @@ namespace Tizen.NUI.PenWave
 {
     public class PWCanvasView : DirectRenderingGLView
     {
-        public uint ID {get; set;}
-        public ToolManager ToolManager {get; private set;}
-        public List<Page>  Pages {get; set;}
-        public Color BackgroundColor {get; set;}
-        public Size2D Size {get; set;}
-        public Position2D position {get; set;}
-
+        private CanvasRenderer renderer;
+        private CanvasUIManager uiManager;
+        private PageManager pageManager;
         private PropertyNotification propertyNotification;
 
-        private readonly string FontPath = FrameworkInformation.ResourcePath + "fonts/font.ttf";
-        private readonly string[] TexturePaths = {
-            FrameworkInformation.ResourcePath + "images/textures/brush_acrylic.png",
-            FrameworkInformation.ResourcePath + "images/textures/brush_sponge.png",
-            FrameworkInformation.ResourcePath + "images/textures/dot_brush.png",
-            FrameworkInformation.ResourcePath + "images/textures/highlighter.png",
-            FrameworkInformation.ResourcePath + "images/textures/soft_brush.png"
-        };
+        public ToolManager ToolManager {get; private set;}
+        public event Action<int> OnPageChanged;
+        public event Action OnCanvasCleared;
 
         public PWCanvasView() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            ID = PWEngine.CreateCanvas(-1, -1);
-            InitialCanvasView();
+            pageManager = new PageManager();
+            renderer = new CanvasRenderer(PWEngine.CreateCanvas(-1, -1));
+            uiManager = new CanvasUIManager(this);
+            ToolManager = new ToolManager();
+            InitializeCanvas();
         }
 
         public PWCanvasView(string backgroundPath) : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            ID = PWEngine.CreateCanvasWithBackgroundImage(backgroundPath);
-            InitialCanvasView();
+            pageManager = new PageManager();
+            renderer = new CanvasRenderer(PWEngine.CreateCanvasWithBackgroundImage(backgroundPath));
+            uiManager = new CanvasUIManager(this);
+            ToolManager = new ToolManager();
+            InitializeCanvas();
         }
 
-        private void InitialCanvasView()
+        private void InitializeCanvas()
         {
-            PWEngine.SetCurrentCanvas(ID);
-            PWEngine.SetResourcePath(FrameworkInformation.ResourcePath + "images/");
-            PWEngine.SetFontPath(FontPath);
-            PWEngine.SetTexturePaths(TexturePaths, TexturePaths.Length);
-
-            this.ToolManager = new ToolManager(this);
-            this.WidthResizePolicy = ResizePolicyType.FillToParent;
-            this.HeightResizePolicy = ResizePolicyType.FillToParent;
-            this.SetGraphicsConfig(false, false, 0, GLESVersion.Version20);
             this.RenderingMode = GLRenderingMode.Continuous;
-            this.RegisterGLCallbacks(PWEngine.InitializeGL, OnRender, PWEngine.TerminateGL);
+            this.RegisterGLCallbacks(renderer.InitializeGL, renderer.RenderFrame, renderer.TerminateGL);
+            this.SetGraphicsConfig(false, false, 0, GLESVersion.Version20);
 
             propertyNotification = this.AddPropertyNotification("size", PropertyCondition.Step(1.0f));
             propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
@@ -75,60 +64,23 @@ namespace Tizen.NUI.PenWave
                 Tizen.NUI.BaseComponents.View target = args.PropertyNotification.GetTarget() as Tizen.NUI.BaseComponents.View;
                 if (target != null)
                 {
-                    PWEngine.UpdateGLWindowSize((int)target.SizeWidth, (int)target.SizeHeight);
-                    PWEngine.RenderFullyReDraw();
+                    renderer.Resize((int)target.SizeWidth, (int)target.SizeHeight);
                 }
             };
-            // this.TouchEvent += OnTouchEvent;
-        }
-
-
-        // private bool OnTouchEvent(object source, View.TouchEventArgs e)
-        // {
-        //     ToolManager.HandleInput(e.Touch);
-        //     return false;
-        // }
-
-        private int OnRender(in DirectRenderingGLView.RenderCallbackInput input)
-        {
-            return PWEngine.RenderFrameGL();
-        }
-
-
-        public void AddPage()
-        {
-
         }
 
         public void SetCurrentPage(int pageIndex)
         {
-
+            pageManager.SetCurrentPage(pageIndex);
+            OnPageChanged?.Invoke(pageIndex);
         }
 
         public void ClearCanvas()
         {
-
+            // 캔버스 클리어 처리
+            OnCanvasCleared?.Invoke();
         }
 
-        public void TakeScreenShot(float x, float y, float width, float height)
-        {
-
-        }
-
-        public void ToggleGrid(int densityType)
-        {
-
-        }
-
-        public void DoOperation(int operitionType)
-        {
-            //Undo, Redo, ResetUndo, ResetRedo
-        }
-
-        public void Export(int exportType, string filePath)
-        {
-
-        }
 
         public void HandleInput(Touch touch)
         {
@@ -137,13 +89,8 @@ namespace Tizen.NUI.PenWave
 
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
-            {
-                return;
-            }
-
-            PWEngine.TerminateGL();
-
+            if(disposed) return;
+            renderer.TerminateGL();
             base.Dispose(type);
         }
     }

@@ -23,93 +23,108 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class ToolPickerView : View, IToolPickerView
+    public class ToolPickerView : View
     {
         private ToolManager mToolManager;
         private View mRootView;
-        private Dictionary<ITool.ToolType, View> mToolIcons;
+        private Dictionary<ToolBase.ToolType, View> mToolUIs;
         // private List<View> mCustomIcons;
 
         public ToolPickerView(ToolManager toolManager, View rootView = null)
         {
-            if (toolManager == null)
-            {
-                return;
-            }
-            mToolManager = toolManager;
-            mRootView = rootView;
-            mToolIcons = new Dictionary<ITool.ToolType, View>();
-            // mCustomIcons = new List<View>();
-            mToolManager.ToolChanged += OnToolChanged;
-
-            InitialDefaultUI();
-        }
-
-        private void InitialDefaultUI()
-        {
-            if (mRootView == null)
-            {
-                mRootView = new View()
-                {
-                    CornerRadius = new Vector4(10, 10, 10, 10),
-                    BackgroundImage = FrameworkInformation.ResourcePath + "images/" + "light" + "/toolbox_bg.png",
-                    WidthSpecification = LayoutParamPolicies.WrapContent,
-                    HeightSpecification = LayoutParamPolicies.WrapContent,
-                    Layout = new GridLayout()
-                    {
-                        Columns = 1,
-                        RowSpacing = 4,
-                        Padding = new Extents(16, 16, 16, 16)
-                    },
-                };
-            }
+            this.mToolManager = toolManager;
+            this.mRootView = mRootView ?? CreateDefaultRootView();
             this.Add(mRootView);
-            UpdateUI();
+            mToolUIs = new Dictionary<ToolBase.ToolType, View>();
+
+            InitializeUI();
         }
 
-        public void ShowTool(ITool.ToolType type)
+        private View CreateDefaultRootView()
         {
-            View toolView;
-            if (mToolIcons.TryGetValue(type, out toolView))
+            return new View
+            {
+                CornerRadius = new Vector4(10, 10, 10, 10),
+                BackgroundImage = FrameworkInformation.ResourcePath + "images/" + "light" + "/toolbox_bg.png",
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new LinearLayout
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                }
+                // Layout = new GridLayout()
+        //             {
+        //                 Columns = 1,
+        //                 RowSpacing = 4,
+        //                 Padding = new Extents(16, 16, 16, 16)
+        //             },
+            };
+        }
+
+        private void InitializeUI()
+        {
+            foreach (var tool in mToolManager.Tools)
+            {
+                var toolUI = tool.Value.GetUI();
+                if (mToolUIs.TryAdd(tool.Key, toolUI))
+                {
+                    mRootView.Add(toolUI);
+                }
+            }
+        }
+
+
+        public void ShowTool(ToolBase.ToolType type)
+        {
+            if (mToolUIs.TryGetValue(type, out var toolView))
             {
                 mRootView.Add(toolView);
             }
         }
 
-        public void HideTool(ITool.ToolType type)
+        public void HideTool(ToolBase.ToolType type)
         {
-            View toolView;
-            if (mToolIcons.TryGetValue(type, out toolView))
+            if (mToolUIs.TryGetValue(type, out var toolView))
             {
                 mRootView.Remove(toolView);
             }
         }
 
-        public void AddCustomToolIcon(View view)
+        public void CustomizeToolUI(ToolBase.ToolType toolType, View customUI)
         {
-            mRootView.Add(view);
-        }
-
-        public void RemoveCustomToolIcon(View view)
-        {
-            mRootView.Remove(view);
-        }
-
-        private void UpdateUI()
-        {
-            foreach (ITool tool in mToolManager.Tools.Values) {
-                View toolView = tool.GetUI();
-                if (mToolIcons.TryAdd(tool.Type, toolView))
-                {
-                    mRootView.Add(toolView);
-                }
+            HideTool(toolType);
+            if (mToolUIs.TryAdd(toolType, customUI))
+            {
+                mRootView.Add(customUI);
             }
         }
 
-        private void OnToolChanged(ITool.ToolType toolType, int type)
-        {
-            // UpdateUI();
-        }
+        // public void AddCustomToolIcon(View view)
+        // {
+        //     mRootView.Add(view);
+        // }
+
+        // public void RemoveCustomToolIcon(View view)
+        // {
+        //     mRootView.Remove(view);
+        // }
+
+        // private void UpdateUI()
+        // {
+        //     foreach (ITool tool in mToolManager.Tools.Values) {
+        //         View toolView = tool.GetUI();
+        //         if (mToolIcons.TryAdd(tool.Type, toolView))
+        //         {
+        //             mRootView.Add(toolView);
+        //         }
+        //     }
+        // }
+
+        // private void OnToolChanged(ToolBase.ToolType toolType, int type)
+        // {
+        //     // UpdateUI();
+        // }
 
 
     }

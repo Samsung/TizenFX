@@ -23,18 +23,32 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    // public class SelectTool : ITool
-    // {
-    //     public ToolBase.ToolType Type => ToolBase.ToolType.Pencil;
+    public class CanvasUIManager
+    {
+        private PWCanvasView canvasView;
 
-    //     public SelectTool()
-    //     {
 
-    //     }
+        public CanvasUIManager(PWCanvasView canvasView)
+        {
+            this.canvasView = canvasView;
+            InitializeUI();
+        }
 
-    //     public ToolType Type {get;}
-    //     public bool Activate {get; set;}
-    //     public void HandleInput(Touch touch);
-    //     public virtual View GetUI();
-    // }
+        private void InitializeUI()
+        {
+            // 기본 UI 구성 로직
+            canvasView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            canvasView.HeightResizePolicy = ResizePolicyType.FillToParent;
+        }
+
+        public void UpdateUI()
+        {
+            // 캔버스 상태에 따라 UI 갱신
+        }
+
+        public void ToggleGrid(bool visible)
+        {
+            // 그리드 표시/숨기기 처리
+        }
+    }
 }

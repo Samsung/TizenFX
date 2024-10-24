@@ -25,23 +25,21 @@ namespace Tizen.NUI.PenWave
 {
     public class ToolManager
     {
-        public Dictionary<ITool.ToolType, ITool> Tools;
-        private ITool currentTool;
-        private PWCanvasView canvasView;
+        public readonly Dictionary<ToolBase.ToolType, ToolBase> Tools;
+        private ToolBase mCurrentTool;
 
-        public event Action<ITool.ToolType, int> ToolChanged;
+        public event Action<ToolBase.ToolType> ToolChanged;
 
-        public ToolManager(PWCanvasView canvasView)
+        public ToolManager()
         {
-            Tools = new Dictionary<ITool.ToolType, ITool>();
-            this.canvasView = canvasView;
+            Tools = new Dictionary<ToolBase.ToolType, ToolBase>();
         }
 
-        public void RegisterTool(ITool tool)
+        public void RegisterTool(ToolBase tool)
         {
             if (Tools.ContainsKey(tool.Type))
             {
-                Tizen.Log.Error("NUI", $"Already register tool type {tool.Type}\n");
+                Tizen.Log.Error("NUI", $"Already registered tool type {tool.Type}\n");
             }
             else
             {
@@ -49,45 +47,30 @@ namespace Tizen.NUI.PenWave
             }
         }
 
-        public void UnregisterTool(ITool tool)
+        public void UnregisterTool(ToolBase tool)
         {
             Tools.Remove(tool.Type);
         }
 
-        public void SelectTool(ITool.ToolType toolType)
+        public void SelectTool(ToolBase.ToolType toolType)
         {
-            // 현재 도구 비활성화
-            if (currentTool != null)
+            if (mCurrentTool != null)
             {
-                currentTool.Activate = false;
+                mCurrentTool.Activate = false;
             }
 
-            // 새 도구 활성화
-            if (Tools.TryGetValue(toolType, out currentTool))
+            if (Tools.TryGetValue(toolType, out mCurrentTool))
             {
-                currentTool.Activate = true;
-                ToolChanged?.Invoke(toolType, 0);
+                mCurrentTool.Activate = true;
+                ToolChanged?.Invoke(toolType);
             }
         }
 
         public void HandleInput(Touch touch)
         {
-            currentTool?.HandleInput(touch);
+            mCurrentTool?.HandleInput(touch);
         }
 
-        public ITool.ToolType GetCurrentToolType()
-        {
-            return currentTool?.Type ?? ITool.ToolType.Pencil; // 기본값 펜슬
-        }
-
-        public ITool GetCurrentTool()
-        {
-            return currentTool;
-        }
-
-        public PWCanvasView GetCurrentView()
-        {
-            return canvasView;
-        }
+        public ToolBase.ToolType GetCurrentToolType() => mCurrentTool?.Type ?? ToolBase.ToolType.Pencil;
     }
 }

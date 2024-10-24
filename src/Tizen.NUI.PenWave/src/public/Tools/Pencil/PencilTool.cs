@@ -23,15 +23,13 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class PencilTool : ITool
+    public class PencilTool : ToolBase
     {
-        public ITool.ToolType Type => ITool.ToolType.Pencil;
+        public override ToolBase.ToolType Type => ToolBase.ToolType.Pencil;
         private PenInk ink;
-        private bool mIsDrawing = false;
         private uint mCurrentShapeId;
-        private uint mTouchTime;
-        private bool mActivate;
-        private View mRootView;
+        private bool mIsDrawing = false;
+
 
         public PencilTool()
         {
@@ -43,163 +41,55 @@ namespace Tizen.NUI.PenWave
             ink = penInk ?? new PenInk();
         }
 
-
-        public bool Activate
+        protected override void StartDrawing(Vector2 position, uint touchTime)
         {
-            get => mActivate;
-            set
+            mCurrentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
+        }
+
+        protected override void ContinueDrawing(Vector2 position, uint touchTime)
+        {
+            var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(mCurrentShapeId, position.X, position.Y, touchTime);
+            if (result == ErrorShapeAddPointsType.overflowShape)
             {
-                mActivate = value;
-                if (!mActivate && mIsDrawing)
-                {
-                    EndDrawing();
-                }
+                EndDrawing();
+                StartDrawing(position, touchTime);
+            }
+            else if (result == ErrorShapeAddPointsType.drawingCanceled)
+            {
+                EndDrawing();
             }
         }
 
-        public void HandleInput(Touch touch)
+        protected override void EndDrawing()
         {
-            if (!mActivate || touch == null || touch.GetPointCount() == 0)
-            {
-                return;
-            }
-
-            uint pointStateIndex = 0;
-            mTouchTime = touch.GetTime();
-
-            List<Vector2> touchPositionList = new List<Vector2>();
-
-            for (uint i = 0; i < touch.GetPointCount(); ++i)
-            {
-                // 멀티 드로잉일 경우 고려할 것
-                // if (AppModel.MultidrawActive && args.Touch.GetState(i) != PointStateType.Stationary)
-                // {
-                //     pointStateIndex = i;
-                // }
-                touchPositionList.Add(touch.GetLocalPosition(i));
-            }
-
-            if (touch.GetPointCount() == 1)
-            {
-                Vector2 position = touchPositionList[(int)pointStateIndex];
-                switch (touch.GetState(pointStateIndex))
-                {
-                    case PointStateType.Down:
-                    {
-                        PointStateDown(position, mTouchTime);
-                        break;
-                    }
-                    case PointStateType.Motion:
-                    {
-                        PointStateMotion(position, (int)pointStateIndex, mTouchTime);
-                        break;
-                    }
-                    case PointStateType.Up:
-                    case PointStateType.Leave:
-                    default :
-                    {
-                        PointStateUp(position, mTouchTime);
-                        break;
-                    }
-                }
-            }
+            PWEngine.EndShapeDraw(mCurrentShapeId, 0);
         }
 
-        private void PointStateDown(Vector2 position, uint touchTime)
+
+        public override View GetUI()
         {
-            if (!mIsDrawing)
+            View mRootView = new View
             {
-                mIsDrawing = true;
-                mCurrentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
-            }
-        }
-
-        private void PointStateUp(Vector2 position, uint touchTime)
-        {
-            if (mIsDrawing)
-            {
-                PWEngine.EndShapeDraw(mCurrentShapeId, touchTime);
-                mIsDrawing = false;
-            }
-        }
-
-        private void PointStateMotion(Vector2 position, int index, uint touchTime)
-        {
-            if (mIsDrawing)
-            {
-                var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(mCurrentShapeId, position.X, position.Y, touchTime);
-                if (result == ErrorShapeAddPointsType.overflowShape)
-                {
-                    //End old shape
-                    PWEngine.EndShapeDraw(mCurrentShapeId, touchTime);
-
-                    //Create new shape
-                    mCurrentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
-                    PWEngine.DrawShape(mCurrentShapeId, position.X, position.Y, touchTime);
-                }
-                else if (result == ErrorShapeAddPointsType.drawingCanceled)
-                {
-                    EndDrawing();
-                }
-            }
-        }
-
-        private void EndDrawing()
-        {
-            PWEngine.EndShapeDraw(mCurrentShapeId, mTouchTime);
-            mIsDrawing = false;
-        }
-
-        public virtual View GetUI()
-        {
-            if (mRootView == null)
-            {
-                CreateUI();
-            }
-            return mRootView;
-        }
-
-        private void CreateUI()
-        {
-            mRootView = new View()
-            {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                Layout = new GridLayout()
-                {
-                    Columns = 1,
-                    RowSpacing = 4,
-                    Padding = new Extents(16, 16, 16, 16)
-                }
+                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
             };
 
             AddIconsToView(mRootView, ink.Colors, color => new ColorIcon(color));
             AddIconsToView(mRootView, ink.Sizes, size => new SizeIcon(size));
             AddIconsToView(mRootView, ink.BrushTypes, brushType => new BrushIcon(brushType));
+            return mRootView;
         }
 
         private void AddIconsToView<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
         {
-            var view = CreateIconView();
+            var view = new View
+            {
+                Layout = new GridLayout { Columns = 4, ColumnSpacing = 8, RowSpacing = 8 },
+            };
             foreach (var item in items)
             {
                 view.Add(iconFactory(item));
             }
             rootView.Add(view);
-        }
-
-
-        private View CreateIconView()
-        {
-            return new View
-            {
-                Layout = new GridLayout()
-                {
-                    Columns = 4,
-                    ColumnSpacing = 8,
-                    RowSpacing = 8,
-                }
-            };
         }
     }
 
