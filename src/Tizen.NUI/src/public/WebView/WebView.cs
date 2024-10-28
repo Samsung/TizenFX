@@ -167,6 +167,8 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewUserMediaPermissionRequestEventArgs> userMediaPermissionRequestEventHandler;
         private WebViewUserMediaPermissionRequestCallback userMediaPermissionRequestCallback;
 
+        private WebContext webContext = null;
+        private WebCookieManager webCookieManager = null;
 
         /// <summary>
         /// Default constructor to create a WebView.
@@ -244,9 +246,20 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Context.RegisterDownloadStartedCallback(null);
-            Context.RegisterMimeOverriddenCallback(null);
-            Context.RegisterHttpRequestInterceptedCallback(null);
+            if (webContext != null)
+            {
+                webContext.RegisterDownloadStartedCallback(null);
+                webContext.RegisterMimeOverriddenCallback(null);
+                webContext.RegisterHttpRequestInterceptedCallback(null);
+                webContext.Dispose();
+                webContext = null;
+            }
+
+            if (webCookieManager != null)
+            {
+                webCookieManager.Dispose();
+                webCookieManager = null;
+            }
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1223,7 +1236,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new WebContext(Interop.WebView.GetWebContext(), false);
+                webContext ??= new WebContext(Interop.WebView.GetWebContext(), false);
+                return webContext;
             }
         }
 
@@ -1235,7 +1249,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+                webCookieManager ??= new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+                return webCookieManager;
             }
         }
 
