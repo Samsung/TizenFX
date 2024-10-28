@@ -71,7 +71,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the allowed resourced path of the gadget.
+        /// Gets the allowed resource path of the gadget.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public string AllowedResourcePath
