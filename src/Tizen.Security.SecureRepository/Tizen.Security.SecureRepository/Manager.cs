@@ -35,6 +35,7 @@ namespace Tizen.Security.SecureRepository
         /// </remarks>
         /// <param name="ownerId">Data owner's ID.</param>
         /// <param name="alias">Data alias.</param>
+        /// <returns>Full alias, a concatenation of owner ID and alias.</returns>
         static public string CreateFullAlias(string ownerId, string alias)
         {
             return ownerId + Manager.OwnerIdSeperator + alias;
@@ -46,6 +47,7 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">Data alias, which is owned by system service.</param>
+        /// <returns>Full alias, a concatenation of system service's owner ID and alias.</returns>
         static public string CreateFullSystemAlias(string alias)
         {
             return Manager.CreateFullAlias(Manager.SystemOwnerId, alias);
