@@ -95,7 +95,11 @@ namespace Tizen.NUI
 
         internal string ResourceClassName { get; set; }
 
-        internal Assembly Assembly { get; set; }
+        /// <summary>
+        /// Gets the assembly of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public Assembly Assembly { get; internal set; }
 
         /// <summary>
         /// Gets the assembly of the gadget.
