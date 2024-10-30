@@ -41,6 +41,7 @@ namespace Tizen.Security.SecureRepository
         /// </remarks>
         /// <param name="filePath">Path of the PKCS12 file to be loaded.</param>
         /// <param name="filePassword">Passphrase used to decrypt the PCKS12 file.</param>
+        /// <returns>Pkcs12 class instance.</returns>
         /// <exception cref="ArgumentNullException">Thrown when filePath is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// Thrown when there's no existing file on <paramref name="filePath"/>.
