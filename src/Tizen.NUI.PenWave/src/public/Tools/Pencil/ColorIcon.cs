@@ -36,7 +36,6 @@ namespace Tizen.NUI.PenWave
             string url = $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
 
             InitializeIcon(url, mColor);
-            this.TouchEvent += IconClick;
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)

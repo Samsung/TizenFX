@@ -70,12 +70,15 @@ namespace Tizen.NUI.PenWave
         {
             View mRootView = new View
             {
-                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                },
             };
 
-            AddIconsToView(mRootView, ink.Colors, color => new ColorIcon(color));
-            AddIconsToView(mRootView, ink.Sizes, size => new SizeIcon(size));
             AddIconsToView(mRootView, ink.BrushTypes, brushType => new BrushIcon(brushType));
+            AddIconsToView(mRootView, ink.Sizes, size => new SizeIcon(size));
+            AddIconsToView(mRootView, ink.Colors, color => new ColorIcon(color));
             return mRootView;
         }
 
@@ -83,11 +86,16 @@ namespace Tizen.NUI.PenWave
         {
             var view = new View
             {
-                Layout = new GridLayout { Columns = 4, ColumnSpacing = 8, RowSpacing = 8 },
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                },
             };
             foreach (var item in items)
             {
-                view.Add(iconFactory(item));
+                var icon = iconFactory(item);
+                view.Add(icon);
+                icon.IconSelected += OnIconSelected;
             }
             rootView.Add(view);
         }

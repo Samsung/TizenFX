@@ -32,24 +32,16 @@ namespace PenWaveSample
         {
             mWindow = GetDefaultWindow();
             mWindow.BackgroundColor = Color.White;
-            canvasView = new PWCanvasView();
+            canvasView = PWCanvasView.CreateDefaultCanvas();
             mWindow.Add(canvasView);
 
-            PencilTool pencilTool = new PencilTool();
-            ToolManager toolManager = canvasView.ToolManager;
-            toolManager.RegisterTool(pencilTool);
-
-            canvasView.ToolManager.SelectTool(pencilTool.Type);
-
-            mToolPickerView = new ToolPickerView(toolManager);
-            // mToolPickerView.HideTool(pencilTool.Type);
-            mToolPickerView.Hide();
-            mWindow.Add(mToolPickerView);
-
-
-            longPressGestureDetector = new LongPressGestureDetector();
-            longPressGestureDetector.Attach(canvasView);
-            longPressGestureDetector.Detected += OnLongPressDetected;
+            mToolPickerView = new ToolPickerView(canvasView.ToolManager);
+            canvasView.Layout = new LinearLayout()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+            };
+            canvasView.Add(mToolPickerView);
 
             canvasView.TouchEvent += OnTouchEvent;
         }
@@ -61,10 +53,6 @@ namespace PenWaveSample
 
         private bool OnTouchEvent(object sender, View.TouchEventArgs args)
         {
-            if (args.Touch.GetState(0) == PointStateType.Down)
-            {
-                mToolPickerView.Hide();
-            }
             canvasView.HandleInput(args.Touch);
             return false;
         }
@@ -75,14 +63,6 @@ namespace PenWaveSample
 
         private void HandleNotes()
         {
-        }
-
-        private void OnLongPressDetected(object sender, LongPressGestureDetector.DetectedEventArgs args)
-        {
-            if (args.LongPressGesture.State == Gesture.StateType.Started)
-            {
-                mToolPickerView.Show();
-            }
         }
 
         private void OnMouseTouch(object sender, Window.TouchEventArgs args)

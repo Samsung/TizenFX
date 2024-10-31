@@ -25,6 +25,8 @@ namespace Tizen.NUI.PenWave
 {
     public abstract class Icon : View
     {
+        public event Action IconSelected;
+
         protected ImageView mImgView;
         protected ImageView mBorder;
 
@@ -38,6 +40,8 @@ namespace Tizen.NUI.PenWave
                 VerticalAlignment = VerticalAlignment.Center,
             };
             this.Size2D = new Size2D(mDefaultSize, mDefaultSize);
+
+            this.TouchEvent += IconClick;
         }
 
         protected void InitializeIcon(string baseResourceUrl, Color color)
@@ -64,7 +68,12 @@ namespace Tizen.NUI.PenWave
 
         public virtual bool IconClick(object sender, View.TouchEventArgs args)
         {
-            return args.Touch.GetState(0) == PointStateType.Down;
+            if (args.Touch.GetState(0) == PointStateType.Down)
+            {
+                IconSelected?.Invoke();
+                return true;
+            }
+            return false;
         }
     }
 }

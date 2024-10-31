@@ -52,6 +52,21 @@ namespace Tizen.NUI.PenWave
             InitializeCanvas();
         }
 
+        public static PWCanvasView CreateDefaultCanvas()
+        {
+            var canvasView = new PWCanvasView();
+
+            PencilTool pencilTool = new PencilTool();
+            SelectTool selectTool = new SelectTool();
+
+            canvasView.ToolManager.RegisterTool(pencilTool);
+            canvasView.ToolManager.RegisterTool(selectTool);
+
+            canvasView.ToolManager.SelectTool(pencilTool.Type);
+
+            return canvasView;
+        }
+
         private void InitializeCanvas()
         {
             this.RenderingMode = GLRenderingMode.Continuous;

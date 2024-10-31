@@ -93,7 +93,6 @@ namespace Tizen.NUI.PenWave
             string url = $"{FrameworkInformation.ResourcePath}images/light/{GetIconUrl(brushType)}.png";
 
             InitializeIcon(url, new Color("#17234d"));
-            this.TouchEvent += IconClick;
         }
 
         private string GetIconUrl(PWEngine.BrushType brushType)
@@ -105,7 +104,7 @@ namespace Tizen.NUI.PenWave
         public PWEngine.BrushType GetBrushType() => mBrushType;
 
 
-        public bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool IconClick(object sender, View.TouchEventArgs args)
         {
             if (base.IconClick(sender, args))
             {

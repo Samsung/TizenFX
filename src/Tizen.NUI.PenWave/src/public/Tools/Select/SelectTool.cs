@@ -23,18 +23,31 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    // public class SelectTool : ITool
-    // {
-    //     public ToolBase.ToolType Type => ToolBase.ToolType.Pencil;
+    public class SelectTool : ToolBase
+    {
+        public override ToolBase.ToolType Type => ToolBase.ToolType.Select;
 
-    //     public SelectTool()
-    //     {
+        public SelectTool()
+        {
 
-    //     }
+        }
 
-    //     public ToolType Type {get;}
-    //     public bool Activate {get; set;}
-    //     public void HandleInput(Touch touch);
-    //     public virtual View GetUI();
-    // }
+         protected override void StartDrawing(Vector2 position, uint touchTime)
+         {
+
+         }
+
+        protected override void ContinueDrawing(Vector2 position, uint touchTime)
+        {
+        }
+
+        protected override void EndDrawing()
+        {
+        }
+
+        public override View GetUI()
+        {
+            return new View();
+        }
+    }
 }

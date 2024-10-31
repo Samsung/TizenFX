@@ -44,6 +44,7 @@ namespace Tizen.NUI.PenWave
             else
             {
                 Tools.Add(tool.Type, tool);
+                tool.ToolSelected += OnToolSelected;
             }
         }
 
@@ -54,8 +55,13 @@ namespace Tizen.NUI.PenWave
 
         public void SelectTool(ToolBase.ToolType toolType)
         {
+
             if (mCurrentTool != null)
             {
+                if (toolType == GetCurrentToolType())
+                {
+                    return;   // 선택된 툴이 현재 툴과 같다. 할 거 없다.
+                }
                 mCurrentTool.Activate = false;
             }
 
@@ -72,5 +78,11 @@ namespace Tizen.NUI.PenWave
         }
 
         public ToolBase.ToolType GetCurrentToolType() => mCurrentTool?.Type ?? ToolBase.ToolType.Pencil;
+
+        private void OnToolSelected(ToolBase.ToolType toolType)
+        {
+            Tizen.Log.Info("NUI", $"OnToolSelected {toolType}\n");
+            SelectTool(toolType);
+        }
     }
 }

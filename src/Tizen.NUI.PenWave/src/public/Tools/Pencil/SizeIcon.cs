@@ -35,15 +35,13 @@ namespace Tizen.NUI.PenWave
 
             InitializeIcon(url, new Color("#17234d"));
             mImgView.Size2D = new Size2D((int)(size * 1.5f), (int)(size * 1.5f));
-            this.TouchEvent += IconClick;
         }
 
-        public bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool IconClick(object sender, View.TouchEventArgs args)
         {
             if (base.IconClick(sender, args))
             {
                 PWEngine.SetStrokeSize(GetSize());
-
             }
             return true;
         }

@@ -35,6 +35,8 @@ namespace Tizen.NUI.PenWave
         }
 
         public abstract ToolBase.ToolType Type { get; }
+        public event Action<ToolType> ToolSelected;
+
         private bool mActivate;
         private View mRootView;
 
@@ -49,6 +51,11 @@ namespace Tizen.NUI.PenWave
                     EndDrawing();
                 }
             }
+        }
+
+        protected void OnIconSelected()
+        {
+            ToolSelected?.Invoke(Type);
         }
 
         public virtual void HandleInput(Touch touch)
