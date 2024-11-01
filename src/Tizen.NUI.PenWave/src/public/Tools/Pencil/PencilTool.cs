@@ -65,10 +65,14 @@ namespace Tizen.NUI.PenWave
             PWEngine.EndShapeDraw(mCurrentShapeId, 0);
         }
 
+        protected override void Deactivate()
+        {
+            EndDrawing();
+        }
 
         public override View GetUI()
         {
-            View mRootView = new View
+            View rootView = new View
             {
                 Layout = new LinearLayout()
                 {
@@ -76,10 +80,10 @@ namespace Tizen.NUI.PenWave
                 },
             };
 
-            AddIconsToView(mRootView, ink.BrushTypes, brushType => new BrushIcon(brushType));
-            AddIconsToView(mRootView, ink.Sizes, size => new SizeIcon(size));
-            AddIconsToView(mRootView, ink.Colors, color => new ColorIcon(color));
-            return mRootView;
+            AddIconsToView(rootView, ink.BrushTypes, brushType => new BrushIcon(brushType));
+            AddIconsToView(rootView, ink.Sizes, size => new SizeIcon(size));
+            AddIconsToView(rootView, ink.Colors, color => new ColorIcon(color));
+            return rootView;
         }
 
         private void AddIconsToView<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)

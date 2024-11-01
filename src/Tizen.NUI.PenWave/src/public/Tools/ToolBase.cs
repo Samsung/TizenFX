@@ -48,7 +48,7 @@ namespace Tizen.NUI.PenWave
                 mActivate = value;
                 if (!mActivate)
                 {
-                    EndDrawing();
+                    Deactivate();
                 }
             }
         }
@@ -92,5 +92,6 @@ namespace Tizen.NUI.PenWave
         protected abstract void StartDrawing(Vector2 position, uint touchTime);
         protected abstract void ContinueDrawing(Vector2 position, uint touchTime);
         protected abstract void EndDrawing();
+        protected abstract void Deactivate();
     }
 }
