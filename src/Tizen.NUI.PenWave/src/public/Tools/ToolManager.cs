@@ -83,6 +83,7 @@ namespace Tizen.NUI.PenWave
         {
             Tizen.Log.Info("NUI", $"OnToolSelected {toolType}\n");
             SelectTool(toolType);
+            ToolChanged?.Invoke(toolType);
         }
     }
 }

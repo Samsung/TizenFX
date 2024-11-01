@@ -23,20 +23,38 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class SelectIcon : Icon
+    public class BackgroundColorIcon : Icon
     {
-        public SelectIcon() : base()
+        private readonly string mColorHex;
+        private readonly Color mColor;
+
+        public BackgroundColorIcon(Tizen.NUI.Color color) : base()
         {
+            mColorHex = ToHex(color);
+            mColor = color;
 
-            string url = $"{FrameworkInformation.ResourcePath}images/light/icon_select_area.png";
+            string url = $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
 
-            InitializeIcon(url, new Color("#17234d"));
+            InitializeIcon(url, mColor);
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)
         {
-            base.IconClick(sender, args);
+            if (base.IconClick(sender, args))
+            {
+                PWEngine.CanvasSetColor(GetColorHex(), 1.0f);
+            }
             return true;
         }
+
+        private string ToHex(Color color)
+        {
+            var red = (uint)(color.R * 255);
+            var green = (uint)(color.G * 255);
+            var blue = (uint)(color.B * 255);
+            return $"#{red:X2}{green:X2}{blue:X2}";
+        }
+
+        public string GetColorHex() => mColorHex;
     }
 }

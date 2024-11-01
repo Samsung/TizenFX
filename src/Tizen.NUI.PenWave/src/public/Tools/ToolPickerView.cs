@@ -32,6 +32,7 @@ namespace Tizen.NUI.PenWave
         public ToolPickerView(ToolManager toolManager)
         {
             this.mToolManager = toolManager;
+            toolManager.ToolChanged += OnUpdateUI;
             mToolUIs = new Dictionary<ToolBase.ToolType, View>();
 
             InitializeUI();
@@ -57,6 +58,12 @@ namespace Tizen.NUI.PenWave
                     this.Add(toolUI);
                 }
             }
+        }
+
+
+        private void OnUpdateUI(ToolBase.ToolType toolType)
+        {
+
         }
 
 

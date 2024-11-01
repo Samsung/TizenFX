@@ -32,6 +32,7 @@ namespace Tizen.NUI.PenWave
             Eraser,
             Select,
             Scale,
+            Canvas,
         }
 
         public abstract ToolBase.ToolType Type { get; }
@@ -53,7 +54,7 @@ namespace Tizen.NUI.PenWave
             }
         }
 
-        protected void OnIconSelected()
+        protected virtual void OnIconSelected()
         {
             ToolSelected?.Invoke(Type);
         }

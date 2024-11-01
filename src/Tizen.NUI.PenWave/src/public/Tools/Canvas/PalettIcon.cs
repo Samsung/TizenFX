@@ -23,20 +23,26 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class SelectIcon : Icon
+    public class PalettIcon : Icon
     {
-        public SelectIcon() : base()
+        private static readonly string url = $"{FrameworkInformation.ResourcePath}images/light/icon_color_palette.png";
+
+        private ImageView bgImage;
+
+        public PalettIcon() : base()
         {
-
-            string url = $"{FrameworkInformation.ResourcePath}images/light/icon_select_area.png";
-
             InitializeIcon(url, new Color("#17234d"));
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)
         {
-            base.IconClick(sender, args);
+            if (base.IconClick(sender, args))
+            {
+                Tizen.Log.Error("NUI", $"PalettIcon show\n");
+                // 캔버스 색상 팝업
+            }
             return true;
         }
+
     }
 }
