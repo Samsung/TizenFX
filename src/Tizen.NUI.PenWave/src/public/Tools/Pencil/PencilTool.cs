@@ -48,21 +48,25 @@ namespace Tizen.NUI.PenWave
 
         protected override void ContinueDrawing(Vector2 position, uint touchTime)
         {
-            var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(mCurrentShapeId, position.X, position.Y, touchTime);
-            if (result == ErrorShapeAddPointsType.overflowShape)
+            if (mCurrentShapeId > 0)
             {
-                EndDrawing();
-                StartDrawing(position, touchTime);
-            }
-            else if (result == ErrorShapeAddPointsType.drawingCanceled)
-            {
-                EndDrawing();
+                var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(mCurrentShapeId, position.X, position.Y, touchTime);
+                if (result == ErrorShapeAddPointsType.overflowShape)
+                {
+                    EndDrawing();
+                    StartDrawing(position, touchTime);
+                }
+                else if (result == ErrorShapeAddPointsType.drawingCanceled)
+                {
+                    EndDrawing();
+                }
             }
         }
 
         protected override void EndDrawing()
         {
             PWEngine.EndShapeDraw(mCurrentShapeId, 0);
+            mCurrentShapeId = 0;
         }
 
         protected override void Deactivate()

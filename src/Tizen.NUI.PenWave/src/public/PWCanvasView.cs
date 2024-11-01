@@ -57,9 +57,11 @@ namespace Tizen.NUI.PenWave
             var canvasView = new PWCanvasView();
 
             PencilTool pencilTool = new PencilTool();
+            EraserTool eraserTool = new EraserTool();
             SelectTool selectTool = new SelectTool();
 
             canvasView.ToolManager.RegisterTool(pencilTool);
+            canvasView.ToolManager.RegisterTool(eraserTool);
             canvasView.ToolManager.RegisterTool(selectTool);
 
             canvasView.ToolManager.SelectTool(pencilTool.Type);

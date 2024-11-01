@@ -23,12 +23,12 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class SelectIcon : Icon
+    public class EraserIcon : Icon
     {
-        public SelectIcon() : base()
+        public EraserIcon() : base()
         {
 
-            string url = $"{FrameworkInformation.ResourcePath}images/light/icon_select.png";
+            string url = $"{FrameworkInformation.ResourcePath}images/light/icon_eraser.png";
 
             InitializeIcon(url, new Color("#17234d"));
         }
