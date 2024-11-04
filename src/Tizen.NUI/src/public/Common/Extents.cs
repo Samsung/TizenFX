@@ -31,7 +31,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of Extents class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public Extents() : this(Interop.Extents.NewExtents(), true)
@@ -62,10 +62,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Constructor.
-        /// <param name="start">Start extent.</param>
-        /// <param name="end">End extent.</param>
-        /// <param name="top">Top extent.</param>
-        /// <param name="bottom">Bottom extent.</param>
+        /// <param name="start">The start extent value horizontally.</param>
+        /// <param name="end">The end extent value horizontally.</param>
+        /// <param name="top">The top extent value vertically.</param>
+        /// <param name="bottom">The bottom extent value vertically.</param>
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public Extents(ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.NewExtents(start, end, top, bottom), true)
@@ -81,10 +81,10 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         /// <param name="cb"></param>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <param name="top"></param>
-        /// <param name="bottom"></param>
+        /// <param name="start">The start extent value horizontally.</param>
+        /// <param name="end">The end extent value horizontally.</param>
+        /// <param name="top">The top extent value vertically.</param>
+        /// <param name="bottom">The bottom extent value vertically.</param>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.NewExtents(start, end, top, bottom), true)
@@ -115,10 +115,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <param name="top"></param>
-        /// <param name="bottom"></param>
+        /// <param name="start">The start extent value horizontally.</param>
+        /// <param name="end">The end extent value horizontally.</param>
+        /// <param name="top">The top extent value vertically.</param>
+        /// <param name="bottom">The bottom extent value vertically.</param>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
 		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort bottom);

@@ -44,6 +44,10 @@ namespace Tizen.System
         /// <summary>
         /// Increase the cpu clock within timeout.
         /// </summary>
+        /// <remarks>
+        /// The timeout parameter specifies the duration of the CPU boost in milliseconds.
+        /// If the timeout value exceeds 3000 milliseconds, it will automatically be set to 3000 milliseconds.
+        /// </remarks>
         /// <param name="type">Performance Control Type</param>
         /// <param name="timeout">Cpu clock increasing duration in milliseconds.</param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>

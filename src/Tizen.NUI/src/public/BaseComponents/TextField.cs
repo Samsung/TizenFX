@@ -286,7 +286,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextField with setting the status of shown or hidden.
         /// </summary>
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextField(bool shown) : this(Interop.TextField.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
@@ -1301,7 +1301,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorWidth property.
+        /// Gets or sets the width of the cursor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int CursorWidth
@@ -2860,7 +2860,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enables the grab handles for text selection.<br />
         /// The default value is true, which means the grab handles are enabled by default.<br />
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableGrabHandle
         {
@@ -2894,7 +2894,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enables the grab handle popup for text selection.<br />
         /// The default value is true, which means the grab handle popup is enabled by default.<br />
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableGrabHandlePopup
         {
@@ -2986,7 +2986,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enable editing in text control.
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableEditing
         {
@@ -3491,7 +3491,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enables selection of the text using the Shift key.
         /// </summary>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableShiftSelection
         {
@@ -3680,7 +3680,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Select the whole text.
+        /// Selects the entire text within the TextField.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void SelectWholeText()
@@ -3800,7 +3800,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {

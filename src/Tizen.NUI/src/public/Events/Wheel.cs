@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of Wheel class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Wheel() : this(Interop.Wheel.New(0, 0, 0u, Vector2.getCPtr(new Vector2(0.0f, 0.0f)), 0, 0u), true)

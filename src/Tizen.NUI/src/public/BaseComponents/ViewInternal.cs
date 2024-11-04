@@ -496,7 +496,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentParentOrigin()
         {
 
-            if(internalCurrentParentOrigin == null)
+            if (internalCurrentParentOrigin == null)
             {
                 internalCurrentParentOrigin = new Position(0, 0, 0);
             }
@@ -520,7 +520,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentAnchorPoint()
         {
 
-            if(internalCurrentAnchorPoint == null)
+            if (internalCurrentAnchorPoint == null)
             {
                 internalCurrentAnchorPoint = new Position(0, 0, 0);
             }
@@ -565,7 +565,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetTargetSize()
         {
 
-            if(internalTargetSize == null)
+            if (internalTargetSize == null)
             {
                 internalTargetSize = new Vector3(0, 0, 0);
             }
@@ -582,7 +582,7 @@ namespace Tizen.NUI.BaseComponents
         internal Size2D GetCurrentSize()
         {
 
-            if(internalCurrentSize == null)
+            if (internalCurrentSize == null)
             {
                 internalCurrentSize = new Size2D(0, 0);
             }
@@ -647,7 +647,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentPosition()
         {
 
-            if(internalCurrentPosition == null)
+            if (internalCurrentPosition == null)
             {
                 internalCurrentPosition = new Position(0, 0, 0);
             }
@@ -663,7 +663,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetCurrentWorldPosition()
         {
 
-            if(internalCurrentWorldPosition == null)
+            if (internalCurrentWorldPosition == null)
             {
                 internalCurrentWorldPosition = new Vector3(0, 0, 0);
             }
@@ -680,7 +680,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector2 GetCurrentScreenPosition()
         {
 
-            if(internalCurrentScreenPosition == null)
+            if (internalCurrentScreenPosition == null)
             {
                 internalCurrentScreenPosition = new Vector2(0, 0);
             }
@@ -792,7 +792,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetCurrentScale()
         {
 
-            if(internalCurrentScale == null)
+            if (internalCurrentScale == null)
             {
                 internalCurrentScale = new Vector3(0, 0, 0);
             }
@@ -809,7 +809,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetCurrentWorldScale()
         {
 
-            if(internalCurrentWorldScale == null)
+            if (internalCurrentWorldScale == null)
             {
                 internalCurrentWorldScale = new Vector3(0, 0, 0);
             }
@@ -886,7 +886,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector4 GetCurrentColor()
         {
 
-            if(internalCurrentColor == null)
+            if (internalCurrentColor == null)
             {
                 internalCurrentColor = new Vector4(0, 0, 0, 0);
             }
@@ -910,7 +910,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector4 GetCurrentWorldColor()
         {
 
-            if(internalCurrentWorldColor == null)
+            if (internalCurrentWorldColor == null)
             {
                 internalCurrentWorldColor = new Vector4(0, 0, 0, 0);
             }
@@ -1002,12 +1002,12 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetSizeModeFactor()
         {
 
-                if (internalSizeModeFactor == null)
-                {
-                    internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
-                return internalSizeModeFactor;
+            if (internalSizeModeFactor == null)
+            {
+                internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
+            return internalSizeModeFactor;
         }
 
         internal void SetMinimumSize(Vector2 size)
@@ -1258,7 +1258,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
         }
 
-        /// TODO open as a protected level
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal virtual void ApplyCornerRadius()
         {
             if (backgroundExtraData == null) return;
@@ -1282,7 +1282,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// TODO open as a protected level
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;
@@ -1437,7 +1437,10 @@ namespace Tizen.NUI.BaseComponents
 
                 foreach (View view in Children)
                 {
-                    view.InternalParent = null;
+                    if (view != null)
+                    {
+                        view.InternalParent = null;
+                    }
                 }
 
                 if (themeData != null)
@@ -1746,7 +1749,7 @@ namespace Tizen.NUI.BaseComponents
             if (readingSkippedCallback != null)
             {
                 NUILog.Debug($"[Dispose] readingSkippedCallback");
-                
+
                 ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
                 ReadingSkippedSignal?.Dispose();
                 ReadingSkippedSignal = null;

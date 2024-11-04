@@ -27,7 +27,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// Creates TypeInfo object.
+        /// Default constructor which creates TypeInfo object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TypeInfo() : this(Interop.TypeInfo.NewTypeInfo(), true, false)

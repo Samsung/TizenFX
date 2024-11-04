@@ -16,22 +16,27 @@
 
 namespace Tizen.Applications.Shortcut
 {
+    using System;
+
     /// <summary>
     /// A class for getting the information of the shortcut.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class ShortcutDeletedInfo
     {
         /// <summary>
         /// Gets the name of the package.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string AppId { get; internal set; }
 
         /// <summary>
         /// Gets the name of the created shortcut icon.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string ShortcutName { get; internal set; }
     }
 }

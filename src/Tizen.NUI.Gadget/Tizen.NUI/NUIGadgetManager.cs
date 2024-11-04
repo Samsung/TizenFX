@@ -31,7 +31,7 @@ using SystemIO = System.IO;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// This class has the methods and events of the NUIGadgetManager.
+    /// The NUIGadgetManager provides methods and events related to managing gadgets in the NUI.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -109,6 +109,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs when the lifecycle of the NUIGadget is changed.
         /// </summary>
+        /// <remarks>
+        /// This event is raised when the state of the NUIGadget changes.
+        /// It provides information about the current state through the NUIGadgetLifecycleChangedEventArgs argument.
+        /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         public static event EventHandler<NUIGadgetLifecycleChangedEventArgs> NUIGadgetLifecycleChanged;
 
@@ -137,6 +141,10 @@ namespace Tizen.NUI
         /// Loads an assembly of the NUIGadget.
         /// </summary>
         /// <param name="resourceType">The resource type of the NUIGadget package.</param>
+        /// <remarks>
+        /// This method loads an assembly of the NUIGadget based on the specified resource type.
+        /// It throws an ArgumentException if the argument is invalid, or an InvalidOperationException if the operation fails due to any reason.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -149,9 +157,9 @@ namespace Tizen.NUI
         /// Loads an assembly of the NUIGadget.
         /// </summary>
         /// <param name="resourceType">The resource type of the NUIGadget package.</param>
-        /// <param name="useDefaultContext">The flag if ture, use a default load context. Otherwise, use a new load context.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <param name="useDefaultContext">Indicates whether to use a default load context or not.</param>
+        /// <exception cref="ArgumentException">Thrown when failed due to an invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed due to an invalid operation.</exception>
         /// <since_tizen> 10 </since_tizen>
         public static void Load(string resourceType, bool useDefaultContext)
         {
@@ -165,10 +173,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Unloads the loaded assembly of the NUIGadget.
+        /// Unloads the specified NUIGadget assembly from memory.
         /// </summary>
-        /// <param name="resourceType">The resource type of the NUIGadget package.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
+        /// <remarks>
+        /// To use this method properly, the assembly of the gadget must be loaded using Load() with the custom context.
+        /// </remarks>
+        /// <param name="resourceType">The resource type of the NUIGadget package to unload.</param>
+        /// <exception cref="ArgumentException">Thrown when the argument passed is not valid.</exception>
+        /// <example>
+        /// <code>
+        /// /// Load an assembly of the NUIGadget.
+        /// NUIGadgetManager.Load("org.tizen.appfw.gadget.NetworkSetting", false);
+        /// /// NUIGadgetManager.Add("org.tizen.appfw.gadget.NetworkSetting", "NetworkSettingGadget", false);
+        ///
+        /// /// Unload the loaded assembly
+        /// NUIGadgetManager.Unload("org.tizen.appfw.gadget.NetworkSetting");
+        /// </code>
+        /// </example>
         /// <since_tizen> 10 </since_tizen>
         public static void Unload(string resourceType)
         {
@@ -193,7 +214,6 @@ namespace Tizen.NUI
                 if (info.NUIGadgetAssembly != null && info.NUIGadgetAssembly.IsLoaded)
                 {
                     info.NUIGadgetAssembly.Unload();
-                    info.NUIGadgetAssembly = null;
                 }
             }
         }
@@ -221,12 +241,12 @@ namespace Tizen.NUI
                     }
                     else
                     {
-                        if (info.NUIGadgetAssembly == null)
+                        if (info.NUIGadgetAssembly == null || !info.NUIGadgetAssembly.IsLoaded)
                         {
-                            Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                            info.NUIGadgetAssembly = new NUIGadgetAssembly(info.ResourcePath + info.ExecutableFile);
+                            Log.Warn("NUIGadgetAssembly.Load(): " + info.AllowedResourcePath + info.ExecutableFile + " ++");
+                            info.NUIGadgetAssembly = new NUIGadgetAssembly(info.AllowedResourcePath + info.ExecutableFile);
                             info.NUIGadgetAssembly.Load();
-                            Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                            Log.Warn("NUIGadgetAssembly.Load(): " + info.AllowedResourcePath + info.ExecutableFile + " --");
                         }
                     }
                 }
@@ -258,6 +278,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds a NUIGadget to the NUIGadgetManager.
         /// </summary>
+        /// <remarks>
+        /// To use Unload() method, the useDefaultContext must be'false'.
+        /// </remarks>
         /// <param name="resourceType">The resource type of the NUIGadget package.</param>
         /// <param name="className">The class name of the NUIGadget.</param>
         /// <param name="useDefaultContext">The flag it true, use a default context. Otherwise, use a new load context.</param>
@@ -295,9 +318,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the instance of the running NUIGadgets.
+        /// Retrieves the instances of currently running NUIGadgets.
         /// </summary>
-        /// <returns>The NUIGadget list.</returns>
+        /// <returns>An enumerable list containing all the active NUIGadgets.</returns>
         /// <since_tizen> 10 </since_tizen>
         public static IEnumerable<NUIGadget> GetGadgets()
         {
@@ -305,14 +328,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the information of the available NUIGadgets.
+        /// Retrieves information about available NUIGadgets.
         /// </summary>
         /// <remarks>
-        /// This method only returns the available gadget informations, not all installed gadget informations.
-        /// The resource package of the NUIGadget can set the allowed packages using "allowed-package".
-        /// When executing an application, the platform mounts the resource package into the resource path of the application.
+        /// This method provides details on gadgets that are currently accessible rather than listing all installed gadgets.
+        /// A NUIGadget's resource package may specify which applications have access through the "allowed-packages" setting.
+        /// During execution, the platform mounts the resource package in the application's resources directory.
         /// </remarks>
-        /// <returns>The NUIGadgetInfo list.</returns>
+        /// <returns>An enumerable list of NUIGadgetInfo objects.</returns>
         /// <since_tizen> 10 </since_tizen>
         public static IEnumerable<NUIGadgetInfo> GetGadgetInfos()
         {
@@ -320,9 +343,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes the NUIGadget from the NUIGadgetManager.
+        /// Removes the specified NUIGadget from the NUIGadgetManager.
         /// </summary>
-        /// <param name="gadget">The NUIGadget object.</param>
+        /// <param name="gadget">The NUIGadget object that needs to be removed.</param>
+        /// <remarks>
+        /// This method allows you to remove a specific NUIGadget from the NUIGadgetManager.
+        /// By passing the NUIGadget object as an argument, you can ensure that only the desired gadget is removed.
+        /// It is important to note that once a gadget is removed, any references to it become invalid.
+        /// Therefore, it is crucial to handle the removal process carefully to avoid any potential issues.
+        /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         public static void Remove(NUIGadget gadget)
         {
@@ -346,6 +375,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes all NUIGadgets from the NUIGadgetManager.
         /// </summary>
+        /// <remarks>
+        /// This method is called to remove all NUIGadgets that are currently registered in the NUIGadgetManager.
+        /// It ensures that no more NUIGadgets exist after calling this method.
+        /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         public static void RemoveAll()
         {
@@ -356,12 +389,33 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Resumes the running NUIGadget.
+        /// Resumes the execution of the specified NUIGadget.
         /// </summary>
-        /// <param name="gadget">The NUIGadget object.</param>
+        /// <remarks>
+        /// By calling this method, you can resume the execution of the currently suspended NUIGadget.
+        /// It takes the NUIGadget object as an argument which represents the target gadget that needs to be resumed.
+        /// </remarks>
+        /// <param name="gadget">The NUIGadget object whose execution needs to be resumed.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
+        /// <example>
+        /// To resume the execution of a specific NUIGadget named 'MyGadget', you can call the following code snippet:
+        ///
+        /// <code>
+        /// // Get the reference to the NUIGadget object
+        /// NUIGadget MyGadget = ...;
+        ///
+        /// // Resume its execution
+        /// GadgetResume(MyGadget);
+        /// </code>
+        /// </example>
         /// <since_tizen> 10 </since_tizen>
         public static void Resume(NUIGadget gadget)
         {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
             if (!_gadgets.Contains(gadget))
             {
                 return;
@@ -375,12 +429,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Pauses the running NUIGadget.
+        /// Pauses the execution of the specified NUIGadget.
         /// </summary>
-        /// <param name="gadget">The NUIGadget object.</param>
+        /// <remarks>
+        /// Calling this method pauses the currently executing NUIGadget. It does not affect any other gadgets that may be running simultaneously.
+        /// </remarks>
+        /// <param name="gadget">The NUIGadget object whose execution needs to be paused.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the argument 'gadget' is null.</exception>
         /// <since_tizen> 10 </since_tizen>
         public static void Pause(NUIGadget gadget)
         {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
             if (!_gadgets.Contains(gadget))
             {
                 return;
@@ -394,12 +457,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sends the appcontrol to the running NUIGadget.
+        /// Sends the specified application control to the currently running NUIGadget.
         /// </summary>
-        /// <param name="gadget">The NUIGadget object.</param>
-        /// <param name="appControl">The appcontrol object.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when failed because the argument is null.</exception>
+        /// <param name="gadget">The NUIGadget object that will receive the app control.</param>
+        /// <param name="appControl">The app control object containing the desired arguments and actions.</param>
+        /// <exception cref="ArgumentException">Thrown if any of the arguments are invalid or missing.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if either 'gadget' or 'appControl' is null.</exception>
         /// <since_tizen> 10 </since_tizen>
         public static void SendAppControl(NUIGadget gadget, AppControl appControl)
         {

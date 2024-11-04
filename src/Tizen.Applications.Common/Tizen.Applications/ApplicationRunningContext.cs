@@ -21,8 +21,12 @@ using System.ComponentModel;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class provides methods and properties to get information of the application.
+    /// This class provides methods and properties to retrieve information about the currently running application context.
     /// </summary>
+    /// <remarks>
+    /// The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+    /// It also offers functionality to check if the current application is in foreground or background mode.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class ApplicationRunningContext : IDisposable
     {
@@ -37,12 +41,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// A constructor of ApplicationRunningContext that takes the application ID.
+        /// Constructs an ApplicationRunningContext object from the specified application ID.
         /// </summary>
-        /// <param name="applicationId">Application ID.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the "application not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <remarks>
+        /// The constructor creates a new instance of the ApplicationRunningContext class by passing in the application ID.
+        /// It throws exceptions if any errors occur during initialization, such as invalid arguments, non-existent applications, system errors, or out of memory conditions.
+        /// </remarks>
+        /// <example>
+        /// Here's an example demonstrating how to construct an ApplicationRunningContext object using the constructor:
+        ///
+        /// <code>
+        /// // Define the application ID
+        /// const string APP_ID = "org.example.app";
+        ///
+        /// // Instantiate the ApplicationRunningContext class with the application ID
+        /// var context = new ApplicationRunningContext(APP_ID);
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public ApplicationRunningContext(string applicationId)
         {
@@ -99,7 +115,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Destructor of the class.
+        /// Destroys the current application running context.
         /// </summary>
         ~ApplicationRunningContext()
         {

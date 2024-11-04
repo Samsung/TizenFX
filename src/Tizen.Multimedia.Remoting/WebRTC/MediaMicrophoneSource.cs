@@ -21,7 +21,7 @@ using NativeWebRTC = Interop.NativeWebRTC;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a microphone source.
+    /// Represents a media source that makes audio data using microphone.
     /// </summary>
     /// <remarks>The recorder privilege(http://tizen.org/privilege/recorder) is required.</remarks>
     /// <seealso cref="WebRTC.AddSource"/>

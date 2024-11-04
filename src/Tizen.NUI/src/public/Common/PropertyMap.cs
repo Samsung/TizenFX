@@ -26,7 +26,7 @@ namespace Tizen.NUI
     public class PropertyMap : Disposable
     {
         /// <summary>
-        /// The constructor.
+        /// Default constructor of PropertyMap class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap() : this(Interop.PropertyMap.NewPropertyMap(), true)
@@ -363,6 +363,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Clears the map.
+        /// This method removes all key-value pairs from the PropertyMap.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Clear()

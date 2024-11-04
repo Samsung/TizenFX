@@ -193,7 +193,7 @@ namespace Tizen.Multimedia
         #endregion
 
         /// <summary>
-        /// Gets the state of the player.
+        /// Gets the current state of the player.
         /// </summary>
         /// <value>The current state of the player.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -258,7 +258,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the looping state.
+        /// Gets or sets a value indicationg whether the media source is played in a loop.
         /// </summary>
         /// <value>true if the playback is looping; otherwise, false. The default value is false.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -286,7 +286,7 @@ namespace Tizen.Multimedia
         private PlayerDisplaySettings _displaySettings;
 
         /// <summary>
-        /// Gets the display settings.
+        /// Gets the display settings of the player.
         /// </summary>
         /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
         /// <since_tizen> 3 </since_tizen>
@@ -314,7 +314,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the display.
+        /// Gets or sets the display of the player.
         /// </summary>
         /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
         /// <remarks>
@@ -387,7 +387,7 @@ namespace Tizen.Multimedia
         private PlayerTrackInfo _audioTrack;
 
         /// <summary>
-        /// Gets the track info for the audio.
+        /// Gets the audio track information of the player.
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for audio.</value>
         /// <since_tizen> 3 </since_tizen>
@@ -406,7 +406,7 @@ namespace Tizen.Multimedia
         private PlayerTrackInfo _subtitleTrackInfo;
 
         /// <summary>
-        /// Gets the track info for the subtitle.
+        /// Gets the sutitle track information of the player.
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for the subtitle.</value>
         /// <since_tizen> 3 </since_tizen>
@@ -425,7 +425,7 @@ namespace Tizen.Multimedia
         private StreamInfo _streamInfo;
 
         /// <summary>
-        /// Gets the stream information.
+        /// Gets the stream information of the player.
         /// </summary>
         /// <value>A <see cref="StreamInfo"/> for this player.</value>
         /// <since_tizen> 3 </since_tizen>
@@ -444,7 +444,7 @@ namespace Tizen.Multimedia
         private AudioEffect _audioEffect;
 
         /// <summary>
-        /// Gets the audio effect.
+        /// Gets the audio effect of the player.
         /// </summary>
         /// <feature>http://tizen.org/feature/multimedia.custom_audio_effect</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -463,7 +463,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the mute state.
+        /// Gets or sets a value indicationg whether the audio output of the player is muted.
         /// </summary>
         /// <value>true if the player is muted; otherwise, false.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -486,7 +486,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the current volume.
+        /// Gets or sets the current volume of the player.
         /// </summary>
         /// <remarks>Valid volume range is from 0 to 1.0, inclusive.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -520,7 +520,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the audio-only state.
+        /// Gets or sets a value indicating whether the player is in audio only mode.
         /// </summary>
         /// <value>true if the playback is audio-only mode; otherwise, false. The default value is false.</value>
         /// The <see cref="Player"/> must be in the <see cref="PlayerState.Ready"/>,
@@ -547,7 +547,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the player's replaygain state.
+        /// Gets or sets a value indicating whether the replay gain is enabled.
         /// </summary>
         /// <value>If the replaygain status is true, replaygain is applied (if contents has a replaygain tag);
         /// otherwise, the replaygain is not affected by tag and properties.</value>
@@ -585,8 +585,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Enables or disables controlling the pitch of audio.
-        /// Gets the status of controlling the pitch of audio.
+        /// Gets or sets a value indicating whether the audio pitch control is enabled.
         /// </summary>
         /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
         /// <remarks>This function is used for audio content only.
@@ -628,7 +627,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the pitch of audio.
+        /// Gets or sets the pitch of the audio.
         /// </summary>
         /// <value>The audio stream pitch value. The default is 1.</value>
         /// <remarks>Enabling pitch control could increase the CPU usage on some devices.
@@ -783,7 +782,7 @@ namespace Tizen.Multimedia
         private SphericalVideo _sphericalVideo;
 
         /// <summary>
-        /// Gets the spherical video settings.
+        /// Gets the spherical video porperties of the player.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public SphericalVideo SphericalVideo
@@ -802,7 +801,7 @@ namespace Tizen.Multimedia
         private AdaptiveVariants _adaptiveVariants;
 
         /// <summary>
-        /// Gets the adaptive variants settings.
+        /// Gets the adaptive variants of the player.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public AdaptiveVariants AdaptiveVariants
@@ -821,7 +820,7 @@ namespace Tizen.Multimedia
         private AudioOffload _audioOffload;
 
         /// <summary>
-        /// Gets the setting for audio offload.
+        /// Gets the audio offload settings of the player.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AudioOffload AudioOffload

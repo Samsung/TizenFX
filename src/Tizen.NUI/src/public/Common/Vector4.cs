@@ -94,7 +94,8 @@ namespace Tizen.NUI
         private Vector4ChangedCallback callback = null;
 
         /// <summary>
-        /// (1.0f,1.0f,1.0f,1.0f).
+        /// Returns a Vector2 instance where both the x and y components are set to 1.0f.
+        /// Actual value is (1.0f,1.0f,1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 One
@@ -109,7 +110,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (1.0f,0.0f,0.0f,0.0f).
+        /// The vector representing the x-axis.
+        /// Actual value is (1.0f,0.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 XAxis
@@ -124,7 +126,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (0.0f,1.0f,0.0f,0.0f).
+        /// The vector representing the y-axis.
+        /// Actual value is (0.0f,1.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 YAxis
@@ -139,7 +142,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (0.0f,0.0f,1.0f,0.0f).
+        /// The vector representing the z-axis.
+        /// Actual value is (0.0f,0.0f,1.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 ZAxis
@@ -154,7 +158,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (0.0f, 0.0f, 0.0f, 0.0f).
+        /// A Vector2 object representing the zero vector.
+        /// Actual value is (0.0f, 0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Vector4 Zero

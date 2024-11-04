@@ -22,7 +22,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] A MeasureSpecification is used during the Measure pass by a LayoutGroup to inform it's children how to be measured.
+    /// A MeasureSpecification is used during the Measure pass by a LayoutGroup to inform it's children how to be measured.
     /// For instance, it may measure a child with an exact width and an unspecified height in order to determine height for width.
     /// </summary>
     public struct MeasureSpecification

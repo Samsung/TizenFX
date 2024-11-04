@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The filter mode type.
+    /// Enumeration of the type of possible filter modes.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum FilterModeType

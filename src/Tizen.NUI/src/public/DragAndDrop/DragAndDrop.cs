@@ -31,8 +31,19 @@ namespace Tizen.NUI
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "It does not have ownership.")]
     public class DragAndDrop : BaseHandle
     {
+        /// <summary>
+        /// A delegate representing the method that will handle the drag source event.
+        /// </summary>
+        /// <param name="sourceEventType">The type of the drag source event.</param>
         public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
+        
         private delegate void InternalSourceEventHandler(int sourceEventType);
+        
+        /// <summary>
+        /// Delegate representing the method that will handle drag and drop events.
+        /// </summary>
+        /// <param name="targetView">The view where the drag event occurred.</param>
+        /// <param name="nativeDragEvent">The native drag event containing details about the drag operation.</param>
         public delegate void DragAndDropEventHandler(View targetView, DragEvent navtiveDragEvent);
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent navtiveDragEvent);

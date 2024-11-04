@@ -19,8 +19,12 @@ using System;
 namespace Tizen.System
 {
     /// <summary>
-    /// The class for event arguments of the media key.
+    /// Event arguments class for handling media key events.
     /// </summary>
+    /// <remarks>
+    /// This class provides properties that contain information about the media key event, such as the key value and key status.
+    /// By implementing handlers for the appropriate events, you can respond to user interactions with media keys on supported devices.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class MediaKeyEventArgs : EventArgs
     {
@@ -117,8 +121,12 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// The class for receiving events of media keys.
+    /// A class that provides methods for handling media key events.
     /// </summary>
+    /// <remarks>
+    /// This class enables developers to receive and handle events triggered by various media keys such as play/pause, volume up/down, etc.
+    /// By implementing the appropriate event handlers, applications can respond accordingly to user input from these keys.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public static class MediaKey
     {
@@ -137,8 +145,13 @@ namespace Tizen.System
         /// <summary>
         /// Adds or removes events for all media keys.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// By subscribing to this event, you can receive notifications about user interactions with media keys such as play/pause, volume up/down, etc.
+        /// To handle these events, you need to provide a callback function that implements the EventHandler&lt;MediaKeyEventArgs&gt; delegate.
+        /// In case of failure while reserving or releasing the key, an InvalidOperationException will be thrown.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">Failed to reserve or release the key.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<MediaKeyEventArgs> Event
         {
             add
