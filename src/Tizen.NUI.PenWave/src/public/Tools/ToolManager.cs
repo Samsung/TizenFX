@@ -25,15 +25,10 @@ namespace Tizen.NUI.PenWave
 {
     public class ToolManager
     {
-        public readonly Dictionary<ToolBase.ToolType, ToolBase> Tools;
-        private ToolBase mCurrentTool;
+        public Dictionary<ToolBase.ToolType, ToolBase> Tools { get; } = new();
+        private ToolBase currentTool;
 
-        public event Action<ToolBase.ToolType> ToolChanged;
-
-        public ToolManager()
-        {
-            Tools = new Dictionary<ToolBase.ToolType, ToolBase>();
-        }
+        public ToolManager() {}
 
         public void RegisterTool(ToolBase tool)
         {
@@ -55,35 +50,25 @@ namespace Tizen.NUI.PenWave
 
         public void SelectTool(ToolBase.ToolType toolType)
         {
-
-            if (mCurrentTool != null)
+            currentTool?.Deactivate();
+            if (Tools.TryGetValue(toolType, out currentTool))
             {
-                if (toolType == GetCurrentToolType())
-                {
-                    return;   // 선택된 툴이 현재 툴과 같다. 할 거 없다.
-                }
-                mCurrentTool.Activate = false;
-            }
-
-            if (Tools.TryGetValue(toolType, out mCurrentTool))
-            {
-                mCurrentTool.Activate = true;
-                ToolChanged?.Invoke(toolType);
+                currentTool.Activate();
+                EventBus.Publish("ToolChanged", toolType);
             }
         }
 
         public void HandleInput(Touch touch)
         {
-            mCurrentTool?.HandleInput(touch);
+            currentTool?.HandleInput(touch);
         }
-
-        public ToolBase.ToolType GetCurrentToolType() => mCurrentTool?.Type ?? ToolBase.ToolType.Pencil;
 
         private void OnToolSelected(ToolBase.ToolType toolType)
         {
             Tizen.Log.Info("NUI", $"OnToolSelected {toolType}\n");
             SelectTool(toolType);
-            ToolChanged?.Invoke(toolType);
         }
+
+        public ToolBase.ToolType GetCurrentToolType() => currentTool?.Type ?? ToolBase.ToolType.Pencil;
     }
 }

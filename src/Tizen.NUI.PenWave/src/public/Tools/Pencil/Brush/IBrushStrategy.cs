@@ -23,29 +23,8 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class SizeIcon : Icon
+    public interface IBrushStrategy
     {
-        private readonly float mSize;
-
-        public SizeIcon(float size) : base()
-        {
-            mSize = size;
-
-            string url = $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
-
-            InitializeIcon(url, new Color("#17234d"));
-            mImgView.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
-        }
-
-        public override bool IconClick(object sender, View.TouchEventArgs args)
-        {
-            if (base.IconClick(sender, args))
-            {
-                PWEngine.SetStrokeSize(GetSize());
-            }
-            return true;
-        }
-
-        public float GetSize() => mSize;
+        void ApplyBrushSettings();
     }
 }

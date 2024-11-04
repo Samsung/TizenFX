@@ -26,19 +26,107 @@ namespace Tizen.NUI.PenWave
     public class PencilTool : ToolBase
     {
         public override ToolBase.ToolType Type => ToolBase.ToolType.Pencil;
+
+        private static readonly string popupBgUrl = $"{FrameworkInformation.ResourcePath}images/light/canvas_popup_bg.png";
+
         private PenInk ink;
         private uint mCurrentShapeId;
         private bool mIsDrawing = false;
+
+        private Icon pencilIcon;
+        private Icon sizeIcon;
+        private Icon colorIcon;
 
 
         public PencilTool()
         {
             ink = new PenInk();
+
+            InitializePencilTool();
         }
 
         public PencilTool(PenInk penInk)
         {
             ink = penInk ?? new PenInk();
+
+            InitializePencilTool();
+        }
+
+        private void InitializePencilTool()
+        {
+            pencilIcon = new BrushIcon(PWEngine.BrushType.Stroke); // 현재 선택된 브러쉬 타입으로 업데이트 필요
+            AddIcon(pencilIcon);
+
+            sizeIcon = new SizeIcon(12.0f);
+            AddIcon(sizeIcon);
+
+            colorIcon = new ColorIcon(Color.Black); // 현재 선택된 색상으로 업데이트 필요
+            AddIcon(colorIcon);
+        }
+
+        protected override void OnIconSelected(object sender)
+        {
+            base.OnIconSelected(sender);
+            if (sender is BrushIcon)
+            {
+                Tizen.Log.Info("NUI", $"BrushIcon Selected\n");
+                var brushIconsView = CreateBrushIconsView();
+                PopupManager.ShowPopup(brushIconsView);
+            }
+            else if (sender is SizeIcon)
+            {
+                Tizen.Log.Info("NUI", $"SizeIcon Selected\n");
+                var sizeIconsView = CreateSizeIconsView();
+                PopupManager.ShowPopup(sizeIconsView);
+            }
+            else if (sender is ColorIcon)
+            {
+                Tizen.Log.Info("NUI", $"ColorIcon Selected\n");
+                var colorIconsView = CreateColorIconsView();
+                PopupManager.ShowPopup(colorIconsView);
+            }
+        }
+
+        private View CreateBrushIconsView()
+        {
+            var view = new ImageView
+            {
+                BackgroundImage = popupBgUrl,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
+            };
+            AddIcons(view, ink.BrushTypes, brushType => new BrushIcon(brushType));
+            view.Position2D = new Position2D((int)pencilIcon.ScreenPosition.X, (int)pencilIcon.ScreenPosition.Y + 60);
+            return view;
+        }
+
+        private View CreateSizeIconsView()
+        {
+            var view = new ImageView
+            {
+                BackgroundImage = popupBgUrl,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
+            };
+            AddIcons(view, ink.Sizes, size => new SizeIcon(size));
+            view.Position2D = new Position2D((int)sizeIcon.ScreenPosition.X, (int)sizeIcon.ScreenPosition.Y + 60);
+            return view;
+        }
+
+        private View CreateColorIconsView()
+        {
+            var view = new ImageView
+            {
+                BackgroundImage = popupBgUrl,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
+            };
+            AddIcons(view, ink.Colors, color => new ColorIcon(color));
+            view.Position2D = new Position2D((int)colorIcon.ScreenPosition.X, (int)colorIcon.ScreenPosition.Y + 60);
+            return view;
         }
 
         protected override void StartDrawing(Vector2 position, uint touchTime)
@@ -69,44 +157,21 @@ namespace Tizen.NUI.PenWave
             mCurrentShapeId = 0;
         }
 
-        protected override void Deactivate()
-        {
-            EndDrawing();
-        }
 
-        public override View GetUI()
-        {
-            View rootView = new View
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                },
-            };
-
-            AddIconsToView(rootView, ink.BrushTypes, brushType => new BrushIcon(brushType));
-            AddIconsToView(rootView, ink.Sizes, size => new SizeIcon(size));
-            AddIconsToView(rootView, ink.Colors, color => new ColorIcon(color));
-            return rootView;
-        }
-
-        private void AddIconsToView<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
+        private void AddIcons<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
         {
             var view = new View
             {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                },
+                Layout = new GridLayout { Columns = 4, ColumnSpacing = 8, RowSpacing = 8 },
             };
             foreach (var item in items)
             {
                 var icon = iconFactory(item);
                 view.Add(icon);
-                icon.IconSelected += OnIconSelected;
             }
             rootView.Add(view);
         }
+
     }
 
     public enum ErrorShapeAddPointsType

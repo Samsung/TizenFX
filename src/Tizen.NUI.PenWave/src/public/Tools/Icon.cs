@@ -25,7 +25,7 @@ namespace Tizen.NUI.PenWave
 {
     public abstract class Icon : View
     {
-        public event Action IconSelected;
+        public event Action<object> IconSelected;
 
         protected ImageView mImgView;
         protected ImageView mBorder;
@@ -70,7 +70,7 @@ namespace Tizen.NUI.PenWave
         {
             if (args.Touch.GetState(0) == PointStateType.Down)
             {
-                IconSelected?.Invoke();
+                IconSelected?.Invoke(sender);
                 return true;
             }
             return false;

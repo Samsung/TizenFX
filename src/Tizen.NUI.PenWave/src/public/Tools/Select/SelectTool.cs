@@ -38,7 +38,7 @@ namespace Tizen.NUI.PenWave
 
         public SelectTool()
         {
-
+            AddIcon(new SelectIcon());
         }
 
          protected override void StartDrawing(Vector2 position, uint touchTime)
@@ -85,25 +85,10 @@ namespace Tizen.NUI.PenWave
             mode = Mode.None;
         }
 
-        protected override void Deactivate()
+        protected override void OnDeactivate()
         {
             mode = Mode.None;
-            EndDrawing();
-        }
-
-        public override View GetUI()
-        {
-            View rootView = new View
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                },
-            };
-            var icon = new SelectIcon();
-            rootView.Add(icon);
-            icon.IconSelected += OnIconSelected;
-            return rootView;
+            base.OnDeactivate();
         }
     }
 }

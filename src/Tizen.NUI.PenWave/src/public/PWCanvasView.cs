@@ -36,30 +36,25 @@ namespace Tizen.NUI.PenWave
 
         public PWCanvasView() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            pageManager = new PageManager();
             renderer = new CanvasRenderer(PWEngine.CreateCanvas(-1, -1));
-            uiManager = new CanvasUIManager(this);
-            ToolManager = new ToolManager();
             InitializeCanvas();
         }
 
         public PWCanvasView(string backgroundPath) : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            pageManager = new PageManager();
             renderer = new CanvasRenderer(PWEngine.CreateCanvasWithBackgroundImage(backgroundPath));
-            uiManager = new CanvasUIManager(this);
-            ToolManager = new ToolManager();
             InitializeCanvas();
         }
+
 
         public static PWCanvasView CreateDefaultCanvas()
         {
             var canvasView = new PWCanvasView();
 
-            CanvasTool canvasTool = new CanvasTool();
-            PencilTool pencilTool = new PencilTool();
-            EraserTool eraserTool = new EraserTool();
-            SelectTool selectTool = new SelectTool();
+            var canvasTool = ToolFactory.CreateTool(ToolBase.ToolType.Canvas);
+            var pencilTool = ToolFactory.CreateTool(ToolBase.ToolType.Pencil);
+            var eraserTool = ToolFactory.CreateTool(ToolBase.ToolType.Eraser);
+            var selectTool = ToolFactory.CreateTool(ToolBase.ToolType.Select);
 
             canvasView.ToolManager.RegisterTool(canvasTool);
             canvasView.ToolManager.RegisterTool(pencilTool);
@@ -71,8 +66,16 @@ namespace Tizen.NUI.PenWave
             return canvasView;
         }
 
+        private void InitializeManager()
+        {
+            pageManager = new PageManager();
+            uiManager = new CanvasUIManager(this);
+            ToolManager = new ToolManager();
+        }
+
         private void InitializeCanvas()
         {
+            InitializeManager();
             this.RenderingMode = GLRenderingMode.Continuous;
             this.RegisterGLCallbacks(renderer.InitializeGL, renderer.RenderFrame, renderer.TerminateGL);
             this.SetGraphicsConfig(false, false, 0, GLESVersion.Version20);

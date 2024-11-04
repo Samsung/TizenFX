@@ -25,7 +25,8 @@ namespace Tizen.NUI.PenWave
 {
     public class BrushIcon : Icon
     {
-        private PWEngine.BrushType mBrushType;
+        private PWEngine.BrushType brushType;
+        private readonly IBrushStrategy brushStrategy;
 
         private static readonly Dictionary<PWEngine.BrushType, string> IconMap = new Dictionary<PWEngine.BrushType, string>
         {
@@ -40,52 +41,12 @@ namespace Tizen.NUI.PenWave
             { PWEngine.BrushType.SharpBrush, "icon_sharp_brush" },
         };
 
-        private static readonly Dictionary<PWEngine.BrushType, Action> BrushConfigs = new Dictionary<PWEngine.BrushType, Action>
-        {
-            { PWEngine.BrushType.Stroke, () => PWEngine.SetStrokeType(0) },
-            { PWEngine.BrushType.VarStroke, () => PWEngine.SetStrokeType(6) },
-            { PWEngine.BrushType.VarStrokeInc, () => PWEngine.SetStrokeType(7) },
-            { PWEngine.BrushType.SprayBrush, () =>
-                {
-                    PWEngine.SetStrokeType(1);
-                    PWEngine.SetBrushTexture(0);
-                    PWEngine.SetBrushDistance(3.0f);
-                }
-            },
-            { PWEngine.BrushType.DotBrush, () =>
-                {
-                    PWEngine.SetStrokeType(1);
-                    PWEngine.SetBrushTexture(1);
-                    PWEngine.SetBrushDistance(2.0f);
-                }
-            },
-            { PWEngine.BrushType.DashedLine, () =>
-                {
-                    PWEngine.SetStrokeType(5);
-                    PWEngine.SetDashArray("1 3");
-                }
-            },
-            { PWEngine.BrushType.Highlighter, () =>
-                {
-                    PWEngine.SetStrokeType(1);
-                    PWEngine.SetBrushTexture(3);
-                    PWEngine.SetBrushDistance(0.25f);
-                }
-            },
-            { PWEngine.BrushType.SoftBrush, () =>
-                {
-                    PWEngine.SetStrokeType(1);
-                    PWEngine.SetBrushTexture(4);
-                    PWEngine.SetBrushDistance(1.0f);
-                }
-            },
-            { PWEngine.BrushType.SharpBrush, () => PWEngine.SetStrokeType(8) },
-        };
-
         private ImageView mImgView;
         public BrushIcon(PWEngine.BrushType brushType) : base()
         {
-            mBrushType = brushType;
+            brushStrategy = BrushStrategyFactory.GetBrushStrategy(brushType);
+
+            this.brushType = brushType;
 
             mImgView = new ImageView();
             mImgView.Size2D = new Size2D(48, 48);
@@ -101,17 +62,14 @@ namespace Tizen.NUI.PenWave
         }
 
 
-        public PWEngine.BrushType GetBrushType() => mBrushType;
+        public PWEngine.BrushType GetBrushType() => brushType;
 
 
         public override bool IconClick(object sender, View.TouchEventArgs args)
         {
             if (base.IconClick(sender, args))
             {
-                if (BrushConfigs.ContainsKey(GetBrushType()))
-                {
-                    BrushConfigs[GetBrushType()].Invoke();
-                }
+                brushStrategy.ApplyBrushSettings();
 
             }
             return true;

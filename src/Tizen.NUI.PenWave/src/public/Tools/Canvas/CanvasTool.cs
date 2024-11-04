@@ -40,13 +40,17 @@ namespace Tizen.NUI.PenWave
                             new Color("#090E21"),
                         };
 
+        private Icon palettIcon;
+
         public CanvasTool()
         {
-
+            palettIcon = new PalettIcon();
+            AddIcon(palettIcon);
         }
 
         protected override void StartDrawing(Vector2 position, uint touchTime)
         {
+            Tizen.Log.Info("NUI", $"StartDrawing\n");
         }
 
         protected override void ContinueDrawing(Vector2 position, uint touchTime)
@@ -55,33 +59,17 @@ namespace Tizen.NUI.PenWave
 
         protected override void EndDrawing()
         {
+            Tizen.Log.Info("NUI", $"EndDrawing\n");
         }
 
-        protected override void Deactivate()
+        protected override void OnIconSelected(object sender)
         {
-            EndDrawing();
+            Tizen.Log.Info("NUI", $"OnIconSelected\n");
+            var colorIconsView = CreateColorIconsView();
+            PopupManager.ShowPopup(colorIconsView);
         }
 
-        public override View GetUI()
-        {
-            View rootView = new View
-            {
-                // Layout = new LinearLayout()
-                // {
-                //     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                // },
-                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
-            };
-            var icon = new PalettIcon();
-            rootView.Add(icon);
-            icon.IconSelected += OnIconSelected;
-
-            MakePopup(rootView);
-
-            return rootView;
-        }
-
-        private void MakePopup(View rootView)
+        private View CreateColorIconsView()
         {
             var bgImage = new ImageView
             {
@@ -91,34 +79,25 @@ namespace Tizen.NUI.PenWave
                 Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
             };
             AddIconsToView(bgImage, BgColors, color => new BackgroundColorIcon(color));
-            rootView.Add(bgImage);
+            bgImage.Position2D = new Position2D((int)palettIcon.ScreenPosition.X, (int)palettIcon.ScreenPosition.Y + 60);
+            return bgImage;
         }
 
         private void AddIconsToView<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
         {
             var view = new View
             {
-                // Layout = new LinearLayout()
-                // {
-                //     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                // },
                 Layout = new GridLayout { Columns = 4, ColumnSpacing = 8, RowSpacing = 8 },
             };
             foreach (var item in items)
             {
                 var icon = iconFactory(item);
                 view.Add(icon);
-                // icon.IconSelected += OnIconSelected;
+                icon.IconSelected +=(s) => PopupManager.HidePopup();
             }
+
             rootView.Add(view);
         }
-
-        // protected override void OnIconSelected()
-        // {
-        //     base.OnIconSelected();
-
-
-        // }
 
     }
 }

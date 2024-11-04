@@ -38,30 +38,43 @@ namespace Tizen.NUI.PenWave
         public abstract ToolBase.ToolType Type { get; }
         public event Action<ToolType> ToolSelected;
 
-        private bool mActivate;
-        private View mRootView;
+        protected bool Active {get; private set; }
+        protected List<Icon> Icons { get; } = new List<Icon>();
 
-        public bool Activate
+        protected PopupManager PopupManager { get; private set; }
+
+        public void SetPopupManager(PopupManager popupManager)
         {
-            get => mActivate;
-            set
-            {
-                mActivate = value;
-                if (!mActivate)
-                {
-                    Deactivate();
-                }
-            }
+            PopupManager = popupManager;
         }
 
-        protected virtual void OnIconSelected()
+        protected virtual void OnIconSelected(object sender) => ToolSelected?.Invoke(Type);
+
+        public void Activate()
         {
-            ToolSelected?.Invoke(Type);
+            Active = true;
+            OnActivated();
+        }
+
+        public void Deactivate()
+        {
+            Active = false;
+            OnDeactivate();
+        }
+
+        protected virtual void OnActivated()
+        {
+
+        }
+
+        protected virtual void OnDeactivate()
+        {
+            EndDrawing();
         }
 
         public virtual void HandleInput(Touch touch)
         {
-            if (!Activate || touch == null || touch.GetPointCount() == 0) return;
+            if (!Active || touch == null || touch.GetPointCount() == 0) return;
 
             uint pointStateIndex = 0;
             uint touchTime = touch.GetTime();
@@ -88,11 +101,28 @@ namespace Tizen.NUI.PenWave
             }
         }
 
-        public abstract View GetUI();
+        public virtual View GetUI()
+        {
+            var view = new View
+            {
+                Layout = new LinearLayout
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                }
+            };
+            foreach (var icon in Icons)
+            {
+                icon.IconSelected += OnIconSelected;
+                view.Add(icon);
+            }
+            return view;
+        }
+
+        protected void AddIcon(Icon icon) => Icons.Add(icon);
 
         protected abstract void StartDrawing(Vector2 position, uint touchTime);
         protected abstract void ContinueDrawing(Vector2 position, uint touchTime);
         protected abstract void EndDrawing();
-        protected abstract void Deactivate();
+
     }
 }

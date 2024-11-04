@@ -36,11 +36,6 @@ namespace PenWaveSample
             mWindow.Add(canvasView);
 
             mToolPickerView = new ToolPickerView(canvasView.ToolManager);
-            canvasView.Layout = new LinearLayout()
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Top,
-            };
             canvasView.Add(mToolPickerView);
 
             canvasView.TouchEvent += OnTouchEvent;

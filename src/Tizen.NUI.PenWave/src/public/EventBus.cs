@@ -16,36 +16,26 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class SizeIcon : Icon
+    public static class EventBus
     {
-        private readonly float mSize;
+        private static readonly Dictionary<string, Action<object>> events = new();
 
-        public SizeIcon(float size) : base()
+        public static void Subscribe(string eventName, Action<object> callback)
         {
-            mSize = size;
-
-            string url = $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
-
-            InitializeIcon(url, new Color("#17234d"));
-            mImgView.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
+            if (events.ContainsKey(eventName))
+                events[eventName] += callback;
+            else
+                events[eventName] = callback;
         }
 
-        public override bool IconClick(object sender, View.TouchEventArgs args)
+        public static void Publish(string eventName, object eventArgs = null)
         {
-            if (base.IconClick(sender, args))
-            {
-                PWEngine.SetStrokeSize(GetSize());
-            }
-            return true;
+            if (events.TryGetValue(eventName, out var action))
+                action.Invoke(eventArgs);
         }
-
-        public float GetSize() => mSize;
     }
 }

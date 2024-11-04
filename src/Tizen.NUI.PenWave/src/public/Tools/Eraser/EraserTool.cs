@@ -37,7 +37,7 @@ namespace Tizen.NUI.PenWave
 
         public EraserTool()
         {
-
+            AddIcon(new EraserIcon());
         }
 
         protected override void StartDrawing(Vector2 position, uint touchTime)
@@ -55,24 +55,5 @@ namespace Tizen.NUI.PenWave
              PWEngine.StopErasing();
         }
 
-        protected override void Deactivate()
-        {
-            EndDrawing();
-        }
-
-        public override View GetUI()
-        {
-            View rootView = new View
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                },
-            };
-            var icon = new EraserIcon();
-            rootView.Add(icon);
-            icon.IconSelected += OnIconSelected;
-            return rootView;
-        }
     }
 }
