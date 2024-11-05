@@ -20,11 +20,19 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class PalettIcon : Icon
+    public class GridIcon : Icon
     {
-        private static readonly string url = $"{FrameworkInformation.ResourcePath}images/light/icon_color_palette.png";
+        private static readonly string url = $"{FrameworkInformation.ResourcePath}images/light/icon_grid.png";
 
-        public PalettIcon() : base()
+        public enum GridDensityType
+        {
+            None = 0,
+            Small = 1,
+            Medium = 2,
+            Large = 4
+        }
+
+        public GridIcon() : base()
         {
             InitializeIcon(url, new Color("#17234d"));
         }
@@ -33,7 +41,8 @@ namespace Tizen.NUI.PenWave
         {
             if (base.IconClick(sender, args))
             {
-                Tizen.Log.Info("NUI", $"PalettIcon\n");
+                Tizen.Log.Info("NUI", $"GridIcon\n");
+                PWEngine.ToggleGrid((int)GridDensityType.Small);
             }
             return true;
         }

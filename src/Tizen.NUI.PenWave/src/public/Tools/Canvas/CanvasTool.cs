@@ -41,16 +41,19 @@ namespace Tizen.NUI.PenWave
                         };
 
         private Icon palettIcon;
+        private Icon gridIcon;
 
         public CanvasTool()
         {
             palettIcon = new PalettIcon();
             AddIcon(palettIcon);
+
+            gridIcon = new GridIcon();
+            AddIcon(gridIcon);
         }
 
         protected override void StartDrawing(Vector2 position, uint touchTime)
         {
-            Tizen.Log.Info("NUI", $"StartDrawing\n");
         }
 
         protected override void ContinueDrawing(Vector2 position, uint touchTime)
@@ -59,14 +62,16 @@ namespace Tizen.NUI.PenWave
 
         protected override void EndDrawing()
         {
-            Tizen.Log.Info("NUI", $"EndDrawing\n");
         }
 
         protected override void OnIconSelected(object sender)
         {
             Tizen.Log.Info("NUI", $"OnIconSelected\n");
-            var colorIconsView = CreateColorIconsView();
-            PopupManager.ShowPopup(colorIconsView);
+            if (sender is PalettIcon)
+            {
+                var colorIconsView = CreateColorIconsView();
+                PopupManager.ShowPopup(colorIconsView);
+            }
         }
 
         private View CreateColorIconsView()
@@ -93,7 +98,7 @@ namespace Tizen.NUI.PenWave
             {
                 var icon = iconFactory(item);
                 view.Add(icon);
-                icon.IconSelected +=(s) => PopupManager.HidePopup();
+                // icon.IconSelected +=(s) => PopupManager.HidePopup();
             }
 
             rootView.Add(view);
