@@ -19,7 +19,7 @@ using static Interop;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// The response of MakeCredential().
+    /// The response of <see cref="Authenticator.MakeCredential"/>.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
@@ -39,30 +39,55 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// JSON-compatible serialization of client data.
+        /// Gets the serialized client data json.
         /// </summary>
+        /// <value>
+        /// A JSON-compatible serialization of client data.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] ClientDataJson { get; init; }
         /// <summary>
-        /// The CBOR encoded Attestation Object to be returned to the RP.
+        /// Gets the Attestation Object to be returned to the Relying Party.
         /// </summary>
+        /// <value>
+        /// A CBOR-encoded Attestation Object.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] AttestationObject { get; init; }
         /// <summary>
-        /// To represent multiple transports, <see cref="AuthenticatorTransport"/> can be ORed multiple times.
+        /// Gets an enum containing a list of transports.
         /// </summary>
+        /// <value>
+        /// A list of transports. To represent multiple transports,
+        /// <see cref="AuthenticatorTransport"/> can be ORed multiple times.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AuthenticatorTransport Transports { get; init; }
         /// <summary>
-        /// The authenticator data contained within attestation_object.
-        /// For more information, refer to https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data
+        /// Gets the authenticator data contained within the Attestation Object.
         /// </summary>
+        /// <value>
+        /// Authenticator data contained within the Attestation Object.
+        /// For more information, refer to https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] AuthenticatorData { get; init; }
         /// <summary>
+        /// Gets the DER SubjectPublicKeyInfo of the new credential.
+        /// </summary>
+        /// <value>
         /// DER SubjectPublicKeyInfo of the new credential, or null if this is not available.
         /// For more information, refer to https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.7
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] SubjectPubkeyInfo { get; init; }
         /// <summary>
-        /// The COSEAlgorithmIdentifier of the new credential.
+        /// Gets the COSE algorithm identifier of the new credential.
         /// </summary>
+        /// <value>
+        /// The COSE algorithm identifier of the new credential.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public CoseAlgorithm PubkeyAlg { get; init; }
 
     }

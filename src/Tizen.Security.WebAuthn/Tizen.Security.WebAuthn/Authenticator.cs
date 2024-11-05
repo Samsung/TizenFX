@@ -41,7 +41,7 @@ namespace Tizen.Security.WebAuthn
         /// <since_tizen> 12 </since_tizen>
         /// <feature>http://tizen.org/feature/security.webauthn</feature>
         /// <returns>An enum with the collection of all supported authenticator types.</returns>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the required feature is not supported.</exception>
         public static AuthenticatorTransport SupportedAuthenticators()
         {
             int ret = Libwebauthn.SupportedAuthenticators(out uint supported);
@@ -72,11 +72,11 @@ namespace Tizen.Security.WebAuthn
         /// <param name="clientData">UTF-8 encoded JSON serialization of the client data.</param>
         /// <param name="options">Specifies the desired attributes of the to-be-created public key credential.</param>
         /// <param name="callbacks">The callback functions to be invoked.</param>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Required privilege is missing.</exception>
-        /// <exception cref="ArgumentException">Input parameter is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Operation invalid in current state.</exception>
-        /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a required privilege is missing.</exception>
+        /// <exception cref="ArgumentException">Thrown when an input parameter is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid in current state.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when the call is canceled by a cancel request.</exception>
         public static void MakeCredential(ClientData clientData, PubkeyCredCreationOptions options, MakeCredentialCallbacks callbacks)
         {
             CheckPreconditions();
@@ -136,11 +136,11 @@ namespace Tizen.Security.WebAuthn
         /// <param name="clientData">UTF-8 encoded JSON serialization of the client data.</param>
         /// <param name="options">Specifies the desired attributes of the public key credential to discover.</param>
         /// <param name="callbacks">The callback functions to be invoked.</param>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Required privilege is missing.</exception>
-        /// <exception cref="ArgumentException">Input parameter is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Operation invalid in current state.</exception>
-        /// <exception cref="OperationCanceledException">Canceled by a cancel request.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a required privilege is missing.</exception>
+        /// <exception cref="ArgumentException">Thrown when an input parameter is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid in current state.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when the call is canceled by a cancel request.</exception>
         public static void GetAssertion(ClientData clientData, PubkeyCredRequestOptions options, GetAssertionCallbacks callbacks)
         {
             CheckPreconditions();
@@ -180,8 +180,8 @@ namespace Tizen.Security.WebAuthn
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <feature>http://tizen.org/feature/security.webauthn</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Not allowed in the current context.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the required feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the operation is invalid in current state.</exception>
         public static void Cancel()
         {
             int ret = Libwebauthn.Cancel();
