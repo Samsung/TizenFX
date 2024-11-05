@@ -27,10 +27,21 @@ namespace Tizen.NUI.PenWave
     {
         public event Action<object> IconSelected;
 
-        protected ImageView mImgView;
-        protected ImageView mBorder;
+        protected ImageView defaultImage;
+        protected ImageView selectedImage;
 
         private int mDefaultSize = 48;
+        private bool isSelected;
+
+        public bool Selected
+        {
+            get => isSelected;
+            set
+            {
+                isSelected = value;
+                UpdateIconState();
+            }
+        }
 
         public Icon()
         {
@@ -44,26 +55,33 @@ namespace Tizen.NUI.PenWave
             this.TouchEvent += IconClick;
         }
 
-        protected void InitializeIcon(string baseResourceUrl, Color color)
+        protected void InitializeIcon(Color color)
         {
-            mImgView = new ImageView
+            defaultImage = new ImageView
             {
-                Size2D = new Size2D(mDefaultSize, mDefaultSize),
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
                 Color = color,
-                ResourceUrl = baseResourceUrl
+                ResourceUrl = GetDefaultImageUrl()
             };
-            this.Add(mImgView);
+            this.Add(defaultImage);
 
-            mBorder = new ImageView
+            selectedImage = new ImageView
             {
-                Size2D = new Size2D(mDefaultSize, mDefaultSize),
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                ResourceUrl = GetSelectedImageUrl()
             };
+            defaultImage.Add(selectedImage);
+            selectedImage.Hide();
         }
 
 
-        public virtual void OnStateChanged()
+        public virtual void UpdateIconState()
         {
-            mBorder.ResourceUrl = $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
+            Tizen.Log.Error("NUI", $"UpdateIconState!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+            if(isSelected) selectedImage.Show();
+            else selectedImage.Hide();
         }
 
         public virtual bool IconClick(object sender, View.TouchEventArgs args)
@@ -75,6 +93,9 @@ namespace Tizen.NUI.PenWave
             }
             return false;
         }
+
+        protected abstract string GetDefaultImageUrl();
+        protected abstract string GetSelectedImageUrl();
     }
 }
 

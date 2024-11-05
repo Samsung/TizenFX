@@ -27,10 +27,17 @@ namespace Tizen.NUI.PenWave
     {
         public EraserIcon() : base()
         {
+            InitializeIcon(new Color("#17234d"));
+        }
 
-            string url = $"{FrameworkInformation.ResourcePath}images/light/icon_eraser.png";
+        protected override string GetDefaultImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/icon_eraser.png";
+        }
 
-            InitializeIcon(url, new Color("#17234d"));
+        protected override string GetSelectedImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)

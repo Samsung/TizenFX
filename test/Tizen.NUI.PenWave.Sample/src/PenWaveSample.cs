@@ -13,7 +13,6 @@ namespace PenWaveSample
     {
         public static Program app;
         private Window mWindow;
-        private LongPressGestureDetector longPressGestureDetector;
         private ToolPickerView mToolPickerView;
         private PWCanvasView canvasView;
 
@@ -36,13 +35,10 @@ namespace PenWaveSample
             mWindow.Add(canvasView);
 
             mToolPickerView = new ToolPickerView(canvasView.ToolManager);
+
             canvasView.Add(mToolPickerView);
 
             canvasView.TouchEvent += OnTouchEvent;
-        }
-
-        private void OnWindowResized(object sender, Window.ResizedEventArgs args)
-        {
         }
 
 
@@ -52,21 +48,6 @@ namespace PenWaveSample
             return false;
         }
 
-        private void HandleErase(Vector2 touchPosition, bool partial)
-        {
-        }
-
-        private void HandleNotes()
-        {
-        }
-
-        private void OnMouseTouch(object sender, Window.TouchEventArgs args)
-        {
-        }
-
-        private void OnWheelEvent(object sender, Window.WheelEventArgs args)
-        {
-        }
 
         static void Main(string[] args)
         {

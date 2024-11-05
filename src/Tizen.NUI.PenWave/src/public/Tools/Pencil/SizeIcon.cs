@@ -25,16 +25,24 @@ namespace Tizen.NUI.PenWave
 {
     public class SizeIcon : Icon
     {
-        private readonly float mSize;
+        private readonly float size;
 
         public SizeIcon(float size) : base()
         {
-            mSize = size;
+            this.size = size;
 
-            string url = $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
+            InitializeIcon(new Color("#17234d"));
+            defaultImage.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
+        }
 
-            InitializeIcon(url, new Color("#17234d"));
-            mImgView.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
+        protected override string GetDefaultImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
+        }
+
+        protected override string GetSelectedImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)
@@ -46,6 +54,6 @@ namespace Tizen.NUI.PenWave
             return true;
         }
 
-        public float GetSize() => mSize;
+        public float GetSize() => size;
     }
 }

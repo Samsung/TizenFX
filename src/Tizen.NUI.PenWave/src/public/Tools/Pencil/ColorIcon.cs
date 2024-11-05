@@ -28,14 +28,24 @@ namespace Tizen.NUI.PenWave
         private readonly string mColorHex;
         private readonly Color mColor;
 
+
+
         public ColorIcon(Tizen.NUI.Color color) : base()
         {
             mColorHex = ToHex(color);
             mColor = color;
 
-            string url = $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
+            InitializeIcon(mColor);
+        }
 
-            InitializeIcon(url, mColor);
+        protected override string GetDefaultImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
+        }
+
+        protected override string GetSelectedImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)

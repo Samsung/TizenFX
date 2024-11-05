@@ -51,9 +51,17 @@ namespace Tizen.NUI.PenWave
             mImgView = new ImageView();
             mImgView.Size2D = new Size2D(48, 48);
 
-            string url = $"{FrameworkInformation.ResourcePath}images/light/{GetIconUrl(brushType)}.png";
+            InitializeIcon(new Color("#17234d"));
+        }
 
-            InitializeIcon(url, new Color("#17234d"));
+        protected override string GetDefaultImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/{GetIconUrl(brushType)}.png";
+        }
+
+        protected override string GetSelectedImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
         private string GetIconUrl(PWEngine.BrushType brushType)

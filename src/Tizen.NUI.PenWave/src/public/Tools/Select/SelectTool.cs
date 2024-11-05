@@ -25,70 +25,11 @@ namespace Tizen.NUI.PenWave
 {
     public class SelectTool : ToolBase
     {
-        enum Mode
-        {
-            Resize,
-            Move,
-            None
-        }
-
         public override ToolBase.ToolType Type => ToolBase.ToolType.Select;
-        private bool isTouchedInsideSelectedArea = false;
-        private Mode mode = Mode.None;
 
-        public SelectTool()
+        public SelectTool() : base(new SelectToolActionHandler())
         {
             AddIcon(new SelectIcon());
-        }
-
-         protected override void StartDrawing(Vector2 position, uint touchTime)
-         {
-            isTouchedInsideSelectedArea = PWEngine.InsideSelectedArea(position.X, position.Y);
-            if (!isTouchedInsideSelectedArea)
-            {
-                PWEngine.DropSelectedDrawables();
-                PWEngine.SelectDrawable(position.X, position.Y);
-                PWEngine.StartSelectingArea(position.X, position.Y);
-            }
-         }
-
-        protected override void ContinueDrawing(Vector2 position, uint touchTime)
-        {
-            if (isTouchedInsideSelectedArea)
-            {
-                PWEngine.DragSelectedDrawables(position.X, position.Y);
-                mode = Mode.Move;
-            }
-            else
-            {
-                PWEngine.ResizeSelectedArea(position.X, position.Y);
-                mode = Mode.Resize;
-
-            }
-        }
-
-        protected override void EndDrawing()
-        {
-            switch (mode)
-            {
-                case Mode.Move :
-                    PWEngine.EndDraging();
-                    break;
-                case Mode.Resize :
-                    PWEngine.SelectDrawables();
-                    break;
-                default :
-                    PWEngine.DropSelectedDrawables();
-                    break;
-            }
-            isTouchedInsideSelectedArea = false;
-            mode = Mode.None;
-        }
-
-        protected override void OnDeactivate()
-        {
-            mode = Mode.None;
-            base.OnDeactivate();
         }
     }
 }

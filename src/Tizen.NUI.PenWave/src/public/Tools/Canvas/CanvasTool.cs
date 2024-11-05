@@ -43,25 +43,13 @@ namespace Tizen.NUI.PenWave
         private Icon palettIcon;
         private Icon gridIcon;
 
-        public CanvasTool()
+        public CanvasTool() : base(new CanvasToolActionHandler())
         {
             palettIcon = new PalettIcon();
             AddIcon(palettIcon);
 
             gridIcon = new GridIcon();
             AddIcon(gridIcon);
-        }
-
-        protected override void StartDrawing(Vector2 position, uint touchTime)
-        {
-        }
-
-        protected override void ContinueDrawing(Vector2 position, uint touchTime)
-        {
-        }
-
-        protected override void EndDrawing()
-        {
         }
 
         protected override void OnIconSelected(object sender)
@@ -98,7 +86,7 @@ namespace Tizen.NUI.PenWave
             {
                 var icon = iconFactory(item);
                 view.Add(icon);
-                // icon.IconSelected +=(s) => PopupManager.HidePopup();
+                // icon.IconSelected += OnIconSelected;
             }
 
             rootView.Add(view);

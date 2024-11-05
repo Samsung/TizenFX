@@ -23,13 +23,12 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class EraserTool : ToolBase
+    public interface IToolActionHandler
     {
-        public override ToolBase.ToolType Type => ToolBase.ToolType.Eraser;
-
-        public EraserTool() : base(new EraserToolActionHandler())
-        {
-            AddIcon(new EraserIcon());
-        }
+        void HandleInput(Touch touch);
+        void Activate();
+        void Deactivate();
     }
 }
+
+

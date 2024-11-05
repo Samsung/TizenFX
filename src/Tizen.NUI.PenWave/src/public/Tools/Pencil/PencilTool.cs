@@ -38,14 +38,14 @@ namespace Tizen.NUI.PenWave
         private Icon colorIcon;
 
 
-        public PencilTool()
+        public PencilTool() : base(new PencilToolActionHandler())
         {
             ink = new PenInk();
 
             InitializePencilTool();
         }
 
-        public PencilTool(PenInk penInk)
+        public PencilTool(PenInk penInk) : base(new PencilToolActionHandler())
         {
             ink = penInk ?? new PenInk();
 
@@ -129,35 +129,6 @@ namespace Tizen.NUI.PenWave
             return view;
         }
 
-        protected override void StartDrawing(Vector2 position, uint touchTime)
-        {
-            mCurrentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
-        }
-
-        protected override void ContinueDrawing(Vector2 position, uint touchTime)
-        {
-            if (mCurrentShapeId > 0)
-            {
-                var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(mCurrentShapeId, position.X, position.Y, touchTime);
-                if (result == ErrorShapeAddPointsType.overflowShape)
-                {
-                    EndDrawing();
-                    StartDrawing(position, touchTime);
-                }
-                else if (result == ErrorShapeAddPointsType.drawingCanceled)
-                {
-                    EndDrawing();
-                }
-            }
-        }
-
-        protected override void EndDrawing()
-        {
-            PWEngine.EndShapeDraw(mCurrentShapeId, 0);
-            mCurrentShapeId = 0;
-        }
-
-
         private void AddIcons<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
         {
             var view = new View
@@ -174,15 +145,5 @@ namespace Tizen.NUI.PenWave
 
     }
 
-    public enum ErrorShapeAddPointsType
-    {
-        noError,
-        overflowShape,
-        noCanvasSet,
-        noShapesInCanvas,
-        badIdShape,
-        drawableIsNotAShape,
-        drawableIsNotALine,
-        drawingCanceled
-    }
+
 }

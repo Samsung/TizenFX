@@ -34,7 +34,17 @@ namespace Tizen.NUI.PenWave
 
         public GridIcon() : base()
         {
-            InitializeIcon(url, new Color("#17234d"));
+            InitializeIcon(new Color("#17234d"));
+        }
+
+        protected override string GetDefaultImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/icon_grid.png";
+        }
+
+        protected override string GetSelectedImageUrl()
+        {
+            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
         public override bool IconClick(object sender, View.TouchEventArgs args)

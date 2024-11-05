@@ -122,6 +122,7 @@ namespace Tizen.NUI.PenWave
         {
             // object is ToolBase.ToolType
             popupManager.HidePopup();
+            Tizen.Log.Info("NUI", $"OnToolChanged!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
         }
 
 

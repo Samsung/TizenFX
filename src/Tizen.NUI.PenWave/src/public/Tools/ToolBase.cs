@@ -36,69 +36,43 @@ namespace Tizen.NUI.PenWave
         }
 
         public abstract ToolBase.ToolType Type { get; }
+
+        protected IToolActionHandler ActionHandler { get; private set; }
+
         public event Action<ToolType> ToolSelected;
 
-        protected bool Active {get; private set; }
         protected List<Icon> Icons { get; } = new List<Icon>();
 
         protected PopupManager PopupManager { get; private set; }
+
+        public ToolBase(IToolActionHandler actionHandler)
+        {
+            ActionHandler = actionHandler;
+        }
 
         public void SetPopupManager(PopupManager popupManager)
         {
             PopupManager = popupManager;
         }
 
-        protected virtual void OnIconSelected(object sender) => ToolSelected?.Invoke(Type);
+        protected virtual void OnIconSelected(object sender)
+        {
+            ToolSelected?.Invoke(Type);
+        }
 
         public void Activate()
         {
-            Active = true;
-            OnActivated();
+            ActionHandler.Activate();
         }
 
         public void Deactivate()
         {
-            Active = false;
-            OnDeactivate();
-        }
-
-        protected virtual void OnActivated()
-        {
-
-        }
-
-        protected virtual void OnDeactivate()
-        {
-            EndDrawing();
+            ActionHandler.Deactivate();
         }
 
         public virtual void HandleInput(Touch touch)
         {
-            if (!Active || touch == null || touch.GetPointCount() == 0) return;
-
-            uint pointStateIndex = 0;
-            uint touchTime = touch.GetTime();
-
-            List<Vector2> touchPositionList = new List<Vector2>();
-            for (uint i = 0; i < touch.GetPointCount(); ++i)
-            {
-                touchPositionList.Add(touch.GetLocalPosition(i));
-            }
-
-            Vector2 position = touchPositionList[(int)pointStateIndex];
-            switch (touch.GetState(pointStateIndex))
-            {
-                case PointStateType.Down:
-                    StartDrawing(position, touchTime);
-                    break;
-                case PointStateType.Motion:
-                    ContinueDrawing(position, touchTime);
-                    break;
-                case PointStateType.Up:
-                case PointStateType.Leave:
-                    EndDrawing();
-                    break;
-            }
+            ActionHandler.HandleInput(touch);
         }
 
         public virtual View GetUI()
@@ -119,10 +93,5 @@ namespace Tizen.NUI.PenWave
         }
 
         protected void AddIcon(Icon icon) => Icons.Add(icon);
-
-        protected abstract void StartDrawing(Vector2 position, uint touchTime);
-        protected abstract void ContinueDrawing(Vector2 position, uint touchTime);
-        protected abstract void EndDrawing();
-
     }
 }
