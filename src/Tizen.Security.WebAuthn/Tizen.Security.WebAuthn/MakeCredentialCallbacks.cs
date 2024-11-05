@@ -82,20 +82,36 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Callback function for displaying QR code.
+        /// Gets the callback function for displaying the QR code.
         /// </summary>
+        /// <value>
+        /// The callback function for displaying the QR code.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public Action<string, object> QrcodeCallback { get; init; }
         /// <summary>
-        /// Callback function for getting the final response.
+        /// Gets the callback function for getting the final response.
         /// </summary>
+        /// <value>
+        /// The callback function for getting the final response of the operation from the authenticator.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public Action<PubkeyCredAttestation, WauthnError, object> ResponseCallback { get; init; }
         /// <summary>
-        /// Callback function for getting the updated linked device data.
+        /// Gets the callback function for getting the updated linked device data.
         /// </summary>
+        /// <value>
+        /// The callback function for getting the updated linked device data from the authenticator.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public Action<HybridLinkedData, WauthnError, object> LinkedDataCallback { get; init; }
         /// <summary>
-        /// User data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.
+        /// Gets the user data to be passed to callbacks.
         /// </summary>
+        /// <value>
+        /// The user data to be passed to <see cref="QrcodeCallback"/>, <see cref="ResponseCallback"/> and <see cref="LinkedDataCallback"/>.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public object UserData { get; init; }
     }
 }
