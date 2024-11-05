@@ -14,8 +14,6 @@
  *  limitations under the License
  */
 
-using static Tizen.Security.WebAuthn.ErrorFactory;
-
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
@@ -33,7 +31,7 @@ namespace Tizen.Security.WebAuthn
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         /// <param name="jsonData">UTF-8 encoded JSON serialization of the client data.</param>
-        /// <param name="hashAlgo">Hash algorithm used to hash the JsonData property.</param>
+        /// <param name="hashAlgo">Hash algorithm used to hash the jsonData parameter.</param>
         public ClientData(byte[] jsonData, HashAlgorithm hashAlgo)
         {
             JsonData = jsonData;
@@ -41,12 +39,20 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// UTF-8 encoded JSON serialization of the client data.
+        /// Gets the serialized client data json.
         /// </summary>
+        /// <value>
+        /// A UTF-8 encoded JSON serialization of the client data.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] JsonData { get; init; }
         /// <summary>
-        /// Hash algorithm used to hash the JsonData property.
+        /// Gets the hash algorithm.
         /// </summary>
+        /// <value>
+        /// The hash algorithm used to hash the JsonData property.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public HashAlgorithm HashAlgo{ get; init; }
     }
 }
