@@ -10,7 +10,7 @@
     <meta name="title" content="Class CoreUIApplication
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.UI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Represents an application that has an UI screen. The events for resuming and pausing are provided.</p>
+  <div class="markdown level0 summary"><p>Represents an application that has an UI screen. It provides events for handling resume and pause actions.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -122,7 +122,7 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L39">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication__ctor_" data-uid="Tizen.Applications.CoreUIApplication.#ctor*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication__ctor" data-uid="Tizen.Applications.CoreUIApplication.#ctor">CoreUIApplication()</h4>
@@ -134,14 +134,14 @@
     <pre><code class="lang-csharp hljs">public CoreUIApplication()</code></pre>
   </div>
   <h5 id="Tizen_Applications_CoreUIApplication__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The default backend for the UI application will be used.</p>
+  <div class="markdown level1 remarks"><p>By calling this constructor, the default backend for the UI application will be used.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L52">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L52">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication__ctor_" data-uid="Tizen.Applications.CoreUIApplication.#ctor*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend_" data-uid="Tizen.Applications.CoreUIApplication.#ctor(Tizen.Applications.CoreBackend.ICoreBackend)">CoreUIApplication(ICoreBackend)</h4>
@@ -165,13 +165,13 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.CoreBackend.ICoreBackend.html">ICoreBackend</a></td>
         <td><span class="parametername">backend</span></td>
-        <td><p>The backend instance implementing the ICoreBacked interface.</p>
+        <td><p>The custom implementation of the ICoreBackend interface that provides customized functionalities.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_CoreUIApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If you want to change the backend, use this constructor.</p>
+  <div class="markdown level1 remarks"><p>This constructor is called if you need to modify the default behavior by providing a custom implementation of the ICoreBackend interface. By passing in your own backend instance, you can customize the application's functionality according to your requirements.</p>
 </div>
 
 
@@ -180,7 +180,7 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L60">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L60">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication_CurrentDeviceOrientation_" data-uid="Tizen.Applications.CoreUIApplication.CurrentDeviceOrientation*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication_CurrentDeviceOrientation" data-uid="Tizen.Applications.CoreUIApplication.CurrentDeviceOrientation">CurrentDeviceOrientation</h4>
@@ -213,7 +213,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L127">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L127">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication_GetWindowPosition_" data-uid="Tizen.Applications.CoreUIApplication.GetWindowPosition*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication_GetWindowPosition" data-uid="Tizen.Applications.CoreUIApplication.GetWindowPosition">GetWindowPosition()</h4>
@@ -251,7 +251,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when there is no window position.</p>
+        <td><p>Thrown if there is no valid window position available.</p>
 </td>
       </tr>
     </tbody>
@@ -261,12 +261,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L116">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L116">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication_OnPause_" data-uid="Tizen.Applications.CoreUIApplication.OnPause*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication_OnPause" data-uid="Tizen.Applications.CoreUIApplication.OnPause">OnPause()</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if you want to handle the behavior when the application is paused.
-If base.OnPause() is not called, the event 'Paused' will not be emitted.</p>
+  <div class="markdown level1 summary"><p>Override this method to define the behavior when the application is paused.
+Calling base.OnPause() is required in order for the Paused event to be raised.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -278,11 +278,11 @@ If base.OnPause() is not called, the event 'Paused' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L97">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L97">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication_OnPreCreate_" data-uid="Tizen.Applications.CoreUIApplication.OnPreCreate*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication_OnPreCreate" data-uid="Tizen.Applications.CoreUIApplication.OnPreCreate">OnPreCreate()</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if you want to handle the behavior before calling OnCreate().</p>
+  <div class="markdown level1 summary"><p>Overrides this method if you want to handle any specific actions before calling the OnCreate() method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -294,12 +294,12 @@ If base.OnPause() is not called, the event 'Paused' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L106">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L106">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication_OnResume_" data-uid="Tizen.Applications.CoreUIApplication.OnResume*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication_OnResume" data-uid="Tizen.Applications.CoreUIApplication.OnResume">OnResume()</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if you want to handle the behavior when the application is resumed.
-If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
+  <div class="markdown level1 summary"><p>Override this method to define the behavior when the application is resumed.
+Calling base.OnResume() is required in order for the Resumed event to be raised.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -311,7 +311,7 @@ If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L85">View Source</a>
   </span>
   <a id="Tizen_Applications_CoreUIApplication_Run_" data-uid="Tizen.Applications.CoreUIApplication.Run*"></a>
   <h4 id="Tizen_Applications_CoreUIApplication_Run_System_String___" data-uid="Tizen.Applications.CoreUIApplication.Run(System.String[])">Run(string[])</h4>
@@ -349,7 +349,7 @@ If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L78">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L78">View Source</a>
   </span>
   <h4 id="Tizen_Applications_CoreUIApplication_Paused" data-uid="Tizen.Applications.CoreUIApplication.Paused">Paused</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the application is paused.</p>
@@ -379,7 +379,7 @@ If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L72">View Source</a>
   </span>
   <h4 id="Tizen_Applications_CoreUIApplication_Resumed" data-uid="Tizen.Applications.CoreUIApplication.Resumed">Resumed</h4>
   <div class="markdown level1 summary"><p>Occurs whenever the application is resumed.</p>
@@ -420,7 +420,7 @@ If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -439,7 +439,7 @@ If base.OnResume() is not called, the event 'Resumed' will not be emitted.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

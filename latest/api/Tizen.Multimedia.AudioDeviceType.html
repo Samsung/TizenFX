@@ -10,7 +10,7 @@
     <meta name="title" content="Enum AudioDeviceType
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -89,7 +89,13 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Specifies the audio device types.</p>
+  <div class="markdown level0 summary"><p>Represents the various types of audio devices available in the system.
+This enumeration categorizes audio devices based on their functionality and
+connection type, enabling developers to easily identify and utilize
+the appropriate audio device for their applications. The types include
+built-in speakers and microphones, external connections like audio jacks,
+Bluetooth, HDMI, USB audio, and network audio devices, facilitating
+effective audio management in diverse scenarios.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -111,52 +117,63 @@
     <tbody>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_AudioJack">AudioJack</td>
-        <td><p>Audio jack that can be connected to wired accessories such as headphones and headsets.</p>
+        <td><p>Indicates an audio jack that allows the connection of wired accessories
+such as headphones and headsets, providing a physical interface for
+audio playback and recording.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_BluetoothMedia">BluetoothMedia</td>
-        <td><p>Bluetooth media (A2DP).</p>
+        <td><p>Represents Bluetooth media devices using the A2DP (Advanced Audio
+Distribution Profile) standard for streaming high-quality audio wirelessly.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_BluetoothVoice">BluetoothVoice</td>
-        <td><p>Bluetooth voice (SCO).</p>
+        <td><p>Represents Bluetooth voice devices using the SCO (Synchronous Connection
+Oriented) profile, primarily used for voice communication over Bluetooth.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_BuiltinMic">BuiltinMic</td>
-        <td><p>Built-in microphone.</p>
+        <td><p>Represents the built-in microphone, used for capturing audio input
+from the environment, such as for voice commands, calls, or recordings.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_BuiltinReceiver">BuiltinReceiver</td>
-        <td><p>Built-in receiver.</p>
+        <td><p>Represents the built-in receiver, usually utilized for phone calls
+and communication through the device, providing audio input and output.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_BuiltinSpeaker">BuiltinSpeaker</td>
-        <td><p>Built-in speaker.</p>
+        <td><p>Represents the built-in speaker of the device, typically used for
+playback of audio through the device's internal audio output.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_Forwarding">Forwarding</td>
-        <td><p>Device for forwarding.</p>
+        <td><p>Represents devices used for forwarding audio data, which may involve
+relaying audio signals to other devices or systems for processing or playback.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_Hdmi">Hdmi</td>
-        <td><p>HDMI.</p>
+        <td><p>Represents HDMI audio output, allowing the transmission of high-fidelity
+audio and video to external displays or audio receivers through an HDMI cable.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_Network">Network</td>
-        <td><p>Device for the transmission of audio data over a network</p>
+        <td><p>Represents devices that transmit audio data over a network, enabling audio
+streaming or communication over internet or local networks.</p>
 </td>
       </tr>
       <tr>
         <td id="Tizen_Multimedia_AudioDeviceType_UsbAudio">UsbAudio</td>
-        <td><p>USB audio.</p>
+        <td><p>Represents USB audio devices, which connect through USB ports to provide
+audio input and output, such as external sound cards or USB microphones.</p>
 </td>
       </tr>
     </tbody>
@@ -169,7 +186,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDeviceType.cs/#L23" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDeviceType.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -188,7 +205,7 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

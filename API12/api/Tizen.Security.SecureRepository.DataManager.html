@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides methods for storing and retrieving data.</p>
+  <div class="markdown level0 summary"><p>This class provides the methods for storing and retrieving data.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -115,7 +115,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L49">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_DataManager_Get_" data-uid="Tizen.Security.SecureRepository.DataManager.Get*"></a>
   <h4 id="Tizen_Security_SecureRepository_DataManager_Get_System_String_System_String_" data-uid="Tizen.Security.SecureRepository.DataManager.Get(System.String,System.String)">Get(string, string)</h4>
@@ -139,13 +139,13 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">alias</span></td>
-        <td><p>Name of a certificate to retrieve.</p>
+        <td><p>The name of a certificate to retrieve.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>Password used in decrypting a data value.
+        <td><p>The password used in decrypting a data value.
 If password of policy is provided in SaveData(), the same password should
 be provided.</p>
 </td>
@@ -179,18 +179,17 @@ be provided.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument is null.</p>
+        <td><p>The alias argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument has an invalid format.</p>
+        <td><p>The alias argument is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when data does not exist with the <code data-dev-comment-type="paramref" class="paramref">alias</code>
-or data-protecting password does not match.</p>
+        <td><p>Data does not exist with the alias or data-protecting password isn't matched.</p>
 </td>
       </tr>
     </tbody>
@@ -200,11 +199,11 @@ or data-protecting password does not match.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L77">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L76">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_DataManager_GetAliases_" data-uid="Tizen.Security.SecureRepository.DataManager.GetAliases*"></a>
   <h4 id="Tizen_Security_SecureRepository_DataManager_GetAliases" data-uid="Tizen.Security.SecureRepository.DataManager.GetAliases">GetAliases()</h4>
-  <div class="markdown level1 summary"><p>Gets all aliases of data accessible by the client.</p>
+  <div class="markdown level1 summary"><p>Gets all aliases of data, which the client can access.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -222,7 +221,7 @@ or data-protecting password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>All aliases of data accessible by the client.</p>
+        <td><p>All aliases of data, which the client can access.</p>
 </td>
       </tr>
     </tbody>
@@ -238,7 +237,7 @@ or data-protecting password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there's no alias to get.</p>
+        <td><p>No alias to get.</p>
 </td>
       </tr>
     </tbody>
@@ -248,7 +247,7 @@ or data-protecting password does not match.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_DataManager_Save_" data-uid="Tizen.Security.SecureRepository.DataManager.Save*"></a>
   <h4 id="Tizen_Security_SecureRepository_DataManager_Save_System_String_System_Byte___Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.DataManager.Save(System.String,System.Byte[],Tizen.Security.SecureRepository.Policy)">Save(string, byte[], Policy)</h4>
@@ -272,19 +271,19 @@ or data-protecting password does not match.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">alias</span></td>
-        <td><p>Name of data to be stored.</p>
+        <td><p>The name of data to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">data</span></td>
-        <td><p>Binary value to be stored.</p>
+        <td><p>The binary value to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">policy</span></td>
-        <td><p>Data stoting policy.</p>
+        <td><p>The policy about how to store data securely.</p>
 </td>
       </tr>
     </tbody>
@@ -300,18 +299,17 @@ or data-protecting password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Any argument is null.</p>
+        <td><p>Any of argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument has an invalid format.
-Thrown when <code data-dev-comment-type="paramref" class="paramref">policy</code> cannot be unextractable.</p>
+        <td><p>The alias argument is in the invalid format. Data policy cannot be unextractable.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when data with given <code data-dev-comment-type="paramref" class="paramref">alias</code> already exists.</p>
+        <td><p>Data with alias already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -328,7 +326,7 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">policy</code
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/DataManager.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -347,7 +345,7 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">policy</code
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

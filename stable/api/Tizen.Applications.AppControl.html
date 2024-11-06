@@ -10,7 +10,7 @@
     <meta name="title" content="Class AppControl
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -135,7 +135,7 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L69">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl__ctor_" data-uid="Tizen.Applications.AppControl.#ctor*"></a>
   <h4 id="Tizen_Applications_AppControl__ctor" data-uid="Tizen.Applications.AppControl.#ctor">AppControl()</h4>
@@ -167,7 +167,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L84">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L84">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl__ctor_" data-uid="Tizen.Applications.AppControl.#ctor*"></a>
   <h4 id="Tizen_Applications_AppControl__ctor_System_Boolean_" data-uid="Tizen.Applications.AppControl.#ctor(System.Boolean)">AppControl(bool)</h4>
@@ -217,7 +217,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L107">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L107">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl__ctor_" data-uid="Tizen.Applications.AppControl.#ctor*"></a>
   <h4 id="Tizen_Applications_AppControl__ctor_Tizen_Applications_SafeAppControlHandle_" data-uid="Tizen.Applications.AppControl.#ctor(Tizen.Applications.SafeAppControlHandle)">AppControl(SafeAppControlHandle)</h4>
@@ -241,7 +241,8 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.SafeAppControlHandle.html">SafeAppControlHandle</a></td>
         <td><span class="parametername">handle</span></td>
-        <td></td>
+        <td><p>A reference to the SafeAppControlHandle object.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -252,7 +253,7 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L376">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L382">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_ApplicationId_" data-uid="Tizen.Applications.AppControl.ApplicationId*"></a>
   <h4 id="Tizen_Applications_AppControl_ApplicationId" data-uid="Tizen.Applications.AppControl.ApplicationId">ApplicationId</h4>
@@ -274,7 +275,8 @@
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>(if the application ID is null for setter, it clears the previous value.)</p>
+        <td><p>This property returns the explicitly set application ID. If no explicit application ID is set, it will return null.
+(Setting this property to null will clear any previously set explicit application IDs.)</p>
 </td>
       </tr>
     </tbody>
@@ -289,7 +291,7 @@ Log.Debug(LogTag, &quot;ApplicationId: &quot; + appControl.ApplicationId);</code
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L334">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L339">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_Category_" data-uid="Tizen.Applications.AppControl.Category*"></a>
   <h4 id="Tizen_Applications_AppControl_Category" data-uid="Tizen.Applications.AppControl.Category">Category</h4>
@@ -311,7 +313,8 @@ Log.Debug(LogTag, &quot;ApplicationId: &quot; + appControl.ApplicationId);</code
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>(if the category is null for setter, it clears the previous value.)</p>
+        <td><p>This property returns the explicitly set category. If no explicit category is set, it will return null.
+(Setting this property to null will clear any previously set explicit categories.)</p>
 </td>
       </tr>
     </tbody>
@@ -321,7 +324,7 @@ Log.Debug(LogTag, &quot;ApplicationId: &quot; + appControl.ApplicationId);</code
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L487">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L493">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_ComponentId_" data-uid="Tizen.Applications.AppControl.ComponentId*"></a>
   <h4 id="Tizen_Applications_AppControl_ComponentId" data-uid="Tizen.Applications.AppControl.ComponentId">ComponentId</h4>
@@ -362,7 +365,7 @@ AppControl.SendLaunchRequest(appControl);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L459">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L465">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_ExtraData_" data-uid="Tizen.Applications.AppControl.ExtraData*"></a>
   <h4 id="Tizen_Applications_AppControl_ExtraData" data-uid="Tizen.Applications.AppControl.ExtraData">ExtraData</h4>
@@ -384,7 +387,7 @@ AppControl.SendLaunchRequest(appControl);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a>.<a class="xref" href="Tizen.Applications.AppControl.ExtraDataCollection.html">ExtraDataCollection</a></td>
-        <td><p>Extra data for communication between AppControls.</p>
+        <td><p>The ExtraData property provides access to a collection of key-value pairs representing additional data associated with the application control.</p>
 </td>
       </tr>
     </tbody>
@@ -399,7 +402,7 @@ appControl.ExtraData.Add(&quot;key&quot;, &quot;value&quot;);
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L423">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L429">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_LaunchMode_" data-uid="Tizen.Applications.AppControl.LaunchMode*"></a>
   <h4 id="Tizen_Applications_AppControl_LaunchMode" data-uid="Tizen.Applications.AppControl.LaunchMode">LaunchMode</h4>
@@ -441,7 +444,7 @@ appControl.LaunchMode = AppControlLaunchMode.Group;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L240">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L244">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_Mime_" data-uid="Tizen.Applications.AppControl.Mime*"></a>
   <h4 id="Tizen_Applications_AppControl_Mime" data-uid="Tizen.Applications.AppControl.Mime">Mime</h4>
@@ -463,7 +466,8 @@ appControl.LaunchMode = AppControlLaunchMode.Group;</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>(if the mime is null for setter, it clears the previous value.)</p>
+        <td><p>This property returns the explicitly set MIME type of the data. If no explicit MIME type is set, it will return null.
+(Setting this property to null will clear any previously set explicit MIME types.)</p>
 </td>
       </tr>
     </tbody>
@@ -478,7 +482,7 @@ Log.Debug(LogTag, &quot;Mime: &quot; + appControl.Mime);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L198">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L201">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_Operation_" data-uid="Tizen.Applications.AppControl.Operation*"></a>
   <h4 id="Tizen_Applications_AppControl_Operation" data-uid="Tizen.Applications.AppControl.Operation">Operation</h4>
@@ -518,7 +522,7 @@ Log.Debug(LogTag, &quot;Operation: &quot; + appControl.Operation);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L173">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L176">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SafeAppControlHandle_" data-uid="Tizen.Applications.AppControl.SafeAppControlHandle*"></a>
   <h4 id="Tizen_Applications_AppControl_SafeAppControlHandle" data-uid="Tizen.Applications.AppControl.SafeAppControlHandle">SafeAppControlHandle</h4>
@@ -540,7 +544,8 @@ Log.Debug(LogTag, &quot;Operation: &quot; + appControl.Operation);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Applications.SafeAppControlHandle.html">SafeAppControlHandle</a></td>
-        <td></td>
+        <td><p>This property returns a reference to the underlying SafeAppControlHandle object.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -549,7 +554,7 @@ Log.Debug(LogTag, &quot;Operation: &quot; + appControl.Operation);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L298">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L302">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_Uri_" data-uid="Tizen.Applications.AppControl.Uri*"></a>
   <h4 id="Tizen_Applications_AppControl_Uri" data-uid="Tizen.Applications.AppControl.Uri">Uri</h4>
@@ -603,7 +608,7 @@ The callee application can just read it.
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L536">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L542">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_GetMatchedApplicationIds_" data-uid="Tizen.Applications.AppControl.GetMatchedApplicationIds*"></a>
   <h4 id="Tizen_Applications_AppControl_GetMatchedApplicationIds_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.GetMatchedApplicationIds(Tizen.Applications.AppControl)">GetMatchedApplicationIds(AppControl)</h4>
@@ -679,7 +684,7 @@ if (applicationIds != null)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1052">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1066">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_GetWindowPosition_" data-uid="Tizen.Applications.AppControl.GetWindowPosition*"></a>
   <h4 id="Tizen_Applications_AppControl_GetWindowPosition" data-uid="Tizen.Applications.AppControl.GetWindowPosition">GetWindowPosition()</h4>
@@ -701,7 +706,7 @@ if (applicationIds != null)
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
-        <td><p>The window position.</p>
+        <td><p>A structure containing the coordinates and dimensions of the window.</p>
 </td>
       </tr>
     </tbody>
@@ -727,7 +732,7 @@ if (applicationIds != null)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L655">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L669">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequest(AppControl, AppControlReplyCallback)</h4>
@@ -828,7 +833,7 @@ AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) =
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L588">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L598">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl)">SendLaunchRequest(AppControl)</h4>
@@ -885,8 +890,28 @@ AppControl.SendLaunchRequest(appControl);</code></pre>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
+        <td><p>Thrown when the application to run is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchFailedException.html">LaunchFailedException</a></td>
+        <td><p>Thrown when the request failed to launch the application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
+        <td><p>Thrown when the launch request is rejected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
+        <td><p>Thrown when the memory is insufficient.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
+        <td><p>Thrown when the permission is denied.</p>
 </td>
       </tr>
       <tr>
@@ -901,7 +926,7 @@ AppControl.SendLaunchRequest(appControl);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L850">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L864">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequestAsync_" data-uid="Tizen.Applications.AppControl.SendLaunchRequestAsync*"></a>
   <h4 id="Tizen_Applications_AppControl_SendLaunchRequestAsync_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequestAsync(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequestAsync(AppControl, AppControlReplyCallback)</h4>
@@ -991,7 +1016,7 @@ To launch a service application, an explicit launch request with the application
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L807">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L821">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendTerminateRequest_" data-uid="Tizen.Applications.AppControl.SendTerminateRequest*"></a>
   <h4 id="Tizen_Applications_AppControl_SendTerminateRequest_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SendTerminateRequest(Tizen.Applications.AppControl)">SendTerminateRequest(AppControl)</h4>
@@ -1062,11 +1087,11 @@ AppControl.SendTerminateRequest(terminateRequest);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1025">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1039">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SetWindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition*"></a>
   <h4 id="Tizen_Applications_AppControl_SetWindowPosition_Tizen_Applications_WindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition(Tizen.Applications.WindowPosition)">SetWindowPosition(WindowPosition)</h4>
-  <div class="markdown level1 summary"><p>Sets the window position.</p>
+  <div class="markdown level1 summary"><p>Sets the position and size of the window.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1086,7 +1111,7 @@ AppControl.SendTerminateRequest(terminateRequest);</code></pre>
       <tr>
         <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
         <td><span class="parametername">windowPosition</span></td>
-        <td><p>The window position object.</p>
+        <td><p>A structure containing the coordinates and dimensions of the window.</p>
 </td>
       </tr>
     </tbody>
@@ -1129,7 +1154,7 @@ AppControl.SendTerminateRequest(terminateRequest);</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L46" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L46" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1148,7 +1173,7 @@ AppControl.SendTerminateRequest(terminateRequest);</code></pre>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

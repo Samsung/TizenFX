@@ -10,7 +10,7 @@
     <meta name="title" content="Class NUIWidgetApplication
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -122,7 +122,7 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication__ctor_" data-uid="Tizen.NUI.NUIWidgetApplication.#ctor*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication__ctor_System_Collections_Generic_Dictionary_Tizen_System_Type_System_String__" data-uid="Tizen.NUI.NUIWidgetApplication.#ctor(System.Collections.Generic.Dictionary{Tizen.System.Type,System.String})">NUIWidgetApplication(Dictionary&lt;Type, string&gt;)</h4>
@@ -156,7 +156,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L69">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication__ctor_" data-uid="Tizen.NUI.NUIWidgetApplication.#ctor*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication__ctor_Tizen_System_Type_System_String_" data-uid="Tizen.NUI.NUIWidgetApplication.#ctor(Tizen.System.Type,System.String)">NUIWidgetApplication(Type, string)</h4>
@@ -199,7 +199,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L37">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication__ctor_" data-uid="Tizen.NUI.NUIWidgetApplication.#ctor*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication__ctor_Tizen_System_Type_" data-uid="Tizen.NUI.NUIWidgetApplication.#ctor(Tizen.System.Type)">NUIWidgetApplication(Type)</h4>
@@ -238,11 +238,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L132">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L137">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_Exit_" data-uid="Tizen.NUI.NUIWidgetApplication.Exit*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_Exit" data-uid="Tizen.NUI.NUIWidgetApplication.Exit">Exit()</h4>
-  <div class="markdown level1 summary"><p>Exit NUIWidgetApplication.</p>
+  <div class="markdown level1 summary"><p>The Exit method of NUIWidgetApplication.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -251,16 +251,21 @@
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.CoreApplication.html#Tizen_Applications_CoreApplication_Exit">CoreApplication.Exit()</a></div>
+  <h5 id="Tizen_NUI_NUIWidgetApplication_Exit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Note that calling this method will terminate the entire application.
+Ensure that all necessary cleanup operations are performed before calling this method.</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L230">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L243">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnCreate_" data-uid="Tizen.NUI.NUIWidgetApplication.OnCreate*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnCreate" data-uid="Tizen.NUI.NUIWidgetApplication.OnCreate">OnCreate()</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnCreate behavior.</p>
+  <div class="markdown level1 summary"><p>This method is called when the application is created.
+Override this method to handle custom initialization logic.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -274,11 +279,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L156">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L162">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnLocaleChanged_" data-uid="Tizen.NUI.NUIWidgetApplication.OnLocaleChanged*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnLocaleChanged_Tizen_Applications_LocaleChangedEventArgs_" data-uid="Tizen.NUI.NUIWidgetApplication.OnLocaleChanged(Tizen.Applications.LocaleChangedEventArgs)">OnLocaleChanged(LocaleChangedEventArgs)</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnLocaleChanged behavior.</p>
+  <div class="markdown level1 summary"><p>Override this method to implement custom behavior when the system locale changes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -298,7 +303,8 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td></td>
+        <td><p>The event arguments containing the new locale information.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -309,11 +315,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L166">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L174">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnLowBattery_" data-uid="Tizen.NUI.NUIWidgetApplication.OnLowBattery*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnLowBattery_Tizen_Applications_LowBatteryEventArgs_" data-uid="Tizen.NUI.NUIWidgetApplication.OnLowBattery(Tizen.Applications.LowBatteryEventArgs)">OnLowBattery(LowBatteryEventArgs)</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnLowBattery behavior.</p>
+  <div class="markdown level1 summary"><p>The OnLowBattery method is called when the device's battery level is low.
+This method can be overridden to implement custom behavior when the device's battery level is low.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -333,7 +340,8 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td></td>
+        <td><p>The event arguments containing the battery status.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -344,11 +352,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L176">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnLowMemory_" data-uid="Tizen.NUI.NUIWidgetApplication.OnLowMemory*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnLowMemory_Tizen_Applications_LowMemoryEventArgs_" data-uid="Tizen.NUI.NUIWidgetApplication.OnLowMemory(Tizen.Applications.LowMemoryEventArgs)">OnLowMemory(LowMemoryEventArgs)</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnLowMemory behavior.</p>
+  <div class="markdown level1 summary"><p>This method is called when the system is running low on memory.
+Overrides this method if want to handle OnLowMemory behavior.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -368,7 +377,8 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td></td>
+        <td><p>The event arguments containing the memory status.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -379,11 +389,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L221">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L233">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnPreCreate_" data-uid="Tizen.NUI.NUIWidgetApplication.OnPreCreate*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnPreCreate" data-uid="Tizen.NUI.NUIWidgetApplication.OnPreCreate">OnPreCreate()</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnPreCreate behavior.</p>
+  <div class="markdown level1 summary"><p>Overrides this method if you want to handle behavior before the application is created.
+This method is guaranteed to be called before <a class="xref" href="Tizen.NUI.NUIWidgetApplication.html#Tizen_NUI_NUIWidgetApplication_OnCreate">OnCreate()</a> is called.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -395,11 +406,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L186">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L197">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnRegionFormatChanged_" data-uid="Tizen.NUI.NUIWidgetApplication.OnRegionFormatChanged*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnRegionFormatChanged_Tizen_Applications_RegionFormatChangedEventArgs_" data-uid="Tizen.NUI.NUIWidgetApplication.OnRegionFormatChanged(Tizen.Applications.RegionFormatChangedEventArgs)">OnRegionFormatChanged(RegionFormatChangedEventArgs)</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnRegionFormatChanged behavior.</p>
+  <div class="markdown level1 summary"><p>This method can be overridden to implement custom behavior when the region format changes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -419,7 +430,8 @@
       <tr>
         <td><a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a></td>
         <td><span class="parametername">e</span></td>
-        <td></td>
+        <td><p>The event arguments containing information about the region format change.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -430,11 +442,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L211">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L222">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_OnTerminate_" data-uid="Tizen.NUI.NUIWidgetApplication.OnTerminate*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_OnTerminate" data-uid="Tizen.NUI.NUIWidgetApplication.OnTerminate">OnTerminate()</h4>
-  <div class="markdown level1 summary"><p>Overrides this method if want to handle OnTerminate behavior.</p>
+  <div class="markdown level1 summary"><p>This method is called when the application is terminated.
+This method is overridden to perform custom actions when the application terminates.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -448,11 +461,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L122">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L123">View Source</a>
   </span>
   <a id="Tizen_NUI_NUIWidgetApplication_Run_" data-uid="Tizen.NUI.NUIWidgetApplication.Run*"></a>
   <h4 id="Tizen_NUI_NUIWidgetApplication_Run_System_String___" data-uid="Tizen.NUI.NUIWidgetApplication.Run(System.String[])">Run(string[])</h4>
-  <div class="markdown level1 summary"><p>Run NUIWidgetApplication.</p>
+  <div class="markdown level1 summary"><p>Runs the NUI widget application.
+This method starts the main loop of the application.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -495,7 +509,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L30" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Application/NUIWidgetApplication.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -514,7 +528,7 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

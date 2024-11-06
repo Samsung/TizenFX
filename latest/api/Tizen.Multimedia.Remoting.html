@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.Multimedia.Remoting
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -127,7 +127,7 @@
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html#Tizen_Multimedia_Remoting_MediaController_DisplayRotationUpdated">DisplayRotationUpdated</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaCameraSource.html">MediaCameraSource</a></h4>
-      <section><p>Represents a camera source.</p>
+      <section><p>Represents a media source that makes video data using camera device internally.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></h4>
       <section><p>Provides a means to send commands to and handle events from media control server.</p>
@@ -154,34 +154,34 @@
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html">MediaFileSource</a></h4>
-      <section><p>Represents a media source with contents read from a file.</p>
+      <section><p>Represents a media source that reads media data from a file.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaMicrophoneSource.html">MediaMicrophoneSource</a></h4>
-      <section><p>Represents a microphone source.</p>
+      <section><p>Represents a media source that makes audio data using microphone.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html">MediaNullSource</a></h4>
-      <section><p>Represents a null source.</p>
+      <section><p>Represents a media source that only receives media streams from peer.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketBufferStatusChangedEventArgs.html">MediaPacketBufferStatusChangedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSourceConfiguration.html#Tizen_Multimedia_Remoting_MediaPacketSourceConfiguration_BufferStatusChanged">BufferStatusChanged</a> event.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html">MediaPacketSource</a></h4>
-      <section><p>Represents a media packet source.</p>
+      <section><p>Represents a media source that wraps media data into MediaPacket.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSourceConfiguration.html">MediaPacketSourceConfiguration</a></h4>
-      <section><p>Provides means to configure properties and handle events for <a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html">MediaPacketSource</a>.</p>
+      <section><p>Provides means to configure properties and handle event for <a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html">MediaPacketSource</a>.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaScreenSource.html">MediaScreenSource</a></h4>
-      <section><p>Represents a screen source.</p>
+      <section><p>Represents a media source to share screen data.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a></h4>
       <section><p>MediaSource is a base class for <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html">WebRTC</a> sources.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaStreamTrack.html">MediaStreamTrack</a></h4>
-      <section><p>Provides the ability to control audio/video track.</p>
+      <section><p>Provides the ability to control audio or video track from peer.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MediaTestSource.html">MediaTestSource</a></h4>
-      <section><p>Represents an audio or a video test source.</p>
+      <section><p>Represents a media source that makes test audio or video stream.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.MetadataUpdatedEventArgs.html">MetadataUpdatedEventArgs</a></h4>
       <section><p>Provides data for the <a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html#Tizen_Multimedia_Remoting_MediaController_MetadataUpdated">MetadataUpdated</a> event.</p>
@@ -406,13 +406,14 @@ start, pause, and resume the screen mirroring as a sink.</p>
       <section><p>Specifies the transceiver direction type.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.WebRTCBundlePolicy.html">WebRTCBundlePolicy</a></h4>
-      <section><p>Specifies the bundle policy.</p>
+      <section><p>Specifies the bundle policy that affects which media tracks are negotiated if the remote endpoint is not bundle-aware,
+and what ICE candidates are gathered.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDisplayMode.html">WebRTCDisplayMode</a></h4>
-      <section><p>Specifies the display type.</p>
+      <section><p>Specifies the display mode that indicates the way of displaying video data.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.WebRTCError.html">WebRTCError</a></h4>
-      <section><p>Specifies errors.</p>
+      <section><p>Specifies WebRTC errors.</p>
 </section>
       <h4><a class="xref" href="Tizen.Multimedia.Remoting.WebRTCIceConnectionState.html">WebRTCIceConnectionState</a></h4>
       <section><p>Specifies ICE connection states that a <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html">WebRTC</a> can have.</p>
@@ -459,7 +460,7 @@ start, pause, and resume the screen mirroring as a sink.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

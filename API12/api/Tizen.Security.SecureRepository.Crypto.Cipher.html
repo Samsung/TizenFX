@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a>.<a class="xref" href="Tizen.Security.SecureRepository.Crypto.html">Crypto</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the methods for encrypting and decrypting data.</p>
+  <div class="markdown level0 summary"><p>This class provides the methods for encrypting and decrypting data.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -114,11 +114,11 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L34">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L34">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Cipher__ctor_" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.#ctor*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Cipher__ctor_Tizen_Security_SecureRepository_Crypto_CipherParameters_" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.#ctor(Tizen.Security.SecureRepository.Crypto.CipherParameters)">Cipher(CipherParameters)</h4>
-  <div class="markdown level1 summary"><p>Initializes an instance of Cipher class with CipherParameters.</p>
+  <div class="markdown level1 summary"><p>A constructor of Cipher that takes the algorithm specific parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -138,7 +138,7 @@
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Crypto.CipherParameters.html">CipherParameters</a></td>
         <td><span class="parametername">parameters</span></td>
-        <td><p>Algorithm specific parameters.</p>
+        <td><p>The algorithm specific parameters.</p>
 </td>
       </tr>
     </tbody>
@@ -150,11 +150,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L43">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Cipher_Parameters_" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.Parameters*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Cipher_Parameters" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.Parameters">Parameters</h4>
-  <div class="markdown level1 summary"><p>Gets algorithm specific parameters.</p>
+  <div class="markdown level1 summary"><p>The algorithm specific parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -172,8 +172,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Crypto.CipherParameters.html">CipherParameters</a></td>
-        <td><p>Algorithm specific parameters.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -184,11 +183,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L81">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Cipher_Decrypt_" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.Decrypt*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Cipher_Decrypt_System_String_System_String_System_Byte___" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.Decrypt(System.String,System.String,System.Byte[])">Decrypt(string, string, byte[])</h4>
-  <div class="markdown level1 summary"><p>Decrypts data using selected key and the algorithm.</p>
+  <div class="markdown level1 summary"><p>Decrypts data using the selected key and the algorithm.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -214,13 +213,15 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>Password used in decrypting a key value.</p>
+        <td><p>The password used in decrypting a key value. If password of policy is
+provided in SaveKey(), the same password should be provided.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">cipherText</span></td>
-        <td><p>Data to be decrypted.</p>
+        <td><p>Data to be decrypted (some algorithms may require additional information
+embedded in encrypted data.AES GCM is an example).</p>
 </td>
       </tr>
     </tbody>
@@ -242,7 +243,7 @@
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_Crypto_Cipher_Decrypt_System_String_System_String_System_Byte____remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Key type specified by keyAlias should be compatible with the algorithm
+  <div class="markdown level1 remarks"><p>The key type specified by keyAlias should be compatible with the algorithm
 specified in Parameters.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -256,19 +257,19 @@ specified in Parameters.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">keyAlias</code> or <code data-dev-comment-type="paramref" class="paramref">cipherText</code> is null.</p>
+        <td><p>The keyAlias or cipherText is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when mandatory algorithm parameter is missing or invalid.
-Thrown when optional algorithm parameter is invalid.</p>
+        <td><p>The mandatory algorithm parameter is missing or invalid.
+The optional algorithm parameter is invalid.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key-protecting password does not match.
-Thrown when key does not exist with given keyAlias.</p>
+        <td><p>The key-protecting password isn't matched.
+The key does not exist with the keyAlias.</p>
 </td>
       </tr>
     </tbody>
@@ -278,7 +279,7 @@ Thrown when key does not exist with given keyAlias.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L138">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L133">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_Cipher_Encrypt_" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.Encrypt*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_Cipher_Encrypt_System_String_System_String_System_Byte___" data-uid="Tizen.Security.SecureRepository.Crypto.Cipher.Encrypt(System.String,System.String,System.Byte[])">Encrypt(string, string, byte[])</h4>
@@ -308,13 +309,17 @@ Thrown when key does not exist with given keyAlias.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>Password used in decrypting a key value.</p>
+        <td><p>The password used in decrypting a key value. If password of policy is
+provided in SaveKey(), the same password should be provided.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">byte</span>[]</td>
         <td><span class="parametername">plainText</span></td>
-        <td><p>Data to be encrypted.</p>
+        <td><p>Data to be encrypted. In case of the AES algorithm, there are no restrictions on
+the size of data. For RSA, the size must be smaller or equal to (key_size_in
+bytes - 42). Example: For 1024 RSA key, the maximum data size is
+1024/8 - 42 = 86.</p>
 </td>
       </tr>
     </tbody>
@@ -336,7 +341,7 @@ Thrown when key does not exist with given keyAlias.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_Crypto_Cipher_Encrypt_System_String_System_String_System_Byte____remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Key type specified by the keyAlias should be compatible with the algorithm
+  <div class="markdown level1 remarks"><p>The key type specified by the keyAlias should be compatible with the algorithm
 specified in Parameters.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -350,19 +355,19 @@ specified in Parameters.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">keyAlias</code> or <code data-dev-comment-type="paramref" class="paramref">plainText</code> is null.</p>
+        <td><p>The keyAlias or plainText is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when mandatory algorithm parameter is missing or invalid.
-Thrown when optional algorithm parameter is invalid.</p>
+        <td><p>The mandatory algorithm parameter is missing or invalid.
+The optional algorithm parameter is invalid.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key-protecting password does not match.
-Thrown when key does not exist with given <code data-dev-comment-type="paramref" class="paramref">keyAlias</code>.</p>
+        <td><p>The key-protecting password isn't matched.
+The key does not exist with the keyAlias.</p>
 </td>
       </tr>
     </tbody>
@@ -379,7 +384,7 @@ Thrown when key does not exist with given <code data-dev-comment-type="paramref"
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/Cipher.cs/#L25" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -398,7 +403,7 @@ Thrown when key does not exist with given <code data-dev-comment-type="paramref"
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

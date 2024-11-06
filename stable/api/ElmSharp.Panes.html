@@ -10,7 +10,7 @@
     <meta name="title" content="Class Panes
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -95,7 +95,8 @@ When dragged, this bar resizes the contents' size.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Panes : Layout, IAccessibleObject</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public class Panes : Layout, IAccessibleObject</code></pre>
   </div>
 
 
@@ -126,7 +127,7 @@ When dragged, this bar resizes the contents' size.</p>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L36">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L37">View Source</a>
   </span>
   <a id="ElmSharp_Panes__ctor_" data-uid="ElmSharp.Panes.#ctor*"></a>
   <h4 id="ElmSharp_Panes__ctor_ElmSharp_EvasObject_" data-uid="ElmSharp.Panes.#ctor(ElmSharp.EvasObject)">Panes(EvasObject)</h4>
@@ -135,7 +136,8 @@ When dragged, this bar resizes the contents' size.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Panes(EvasObject parent)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Panes(EvasObject parent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -162,7 +164,7 @@ When dragged, this bar resizes the contents' size.</p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L62">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L66">View Source</a>
   </span>
   <a id="ElmSharp_Panes_IsFixed_" data-uid="ElmSharp.Panes.IsFixed*"></a>
   <h4 id="ElmSharp_Panes_IsFixed" data-uid="ElmSharp.Panes.IsFixed">IsFixed</h4>
@@ -172,7 +174,8 @@ True means the left and right panes resize homogeneously.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsFixed { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsFixed { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -194,7 +197,7 @@ True means the left and right panes resize homogeneously.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L108">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L114">View Source</a>
   </span>
   <a id="ElmSharp_Panes_IsHorizontal_" data-uid="ElmSharp.Panes.IsHorizontal*"></a>
   <h4 id="ElmSharp_Panes_IsHorizontal" data-uid="ElmSharp.Panes.IsHorizontal">IsHorizontal</h4>
@@ -203,7 +206,8 @@ True means the left and right panes resize homogeneously.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsHorizontal { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsHorizontal { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -230,7 +234,7 @@ By default, the panes are in a vertical mode.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L145">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L153">View Source</a>
   </span>
   <a id="ElmSharp_Panes_LeftMinimumRelativeSize_" data-uid="ElmSharp.Panes.LeftMinimumRelativeSize*"></a>
   <h4 id="ElmSharp_Panes_LeftMinimumRelativeSize" data-uid="ElmSharp.Panes.LeftMinimumRelativeSize">LeftMinimumRelativeSize</h4>
@@ -242,7 +246,8 @@ The value between 0.0 and 1.0 represents size proportion of the minimum size of 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double LeftMinimumRelativeSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double LeftMinimumRelativeSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -264,7 +269,7 @@ The value between 0.0 and 1.0 represents size proportion of the minimum size of 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L126">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L133">View Source</a>
   </span>
   <a id="ElmSharp_Panes_LeftMinimumSize_" data-uid="ElmSharp.Panes.LeftMinimumSize*"></a>
   <h4 id="ElmSharp_Panes_LeftMinimumSize" data-uid="ElmSharp.Panes.LeftMinimumSize">LeftMinimumSize</h4>
@@ -275,7 +280,8 @@ The value represents minimum size of the left side in pixels.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int LeftMinimumSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public int LeftMinimumSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -297,7 +303,7 @@ The value represents minimum size of the left side in pixels.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L87">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L92">View Source</a>
   </span>
   <a id="ElmSharp_Panes_Proportion_" data-uid="ElmSharp.Panes.Proportion*"></a>
   <h4 id="ElmSharp_Panes_Proportion" data-uid="ElmSharp.Panes.Proportion">Proportion</h4>
@@ -306,7 +312,8 @@ The value represents minimum size of the left side in pixels.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Proportion { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double Proportion { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -336,7 +343,7 @@ This proportion changes when the user drags the panes bar.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L182">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L192">View Source</a>
   </span>
   <a id="ElmSharp_Panes_RightMinimumRelativeSize_" data-uid="ElmSharp.Panes.RightMinimumRelativeSize*"></a>
   <h4 id="ElmSharp_Panes_RightMinimumRelativeSize" data-uid="ElmSharp.Panes.RightMinimumRelativeSize">RightMinimumRelativeSize</h4>
@@ -348,7 +355,8 @@ The value between 0.0 and 1.0 represents size proportion of the minimum size of 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double RightMinimumRelativeSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double RightMinimumRelativeSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -370,7 +378,7 @@ The value between 0.0 and 1.0 represents size proportion of the minimum size of 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L163">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L172">View Source</a>
   </span>
   <a id="ElmSharp_Panes_RightMinimumSize_" data-uid="ElmSharp.Panes.RightMinimumSize*"></a>
   <h4 id="ElmSharp_Panes_RightMinimumSize" data-uid="ElmSharp.Panes.RightMinimumSize">RightMinimumSize</h4>
@@ -381,7 +389,8 @@ The value represents the minimum size of the right side in pixels.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int RightMinimumSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public int RightMinimumSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -405,7 +414,7 @@ The value represents the minimum size of the right side in pixels.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L200">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L211">View Source</a>
   </span>
   <a id="ElmSharp_Panes_CreateHandle_" data-uid="ElmSharp.Panes.CreateHandle*"></a>
   <h4 id="ElmSharp_Panes_CreateHandle_ElmSharp_EvasObject_" data-uid="ElmSharp.Panes.CreateHandle(ElmSharp.EvasObject)">CreateHandle(EvasObject)</h4>
@@ -414,7 +423,8 @@ The value represents the minimum size of the right side in pixels.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -459,7 +469,7 @@ The value represents the minimum size of the right side in pixels.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L52">View Source</a>
   </span>
   <h4 id="ElmSharp_Panes_Pressed" data-uid="ElmSharp.Panes.Pressed">Pressed</h4>
   <div class="markdown level1 summary"><p>Pressed will be triggered when the panes have been pressed (button isn't released yet).</p>
@@ -467,7 +477,8 @@ The value represents the minimum size of the right side in pixels.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Pressed</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler Pressed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -489,7 +500,7 @@ The value represents the minimum size of the right side in pixels.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L55">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L59">View Source</a>
   </span>
   <h4 id="ElmSharp_Panes_Unpressed" data-uid="ElmSharp.Panes.Unpressed">Unpressed</h4>
   <div class="markdown level1 summary"><p>Unpressed will be triggered when the panes are released after being pressed.</p>
@@ -497,7 +508,8 @@ The value represents the minimum size of the right side in pixels.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler Unpressed</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler Unpressed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -543,7 +555,7 @@ The value represents the minimum size of the right side in pixels.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/Panes.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/Panes.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -562,7 +574,7 @@ The value represents the minimum size of the right side in pixels.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

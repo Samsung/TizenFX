@@ -10,7 +10,7 @@
     <meta name="title" content="Class MimeUtil
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -117,11 +117,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Content.MimeType/Tizen.Content.MimeType/MimeUtil.cs/#L74">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Content.MimeType/Tizen.Content.MimeType/MimeUtil.cs/#L78">View Source</a>
   </span>
   <a id="Tizen_Content_MimeType_MimeUtil_GetFileExtension_" data-uid="Tizen.Content.MimeType.MimeUtil.GetFileExtension*"></a>
   <h4 id="Tizen_Content_MimeType_MimeUtil_GetFileExtension_System_String_" data-uid="Tizen.Content.MimeType.MimeUtil.GetFileExtension(System.String)">GetFileExtension(string)</h4>
-  <div class="markdown level1 summary"><p>Gets the file extensions for the given MIME type.</p>
+  <div class="markdown level1 summary"><p>Retrieves the file extensions associated with the specified MIME type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -141,7 +141,7 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">mime</span></td>
-        <td><p>The MIME type.</p>
+        <td><p>The MIME type for which you want to retrieve the associated file extensions.</p>
 </td>
       </tr>
     </tbody>
@@ -157,20 +157,21 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>If successful, returns the list of file extension strings for the given MIME type.
-The array of file extension is without the leading dot ('.').</p>
+        <td><p>An enumerable collection of file extension strings for the specified MIME type.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Content_MimeType_MimeUtil_GetFileExtension_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Conversions are provided from the file extensions to MIME types and from the MIME types to file extensions.</p>
+  <div class="markdown level1 remarks"><p>By calling this function with a specific MIME type argument, you can obtain a list of file extensions related to that MIME type.
+These file extensions are returned without the leading period ('.') character.</p>
 </div>
   <h5 id="Tizen_Content_MimeType_MimeUtil_GetFileExtension_System_String__examples">Examples</h5>
-  <pre><code>    var extColl = MimeUtil.GetFileExtension(&quot;video/mpeg&quot;);
-    foreach ( string obj in extColl )
+  <p>In the following code snippet, we demonstrate how to utilize the GetFileExtension method by retrieving the file extensions associated with the video/mpeg MIME type:</p>
+<pre><code>    var fileExtensions = MimeUtil.GetFileExtension(&quot;video/mpeg&quot;);
+    foreach (var extension in fileExtensions)
     {
-        Console.WriteLine(obj);
+        Console.WriteLine(extension);
     }</code></pre>
 
 
@@ -178,12 +179,12 @@ The array of file extension is without the leading dot ('.').</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Content.MimeType/Tizen.Content.MimeType/MimeUtil.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Content.MimeType/Tizen.Content.MimeType/MimeUtil.cs/#L46">View Source</a>
   </span>
   <a id="Tizen_Content_MimeType_MimeUtil_GetMimeType_" data-uid="Tizen.Content.MimeType.MimeUtil.GetMimeType*"></a>
   <h4 id="Tizen_Content_MimeType_MimeUtil_GetMimeType_System_String_" data-uid="Tizen.Content.MimeType.MimeUtil.GetMimeType(System.String)">GetMimeType(string)</h4>
-  <div class="markdown level1 summary"><p>Gets the MIME type for the given file extension.
-The MIME type is 'application/octet-stream' if the given file extension is not associated with specific file formats.</p>
+  <div class="markdown level1 summary"><p>Retrieves the MIME type for the specified file extension.
+If no specific file format is associated with the given file extension, the default MIME type 'application/octet-stream' is returned.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -203,7 +204,7 @@ The MIME type is 'application/octet-stream' if the given file extension is not a
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">fileExtension</span></td>
-        <td><p>The file extension.</p>
+        <td><p>The file extension for which the MIME type needs to be retrieved.</p>
 </td>
       </tr>
     </tbody>
@@ -219,7 +220,8 @@ The MIME type is 'application/octet-stream' if the given file extension is not a
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td></td>
+        <td><p>The MIME type for the specified file extension.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -241,7 +243,7 @@ The MIME type is 'application/octet-stream' if the given file extension is not a
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Content.MimeType/Tizen.Content.MimeType/MimeUtil.cs/#L32" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Content.MimeType/Tizen.Content.MimeType/MimeUtil.cs/#L32" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -260,7 +262,7 @@ The MIME type is 'application/octet-stream' if the given file extension is not a
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

@@ -10,7 +10,7 @@
     <meta name="title" content="Class Animatable
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -89,7 +89,10 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Animatable.</p>
+  <div class="markdown level0 summary"><p>The class that represents an object capable of animation is the parent class of the minimum unit of visual, View.
+When a property is an animatable property, it means that its value can change continuously as the target of an animation.
+In this case, if a property notification callback is set, you can receive the callback according to the changing values.
+Additionally, users can also add their own properties.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -132,10 +135,45 @@
     </dd>
   </dl>
 
+  <h5 id="Tizen_NUI_Animatable_examples"><strong>Examples</strong></h5>
+  <pre><code>     View view = new View()
+     {
+         Size2D = new Size2D(100, 100),
+         Position2D = new Position2D(100, 100),
+         BackgroundColor = Color.Red,
+     };
+
+     Window.Default.Add(view);
+     Animation animation = new Animation();
+     const float destinationValue = 300.0f;
+     const int startTime = 0; // animation starts at 0 second point. no delay.
+     const int endTime = 5000; // animation ends at 5 second point.
+     animation.AnimateTo(view, &quot;PositionX&quot;, destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSine));
+     animation.Play();
+
+     PropertyNotification propertyNotification = view.AddPropertyNotification(&quot;position&quot;, PropertyCondition.Step(10.0f));
+     propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
+     {
+         Animatable target = args.PropertyNotification.GetTarget();
+         if (target is View viewTarget)
+         {
+             Tizen.Log.Debug(&quot;NUI&quot;, $&quot;postion changed! ({viewTarget.CurrentPosition.X},{viewTarget.CurrentPosition.Y})&quot;);
+         }
+     };
+
+     Animatable animatable = new Animatable();
+     int myPropertyIndex = animatable.RegisterProperty(&quot;myProperty&quot;, new PropertyValue(100), PropertyAccessMode.ReadWrite);
+     animatable.GetProperty(myPropertyIndex).Get(out int aValue);
+     Tizen.Log.Debug(&quot;NUI&quot;, $&quot;myProperty value : {aValue} (should be 100)&quot;);
+
+     animatable.SetProperty(myPropertyIndex, new PropertyValue(200));
+     animatable.GetProperty(myPropertyIndex).Get(out aValue);
+     Tizen.Log.Debug(&quot;NUI&quot;, $&quot;myProperty value : {aValue} (should be 200)&quot;);</code></pre>
+
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable__ctor_" data-uid="Tizen.NUI.Animatable.#ctor*"></a>
   <h4 id="Tizen_NUI_Animatable__ctor" data-uid="Tizen.NUI.Animatable.#ctor">Animatable()</h4>
@@ -153,7 +191,7 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L229">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L267">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_AddPropertyNotification_" data-uid="Tizen.NUI.Animatable.AddPropertyNotification*"></a>
   <h4 id="Tizen_NUI_Animatable_AddPropertyNotification_System_String_Tizen_NUI_PropertyCondition_" data-uid="Tizen.NUI.Animatable.AddPropertyNotification(System.String,Tizen.NUI.PropertyCondition)">AddPropertyNotification(string, PropertyCondition)</h4>
@@ -209,7 +247,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L204">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L242">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_GetProperty_" data-uid="Tizen.NUI.Animatable.GetProperty*"></a>
   <h4 id="Tizen_NUI_Animatable_GetProperty_System_Int32_" data-uid="Tizen.NUI.Animatable.GetProperty(System.Int32)">GetProperty(int)</h4>
@@ -259,7 +297,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L123">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_GetPropertyIndex_" data-uid="Tizen.NUI.Animatable.GetPropertyIndex*"></a>
   <h4 id="Tizen_NUI_Animatable_GetPropertyIndex_System_String_" data-uid="Tizen.NUI.Animatable.GetPropertyIndex(System.String)">GetPropertyIndex(string)</h4>
@@ -309,7 +347,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_GetPropertyName_" data-uid="Tizen.NUI.Animatable.GetPropertyName*"></a>
   <h4 id="Tizen_NUI_Animatable_GetPropertyName_System_Int32_" data-uid="Tizen.NUI.Animatable.GetPropertyName(System.Int32)">GetPropertyName(int)</h4>
@@ -359,7 +397,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L129">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L167">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_GetPropertyType_" data-uid="Tizen.NUI.Animatable.GetPropertyType*"></a>
   <h4 id="Tizen_NUI_Animatable_GetPropertyType_System_Int32_" data-uid="Tizen.NUI.Animatable.GetPropertyType(System.Int32)">GetPropertyType(int)</h4>
@@ -409,7 +447,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L116">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L154">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_IsPropertyAnimatable_" data-uid="Tizen.NUI.Animatable.IsPropertyAnimatable*"></a>
   <h4 id="Tizen_NUI_Animatable_IsPropertyAnimatable_System_Int32_" data-uid="Tizen.NUI.Animatable.IsPropertyAnimatable(System.Int32)">IsPropertyAnimatable(int)</h4>
@@ -459,7 +497,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L141">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_IsPropertyWritable_" data-uid="Tizen.NUI.Animatable.IsPropertyWritable*"></a>
   <h4 id="Tizen_NUI_Animatable_IsPropertyWritable_System_Int32_" data-uid="Tizen.NUI.Animatable.IsPropertyWritable(System.Int32)">IsPropertyWritable(int)</h4>
@@ -509,7 +547,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L191">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L229">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_RegisterProperty_" data-uid="Tizen.NUI.Animatable.RegisterProperty*"></a>
   <h4 id="Tizen_NUI_Animatable_RegisterProperty_System_String_Tizen_NUI_PropertyValue_Tizen_NUI_PropertyAccessMode_" data-uid="Tizen.NUI.Animatable.RegisterProperty(System.String,Tizen.NUI.PropertyValue,Tizen.NUI.PropertyAccessMode)">RegisterProperty(string, PropertyValue, PropertyAccessMode)</h4>
@@ -571,7 +609,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L176">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L214">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_RegisterProperty_" data-uid="Tizen.NUI.Animatable.RegisterProperty*"></a>
   <h4 id="Tizen_NUI_Animatable_RegisterProperty_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Animatable.RegisterProperty(System.String,Tizen.NUI.PropertyValue)">RegisterProperty(string, PropertyValue)</h4>
@@ -627,7 +665,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L243">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L281">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_RemovePropertyNotification_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotification*"></a>
   <h4 id="Tizen_NUI_Animatable_RemovePropertyNotification_Tizen_NUI_PropertyNotification_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotification(Tizen.NUI.PropertyNotification)">RemovePropertyNotification(PropertyNotification)</h4>
@@ -661,7 +699,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L253">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L291">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_RemovePropertyNotifications_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotifications*"></a>
   <h4 id="Tizen_NUI_Animatable_RemovePropertyNotifications" data-uid="Tizen.NUI.Animatable.RemovePropertyNotifications">RemovePropertyNotifications()</h4>
@@ -677,7 +715,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L142">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L180">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_SetProperty_" data-uid="Tizen.NUI.Animatable.SetProperty*"></a>
   <h4 id="Tizen_NUI_Animatable_SetProperty_System_Int32_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Animatable.SetProperty(System.Int32,Tizen.NUI.PropertyValue)">SetProperty(int, PropertyValue)</h4>
@@ -731,7 +769,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L65" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -750,7 +788,7 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

@@ -10,7 +10,7 @@
     <meta name="title" content="Class ProcessCpuUsage
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.System.html">System</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.System.Information.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The class for CPU usage per process.</p>
+  <div class="markdown level0 summary"><p>The class for CPU usage per given list of process.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -114,11 +114,11 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L44">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L44">View Source</a>
   </span>
   <a id="Tizen_System_ProcessCpuUsage__ctor_" data-uid="Tizen.System.ProcessCpuUsage.#ctor*"></a>
   <h4 id="Tizen_System_ProcessCpuUsage__ctor_System_Collections_Generic_IEnumerable_System_Int32__" data-uid="Tizen.System.ProcessCpuUsage.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">ProcessCpuUsage(IEnumerable&lt;int&gt;)</h4>
-  <div class="markdown level1 summary"><p>The constructor of ProcessCpuUsage class.</p>
+  <div class="markdown level1 summary"><p>The constructor of ProcessCpuUsage class of the given list of process. It internally call Update() on constructing an instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -181,11 +181,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L53">View Source</a>
   </span>
   <a id="Tizen_System_ProcessCpuUsage_Count_" data-uid="Tizen.System.ProcessCpuUsage.Count*"></a>
   <h4 id="Tizen_System_ProcessCpuUsage_Count" data-uid="Tizen.System.ProcessCpuUsage.Count">Count</h4>
-  <div class="markdown level1 summary"><p>The number of usage entries.</p>
+  <div class="markdown level1 summary"><p>The number of processes being tracked by the instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -214,11 +214,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L80">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_System_ProcessCpuUsage_GetSTime_" data-uid="Tizen.System.ProcessCpuUsage.GetSTime*"></a>
   <h4 id="Tizen_System_ProcessCpuUsage_GetSTime_System_Int32_" data-uid="Tizen.System.ProcessCpuUsage.GetSTime(System.Int32)">GetSTime(int)</h4>
-  <div class="markdown level1 summary"><p>Gets the amount of time this process has been scheduled in kernel mode.</p>
+  <div class="markdown level1 summary"><p>Gets the amount of time this process has been scheduled in kernel mode. To get the latest value, it is recommended to call Update() before it.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -280,11 +280,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L62">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L62">View Source</a>
   </span>
   <a id="Tizen_System_ProcessCpuUsage_GetUTime_" data-uid="Tizen.System.ProcessCpuUsage.GetUTime*"></a>
   <h4 id="Tizen_System_ProcessCpuUsage_GetUTime_System_Int32_" data-uid="Tizen.System.ProcessCpuUsage.GetUTime(System.Int32)">GetUTime(int)</h4>
-  <div class="markdown level1 summary"><p>Gets the amount of time this process has been scheduled in user mode.</p>
+  <div class="markdown level1 summary"><p>Gets the amount of time this process has been scheduled in user mode. To get the latest value, it is recommended to call Update() before it.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -346,11 +346,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L101">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L101">View Source</a>
   </span>
   <a id="Tizen_System_ProcessCpuUsage_Update_" data-uid="Tizen.System.ProcessCpuUsage.Update*"></a>
   <h4 id="Tizen_System_ProcessCpuUsage_Update_System_Collections_Generic_IEnumerable_System_Int32__" data-uid="Tizen.System.ProcessCpuUsage.Update(System.Collections.Generic.IEnumerable{System.Int32})">Update(IEnumerable&lt;int&gt;)</h4>
-  <div class="markdown level1 summary"><p>Update the process CPU usage to the latest.</p>
+  <div class="markdown level1 summary"><p>Update CPU usage of the given processes to the latest.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -418,7 +418,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Information/Usage/ProcessCpuUsage.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -437,7 +437,7 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

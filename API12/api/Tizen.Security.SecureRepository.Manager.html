@@ -113,8 +113,12 @@ for all sub classes.</p>
     <dt>Derived</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.CertificateManager.html">CertificateManager</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.CertificateManager.html">CertificateManager</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.DataManager.html">DataManager</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.DataManager.html">DataManager</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.KeyManager.html">KeyManager</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.KeyManager.html">KeyManager</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.Pkcs12Manager.html">Pkcs12Manager</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Security.SecureRepository.Pkcs12Manager.html">Pkcs12Manager</a></div>
     </dd>
   </dl>
@@ -124,11 +128,11 @@ for all sub classes.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L36">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Manager_CreateFullAlias_" data-uid="Tizen.Security.SecureRepository.Manager.CreateFullAlias*"></a>
   <h4 id="Tizen_Security_SecureRepository_Manager_CreateFullAlias_System_String_System_String_" data-uid="Tizen.Security.SecureRepository.Manager.CreateFullAlias(System.String,System.String)">CreateFullAlias(string, string)</h4>
-  <div class="markdown level1 summary"><p>Creates a new full alias, which is a concatenation of owner ID and alias.</p>
+  <div class="markdown level1 summary"><p>Creates a new full alias, which is concatenation of owner ID and alias.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -148,7 +152,9 @@ for all sub classes.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">ownerId</span></td>
-        <td><p>Data owner's ID.</p>
+        <td><p>Data owner's ID. This should be package ID if data
+owner is application. If you want to access data stored by system services,
+use CreateFullSystemAlias() instead.</p>
 </td>
       </tr>
       <tr>
@@ -170,25 +176,20 @@ for all sub classes.</p>
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>Full alias, a concatenation of owner ID and alias.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Manager_CreateFullAlias_System_String_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Data owner's ID should be package ID, if data owner is an application.
-If you want to access data stored by system services, use CreateFullSystemAlias() instead.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L51">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Manager_CreateFullSystemAlias_" data-uid="Tizen.Security.SecureRepository.Manager.CreateFullSystemAlias*"></a>
   <h4 id="Tizen_Security_SecureRepository_Manager_CreateFullSystemAlias_System_String_" data-uid="Tizen.Security.SecureRepository.Manager.CreateFullSystemAlias(System.String)">CreateFullSystemAlias(string)</h4>
-  <div class="markdown level1 summary"><p>Creates a new full alias, which is a concatenation of system service's
+  <div class="markdown level1 summary"><p>Creates a new full alias, which is concatenation of system service's
 owner ID and alias.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -225,8 +226,7 @@ owner ID and alias.</p>
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>Full alias, a concatenation of system service's owner ID and alias.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -235,11 +235,11 @@ owner ID and alias.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L64">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Manager_RemoveAlias_" data-uid="Tizen.Security.SecureRepository.Manager.RemoveAlias*"></a>
   <h4 id="Tizen_Security_SecureRepository_Manager_RemoveAlias_System_String_" data-uid="Tizen.Security.SecureRepository.Manager.RemoveAlias(System.String)">RemoveAlias(string)</h4>
-  <div class="markdown level1 summary"><p>Removes an entry (no matter what type) from the key manager.</p>
+  <div class="markdown level1 summary"><p>Removes an entry (no matter of type) from the key manager.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -278,17 +278,17 @@ owner ID and alias.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> is null.</p>
+        <td><p>The alias is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> is in the invalid format.</p>
+        <td><p>The alias is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> does not exist.</p>
+        <td><p>The alias does not exist.</p>
 </td>
       </tr>
     </tbody>
@@ -298,7 +298,7 @@ owner ID and alias.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L106">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L95">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Manager_SetPermission_" data-uid="Tizen.Security.SecureRepository.Manager.SetPermission*"></a>
   <h4 id="Tizen_Security_SecureRepository_Manager_SetPermission_System_String_System_String_System_Int32_" data-uid="Tizen.Security.SecureRepository.Manager.SetPermission(System.String,System.String,System.Int32)">SetPermission(string, string, int)</h4>
@@ -354,18 +354,17 @@ otherPackageId.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> or <code data-dev-comment-type="paramref" class="paramref">otherPackageId</code> is null.</p>
+        <td><p>The alias or otherPackageId is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> or
-<code data-dev-comment-type="paramref" class="paramref">otherPackageId</code> has an invalid format.</p>
+        <td><p>The alias or otherPackageId is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> does not exist.</p>
+        <td><p>The alias does not exist.</p>
 </td>
       </tr>
     </tbody>
@@ -382,7 +381,7 @@ otherPackageId.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Manager.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -401,7 +400,7 @@ otherPackageId.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>
