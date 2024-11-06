@@ -10,7 +10,7 @@
     <meta name="title" content="Class Preference
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -89,8 +89,8 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Preference.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The preference class provides APIs to store and retrieve an application specific data/preference. A preference is saved in the form of a key-value pair.
-Keys are always text strings and the value can be any one of the four types: integer, double, string, and boolean.</p>
+  <div class="markdown level0 summary"><p>The Preference class provides methods to store and retrieve application specific data/preferences. Preferences are stored in the form of key-value pairs.
+Key names must be text strings while values can be integers, doubles, strings, or booleans.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -115,7 +115,7 @@ Keys are always text strings and the value can be any one of the four types: int
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Keys_" data-uid="Tizen.Applications.Preference.Keys*"></a>
   <h4 id="Tizen_Applications_Preference_Keys" data-uid="Tizen.Applications.Preference.Keys">Keys</h4>
@@ -159,7 +159,7 @@ Keys are always text strings and the value can be any one of the four types: int
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L151">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L154">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Contains_" data-uid="Tizen.Applications.Preference.Contains*"></a>
   <h4 id="Tizen_Applications_Preference_Contains_System_String_" data-uid="Tizen.Applications.Preference.Contains(System.String)">Contains(string)</h4>
@@ -204,6 +204,9 @@ Keys are always text strings and the value can be any one of the four types: int
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Preference_Contains_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method checks if the specified key exists in the preferences. It returns true if the key exists, and false if not. The key argument should be a valid parameter. An ArgumentException will be thrown if the key is invalid. Additionally, an IOException may be thrown if the method fails due to an internal input/output error.</p>
+</div>
   <h5 id="Tizen_Applications_Preference_Contains_System_String__examples">Examples</h5>
   <pre><code>    Preference.Set(&quot;active_user&quot;, &quot;Joe&quot;);
     bool exists = Preference.Contains(&quot;active_user&quot;);
@@ -239,7 +242,7 @@ Keys are always text strings and the value can be any one of the four types: int
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L251">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L254">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Get_" data-uid="Tizen.Applications.Preference.Get*"></a>
   <h4 id="Tizen_Applications_Preference_Get__1_System_String_" data-uid="Tizen.Applications.Preference.Get``1(System.String)">Get&lt;T&gt;(string)</h4>
@@ -340,7 +343,7 @@ Note that this is a generic method.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_GetEventContext_" data-uid="Tizen.Applications.Preference.GetEventContext*"></a>
   <h4 id="Tizen_Applications_Preference_GetEventContext_System_String_" data-uid="Tizen.Applications.Preference.GetEventContext(System.String)">GetEventContext(string)</h4>
@@ -436,7 +439,7 @@ Note that this is a generic method.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L310">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L313">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Remove_" data-uid="Tizen.Applications.Preference.Remove*"></a>
   <h4 id="Tizen_Applications_Preference_Remove_System_String_" data-uid="Tizen.Applications.Preference.Remove(System.String)">Remove(string)</h4>
@@ -498,7 +501,7 @@ Note that this is a generic method.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L334">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L337">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_RemoveAll_" data-uid="Tizen.Applications.Preference.RemoveAll*"></a>
   <h4 id="Tizen_Applications_Preference_RemoveAll" data-uid="Tizen.Applications.Preference.RemoveAll">RemoveAll()</h4>
@@ -537,7 +540,7 @@ Note that this is a generic method.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L184">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L187">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Set_" data-uid="Tizen.Applications.Preference.Set*"></a>
   <h4 id="Tizen_Applications_Preference_Set_System_String_System_Object_" data-uid="Tizen.Applications.Preference.Set(System.String,System.Object)">Set(string, object)</h4>
@@ -574,13 +577,13 @@ Note that this is a generic method.</p>
   </table>
   <h5 id="Tizen_Applications_Preference_Set_System_String_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the key already exists in the preference, the old value will be overwritten with a new value.
-Data types for supported values are: integer, double, string, and bool.</p>
+Supported value data types include integers, doubles, strings, and booleans.</p>
 </div>
   <h5 id="Tizen_Applications_Preference_Set_System_String_System_Object__examples">Examples</h5>
   <pre><code>    Preference.Set(&quot;Option_enabled&quot;, true);
     Preference.Set(&quot;active_user&quot;, &quot;Joe&quot;);
     Preference.Set(&quot;default_volume&quot;, 10);
-    Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);</code></pre>
+    Preference.Set(&quot;brightness&quot;, 0.6);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -598,7 +601,7 @@ Data types for supported values are: integer, double, string, and bool.</p>
       </tr>
       <tr>
         <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+        <td><p>Thrown when the method fails due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
@@ -615,7 +618,7 @@ Data types for supported values are: integer, double, string, and bool.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -634,7 +637,7 @@ Data types for supported values are: integer, double, string, and bool.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

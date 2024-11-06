@@ -89,7 +89,8 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Represents PKCS#12 contents.</p>
+  <div class="markdown level0 summary"><p>The class that represents a PKCS#12 contents.
+It has a private key or its certificate or all the members of a chain of trust.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -111,18 +112,15 @@
 
 
 
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>It has a private key or its certificate or all members of a chain of trust.</p>
-</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L95">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L90">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Pkcs12__ctor_" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor*"></a>
   <h4 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor(Tizen.Security.SecureRepository.Key,Tizen.Security.SecureRepository.Certificate,System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})">Pkcs12(Key, Certificate, IEnumerable&lt;Certificate&gt;)</h4>
-  <div class="markdown level1 summary"><p>Initializes an instance of Pkcs12 class with a private key,
-its corresponding certificate and CA's certificate chain.</p>
+  <div class="markdown level1 summary"><p>A constructor of Key that takes a private key, its corresponding certicate,
+and CA's certificate chain.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -142,36 +140,33 @@ its corresponding certificate and CA's certificate chain.</p>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
         <td><span class="parametername">privateKey</span></td>
-        <td><p>Private key.</p>
+        <td><p>A private key.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
         <td><span class="parametername">certificate</span></td>
-        <td><p>Certificate corresponding to the private key.</p>
+        <td><p>A certificate corresponding the private key.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
         <td><span class="parametername">caChain</span></td>
-        <td><p>Certificate chain of CA (Certificate Authority) that issued the certificate.</p>
+        <td><p>A certificate chain of CA(Certificate Authority) that issued the certificate.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It has a private key or its certificate or all members of a chain of trust.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L78">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L73">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Pkcs12__ctor_" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor*"></a>
   <h4 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor(Tizen.Security.SecureRepository.Key)">Pkcs12(Key)</h4>
-  <div class="markdown level1 summary"><p>Initializes an instance of Pkcs12 class with a private key.</p>
+  <div class="markdown level1 summary"><p>A constructor of Key that takes a private key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -196,9 +191,6 @@ its corresponding certificate and CA's certificate chain.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It has a private key or its certificate or all members of a chain of trust.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -206,11 +198,11 @@ its corresponding certificate and CA's certificate chain.</p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L188">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L174">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Pkcs12_CaChain_" data-uid="Tizen.Security.SecureRepository.Pkcs12.CaChain*"></a>
   <h4 id="Tizen_Security_SecureRepository_Pkcs12_CaChain" data-uid="Tizen.Security.SecureRepository.Pkcs12.CaChain">CaChain</h4>
-  <div class="markdown level1 summary"><p>Gets and sets a certificate chain.</p>
+  <div class="markdown level1 summary"><p>A certificate chain of CA(Certificate Authority) that issued the certificate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -228,24 +220,20 @@ its corresponding certificate and CA's certificate chain.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
-        <td><p>Certificate chain of CA (Certificate Authority) that issued the certificate.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12_CaChain_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It has a private key or its certificate or all members of a chain of trust.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L176">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L165">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Pkcs12_Certificate_" data-uid="Tizen.Security.SecureRepository.Pkcs12.Certificate*"></a>
   <h4 id="Tizen_Security_SecureRepository_Pkcs12_Certificate" data-uid="Tizen.Security.SecureRepository.Pkcs12.Certificate">Certificate</h4>
-  <div class="markdown level1 summary"><p>Gets and sets a certificate.</p>
+  <div class="markdown level1 summary"><p>A certificate corresponding to the private key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -263,24 +251,20 @@ its corresponding certificate and CA's certificate chain.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
-        <td><p>Certificate corresponding to the private key.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12_Certificate_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It has a private key or its certificate or all members of a chain of trust.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L164">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L156">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Pkcs12_PrivateKey_" data-uid="Tizen.Security.SecureRepository.Pkcs12.PrivateKey*"></a>
   <h4 id="Tizen_Security_SecureRepository_Pkcs12_PrivateKey" data-uid="Tizen.Security.SecureRepository.Pkcs12.PrivateKey">PrivateKey</h4>
-  <div class="markdown level1 summary"><p>Gets and sets private key.</p>
+  <div class="markdown level1 summary"><p>A private key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -298,14 +282,10 @@ its corresponding certificate and CA's certificate chain.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
-        <td><p>Private key.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12_PrivateKey_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It has a private key or its certificate or all members of a chain of trust.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -313,11 +293,11 @@ its corresponding certificate and CA's certificate chain.</p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L52">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Pkcs12_Load_" data-uid="Tizen.Security.SecureRepository.Pkcs12.Load*"></a>
   <h4 id="Tizen_Security_SecureRepository_Pkcs12_Load_System_String_System_String_" data-uid="Tizen.Security.SecureRepository.Pkcs12.Load(System.String,System.String)">Load(string, string)</h4>
-  <div class="markdown level1 summary"><p>Loads Pkcs12 from the given PKCS#12 file path.</p>
+  <div class="markdown level1 summary"><p>Loads the Pkcs12 from the given PKCS#12 file path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -337,13 +317,14 @@ its corresponding certificate and CA's certificate chain.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">filePath</span></td>
-        <td><p>Path of the PKCS12 file to be loaded.</p>
+        <td><p>The path of the PKCS12 file to be loaded.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">filePassword</span></td>
-        <td><p>Passphrase used to decrypt the PCKS12 file.</p>
+        <td><p>The passphrase used to decrypt the PCKS12 file.
+If the PKCS12 file is not encrypted, passphrase can be null.</p>
 </td>
       </tr>
     </tbody>
@@ -359,14 +340,10 @@ its corresponding certificate and CA's certificate chain.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Pkcs12.html">Pkcs12</a></td>
-        <td><p>Pkcs12 class instance.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Pkcs12_Load_System_String_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If the PKCS12 file is not encrypted, passphrase can be null.</p>
-</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -378,15 +355,15 @@ its corresponding certificate and CA's certificate chain.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when filePath is null.</p>
+        <td><p>The filePath is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when there's no existing file on <code data-dev-comment-type="paramref" class="paramref">filePath</code>.
-Thrown when there are not sufficient permissions to access the file.
-Thrown when file has an invalid PKCS12 format.
-Thrown when file cannot be extracted with provided <code data-dev-comment-type="paramref" class="paramref">filePassword</code>.</p>
+        <td><p>No file on filePath.
+No permission to access file.
+File is in the invalid PKCS12 format.
+File cannot be extracted with provided filePassword.</p>
 </td>
       </tr>
     </tbody>
@@ -403,7 +380,7 @@ Thrown when file cannot be extracted with provided <code data-dev-comment-type="
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L31" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -422,7 +399,7 @@ Thrown when file cannot be extracted with provided <code data-dev-comment-type="
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

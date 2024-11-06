@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides methods that handle certificates.</p>
+  <div class="markdown level0 summary"><p>This class provides the methods handling certificates.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -115,11 +115,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L268">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L275">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_CertificateManager_CheckOcsp_" data-uid="Tizen.Security.SecureRepository.CertificateManager.CheckOcsp*"></a>
   <h4 id="Tizen_Security_SecureRepository_CertificateManager_CheckOcsp_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.CertificateManager.CheckOcsp(System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})">CheckOcsp(IEnumerable&lt;Certificate&gt;)</h4>
-  <div class="markdown level1 summary"><p>[Obsolete(&quot;Please do not use! this will be deprecated&quot;)]</p>
+  <div class="markdown level1 summary"><p>Perform OCSP, which checks whether the certificate is revoked or not.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -156,7 +156,7 @@ public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateCha
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.OcspStatus.html">OcspStatus</a></td>
-        <td><p>Status result of the OCSP check.</p>
+        <td><p>A status result of the OCSP check.</p>
 </td>
       </tr>
     </tbody>
@@ -172,17 +172,17 @@ public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateCha
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">certificateChain</code> argument is null.</p>
+        <td><p>The certificateChain argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">certificateChain</code> is not a valid chain or certificate.</p>
+        <td><p>The certificateChain is not valid chain or certificate.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when any of the certificates in chain is expired or not valid yet.</p>
+        <td><p>Some of the certificates in chain are expired or not valid yet.</p>
 </td>
       </tr>
     </tbody>
@@ -192,7 +192,7 @@ public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateCha
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L50">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_CertificateManager_Get_" data-uid="Tizen.Security.SecureRepository.CertificateManager.Get*"></a>
   <h4 id="Tizen_Security_SecureRepository_CertificateManager_Get_System_String_System_String_" data-uid="Tizen.Security.SecureRepository.CertificateManager.Get(System.String,System.String)">Get(string, string)</h4>
@@ -216,13 +216,15 @@ public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateCha
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">alias</span></td>
-        <td><p>Name of a certificate to be retrieved.</p>
+        <td><p>The name of a certificate to be retrieved.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>Password used in decrypting a certificate value.</p>
+        <td><p>The password used in decrypting a certificate value. If password of
+policy is provided in SaveCertificate(), the same password should be
+provided.</p>
 </td>
       </tr>
     </tbody>
@@ -238,15 +240,11 @@ public static OcspStatus CheckOcsp(IEnumerable&lt;Certificate&gt; certificateCha
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
-        <td><p>Certificate specified by alias.</p>
+        <td><p>A certificate specified by alias.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_CertificateManager_Get_System_String_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If password of policy is provided in SaveCertificate(),
-the same password should be provided.</p>
-</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -258,18 +256,18 @@ the same password should be provided.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument is null.</p>
+        <td><p>The alias argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument has an invalid format.</p>
+        <td><p>The alias argument is in an invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when a certificate does not exist with the <code data-dev-comment-type="paramref" class="paramref">alias</code> or certificate-protecting
-password does not match.</p>
+        <td><p>The certificate does not exist with the alias or certificate-protecting
+password isn't matched.</p>
 </td>
       </tr>
     </tbody>
@@ -279,11 +277,11 @@ password does not match.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L77">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_CertificateManager_GetAliases_" data-uid="Tizen.Security.SecureRepository.CertificateManager.GetAliases*"></a>
   <h4 id="Tizen_Security_SecureRepository_CertificateManager_GetAliases" data-uid="Tizen.Security.SecureRepository.CertificateManager.GetAliases">GetAliases()</h4>
-  <div class="markdown level1 summary"><p>Gets all aliases of certificates accessible by the client.</p>
+  <div class="markdown level1 summary"><p>Gets all aliases of certificates, which the client can access.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -301,7 +299,7 @@ password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>All aliases of certificates accessible by the client.</p>
+        <td><p>All aliases of certificates, which the client can access.</p>
 </td>
       </tr>
     </tbody>
@@ -317,7 +315,7 @@ password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there's no alias to get.</p>
+        <td><p>No alias to get.</p>
 </td>
       </tr>
     </tbody>
@@ -327,7 +325,7 @@ password does not match.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L213">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L218">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_CertificateManager_GetCertificateChain_" data-uid="Tizen.Security.SecureRepository.CertificateManager.GetCertificateChain*"></a>
   <h4 id="Tizen_Security_SecureRepository_CertificateManager_GetCertificateChain_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__System_Boolean_" data-uid="Tizen.Security.SecureRepository.CertificateManager.GetCertificateChain(Tizen.Security.SecureRepository.Certificate,System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate},System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate},System.Boolean)">GetCertificateChain(Certificate, IEnumerable&lt;Certificate&gt;, IEnumerable&lt;Certificate&gt;, bool)</h4>
@@ -352,25 +350,25 @@ trusted and untrusted CA certificates.</p>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
         <td><span class="parametername">certificate</span></td>
-        <td><p>Certificate to be verified.</p>
+        <td><p>The certificate to be verified.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
         <td><span class="parametername">untrustedCertificates</span></td>
-        <td><p>Untrusted CA certificates to be used in verifying a certificate chain.</p>
+        <td><p>The untrusted CA certificates to be used in verifying a certificate chain.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
         <td><span class="parametername">trustedCertificates</span></td>
-        <td><p>Trusted CA certificates to be used in verifying a certificate chain.</p>
+        <td><p>The trusted CA certificates to be used in verifying a certificate chain.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">bool</span></td>
         <td><span class="parametername">useTrustedSystemCertificates</span></td>
-        <td><p>Flag indicating the use of the trusted root certificates in the
+        <td><p>The flag indicating the use of the trusted root certificates in the
 system's certificate storage.</p>
 </td>
       </tr>
@@ -387,13 +385,13 @@ system's certificate storage.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
-        <td><p>Newly created certificate chain.</p>
+        <td><p>A newly created certificate chain.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_CertificateManager_GetCertificateChain_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Trusted root certificate of the chain in the system's certificate storage
+  <div class="markdown level1 remarks"><p>The trusted root certificate of the chain in the system's certificate storage
 is added to the certificate chain.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -407,19 +405,19 @@ is added to the certificate chain.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">certificate</code> argument is null.</p>
+        <td><p>The certificate argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when any of the provided certificates is invalid.</p>
+        <td><p>Some of the certificates in arguments are invalid.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when any of the provided certificates is expired or not valid yet.
-Thrown when certificate cannot build a chain.
-Thrown when root certificate is not in the trusted system certificate store.</p>
+        <td><p>Some of the certificates in arguments are expired or not valid yet.
+Certificate cannot build chain.
+The root certificate is not in the trusted system certificate store.</p>
 </td>
       </tr>
     </tbody>
@@ -429,7 +427,7 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L147">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L152">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_CertificateManager_GetCertificateChain_" data-uid="Tizen.Security.SecureRepository.CertificateManager.GetCertificateChain*"></a>
   <h4 id="Tizen_Security_SecureRepository_CertificateManager_GetCertificateChain_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.CertificateManager.GetCertificateChain(Tizen.Security.SecureRepository.Certificate,System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})">GetCertificateChain(Certificate, IEnumerable&lt;Certificate&gt;)</h4>
@@ -453,13 +451,13 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
         <td><span class="parametername">certificate</span></td>
-        <td><p>Certificate to be verified.</p>
+        <td><p>The certificate to be verified.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
         <td><span class="parametername">untrustedCertificates</span></td>
-        <td><p>Untrusted CA certificates to be used in verifying a certificate chain.</p>
+        <td><p>The untrusted CA certificates to be used in verifying a certificate chain.</p>
 </td>
       </tr>
     </tbody>
@@ -475,13 +473,13 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
-        <td><p>Newly created certificate chain.</p>
+        <td><p>A newly created certificate chain.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_CertificateManager_GetCertificateChain_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Trusted root certificate of the chain should exist in the system's
+  <div class="markdown level1 remarks"><p>The trusted root certificate of the chain should exist in the system's
 certificate storage.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -495,19 +493,19 @@ certificate storage.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when a <code data-dev-comment-type="paramref" class="paramref">certificate</code> argument is null.</p>
+        <td><p>The certificate argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when any of the provided certificates is invalid.</p>
+        <td><p>Some of the certificates in arguments are invalid.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when any of the provided certificates is expired or not valid yet.
-Thrown when certificate cannot build a chain.
-Thrown when root certificate is not in the trusted system certificate store.</p>
+        <td><p>Some of the certificates in arguments are expired or not valid yet.
+Certificate cannot build chain.
+The root certificate is not in the trusted system certificate store.</p>
 </td>
       </tr>
     </tbody>
@@ -517,7 +515,7 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L109">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L113">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_CertificateManager_Save_" data-uid="Tizen.Security.SecureRepository.CertificateManager.Save*"></a>
   <h4 id="Tizen_Security_SecureRepository_CertificateManager_Save_System_String_Tizen_Security_SecureRepository_Certificate_Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.CertificateManager.Save(System.String,Tizen.Security.SecureRepository.Certificate,Tizen.Security.SecureRepository.Policy)">Save(string, Certificate, Policy)</h4>
@@ -541,19 +539,19 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">alias</span></td>
-        <td><p>Name of a certificate to be stored.</p>
+        <td><p>The name of a certificate to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
         <td><span class="parametername">cert</span></td>
-        <td><p>Certificate's binary value to be stored.</p>
+        <td><p>The certificate's binary value to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">policy</span></td>
-        <td><p>Certificate storing policy.</p>
+        <td><p>The policy about how to store a certificate securely.</p>
 </td>
       </tr>
     </tbody>
@@ -569,17 +567,17 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when any argument is null.</p>
+        <td><p>Any of argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> or <code data-dev-comment-type="paramref" class="paramref">cert</code> argument has an invalid format.</p>
+        <td><p>The alias argument is in the invalid format. cert argument is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when a certificate with given <code data-dev-comment-type="paramref" class="paramref">alias</code> already exists.</p>
+        <td><p>The certificate with alias already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -596,7 +594,7 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/CertificateManager.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -615,7 +613,7 @@ Thrown when root certificate is not in the trusted system certificate store.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

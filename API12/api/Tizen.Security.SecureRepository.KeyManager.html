@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides methods for storing, retrieving, and creating keys.</p>
+  <div class="markdown level0 summary"><p>This class provides the methods for storing, retrieving, and creating keys.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -115,11 +115,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L283">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L286">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_CreateAesKey_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateAesKey*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_CreateAesKey_System_Int32_System_String_Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateAesKey(System.Int32,System.String,Tizen.Security.SecureRepository.Policy)">CreateAesKey(int, string, Policy)</h4>
-  <div class="markdown level1 summary"><p>Creates AES key and stores it inside the secure repository based on policy.</p>
+  <div class="markdown level1 summary"><p>Creates the AES key and stores it inside the secure repository based on each policy.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -139,7 +139,7 @@
       <tr>
         <td><span class="xref">int</span></td>
         <td><span class="parametername">size</span></td>
-        <td><p>Size of the key strength to be created.</p>
+        <td><p>The size of the key strength to be created. 128, 192 and 256 are supported.</p>
 </td>
       </tr>
       <tr>
@@ -151,13 +151,14 @@
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">policy</span></td>
-        <td><p>Key storing policy.</p>
+        <td><p>The policy about how to store the key securely.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_KeyManager_CreateAesKey_System_Int32_System_String_Tizen_Security_SecureRepository_Policy__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>128, 192 and 256 sizes are supported.</p>
+  <div class="markdown level1 remarks"><p>If the password in policy is provided, the key is additionally encrypted with
+the password in policy.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -170,18 +171,17 @@
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">keyAlias</code> or <code data-dev-comment-type="paramref" class="paramref">policy</code> is null.</p>
+        <td><p>The keyAlias or policy is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">size</code> is invalid.
-Thrown when <code data-dev-comment-type="paramref" class="paramref">keyAlias</code> has an invalid format.</p>
+        <td><p>The key size is invalid. keyAlias is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key with <code data-dev-comment-type="paramref" class="paramref">keyAlias</code> already exists.</p>
+        <td><p>The key with privateKeyAlias or publicKeyAlias does already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -191,11 +191,11 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">keyAlias</co
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L201">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L204">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_CreateDsaKeyPair_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateDsaKeyPair*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_CreateDsaKeyPair_System_Int32_System_String_System_String_Tizen_Security_SecureRepository_Policy_Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateDsaKeyPair(System.Int32,System.String,System.String,Tizen.Security.SecureRepository.Policy,Tizen.Security.SecureRepository.Policy)">CreateDsaKeyPair(int, string, string, Policy, Policy)</h4>
-  <div class="markdown level1 summary"><p>Creates DSA private/public key pair and stores them inside the secure repository
+  <div class="markdown level1 summary"><p>Creates the DSA private/public key pair and stores them inside the secure repository
 based on each policy.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -216,37 +216,39 @@ based on each policy.</p>
       <tr>
         <td><span class="xref">int</span></td>
         <td><span class="parametername">size</span></td>
-        <td><p>Size of key strength to be created.</p>
+        <td><p>The size of key strength to be created. 1024, 2048, 3072, and 4096 are
+supported.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privateKeyAlias</span></td>
-        <td><p>Name of a private key to be stored.</p>
+        <td><p>The name of private key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">publicKeyAlias</span></td>
-        <td><p>Name of a public key to be stored.</p>
+        <td><p>The name of public key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">privateKeyPolicy</span></td>
-        <td><p>Private key storing policy.</p>
+        <td><p>The policy about how to store a private key securely.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">publicKeyPolicy</span></td>
-        <td><p>Public key storing policy.</p>
+        <td><p>The policy about how to store a public key securely.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_KeyManager_CreateDsaKeyPair_System_Int32_System_String_System_String_Tizen_Security_SecureRepository_Policy_Tizen_Security_SecureRepository_Policy__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>1024, 2048, 3072, and 4096 sizes are supported.</p>
+  <div class="markdown level1 remarks"><p>If the password in policy is provided, the key is additionally encrypted with
+the password in policy.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -259,20 +261,17 @@ based on each policy.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when any provided argument is null.</p>
+        <td><p>Any of argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">size</code> is invalid.
-Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or
-<code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> has an invalid format.</p>
+        <td><p>The size is invalid. privateKeyAlias or publicKeyAlias is invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key with <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or
-<code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> already exists.</p>
+        <td><p>The key with privateKeyAlias or publicKeyAlias does already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -282,11 +281,11 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAl
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L244">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L249">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_CreateEcdsaKeyPair_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateEcdsaKeyPair*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_CreateEcdsaKeyPair_Tizen_Security_SecureRepository_EllipticCurveType_System_String_System_String_Tizen_Security_SecureRepository_Policy_Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateEcdsaKeyPair(Tizen.Security.SecureRepository.EllipticCurveType,System.String,System.String,Tizen.Security.SecureRepository.Policy,Tizen.Security.SecureRepository.Policy)">CreateEcdsaKeyPair(EllipticCurveType, string, string, Policy, Policy)</h4>
-  <div class="markdown level1 summary"><p>Creates ECDSA private/public key pair and stores them inside secure repository
+  <div class="markdown level1 summary"><p>Creates the ECDSA private/public key pair and stores them inside secure repository
 based on each policy.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -307,31 +306,31 @@ based on each policy.</p>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.EllipticCurveType.html">EllipticCurveType</a></td>
         <td><span class="parametername">type</span></td>
-        <td><p>Type of elliptic curve of ECDSA.</p>
+        <td><p>The type of elliptic curve of ECDSA.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privateKeyAlias</span></td>
-        <td><p>Name of private key to be stored.</p>
+        <td><p>The name of private key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">publicKeyAlias</span></td>
-        <td><p>Name of public key to be stored.</p>
+        <td><p>The name of public key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">privateKeyPolicy</span></td>
-        <td><p>Private key storing policy.</p>
+        <td><p>The policy about how to store a private key securely.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">publicKeyPolicy</span></td>
-        <td><p>Public key storing policy.</p>
+        <td><p>The policy about how to store a public key securely.</p>
 </td>
       </tr>
     </tbody>
@@ -351,20 +350,18 @@ the password in policy.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when any provided argument is null.</p>
+        <td><p>Any of argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.
-Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or
-<code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> has an invalid format.</p>
+        <td><p>The elliptic curve type is invalid. privateKeyAlias or publicKeyAlias is in the
+invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key with <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or
-<code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> already exists.</p>
+        <td><p>The key with privateKeyAlias or publicKeyAlias does already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -374,11 +371,11 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAl
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L155">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L157">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_CreateRsaKeyPair_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateRsaKeyPair*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_CreateRsaKeyPair_System_Int32_System_String_System_String_Tizen_Security_SecureRepository_Policy_Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.KeyManager.CreateRsaKeyPair(System.Int32,System.String,System.String,Tizen.Security.SecureRepository.Policy,Tizen.Security.SecureRepository.Policy)">CreateRsaKeyPair(int, string, string, Policy, Policy)</h4>
-  <div class="markdown level1 summary"><p>Creates RSA private/public key pair and stores them inside the secure repository
+  <div class="markdown level1 summary"><p>Creates the RSA private/public key pair and stores them inside the secure repository
 based on each policy.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -399,37 +396,38 @@ based on each policy.</p>
       <tr>
         <td><span class="xref">int</span></td>
         <td><span class="parametername">size</span></td>
-        <td><p>Size of key strength to be created.</p>
+        <td><p>The size of key strength to be created. 1024, 2048, and 4096 are supported.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privateKeyAlias</span></td>
-        <td><p>Name of a private key to be stored.</p>
+        <td><p>The name of private key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">publicKeyAlias</span></td>
-        <td><p>Name of a public key to be stored.</p>
+        <td><p>The name of public key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">privateKeyPolicy</span></td>
-        <td><p>Private key storing policy.</p>
+        <td><p>The policy about how to store a private key securely.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">publicKeyPolicy</span></td>
-        <td><p>Public key storing policy.</p>
+        <td><p>The policy about how to store a public key securely.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_KeyManager_CreateRsaKeyPair_System_Int32_System_String_System_String_Tizen_Security_SecureRepository_Policy_Tizen_Security_SecureRepository_Policy__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>1024, 2048, and 4096 sizes are supported.</p>
+  <div class="markdown level1 remarks"><p>If the password in policy is provided, the key is additionally encrypted with the
+password in policy.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -442,19 +440,17 @@ based on each policy.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when any provided argument is null.</p>
+        <td><p>Any of argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">size</code> is invalid.
-Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or
-<code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> has an invalid format.</p>
+        <td><p>The size is invalid. privateKeyAlias or publicKeyAlias is invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key with <code data-dev-comment-type="paramref" class="paramref">privateKeyAlias</code> or <code data-dev-comment-type="paramref" class="paramref">publicKeyAlias</code> already exists.</p>
+        <td><p>The key with privateKeyAlias or publicKeyAlias does already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -464,7 +460,7 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAl
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L47">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_Get_" data-uid="Tizen.Security.SecureRepository.KeyManager.Get*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_Get_System_String_System_String_" data-uid="Tizen.Security.SecureRepository.KeyManager.Get(System.String,System.String)">Get(string, string)</h4>
@@ -488,13 +484,13 @@ Thrown when <code data-dev-comment-type="paramref" class="paramref">privateKeyAl
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">alias</span></td>
-        <td><p>Name of a key to retrieve.</p>
+        <td><p>The name of a key to retrieve.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>Password used in decrypting key value.
+        <td><p>The password used in decrypting a key value.
 If password of policy is provided in SaveKey(), the same password should
 be provided.</p>
 </td>
@@ -512,7 +508,7 @@ be provided.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
-        <td><p>Key specified by alias.</p>
+        <td><p>A key specified by alias.</p>
 </td>
       </tr>
     </tbody>
@@ -528,18 +524,17 @@ be provided.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument is null.</p>
+        <td><p>The alias argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> argument has an invalid format.</p>
+        <td><p>The alias argument is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key does not exist with given <code data-dev-comment-type="paramref" class="paramref">alias</code>
-or the key-protecting password does not match.</p>
+        <td><p>The key does not exist with the alias or the key-protecting password isn't matched.</p>
 </td>
       </tr>
     </tbody>
@@ -549,11 +544,11 @@ or the key-protecting password does not match.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L74">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_GetAliases_" data-uid="Tizen.Security.SecureRepository.KeyManager.GetAliases*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_GetAliases" data-uid="Tizen.Security.SecureRepository.KeyManager.GetAliases">GetAliases()</h4>
-  <div class="markdown level1 summary"><p>Gets all aliases of keys accessible by the client.</p>
+  <div class="markdown level1 summary"><p>Gets all aliases of keys, which the client can access.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -571,7 +566,7 @@ or the key-protecting password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>All aliases of keys accessible by the client.</p>
+        <td><p>All aliases of keys, which the client can access.</p>
 </td>
       </tr>
     </tbody>
@@ -587,7 +582,7 @@ or the key-protecting password does not match.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there's no alias to get.</p>
+        <td><p>No alias to get.</p>
 </td>
       </tr>
     </tbody>
@@ -597,7 +592,7 @@ or the key-protecting password does not match.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L116">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L117">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_KeyManager_Save_" data-uid="Tizen.Security.SecureRepository.KeyManager.Save*"></a>
   <h4 id="Tizen_Security_SecureRepository_KeyManager_Save_System_String_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Policy_" data-uid="Tizen.Security.SecureRepository.KeyManager.Save(System.String,Tizen.Security.SecureRepository.Key,Tizen.Security.SecureRepository.Policy)">Save(string, Key, Policy)</h4>
@@ -621,26 +616,26 @@ or the key-protecting password does not match.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">alias</span></td>
-        <td><p>Name of a key to be stored.</p>
+        <td><p>The name of a key to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
         <td><span class="parametername">key</span></td>
-        <td><p>Key's binary value to be stored.</p>
+        <td><p>The key's binary value to be stored.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a></td>
         <td><span class="parametername">policy</span></td>
-        <td><p>Key storing policy.</p>
+        <td><p>The policy about how to store a key securely.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_SecureRepository_KeyManager_Save_System_String_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Policy__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Type in key may be set to KeyType. None as an input.
-Type is determined inside the secure repository during storing keys.</p>
+  <div class="markdown level1 remarks"><p>The type in key may be set to KeyType.None as an input.
+The type is determined inside the secure reposioty during storing keys.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -653,17 +648,17 @@ Type is determined inside the secure repository during storing keys.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when any provided argument is null.</p>
+        <td><p>Any of argument is null.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when <code data-dev-comment-type="paramref" class="paramref">alias</code> or <code data-dev-comment-type="paramref" class="paramref">key</code> argument has an invalid format.</p>
+        <td><p>The alias argument is in the invalid format. key argument is in the invalid format.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when key with given alias already exists.</p>
+        <td><p>The key with alias does already exist.</p>
 </td>
       </tr>
     </tbody>
@@ -680,7 +675,7 @@ Type is determined inside the secure repository during storing keys.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/KeyManager.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -699,7 +694,7 @@ Type is determined inside the secure repository during storing keys.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

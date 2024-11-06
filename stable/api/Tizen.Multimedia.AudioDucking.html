@@ -10,7 +10,7 @@
     <meta name="title" content="Class AudioDucking
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -89,7 +89,10 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Provides the functionalities to control audio ducking.</p>
+  <div class="markdown level0 summary"><p>Controls audio ducking for specific audio streams, allowing for dynamic
+adjustment of audio levels during playback. This class enables the activation
+and deactivation of ducking, monitors ducking state changes, and ensures proper
+privileges are in place for volume adjustments.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -120,11 +123,13 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L40">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDucking__ctor_" data-uid="Tizen.Multimedia.AudioDucking.#ctor*"></a>
   <h4 id="Tizen_Multimedia_AudioDucking__ctor_Tizen_Multimedia_AudioStreamType_" data-uid="Tizen.Multimedia.AudioDucking.#ctor(Tizen.Multimedia.AudioStreamType)">AudioDucking(AudioStreamType)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> class with <a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a>.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> class for a specified audio stream type.
+This constructor sets up the audio ducking mechanism for the target stream, allowing
+the application to respond to ducking state changes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -181,11 +186,13 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDucking_IsDucked_" data-uid="Tizen.Multimedia.AudioDucking.IsDucked*"></a>
   <h4 id="Tizen_Multimedia_AudioDucking_IsDucked" data-uid="Tizen.Multimedia.AudioDucking.IsDucked">IsDucked</h4>
-  <div class="markdown level1 summary"><p>Gets the ducking state of the stream.</p>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the audio stream is currently ducked.
+This property checks the ducking state and returns true if the audio
+level is lowered; otherwise, false.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -240,11 +247,13 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L105">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L115">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDucking_Activate_" data-uid="Tizen.Multimedia.AudioDucking.Activate*"></a>
   <h4 id="Tizen_Multimedia_AudioDucking_Activate_System_UInt32_System_Double_" data-uid="Tizen.Multimedia.AudioDucking.Activate(System.UInt32,System.Double)">Activate(uint, double)</h4>
-  <div class="markdown level1 summary"><p>Activate audio ducking</p>
+  <div class="markdown level1 summary"><p>Activates audio ducking for a specified duration and volume ratio.
+This method lowers the audio level of the target stream for a defined
+period, enabling a smoother audio experience during events like notifications.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -322,11 +331,13 @@ The target stream is already ducked.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L139">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L151">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDucking_Deactivate_" data-uid="Tizen.Multimedia.AudioDucking.Deactivate*"></a>
   <h4 id="Tizen_Multimedia_AudioDucking_Deactivate" data-uid="Tizen.Multimedia.AudioDucking.Deactivate">Deactivate()</h4>
-  <div class="markdown level1 summary"><p>Deactivate audio ducking</p>
+  <div class="markdown level1 summary"><p>Deactivates audio ducking, restoring the audio levels of the target stream
+to their original state. This method is used to stop the ducking effect
+applied earlier when needed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -373,11 +384,13 @@ The target stream is already unducked.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L154">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L168">View Source</a>
   </span>
   <a id="Tizen_Multimedia_AudioDucking_Dispose_" data-uid="Tizen.Multimedia.AudioDucking.Dispose*"></a>
   <h4 id="Tizen_Multimedia_AudioDucking_Dispose" data-uid="Tizen.Multimedia.AudioDucking.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Releases all resources used by the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a>.</p>
+  <div class="markdown level1 summary"><p>Releases all resources used by the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> instance.
+This method clears any allocated resources and should be called when
+the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> object is no longer needed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -395,10 +408,11 @@ The target stream is already unducked.</p>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L60">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L66">View Source</a>
   </span>
   <h4 id="Tizen_Multimedia_AudioDucking_DuckingStateChanged" data-uid="Tizen.Multimedia.AudioDucking.DuckingStateChanged">DuckingStateChanged</h4>
-  <div class="markdown level1 summary"><p>Occurs when the ducking state is changed.</p>
+  <div class="markdown level1 summary"><p>Occurs when the ducking state of the audio stream changes,
+notifying subscribers of the current ducking status.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -444,7 +458,7 @@ The target stream is already unducked.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -463,7 +477,7 @@ The target stream is already unducked.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>

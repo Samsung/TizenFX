@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.System
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API11">
+    <meta name="version" content="API12">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -221,10 +221,10 @@ The IR API provides the way to get the information if IR is available and then t
       <section><p>EventArgs type for the LockStateChanged event.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.MediaKey.html">MediaKey</a></h4>
-      <section><p>The class for receiving events of media keys.</p>
+      <section><p>A class that provides methods for handling media key events.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.MediaKeyEventArgs.html">MediaKeyEventArgs</a></h4>
-      <section><p>The class for event arguments of the media key.</p>
+      <section><p>Event arguments class for handling media key events.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.MotionActivationSettingChangedEventArgs.html">MotionActivationSettingChangedEventArgs</a></h4>
       <section><p>EventArgs type for the MotionActivationChanged event.</p>
@@ -241,27 +241,11 @@ The IR API provides the way to get the information if IR is available and then t
       <h4><a class="xref" href="Tizen.System.Power.html">Power</a></h4>
       <section><p>The Power class provides methods to control the power service.</p>
 </section>
-      <h4><a class="xref" href="Tizen.System.PowerLockStateChangedEventArgs.html">PowerLockStateChangedEventArgs</a></h4>
-      <section><p>PowerLockStateChangedEventArgs is an extended EventArgs class.
-This class contains event arguments for the (PowerLock)StateChangedCallback event from the Power class.</p>
-</section>
-      <h4><a class="xref" href="Tizen.System.PowerStateChangeRequestEventArgs.html">PowerStateChangeRequestEventArgs</a></h4>
-      <section><p>PowerStateChangeRequestEventArgs is an extended EventArgs class.
-This class contains event arguments for the (PowerState)StateChangeRequestCallback event from the Power class.</p>
-</section>
-      <h4><a class="xref" href="Tizen.System.PowerStateWaitEventArgs.html">PowerStateWaitEventArgs</a></h4>
-      <section><p>PowerStateWaitEventArgs is an extended EventArgs class.
-This class contains event arguments for the (PowerState)StateWaitCallback event from the Power class.</p>
-</section>
-      <h4><a class="xref" href="Tizen.System.PowerTransientStateWaitEventArgs.html">PowerTransientStateWaitEventArgs</a></h4>
-      <section><p>PowerTransientStateWaitEventArgs is an extended EventArgs class.
-This class contains event arguments for the (PowerTransientState)StateWaitCallback event from the Power class.</p>
-</section>
       <h4><a class="xref" href="Tizen.System.PowerUsage.html">PowerUsage</a></h4>
       <section><p>Provides information related to the power consumption by applications or by hardware resources on a battery-powered device for a given duration of time.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.ProcessCpuUsage.html">ProcessCpuUsage</a></h4>
-      <section><p>The class for CPU usage per process.</p>
+      <section><p>The class for CPU usage per given list of process.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.ProcessMemoryUsage.html">ProcessMemoryUsage</a></h4>
       <section><p>The class for memory information per process.</p>
@@ -297,10 +281,10 @@ This class contains event arguments for the (PowerTransientState)StateWaitCallba
       <section><p>The StorageManager provides the properties or methods to access storage in the device.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemCpuUsage.html">SystemCpuUsage</a></h4>
-      <section><p>The class for system CPU usage.</p>
+      <section><p>The class for CPU usage information of the system.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemMemoryUsage.html">SystemMemoryUsage</a></h4>
-      <section><p>The class for system memory information.</p>
+      <section><p>The class for memory usage information of the system.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemSettings.html">SystemSettings</a></h4>
       <section><p>The System Settings API provides APIs for sharing the configuration over a system.</p>
@@ -372,13 +356,13 @@ An application cannot put the device into the power off state or the suspend sta
       <section><p>Enumeration for the state of storage devices.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemSettingsFontSize.html">SystemSettingsFontSize</a></h4>
-      <section><p>Enumeration for the font size.</p>
+      <section><p>This is enumeration for the font size.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemSettingsIdleLockState.html">SystemSettingsIdleLockState</a></h4>
-      <section><p>Enumeration for the Idle Lock State.</p>
+      <section><p>This is enumeration for the Idle Lock State.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemSettingsKeys.html">SystemSettingsKeys</a></h4>
-      <section><p>Enumeration for all the available system settings.</p>
+      <section><p>This is enumeration for all the available system settings.</p>
 </section>
       <h4><a class="xref" href="Tizen.System.SystemSettingsUdsState.html">SystemSettingsUdsState</a></h4>
       <section><p>Enumeration for the ultra data save.</p>
@@ -407,7 +391,7 @@ An application cannot put the device into the power off state or the suspend sta
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>
