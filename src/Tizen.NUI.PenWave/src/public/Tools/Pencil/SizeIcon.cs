@@ -31,8 +31,8 @@ namespace Tizen.NUI.PenWave
         {
             this.size = size;
 
-            InitializeIcon(new Color("#17234d"));
-            defaultImage.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
+            InitializeIcon();
+            DefaultImage.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
         }
 
         protected override string GetDefaultImageUrl()
@@ -45,9 +45,9 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
         {
-            if (base.IconClick(sender, args))
+            if (base.OnClickIcon(sender, args))
             {
                 PWEngine.SetStrokeSize(GetSize());
             }

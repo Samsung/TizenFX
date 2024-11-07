@@ -50,6 +50,9 @@ namespace Tizen.NUI.PenWave
 
             gridIcon = new GridIcon();
             AddIcon(gridIcon);
+
+            AddIcon(new UndoIcon());
+            AddIcon(new RedoIcon());
         }
 
         protected override void OnIconSelected(object sender)
@@ -59,6 +62,10 @@ namespace Tizen.NUI.PenWave
             {
                 var colorIconsView = CreateColorIconsView();
                 PopupManager.ShowPopup(colorIconsView);
+            }
+            else
+            {
+                PopupManager.HidePopup();
             }
         }
 

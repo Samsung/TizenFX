@@ -72,8 +72,6 @@ namespace Tizen.NUI.PenWave
 
             popupView = new View
             {
-                // CornerRadius = new Vector4(10, 10, 10, 10),
-                // BackgroundImage = FrameworkInformation.ResourcePath + "images/" + "light" + "/menu_bg.png",
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
@@ -103,6 +101,7 @@ namespace Tizen.NUI.PenWave
 
         private bool OnTouchEvent(object sender, View.TouchEventArgs args)
         {
+            IconStateManager.Instance.CurrentSelectedIcon = null;
             popupManager.HidePopup();
             return false;
         }

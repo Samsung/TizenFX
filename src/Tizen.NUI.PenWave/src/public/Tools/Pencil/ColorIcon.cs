@@ -34,8 +34,11 @@ namespace Tizen.NUI.PenWave
         {
             mColorHex = ToHex(color);
             mColor = color;
-
-            InitializeIcon(mColor);
+            IconStateNormalColor = mColorHex;
+            IconStateSelectedColor = mColorHex;
+            IconStatePressedColor = mColorHex;
+            IconStateDisabledColor = mColorHex;
+            InitializeIcon();
         }
 
         protected override string GetDefaultImageUrl()
@@ -48,11 +51,11 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
         {
-            if (base.IconClick(sender, args))
+            if (base.OnClickIcon(sender, args))
             {
-                PWEngine.SetStrokeColor(GetColorHex(), 1.0f);
+                PWEngine.SetStrokeColor(mColorHex, 1.0f);
             }
             return true;
         }
@@ -65,6 +68,6 @@ namespace Tizen.NUI.PenWave
             return $"#{red:X2}{green:X2}{blue:X2}";
         }
 
-        public string GetColorHex() => mColorHex;
+        public Color GetColor() => mColor;
     }
 }

@@ -20,24 +20,16 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class GridIcon : Icon
+    public class RedoIcon : Icon
     {
-        public enum GridDensityType
-        {
-            None = 0,
-            Small = 1,
-            Medium = 2,
-            Large = 4
-        }
-
-        public GridIcon() : base()
+        public RedoIcon() : base()
         {
             InitializeIcon();
         }
 
         protected override string GetDefaultImageUrl()
         {
-            return $"{FrameworkInformation.ResourcePath}images/light/icon_grid.png";
+            return $"{FrameworkInformation.ResourcePath}images/light/icon_redo.png";
         }
 
         protected override string GetSelectedImageUrl()
@@ -49,8 +41,8 @@ namespace Tizen.NUI.PenWave
         {
             if (base.OnClickIcon(sender, args))
             {
-                Tizen.Log.Info("NUI", $"GridIcon\n");
-                PWEngine.ToggleGrid((int)GridDensityType.Small);
+                Tizen.Log.Info("NUI", $"RedoIcon\n");
+                PWEngine.Redo();
             }
             return true;
         }

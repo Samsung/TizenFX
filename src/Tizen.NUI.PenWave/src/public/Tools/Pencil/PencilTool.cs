@@ -133,14 +133,31 @@ namespace Tizen.NUI.PenWave
         {
             var view = new View
             {
-                Layout = new GridLayout { Columns = 4, ColumnSpacing = 8, RowSpacing = 8 },
+                Layout = new GridLayout { Columns = 4, ColumnSpacing = 16, RowSpacing = 16 },
             };
             foreach (var item in items)
             {
                 var icon = iconFactory(item);
                 view.Add(icon);
+                icon.IconSelected += OnPopUnIconSelected;
             }
             rootView.Add(view);
+        }
+
+        private void OnPopUnIconSelected(object sender)
+        {
+            if (sender is BrushIcon)
+            {
+                pencilIcon.DefaultImage.ResourceUrl = IconStateManager.Instance.CurrentSelectedIcon.DefaultImage.ResourceUrl;
+            }
+            else if (sender is SizeIcon)
+            {
+                sizeIcon.DefaultImage.Size2D = IconStateManager.Instance.CurrentSelectedIcon.DefaultImage.Size2D;
+            }
+            else if (sender is ColorIcon)
+            {
+                colorIcon.DefaultImage.Color = (sender as ColorIcon).GetColor();
+            }
         }
 
     }

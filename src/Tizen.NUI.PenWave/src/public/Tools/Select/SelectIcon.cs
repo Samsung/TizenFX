@@ -28,7 +28,7 @@ namespace Tizen.NUI.PenWave
         public SelectIcon() : base()
         {
 
-            InitializeIcon(new Color("#17234d"));
+            InitializeIcon();
         }
 
         protected override string GetDefaultImageUrl()
@@ -41,9 +41,9 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
         {
-            base.IconClick(sender, args);
+            base.OnClickIcon(sender, args);
             return true;
         }
     }

@@ -24,7 +24,7 @@ namespace Tizen.NUI.PenWave
     {
         public PalettIcon() : base()
         {
-            InitializeIcon(new Color("#17234d"));
+            InitializeIcon();
         }
 
         protected override string GetDefaultImageUrl()
@@ -37,9 +37,9 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
         {
-            if (base.IconClick(sender, args))
+            if (base.OnClickIcon(sender, args))
             {
                 Tizen.Log.Info("NUI", $"PalettIcon\n");
             }

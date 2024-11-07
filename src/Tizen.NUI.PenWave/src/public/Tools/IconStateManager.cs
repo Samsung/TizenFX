@@ -23,27 +23,31 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class EraserIcon : Icon
+    public sealed class IconStateManager
     {
-        public EraserIcon() : base()
-        {
-            InitializeIcon();
-        }
+        private static readonly IconStateManager instance = new IconStateManager();
 
-        protected override string GetDefaultImageUrl()
-        {
-            return $"{FrameworkInformation.ResourcePath}images/light/icon_eraser.png";
-        }
+        private Icon _currentSelectedIcon;
 
-        protected override string GetSelectedImageUrl()
-        {
-            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
-        }
+        private IconStateManager() {}
 
-        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
+        public static IconStateManager Instance => instance;
+
+        public Icon CurrentSelectedIcon
         {
-            base.OnClickIcon(sender, args);
-            return true;
+            get => _currentSelectedIcon;
+            set
+            {
+                if (_currentSelectedIcon != null)
+                {
+                    _currentSelectedIcon.CurrentState = Icon.State.Normal;
+                }
+                _currentSelectedIcon = value;
+                if (_currentSelectedIcon != null)
+                {
+                    _currentSelectedIcon.CurrentState = Icon.State.Selected;
+                }
+            }
         }
     }
 }

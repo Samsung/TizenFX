@@ -79,8 +79,10 @@ namespace Tizen.NUI.PenWave
         {
             var view = new View
             {
-                Layout = new LinearLayout
+                Layout = new LinearLayout()
                 {
+                    // HorizontalAlignment = HorizontalAlignment.Center,
+                    // VerticalAlignment = VerticalAlignment.Center,
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                 }
             };

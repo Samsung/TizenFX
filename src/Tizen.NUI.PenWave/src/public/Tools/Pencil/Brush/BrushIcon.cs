@@ -51,7 +51,7 @@ namespace Tizen.NUI.PenWave
             mImgView = new ImageView();
             mImgView.Size2D = new Size2D(48, 48);
 
-            InitializeIcon(new Color("#17234d"));
+            InitializeIcon();
         }
 
         protected override string GetDefaultImageUrl()
@@ -73,12 +73,11 @@ namespace Tizen.NUI.PenWave
         public PWEngine.BrushType GetBrushType() => brushType;
 
 
-        public override bool IconClick(object sender, View.TouchEventArgs args)
+        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
         {
-            if (base.IconClick(sender, args))
+            if (base.OnClickIcon(sender, args))
             {
                 brushStrategy.ApplyBrushSettings();
-
             }
             return true;
         }
