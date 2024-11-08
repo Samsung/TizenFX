@@ -26,20 +26,11 @@ namespace Tizen.NUI.PenWave
     public abstract class ToolBase
     {
 
-        public enum ToolType
-        {
-            Pencil,
-            Eraser,
-            Select,
-            Scale,
-            Canvas,
-        }
-
-        public abstract ToolBase.ToolType Type { get; }
+        public abstract PenWaveToolType Type { get; }
 
         protected IToolActionHandler ActionHandler { get; private set; }
 
-        public event Action<ToolType> ToolSelected;
+        public event Action<PenWaveToolType> ToolSelected;
 
         protected List<Icon> Icons { get; } = new List<Icon>();
 

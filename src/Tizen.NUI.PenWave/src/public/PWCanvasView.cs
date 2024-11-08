@@ -32,7 +32,6 @@ namespace Tizen.NUI.PenWave
 
         public ToolManager ToolManager {get; private set;}
         public event Action<int> OnPageChanged;
-        public event Action OnCanvasCleared;
 
         public PWCanvasView() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
@@ -51,10 +50,10 @@ namespace Tizen.NUI.PenWave
         {
             var canvasView = new PWCanvasView();
 
-            var canvasTool = ToolFactory.CreateTool(ToolBase.ToolType.Canvas);
-            var pencilTool = ToolFactory.CreateTool(ToolBase.ToolType.Pencil);
-            var eraserTool = ToolFactory.CreateTool(ToolBase.ToolType.Eraser);
-            var selectTool = ToolFactory.CreateTool(ToolBase.ToolType.Select);
+            var canvasTool = ToolFactory.CreateTool(PenWaveToolType.Canvas);
+            var pencilTool = ToolFactory.CreateTool(PenWaveToolType.Pencil);
+            var eraserTool = ToolFactory.CreateTool(PenWaveToolType.Eraser);
+            var selectTool = ToolFactory.CreateTool(PenWaveToolType.Select);
 
             canvasView.ToolManager.RegisterTool(canvasTool);
             canvasView.ToolManager.RegisterTool(pencilTool);
@@ -99,10 +98,18 @@ namespace Tizen.NUI.PenWave
 
         public void ClearCanvas()
         {
-            // 캔버스 클리어 처리
-            OnCanvasCleared?.Invoke();
+            renderer.ClearCanvas();
         }
 
+        public void AddPicture(string path, Size2D size, Position2D position)
+        {
+            renderer.AddPicture(path);
+        }
+
+        public void SelectTool(PenWaveToolType toolType)
+        {
+            ToolManager.SelectTool(toolType);
+        }
 
         public void HandleInput(Touch touch)
         {

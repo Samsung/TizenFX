@@ -45,9 +45,9 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
+        public override bool OnIconClicked(object sender, View.TouchEventArgs args)
         {
-            if (base.OnClickIcon(sender, args))
+            if (base.OnIconClicked(sender, args))
             {
                 Tizen.Log.Info("NUI", $"GridIcon\n");
                 PWEngine.ToggleGrid((int)GridDensityType.Small);

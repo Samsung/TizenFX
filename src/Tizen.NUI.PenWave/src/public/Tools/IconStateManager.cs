@@ -27,25 +27,25 @@ namespace Tizen.NUI.PenWave
     {
         private static readonly IconStateManager instance = new IconStateManager();
 
-        private Icon _currentSelectedIcon;
+        private Icon _currentPressedIcon;
 
         private IconStateManager() {}
 
         public static IconStateManager Instance => instance;
 
-        public Icon CurrentSelectedIcon
+        public Icon CurrentPressedIcon
         {
-            get => _currentSelectedIcon;
+            get => _currentPressedIcon;
             set
             {
-                if (_currentSelectedIcon != null)
+                if (_currentPressedIcon != null && _currentPressedIcon != value)
                 {
-                    _currentSelectedIcon.CurrentState = Icon.State.Normal;
+                    _currentPressedIcon.CurrentState = Icon.IconState.Normal;
                 }
-                _currentSelectedIcon = value;
-                if (_currentSelectedIcon != null)
+                _currentPressedIcon = value;
+                if (_currentPressedIcon != null)
                 {
-                    _currentSelectedIcon.CurrentState = Icon.State.Selected;
+                    _currentPressedIcon.CurrentState = Icon.IconState.Pressed;
                 }
             }
         }

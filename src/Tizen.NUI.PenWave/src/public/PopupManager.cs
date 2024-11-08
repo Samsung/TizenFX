@@ -29,14 +29,16 @@ namespace Tizen.NUI.PenWave
         public PopupManager(View parentView)
         {
             this.parentView = parentView;
+            this.parentView.TouchEvent += (s, e) => { return true; }; // To prevent touch event propagation to parent view.
         }
 
-        public void ShowPopup(View contentView)
+        public void ShowPopup(View contentView, Position2D position)
         {
             if (popupView != null) HidePopup();
 
             popupView = new View();
             popupView.Add(contentView);
+            parentView.Position2D = position;
             parentView.Add(popupView);
         }
 

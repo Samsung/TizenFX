@@ -65,5 +65,15 @@ namespace Tizen.NUI.PenWave
             PWEngine.UpdateGLWindowSize(width, height);
             PWEngine.RenderFullyReDraw();
         }
+
+        public void ClearCanvas()
+        {
+            PWEngine.ClearCurrentCanvas();
+        }
+
+        public void AddPicture(string path)
+        {
+            PWEngine.AddPicture(path);
+        }
     }
 }

@@ -25,10 +25,10 @@ namespace Tizen.NUI.PenWave
 {
     public class CanvasTool : ToolBase
     {
-        public override ToolBase.ToolType Type => ToolBase.ToolType.Canvas;
+        public override PenWaveToolType Type => PenWaveToolType.Canvas;
 
-        private static readonly string popupBgUrl = $"{FrameworkInformation.ResourcePath}images/light/canvas_popup_bg.png";
-        private static readonly List<Color> BgColors = new List<Color>
+        private static readonly string s_popupBgUrl = $"{FrameworkInformation.ResourcePath}images/light/canvas_popup_bg.png";
+        private static readonly List<Color> s_bgColors = new List<Color>
                         {
                             new Color("#FFFEFE"),
                             new Color("#F0F0F0"),
@@ -40,28 +40,28 @@ namespace Tizen.NUI.PenWave
                             new Color("#090E21"),
                         };
 
-        private Icon palettIcon;
+        private Icon paletteIcon;
         private Icon gridIcon;
 
         public CanvasTool() : base(new CanvasToolActionHandler())
         {
-            palettIcon = new PalettIcon();
-            AddIcon(palettIcon);
+            paletteIcon = new PaletteIcon();
+            AddIcon(paletteIcon);
 
             gridIcon = new GridIcon();
             AddIcon(gridIcon);
 
             AddIcon(new UndoIcon());
             AddIcon(new RedoIcon());
+            AddIcon(new ClearIcon());
         }
 
         protected override void OnIconSelected(object sender)
         {
             Tizen.Log.Info("NUI", $"OnIconSelected\n");
-            if (sender is PalettIcon)
+            if (sender is PaletteIcon)
             {
-                var colorIconsView = CreateColorIconsView();
-                PopupManager.ShowPopup(colorIconsView);
+                CreateColorIconsView();
             }
             else
             {
@@ -69,18 +69,18 @@ namespace Tizen.NUI.PenWave
             }
         }
 
-        private View CreateColorIconsView()
+        private void CreateColorIconsView()
         {
-            var bgImage = new ImageView
+            var view = new ImageView
             {
-                BackgroundImage = popupBgUrl,
+                BackgroundImage = s_popupBgUrl,
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
             };
-            AddIconsToView(bgImage, BgColors, color => new BackgroundColorIcon(color));
-            bgImage.Position2D = new Position2D((int)palettIcon.ScreenPosition.X, (int)palettIcon.ScreenPosition.Y + 60);
-            return bgImage;
+            AddIconsToView(view, s_bgColors, color => new BackgroundColorIcon(color));
+            Position2D position = new Position2D((int)paletteIcon.ScreenPosition.X, (int)paletteIcon.ScreenPosition.Y + 60);
+            PopupManager.ShowPopup(view, position);
         }
 
         private void AddIconsToView<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
@@ -93,7 +93,6 @@ namespace Tizen.NUI.PenWave
             {
                 var icon = iconFactory(item);
                 view.Add(icon);
-                // icon.IconSelected += OnIconSelected;
             }
 
             rootView.Add(view);

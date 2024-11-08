@@ -73,9 +73,9 @@ namespace Tizen.NUI.PenWave
         public PWEngine.BrushType GetBrushType() => brushType;
 
 
-        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
+        public override bool OnIconClicked(object sender, View.TouchEventArgs args)
         {
-            if (base.OnClickIcon(sender, args))
+            if (base.OnIconClicked(sender, args))
             {
                 brushStrategy.ApplyBrushSettings();
             }

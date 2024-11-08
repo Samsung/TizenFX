@@ -26,7 +26,7 @@ namespace Tizen.NUI.PenWave
     public abstract class Icon : ImageView
     {
         // Enumeration for the Icon states.
-        public enum State
+        public enum IconState
         {
             // Icon Normal State
             Normal = 0,
@@ -54,15 +54,15 @@ namespace Tizen.NUI.PenWave
         // Default size of the icon.
         private int defaultSize = 48;
         // Current state of the icon.
-        private State state;
+        private IconState currentState;
 
         // Property to get and set the current state of the icon.
-        public State CurrentState
+        public IconState CurrentState
         {
-            get => state;
+            get => currentState;
             set
             {
-                state = value;
+                currentState = value;
                 UpdateIconState(); // Update the icon's appearance based on the new state.
             }
         }
@@ -70,6 +70,9 @@ namespace Tizen.NUI.PenWave
         // Constructor for the Icon class.
         public Icon()
         {
+            currentState = IconState.Normal; // Set the initial state to normal.
+            GrabTouchAfterLeave = true;
+
             // Set layout properties to center the icon within its parent.
             Layout = new LinearLayout()
             {
@@ -80,7 +83,7 @@ namespace Tizen.NUI.PenWave
             this.Size2D = new Size2D(defaultSize, defaultSize);
 
             // Attach a touch event handler to handle click events on the icon.
-            this.TouchEvent += OnClickIcon;
+            this.TouchEvent += OnIconClicked;
         }
 
         // Override the Dispose method to clean up resources.
@@ -122,23 +125,23 @@ namespace Tizen.NUI.PenWave
         // Method to update the icon's appearance based on its current state.
         public virtual void UpdateIconState()
         {
-            switch (state)
+            switch (currentState)
             {
-                case State.Normal:
+                case IconState.Normal:
                     // Hide the selected image and set the color of the default image to normal color.
                     SelectedImage.Hide();
                     DefaultImage.Color = new Color(IconStateNormalColor);
                     break;
-                case State.Selected:
+                case IconState.Selected:
                     // Show the selected image and set the color of the default image to selected color.
                     SelectedImage.Show();
                     DefaultImage.Color = new Color(IconStateSelectedColor);
                     break;
-                case State.Pressed:
+                case IconState.Pressed:
                     // Set the color of the default image to pressed color.
                     DefaultImage.Color = new Color(IconStatePressedColor);
                     break;
-                case State.Disabled:
+                case IconState.Disabled:
                     // Set the color of the default image to disabled color and hide the selected image.
                     DefaultImage.Color = new Color(IconStateDisabledColor);
                     SelectedImage.Hide();
@@ -149,17 +152,28 @@ namespace Tizen.NUI.PenWave
         }
 
         // Method to handle touch events on the icon.
-        public virtual bool OnClickIcon(object sender, View.TouchEventArgs args)
+        public virtual bool OnIconClicked(object sender, View.TouchEventArgs args)
         {
             if (args.Touch.GetState(0) == PointStateType.Down)
             {
                 // Set the currently selected icon to this instance and invoke the IconSelected event.
-                IconStateManager.Instance.CurrentSelectedIcon = this;
+                IconStateManager.Instance.CurrentPressedIcon = this;
                 IconSelected?.Invoke(sender);
                 return true;
             }
+            else if (args.Touch.GetState(0) == PointStateType.Up)
+            {
+                CurrentState = IconState.Selected;
+            }
             return false;
         }
+
+        public void SetDisabled(bool isDisabled)
+        {
+            CurrentState = isDisabled ? IconState.Disabled : IconState.Normal;
+        }
+
+        public bool IsSelected => CurrentState == IconState.Selected;
 
         // Abstract methods to be implemented by derived classes to return the URLs for default and selected images.
         protected abstract string GetDefaultImageUrl();

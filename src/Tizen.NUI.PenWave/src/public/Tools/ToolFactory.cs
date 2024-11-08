@@ -21,14 +21,14 @@ namespace Tizen.NUI.PenWave
 {
     public static class ToolFactory
     {
-        public static ToolBase CreateTool(ToolBase.ToolType toolType)
+        public static ToolBase CreateTool(PenWaveToolType toolType)
         {
             return toolType switch
             {
-                ToolBase.ToolType.Pencil => new PencilTool(),
-                ToolBase.ToolType.Eraser => new EraserTool(),
-                ToolBase.ToolType.Select => new SelectTool(),
-                ToolBase.ToolType.Canvas => new CanvasTool(),
+                PenWaveToolType.Pencil => new PencilTool(),
+                PenWaveToolType.Eraser => new EraserTool(),
+                PenWaveToolType.Select => new SelectTool(),
+                PenWaveToolType.Canvas => new CanvasTool(),
                 _ => throw new ArgumentException("Unknown ToolType")
             };
         }

@@ -25,17 +25,15 @@ namespace Tizen.NUI.PenWave
 {
     public class ToolPickerView : View
     {
-        private ToolManager mToolManager;
-        private Dictionary<ToolBase.ToolType, View> mToolUIs;
-        private View pickerView;
-        private View popupView;
-        private PopupManager popupManager;
+        private ToolManager _toolManager;
+        private Dictionary<PenWaveToolType, View> _toolUIs;
+        private PopupManager _popupManager;
 
-        public ToolPickerView(ToolManager toolManager)
+        public ToolPickerView(PWCanvasView canvasView)
         {
-            this.mToolManager = toolManager;
+            _toolManager = canvasView.ToolManager;
             EventBus.Subscribe("ToolChanged", OnToolChanged);
-            mToolUIs = new Dictionary<ToolBase.ToolType, View>();
+            _toolUIs = new Dictionary<PenWaveToolType, View>();
 
             InitializeUI();
         }
@@ -57,7 +55,7 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            pickerView = new View
+            var pickerView = new View
             {
                 CornerRadius = new Vector4(10, 10, 10, 10),
                 BackgroundImage = FrameworkInformation.ResourcePath + "images/" + "light" + "/menu_bg.png",
@@ -70,7 +68,7 @@ namespace Tizen.NUI.PenWave
                 },
             };
 
-            popupView = new View
+            var popupView = new View
             {
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
@@ -81,72 +79,71 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            this.popupManager = new PopupManager(popupView);
+            _popupManager = new PopupManager(popupView);
 
-            foreach (var tool in mToolManager.Tools)
+            foreach (var tool in _toolManager.Tools)
             {
-                tool.Value.SetPopupManager(popupManager);
+                tool.Value.SetPopupManager(_popupManager);
                 var toolUI = tool.Value.GetUI();
-                if (mToolUIs.TryAdd(tool.Key, toolUI))
+                if (_toolUIs.TryAdd(tool.Key, toolUI))
                 {
                     pickerView.Add(toolUI);
                 }
             }
             rootView.Add(pickerView);
-            this.Add(rootView);
-            this.Add(popupView);
+            Add(rootView);
+            Add(popupView);
 
-            this.TouchEvent += OnTouchEvent;
+            TouchEvent += OnTouchEvent;
         }
 
         private bool OnTouchEvent(object sender, View.TouchEventArgs args)
         {
-            IconStateManager.Instance.CurrentSelectedIcon = null;
-            popupManager.HidePopup();
+            IconStateManager.Instance.CurrentPressedIcon = null;
+            _popupManager.HidePopup();
             return false;
         }
 
-        public void ShowPopup(View contentView)
+        public void ShowPopup(View contentView, Position2D position)
         {
-            popupManager.ShowPopup(contentView);
+            _popupManager.ShowPopup(contentView, position);
         }
 
         public void HidePopup()
         {
-            popupManager.HidePopup();
+            _popupManager.HidePopup();
         }
 
 
         private void OnToolChanged(object toolType)
         {
-            // object is ToolBase.ToolType
-            popupManager.HidePopup();
-            Tizen.Log.Info("NUI", $"OnToolChanged!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+            Tizen.Log.Info("NUI", $"OnToolChanged {toolType}\n");
+            _popupManager.HidePopup();
         }
 
 
-        public void ShowTool(ToolBase.ToolType type)
+        public void ShowTool(PenWaveToolType type)
         {
-            if (mToolUIs.TryGetValue(type, out var toolView))
+            if (_toolUIs.TryGetValue(type, out var toolView))
             {
-                this.Add(toolView);
+                Add(toolView);
             }
         }
 
-        public void HideTool(ToolBase.ToolType type)
+        public void HideTool(PenWaveToolType type)
         {
-            if (mToolUIs.TryGetValue(type, out var toolView))
+            if (_toolUIs.TryGetValue(type, out var toolView))
             {
-                this.Remove(toolView);
+                Remove(toolView);
             }
         }
 
-        public void CustomizeToolUI(ToolBase.ToolType toolType, View customUI)
+        public void CustomizeToolUI(PenWaveToolType toolType, View customUI)
         {
             HideTool(toolType);
-            if (mToolUIs.TryAdd(toolType, customUI))
+            if (_toolUIs.TryAdd(toolType, customUI))
             {
-                this.Add(customUI);
+                Add(customUI);
             }
         }
     }

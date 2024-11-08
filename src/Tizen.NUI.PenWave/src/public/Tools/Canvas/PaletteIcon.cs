@@ -20,9 +20,9 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class PalettIcon : Icon
+    public class PaletteIcon : Icon
     {
-        public PalettIcon() : base()
+        public PaletteIcon() : base()
         {
             InitializeIcon();
         }
@@ -37,11 +37,11 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
+        public override bool OnIconClicked(object sender, View.TouchEventArgs args)
         {
-            if (base.OnClickIcon(sender, args))
+            if (base.OnIconClicked(sender, args))
             {
-                Tizen.Log.Info("NUI", $"PalettIcon\n");
+                Tizen.Log.Info("NUI", $"PaletteIcon\n");
             }
             return true;
         }

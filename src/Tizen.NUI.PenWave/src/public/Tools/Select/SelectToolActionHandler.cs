@@ -25,15 +25,26 @@ namespace Tizen.NUI.PenWave
 {
     public class SelectToolActionHandler : IToolActionHandler
     {
-        enum Mode
+        enum SelectMode
         {
             Resize,
             Move,
             None
         }
 
+        enum DrawableType
+        {
+            None,  //nothing found/selected
+            Multi, //more than one drawable selected
+            Shape,
+            Chart,
+            Picture,
+            Text
+        }
+
         private bool isTouchedInsideSelectedArea = false;
-        private Mode mode = Mode.None;
+        private SelectMode mode = SelectMode.None;
+        private DrawableType drawableType = DrawableType.None;
 
         public void Activate()
         {
@@ -41,7 +52,7 @@ namespace Tizen.NUI.PenWave
 
         public void Deactivate()
         {
-            mode = Mode.None;
+            mode = SelectMode.None;
             EndDrawing();
         }
 
@@ -80,23 +91,25 @@ namespace Tizen.NUI.PenWave
             if (!isTouchedInsideSelectedArea)
             {
                 PWEngine.DropSelectedDrawables();
-                PWEngine.SelectDrawable(position.X, position.Y);
-                PWEngine.StartSelectingArea(position.X, position.Y);
+                drawableType = (DrawableType)PWEngine.SelectDrawable(position.X, position.Y);
             }
         }
 
         private void ContinueDrawing(Vector2 position, uint touchTime)
         {
-            if (isTouchedInsideSelectedArea)
+            if (drawableType == DrawableType.None)
+            {
+                if (mode == SelectMode.None)
+                {
+                    PWEngine.StartSelectingArea(position.X, position.Y);
+                }
+                PWEngine.ResizeSelectedArea(position.X, position.Y);
+                mode = SelectMode.Resize;
+            }
+            else if (isTouchedInsideSelectedArea || drawableType != DrawableType.None)
             {
                 PWEngine.DragSelectedDrawables(position.X, position.Y);
-                mode = Mode.Move;
-            }
-            else
-            {
-                PWEngine.ResizeSelectedArea(position.X, position.Y);
-                mode = Mode.Resize;
-
+                mode = SelectMode.Move;
             }
         }
 
@@ -104,18 +117,18 @@ namespace Tizen.NUI.PenWave
         {
             switch (mode)
             {
-                case Mode.Move :
+                case SelectMode.Move :
                     PWEngine.EndDraging();
                     break;
-                case Mode.Resize :
-                    PWEngine.SelectDrawables();
+                case SelectMode.Resize :
+                    drawableType = (DrawableType)PWEngine.SelectDrawables();
                     break;
                 default :
                     PWEngine.DropSelectedDrawables();
                     break;
             }
             isTouchedInsideSelectedArea = false;
-            mode = Mode.None;
+            mode = SelectMode.None;
         }
 
     }

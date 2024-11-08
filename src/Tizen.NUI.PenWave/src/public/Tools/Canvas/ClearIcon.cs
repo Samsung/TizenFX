@@ -15,29 +15,21 @@
  *
  */
 
-using System;
-using System.ComponentModel;
-using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public class SizeIcon : Icon
+    public class ClearIcon : Icon
     {
-        private readonly float size;
-
-        public SizeIcon(float size) : base()
+        public ClearIcon() : base()
         {
-            this.size = size;
-
             InitializeIcon();
-            DefaultImage.Size2D = new Size2D((int)(size * 2), (int)(size * 2));
         }
 
         protected override string GetDefaultImageUrl()
         {
-            return $"{FrameworkInformation.ResourcePath}images/light/color_icon_base.png";
+            return $"{FrameworkInformation.ResourcePath}images/light/icon_clear.png";
         }
 
         protected override string GetSelectedImageUrl()
@@ -49,11 +41,11 @@ namespace Tizen.NUI.PenWave
         {
             if (base.OnIconClicked(sender, args))
             {
-                PWEngine.SetStrokeSize(GetSize());
+                Tizen.Log.Info("NUI", $"ClearIcon\n");
+                PWEngine.ClearCurrentCanvas();
             }
             return true;
         }
 
-        public float GetSize() => size;
     }
 }

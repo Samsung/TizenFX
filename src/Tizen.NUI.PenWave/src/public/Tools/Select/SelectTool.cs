@@ -25,7 +25,7 @@ namespace Tizen.NUI.PenWave
 {
     public class SelectTool : ToolBase
     {
-        public override ToolBase.ToolType Type => ToolBase.ToolType.Select;
+        public override PenWaveToolType Type => PenWaveToolType.Select;
 
         public SelectTool() : base(new SelectToolActionHandler())
         {

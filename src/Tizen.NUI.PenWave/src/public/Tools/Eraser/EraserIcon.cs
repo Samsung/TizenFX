@@ -40,9 +40,9 @@ namespace Tizen.NUI.PenWave
             return $"{FrameworkInformation.ResourcePath}images/light/color_icon_selected.png";
         }
 
-        public override bool OnClickIcon(object sender, View.TouchEventArgs args)
+        public override bool OnIconClicked(object sender, View.TouchEventArgs args)
         {
-            base.OnClickIcon(sender, args);
+            base.OnIconClicked(sender, args);
             return true;
         }
     }

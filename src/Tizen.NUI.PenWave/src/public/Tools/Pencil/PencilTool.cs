@@ -25,7 +25,7 @@ namespace Tizen.NUI.PenWave
 {
     public class PencilTool : ToolBase
     {
-        public override ToolBase.ToolType Type => ToolBase.ToolType.Pencil;
+        public override PenWaveToolType Type => PenWaveToolType.Pencil;
 
         private static readonly string popupBgUrl = $"{FrameworkInformation.ResourcePath}images/light/canvas_popup_bg.png";
 
@@ -70,24 +70,21 @@ namespace Tizen.NUI.PenWave
             if (sender is BrushIcon)
             {
                 Tizen.Log.Info("NUI", $"BrushIcon Selected\n");
-                var brushIconsView = CreateBrushIconsView();
-                PopupManager.ShowPopup(brushIconsView);
+                CreateBrushIconsView();
             }
             else if (sender is SizeIcon)
             {
                 Tizen.Log.Info("NUI", $"SizeIcon Selected\n");
-                var sizeIconsView = CreateSizeIconsView();
-                PopupManager.ShowPopup(sizeIconsView);
+                CreateSizeIconsView();
             }
             else if (sender is ColorIcon)
             {
                 Tizen.Log.Info("NUI", $"ColorIcon Selected\n");
-                var colorIconsView = CreateColorIconsView();
-                PopupManager.ShowPopup(colorIconsView);
+                CreateColorIconsView();
             }
         }
 
-        private View CreateBrushIconsView()
+        private void CreateBrushIconsView()
         {
             var view = new ImageView
             {
@@ -97,11 +94,11 @@ namespace Tizen.NUI.PenWave
                 Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
             };
             AddIcons(view, ink.BrushTypes, brushType => new BrushIcon(brushType));
-            view.Position2D = new Position2D((int)pencilIcon.ScreenPosition.X, (int)pencilIcon.ScreenPosition.Y + 60);
-            return view;
+            Position2D position = new Position2D((int)pencilIcon.ScreenPosition.X, (int)pencilIcon.ScreenPosition.Y + 60);
+            PopupManager.ShowPopup(view, position);
         }
 
-        private View CreateSizeIconsView()
+        private void CreateSizeIconsView()
         {
             var view = new ImageView
             {
@@ -111,11 +108,11 @@ namespace Tizen.NUI.PenWave
                 Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
             };
             AddIcons(view, ink.Sizes, size => new SizeIcon(size));
-            view.Position2D = new Position2D((int)sizeIcon.ScreenPosition.X, (int)sizeIcon.ScreenPosition.Y + 60);
-            return view;
+            Position2D position = new Position2D((int)sizeIcon.ScreenPosition.X, (int)sizeIcon.ScreenPosition.Y + 60);
+            PopupManager.ShowPopup(view, position);
         }
 
-        private View CreateColorIconsView()
+        private void CreateColorIconsView()
         {
             var view = new ImageView
             {
@@ -125,8 +122,8 @@ namespace Tizen.NUI.PenWave
                 Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
             };
             AddIcons(view, ink.Colors, color => new ColorIcon(color));
-            view.Position2D = new Position2D((int)colorIcon.ScreenPosition.X, (int)colorIcon.ScreenPosition.Y + 60);
-            return view;
+            Position2D position = new Position2D((int)colorIcon.ScreenPosition.X, (int)colorIcon.ScreenPosition.Y + 60);
+            PopupManager.ShowPopup(view, position);
         }
 
         private void AddIcons<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
@@ -148,11 +145,11 @@ namespace Tizen.NUI.PenWave
         {
             if (sender is BrushIcon)
             {
-                pencilIcon.DefaultImage.ResourceUrl = IconStateManager.Instance.CurrentSelectedIcon.DefaultImage.ResourceUrl;
+                pencilIcon.DefaultImage.ResourceUrl = IconStateManager.Instance.CurrentPressedIcon.DefaultImage.ResourceUrl;
             }
             else if (sender is SizeIcon)
             {
-                sizeIcon.DefaultImage.Size2D = IconStateManager.Instance.CurrentSelectedIcon.DefaultImage.Size2D;
+                sizeIcon.DefaultImage.Size2D = IconStateManager.Instance.CurrentPressedIcon.DefaultImage.Size2D;
             }
             else if (sender is ColorIcon)
             {

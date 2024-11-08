@@ -22,4 +22,13 @@ namespace Tizen.NUI.PenWave
     {
         public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
     }
+
+    public enum PenWaveToolType : int
+    {
+        Pencil,
+        Eraser,
+        Select,
+        Scale,
+        Canvas,
+    }
 }

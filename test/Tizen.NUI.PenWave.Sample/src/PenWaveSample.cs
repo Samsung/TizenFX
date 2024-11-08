@@ -34,11 +34,14 @@ namespace PenWaveSample
             canvasView = PWCanvasView.CreateDefaultCanvas();
             mWindow.Add(canvasView);
 
-            mToolPickerView = new ToolPickerView(canvasView.ToolManager);
+            mToolPickerView = new ToolPickerView(canvasView);
 
             canvasView.Add(mToolPickerView);
 
             canvasView.TouchEvent += OnTouchEvent;
+
+            canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", new Size2D(100, 100), new Position2D(0, 0));
+            canvasView.SelectTool(PenWaveToolType.Select);
         }
 
 

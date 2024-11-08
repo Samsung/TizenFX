@@ -25,7 +25,7 @@ namespace Tizen.NUI.PenWave
 {
     public class EraserTool : ToolBase
     {
-        public override ToolBase.ToolType Type => ToolBase.ToolType.Eraser;
+        public override PenWaveToolType Type => PenWaveToolType.Eraser;
 
         public EraserTool() : base(new EraserToolActionHandler())
         {

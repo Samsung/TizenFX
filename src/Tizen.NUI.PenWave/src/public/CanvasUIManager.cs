@@ -46,9 +46,5 @@ namespace Tizen.NUI.PenWave
             // 캔버스 상태에 따라 UI 갱신
         }
 
-        public void ToggleGrid(bool visible)
-        {
-            // 그리드 표시/숨기기 처리
-        }
     }
 }
