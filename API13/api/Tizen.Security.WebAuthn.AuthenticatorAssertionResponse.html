@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.WebAuthn.html">WebAuthn</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.WebAuthn.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The response of GetAssertion().</p>
+  <div class="markdown level0 summary"><p>The authenticator's response of <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_GetAssertion_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Tizen_Security_WebAuthn_GetAssertionCallbacks_">GetAssertion(ClientData, PubkeyCredRequestOptions, GetAssertionCallbacks)</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -118,12 +118,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L63">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L83">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_AttestationObject_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.AttestationObject*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_AttestationObject" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.AttestationObject">AttestationObject</h4>
-  <div class="markdown level1 summary"><p>This OPTIONAL attribute contains an attestation object,
-if the authenticator supports attestation in assertions.</p>
+  <div class="markdown level1 summary"><p>Gets the attestation object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -141,7 +140,9 @@ if the authenticator supports attestation in assertions.</p>
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>An OPTIONAL property that contains an attestation object,
+if the authenticator supports attestation in assertions.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -154,12 +155,11 @@ if the authenticator supports attestation in assertions.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L56">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_AuthenticatorData_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.AuthenticatorData*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_AuthenticatorData" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.AuthenticatorData">AuthenticatorData</h4>
-  <div class="markdown level1 summary"><p>The authenticator data contained within attestation_object.
-For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data">https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data</a></p>
+  <div class="markdown level1 summary"><p>Gets the authenticator data contained within the Attestation Object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -177,7 +177,9 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>Authenticator data contained within the Attestation Object.
+For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data">https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -190,11 +192,11 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_ClientDataJson_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.ClientDataJson*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_ClientDataJson" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.ClientDataJson">ClientDataJson</h4>
-  <div class="markdown level1 summary"><p>JSON-compatible serialization of client data.</p>
+  <div class="markdown level1 summary"><p>Gets the serialized client data json.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -212,7 +214,8 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>A JSON-compatible serialization of client data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -225,12 +228,11 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L65">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_Signature_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.Signature*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_Signature" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.Signature">Signature</h4>
-  <div class="markdown level1 summary"><p>The raw signature returned from the authenticator.
-For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-op-get-assertion">https://www.w3.org/TR/webauthn-3/#sctn-op-get-assertion</a></p>
+  <div class="markdown level1 summary"><p>Gets the signature returned from the authenticator.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -248,7 +250,9 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-o
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>The signature returned from the authenticator.
+For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-op-get-assertion">https://www.w3.org/TR/webauthn-3/#sctn-op-get-assertion</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -261,12 +265,11 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-o
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L58">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAssertionResponse.cs/#L74">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_UserHandle_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.UserHandle*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAssertionResponse_UserHandle" data-uid="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.UserHandle">UserHandle</h4>
-  <div class="markdown level1 summary"><p>The user handle returned from the authenticator,
-or null if the authenticator did not return a user handle.</p>
+  <div class="markdown level1 summary"><p>Gets the user handle returned from the authenticator.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -284,7 +287,9 @@ or null if the authenticator did not return a user handle.</p>
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>The user handle returned from the authenticator,
+or null if the authenticator did not return a user handle.</p>
+</td>
       </tr>
     </tbody>
   </table>
