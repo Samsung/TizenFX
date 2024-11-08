@@ -118,7 +118,7 @@
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L35">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredDescriptor__ctor_" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.#ctor*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredDescriptor__ctor_Tizen_Security_WebAuthn_PubkeyCredType_System_Byte___Tizen_Security_WebAuthn_AuthenticatorTransport_" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.#ctor(Tizen.Security.WebAuthn.PubkeyCredType,System.Byte[],Tizen.Security.WebAuthn.AuthenticatorTransport)">PubkeyCredDescriptor(PubkeyCredType, byte[], AuthenticatorTransport)</h4>
@@ -154,7 +154,7 @@
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorTransport.html">AuthenticatorTransport</a></td>
         <td><span class="parametername">transport</span></td>
-        <td><p>To represent multiple transports, this enum can be ORed multiple times.</p>
+        <td><p>Transport types. To represent multiple transports, this enum can be ORed multiple times.</p>
 </td>
       </tr>
     </tbody>
@@ -170,11 +170,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L56">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredDescriptor_Id_" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.Id*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredDescriptor_Id" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.Id">Id</h4>
-  <div class="markdown level1 summary"><p>The credential ID of the public key credential.</p>
+  <div class="markdown level1 summary"><p>Gets the ID of the public key credential.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -192,7 +192,8 @@
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>The binary ID of the public key credential.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -205,11 +206,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L54">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L65">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredDescriptor_Transport_" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.Transport*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredDescriptor_Transport" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.Transport">Transport</h4>
-  <div class="markdown level1 summary"><p>Transport types.</p>
+  <div class="markdown level1 summary"><p>Gets the transport types.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -227,7 +228,9 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorTransport.html">AuthenticatorTransport</a></td>
-        <td></td>
+        <td><p>The transport types describing communication between the client and the authenticator.
+To represent multiple transports, this enum can be ORed multiple times.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -240,11 +243,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L46">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredDescriptor_Type_" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.Type*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredDescriptor_Type" data-uid="Tizen.Security.WebAuthn.PubkeyCredDescriptor.Type">Type</h4>
-  <div class="markdown level1 summary"><p>The type of the public key credential.</p>
+  <div class="markdown level1 summary"><p>Gets the type of the public key credential.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -262,7 +265,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredType.html">PubkeyCredType</a></td>
-        <td></td>
+        <td><p>The type of the public key credential.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -282,7 +286,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredDescriptor.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

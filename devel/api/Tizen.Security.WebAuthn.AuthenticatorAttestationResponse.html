@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.WebAuthn.html">WebAuthn</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.WebAuthn.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>The response of MakeCredential().</p>
+  <div class="markdown level0 summary"><p>The response of <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_MakeCredential_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredCreationOptions_Tizen_Security_WebAuthn_MakeCredentialCallbacks_">MakeCredential(ClientData, PubkeyCredCreationOptions, MakeCredentialCallbacks)</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -118,11 +118,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L56">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_AttestationObject_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.AttestationObject*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_AttestationObject" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.AttestationObject">AttestationObject</h4>
-  <div class="markdown level1 summary"><p>The CBOR encoded Attestation Object to be returned to the RP.</p>
+  <div class="markdown level1 summary"><p>Gets the Attestation Object to be returned to the Relying Party.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -140,7 +140,8 @@
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>A CBOR-encoded Attestation Object.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -153,12 +154,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L57">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L74">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_AuthenticatorData_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.AuthenticatorData*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_AuthenticatorData" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.AuthenticatorData">AuthenticatorData</h4>
-  <div class="markdown level1 summary"><p>The authenticator data contained within attestation_object.
-For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data">https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data</a></p>
+  <div class="markdown level1 summary"><p>Gets the authenticator data contained within the Attestation Object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -176,7 +176,9 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>Authenticator data contained within the Attestation Object.
+For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data">https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -189,11 +191,11 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L44">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_ClientDataJson_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.ClientDataJson*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_ClientDataJson" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.ClientDataJson">ClientDataJson</h4>
-  <div class="markdown level1 summary"><p>JSON-compatible serialization of client data.</p>
+  <div class="markdown level1 summary"><p>Gets the serialized client data json.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -211,7 +213,8 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>A JSON-compatible serialization of client data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -224,11 +227,11 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L66">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L91">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_PubkeyAlg_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.PubkeyAlg*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_PubkeyAlg" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.PubkeyAlg">PubkeyAlg</h4>
-  <div class="markdown level1 summary"><p>The COSEAlgorithmIdentifier of the new credential.</p>
+  <div class="markdown level1 summary"><p>Gets the COSE algorithm identifier of the new credential.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -246,7 +249,8 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.CoseAlgorithm.html">CoseAlgorithm</a></td>
-        <td></td>
+        <td><p>The COSE algorithm identifier of the new credential.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -259,12 +263,11 @@ For more information, refer to <a href="https://www.w3.org/TR/webauthn-3/#sctn-a
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L62">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L83">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_SubjectPubkeyInfo_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.SubjectPubkeyInfo*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_SubjectPubkeyInfo" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.SubjectPubkeyInfo">SubjectPubkeyInfo</h4>
-  <div class="markdown level1 summary"><p>DER SubjectPublicKeyInfo of the new credential, or null if this is not available.
-For more information, refer to <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.7">https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.7</a></p>
+  <div class="markdown level1 summary"><p>Gets the DER SubjectPublicKeyInfo of the new credential.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -282,7 +285,9 @@ For more information, refer to <a href="https://datatracker.ietf.org/doc/html/rf
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>DER SubjectPublicKeyInfo of the new credential, or null if this is not available.
+For more information, refer to <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.7">https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.7</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -295,11 +300,11 @@ For more information, refer to <a href="https://datatracker.ietf.org/doc/html/rf
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L52">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/AuthenticatorAttestationResponse.cs/#L65">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_Transports_" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.Transports*"></a>
   <h4 id="Tizen_Security_WebAuthn_AuthenticatorAttestationResponse_Transports" data-uid="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.Transports">Transports</h4>
-  <div class="markdown level1 summary"><p>To represent multiple transports, <a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorTransport.html">AuthenticatorTransport</a> can be ORed multiple times.</p>
+  <div class="markdown level1 summary"><p>Gets an enum containing a list of transports.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -317,7 +322,9 @@ For more information, refer to <a href="https://datatracker.ietf.org/doc/html/rf
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorTransport.html">AuthenticatorTransport</a></td>
-        <td></td>
+        <td><p>A list of transports. To represent multiple transports,
+<a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorTransport.html">AuthenticatorTransport</a> can be ORed multiple times.</p>
+</td>
       </tr>
     </tbody>
   </table>
