@@ -26,8 +26,6 @@ namespace Tizen.NUI.PenWave
     public class PWCanvasView : DirectRenderingGLView
     {
         private CanvasRenderer renderer;
-        private CanvasUIManager uiManager;
-        private PageManager pageManager;
         private PropertyNotification propertyNotification;
 
         public ToolManager ToolManager {get; private set;}
@@ -67,14 +65,15 @@ namespace Tizen.NUI.PenWave
 
         private void InitializeManager()
         {
-            pageManager = new PageManager();
-            uiManager = new CanvasUIManager(this);
             ToolManager = new ToolManager();
         }
 
         private void InitializeCanvas()
         {
             InitializeManager();
+            this.WidthResizePolicy = ResizePolicyType.FillToParent;
+            this.HeightResizePolicy = ResizePolicyType.FillToParent;
+
             this.RenderingMode = GLRenderingMode.Continuous;
             this.RegisterGLCallbacks(renderer.InitializeGL, renderer.RenderFrame, renderer.TerminateGL);
             this.SetGraphicsConfig(false, false, 0, GLESVersion.Version20);
@@ -88,12 +87,6 @@ namespace Tizen.NUI.PenWave
                     renderer.Resize((int)target.SizeWidth, (int)target.SizeHeight);
                 }
             };
-        }
-
-        public void SetCurrentPage(int pageIndex)
-        {
-            pageManager.SetCurrentPage(pageIndex);
-            OnPageChanged?.Invoke(pageIndex);
         }
 
         public void ClearCanvas()
