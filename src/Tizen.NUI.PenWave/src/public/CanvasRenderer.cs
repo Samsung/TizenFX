@@ -75,5 +75,23 @@ namespace Tizen.NUI.PenWave
         {
             PWEngine.AddPicture(path);
         }
+
+        public void ToggleGrid(PWGridDensityType gridType)
+        {
+            PWEngine.ToggleGrid((int)gridType);
+        }
+
+        public void SetCanvasColor(Color color)
+        {
+            PWEngine.CanvasSetColor(ToHex(color), 1.0f);
+        }
+
+        private string ToHex(Color color)
+        {
+            var red = (uint)(color.R * 255);
+            var green = (uint)(color.G * 255);
+            var blue = (uint)(color.B * 255);
+            return $"#{red:X2}{green:X2}{blue:X2}";
+        }
     }
 }

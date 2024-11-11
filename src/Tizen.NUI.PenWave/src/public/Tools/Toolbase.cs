@@ -23,8 +23,14 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public interface IBrushStrategy
+    public abstract class ToolBase
     {
-        public void ApplyBrushSettings();
+        public abstract PWToolType Type { get; }
+
+        public virtual void HandleInput(Touch touch) {}
+
+        public abstract void Activate();
+        public abstract void Deactivate();
     }
 }
+

@@ -23,12 +23,46 @@ namespace Tizen.NUI.PenWave
         public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
     }
 
-    public enum PenWaveToolType : int
+    public enum PWToolType
     {
-        Pencil,
+        Pencil = 0,
         Eraser,
-        Select,
+        Selection,
         Scale,
         Canvas,
+    }
+
+    public enum PWBrushType
+    {
+        Stroke  = 0,
+        VarStroke,
+        DotBrush,
+        SprayBrush,
+        DashedLine,
+        Highlighter,
+        VarStrokeInc,
+        SoftBrush,
+        SharpBrush
+    }
+
+    public enum PWSelectionType
+    {
+        Move  = 0,
+        Scale,
+        Rotate,
+    }
+
+    public enum PWEraserType
+    {
+        Partial = 0,
+        Full,
+    }
+
+    public enum PWGridDensityType
+    {
+        None = 0,
+        Small,
+        Medium,
+        Large
     }
 }

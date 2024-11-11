@@ -25,10 +25,12 @@ namespace Tizen.NUI.PenWave
 {
     public class ToolManager
     {
-        public Dictionary<PenWaveToolType, ToolBase> Tools { get; } = new();
+        internal Dictionary<PWToolType, ToolBase> Tools { get; } = new();
         private ToolBase currentTool;
 
-        public ToolManager() {}
+        public ToolManager()
+        {
+        }
 
         public void RegisterTool(ToolBase tool)
         {
@@ -39,7 +41,6 @@ namespace Tizen.NUI.PenWave
             else
             {
                 Tools.Add(tool.Type, tool);
-                tool.ToolSelected += OnToolSelected;
             }
         }
 
@@ -48,13 +49,21 @@ namespace Tizen.NUI.PenWave
             Tools.Remove(tool.Type);
         }
 
-        public void SelectTool(PenWaveToolType toolType)
+        public ToolBase GetTool(PWToolType toolType)
         {
+            ToolBase tool = null;
+            Tools.TryGetValue(toolType, out tool);
+            return tool;
+        }
+
+        public void SelectTool(PWToolType toolType)
+        {
+            Tizen.Log.Error("NUI", $"SelectTool {toolType}\n");
             currentTool?.Deactivate();
             if (Tools.TryGetValue(toolType, out currentTool))
             {
+                Tizen.Log.Error("NUI", $"SelectTool Activate {toolType}\n");
                 currentTool.Activate();
-                EventBus.Publish("ToolChanged", toolType);
             }
         }
 
@@ -63,12 +72,5 @@ namespace Tizen.NUI.PenWave
             currentTool?.HandleInput(touch);
         }
 
-        private void OnToolSelected(PenWaveToolType toolType)
-        {
-            Tizen.Log.Info("NUI", $"OnToolSelected {toolType}\n");
-            SelectTool(toolType);
-        }
-
-        public PenWaveToolType GetCurrentToolType() => currentTool?.Type ?? PenWaveToolType.Pencil;
     }
 }

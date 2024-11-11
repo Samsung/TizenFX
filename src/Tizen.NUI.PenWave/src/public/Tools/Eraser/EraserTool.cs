@@ -25,11 +25,84 @@ namespace Tizen.NUI.PenWave
 {
     public class EraserTool : ToolBase
     {
-        public override PenWaveToolType Type => PenWaveToolType.Eraser;
+        public override PWToolType Type => PWToolType.Eraser;
 
-        public EraserTool() : base(new EraserToolActionHandler())
+        private PWEraserType currentEraserType;
+        private float radiusEraser = 48.0f;
+
+        public PWEraserType EraserType
         {
-            AddIcon(new EraserIcon());
+            get => currentEraserType;
+            set
+            {
+                currentEraserType = value;
+            }
         }
+
+        public float EraserSize
+        {
+            get => radiusEraser;
+            set
+            {
+                radiusEraser = value;
+            }
+        }
+
+
+        public override void Activate()
+        {
+
+        }
+
+        public override void Deactivate()
+        {
+            EndDrawing();
+        }
+
+        public override void HandleInput(Touch touch)
+        {
+            if (touch == null || touch.GetPointCount() == 0) return;
+
+            uint pointStateIndex = 0;
+            uint touchTime = touch.GetTime();
+
+            List<Vector2> touchPositionList = new List<Vector2>();
+            for (uint i = 0; i < touch.GetPointCount(); ++i)
+            {
+                touchPositionList.Add(touch.GetLocalPosition(i));
+            }
+
+            Vector2 position = touchPositionList[(int)pointStateIndex];
+            switch (touch.GetState(pointStateIndex))
+            {
+                case PointStateType.Down:
+                    StartDrawing(position, touchTime);
+                    break;
+                case PointStateType.Motion:
+                    ContinueDrawing(position, touchTime);
+                    break;
+                case PointStateType.Up:
+                case PointStateType.Leave:
+                    EndDrawing();
+                    break;
+            }
+        }
+
+        private  void StartDrawing(Vector2 position, uint touchTime)
+        {
+            PWEngine.EraseShape((int)position.X, (int)position.Y, radiusEraser, (currentEraserType == PWEraserType.Partial));
+        }
+
+        private void ContinueDrawing(Vector2 position, uint touchTime)
+        {
+            PWEngine.EraseShape((int)position.X, (int)position.Y, radiusEraser, (currentEraserType == PWEraserType.Partial));
+        }
+
+        private void EndDrawing()
+        {
+            PWEngine.StopErasing();
+        }
+
     }
 }
+

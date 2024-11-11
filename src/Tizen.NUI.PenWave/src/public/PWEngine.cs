@@ -23,19 +23,6 @@ namespace Tizen.NUI.PenWave
         public static class PWEngine
         {
 
-                public enum BrushType
-                {
-                        Stroke,
-                        VarStroke,
-                        DotBrush,
-                        SprayBrush,
-                        DashedLine,
-                        Highlighter,
-                        VarStrokeInc,
-                        SoftBrush,
-                        SharpBrush
-                }
-
                 public const string Lib = "libhand-drawing-engine.so";
 
                 [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "InitializeGL")]

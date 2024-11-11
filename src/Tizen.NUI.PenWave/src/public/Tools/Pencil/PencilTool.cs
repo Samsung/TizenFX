@@ -25,139 +25,139 @@ namespace Tizen.NUI.PenWave
 {
     public class PencilTool : ToolBase
     {
-        public override PenWaveToolType Type => PenWaveToolType.Pencil;
+        public override PWToolType Type => PWToolType.Pencil;
 
-        private static readonly string popupBgUrl = $"{FrameworkInformation.ResourcePath}images/light/canvas_popup_bg.png";
-
-        private PenInk ink;
-        private uint mCurrentShapeId;
-        private bool mIsDrawing = false;
-
-        private Icon pencilIcon;
-        private Icon sizeIcon;
-        private Icon colorIcon;
-
-
-        public PencilTool() : base(new PencilToolActionHandler())
+        private enum ErrorShapeAddPointsType
         {
-            ink = new PenInk();
-
-            InitializePencilTool();
+            noError,
+            overflowShape,
+            noCanvasSet,
+            noShapesInCanvas,
+            badIdShape,
+            drawableIsNotAShape,
+            drawableIsNotALine,
+            drawingCanceled
         }
 
-        public PencilTool(PenInk penInk) : base(new PencilToolActionHandler())
+        private PWBrushType currentBrushType;
+        private Color currentColor;
+        private float currentSize;
+        private uint currentShapeId;
+
+        public PWBrushType BrushType
         {
-            ink = penInk ?? new PenInk();
-
-            InitializePencilTool();
-        }
-
-        private void InitializePencilTool()
-        {
-            pencilIcon = new BrushIcon(PWEngine.BrushType.Stroke); // 현재 선택된 브러쉬 타입으로 업데이트 필요
-            AddIcon(pencilIcon);
-
-            sizeIcon = new SizeIcon(12.0f);
-            AddIcon(sizeIcon);
-
-            colorIcon = new ColorIcon(Color.Black); // 현재 선택된 색상으로 업데이트 필요
-            AddIcon(colorIcon);
-        }
-
-        protected override void OnIconSelected(object sender)
-        {
-            base.OnIconSelected(sender);
-            if (sender is BrushIcon)
+            get => currentBrushType;
+            set
             {
-                Tizen.Log.Info("NUI", $"BrushIcon Selected\n");
-                CreateBrushIconsView();
-            }
-            else if (sender is SizeIcon)
-            {
-                Tizen.Log.Info("NUI", $"SizeIcon Selected\n");
-                CreateSizeIconsView();
-            }
-            else if (sender is ColorIcon)
-            {
-                Tizen.Log.Info("NUI", $"ColorIcon Selected\n");
-                CreateColorIconsView();
+                currentBrushType = value;
+                SetBrushType(currentBrushType);
             }
         }
 
-        private void CreateBrushIconsView()
+        public Color BrushColor
         {
-            var view = new ImageView
+            get => currentColor;
+            set
             {
-                BackgroundImage = popupBgUrl,
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
-            };
-            AddIcons(view, ink.BrushTypes, brushType => new BrushIcon(brushType));
-            Position2D position = new Position2D((int)pencilIcon.ScreenPosition.X, (int)pencilIcon.ScreenPosition.Y + 60);
-            PopupManager.ShowPopup(view, position);
+                currentColor = value;
+                PWEngine.SetStrokeColor(ToHex(currentColor), 1.0f);
+            }
         }
 
-        private void CreateSizeIconsView()
+        public float BrushSize
         {
-            var view = new ImageView
+            get => currentSize;
+            set
             {
-                BackgroundImage = popupBgUrl,
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
-            };
-            AddIcons(view, ink.Sizes, size => new SizeIcon(size));
-            Position2D position = new Position2D((int)sizeIcon.ScreenPosition.X, (int)sizeIcon.ScreenPosition.Y + 60);
-            PopupManager.ShowPopup(view, position);
+                currentSize = value;
+                PWEngine.SetStrokeSize(currentSize);
+            }
         }
 
-        private void CreateColorIconsView()
+        private string ToHex(Color color)
         {
-            var view = new ImageView
-            {
-                BackgroundImage = popupBgUrl,
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                Layout = new GridLayout { Columns = 1, RowSpacing = 4 }
-            };
-            AddIcons(view, ink.Colors, color => new ColorIcon(color));
-            Position2D position = new Position2D((int)colorIcon.ScreenPosition.X, (int)colorIcon.ScreenPosition.Y + 60);
-            PopupManager.ShowPopup(view, position);
+            var red = (uint)(color.R * 255);
+            var green = (uint)(color.G * 255);
+            var blue = (uint)(color.B * 255);
+            return $"#{red:X2}{green:X2}{blue:X2}";
         }
 
-        private void AddIcons<T>(View rootView, IEnumerable<T>items, Func<T, Icon> iconFactory)
+        private void SetBrushType(PWBrushType brushType)
         {
-            var view = new View
+            var brushStragety = BrushStrategyFactory.Instance.GetBrushStrategy(brushType);
+            if (brushStragety!= null)
             {
-                Layout = new GridLayout { Columns = 4, ColumnSpacing = 16, RowSpacing = 16 },
-            };
-            foreach (var item in items)
-            {
-                var icon = iconFactory(item);
-                view.Add(icon);
-                icon.IconSelected += OnPopUnIconSelected;
+                brushStragety.ApplyBrushSettings();
             }
-            rootView.Add(view);
         }
 
-        private void OnPopUnIconSelected(object sender)
+        public override void Activate()
         {
-            if (sender is BrushIcon)
+
+        }
+
+        public override void Deactivate()
+        {
+            EndDrawing();
+        }
+
+        public override void HandleInput(Touch touch)
+        {
+            if (touch == null || touch.GetPointCount() == 0) return;
+
+            uint pointStateIndex = 0;
+            uint touchTime = touch.GetTime();
+
+            List<Vector2> touchPositionList = new List<Vector2>();
+            for (uint i = 0; i < touch.GetPointCount(); ++i)
             {
-                pencilIcon.DefaultImage.ResourceUrl = IconStateManager.Instance.CurrentPressedIcon.DefaultImage.ResourceUrl;
+                touchPositionList.Add(touch.GetLocalPosition(i));
             }
-            else if (sender is SizeIcon)
+
+            Vector2 position = touchPositionList[(int)pointStateIndex];
+            switch (touch.GetState(pointStateIndex))
             {
-                sizeIcon.DefaultImage.Size2D = IconStateManager.Instance.CurrentPressedIcon.DefaultImage.Size2D;
+                case PointStateType.Down:
+                    StartDrawing(position, touchTime);
+                    break;
+                case PointStateType.Motion:
+                    ContinueDrawing(position, touchTime);
+                    break;
+                case PointStateType.Up:
+                case PointStateType.Leave:
+                    EndDrawing();
+                    break;
             }
-            else if (sender is ColorIcon)
+        }
+
+        private  void StartDrawing(Vector2 position, uint touchTime)
+        {
+            currentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
+        }
+
+        private void ContinueDrawing(Vector2 position, uint touchTime)
+        {
+            if (currentShapeId > 0)
             {
-                colorIcon.DefaultImage.Color = (sender as ColorIcon).GetColor();
+                var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(currentShapeId, position.X, position.Y, touchTime);
+                if (result == ErrorShapeAddPointsType.overflowShape)
+                {
+                    EndDrawing();
+                    StartDrawing(position, touchTime);
+                }
+                else if (result == ErrorShapeAddPointsType.drawingCanceled)
+                {
+                    EndDrawing();
+                }
             }
+        }
+
+        private void EndDrawing()
+        {
+            PWEngine.EndShapeDraw(currentShapeId, 0);
+            currentShapeId = 0;
         }
 
     }
-
-
 }
+

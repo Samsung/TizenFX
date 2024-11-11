@@ -23,21 +23,25 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
-    public static class BrushStrategyFactory
+    public sealed class BrushStrategyFactory
     {
-        public static IBrushStrategy GetBrushStrategy(PWEngine.BrushType brushType)
+        private static readonly BrushStrategyFactory instance = new BrushStrategyFactory();
+
+        public static BrushStrategyFactory Instance => instance;
+
+        public IBrushStrategy GetBrushStrategy(PWBrushType brushType)
         {
             return brushType switch
             {
-                PWEngine.BrushType.Stroke => new StrokeBrush(),
-                PWEngine.BrushType.VarStroke => new VarStrokeBrush(),
-                PWEngine.BrushType.VarStrokeInc => new VarStrokeIncBrush(),
-                PWEngine.BrushType.SprayBrush => new SprayBrush(),
-                PWEngine.BrushType.DotBrush => new DotBrush(),
-                PWEngine.BrushType.DashedLine => new DashedLineBrush(),
-                PWEngine.BrushType.Highlighter => new HighlighterBrush(),
-                PWEngine.BrushType.SoftBrush => new SoftBrush(),
-                PWEngine.BrushType.SharpBrush => new SharpBrush(),
+                PWBrushType.Stroke => new StrokeBrush(),
+                PWBrushType.VarStroke => new VarStrokeBrush(),
+                PWBrushType.VarStrokeInc => new VarStrokeIncBrush(),
+                PWBrushType.SprayBrush => new SprayBrush(),
+                PWBrushType.DotBrush => new DotBrush(),
+                PWBrushType.DashedLine => new DashedLineBrush(),
+                PWBrushType.Highlighter => new HighlighterBrush(),
+                PWBrushType.SoftBrush => new SoftBrush(),
+                PWBrushType.SharpBrush => new SharpBrush(),
                 _ => throw new ArgumentOutOfRangeException(nameof(brushType), brushType, null)
             };
         }

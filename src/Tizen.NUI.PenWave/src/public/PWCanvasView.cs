@@ -28,8 +28,7 @@ namespace Tizen.NUI.PenWave
         private CanvasRenderer renderer;
         private PropertyNotification propertyNotification;
 
-        public ToolManager ToolManager {get; private set;}
-        public event Action<int> OnPageChanged;
+        internal ToolManager ToolManager {get; private set;}
 
         public PWCanvasView() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
@@ -48,17 +47,14 @@ namespace Tizen.NUI.PenWave
         {
             var canvasView = new PWCanvasView();
 
-            var canvasTool = ToolFactory.CreateTool(PenWaveToolType.Canvas);
-            var pencilTool = ToolFactory.CreateTool(PenWaveToolType.Pencil);
-            var eraserTool = ToolFactory.CreateTool(PenWaveToolType.Eraser);
-            var selectTool = ToolFactory.CreateTool(PenWaveToolType.Select);
+            var pencilTool = new PencilTool();
+            var selectionTool = new SelectionTool();
+            var eraserTool = new EraserTool();
+            canvasView.AddTool(pencilTool);
+            canvasView.AddTool(eraserTool);
+            canvasView.AddTool(selectionTool);
 
-            canvasView.ToolManager.RegisterTool(canvasTool);
-            canvasView.ToolManager.RegisterTool(pencilTool);
-            canvasView.ToolManager.RegisterTool(eraserTool);
-            canvasView.ToolManager.RegisterTool(selectTool);
-
-            canvasView.ToolManager.SelectTool(pencilTool.Type);
+            canvasView.SelectTool(pencilTool.Type);
 
             return canvasView;
         }
@@ -94,12 +90,32 @@ namespace Tizen.NUI.PenWave
             renderer.ClearCanvas();
         }
 
+        public void SetCanvasColor(Color color)
+        {
+            renderer.SetCanvasColor(color);
+        }
+
+        public void ToggleGrid(PWGridDensityType gridType)
+        {
+            renderer.ToggleGrid(gridType);
+        }
+
         public void AddPicture(string path, Size2D size, Position2D position)
         {
             renderer.AddPicture(path);
         }
 
-        public void SelectTool(PenWaveToolType toolType)
+        public void AddTool(ToolBase tool)
+        {
+            ToolManager.RegisterTool(tool);
+        }
+
+        public ToolBase GetTool(PWToolType toolType)
+        {
+            return ToolManager.GetTool(toolType);
+        }
+
+        public void SelectTool(PWToolType toolType)
         {
             ToolManager.SelectTool(toolType);
         }
