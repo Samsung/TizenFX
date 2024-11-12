@@ -898,7 +898,19 @@ namespace Tizen.NUI.BaseComponents
 
             if (interceptTouchDataEventHandler != null)
             {
-                consumed = interceptTouchDataEventHandler(this, e);
+                if(NUIApplication.IsGeometryHittestEnabled())
+                {
+                    Delegate[] delegateList = interceptTouchDataEventHandler.GetInvocationList();
+                    // Oring the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
+                    {
+                        consumed |= del(this, e);
+                    }
+                }
+                else
+                {
+                    consumed = interceptTouchDataEventHandler(this, e);
+                }
             }
 
             return consumed;
@@ -926,7 +938,19 @@ namespace Tizen.NUI.BaseComponents
 
             if (touchDataEventHandler != null)
             {
-                consumed = touchDataEventHandler(this, e);
+                if(NUIApplication.IsGeometryHittestEnabled())
+                {
+                    Delegate[] delegateList = touchDataEventHandler.GetInvocationList();
+                    // Oring the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
+                    {
+                        consumed |= del(this, e);
+                    }
+                }
+                else
+                {
+                    consumed = touchDataEventHandler(this, e);
+                }
             }
 
             if (enableControlState && !consumed)
