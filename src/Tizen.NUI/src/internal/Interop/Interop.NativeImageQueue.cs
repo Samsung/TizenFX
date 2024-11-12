@@ -33,6 +33,7 @@ namespace Tizen.NUI
             public static extern void Delete(IntPtr queue);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_CanDequeueBuffer")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool CanDequeueBuffer(IntPtr queue);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_DequeueBuffer")]
