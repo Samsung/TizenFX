@@ -33,9 +33,11 @@ namespace Tizen.NUI
         public const int reservedVer2 = 0;
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeVersionCheck")]
+        [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
         public static extern bool NativeVersionCheck(ref int ver1, ref int ver2, ref int ver3);
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_NUI_InternalAPIVersionCheck")]
+        [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
         public static extern bool InternalAPIVersionCheck(ref int ver1, ref int ver2, ref int ver3);
 
         static internal bool DaliVersionMatchWithNUI()
