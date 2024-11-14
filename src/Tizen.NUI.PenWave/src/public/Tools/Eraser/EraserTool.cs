@@ -37,9 +37,9 @@ namespace Tizen.NUI.PenWave
             EraserRadius = radius; // default value is 48.0f;  // TODO: need to check the range of radius. 0.0f ~ 100.0f? or more?
         }
 
-        public EraserType Eraser { get; private set; }
+        public EraserType Eraser { get; set; }
 
-        public float EraserRadius  { get; private set; }
+        public float EraserRadius { get; set; }
 
         public override void Activate()
         {

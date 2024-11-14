@@ -86,7 +86,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// The type of selection operation. Default is move.
         /// </summary>
-        public SelectionType Selection { get; private set; }
+        public SelectionType Selection { get; set; }
 
 
         /// <summary>

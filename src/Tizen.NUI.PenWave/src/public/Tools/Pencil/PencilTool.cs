@@ -59,11 +59,11 @@ namespace Tizen.NUI.PenWave
             BrushSize = size;
         }
 
-        public BrushType Brush { get; private set; }
+        public BrushType Brush { get; set; }
 
-        public Color BrushColor { get; private set; }
+        public Color BrushColor { get; set; }
 
-        public float BrushSize { get; private set; }
+        public float BrushSize { get; set; }
 
         private string ToHex(Color color)
         {
