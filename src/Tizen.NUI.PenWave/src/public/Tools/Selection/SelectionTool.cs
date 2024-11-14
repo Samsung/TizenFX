@@ -176,6 +176,7 @@ namespace Tizen.NUI.PenWave
                     startScaleY = initialTouch.Y;
                 }
             }
+            NotifyActionStarted();
         }
 
         // Continue drawing the selection area or interacting with the selected drawables.
@@ -240,6 +241,7 @@ namespace Tizen.NUI.PenWave
             }
             isTouchedInsideSelectedArea = false;
             currentMode = Mode.None;
+            NotifyActionFinished();
         }
 
     }

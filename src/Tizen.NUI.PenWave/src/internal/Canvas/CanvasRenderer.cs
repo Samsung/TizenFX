@@ -117,7 +117,7 @@ namespace Tizen.NUI.PenWave
         /// Toggles the grid
         /// </summary>
         /// <param name="gridType"></param>
-        public void ToggleGrid(PWGridDensityType gridType)
+        public void ToggleGrid(GridDensityType gridType)
         {
             PWEngine.ToggleGrid((int)gridType);
         }

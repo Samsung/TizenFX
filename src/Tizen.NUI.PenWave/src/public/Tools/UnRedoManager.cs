@@ -41,7 +41,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         public void Undo()
         {
-            if (unchecked(undoStack.Count > 0))
+            if (undoStack.Count > 0)
             {
                 ICommand command = undoStack.Pop();
                 PWEngine.Undo();

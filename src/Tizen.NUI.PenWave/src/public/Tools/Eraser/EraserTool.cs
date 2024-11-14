@@ -34,7 +34,7 @@ namespace Tizen.NUI.PenWave
         public EraserTool(EraserType eraserType, float radius)
         {
             Eraser = eraserType;
-            EraserRadius = radius; // default value is 48.0f;  // TODO: need to check the range of radius. 0.0f ~ 100.0f? or more?
+            EraserRadius = radius;
         }
 
         public EraserType Eraser { get; set; }
@@ -84,6 +84,7 @@ namespace Tizen.NUI.PenWave
         private  void StartDrawing(Vector2 position, uint touchTime)
         {
             PWEngine.EraseShape((int)position.X, (int)position.Y, EraserRadius, (Eraser == EraserType.Partial));
+            NotifyActionStarted();
         }
 
         private void ContinueDrawing(Vector2 position, uint touchTime)
@@ -94,6 +95,7 @@ namespace Tizen.NUI.PenWave
         private void EndDrawing()
         {
             PWEngine.StopErasing();
+            NotifyActionFinished();
         }
 
     }

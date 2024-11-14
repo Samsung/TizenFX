@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 
 namespace Tizen.NUI.PenWave
 {
@@ -22,6 +23,16 @@ namespace Tizen.NUI.PenWave
     /// </summary>
     public abstract class ToolBase
     {
+        /// <summary>
+        /// Events that are triggered when the tool starts an action.
+        /// </summary>
+        public event EventHandler ActionStarted;
+
+        /// <summary>
+        /// Events that are triggered when the tool finishes an action.
+        /// </summary>
+        public event EventHandler ActionFinished;
+
         /// <summary>
         /// Handles input events such as touch events and updates the state of the tool accordingly.
         /// </summary>
@@ -36,7 +47,24 @@ namespace Tizen.NUI.PenWave
 
         /// <summary>
         /// Deactivates the tool, stopping it from receiving input and performing its functionality.
+        /// </summary>
         public abstract void Deactivate();
+
+        /// <summary>
+        /// Notifies that the tool has started an action.
+        /// </summary>
+        protected void NotifyActionStarted()
+        {
+            ActionStarted?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Notifies that the tool has finished an action.
+        /// </summary>
+        protected void NotifyActionFinished()
+        {
+            ActionFinished?.Invoke(this, EventArgs.Empty);
+        }
 
     }
 }

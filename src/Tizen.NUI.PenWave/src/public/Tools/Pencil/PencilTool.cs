@@ -128,6 +128,7 @@ namespace Tizen.NUI.PenWave
         private  void StartDrawing(Vector2 position, uint touchTime)
         {
             currentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
+            NotifyActionStarted();
         }
 
         private void ContinueDrawing(Vector2 position, uint touchTime)
@@ -151,6 +152,7 @@ namespace Tizen.NUI.PenWave
         {
             PWEngine.EndShapeDraw(currentShapeId, 0);
             currentShapeId = 0;
+            NotifyActionFinished();
         }
 
     }

@@ -136,7 +136,7 @@ namespace Tizen.NUI.PenWave
         /// Toggles the visibility of the grid.
         /// </summary>
         /// <param name="gridType"></param>
-        public void ToggleGrid(PWGridDensityType gridType)
+        public void ToggleGrid(GridDensityType gridType)
         {
             renderer.ToggleGrid(gridType);
         }
