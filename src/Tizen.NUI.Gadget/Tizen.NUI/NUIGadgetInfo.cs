@@ -71,10 +71,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the allowed resource path of the gadget.
+        /// Gets the gadget resource path of the gadget.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public string AllowedResourcePath
+        public string GadgetResourcePath
         {
             get; private set;
         }
@@ -196,11 +196,16 @@ namespace Tizen.NUI
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
 
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
-            info.AllowedResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/" + info.ResourceType + "/";
-            if (!Directory.Exists(info.AllowedResourcePath))
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/";
+            if (!Directory.Exists(info.ResourcePath))
             {
-                info.AllowedResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.DirectoryInfo.Resource) + "/mount/allowed/";
+                info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+            }
+
+            info.GadgetResourcePath = info.ResourcePath + info.ResourceType + "/";
+            if (!Directory.Exists(info.GadgetResourcePath))
+            {
+                info.GadgetResourcePath = info.ResourcePath;
             }
             return info;
         }
