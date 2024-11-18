@@ -26,7 +26,7 @@ namespace Tizen.NUI
         private string url = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of SVGVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SVGVisual() : base()

@@ -238,6 +238,21 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_check_box")]
         internal static extern NotificationError GetCheckBox(NotificationSafeHandle handle, out bool flag, out bool checkedValue);
 
+        /* apis for do not disturb app */
+        internal delegate void DisturbCallback(IntPtr userData);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_register_do_not_disturb_app")]
+        internal static extern NotificationError RegisterDndApp(DisturbCallback cb, IntPtr userData);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_unregister_do_not_disturb_app")]
+        internal static extern NotificationError UnRegisterDndApp();
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_pairing_type")]
+        internal static extern NotificationError SetPairingType(NotificationSafeHandle handle, bool pairing);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_pairing_type")]
+        internal static extern NotificationError GetPairingType(NotificationSafeHandle handle, out bool pairing);
+
         internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {
             NotificationError ret;

@@ -136,13 +136,18 @@ namespace Tizen.Multimedia.Remoting
 
         /// <summary>
         /// Occurs when the buffered data amount is lower than <see cref="BufferedAmountLowThreshold"/>.<br/>
-        /// If <see cref="BufferedAmountLowThreshold"/> is not set, this event will not be raised.
+        /// If <see cref="BufferedAmountLowThreshold"/> is not set, this event will not be registered.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public event EventHandler<EventArgs> BufferedAmountLow
         {
             add
             {
+                if (!_bufferThreshold.HasValue)
+                {
+                    return;
+                }
+
                 if (_bufferedAmountLowThresholdOccurred == null)
                 {
                     RegisterDataChannelBufferedAmountLowThresholdCallback();
@@ -151,6 +156,11 @@ namespace Tizen.Multimedia.Remoting
             }
             remove
             {
+                if (!_bufferThreshold.HasValue)
+                {
+                    return;
+                }
+
                 _bufferedAmountLowThresholdOccurred -= value;
                 if (_bufferedAmountLowThresholdOccurred == null)
                 {
@@ -229,16 +239,12 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterDataChannelBufferedAmountLowThresholdCallback()
         {
-            if (_webRtcDataChannelBufferedAmountLowThresholdCallback == null)
+            _webRtcDataChannelBufferedAmountLowThresholdCallback = (dataChannelHanel, _) =>
             {
-                _webRtcDataChannelBufferedAmountLowThresholdCallback = (dataChannelHanel, _) =>
-                {
-                    _bufferedAmountLowThresholdOccurred?.Invoke(this, new EventArgs());
-                };
-            }
+                _bufferedAmountLowThresholdOccurred?.Invoke(this, new EventArgs());
+            };
 
-            NativeDataChannel.SetBufferedAmountLowThresholdCb(_handle, _bufferThreshold.Value,
-                _webRtcDataChannelBufferedAmountLowThresholdCallback).
+            NativeDataChannel.SetBufferedAmountLowThresholdCb(_handle, _bufferThreshold.Value, _webRtcDataChannelBufferedAmountLowThresholdCallback).
                 ThrowIfFailed("Failed to set buffered amount low threshold callback.");
         }
 

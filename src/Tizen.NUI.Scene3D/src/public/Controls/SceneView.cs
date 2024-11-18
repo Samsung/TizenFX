@@ -446,7 +446,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI camera. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Interop.Camera.DeleteCameraProperty(handle);
+                Interop.Camera.DeleteCamera(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -472,7 +472,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI camera. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Interop.Camera.DeleteCameraProperty(handle);
+                Interop.Camera.DeleteCamera(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -569,7 +569,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI camera. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Interop.Camera.DeleteCameraProperty(handle);
+                Interop.Camera.DeleteCamera(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -832,6 +832,64 @@ namespace Tizen.NUI.Scene3D
             Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Callback when CornerRadius property changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override void ApplyCornerRadius()
+        {
+            base.ApplyCornerRadius();
+
+            if (backgroundExtraData == null) return;
+
+            // Update corner radius properties to image by ActionUpdateProperty
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
+            {
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.CornerRadius);
+                    SetProperty(Interop.SceneView.CornerRadiusGet(), setValue);
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.CornerSquareness);
+                    SetProperty(Interop.SceneView.CornerSquarenessGet(), setValue);
+                }
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
+                    SetProperty(Interop.SceneView.CornerRadiusPolicyGet(), setValue);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Callback when Borderline property changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override void ApplyBorderline()
+        {
+            base.ApplyBorderline();
+
+            if (backgroundExtraData == null) return;
+
+            // Update corner radius properties to image by ActionUpdateProperty
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsBorderline))
+            {
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.BorderlineWidth);
+                    SetProperty(Interop.SceneView.BorderlineWidthGet(), setValue);
+                }
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue((backgroundExtraData.BorderlineColor ?? Color.Black));
+                    SetProperty(Interop.SceneView.BorderlineColorGet(), setValue);
+                }
+                {
+                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.BorderlineOffset);
+                    SetProperty(Interop.SceneView.BorderlineOffsetGet(), setValue);
+                }
+            }
         }
 
         /// <summary>

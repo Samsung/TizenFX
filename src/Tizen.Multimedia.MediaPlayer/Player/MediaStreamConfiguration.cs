@@ -59,10 +59,10 @@ namespace Tizen.Multimedia
         public event EventHandler<MediaStreamSeekingOccurredEventArgs> SeekingOccurred;
 
         /// <summary>
-        /// Gets or sets the max size of the buffer.
+        /// Gets or sets the maximum size of the buffer for media stream.
         /// </summary>
-        /// <value>The max size of the buffer. The default is 200000.</value>
-        /// <remarks>If the buffer level overflows the max size, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Overflow"/>.</remarks>
+        /// <value>The maximum size of the buffer in bytes. The default is 200000.</value>
+        /// <remarks>If the buffer level overflows the maximum size, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Overflow"/>.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is zero.</exception>
         /// <seealso cref="BufferStatusChanged"/>
@@ -95,7 +95,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the minimum threshold of the buffer.
+        /// Gets or sets the minimum threshold of the media stream buffer.
         /// </summary>
         /// <value>The minimum threshold of the buffer in percentage. The default is zero.</value>
         /// <remarks>If the buffer level drops below the threshold value, <see cref="BufferStatusChanged"/> will be raised with <see cref="MediaStreamBufferStatus.Underrun"/>.</remarks>

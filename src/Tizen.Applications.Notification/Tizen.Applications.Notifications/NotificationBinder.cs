@@ -62,6 +62,11 @@ namespace Tizen.Applications.Notifications
             {
                 Interop.Notification.SetCheckBox(notification.Handle, notification.CheckBox, notification.CheckedValue);
             }
+
+            if (notification.PairingType == true)
+            {
+                Interop.Notification.SetPairingType(notification.Handle, notification.PairingType);
+            }
         }
 
         internal static void BindSafeHandle(Notification notification)
@@ -91,6 +96,7 @@ namespace Tizen.Applications.Notifications
             BindSafeHandleTag(notification);
             BindSafeHandleAction(notification);
             BindSafeHandleCheckBox(notification);
+            BindSafeHandlePairingType(notification);
         }
 
         private static void BindNotificationSafeHandle(Notification notification)
@@ -249,6 +255,19 @@ namespace Tizen.Applications.Notifications
 
             notification.CheckBox = checkbox;
             notification.CheckedValue = checkedValue;
+        }
+
+        private static void BindSafeHandlePairingType(Notification notification)
+        {
+            NotificationError ret;
+            bool pairingType= false;
+
+            ret = Interop.Notification.GetPairingType(notification.Handle, out pairingType);
+            if (ret != NotificationError.None) {
+                Log.Error(Notification.LogTag, "Failed to get paring type info");
+            }
+
+            notification.PairingType = pairingType;
         }
     }
 }

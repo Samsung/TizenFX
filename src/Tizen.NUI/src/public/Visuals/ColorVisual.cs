@@ -27,7 +27,7 @@ namespace Tizen.NUI
         private bool? renderIfTransparent = false;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of ColorVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ColorVisual() : base()

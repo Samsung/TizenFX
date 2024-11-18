@@ -29,6 +29,10 @@ namespace Tizen.Applications.Notifications
 
         private static Interop.Notification.ResponseEventCallback responseEventCallback;
 
+        // for disturb app
+        private static event EventHandler ResponseDisturbHandler;
+        private static Interop.Notification.DisturbCallback disturbCallback;
+
         private static void ResponseEventCallback(IntPtr ptr, int type, IntPtr userData)
         {
             IntPtr cloned;
@@ -46,6 +50,12 @@ namespace Tizen.Applications.Notifications
                 Handle = new NotificationSafeHandle(cloned, true)
             }.Build();
             ResponseEventHandler?.Invoke(null, eventArgs);
+        }
+
+        // for disturb app
+        private static void DisturbCallback(IntPtr userData)
+        {
+            ResponseDisturbHandler?.Invoke(null, EventArgs.Empty);
         }
 
         /// <summary> 
@@ -558,6 +568,57 @@ namespace Tizen.Applications.Notifications
             Notification notification = new Notification { Handle = handle }.Build();
 
             return notification;
+        }
+
+        /// <summary>
+        /// The event handler to get
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler DisturbReceived
+        {
+            add
+            {
+                if (disturbCallback == null)
+                {
+                    disturbCallback = new Interop.Notification.DisturbCallback(DisturbCallback);
+                }
+
+                ResponseDisturbHandler += value;
+            }
+
+            remove
+            {
+                if (ResponseDisturbHandler != null && ResponseDisturbHandler.GetInvocationList().Length > 0)
+                {
+                    NotificationError ret = Interop.Notification.UnRegisterDndApp();
+                    if (ret != NotificationError.None)
+                    {
+                        throw NotificationErrorFactory.GetException(ret, "register do not disturb app failed");
+                    }
+
+                    ResponseDisturbHandler -= value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Register do not disturb app
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterDoNotDisturbApp()
+        {
+            if (ResponseDisturbHandler != null && ResponseDisturbHandler.GetInvocationList().Length > 0)
+            {
+                NotificationError ret = Interop.Notification.RegisterDndApp(disturbCallback, IntPtr.Zero);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "register do not disturb app failed");
+                }
+            } else {
+                throw NotificationErrorFactory.GetException(NotificationError.InvalidOperation, "Disturb callback not exist");
+            }
         }
     }
 }

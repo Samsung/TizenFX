@@ -172,7 +172,7 @@ namespace Tizen.Applications.NotificationEventListener
                 Bundle bundle = new Bundle(new SafeBundleHandle(extension, false));
                 foreach (string key in bundle.Keys)
                 {
-                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))
+                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_") || key.StartsWith("_NOTIFICATION_TYPE_PAIRING_"))
                         continue;
 
                     SafeBundleHandle sbh;

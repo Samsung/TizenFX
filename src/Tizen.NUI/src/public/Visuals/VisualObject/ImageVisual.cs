@@ -332,6 +332,28 @@ namespace Tizen.NUI.Visuals
         }
 
         /// <summary>
+        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br />
+        /// If not supplied, the default is SamplingModeType.BoxThenLinear.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplingModeType SamplingMode
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode, new PropertyValue((int)value));
+            }
+            get
+            {
+                int ret = (int)SamplingModeType.BoxThenLinear;
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode);
+                propertyValue?.Get(out ret);
+                return (SamplingModeType)ret;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the desired image width.<br />
         /// If not specified, the actual image width is used.<br />
         /// For normal quad images only.<br />
@@ -483,6 +505,27 @@ namespace Tizen.NUI.Visuals
                 var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy);
                 propertyValue?.Get(out ret);
                 return (VisualTransformPolicyType)ret;
+            }
+        }
+
+        /// <summary>
+        /// The squareness for the rounded corners of the visual.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        /// Each radius will clamp internally between [0.0f to 1.0f].
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 CornerSquareness
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness, new PropertyValue(value), false);
+            }
+            get
+            {
+                Vector4 ret = new Vector4();
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness);
+                propertyValue?.Get(ret);
+                return ret;
             }
         }
 

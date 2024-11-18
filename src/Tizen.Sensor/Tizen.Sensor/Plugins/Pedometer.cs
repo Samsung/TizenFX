@@ -27,63 +27,63 @@ namespace Tizen.Sensor
         private static string PedometerKey = "http://tizen.org/feature/sensor.pedometer";
 
         /// <summary>
-        /// Gets the step count.
+        /// Get the step count from pedometer as unsigned integer type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The step count. </value>
         public uint StepCount { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the walking step count.
+        /// Get the walking step count from pedometer as unsigned integer type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The walk step count. </value>
         public uint WalkStepCount { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the running step count.
+        /// Get the running step count from pedometer as unsigned integer type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The run step count. </value>
         public uint RunStepCount { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the moving distance.
+        /// Get the moving distance from pedometer as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The moving distance. </value>
         public float MovingDistance { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the calorie burned.
+        /// Get the calorie burned from pedometer as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The calorie burned. </value>
         public float CalorieBurned { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the last speed.
+        /// Get the last speed from pedometer as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The last speed. </value>
         public float LastSpeed { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the last stepping frequency.
+        /// Get the last stepping frequency from pedometer as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The last stepping frequency. </value>
         public float LastSteppingFrequency { get; private set; } = 0;
 
         /// <summary>
-        /// Gets the last step status.
+        /// Get the last step status from pedometer as enum <see cref="PedometerState"/> type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The last step status. </value>
+        /// <value> The last step status, <seealso cref="PedometerState"/>. </value>
         public PedometerState LastStepStatus { get; private set; } = PedometerState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether the pedometer sensor is supported by the device.
+        /// Return true or false based on whether the pedometer sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -97,7 +97,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of pedometer sensors available on the device.
+        /// Return the number of pedometer sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of pedometer sensors. </value>
@@ -111,7 +111,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.Pedometer"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.Pedometer"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
@@ -122,7 +122,8 @@ namespace Tizen.Sensor
         /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular pedometer sensor in case of multiple sensors.
+        /// Index refers to a particular pedometer sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public Pedometer(uint index = 0) : base(index)
         {
@@ -138,7 +139,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the pedometer sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<PedometerDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

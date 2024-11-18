@@ -245,7 +245,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (backgroundExtraData != null)
                 {
-                    if (backgroundExtraData.CornerRadius != null)
+                    if (backgroundExtraData.CornerRadius != null || backgroundExtraData.CornerSquareness != null)
                     {
                         UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius);
                     }
@@ -326,7 +326,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the playing state
+        /// Gets the playing state of the LottieAnimationView.
+        /// This property returns the current play state of the LottieAnimationView.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public PlayStateType PlayState
@@ -556,7 +557,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets or gets the stop behavior.
+        /// Sets or gets the stop behavior of the LottieAnimationView. 
+        /// This property determines how the animation behaves when it stops.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public StopBehaviorType StopBehavior
@@ -859,7 +861,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Play Animation.
+        /// Plays the Lottie animation.
+        /// This method starts the playback of the Lottie animation.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public new void Play()
@@ -871,7 +874,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Pause Animation.
+        /// Pauses the Lottie animation.
+        /// This method pauses the animation without resetting its progress.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public new void Pause()
@@ -883,7 +887,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Stop Animation.
+        /// Stops the Lottie animation.
+        /// This method stops the currently playing Lottie animation.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public new void Stop()
@@ -1194,7 +1199,7 @@ namespace Tizen.NUI.BaseComponents
 
         #region Event, Enum, Struct, ETC
         /// <summary>
-        /// Animation finished event.
+        /// The event handler for the animation finished event.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public event EventHandler Finished

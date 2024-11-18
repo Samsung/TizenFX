@@ -126,6 +126,25 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_CaptureFinishedSignal_Disconnect")]
             public static extern void CaptureFinishedDisconnect(global::System.Runtime.InteropServices.HandleRef actor, global::System.Runtime.InteropServices.HandleRef handler);
+
+            /// Property enum get
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_CornerRadius_get")]
+            public static extern int CornerRadiusGet();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_CornerRadiusPolicy_get")]
+            public static extern int CornerRadiusPolicyGet();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_BorderlineWidth_get")]
+            public static extern int BorderlineWidthGet();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_BorderlineColor_get")]
+            public static extern int BorderlineColorGet();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_BorderlineOffset_get")]
+            public static extern int BorderlineOffsetGet();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_Property_CornerSquareness_get")]
+            public static extern int CornerSquarenessGet();
         }
     }
 }

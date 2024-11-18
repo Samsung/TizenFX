@@ -812,33 +812,27 @@ namespace Tizen.NUI
             Interop.Renderer.DeleteRenderer(swigCPtr);
         }
 
-        /// <since_tizen> 6.0 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public sealed class Ranges
         {
-            /// <since_tizen> 6.0 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int BackgroundEffect = Interop.Renderer.RangesBackgroundEffectGet();
 
-            /// <since_tizen> 6.0 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int BACKGROUND = Interop.Renderer.RangesBackgroundGet();
 
-            /// <since_tizen> 6.0 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int CONTENT = Interop.Renderer.RangesContentGet();
 
-            /// <since_tizen> 6.0 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int DECORATION = Interop.Renderer.RangesDecorationGet();
 
-            /// <since_tizen> 6.0 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ForegroundEffect = Interop.Renderer.RangesForegroundEffectGet();
 

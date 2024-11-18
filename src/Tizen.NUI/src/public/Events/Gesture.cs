@@ -163,7 +163,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The gesture type.
+        /// Gets the type of gesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Gesture.GestureType Type
@@ -175,7 +175,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The gesture state.
+        /// Gets the state of gesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Gesture.StateType State
@@ -187,7 +187,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The time the gesture took place.
+        /// Get the time when the gesture took place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint Time

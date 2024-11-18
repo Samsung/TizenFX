@@ -109,6 +109,19 @@ namespace Tizen.System
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
+        /// <seealso cref="UnSetChangedEvent(StorageArea, EventHandler)"/>
+        /// <example>
+        /// <code>
+        /// EventHandler callback = (s, e) =>
+        /// {
+        ///   var storage = s as Storage;
+        ///   if (storage == null) return;
+        /// };
+        ///
+        /// StorageManager.SetChangedEvent(StorageArea.External, callback);
+        /// StorageManager.UnSetChangedEvent(StorageArea.External, callback);
+        /// </code>
+        /// </example>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -138,6 +151,7 @@ namespace Tizen.System
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
+        /// <seealso cref="SetChangedEvent(StorageArea, EventHandler)"/>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)

@@ -21,11 +21,11 @@ using System.Threading.Tasks;
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// This is a base-component class.
-    /// It provides common functions of FrameComponent and ServiceComponent.
+    /// Represents the base class for components, providing common functionalities for both FrameComponent and ServiceComponent.
     /// </summary>
     /// <remarks>
-    /// This class cannot be registered by ComponentBased applications.
+    /// This class cannot be registered directly by ComponentBased applications.
+    /// It serves as a base class to be inherited by other components.
     /// </remarks>
     /// <since_tizen> 6 </since_tizen>
     public abstract class BaseComponent
@@ -75,26 +75,26 @@ namespace Tizen.Applications.ComponentBased.Common
         public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
 
         /// <summary>
-        /// A component instance ID.
+        /// Gets the unique instance ID of the component.
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string Id { get; private set; }
 
         /// <summary>
-        /// A component ID
+        /// Gets the ID of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ComponentId { get; private set; }
 
         /// <summary>
-        /// Parent object
+        /// Gets the parent application object to which the component belongs.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public ComponentBasedApplication Parent { get; private set; }
 
         /// <summary>
-        /// Finish current component
+        /// Finishes the current component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void Finish()
@@ -128,18 +128,18 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior to restore the previous status.
+        /// Override this method to handle restoring the previous state of the component.
         /// </summary>
-        /// <param name="c">Contents. It can be used only in the callback. To use outside, make a copy. </param>
+        /// <param name="c">A bundle containing the saved state of the component. It can only be used within the callback. To use it outside, create a copy.</param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnRestoreContents(Bundle c)
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior to save current status.
+        /// Override this method to handle saving the current state of the component.
         /// </summary>
-        /// <param name="c">Contents. It can be used only in the callback. To use outside, make a copy. </param>
+        /// <param name="c">A bundle containing the current state of the component. It can only be used within the callback. To use it outside, create a copy.</param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnSaveContent(Bundle c)
         {
@@ -181,17 +181,18 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Sends the launch request asynchronously.
+        /// Sends a launch request asynchronously.
         /// </summary>
         /// <remarks>
-        /// To use group mode, you must use this function instead of SendLaunchRequestAsync().
+        /// Use this method to send a launch request with group mode enabled.
+        /// If group mode is not required, you can use SendLaunchRequestAsync() instead.
         /// </remarks>
-        /// <param name="control">appcontrol object</param>
-        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
-        /// <returns>A task with the result of the launch request.</returns>
+        /// <param name="control">The AppControl object representing the request details.</param>
+        /// <param name="replyAfterLaunching">The callback function to be invoked when the reply is received.</param>
+        /// <returns>A task representing the result of the launch request.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when fail to set component information to the AppControl.</exception>
-        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is a failure in setting the component information in the AppControl.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the target application is not found.</exception>
         /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>

@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         static ImageView()
         {
-            if(NUIApplication.IsUsingXaml)
+            if (NUIApplication.IsUsingXaml)
             {
                 ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
 
@@ -125,6 +125,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.AlphaMaskURL,
             ImageVisualProperty.CropToMask,
             Visual.Property.VisualFittingMode,
+            ImageVisualProperty.SamplingMode,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
             ImageVisualProperty.ReleasePolicy,
@@ -1289,6 +1290,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br />
+        /// If not supplied, the default is SamplingModeType.BoxThenLinear.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplingModeType SamplingMode
+        {
+            get
+            {
+                int ret = (int)SamplingModeType.BoxThenLinear;
+
+                using PropertyValue samplingMode = GetCachedImageVisualProperty(ImageVisualProperty.SamplingMode);
+                samplingMode?.Get(out ret);
+
+                return (SamplingModeType)ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.SamplingMode, setValue);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// This method allows users to configure the blending of two images(previous and currnet) using alpha values.
         /// </summary>
         /// <param name="initialImageAlpha">The initial alpha value of the first image.</param>
@@ -1896,6 +1923,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal override void ApplyCornerRadius()
         {
             base.ApplyCornerRadius();
@@ -1909,10 +1937,15 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
                 Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal override void ApplyBorderline()
         {
             base.ApplyBorderline();
@@ -2219,6 +2252,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     cachedImagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
                     cachedImagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    using (var cornerSquareness = new PropertyValue(backgroundExtraData.CornerSquareness))
+                    {
+                        cachedImagePropertyMap[Visual.Property.CornerSquareness] = cornerSquareness;
+                    }
                 }
             }
 

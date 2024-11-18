@@ -68,7 +68,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of PropertyValue class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue() : this(Interop.PropertyValue.NewPropertyValue(), true)

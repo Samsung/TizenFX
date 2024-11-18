@@ -26,18 +26,18 @@ using static Tizen.NUI.Binding.BindableObject;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] LayoutGroup class providing container functionality.
+    /// LayoutGroup class providing container functionality.
     /// </summary>
     public class LayoutGroup : LayoutItem, ILayoutParent
     {
         /// <summary>
-        /// [Draft] List of child layouts in this container.
+        /// List of child layouts in this container.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         protected List<LayoutItem> LayoutChildren { get; } // Children of this LayoutGroup
 
         /// <summary>
-        /// [Draft] Constructor
+        /// Default constructor of LayoutGroup class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public LayoutGroup()
