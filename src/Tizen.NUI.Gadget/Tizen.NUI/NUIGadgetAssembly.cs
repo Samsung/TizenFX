@@ -47,6 +47,7 @@ namespace Tizen.NUI
         private readonly string _assemblyPath;
         private WeakReference _assemblyRef;
         private Assembly _assembly = null;
+        private bool _loaded = false;
 
         internal NUIGadgetAssembly(string assemblyPath) { _assemblyPath = assemblyPath; }
 
@@ -54,7 +55,7 @@ namespace Tizen.NUI
         {
             lock (_assemblyLock)
             {
-                if (_assembly != null)
+                if (_loaded)
                 {
                     return;
                 }
@@ -62,15 +63,17 @@ namespace Tizen.NUI
                 Log.Warn("Load(): " + _assemblyPath + " ++");
                 NUIGadgetAssemblyLoadContext context = new NUIGadgetAssemblyLoadContext();
                 _assemblyRef = new WeakReference(context);
-                using (FileStream stream = new FileStream(_assemblyPath, FileMode.Open, FileAccess.Read))
-                {
-                    _assembly = context.LoadFromStream(stream);
-                }
+                string directoryPath = SystemIO.Path.GetDirectoryName(_assemblyPath);
+                string fileName = SystemIO.Path.GetFileNameWithoutExtension(_assemblyPath);
+                string nativeImagePath = directoryPath + "/.native_image/" + fileName + ".ni.dll";
+                Log.Debug("NativeImagePath=" + nativeImagePath + ", AssemblyPath=" + _assemblyPath);
+                _assembly = context.LoadFromNativeImagePath(nativeImagePath, _assemblyPath);
                 Log.Warn("Load(): " + _assemblyPath + " --");
+                _loaded = true;
             }
         }
 
-        internal bool IsLoaded { get { return _assembly != null; } }
+        internal bool IsLoaded { get { return _loaded; } }
 
         internal NUIGadget CreateInstance(string className)
         {
@@ -90,7 +93,7 @@ namespace Tizen.NUI
         {
             lock (_assemblyLock)
             {
-                if (_assembly == null)
+                if (!_loaded)
                 {
                     return;
                 }
@@ -101,7 +104,7 @@ namespace Tizen.NUI
                     (_assemblyRef.Target as NUIGadgetAssemblyLoadContext).Unload();
                 }
 
-                _assembly = null;
+                _loaded = false;
                 Log.Warn("Unload(): " + _assemblyPath + " --");
             }
         }
