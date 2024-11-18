@@ -361,7 +361,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                WiFi.Config.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;
             }
