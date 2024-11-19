@@ -59,6 +59,35 @@ namespace Tizen.System
     }
 
     /// <summary>
+    /// Enumeration for the current device's power source information from the battery.
+    /// These represent the current battery power source type (e.g., ac, usb, etc).
+    /// </summary>
+    /// <since_tizen> 12 </since_tizen>
+    public enum BatteryPowerSource
+    {
+        /// <summary>
+        /// These is no power source.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        None = 0,
+        /// <summary>
+        /// AC power cable is connected.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        Ac = 1,
+        /// <summary>
+        /// USB power cable is connected.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        Usb = 2,
+        /// <summary>
+        /// Power is provided by a wireless source.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        Wireless = 3
+    }
+
+    /// <summary>
     /// The Battery class provides the properties and events for the device battery.
     /// </summary>
     /// <remarks>
@@ -162,6 +191,38 @@ namespace Tizen.System
                     Log.Warn(DeviceExceptionFactory.LogTag, "unable to get battery charging state.");
                 }
                 return charging;
+            }
+        }
+        /// <summary>
+        /// Gets the current device's power source information from the battery.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the current battery power source information (e.g., ac, usb, etc).
+        /// </remarks>
+        /// <since_tizen> 12 </since_tizen>
+        /// <value>The battery power source type.</value>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// BatteryPowerSource PowerSourceType = Battery.PowerSource;
+        /// if (PowerSourceType == BatteryPowerSource.None)
+        ///     ...
+        /// ...
+        /// </code>
+        /// </example>
+        /// <seealso cref="BatteryPowerSource"/>
+        public static BatteryPowerSource PowerSource
+        {
+            get
+            {
+                int power_source_type = 0;
+                DeviceError res = (DeviceError)Interop.Device.DeviceBatteryGetPowerSource(out power_source_type);
+                if (res != DeviceError.None)
+                {
+                    Log.Warn(DeviceExceptionFactory.LogTag, "unable to get battery power source type.");
+                }
+                return (BatteryPowerSource)power_source_type;
             }
         }
 
