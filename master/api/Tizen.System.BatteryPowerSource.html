@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum Network.PsType
+    <title>Enum BatteryPowerSource
  </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum Network.PsType
+    <meta name="title" content="Enum BatteryPowerSource
  ">
     <meta name="generator" content="docfx ">
     <meta name="version" content="API13">
@@ -79,22 +79,23 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Telephony.Network.PsType">
+            <article class="content wrap" id="_content" data-uid="Tizen.System.BatteryPowerSource">
 
 
-  <h1 id="Tizen_Telephony_Network_PsType" data-uid="Tizen.Telephony.Network.PsType" class="text-break">Enum Network.PsType
+  <h1 id="Tizen_System_BatteryPowerSource" data-uid="Tizen.System.BatteryPowerSource" class="text-break">Enum BatteryPowerSource
 </h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Telephony.html">Telephony</a></dd></dl>
-  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Telephony.dll</dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.System.html">System</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.System.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>Enumeration for the PS types.</p>
+  <div class="markdown level0 summary"><p>Enumeration for the current device's power source information from the battery.
+These represent the current battery power source type (e.g., ac, usb, etc).</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum Network.PsType</code></pre>
+    <pre><code class="lang-csharp hljs">public enum BatteryPowerSource</code></pre>
   </div>
 
 
@@ -110,28 +111,23 @@
     <thead>
     <tbody>
       <tr>
-        <td id="Tizen_Telephony_Network_PsType_Hsdpa">Hsdpa</td>
-        <td><p>HSDPA PS type.</p>
+        <td id="Tizen_System_BatteryPowerSource_Ac">Ac</td>
+        <td><p>AC power cable is connected.</p>
 </td>
       </tr>
       <tr>
-        <td id="Tizen_Telephony_Network_PsType_Hspa">Hspa</td>
-        <td><p>HSPA PS type.</p>
+        <td id="Tizen_System_BatteryPowerSource_None">None</td>
+        <td><p>These is no power source.</p>
 </td>
       </tr>
       <tr>
-        <td id="Tizen_Telephony_Network_PsType_Hspap">Hspap</td>
-        <td><p>HSPAP PS type.</p>
+        <td id="Tizen_System_BatteryPowerSource_Usb">Usb</td>
+        <td><p>USB power cable is connected.</p>
 </td>
       </tr>
       <tr>
-        <td id="Tizen_Telephony_Network_PsType_Hsupa">Hsupa</td>
-        <td><p>HSUPA PS type.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="Tizen_Telephony_Network_PsType_Unknown">Unknown</td>
-        <td><p>Unknown.</p>
+        <td id="Tizen_System_BatteryPowerSource_Wireless">Wireless</td>
+        <td><p>Power is provided by a wireless source.</p>
 </td>
       </tr>
     </tbody>
@@ -144,7 +140,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Telephony/Tizen.Telephony/Network.cs/#L166" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Battery.cs/#L66" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
