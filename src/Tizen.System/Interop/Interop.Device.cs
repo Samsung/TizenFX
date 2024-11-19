@@ -117,6 +117,8 @@ internal static partial class Interop
         public static extern int DeviceBatteryIsCharging(out bool charging);
         [DllImport(Libraries.Device, EntryPoint = "device_battery_get_level_status", CallingConvention = CallingConvention.Cdecl)]
         public static extern int DeviceBatteryGetLevelStatus(out int status);
+        [DllImport(Libraries.Device, EntryPoint = "device_battery_get_power_source", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int DeviceBatteryGetPowerSource(out int power_source_type);
 
         // Display
         [DllImport(Libraries.Device, EntryPoint = "device_display_get_numbers", CallingConvention = CallingConvention.Cdecl)]
