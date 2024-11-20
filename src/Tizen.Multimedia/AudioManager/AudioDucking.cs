@@ -20,7 +20,10 @@ using System.Diagnostics;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the functionalities to control audio ducking.
+    /// Controls audio ducking for specific audio streams, allowing for dynamic
+    /// adjustment of audio levels during playback. This class enables the activation
+    /// and deactivation of ducking, monitors ducking state changes, and ensures proper
+    /// privileges are in place for volume adjustments.
     /// </summary>
     /// <seealso cref="AudioManager"/>
     /// <since_tizen> 6 </since_tizen>
@@ -31,7 +34,9 @@ namespace Tizen.Multimedia
         private Interop.AudioDucking.DuckingStateChangedCallback _duckingStateChangedCallback;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioDucking"/> class with <see cref="AudioStreamType"/>.
+        /// Initializes a new instance of the <see cref="AudioDucking"/> class for a specified audio stream type.
+        /// This constructor sets up the audio ducking mechanism for the target stream, allowing
+        /// the application to respond to ducking state changes.
         /// </summary>
         /// <param name="targetType">The type of sound stream affected by this new instance.</param>
         /// <exception cref="ArgumentException"><paramref name="targetType"/> is invalid.</exception>
@@ -54,13 +59,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Occurs when the ducking state is changed.
+        /// Occurs when the ducking state of the audio stream changes,
+        /// notifying subscribers of the current ducking status.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<AudioDuckingStateChangedEventArgs> DuckingStateChanged;
 
         /// <summary>
-        /// Gets the ducking state of the stream.
+        /// Gets a value indicating whether the audio stream is currently ducked.
+        /// This property checks the ducking state and returns true if the audio
+        /// level is lowered; otherwise, false.
         /// </summary>
         /// <value>true if the audio stream is ducked; otherwise, false.</value>
         /// <exception cref="InvalidOperationException">Operation failed; internal error.</exception>
@@ -83,7 +91,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Activate audio ducking
+        /// Activates audio ducking for a specified duration and volume ratio.
+        /// This method lowers the audio level of the target stream for a defined
+        /// period, enabling a smoother audio experience during events like notifications.
         /// </summary>
         /// <param name="duration">The duration for ducking in milliseconds.</param>
         /// <param name="ratio">The volume ratio when ducked.</param>
@@ -124,7 +134,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Deactivate audio ducking
+        /// Deactivates audio ducking, restoring the audio levels of the target stream
+        /// to their original state. This method is used to stop the ducking effect
+        /// applied earlier when needed.
         /// </summary>
         /// <remarks>To deactivate ducking, the specified privilege is required.</remarks>
         /// <privilege>http://tizen.org/privilege/volume.set</privilege>
@@ -148,7 +160,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Releases all resources used by the <see cref="AudioDucking"/>.
+        /// Releases all resources used by the <see cref="AudioDucking"/> instance.
+        /// This method clears any allocated resources and should be called when
+        /// the <see cref="AudioDucking"/> object is no longer needed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()

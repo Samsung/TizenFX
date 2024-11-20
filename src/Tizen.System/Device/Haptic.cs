@@ -73,9 +73,20 @@ namespace Tizen.System
             Dispose(false);
         }
         /// <summary>
-        /// Gets the number of the available vibrators.
+        /// Gets the number of the available vibrators available on the current device.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the total number of vibrators available on the device.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// Console.WriteLine("Total number of Vibrators are: {0}", Vibrator.NumberOfVibrators);
+        /// ...
+        /// </code>
+        /// </example>
         public static int NumberOfVibrators
         {
             get
@@ -121,6 +132,9 @@ namespace Tizen.System
         /// Vibrates during the specified time with a constant intensity.
         /// This function can be used to start monotonous vibration for the specified time.
         /// </summary>
+        /// <remarks>
+        /// To prevent unexpected sleep (suspend) during vibration, please check and use Power module.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="duration">The play duration in milliseconds.</param>
         /// <param name="feedback">The amount of the intensity variation (0 ~ 100).</param>
@@ -143,7 +157,8 @@ namespace Tizen.System
         ///     }
         /// </code>
         /// </example>
-
+        /// <seealso cref="Vibrator.Stop()"/>
+        /// <seealso cref="Vibrator.Dispose()"/>
         public void Vibrate(int duration, int feedback)
         {
             IntPtr effect;
@@ -187,6 +202,7 @@ namespace Tizen.System
         ///     }
         /// </code>
         /// </example>
+        /// <seealso cref="Vibrator.Vibrate(int,int)"/>
         public void Stop()
         {
             if (_hapticHandle != IntPtr.Zero)
@@ -202,7 +218,22 @@ namespace Tizen.System
         /// Dispose API for closing the internal resources.
         /// This function can be used to stop all the effects started by Vibrate().
         /// </summary>
+        /// <remarks>
+        /// Internally, it disconnects the connection to the vibrator by Vibrate().
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// Vibrator vibrator = Vibrator.Vibrators[0];
+        /// vibrator.Vibrate(2000, 70);
+        /// ...
+        /// vibrator.Stop();
+        /// vibrator.Dispose(); 
+        /// </code>
+        /// </example>
+        /// <seealso cref="Vibrator.Vibrate(int,int)"/>
         public void Dispose()
         {
             Dispose(true);

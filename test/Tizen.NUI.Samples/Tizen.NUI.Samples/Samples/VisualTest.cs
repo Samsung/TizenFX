@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using Tizen.NUI.BaseComponents;
+﻿using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.Samples
@@ -12,10 +11,13 @@ namespace Tizen.NUI.Samples
 
         static private readonly string focusIndicatorImageUrl = DEMO_IMAGE_DIR + "i_focus_stroke_tile_2unit.9.webp";
         static private readonly string[] ImageUrlList = {
-            DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-1.png",
-            DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-6.png",
-            DEMO_IMAGE_DIR + "Dali/DaliDemo/Kid1.svg",
+            //DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-1.png",
+            //DEMO_IMAGE_DIR + "AGIF/dog-anim.gif",
+            //DEMO_IMAGE_DIR + "Dali/DaliDemo/Kid1.svg",
             DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-2.jpg",
+            DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-3.jpg",
+            DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-4.jpg",
+            DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-5.jpg",
         };
 
         const float viewSizeWidth = 320.0f;
@@ -313,7 +315,13 @@ namespace Tizen.NUI.Samples
 
                 ResourceUrl = ImageUrlList[id % 4],
 
-                CornerRadius = new Vector4(8.0f, 8.0f, 8.0f, 8.0f),
+                CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+                CornerSquareness = new Vector4(0.6f, 0.6f, 0.6f, 0.6f),
+                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+
+                BorderlineWidth = 2.0f,
+                BorderlineColor = new Color(1.0f, 1.0f, 1.0f, 0.8f),
+                BorderlineOffset = -1.0f,
 
                 Origin = Visual.AlignType.BottomBegin,
                 PivotPoint = Visual.AlignType.Center,
@@ -334,11 +342,40 @@ namespace Tizen.NUI.Samples
                 HeightPolicy = VisualTransformPolicyType.Absolute,
             };
 
+            Visuals.ColorVisual thumbnailShadow = new Visuals.ColorVisual()
+            {
+                Name = "thumbnailShadow",
+
+                Color = Color.White,
+                Opacity = 0.5f,
+
+                CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+                CornerSquareness = new Vector4(0.6f, 0.6f, 0.6f, 0.6f),
+                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+
+                BlurRadius = 8.0f,
+
+                Origin = Visual.AlignType.BottomBegin,
+                PivotPoint = Visual.AlignType.Center,
+
+                OffsetX = thumbnailAreaHeight / 2.0f,
+                OffsetY = -thumbnailAreaHeight / 2.0f,
+
+                Width = thumbnailSize * 1.1f,
+                Height = thumbnailSize * 1.1f,
+
+                OffsetXPolicy = VisualTransformPolicyType.Absolute,
+                OffsetYPolicy = VisualTransformPolicyType.Absolute,
+                WidthPolicy = VisualTransformPolicyType.Absolute,
+                HeightPolicy = VisualTransformPolicyType.Absolute,
+            };
+
             view.AddVisual(backgroundVisual);
             view.AddVisual(imageVisual);
             view.AddVisual(foregroundVisual);
             view.AddVisual(textVisual);
             view.AddVisual(subTextVisual);
+            view.AddVisual(thumbnailShadow);
             view.AddVisual(thumbnailVisual);
 
             view.FocusGained += (s, e) =>
@@ -363,6 +400,13 @@ namespace Tizen.NUI.Samples
                     //visual = me.FindVisualByName("background");
                     visual = me.GetVisualAt(2u); // Should be background
                     visual.Color = Color.White;
+
+                    visual = me.FindVisualByName("thumbnailShadow");
+                    visual.Color = Color.Black;
+                    visual.Opacity = 0.5f;
+
+                    var thumbnailVisual = me.FindVisualByName("thumbnailImage") as Visuals.ImageVisual;
+                    thumbnailVisual.BorderlineColor = new Color(0.0f, 0.0f, 0.0f, 0.8f);
 
                     var textVisual = me.FindVisualByName("text") as Visuals.TextVisual;
                     textVisual.TextColor = Color.Black;
@@ -389,6 +433,13 @@ namespace Tizen.NUI.Samples
                     //visual = me.FindVisualByName("background");
                     visual = me.GetVisualAt(0u); // Should be background
                     visual.Color = Color.Gray;
+
+                    visual = me.FindVisualByName("thumbnailShadow");
+                    visual.Color = Color.White;
+                    visual.Opacity = 0.5f;
+
+                    var thumbnailVisual = me.FindVisualByName("thumbnailImage") as Visuals.ImageVisual;
+                    thumbnailVisual.BorderlineColor = new Color(1.0f, 1.0f, 1.0f, 0.8f);
 
                     var textVisual = me.FindVisualByName("text") as Visuals.TextVisual;
                     textVisual.TextColor = Color.White;

@@ -25,7 +25,7 @@ namespace Tizen.NUI
     public class PropertyArray : Disposable
     {
         /// <summary>
-        /// The constructor.
+        /// Default constructor of PropertyArray class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyArray() : this(Interop.Property.NewPropertyArray(), true)
@@ -94,6 +94,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Clears the array.
+        /// This method removes all elements from the PropertyArray, resulting in an empty array.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Clear()

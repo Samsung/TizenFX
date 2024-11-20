@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5" package="org.tizen.example.NUIWidgetComponentApplication" version="1.0.0">
+  <profile name="common" />
+  <component-based-application  appid="org.tizen.example.NUIWidgetComponentApplication"
+					exec="NUIWidgetComponentApplication.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <label>NUIWidgetComponentApplication</label>
+    <icon>NUIWidgetComponentApplication.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    <widget-component id="csharp_widget" launch_mode="caller" main="false" icon-display="false" taskmanage="true" update-period="0">
+      <icon>org.tizen.sample.png</icon>
+      <label>WidgetComponent</label>
+      <label xml:lang="en-us">WidgetComponent</label>
+      <label xml:lang="ko-kr">WidgetComponent[KOR]</label>
+      <support-size preview="org.tizen.sample.png">4x4</support-size>
+    </widget-component>
+  </component-based-application >
+</manifest>

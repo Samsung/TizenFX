@@ -28,7 +28,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// Creates a TapGesture.
+        /// Default constructor to creates a TapGesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public TapGesture() : this(Interop.TapGesture.New(0), true)

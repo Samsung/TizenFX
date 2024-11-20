@@ -32,7 +32,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of PanGesture class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PanGesture() : this(Interop.PanGestureDetector.PanGestureNew(0), true)

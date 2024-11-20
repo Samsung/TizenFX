@@ -98,7 +98,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the number of items.
+        /// Gets the number of equalizer bands available.
         /// </summary>
         /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     -or-<br/>
@@ -148,7 +148,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the value whether the AudioEffect is available or not.
+        /// Gets the value indicating whether the AudioEffect is available or not.
         /// </summary>
         /// <remarks>This function returns the availability of the <see cref="AudioEffect"/>.
         /// It could be unavailable depending on the platform capabilities.<br/>

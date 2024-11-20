@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// An angle in radians.
+    /// This class represents an angle in radians.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Radian : Disposable
@@ -61,6 +61,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The value in radians.
+        /// The float value representing the angle in radians.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Value

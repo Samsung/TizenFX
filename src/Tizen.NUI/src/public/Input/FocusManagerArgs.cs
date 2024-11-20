@@ -31,7 +31,7 @@ namespace Tizen.NUI
         private View.FocusDirection direction;
 
         /// <summary>
-        /// The view which is currently focused.
+        /// Gets or sets the view which is currently focused.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public View Current
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The  proposed view.
+        /// Gets or sets the proposed view for focus change.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public View Proposed
@@ -63,7 +63,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The focus move direction.
+        /// Gets or sets the focus move direction.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public View.FocusDirection Direction

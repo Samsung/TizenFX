@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         static ImageView()
         {
-            if(NUIApplication.IsUsingXaml)
+            if (NUIApplication.IsUsingXaml)
             {
                 ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
 
@@ -1923,6 +1923,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal override void ApplyCornerRadius()
         {
             base.ApplyCornerRadius();
@@ -1936,10 +1937,15 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
                 Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal override void ApplyBorderline()
         {
             base.ApplyBorderline();
@@ -2001,6 +2007,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View ResourceReady signal
         private void OnResourceReady(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (!CheckResourceReady())
             {
                 return;
@@ -2247,6 +2259,13 @@ namespace Tizen.NUI.BaseComponents
                     cachedImagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
                     cachedImagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    using (var cornerSquareness = new PropertyValue(backgroundExtraData.CornerSquareness))
+                    {
+                        cachedImagePropertyMap[Visual.Property.CornerSquareness] = cornerSquareness;
+                    }
+                }
             }
 
             if (backgroundExtraData != null && backgroundExtraData.BorderlineWidth > 0.0f)
@@ -2368,6 +2387,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourceLoaded(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (!CheckResourceReady())
             {
                 return;

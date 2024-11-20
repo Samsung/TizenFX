@@ -751,6 +751,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusGained(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (IsNativeHandleInvalid())
             {
                 if (this.Disposed)
@@ -789,6 +795,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusLost(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (IsNativeHandleInvalid())
             {
                 if (this.Disposed)
@@ -827,6 +839,12 @@ namespace Tizen.NUI.BaseComponents
 
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (keyEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("keyEvent should not be null!");
@@ -856,6 +874,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnRelayout signal
         private void OnRelayout(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (onRelayoutEventHandler != null)
             {
                 onRelayoutEventHandler(this, null);
@@ -865,6 +889,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View HitTestResultSignal
         private bool OnHitTestResult(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -879,6 +909,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnInterceptTouch(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -898,7 +934,19 @@ namespace Tizen.NUI.BaseComponents
 
             if (interceptTouchDataEventHandler != null)
             {
-                consumed = interceptTouchDataEventHandler(this, e);
+                if(NUIApplication.IsGeometryHittestEnabled())
+                {
+                    Delegate[] delegateList = interceptTouchDataEventHandler.GetInvocationList();
+                    // Oring the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
+                    {
+                        consumed |= del(this, e);
+                    }
+                }
+                else
+                {
+                    consumed = interceptTouchDataEventHandler(this, e);
+                }
             }
 
             return consumed;
@@ -907,6 +955,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -926,7 +980,19 @@ namespace Tizen.NUI.BaseComponents
 
             if (touchDataEventHandler != null)
             {
-                consumed = touchDataEventHandler(this, e);
+                if(NUIApplication.IsGeometryHittestEnabled())
+                {
+                    Delegate[] delegateList = touchDataEventHandler.GetInvocationList();
+                    // Oring the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
+                    {
+                        consumed |= del(this, e);
+                    }
+                }
+                else
+                {
+                    consumed = touchDataEventHandler(this, e);
+                }
             }
 
             if (enableControlState && !consumed)
@@ -946,6 +1012,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (hoverEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("hoverEvent should not be null!");
@@ -980,6 +1052,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View InterceptWheel signal
         private bool OnInterceptWheel(IntPtr view, IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -1009,6 +1087,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -1044,6 +1128,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnWindow signal
         private void OnWindow(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (onWindowEventHandler != null)
             {
                 onWindowEventHandler(this, null);
@@ -1053,6 +1143,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OffWindow signal
         private void OffWindow(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (offWindowEventHandler != null)
             {
                 offWindowEventHandler(this, null);
@@ -1062,6 +1158,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View visibility change signal
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             IntPtr changedViewCPtr = Interop.Actor.GetVisiblityChangedActor();
             if (changedViewCPtr != IntPtr.Zero)
@@ -1088,6 +1190,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View aggregated visibility change signal
         private void OnAggregatedVisibilityChanged(IntPtr data, bool visibility)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             AggregatedVisibilityChangedEventArgs e = new AggregatedVisibilityChangedEventArgs();
             e.Visibility = visibility;
 
@@ -1100,6 +1208,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View layout direction change signal
         private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             LayoutDirectionChangedEventArgs e = new LayoutDirectionChangedEventArgs();
             if (data != IntPtr.Zero)
             {
@@ -1115,6 +1229,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourcesLoaded(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (!CheckResourceReady())
             {
                 return;
@@ -1128,6 +1248,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnBackgroundResourceLoaded(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
 

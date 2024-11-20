@@ -97,7 +97,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// FocusChanged event.
+        /// This event is triggered when the focus changes on the window.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
@@ -1402,7 +1402,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Wheel event arguments.
+        /// The Wheel event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public class WheelEventArgs : EventArgs
@@ -1427,7 +1427,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Key event arguments.
+        /// The Key event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public class KeyEventArgs : EventArgs
@@ -1478,7 +1478,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// MouseInOut evnet arguments.
+        /// The MouseInOut evnet arguments.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class MouseInOutEventArgs : EventArgs
@@ -1503,7 +1503,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// MouseRelative evnet arguments.
+        /// The MouseRelative evnet arguments.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class MouseRelativeEventArgs : EventArgs
@@ -1529,7 +1529,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// PointerConstraints evnet arguments.
+        /// The PointerConstraints evnet arguments.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class PointerConstraintsEventArgs : EventArgs

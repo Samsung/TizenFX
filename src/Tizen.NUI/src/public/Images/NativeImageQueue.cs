@@ -26,15 +26,18 @@ namespace Tizen.NUI
     /// </summary>
     /// <example>
     /// <code>
-    /// NativeImageQueue queue = new NativeImageQueue(width,height,ColorFormat.BGRA8888);
+    /// NativeImageQueue queue = new NativeImageQueue(width, height, ColorFormat.BGRA8888);
     /// if(queue.CanDequeueBuffer())
     /// {
-    ///   var buffer = queue.DequeueBuffer(ref bufferWidth,ref bufferHeight,ref bufferStride);
+    ///   var buffer = queue.DequeueBuffer(ref bufferWidth, ref bufferHeight, ref bufferStride);
     ///
     ///   /* Use buffer */
     ///
     ///   queue.EnqueueBuffer(buffer);
     /// }
+    ///
+    /// ImageUrl imageUrl = queue.GenerateUrl();
+    /// ImageView view = new ImageView(imageUrl.ToString());
     /// </code>
     /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]

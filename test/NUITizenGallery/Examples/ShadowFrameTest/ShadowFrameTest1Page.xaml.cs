@@ -54,6 +54,12 @@ namespace NUITizenGallery
                 target.CornerRadius = new Vector4(currentCornerRadius.X, currentCornerRadius.Y, currentCornerRadius.Z, CornerBottomLeft.CurrentValue);
             };
 
+            CornerSquareness.ValueChanged += (o, e) =>
+            {
+                float cornerSquareness = CornerSquareness.CurrentValue;
+                target.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+            };
+
             // Borderline Width/Offset
             BorderlineWidthSlider.ValueChanged += (o, e) =>
             {

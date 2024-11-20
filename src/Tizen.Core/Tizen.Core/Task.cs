@@ -43,16 +43,16 @@ namespace Tizen.Core
         private static int _id = 1;
 
         /// <summary>
-        /// Initializes the Task class.
+        /// Initializes the Task class with the specified ID.
         /// </summary>
-        /// <param name="id">The ID of the task.</param>
+        /// <param name="id">The unique identifier for the task.</param>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="id"/> is invalid or a Task with that ID already exists.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <remarks>
-        /// The constructor throws an exception when the id already exists.
-        /// By default, the task creates a thread. However, if the <paramref name="id"/> is "main", a thread is not created.
-        /// The 'main' task will be operated in the main thread.
+        /// The constructor throws an exception when the ID already exists.
+        /// By default, the task creates a separate thread. However, if the <paramref name="id"/> is set to "main", no separate thread is created.
+        /// In such case, the 'main' task will operate on the main application thread instead.
         /// </remarks>
         /// <example>
         /// <code>
@@ -86,7 +86,6 @@ namespace Tizen.Core
         {
              Dispose(false);
         }
-
 
         /// <summary>
         /// Posts an action to be executed later.
@@ -283,12 +282,14 @@ namespace Tizen.Core
         /// <summary>
         /// Adds a channel receiver to a main loop of the task.
         /// </summary>
-        /// <param name="receiver">The channel receiver instance.</param>
+        /// <param name="receiver">The channel receiver instance that needs to be added.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when out of memory.</exception>
         /// <example>
+        /// In the following code snippet, we create a channel, find or spawn a task named "ReceivingTask", and then add the channel receiver to the task's main loop by calling the 'AddChannelReceiver' method.
+        ///
         /// <code>
         /// 
         /// var channel = new Channel();
@@ -514,7 +515,7 @@ namespace Tizen.Core
         /// Emits the event object to all registered event handlers of the task. 
         /// It's similar to Event.Emit(), but EmitAllEvent() sends the event object to every event handler of the task while Event.Emit() sends the event object only to the target event's event handler.
         /// </summary>
-        /// <param name="eventObject">The event object instance.</param>
+        /// <param name="eventObject">The event object instance to be sent.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
@@ -675,11 +676,13 @@ namespace Tizen.Core
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <example>
+        /// Here's an example that demonstrates how to create a Core Task and run its main loop:
         /// <code>
-        /// 
+        /// // Create a Core Task named "Runner"
         /// var coreTask = new TCoreTask("Runner");
-        /// coreTask.Run();
         /// 
+        /// // Start the main loop of the task
+        /// coreTask.Run();
         /// </code>
         /// </example>
         /// <since_tizen> 12 </since_tizen>

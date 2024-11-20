@@ -212,6 +212,9 @@ namespace Tizen.Applications.Notifications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CheckedValue { get; set; } = false;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PairingType { get; set; } = false;
+
         /// <summary>
         /// Gets or sets NotificationSafeHandle.
         /// </summary>
@@ -525,7 +528,7 @@ namespace Tizen.Applications.Notifications
                 Bundle bundle = new Bundle(new SafeBundleHandle(extension, false));
                 foreach (string key in bundle.Keys)
                 {
-                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))
+                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_") || key.StartsWith("_NOTIFICATION_TYPE_PAIRING_"))
                         continue;
 
                     SafeBundleHandle sbh;

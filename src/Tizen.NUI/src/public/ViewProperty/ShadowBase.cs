@@ -32,7 +32,7 @@ namespace Tizen.NUI
         private static readonly Vector2 noExtents = new Vector2(0, 0);
 
         /// <summary>
-        /// Constructor
+        /// The default constructor of ShadowBase class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ShadowBase() : this(noOffset, noExtents)
@@ -162,10 +162,14 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            if (attachedView.CornerRadius != null)
+            if (attachedView.CornerRadius != null || attachedView.CornerRadius != Vector4.Zero)
             {
                 map[Visual.Property.CornerRadius] = attachedView.CornerRadius == null ? new PropertyValue() : new PropertyValue(attachedView.CornerRadius);
                 map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
+            }
+            if (attachedView.CornerSquareness != null || attachedView.CornerSquareness != Vector4.Zero)
+            {
+                map[Visual.Property.CornerSquareness] = attachedView.CornerSquareness == null ? new PropertyValue() : new PropertyValue(attachedView.CornerSquareness);
             }
 
             return new PropertyValue(map);
