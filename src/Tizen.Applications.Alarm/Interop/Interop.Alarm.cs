@@ -54,6 +54,15 @@ internal static partial class Interop
         [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_with_recurrence_week_flag")]
         internal static extern int CreateAlarmRecurWeek(SafeAppControlHandle appControl, ref DateTime date, int week, out int alarmId);
 
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_with_recurrence_seconds")]
+        internal static extern int CreateAlarmRecurForService(SafeAppControlHandle appControl, ref DateTime date, int period, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_once_after_delay")]
+        internal static extern int CreateAlarmOnceAfterDelayForService(SafeAppControlHandle appControl, int delay, out int alarmId);
+
+        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_once_at_date")]
+        internal static extern int CreateAlarmOnceAtDateForService(SafeAppControlHandle appControl, ref DateTime date, out int alarmId);
+
         [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_recurrence_week_flag")]
         internal static extern int GetAlarmWeekFlag(int alarmId, out int weekFlag);
 
