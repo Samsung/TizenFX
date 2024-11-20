@@ -61,14 +61,17 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
         /// <remarks>
         /// The setter for <c>WeekFlag</c> property is available since API Level 6.
-        /// Weekflag can be a combination of the days of the week, for example Tuesday | Friday.
-        /// If the period is already set, it will be removed and the week repetition flag will be set.
-        /// If the week repetition flag is already set, it will be overwritten. If not, it will be set.
+        /// Weekflag can represent a combination of days of the week, such as Tuesday | Friday.
+        /// If the period is already set, it will be removed and the week repetition flag will be set instead.
+        /// If the week repetition flag is already set, it will be overwritten. Otherwise, it will be set.
         /// If the Weekflag argument is 0 and the flag is already set,
-        /// the flag will be cleared and the alarm will be changed to set once.
-        /// If the Weekflag argument is 0, and the flag is not set or the period is set,
-        /// the alarm won't be changed.
+        /// the flag will be cleared and the alarm will be changed to a single occurrence.
+        /// If the Weekflag argument is 0 and no flag is set or if the period is set,
+        /// the alarm will remain unchanged.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied due to insufficient privileges.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <since_tizen> 3 </since_tizen>
         public AlarmWeekFlag WeekFlag
         {
@@ -103,6 +106,9 @@ namespace Tizen.Applications
         /// <remarks>
         /// The <c>SchduleDate</c> property setter is available since API Level 6.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied due to insufficient privileges.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <since_tizen> 3 </since_tizen>
         public DateTime ScheduledDate
         {
@@ -141,19 +147,22 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the period of time between the recurrent alarms.
+        /// Gets or sets the period of time between the recurrent alarms.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
         /// <remarks>
         /// The <c>Period</c> property setter is available since API Level 6.
         /// If the week recurrence flag was set before, it will be removed and the period will be set
-        /// If the period was set before, it will be overwritten.If it was not, it will be set.
+        /// If the period was set before, it will be overwritten. If it was not, it will be set.
         /// If the @a period argument is 0 and the period was previously set,
         /// the period attribute will be cleared and the alarm will be changed to one-time.
         /// If the @a period argument is 0 and the period was not set,
-        /// or the week recurrence flag was set, the alarm will be unchanged.
+        /// or the week recurrence flag was set, the alarm will remain unchanged.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied due to insufficient privileges.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <since_tizen> 3 </since_tizen>
         public int Period
         {
