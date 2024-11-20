@@ -99,6 +99,28 @@
 
 
 
+  <h5 id="Tizen_Applications_PackageManager_RequestEventCallback_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The RequestEventCallback function provides information about the current status of a package request. It is called every time there is an update in the package request process. By monitoring the arguments passed to this function, you can keep track of the progress and events related to the package request.</p>
+</div>
+  <h5 id="Tizen_Applications_PackageManager_RequestEventCallback_examples"><strong>Examples</strong></h5>
+  <pre><code>private static void OnRequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress)
+{
+    switch (eventType)
+    {
+        case PackageEventType.Installing:
+            Console.WriteLine($&quot;Package &apos;{packageId}&apos; is currently installing.&quot;);
+            break;
+        case PackageEventType.Updating:
+            Console.WriteLine($&quot;Package &apos;{packageId}&apos; is currently updating.&quot;);
+            break;
+        case PackageEventType.Removing:
+            Console.WriteLine($&quot;Package &apos;{packageId}&apos; is currently removing.&quot;);
+            break;
+        default:
+            throw new ArgumentException($&quot;Unknown event type: {eventType}&quot;);
+    }
+}</code></pre>
+
 </article>
           </div>
 
@@ -107,7 +129,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L63" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L87" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
