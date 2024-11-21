@@ -40,6 +40,31 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration for style of IME.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum WebImeStyle
+        {
+            /// <summary>
+            /// Full IME style
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Full = 0,
+
+            /// <summary>
+            /// Floating IME style
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Floating,
+
+            /// <summary>
+            /// Dynamic IME style
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Dynamic,
+        }
+
+        /// <summary>
         /// Allows mixed contents or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -502,6 +527,23 @@ namespace Tizen.NUI
             set
             {
                 Interop.WebSettings.SetTextZoomEnabled(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        ///  The style of IME.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebImeStyle ImeStyle
+        {
+            get
+            {
+                return (WebImeStyle)Interop.WebSettings.GetImeStyle(SwigCPtr);
+            }
+            set
+            {
+                Interop.WebSettings.SetImeStyle(SwigCPtr, (int)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
