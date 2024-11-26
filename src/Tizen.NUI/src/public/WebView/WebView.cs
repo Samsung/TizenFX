@@ -2608,11 +2608,13 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="position">The position of IME</param>
         /// <param name="alignment">The alignment of IME</param>
+        /// <returns>True if setting successfully, false otherwise</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetImePositionAndAlignment(Vector2 position, ImeAlignment alignment)
+        public bool SetImePositionAndAlignment(Vector2 position, ImeAlignment alignment)
         {
-            Interop.WebView.SetImePositionAndAlignment(SwigCPtr, Vector2.getCPtr(position), (int)alignment);
+            bool result = Interop.WebView.SetImePositionAndAlignment(SwigCPtr, Vector2.getCPtr(position), (int)alignment);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
         }
 
         /// <summary>
