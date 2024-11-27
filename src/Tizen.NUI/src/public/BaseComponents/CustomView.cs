@@ -551,35 +551,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
-        /// </summary>
-        /// <param name="gestures">The pan gesture.</param>
-        /// <returns>True if the pan gesture has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityPan(PanGesture gestures)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e., value change of slider control).
-        /// </summary>
-        /// <param name="isIncrease">Whether the value should be increased or decreased.</param>
-        /// <returns>True if the value changed action has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityValueChange(bool isIncrease)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility zoom action.
-        /// </summary>
-        /// <returns>True if the zoom action has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityZoom()
-        {
-            return false;
-        }
-
-        /// <summary>
         /// Allows deriving classes to disable any of the gesture detectors.<br />
         /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br />
         /// </summary>
@@ -833,9 +804,6 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.OnLayoutNegotiated = new ViewWrapperImpl.OnLayoutNegotiatedDelegate(OnLayoutNegotiated);
             viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
             viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
-            viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
-            viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
-            viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
             viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);
             viewWrapperImpl.OnFocusLost = new ViewWrapperImpl.OnFocusLostDelegate(OnFocusLost);
             viewWrapperImpl.GetNextFocusableView = new ViewWrapperImpl.GetNextFocusableViewDelegate(GetNextFocusableView);

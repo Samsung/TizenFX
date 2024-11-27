@@ -1229,6 +1229,67 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// IME alignment in web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ImeAlignment
+        {
+            /// <summary>
+            /// Top-left corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopLeft = 0,
+
+            /// <summary>
+            /// top-center position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopCenter,
+
+            /// <summary>
+            /// Top-right corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopRight,
+
+            /// <summary>
+            /// Middle-left position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MiddleLeft,
+
+            /// <summary>
+            /// Middle-center position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MiddleCenter,
+
+            /// <summary>
+            /// Middle-right position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MiddleRight,
+
+            /// <summary>
+            /// Bottom-left corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomLeft,
+
+            /// <summary>
+            /// Bottom-center position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomCenter,
+
+            /// <summary>
+            /// Bottom-right corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomRight,
+        }
+
+        /// <summary>
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2540,6 +2601,31 @@ namespace Tizen.NUI.BaseComponents
             bool result = Interop.WebView.StopInspectorServer(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
+        }
+
+        /// <summary>
+        /// Set the style of IME.
+        /// </summary>
+        /// <param name="position">The position of IME</param>
+        /// <param name="alignment">The alignment of IME</param>
+        /// <returns>True if setting successfully, false otherwise</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetImePositionAndAlignment(Vector2 position, ImeAlignment alignment)
+        {
+            bool result = Interop.WebView.SetImePositionAndAlignment(SwigCPtr, Vector2.getCPtr(position), (int)alignment);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Set the theme name of cursor.
+        /// </summary>
+        /// <param name="themeName">The theme name of cursor</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetCursorThemeName(string themeName)
+        {
+            Interop.WebView.SetCursorThemeName(SwigCPtr, themeName);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
