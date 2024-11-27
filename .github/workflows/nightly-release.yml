@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_BRANCHES: 'master API12 API11'
+  TARGET_BRANCHES: 'main API12 API11'
 
 jobs:
   nightly:
@@ -53,7 +53,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: workflow.id,
-              ref: 'master',
+              ref: 'main',
               inputs: { target, deploy_to_gpr: 'true', deploy_to_myget: 'true', deploy_to_tizen: 'true' }
             })
             console.log(`Event dispatch for ${target} : ${dispatchResp.status}`)
