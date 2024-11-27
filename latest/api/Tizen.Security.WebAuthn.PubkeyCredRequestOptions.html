@@ -215,11 +215,11 @@ If not null, the state assisted transaction will start.</p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L106">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L119">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_AllowCredentials_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.AllowCredentials*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_AllowCredentials" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.AllowCredentials">AllowCredentials</h4>
-  <div class="markdown level1 summary"><p>Used by the client to find authenticators eligible for this authentication ceremony.</p>
+  <div class="markdown level1 summary"><p>Gets the list of allowed credentials.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -237,7 +237,9 @@ If not null, the state assisted transaction will start.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredDescriptor.html">PubkeyCredDescriptor</a>&gt;</td>
-        <td></td>
+        <td><p>Used by the client to find authenticators eligible for this authentication ceremony.
+The list is ordered in descending order of preference.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -250,11 +252,11 @@ If not null, the state assisted transaction will start.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L119">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L145">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Attestation_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Attestation*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Attestation" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Attestation">Attestation</h4>
-  <div class="markdown level1 summary"><p>Specifies a preference regarding attestation conveyance.</p>
+  <div class="markdown level1 summary"><p>Gets the attestation conveyance preference.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -272,7 +274,8 @@ If not null, the state assisted transaction will start.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.AttestationPref.html">AttestationPref</a></td>
-        <td></td>
+        <td><p>Specifies a preference regarding attestation conveyance.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -285,11 +288,11 @@ If not null, the state assisted transaction will start.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L123">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L153">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_AttestationFormats_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.AttestationFormats*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_AttestationFormats" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.AttestationFormats">AttestationFormats</h4>
-  <div class="markdown level1 summary"><p>Specifies a preference regarding the attestation statement format used by the authenticator.</p>
+  <div class="markdown level1 summary"><p>Gets the attestation format preference.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -307,7 +310,8 @@ If not null, the state assisted transaction will start.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">byte</span>[]&gt;</td>
-        <td></td>
+        <td><p>Specifies a preference regarding the attestation statement format used by the authenticator.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -320,11 +324,11 @@ If not null, the state assisted transaction will start.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L127">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L161">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Extensions_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Extensions*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Extensions" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Extensions">Extensions</h4>
-  <div class="markdown level1 summary"><p>Client extension inputs requesting additional processing by the client and authenticator.</p>
+  <div class="markdown level1 summary"><p>Gets the client extension inputs.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -342,7 +346,8 @@ If not null, the state assisted transaction will start.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.AuthenticationExtension.html">AuthenticationExtension</a>&gt;</td>
-        <td></td>
+        <td><p>Client extension inputs requesting additional processing by the client and authenticator.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -355,12 +360,11 @@ If not null, the state assisted transaction will start.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L137">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Hints_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Hints*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Hints" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Hints">Hints</h4>
-  <div class="markdown level1 summary"><p>Contains zero or more elements from <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a> to
-guide the user agent in interacting with the user.</p>
+  <div class="markdown level1 summary"><p>Gets hints used to guide the user agent in interacting with the user.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -378,7 +382,9 @@ guide the user agent in interacting with the user.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a>&gt;</td>
-        <td></td>
+        <td><p>Contains zero or more elements from <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a> to
+guide the user agent in interacting with the user.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -391,11 +397,11 @@ guide the user agent in interacting with the user.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L131">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L169">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_LinkedDevice_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.LinkedDevice*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_LinkedDevice" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.LinkedDevice">LinkedDevice</h4>
-  <div class="markdown level1 summary"><p>Linked Device Connection Info. If not null, the state assisted transaction will start.</p>
+  <div class="markdown level1 summary"><p>Gets the Linked Device Connection Info.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -413,7 +419,8 @@ guide the user agent in interacting with the user.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.HybridLinkedData.html">HybridLinkedData</a></td>
-        <td></td>
+        <td><p>Linked Device Connection Info. If not null, the state assisted transaction will start.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -426,11 +433,11 @@ guide the user agent in interacting with the user.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L102">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_RpId_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.RpId*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_RpId" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.RpId">RpId</h4>
-  <div class="markdown level1 summary"><p>Specifies the RP ID claimed by the Relying Party.</p>
+  <div class="markdown level1 summary"><p>Gets the Relying Party ID.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -448,7 +455,8 @@ guide the user agent in interacting with the user.</p>
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td></td>
+        <td><p>Specifies the RP ID claimed by the Relying Party.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -461,13 +469,11 @@ guide the user agent in interacting with the user.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L98">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L102">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Timeout_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Timeout*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Timeout" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.Timeout">Timeout</h4>
-  <div class="markdown level1 summary"><p>Specifies a time, in milliseconds, that the Relying Party is willing to wait for the
-call to complete. This is treated as a hint, and MAY be overridden by the client.
-The value, '0', means no timeout is set.</p>
+  <div class="markdown level1 summary"><p>Gets the timeout requested by the Relying Party.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -485,7 +491,10 @@ The value, '0', means no timeout is set.</p>
     <tbody>
       <tr>
         <td><span class="xref">ulong</span></td>
-        <td></td>
+        <td><p>The time, in milliseconds, that the Relying Party is willing to wait for the
+call to complete. This is treated as a hint, and MAY be overridden by the client.
+The value, '0', means no timeout is set.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -498,11 +507,11 @@ The value, '0', means no timeout is set.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredRequestOptions.cs/#L128">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_UserVerification_" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.UserVerification*"></a>
   <h4 id="Tizen_Security_WebAuthn_PubkeyCredRequestOptions_UserVerification" data-uid="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.UserVerification">UserVerification</h4>
-  <div class="markdown level1 summary"><p>Specifies the Relying Party's requirements regarding user verification for the GetAssertion() operation.</p>
+  <div class="markdown level1 summary"><p>Gets the user verification requirements.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -520,7 +529,9 @@ The value, '0', means no timeout is set.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.Security.WebAuthn.UserVerificationRequirement.html">UserVerificationRequirement</a></td>
-        <td></td>
+        <td><p>The Relying Party's requirements regarding user verification for the
+<a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_GetAssertion_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Tizen_Security_WebAuthn_GetAssertionCallbacks_">GetAssertion(ClientData, PubkeyCredRequestOptions, GetAssertionCallbacks)</a> operation.</p>
+</td>
       </tr>
     </tbody>
   </table>

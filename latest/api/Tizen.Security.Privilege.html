@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>This class provides the information of the given privilege and the API version.</p>
+  <div class="markdown level0 summary"><p>Stores the information on the given privilege and the API version.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -114,11 +114,11 @@
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L132">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L172">View Source</a>
   </span>
   <a id="Tizen_Security_Privilege_GetDescription_" data-uid="Tizen.Security.Privilege.GetDescription*"></a>
   <h4 id="Tizen_Security_Privilege_GetDescription_System_String_System_String_Tizen_Applications_PackageType_" data-uid="Tizen.Security.Privilege.GetDescription(System.String,System.String,Tizen.Applications.PackageType)">GetDescription(string, string, PackageType)</h4>
-  <div class="markdown level1 summary"><p>Gets the description of the given privilege.</p>
+  <div class="markdown level1 summary"><p>Gets the description of the given privilege by type of application package.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -138,19 +138,19 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">apiVersion</span></td>
-        <td><p>The API version.</p>
+        <td><p>API version of the application.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privilege</span></td>
-        <td><p>The privilege.</p>
+        <td><p>Given privilege.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Applications.PackageType.html">PackageType</a></td>
         <td><span class="parametername">packageType</span></td>
-        <td><p>The type of application package.</p>
+        <td><p>Type of application package.</p>
 </td>
       </tr>
     </tbody>
@@ -166,13 +166,14 @@
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>The description of given privilege at the given API version and the package type.</p>
+        <td><p>Description of given privilege at the given API version and the package type.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_Privilege_GetDescription_System_String_System_String_Tizen_Applications_PackageType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns description string for undefined privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
+  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns description string for undefined privilege.
+Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,12 +191,12 @@
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter such as a non-existing privilege.</p>
+        <td><p>Thrown when there is an invalid parameter, such as a non-existing <code data-dev-comment-type="paramref" class="paramref">privilege</code>.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory occurs.</p>
+        <td><p>Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
@@ -210,7 +211,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L108">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L137">View Source</a>
   </span>
   <a id="Tizen_Security_Privilege_GetDescription_" data-uid="Tizen.Security.Privilege.GetDescription*"></a>
   <h4 id="Tizen_Security_Privilege_GetDescription_System_String_System_String_" data-uid="Tizen.Security.Privilege.GetDescription(System.String,System.String)">GetDescription(string, string)</h4>
@@ -234,13 +235,13 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">apiVersion</span></td>
-        <td><p>The API version.</p>
+        <td><p>API version of the application.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privilege</span></td>
-        <td><p>The privilege.</p>
+        <td><p>Given privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -256,13 +257,14 @@
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>The description of given privilege at the given API version</p>
+        <td><p>Description of given privilege at the given API version</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_Privilege_GetDescription_System_String_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns description string for undefined privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
+  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns description string for undefined privilege.
+Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -280,12 +282,12 @@
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter such as a non-existing privilege.</p>
+        <td><p>Thrown when there is an invalid parameter, such as a non-existing <code data-dev-comment-type="paramref" class="paramref">privilege</code>.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory occurs.</p>
+        <td><p>Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
@@ -300,11 +302,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L105">View Source</a>
   </span>
   <a id="Tizen_Security_Privilege_GetDisplayName_" data-uid="Tizen.Security.Privilege.GetDisplayName*"></a>
   <h4 id="Tizen_Security_Privilege_GetDisplayName_System_String_System_String_Tizen_Applications_PackageType_" data-uid="Tizen.Security.Privilege.GetDisplayName(System.String,System.String,Tizen.Applications.PackageType)">GetDisplayName(string, string, PackageType)</h4>
-  <div class="markdown level1 summary"><p>Gets the display name of the given privilege.</p>
+  <div class="markdown level1 summary"><p>Gets the display name of the given privilege by type of application package.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -324,19 +326,19 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">apiVersion</span></td>
-        <td><p>The API version.</p>
+        <td><p>API version of the application.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privilege</span></td>
-        <td><p>The privilege.</p>
+        <td><p>Given privilege.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.Applications.PackageType.html">PackageType</a></td>
         <td><span class="parametername">packageType</span></td>
-        <td><p>The type of application package.</p>
+        <td><p>Type of application package.</p>
 </td>
       </tr>
     </tbody>
@@ -352,13 +354,14 @@
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>The display name of the given privilege at the given API version and the package type.</p>
+        <td><p>Display name of the given privilege at the given API version and the package type.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_Privilege_GetDisplayName_System_String_System_String_Tizen_Applications_PackageType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns last token of the given privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
+  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns last token of the given privilege.
+Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -376,12 +379,12 @@
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter such as a non-existing privilege.</p>
+        <td><p>Thrown when there is an invalid parameter, such as a non-existing <code data-dev-comment-type="paramref" class="paramref">privilege</code>.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory occurs.</p>
+        <td><p>Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
@@ -396,7 +399,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L61">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L70">View Source</a>
   </span>
   <a id="Tizen_Security_Privilege_GetDisplayName_" data-uid="Tizen.Security.Privilege.GetDisplayName*"></a>
   <h4 id="Tizen_Security_Privilege_GetDisplayName_System_String_System_String_" data-uid="Tizen.Security.Privilege.GetDisplayName(System.String,System.String)">GetDisplayName(string, string)</h4>
@@ -420,13 +423,13 @@
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">apiVersion</span></td>
-        <td><p>The API version.</p>
+        <td><p>API version of the application.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privilege</span></td>
-        <td><p>The privilege.</p>
+        <td><p>Given privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -442,13 +445,14 @@
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>The display name of the given privilege at the given API version.</p>
+        <td><p>Display name of the given privilege at the given API version.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_Privilege_GetDisplayName_System_String_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns last token of the given privilege. Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
+  <div class="markdown level1 remarks"><p>If there's no matching privilege, then it returns last token of the given privilege.
+Since Tizen 6.0, if there's no matching privilege then it returns ArgumentException.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -466,12 +470,12 @@
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter such as a non-existing privilege.</p>
+        <td><p>Thrown when there is an invalid parameter, such as a non-existing <code data-dev-comment-type="paramref" class="paramref">privilege</code>.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory occurs.</p>
+        <td><p>Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
@@ -486,11 +490,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L156">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security/Tizen.Security/Privilege.cs/#L204">View Source</a>
   </span>
   <a id="Tizen_Security_Privilege_GetPrivacyDisplayName_" data-uid="Tizen.Security.Privilege.GetPrivacyDisplayName*"></a>
   <h4 id="Tizen_Security_Privilege_GetPrivacyDisplayName_System_String_" data-uid="Tizen.Security.Privilege.GetPrivacyDisplayName(System.String)">GetPrivacyDisplayName(string)</h4>
-  <div class="markdown level1 summary"><p>Gets the display name of the privacy group in which the given privilege is included.</p>
+  <div class="markdown level1 summary"><p>[Obsolete(&quot;Please do not use! This method is deprecated&quot;)]</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -511,7 +515,7 @@ public static string GetPrivacyDisplayName(string privilege)</code></pre>
       <tr>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privilege</span></td>
-        <td><p>The privilege.</p>
+        <td><p>Given privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -527,13 +531,13 @@ public static string GetPrivacyDisplayName(string privilege)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">string</span></td>
-        <td><p>The privacy group's display name that the given privilege is included in.</p>
+        <td><p>Privacy group's display name in which the given privilege is included.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Security_Privilege_GetPrivacyDisplayName_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The privilege must be privacy related.</p>
+  <div class="markdown level1 remarks"><p>Given privilege must be privacy related.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -545,28 +549,28 @@ public static string GetPrivacyDisplayName(string privilege)</code></pre>
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
         <td><p>Thrown when there is a null parameter.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter such as a non-existing privilege.</p>
+        <td><p>Thrown when there is an invalid parameter, such as a non-existing <code data-dev-comment-type="paramref" class="paramref">privilege</code>.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory occurs.</p>
+        <td><p>Thrown when out of memory.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when an internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
 </td>
       </tr>
     </tbody>

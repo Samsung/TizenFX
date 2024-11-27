@@ -118,7 +118,7 @@ You can also retrieve information related to the packages that are installed on 
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L356">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L384">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_ClearAllCacheDirectory_" data-uid="Tizen.Applications.PackageManager.ClearAllCacheDirectory*"></a>
   <h4 id="Tizen_Applications_PackageManager_ClearAllCacheDirectory" data-uid="Tizen.Applications.PackageManager.ClearAllCacheDirectory">ClearAllCacheDirectory()</h4>
@@ -130,8 +130,8 @@ You can also retrieve information related to the packages that are installed on 
     <pre><code class="lang-csharp hljs">public static void ClearAllCacheDirectory()</code></pre>
   </div>
   <h5 id="Tizen_Applications_PackageManager_ClearAllCacheDirectory_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The package manager is one of the core modules of the Tizen application framework and responsible for getting their information.
-You can also retrieve information related to the packages that are installed on the device.</p>
+  <div class="markdown level1 remarks"><p>This method clears both the internal and external cache directories of the application. It ensures that any cached files are removed from the device storage.
+By calling this method, you can free up valuable space on the device and improve its performance. However, note that this operation may take some time depending on the amount of cached data present in the directories.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -169,7 +169,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L336">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L360">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_ClearCacheDirectory_" data-uid="Tizen.Applications.PackageManager.ClearCacheDirectory*"></a>
   <h4 id="Tizen_Applications_PackageManager_ClearCacheDirectory_System_String_" data-uid="Tizen.Applications.PackageManager.ClearCacheDirectory(System.String)">ClearCacheDirectory(string)</h4>
@@ -238,7 +238,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L381">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L409">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_ClearDataDirectory_" data-uid="Tizen.Applications.PackageManager.ClearDataDirectory*"></a>
   <h4 id="Tizen_Applications_PackageManager_ClearDataDirectory_System_String_" data-uid="Tizen.Applications.PackageManager.ClearDataDirectory(System.String)">ClearDataDirectory(string)</h4>
@@ -269,7 +269,7 @@ You can also retrieve information related to the packages that are installed on 
   </table>
   <h5 id="Tizen_Applications_PackageManager_ClearDataDirectory_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>All files under data, shared/data, and shared/trusted in the internal storage are removed.
-And, if the external storage exists, then all files under data and shared/trusted in the external storage are removed.</p>
+And, if the external storage exists, then all files under data and shared/trusted in the external storage are also removed.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -287,17 +287,17 @@ And, if the external storage exists, then all files under data and shared/truste
       </tr>
       <tr>
         <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when the method failed due to an internal IO error.</p>
+        <td><p>Thrown when the method fails due to an internal IO error.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+        <td><p>Thrown when an application does not have the required privileges to access this method.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.SystemException</span></td>
-        <td><p>Thrown when the method failed due to an internal system error.</p>
+        <td><p>Thrown when the method fails due to an internal system error.</p>
 </td>
       </tr>
     </tbody>
@@ -307,7 +307,7 @@ And, if the external storage exists, then all files under data and shared/truste
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L403">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L431">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_ClearUserData_" data-uid="Tizen.Applications.PackageManager.ClearUserData*"></a>
   <h4 id="Tizen_Applications_PackageManager_ClearUserData_System_String_System_String_" data-uid="Tizen.Applications.PackageManager.ClearUserData(System.String,System.String)">ClearUserData(string, string)</h4>
@@ -382,7 +382,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1183">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1197">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_CompareCertInfo_" data-uid="Tizen.Applications.PackageManager.CompareCertInfo*"></a>
   <h4 id="Tizen_Applications_PackageManager_CompareCertInfo_System_String_System_String_" data-uid="Tizen.Applications.PackageManager.CompareCertInfo(System.String,System.String)">CompareCertInfo(string, string)</h4>
@@ -463,7 +463,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1204">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1218">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_CompareCertInfoByApplicationId_" data-uid="Tizen.Applications.PackageManager.CompareCertInfoByApplicationId*"></a>
   <h4 id="Tizen_Applications_PackageManager_CompareCertInfoByApplicationId_System_String_System_String_" data-uid="Tizen.Applications.PackageManager.CompareCertInfoByApplicationId(System.String,System.String)">CompareCertInfoByApplicationId(string, string)</h4>
@@ -544,7 +544,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L321">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L345">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetPackage_" data-uid="Tizen.Applications.PackageManager.GetPackage*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetPackage_System_String_" data-uid="Tizen.Applications.PackageManager.GetPackage(System.String)">GetPackage(string)</h4>
@@ -629,7 +629,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1227">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1241">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetPackageArchive_" data-uid="Tizen.Applications.PackageManager.GetPackageArchive*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetPackageArchive_System_String_" data-uid="Tizen.Applications.PackageManager.GetPackageArchive(System.String)">GetPackageArchive(string)</h4>
@@ -703,7 +703,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L295">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L319">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetPackageIdByApplicationId_" data-uid="Tizen.Applications.PackageManager.GetPackageIdByApplicationId*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetPackageIdByApplicationId_System_String_" data-uid="Tizen.Applications.PackageManager.GetPackageIdByApplicationId(System.String)">GetPackageIdByApplicationId(string)</h4>
@@ -749,7 +749,7 @@ You can also retrieve information related to the packages that are installed on 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_GetPackageIdByApplicationId_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It returns null if the input is null.</p>
+  <div class="markdown level1 remarks"><p>If the input is null, it returns null.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -762,7 +762,7 @@ You can also retrieve information related to the packages that are installed on 
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when input application ID does not exist.</p>
+        <td><p>Thrown when the input application ID does not exist.</p>
 </td>
       </tr>
       <tr>
@@ -782,7 +782,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L419">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L447">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetPackages_" data-uid="Tizen.Applications.PackageManager.GetPackages*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetPackages" data-uid="Tizen.Applications.PackageManager.GetPackages">GetPackages()</h4>
@@ -818,7 +818,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L431">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L459">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetPackages_" data-uid="Tizen.Applications.PackageManager.GetPackages*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetPackages_Tizen_Applications_PackageFilter_" data-uid="Tizen.Applications.PackageManager.GetPackages(Tizen.Applications.PackageFilter)">GetPackages(PackageFilter)</h4>
@@ -872,7 +872,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1141">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1155">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetPermissionTypeByApplicationId_" data-uid="Tizen.Applications.PackageManager.GetPermissionTypeByApplicationId*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetPermissionTypeByApplicationId_System_String_" data-uid="Tizen.Applications.PackageManager.GetPermissionTypeByApplicationId(System.String)">GetPermissionTypeByApplicationId(string)</h4>
@@ -947,7 +947,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L499">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L527">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_GetTotalSizeInformationAsync_" data-uid="Tizen.Applications.PackageManager.GetTotalSizeInformationAsync*"></a>
   <h4 id="Tizen_Applications_PackageManager_GetTotalSizeInformationAsync" data-uid="Tizen.Applications.PackageManager.GetTotalSizeInformationAsync">GetTotalSizeInformationAsync()</h4>
@@ -983,7 +983,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L700">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L719">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.Collections.Generic.List{System.String},Tizen.Applications.InstallationMode)">Install(List&lt;string&gt;, InstallationMode)</h4>
@@ -1035,15 +1035,14 @@ You can also retrieve information related to the packages that are installed on 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L719">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L737">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.Collections.Generic.List{System.String},Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(List&lt;string&gt;, RequestEventCallback, InstallationMode)</h4>
@@ -1101,15 +1100,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L601">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L625">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,System.String,Tizen.Applications.InstallationMode)">Install(string, string, InstallationMode)</h4>
@@ -1167,15 +1165,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L641">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L663">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,System.String,Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(string, string, RequestEventCallback, InstallationMode)</h4>
@@ -1239,15 +1236,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L661">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L682">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_PackageType_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,System.String,Tizen.Applications.PackageType,Tizen.Applications.InstallationMode)">Install(string, string, PackageType, InstallationMode)</h4>
@@ -1311,15 +1307,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_PackageType_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L682">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L702">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_PackageType_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,System.String,Tizen.Applications.PackageType,Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(string, string, PackageType, RequestEventCallback, InstallationMode)</h4>
@@ -1389,15 +1384,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_System_String_Tizen_Applications_PackageType_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L544">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L571">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,Tizen.Applications.InstallationMode)">Install(string, InstallationMode)</h4>
@@ -1443,21 +1437,20 @@ To check the result of installation, the caller should check the progress using 
     <tbody>
       <tr>
         <td><span class="xref">bool</span></td>
-        <td><p>Returns true if the installation request is successful, otherwise false.</p>
+        <td><p>True if the installation request is successful, otherwise false.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of the installation, the caller should check the progress using the InstallProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L563">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L589">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(string, RequestEventCallback, InstallationMode)</h4>
@@ -1515,15 +1508,14 @@ To check the result of the installation, the caller should check the progress us
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L582">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L607">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_PackageType_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,Tizen.Applications.PackageType,Tizen.Applications.InstallationMode)">Install(string, PackageType, InstallationMode)</h4>
@@ -1581,15 +1573,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_PackageType_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L621">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L644">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
   <h4 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_PackageType_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.String,Tizen.Applications.PackageType,Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(string, PackageType, RequestEventCallback, InstallationMode)</h4>
@@ -1653,15 +1644,14 @@ To check the result of installation, the caller should check the progress using 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Install_System_String_Tizen_Applications_PackageType_Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for installation is successful.
-To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1162">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1176">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_IsPreloadPackageByApplicationId_" data-uid="Tizen.Applications.PackageManager.IsPreloadPackageByApplicationId*"></a>
   <h4 id="Tizen_Applications_PackageManager_IsPreloadPackageByApplicationId_System_String_" data-uid="Tizen.Applications.PackageManager.IsPreloadPackageByApplicationId(System.String)">IsPreloadPackageByApplicationId(string)</h4>
@@ -1736,7 +1726,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1072">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1086">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Move_" data-uid="Tizen.Applications.PackageManager.Move*"></a>
   <h4 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_PackageType_Tizen_Applications_StorageType_Tizen_Applications_PackageManager_RequestEventCallback_" data-uid="Tizen.Applications.PackageManager.Move(System.String,Tizen.Applications.PackageType,Tizen.Applications.StorageType,Tizen.Applications.PackageManager.RequestEventCallback)">Move(string, PackageType, StorageType, RequestEventCallback)</h4>
@@ -1800,15 +1790,15 @@ You can also retrieve information related to the packages that are installed on 
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_PackageType_Tizen_Applications_StorageType_Tizen_Applications_PackageManager_RequestEventCallback__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for move is successful.
-To check the result of move, the caller should check the progress using the MoveProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the move request was successfully made.
+To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1033">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1047">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Move_" data-uid="Tizen.Applications.PackageManager.Move*"></a>
   <h4 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_PackageType_Tizen_Applications_StorageType_" data-uid="Tizen.Applications.PackageManager.Move(System.String,Tizen.Applications.PackageType,Tizen.Applications.StorageType)">Move(string, PackageType, StorageType)</h4>
@@ -1866,15 +1856,15 @@ To check the result of move, the caller should check the progress using the Move
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_PackageType_Tizen_Applications_StorageType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for move is successful.
-To check the result of move, the caller should check the progress using the MoveProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the move request was successfully made.
+To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1052">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1066">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Move_" data-uid="Tizen.Applications.PackageManager.Move*"></a>
   <h4 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_StorageType_Tizen_Applications_PackageManager_RequestEventCallback_" data-uid="Tizen.Applications.PackageManager.Move(System.String,Tizen.Applications.StorageType,Tizen.Applications.PackageManager.RequestEventCallback)">Move(string, StorageType, RequestEventCallback)</h4>
@@ -1932,15 +1922,15 @@ To check the result of move, the caller should check the progress using the Move
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_StorageType_Tizen_Applications_PackageManager_RequestEventCallback__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for move is successful.
-To check the result of move, the caller should check the progress using the MoveProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the move request was successfully made.
+To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1014">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1028">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Move_" data-uid="Tizen.Applications.PackageManager.Move*"></a>
   <h4 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_StorageType_" data-uid="Tizen.Applications.PackageManager.Move(System.String,Tizen.Applications.StorageType)">Move(string, StorageType)</h4>
@@ -1992,15 +1982,15 @@ To check the result of move, the caller should check the progress using the Move
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Move_System_String_Tizen_Applications_StorageType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for move is successful.
-To check the result of move, the caller should check the progress using the MoveProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the move request was successfully made.
+To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L923">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L938">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Uninstall_" data-uid="Tizen.Applications.PackageManager.Uninstall*"></a>
   <h4 id="Tizen_Applications_PackageManager_Uninstall_System_String_Tizen_Applications_PackageManager_RequestEventCallback_" data-uid="Tizen.Applications.PackageManager.Uninstall(System.String,Tizen.Applications.PackageManager.RequestEventCallback)">Uninstall(string, RequestEventCallback)</h4>
@@ -2052,15 +2042,14 @@ To check the result of move, the caller should check the progress using the Move
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Uninstall_System_String_Tizen_Applications_PackageManager_RequestEventCallback__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for uninstallation is successful.
-To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L942">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L956">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Uninstall_" data-uid="Tizen.Applications.PackageManager.Uninstall*"></a>
   <h4 id="Tizen_Applications_PackageManager_Uninstall_System_String_Tizen_Applications_PackageType_Tizen_Applications_PackageManager_RequestEventCallback_" data-uid="Tizen.Applications.PackageManager.Uninstall(System.String,Tizen.Applications.PackageType,Tizen.Applications.PackageManager.RequestEventCallback)">Uninstall(string, PackageType, RequestEventCallback)</h4>
@@ -2118,15 +2107,14 @@ To check the result of uninstallation, the caller should check the progress usin
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Uninstall_System_String_Tizen_Applications_PackageType_Tizen_Applications_PackageManager_RequestEventCallback__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for uninstallation is successful.
-To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event or eventCallback.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L905">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L921">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Uninstall_" data-uid="Tizen.Applications.PackageManager.Uninstall*"></a>
   <h4 id="Tizen_Applications_PackageManager_Uninstall_System_String_Tizen_Applications_PackageType_" data-uid="Tizen.Applications.PackageManager.Uninstall(System.String,Tizen.Applications.PackageType)">Uninstall(string, PackageType)</h4>
@@ -2178,15 +2166,14 @@ To check the result of uninstallation, the caller should check the progress usin
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Uninstall_System_String_Tizen_Applications_PackageType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for uninstallation is successful.
-To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L887">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L904">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Uninstall_" data-uid="Tizen.Applications.PackageManager.Uninstall*"></a>
   <h4 id="Tizen_Applications_PackageManager_Uninstall_System_String_" data-uid="Tizen.Applications.PackageManager.Uninstall(System.String)">Uninstall(string)</h4>
@@ -2232,8 +2219,7 @@ To check the result of uninstallation, the caller should check the progress usin
     </tbody>
   </table>
   <h5 id="Tizen_Applications_PackageManager_Uninstall_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The 'true' means that the request for uninstallation is successful.
-To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.</p>
+  <div class="markdown level1 remarks"><p>The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.</p>
 </div>
 
 
@@ -2242,7 +2228,7 @@ To check the result of uninstallation, the caller should check the progress usin
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L187">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L211">View Source</a>
   </span>
   <h4 id="Tizen_Applications_PackageManager_ClearDataProgressChanged" data-uid="Tizen.Applications.PackageManager.ClearDataProgressChanged">ClearDataProgressChanged</h4>
   <div class="markdown level1 summary"><p>ClearDataProgressChanged event. This event occurs when data directories are cleared in the given package.</p>
@@ -2292,10 +2278,10 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L79">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L103">View Source</a>
   </span>
   <h4 id="Tizen_Applications_PackageManager_InstallProgressChanged" data-uid="Tizen.Applications.PackageManager.InstallProgressChanged">InstallProgressChanged</h4>
-  <div class="markdown level1 summary"><p>InstallProgressChanged event. This event occurs when a package is getting installed and the progress of the request to the package manager is changed.</p>
+  <div class="markdown level1 summary"><p>InstallProgressChanged event. Occurs when a package is being installed and the progress of the request to the package manager changes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2332,7 +2318,7 @@ You can also retrieve information related to the packages that are installed on 
     <tbody>
       <tr>
         <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when subscribing to package manager event failed.</p>
+        <td><p>Thrown when subscribing to package manager event fails.</p>
 </td>
       </tr>
     </tbody>
@@ -2342,7 +2328,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L160">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L184">View Source</a>
   </span>
   <h4 id="Tizen_Applications_PackageManager_MoveProgressChanged" data-uid="Tizen.Applications.PackageManager.MoveProgressChanged">MoveProgressChanged</h4>
   <div class="markdown level1 summary"><p>MoveProgressChanged event. This event occurs when a package is getting moved and the progress of the request to the package manager is changed.</p>
@@ -2392,7 +2378,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L106">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L130">View Source</a>
   </span>
   <h4 id="Tizen_Applications_PackageManager_UninstallProgressChanged" data-uid="Tizen.Applications.PackageManager.UninstallProgressChanged">UninstallProgressChanged</h4>
   <div class="markdown level1 summary"><p>UninstallProgressChanged event. This event occurs when a package is getting uninstalled and the progress of the request to the package manager is changed.</p>
@@ -2442,7 +2428,7 @@ You can also retrieve information related to the packages that are installed on 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L133">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L157">View Source</a>
   </span>
   <h4 id="Tizen_Applications_PackageManager_UpdateProgressChanged" data-uid="Tizen.Applications.PackageManager.UpdateProgressChanged">UpdateProgressChanged</h4>
   <div class="markdown level1 summary"><p>UpdateProgressChanged event. This event occurs when a package is getting updated and the progress of the request to the package manager is changed.</p>
