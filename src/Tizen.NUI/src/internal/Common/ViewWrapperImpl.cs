@@ -289,7 +289,7 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
 
@@ -316,9 +316,6 @@ namespace Tizen.NUI
             Delegate21 = null;
             Delegate24 = null;
             Delegate25 = null;
-            Delegate26 = null;
-            Delegate28 = null;
-            Delegate29 = null;
             Delegate30 = null;
             Delegate31 = null;
             Delegate32 = null;
@@ -328,7 +325,7 @@ namespace Tizen.NUI
             Delegate36 = null;
             Delegate37 = null;
             Delegate38 = null;
-            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         }
 
         private void DirectorOnSceneConnection(int depth)
@@ -656,9 +653,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_21 Delegate21;
         private DelegateViewWrapperImpl_24 Delegate24;
         private DelegateViewWrapperImpl_25 Delegate25;
-        private DelegateViewWrapperImpl_26 Delegate26;
-        private DelegateViewWrapperImpl_28 Delegate28;
-        private DelegateViewWrapperImpl_29 Delegate29;
         private DelegateViewWrapperImpl_30 Delegate30;
         private DelegateViewWrapperImpl_31 Delegate31;
         private DelegateViewWrapperImpl_32 Delegate32;
