@@ -1,12 +1,13 @@
 name: "Build Pull Request"
 
 on:
-  pull_request:
-    branches:
-    - master
-    - DevelNUI
-    - API*
-    - test-action
+  workflow_dispatch:
+#   pull_request:
+#     branches:
+#     - master
+#     - DevelNUI
+#     - API*
+#     - test-action
 
 jobs:
 
@@ -20,11 +21,11 @@ jobs:
       with:
         dotnet-version: 3.1.402
 
-    - name: Get Changed Files
-      uses: lots0logs/gh-action-get-changed-files@2.1.4
-      id: getChangedFiles
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Get Changed Files
+    #   uses: lots0logs/gh-action-get-changed-files@2.1.4
+    #   id: getChangedFiles
+    #   with:
+    #     token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       id: build
