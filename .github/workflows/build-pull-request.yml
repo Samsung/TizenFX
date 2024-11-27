@@ -1,11 +1,11 @@
 name: "Build Pull Request"
 
-on:
-  pull_request:
-    branches:
-    - master
-    - DevelNUI
-    - API*
+# on:
+#   pull_request:
+#     branches:
+#     - master
+#     - DevelNUI
+#     - API*
 
 jobs:
 
