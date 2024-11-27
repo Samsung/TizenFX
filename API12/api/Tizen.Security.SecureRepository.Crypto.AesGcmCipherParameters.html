@@ -89,7 +89,7 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a>.<a class="xref" href="Tizen.Security.SecureRepository.Crypto.html">Crypto</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
 
-  <div class="markdown level0 summary"><p>A class for holding parameters for the AES algorithm with the GCM mode.</p>
+  <div class="markdown level0 summary"><p>Holds parameters for the AES algorithm with the GCM mode.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
 
@@ -120,7 +120,7 @@
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters__ctor_" data-uid="Tizen.Security.SecureRepository.Crypto.AesGcmCipherParameters.#ctor*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters__ctor" data-uid="Tizen.Security.SecureRepository.Crypto.AesGcmCipherParameters.#ctor">AesGcmCipherParameters()</h4>
-  <div class="markdown level1 summary"><p>A default constructor.</p>
+  <div class="markdown level1 summary"><p>Initializes an instance of AesGcmCipherParameters class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -128,7 +128,7 @@
     <pre><code class="lang-csharp hljs">public AesGcmCipherParameters()</code></pre>
   </div>
   <h5 id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesGcm.</p>
+  <div class="markdown level1 remarks"><p>CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesGcm.</p>
 </div>
 
 
@@ -137,11 +137,11 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/AesGcmCipherParameters.cs/#L67">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/AesGcmCipherParameters.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters_AAD_" data-uid="Tizen.Security.SecureRepository.Crypto.AesGcmCipherParameters.AAD*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters_AAD" data-uid="Tizen.Security.SecureRepository.Crypto.AesGcmCipherParameters.AAD">AAD</h4>
-  <div class="markdown level1 summary"><p>Additional authentication data (optional).</p>
+  <div class="markdown level1 summary"><p>Gets and sets additional authentication data.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -159,7 +159,8 @@
     <tbody>
       <tr>
         <td><span class="xref">byte</span>[]</td>
-        <td></td>
+        <td><p>Additional authentication data (optional).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -168,11 +169,11 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/AesGcmCipherParameters.cs/#L42">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Crypto/AesGcmCipherParameters.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters_TagLength_" data-uid="Tizen.Security.SecureRepository.Crypto.AesGcmCipherParameters.TagLength*"></a>
   <h4 id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters_TagLength" data-uid="Tizen.Security.SecureRepository.Crypto.AesGcmCipherParameters.TagLength">TagLength</h4>
-  <div class="markdown level1 summary"><p>GCM tag length in bits.</p>
+  <div class="markdown level1 summary"><p>Gets and sets GCM tag length.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -190,13 +191,12 @@
     <tbody>
       <tr>
         <td><span class="xref">long</span></td>
-        <td></td>
+        <td><p>GCM tag length in bits. One of {32, 64, 96, 104, 112, 120, 128} (optional),
+if not present the length 128 is used.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_SecureRepository_Crypto_AesGcmCipherParameters_TagLength_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>One of {32, 64, 96, 104, 112, 120, 128} (optional), if not present the length 128 is used.</p>
-</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -208,7 +208,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>TagLength should be one of {32, 64, 96, 104, 112, 120, 128}.</p>
+        <td><p>Thrown when TagLength is not one of {32, 64, 96, 104, 112, 120, 128}.</p>
 </td>
       </tr>
     </tbody>
