@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_BRANCHES: 'master API11 API10'
+  TARGET_BRANCHES: 'master API12 API11'
 
 jobs:
   nightly:
