@@ -270,8 +270,8 @@ namespace Tizen.NUI.PenWave
                 // #endif
 
                 // #if PICTURE
-                [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "AddPicture")]
-                public static extern void AddPicture([MarshalAs(UnmanagedType.LPStr)] string path);
+                [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "PlacePicture")]
+                public static extern void AddPicture([MarshalAs(UnmanagedType.LPStr)] string path, float x, float y, float width, float height);
 
                 [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "SetCanvasBackground")]
                 public static extern void SetCanvasBackground([MarshalAs(UnmanagedType.LPStr)] string path, float x, float y, float width, float height);

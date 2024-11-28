@@ -28,6 +28,16 @@ namespace Tizen.NUI.PenWave
     /// </summary>
     public class PWCanvasView : DirectRenderingGLView
     {
+        /// <summary>
+        /// Events that are triggered when the tool starts an action.
+        /// </summary>
+        public event EventHandler ActionStarted;
+
+        /// <summary>
+        /// Events that are triggered when the tool finishes an action.
+        /// </summary>
+        public event EventHandler ActionFinished;
+
         private UnRedoManager unredoManager;
         private CanvasRenderer renderer;
         private PropertyNotification propertyNotification;
@@ -82,10 +92,35 @@ namespace Tizen.NUI.PenWave
             get => currentTool;
             set
             {
-                currentTool?.Deactivate();
+                if (value == currentTool) return;
+                if (currentTool!= null)
+                {
+                    currentTool.Deactivate();
+                    currentTool.ActionStarted -= OnStarted;
+                    currentTool.ActionFinished -= OnFinished;;
+                }
+
                 currentTool = value;
-                currentTool?.Activate();
+
+                if (currentTool != null)
+                {
+                    currentTool.Activate();
+                    currentTool.ActionStarted += OnStarted;
+                    currentTool.ActionFinished += OnFinished;
+                }
             }
+        }
+
+        // Event handlers for action started.
+        private void OnStarted(object sender, EventArgs e)
+        {
+            ActionStarted?.Invoke(this, e);
+        }
+
+        // Event handlers for action finished.
+        private void OnFinished(object sender, EventArgs e)
+        {
+            ActionFinished?.Invoke(this, e);
         }
 
         /// <summary>
@@ -149,12 +184,12 @@ namespace Tizen.NUI.PenWave
         /// <param name="position"></param>
         public void AddPicture(string path, Size2D size, Position2D position)
         {
-            var command = new Command(() => renderer.AddPicture(path));
+            var command = new Command(() => renderer.AddPicture(path, size, position));
             unredoManager.Execute(command);
         }
 
         /// <summary>
-        ///
+        /// Handles touch events.  This touch event is delivered to the current tool.
         /// </summary>
         /// <param name="touch"></param>
         public void HandleInput(Touch touch)
@@ -187,6 +222,8 @@ namespace Tizen.NUI.PenWave
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed) return;
+            currentTool.ActionStarted -= OnStarted;
+            currentTool.ActionFinished -= OnFinished;;
             renderer.TerminateGL();
             base.Dispose(type);
         }

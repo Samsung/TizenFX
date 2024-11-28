@@ -26,12 +26,12 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Events that are triggered when the tool starts an action.
         /// </summary>
-        public event EventHandler ActionStarted;
+        internal event EventHandler ActionStarted;
 
         /// <summary>
         /// Events that are triggered when the tool finishes an action.
         /// </summary>
-        public event EventHandler ActionFinished;
+        internal event EventHandler ActionFinished;
 
         /// <summary>
         /// Handles input events such as touch events and updates the state of the tool accordingly.

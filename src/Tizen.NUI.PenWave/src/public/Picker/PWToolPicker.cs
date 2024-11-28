@@ -14,9 +14,7 @@
  * limitations under the License.
  *
  */
-
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -26,116 +24,86 @@ namespace Tizen.NUI.PenWave
 {
     public class PWToolPicker : View
     {
-        private static readonly string resourcePath = FrameworkInformation.ResourcePath + "images/light/";
+        private static readonly string ResourcePath = FrameworkInformation.ResourcePath + "images/light/";
 
-        // for pencilTool
+        // 도구별 아이콘 및 색상 매핑
         private static readonly Dictionary<PencilTool.BrushType, string> BrushIconMap = new Dictionary<PencilTool.BrushType, string>
         {
-            { PencilTool.BrushType.Stroke, "icon_pencil" },
-            { PencilTool.BrushType.VarStroke, "icon_varstroke_dec" },
-            { PencilTool.BrushType.VarStrokeInc, "icon_varstroke_inc" },
-            { PencilTool.BrushType.SprayBrush, "icon_spray" },
-            { PencilTool.BrushType.DotBrush, "icon_dot" },
-            { PencilTool.BrushType.DashedLine, "icon_dashed_line" },
-            { PencilTool.BrushType.Highlighter, "icon_highlighter" },
-            { PencilTool.BrushType.SoftBrush, "icon_soft_brush" },
-            { PencilTool.BrushType.SharpBrush, "icon_sharp_brush" },
+            { PencilTool.BrushType.Stroke, "icon_pencil.png" },
+            { PencilTool.BrushType.VarStroke, "icon_varstroke_dec.png" },
+            { PencilTool.BrushType.VarStrokeInc, "icon_varstroke_inc.png" },
+            { PencilTool.BrushType.SprayBrush, "icon_spray.png" },
+            { PencilTool.BrushType.DotBrush, "icon_dot.png" },
+            { PencilTool.BrushType.DashedLine, "icon_dashed_line.png" },
+            { PencilTool.BrushType.Highlighter, "icon_highlighter.png" },
+            { PencilTool.BrushType.SoftBrush, "icon_soft_brush.png" },
+            { PencilTool.BrushType.SharpBrush, "icon_sharp_brush.png" },
         };
 
         private static readonly List<Color> BrushColorMap = new List<Color>
         {
-            new Color("#F7B32C"),
-            new Color("#FD5703"),
-            new Color("#DA1727"),
-            new Color("#FF00A8"),
-            new Color("#74BFB8"),
-            new Color("#4087C5"),
-            new Color("#070044"),
-            new Color("#0E0E0E"),
+            new Color("#F7B32C"), new Color("#FD5703"), new Color("#DA1727"),
+            new Color("#FF00A8"), new Color("#74BFB8"), new Color("#4087C5"),
+            new Color("#070044"), new Color("#0E0E0E")
         };
-        //
 
-        // for canvas
+        private static readonly Dictionary<EraserTool.EraserType, string> EraserIconMap = new Dictionary<EraserTool.EraserType, string>
+        {
+            { EraserTool.EraserType.Partial, "icon_eraser.png" },
+            { EraserTool.EraserType.Full, "icon_full_eraser.png" },
+        };
+
+
         private static readonly List<Color> CanvasColor = new List<Color>
         {
-            new Color("#F0F0F0"),
-            new Color("#B7B7B7"),
-            new Color("#E3F2FF"),
-            new Color("#202022"),
-            new Color("#515151"),
-            new Color("#17234D"),
+            new Color("#F0F0F0"), new Color("#B7B7B7"), new Color("#E3F2FF"),
+            new Color("#202022"), new Color("#515151"), new Color("#17234D"),
         };
 
         private static readonly Dictionary<GridDensityType, string> GridIconMap = new Dictionary<GridDensityType, string>
         {
-            { GridDensityType.Small, "icon_small_grid_density" },
-            { GridDensityType.Medium, "icon_medium_grid_density" },
-            { GridDensityType.Large, "icon_large_grid_density" },
+            { GridDensityType.Small, "icon_small_grid_density.png" },
+            { GridDensityType.Medium, "icon_medium_grid_density.png" },
+            { GridDensityType.Large, "icon_large_grid_density.png" },
         };
 
-        // Properties to define colors for different states.
-        public string IconStateNormalColor { get; set; } = "#17234d";
-        public string IconStateSelectedColor { get; set; } = "#FF6200";
-        public string IconStatePressedColor { get; set; } = "#FF6200";
-        public string IconStateDisabledColor { get; set; } = "#CACACA";
-
         private readonly PWCanvasView canvasView;
-
         private readonly Dictionary<Type, ToolBase> tools;
 
-        public delegate void ToolChangedEventHandler(ToolBase tool);
-        public event ToolChangedEventHandler ToolChanged;
-
         private View rootView;
+        private ImageView selectedButton;
+        private ImageView undoButton;
+        private ImageView redoButton;
+
+        // UI 상태 색상 정의
+        private const string IconStateNormalColor = "#17234d";
+        private const string IconStateSelectedColor = "#FF6200";
+        private const string IconStateDisabledColor = "#CACACA";
+
+
         public View PickerView { get; private set; }
         public View PopupView { get; private set; }
-
-        private ImageView pencilButton;
-        private ImageView eraserButton;
-        private ImageView canvasGridButton;
-
-        private ImageView currentBrushIcon;
-
-        private ImageView canvasUndoButton;
-        private ImageView canvasRedoButton;
-
+        public event Action<ToolBase> ToolChanged;
 
         public PWToolPicker(PWCanvasView canvasView)
         {
             this.canvasView = canvasView;
             tools = new Dictionary<Type, ToolBase>();
+
+            canvasView.ActionFinished += OnFinished;
         }
 
-        public virtual void InitializeToolPicker()
+        private void OnFinished(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        public void Initialize()
         {
             InitializeUI();
-
-            InitializeCanvasTool();
-
+            InitializeCanvasTools();
             InitializeTools();
-        }
-
-        private void UpdateUI()
-        {
-            canvasRedoButton.IsEnabled = canvasView.CanRedo;
-            canvasUndoButton.IsEnabled = canvasView.CanUndo;
-
-            if (canvasView.CanUndo == false)
-            {
-                canvasUndoButton.Color = new Color(IconStateDisabledColor);
-            }
-            else
-            {
-                canvasUndoButton.Color = new Color(IconStateNormalColor);
-            }
-            if (canvasView.CanRedo == false)
-            {
-                canvasRedoButton.Color = new Color(IconStateDisabledColor);
-            }
-            else
-            {
-                canvasRedoButton.Color = new Color(IconStateNormalColor);
-            }
+            UpdateUI();
         }
 
         private void InitializeUI()
@@ -143,160 +111,103 @@ namespace Tizen.NUI.PenWave
             WidthResizePolicy = ResizePolicyType.FillToParent;
             HeightResizePolicy = ResizePolicyType.FillToParent;
 
+            // Root View 구성
             rootView = new View
             {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                Layout = new LinearLayout()
+                Layout = new LinearLayout
                 {
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Top,
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                }
+                },
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
             };
 
+            // Picker View 구성
             PickerView = new View
             {
                 CornerRadius = new Vector4(10, 10, 10, 10),
-                BackgroundImage = resourcePath + "/menu_bg.png",
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
                 {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center
                 },
+                BackgroundImage = ResourcePath + "menu_bg.png",
             };
-            PickerView.TouchEvent += (s, e) => { return true; };
+            PickerView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
 
+            // Popup View 구성
             PopupView = new View
             {
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundImage = resourcePath + "/canvas_popup_bg.png",
                 Layout = new LinearLayout
                 {
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                 },
-                Padding = new Extents(20, 20, 20, 20)
+                BackgroundImage = ResourcePath + "canvas_popup_bg.png",
+                Padding = new Extents(20, 20, 20, 20),
             };
-            PopupView.TouchEvent += (s, e) => { return true; };
-            canvasView.TouchEvent += (s, e) => { ClearPopupView(); return false; };
             PopupView.Hide();
+            PopupView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
+            canvasView.TouchEvent += (s, e) => { ClearPopupView(); return false; }; // Hide popup when touching outside it
 
             rootView.Add(PickerView);
             rootView.Add(PopupView);
             Add(rootView);
-
             canvasView.Add(this);
         }
 
-        private void InitializeCanvasTool()
+        private void InitializeCanvasTools()
         {
-            var canvasBackgroundColorIcon = new ImageView
+            var backgroundColorButton = CreateToolButton(ResourcePath + "icon_color_palette.png", () =>
             {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                Color = new Color(IconStateNormalColor),
-                ResourceUrl = resourcePath + "icon_color_palette.png",
-            };
-            canvasBackgroundColorIcon.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    ShowPaletteSettings();
-                }
-                return true;
-            };
-            PickerView.Add(canvasBackgroundColorIcon);
+              ShowPaletteSetting();
+            });
+            PickerView.Add(backgroundColorButton);
 
-            canvasGridButton = new ImageView
+            var gridButton = CreateToolButton(ResourcePath + "icon_medium_grid_density.png", () =>
             {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                Color = new Color(IconStateNormalColor),
-                ResourceUrl = resourcePath + "icon_medium_grid_density.png",
-            };
-            canvasGridButton.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    ShowGridSettings();
-                }
-                return true;
-            };
-            PickerView.Add(canvasGridButton);
+              ShowGridSetting();
+            });
+            PickerView.Add(gridButton);
 
-            canvasUndoButton = new ImageView
+            undoButton = CreateToolButton(ResourcePath + "icon_undo.png", () =>
             {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                Color = new Color(IconStateDisabledColor),
-                ResourceUrl = resourcePath + "icon_undo.png",
-            };
+                canvasView.Undo();
+                UpdateUI();
+            });
+            PickerView.Add(undoButton);
 
-            canvasRedoButton = new ImageView
+            redoButton = CreateToolButton(ResourcePath + "icon_redo.png", () =>
             {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                Color = new Color(IconStateDisabledColor),
-                ResourceUrl = resourcePath + "icon_redo.png",
-            };
+                canvasView.Redo();
+                UpdateUI();
+            });
+            PickerView.Add(redoButton);
 
-            canvasUndoButton.TouchEvent += (s, e) =>
+            var clearButton = CreateToolButton(ResourcePath + "icon_clear.png", () =>
             {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    canvasView.Undo();
-                    UpdateUI();
-                }
-                return true;
-            };
-
-            canvasRedoButton.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    canvasView.Redo();
-                    UpdateUI();
-                }
-                return true;
-            };
-
-            PickerView.Add(canvasUndoButton);
-            PickerView.Add(canvasRedoButton);
-
-
-            var canvasClearButton = new ImageView
-            {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                Color = new Color(IconStateNormalColor),
-                ResourceUrl = resourcePath + "icon_clear.png",
-            };
-            canvasClearButton.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    canvasView.ClearCanvas();
-                }
-                return true;
-            };
-            PickerView.Add(canvasClearButton);
+                canvasView.ClearCanvas();
+                UpdateUI();
+            });
+            PickerView.Add(clearButton);
         }
 
-        private void ShowPaletteSettings()
+        private void ShowPaletteSetting()
         {
             ClearPopupView();
 
             PopupView.Show();
 
-            var canvasBackgroundColorPicker = new View
+            var colorPicker = new View
             {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
                 {
                     VerticalAlignment = VerticalAlignment.Center,
@@ -304,19 +215,16 @@ namespace Tizen.NUI.PenWave
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                 }
             };
-            PopupView.Add(canvasBackgroundColorPicker);
 
-            var canvasColors = CanvasColor;
-            foreach (var color in canvasColors)
+            foreach (var color in CanvasColor)
             {
-                var canvasColorIcon = new ImageView
+                var button = new ImageView
                 {
-                    GrabTouchAfterLeave = true,
                     Size2D = new Size2D(48, 48),
                     Color = color,
-                    ResourceUrl = resourcePath + "/color_icon_base.png",
+                    ResourceUrl = ResourcePath + "/color_icon_base.png",
                 };
-                canvasColorIcon.TouchEvent += (s, e) =>
+                button.TouchEvent += (s, e) =>
                 {
                     if (e.Touch.GetState(0) == PointStateType.Down)
                     {
@@ -324,21 +232,21 @@ namespace Tizen.NUI.PenWave
                     }
                     return true;
                 };
-                canvasBackgroundColorPicker.Add(canvasColorIcon);
+
+                colorPicker.Add(button);
             }
 
+            PopupView.Add(colorPicker);
         }
 
-        private void ShowGridSettings()
+        private void ShowGridSetting()
         {
             ClearPopupView();
 
             PopupView.Show();
 
-            var canvasGridPicker = new View
+             var gridPicker = new View
             {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
                 {
                     VerticalAlignment = VerticalAlignment.Center,
@@ -346,152 +254,46 @@ namespace Tizen.NUI.PenWave
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                 }
             };
-            PopupView.Add(canvasGridPicker);
 
             foreach (var icon in GridIconMap)
             {
-                var gridIcon = new ImageView
+                var button = CreateToolButton(ResourcePath + icon.Value, () =>
                 {
-                    GrabTouchAfterLeave = true,
-                    Size2D = new Size2D(48, 48),
-                    Color = new Color(IconStateNormalColor),
-                    ResourceUrl = resourcePath + icon.Value + ".png",
-                };
-                gridIcon.TouchEvent += (s, e) =>
-                {
-                    if (e.Touch.GetState(0) == PointStateType.Down)
-                    {
-                        canvasView.ToggleGrid(icon.Key);
-                        canvasGridButton.ResourceUrl = gridIcon.ResourceUrl;
-                        canvasGridButton.Color = new Color(IconStateSelectedColor);
-                    }
-                    return true;
-                };
-                canvasGridPicker.Add(gridIcon);
+                    canvasView.ToggleGrid(icon.Key);
+                });
+                gridPicker.Add(button);
             }
+
+            PopupView.Add(gridPicker);
         }
 
         private void InitializeTools()
         {
-            var pencilTool = new PencilTool(PencilTool.BrushType.Stroke, Color.Black, 5.0f);
+            var pencilToll = new PencilTool(PencilTool.BrushType.Stroke, Color.Black, 3.0f);
             var eraserTool = new EraserTool(EraserTool.EraserType.Partial, 48.0f);
             var selectionTool = new SelectionTool(SelectionTool.SelectionType.Move);
+            AddTool(pencilToll, "icon_pencil.png");
+            AddTool(eraserTool, "icon_eraser.png");
+            AddTool(selectionTool, "icon_select.png");
 
-            pencilTool.ActionStarted += (s, e) =>
-            {
-                UpdateUI();
-            };
-            eraserTool.ActionStarted += (s, e) =>
-            {
-                UpdateUI();
-            };
-            selectionTool.ActionStarted += (s, e) =>
-            {
-                UpdateUI();
-            };
-
-            pencilTool.ActionFinished += (s, e) =>
-            {
-                UpdateUI();
-            };
-            eraserTool.ActionFinished += (s, e) =>
-            {
-                UpdateUI();
-            };
-            selectionTool.ActionFinished += (s, e) =>
-            {
-                UpdateUI();
-            };
-
-            AddTool(pencilTool);
-            AddTool(eraserTool);
-            AddTool(selectionTool);
-
-            SetTool<PencilTool>();
-            ClearPopupView();
+            canvasView.Tool = pencilToll; // 기본 도구 설정
         }
 
-        private void AddTool(ToolBase tool)
+        private void AddTool(ToolBase tool, string icon)
         {
             tools[tool.GetType()] = tool;
 
-            if (tool.GetType() == typeof(PencilTool))
+            var toolButton = CreateToolButton(ResourcePath + icon, () =>
             {
-                pencilButton = new ImageView
-                {
-                    GrabTouchAfterLeave = true,
-                    Size2D = new Size2D(48, 48),
-                    Color = new Color(IconStateNormalColor),
-                    ResourceUrl = resourcePath + BrushIconMap[PencilTool.BrushType.Stroke] + ".png",
-                };
-                pencilButton.TouchEvent += (s, e) =>
-                {
-                    if (e.Touch.GetState(0) == PointStateType.Down)
-                    {
-                        if (GetTool<PencilTool>() is PencilTool pencilTool)
-                        {
-                            SetTool<PencilTool>();
-                        }
-                    }
-                    return true;
-                };
-                PickerView.Add(pencilButton);
-            }
-            else if (tool.GetType() == typeof(EraserTool))
-            {
-                eraserButton = new ImageView
-                {
-                    GrabTouchAfterLeave = true,
-                    Size2D = new Size2D(48, 48),
-                    Color = new Color(IconStateNormalColor),
-                    ResourceUrl = resourcePath + "icon_eraser.png",
-                };
-                eraserButton.TouchEvent += (s, e) =>
-                {
-                    if (e.Touch.GetState(0) == PointStateType.Down)
-                    {
-                        if (GetTool<EraserTool>() is EraserTool eraserTool)
-                        {
-                            SetTool<EraserTool>();
-                        }
-                    }
-                    return true;
-                };
-                PickerView.Add(eraserButton);
-            }
-            else if (tool.GetType() == typeof(SelectionTool))
-            {
-                var selectionButton = new ImageView
-                {
-                    GrabTouchAfterLeave = true,
-                    Size2D = new Size2D(48, 48),
-                    Color = new Color(IconStateNormalColor),
-                    ResourceUrl = resourcePath + "icon_select.png",
-                };
-
-                selectionButton.TouchEvent += (s, e) =>
-                {
-                    if (e.Touch.GetState(0) == PointStateType.Down)
-                    {
-                        if (e.Touch.GetState(0) == PointStateType.Down)
-                        {
-                            if (GetTool<SelectionTool>() is SelectionTool selectionTool)
-                            {
-                                SetTool<SelectionTool>();
-                            }
-                        }
-                    }
-                    return true;
-                };
-
-                PickerView.Add(selectionButton);
-            }
+                SetTool(tool);
+            });
+            PickerView.Add(toolButton);
 
         }
 
-        public void SetTool<T>() where T : ToolBase
+        public void SetTool(ToolBase tool)
         {
-            if (tools.TryGetValue(typeof(T), out ToolBase tool))
+            if (tools.ContainsKey(tool.GetType()))
             {
                 canvasView.Tool = tool;
                 ShowToolSettings(tool);
@@ -499,39 +301,42 @@ namespace Tizen.NUI.PenWave
             }
         }
 
-        public T GetTool<T>() where T : ToolBase
-        {
-            return tools[typeof(T)] as T;
-        }
-
         private void ShowToolSettings(ToolBase tool)
         {
-            if (tool is PencilTool pencilTool)
-            {
-                ShowPencilToolSettings(pencilTool);
-            }
-            else if (tool is EraserTool eraserTool)
-            {
-                ShowEraserToolSettings(eraserTool);
-            }
-            else if (tool is SelectionTool selectionTool)
-            {
-                ShowSelectionToolSettings(selectionTool);
-            }
+            ClearPopupView();
 
+            if (tool is PencilTool pencilTool)
+                ShowPencilToolSettings(pencilTool);
+            else if (tool is EraserTool eraserTool)
+                ShowEraserToolSettings(eraserTool);
+            else if (tool is SelectionTool selectionTool)
+                ShowSelectionToolSettings(selectionTool);
+
+            PopupView.Show();
         }
 
         private void ShowPencilToolSettings(PencilTool pencilTool)
         {
-            ClearPopupView();
+            AddBrushPicker(pencilTool);
+            AddColorPicker(pencilTool);
+            AddSizeSlider(pencilTool);
+        }
 
-            PopupView.Show();
+        private void ShowEraserToolSettings(EraserTool eraserTool)
+        {
+            AddEraserTypePicker(eraserTool);
+            AddSizeSlider(eraserTool);
+        }
 
-            // Add brush icons
-            var brushTypePickerView = new View
+        private void ShowSelectionToolSettings(SelectionTool selectionTool)
+        {
+            AddSelectionTypePicker(selectionTool);
+        }
+
+        private void AddBrushPicker(PencilTool pencilTool)
+        {
+            var brushPicker = new View
             {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
                 {
                     VerticalAlignment = VerticalAlignment.Center,
@@ -539,43 +344,24 @@ namespace Tizen.NUI.PenWave
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                 }
             };
-            PopupView.Add(brushTypePickerView);
 
             foreach (var icon in BrushIconMap)
             {
-                var brushIcon = new ImageView
+                var button = CreateToolButton(ResourcePath + icon.Value, () =>
                 {
-                    GrabTouchAfterLeave = true,
-                    Size2D = new Size2D(48, 48),
-                    Color = new Color(IconStateNormalColor),
-                    ResourceUrl = resourcePath + icon.Value + ".png",
-                };
-                brushIcon.TouchEvent += (s, e) =>
-                {
-                    if (e.Touch.GetState(0) == PointStateType.Down)
-                    {
-                        pencilButton.ResourceUrl = brushIcon.ResourceUrl;
-                        pencilButton.Color = new Color(IconStateSelectedColor);
-                        pencilTool.Brush = icon.Key;
-                        pencilTool.Activate();
-
-                        if (currentBrushIcon != null)
-                        {
-                            currentBrushIcon.Color = new Color(IconStateNormalColor);
-                        }
-                        currentBrushIcon = brushIcon;
-                        brushIcon.Color = new Color(IconStateSelectedColor);
-                    }
-                    return true;
-                };
-                brushTypePickerView.Add(brushIcon);
+                    pencilTool.Brush = icon.Key;
+                    pencilTool.Activate();
+                });
+                brushPicker.Add(button);
             }
 
-            // Add brush color icons
-            var brushColorPickerView = new View
+            PopupView.Add(brushPicker);
+        }
+
+        private void AddColorPicker(PencilTool pencilTool)
+        {
+            var colorPicker = new View
             {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
                 {
                     VerticalAlignment = VerticalAlignment.Center,
@@ -583,19 +369,16 @@ namespace Tizen.NUI.PenWave
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                 }
             };
-            PopupView.Add(brushColorPickerView);
 
-            var brushColors = BrushColorMap;
-            foreach (var color in brushColors)
+            foreach (var color in BrushColorMap)
             {
-                var brushColorIcon = new ImageView
+                var button = new ImageView
                 {
-                    GrabTouchAfterLeave = true,
                     Size2D = new Size2D(48, 48),
                     Color = color,
-                    ResourceUrl = resourcePath + "/color_icon_base.png",
+                    ResourceUrl = ResourcePath + "/color_icon_base.png",
                 };
-                brushColorIcon.TouchEvent += (s, e) =>
+                button.TouchEvent += (s, e) =>
                 {
                     if (e.Touch.GetState(0) == PointStateType.Down)
                     {
@@ -604,82 +387,54 @@ namespace Tizen.NUI.PenWave
                     }
                     return true;
                 };
-                brushColorPickerView.Add(brushColorIcon);
+
+                colorPicker.Add(button);
             }
 
-            var sizePicker = new Slider
-            {
-                MinValue = 1,
-                MaxValue = 20,
-                CurrentValue = pencilTool.BrushSize,
-                WidthSpecification = 300,
-            };
-            sizePicker.ValueChanged += (s, e) =>
-            {
-                pencilTool.BrushSize = (int)e.CurrentValue;
-                pencilTool.Activate();
-            };
-
-            PopupView.Add(sizePicker);
+            PopupView.Add(colorPicker);
         }
 
-        private void ShowEraserToolSettings(EraserTool eraserTool)
+        private void AddSizeSlider(ToolBase tool)
         {
-            ClearPopupView();
 
-            PopupView.Show();
-
-            var eraserTypePicker = new ImageView
+            var slider = new Slider
             {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                ResourceUrl = resourcePath + "/icon_eraser.png",
-                Color = new Color(IconStateNormalColor),
+                WidthSpecification = 300
             };
-            eraserTypePicker.TouchEvent += (s, e) =>
+            if (tool is PencilTool pencilTool)
             {
-                if (e.Touch.GetState(0) == PointStateType.Down)
+                slider.MinValue = 1;
+                slider.MaxValue = 20;
+                slider.CurrentValue = pencilTool.BrushSize;
+            }
+            else if (tool is EraserTool eraserTool)
+            {
+                slider.MinValue = 10;
+                slider.MaxValue = 100;
+                slider.CurrentValue = eraserTool.EraserRadius;
+            }
+
+            slider.ValueChanged += (s, e) =>
+            {
+                if (tool is PencilTool pencilTool)
                 {
-                    if (eraserTool.Eraser == EraserTool.EraserType.Partial)
-                    {
-                        eraserTool.Eraser = EraserTool.EraserType.Full;
-                        eraserTypePicker.ResourceUrl = resourcePath + "/icon_full_eraser.png";
-                    }
-                    else
-                    {
-                        eraserTool.Eraser = EraserTool.EraserType.Partial;
-                        eraserTypePicker.ResourceUrl = resourcePath + "/icon_eraser.png";
-                    }
-                    eraserButton.ResourceUrl = eraserTypePicker.ResourceUrl;
-                    eraserButton.Color = new Color(IconStateSelectedColor);
+                    pencilTool.BrushSize = e.CurrentValue;
                 }
-                return true;
+                else if (tool is EraserTool eraserTool)
+                {
+                    eraserTool.EraserRadius = e.CurrentValue;
+                }
+
+                tool.Activate();
             };
-            PopupView.Add(eraserTypePicker);
 
-
-            var eraserSizePicker = new Slider
-            {
-                MinValue = 10,
-                MaxValue = 100,
-                CurrentValue = eraserTool.EraserRadius,
-                WidthSpecification = 300,
-            };
-            eraserSizePicker.ValueChanged += (s, e) => eraserTool.EraserRadius = e.CurrentValue;
-
-            PopupView.Add(eraserSizePicker);
+            PopupView.Add(slider);
         }
 
-        private void ShowSelectionToolSettings(SelectionTool selectionTool)
+        private void AddEraserTypePicker(EraserTool eraserTool)
         {
-            ClearPopupView();
-
-            PopupView.Show();
-
-            var selectionTypePicker = new View
+            var eraserPicker = new View
             {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = new LinearLayout
                 {
                     VerticalAlignment = VerticalAlignment.Center,
@@ -687,81 +442,89 @@ namespace Tizen.NUI.PenWave
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                 }
             };
-            PopupView.Add(selectionTypePicker);
 
-
-            var selectionMoveIcon = new ImageView
+            foreach (var icon in EraserIconMap)
             {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                ResourceUrl = resourcePath + "/icon_select_single.png",
-                Color = new Color(IconStateNormalColor),
-            };
-
-            var selectionScaleIcon = new ImageView
-            {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                ResourceUrl = resourcePath + "/icon_scale.png",
-                Color = new Color(IconStateNormalColor),
-            };
-
-            var selectionRotateIcon = new ImageView
-            {
-                GrabTouchAfterLeave = true,
-                Size2D = new Size2D(48, 48),
-                ResourceUrl = resourcePath + "/icon_rotate.png",
-                Color = new Color(IconStateNormalColor),
-            };
-
-            selectionMoveIcon.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
+                var button = CreateToolButton(ResourcePath + icon.Value, () =>
                 {
-                    selectionTool.Selection = SelectionTool.SelectionType.Move;
-                    selectionMoveIcon.Color = new Color(IconStateSelectedColor);
-                    selectionScaleIcon.Color = new Color(IconStateNormalColor);
-                    selectionRotateIcon.Color = new Color(IconStateNormalColor);
-                }
-                return true;
-            };
-
-            selectionScaleIcon.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    selectionTool.Selection = SelectionTool.SelectionType.Scale;
-                    selectionMoveIcon.Color = new Color(IconStateNormalColor);
-                    selectionScaleIcon.Color = new Color(IconStateSelectedColor);
-                    selectionRotateIcon.Color = new Color(IconStateNormalColor);
-                }
-                return true;
-            };
-
-            selectionRotateIcon.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Down)
-                {
-                    selectionTool.Selection = SelectionTool.SelectionType.Rotate;
-                    selectionMoveIcon.Color = new Color(IconStateNormalColor);
-                    selectionScaleIcon.Color = new Color(IconStateNormalColor);
-                    selectionRotateIcon.Color = new Color(IconStateSelectedColor);
-                }
-                return true;
-            };
-
-            selectionTypePicker.Add(selectionMoveIcon);
-            selectionTypePicker.Add(selectionScaleIcon);
-            selectionTypePicker.Add(selectionRotateIcon);
-            PopupView.Add(selectionTypePicker);
+                    eraserTool.Eraser = eraserTool.Eraser == EraserTool.EraserType.Partial
+                        ? EraserTool.EraserType.Full
+                        : EraserTool.EraserType.Partial;
+                    eraserTool.Activate();
+                });
+                eraserPicker.Add(button);
+            }
+            PopupView.Add(eraserPicker);
         }
 
-        public virtual void ClearPopupView()
+        private void AddSelectionTypePicker(SelectionTool selectionTool)
         {
-            pencilButton.Color = new Color(IconStateNormalColor);
-            eraserButton.Color = new Color(IconStateNormalColor);
-            canvasGridButton.Color = new Color(IconStateNormalColor);
+            var picker = new View
+            {
+                Layout = new LinearLayout
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal
+                }
+            };
 
+            var types = Enum.GetValues(typeof(SelectionTool.SelectionType));
+            foreach (SelectionTool.SelectionType type in types)
+            {
+                var button = CreateToolButton(ResourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
+                {
+                    selectionTool.Selection = type;
+                });
+                picker.Add(button);
+            }
+
+            PopupView.Add(picker);
+        }
+
+        public ImageView CreateToolButton(string iconPath, Action OnClick)
+        {
+            var button = new ImageView
+            {
+                Size2D = new Size2D(48, 48),
+                ResourceUrl = iconPath,
+                Color = new Color(IconStateNormalColor),
+            };
+
+            button.TouchEvent += (s, e) =>
+            {
+                if (e.Touch.GetState(0) == PointStateType.Down)
+                {
+                    if (selectedButton != null)
+                    {
+                        selectedButton.Color = new Color(IconStateNormalColor);
+                    }
+                    selectedButton = button;
+                    button.Color = new Color(IconStateSelectedColor);
+                    OnClick?.Invoke();
+                }
+                return true;
+            };
+
+            return button;
+        }
+
+        private void UpdateUI()
+        {
+            ClearPopupView();
+            // Update undo/redo buttons state and colors
+            if (undoButton != null)
+            {
+                undoButton.Color = canvasView.CanUndo ? new Color(IconStateNormalColor) : new Color(IconStateDisabledColor);
+            }
+
+            if (redoButton != null)
+            {
+                redoButton.Color = canvasView.CanRedo ? new Color(IconStateNormalColor) : new Color(IconStateDisabledColor);
+            }
+
+        }
+
+        public void ClearPopupView()
+        {
             int childNum = (int)PopupView.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -770,8 +533,11 @@ namespace Tizen.NUI.PenWave
             PopupView.Hide();
         }
 
-        public bool IsPencilToolActive => canvasView.Tool is PencilTool;
-        public bool IsEraserToolActive => canvasView.Tool is EraserTool;
-        public bool IsSelectionToolActive => canvasView.Tool is SelectionTool;
+        protected override void Dispose(DisposeTypes type)
+        {
+            if(disposed) return;
+            canvasView.ActionFinished -= OnFinished;;
+            base.Dispose(type);
+        }
     }
 }

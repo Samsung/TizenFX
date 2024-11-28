@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -15,7 +16,8 @@ namespace PenWaveSample
         public static Program app;
         private Window mWindow;
         private PWToolPicker mToolPickerView;
-        private PWCanvasView canvasView;
+        private PenWaveCanvas canvasView;
+        private ImageView thumbnailView;
 
         public Program(ThemeOptions option, WindowData windowData) : base(option, windowData)
         {
@@ -31,25 +33,35 @@ namespace PenWaveSample
         private void ToolPicker()
         {
             mToolPickerView = new PWToolPicker(canvasView);
-            mToolPickerView.InitializeToolPicker();
+            mToolPickerView.Initialize();
 
-            //custom button
-            var customButton = new Button()
+            var pictureButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
-                Text = "Custom"
-            };
-            customButton.Clicked += (o, e) => {
-                mToolPickerView.ClearPopupView();
-                mToolPickerView.PopupView.Show();
-                mToolPickerView.PopupView.Add(new Button() { Text = "PopupBustom" });
-            };
-            mToolPickerView.PickerView.Add(customButton);
+                canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", new Size2D(500, 500), new Position2D(100, 200));
+            });
+            mToolPickerView.PickerView.Add(pictureButton);
+
+            var screenShotButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
+            {
+                PenWave.ThumbnailSavedDelegate ThumbnailsDelegate = OnThumbnails;
+                canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, ThumbnailsDelegate);
+            });
+            mToolPickerView.PickerView.Add(screenShotButton);
+        }
+
+        private void OnThumbnails()
+        {
+            string source = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png";
+            string destination = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot_copy.png";
+            File.Copy(source, destination, true);
+            thumbnailView.ResourceUrl = destination;
+            thumbnailView.Size2D = new Size2D(300, 300);
         }
 
         private void Buttons()
         {
 
-            canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", new Size2D(100, 100), new Position2D(0, 0));
+            canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", new Size2D(500, 500), new Position2D(100, 100));
             canvasView.Tool = new PencilTool(PencilTool.BrushType.DashedLine, Color.Blue, 10);
             var view = new View()
             {
@@ -153,11 +165,13 @@ namespace PenWaveSample
         {
             mWindow = GetDefaultWindow();
             mWindow.BackgroundColor = Color.White;
-            canvasView = new PWCanvasView();
+            canvasView = new PenWaveCanvas();
             mWindow.Add(canvasView);
 
 
             canvasView.TouchEvent += OnTouchEvent;
+            thumbnailView = new ImageView();
+            canvasView.Add(thumbnailView);
 
             ToolPicker();
 

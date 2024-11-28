@@ -108,9 +108,9 @@ namespace Tizen.NUI.PenWave
         /// Adds picture
         /// </summary>
         /// <param name="path"></param>
-        public void AddPicture(string path)
+        public void AddPicture(string path, Size2D size, Position2D position)
         {
-            PWEngine.AddPicture(path);
+            PWEngine.AddPicture(path, position.X, position.Y, size.Width, size.Height);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="path"></param>
         public void LoadCanvas(string path)
         {
-            if ((!File.Exists(path)) || (new FileInfo(path).Length < 6))
+            if (!File.Exists(path))
             {
                 Tizen.Log.Error("NUI", $"Loading canvas error: {path}\n");
             }
