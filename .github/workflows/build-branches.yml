@@ -3,7 +3,7 @@ name: Build Branches
 on:
   push:
     branches:
-    - master
+    - main
     - DevelNUI
     - API*
 
