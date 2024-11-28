@@ -78,7 +78,7 @@ jobs:
         name: reports
         path: Artifacts
 
-    - name: PR event trigger
+    - name: Checkout to base spec
       uses: actions/checkout@v3
       with:
         ref: ${{ github.event.pull_request.base.sha }}
