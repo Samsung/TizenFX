@@ -1,7 +1,7 @@
 # TizenFX
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?label=License&style=flat-square)](LICENSE)
-[![Build](https://img.shields.io/github/actions/workflow/status/Samsung/TizenFX/build-branches.yml?query=branch%3Amaster?label=Build&style=flat-square)](https://github.com/Samsung/TizenFX/actions?query=workflow%3A%22Build+Branches%22+branch%3Amaster)
+[![Build](https://img.shields.io/github/actions/workflow/status/Samsung/TizenFX/build-branches.yml?query=branch%3Amain?label=Build&style=flat-square)](https://github.com/Samsung/TizenFX/actions?query=workflow%3A%22Build+Branches%22+branch%3Amain)
 
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and .NET MAUI features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
@@ -9,7 +9,7 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 | Branch | API Level | Target Framework | API Reference | Platform          | myget.org | nuget.org  |
 |--------|:---------:|------------------|---------------|-------------------|-----------|------------|
-|master  | 13        |  | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api12_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API12.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) |  |
+|main  | 13        |  | [Link](https://samsung.github.io/TizenFX/main/) | Tizen vNext | [![api13_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API13.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) |  |
 |API12   | 12        | net6.0-tizen9.0 | [Link](https://samsung.github.io/TizenFX/API12/) | Tizen 9.0 | [![api12_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API12.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api12_nuget](https://img.shields.io/nuget/v/Tizen.NET.API12.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API11   | 11        | net6.0-tizen8.0 | [Link](https://samsung.github.io/TizenFX/API11/) | Tizen 8.0 | [![api11_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API11.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api11_nuget](https://img.shields.io/nuget/v/Tizen.NET.API11.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API10   | 10        | tizen10.0 | [Link](https://samsung.github.io/TizenFX/API10/) | Tizen 7.0 | [![api10_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API10.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api10_nuget](https://img.shields.io/nuget/v/Tizen.NET.API10.svg)](https://www.nuget.org/packages/Tizen.NET/) |
@@ -20,8 +20,8 @@ TizenFX API, which allows you to access platform-specific features not covered b
 |API5    | 5         | tizen50   | [Link](https://samsung.github.io/TizenFX/API5/) | Tizen 5.0       | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api5_nuget](https://img.shields.io/nuget/v/Tizen.NET.API5.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API4    | 4         | tizen40   | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.API4.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
-### master
-The __master__ branch is the main development branch for the Tizen .NET __API Level 13__.
+### main
+The __main__ branch is the main development branch for the Tizen .NET __API Level 13__.
 
 The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) and [Github Packages Registry](https://github.com/orgs/Samsung/packages?tab=packages&q=Tizen.NET) every day if there are any changes. (Nightly Build)
 
