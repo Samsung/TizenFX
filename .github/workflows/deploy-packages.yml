@@ -6,7 +6,7 @@ on:
       target:
         description: 'Branch to deploy'
         required: true
-        default: 'master'
+        default: 'main'
       deploy_to_gpr:
         description: 'Deploy packages to Github Packages Registry?'
         required: true
