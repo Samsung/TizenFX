@@ -78,44 +78,25 @@ jobs:
         name: reports
         path: Artifacts
 
-    # - name: Download Base API Spec
-    #   id: base-spec
-    #   uses: TizenAPI/tizenfx-build-actions/s3-download-public@master
-    #   with:
-    #     region: ap-northeast-2
-    #     bucket: tizenfx-api-specs
-    #     key: ${{ github.event.pull_request.base.sha }}.json
-    #     path: Artifacts/base-api.json
-
-    # - uses: actions/checkout@v3
-    #   if: ${{ steps.base-spec.outputs.code != 200 }}
-    #   with:
-    #     ref: ${{ github.event.pull_request.base.sha }}
-    #     path: base
-
     - name: PR event trigger
       uses: actions/checkout@v3
-      # if: ${{ steps.base-spec.outputs.code != 200 }}
       with:
         ref: ${{ github.event.pull_request.base.sha }}
         path: base
 
     - name: Build Base Branch
-      # if: ${{ steps.base-spec.outputs.code != 200 }}
       uses: TizenAPI/tizenfx-build-actions/problem-filter@master
       with:
         run: ./build.sh full
         working-directory: base
 
     - name: Checkout APITool
-      # if: ${{ steps.base-spec.outputs.code != 200 }}
       uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool
 
     - name: Extract Base API
-      # if: ${{ steps.base-spec.outputs.code != 200 }}
       run: |
         dotnet run -p .apitool/ \
             -- print --format=json --include-hidden \
