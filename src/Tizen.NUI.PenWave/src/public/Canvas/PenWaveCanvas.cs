@@ -24,18 +24,21 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.PenWave
 {
     /// <summary>
-    /// PWCanvasView is a view that allows drawing on it using various tools.
+    /// PenWaveCanvas is a view that allows drawing on it using various tools.
     /// </summary>
-    public class PWCanvasView : DirectRenderingGLView
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PenWaveCanvas : DirectRenderingGLView
     {
         /// <summary>
         /// Events that are triggered when the tool starts an action.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler ActionStarted;
 
         /// <summary>
         /// Events that are triggered when the tool finishes an action.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler ActionFinished;
 
         private UnRedoManager unredoManager;
@@ -44,21 +47,23 @@ namespace Tizen.NUI.PenWave
         private ToolBase currentTool;
 
         /// <summary>
-        /// Creates a new instance of a PWCanvasView.
+        /// Creates a new instance of a PenWaveCanvas.
         /// </summary>
-        public PWCanvasView() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PenWaveCanvas() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            renderer = new CanvasRenderer(PWEngine.CreateCanvas(-1, -1));
+            renderer = new CanvasRenderer(PenWave.Instance.CreateCanvas(-1, -1));
             InitializeCanvas();
         }
 
         /// <summary>
-        /// Creates a new instance of a PWCanvasView with a background image.
+        /// Creates a new instance of a PenWaveCanvas with a background image.
         /// </summary>
         /// <param name="backgroundPath"></param>
-        public PWCanvasView(string backgroundPath) : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PenWaveCanvas(string backgroundPath) : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            renderer = new CanvasRenderer(PWEngine.CreateCanvasWithBackgroundImage(backgroundPath));
+            renderer = new CanvasRenderer(PenWave.Instance.CreateCanvasWithBackgroundImage(backgroundPath));
             InitializeCanvas();
         }
 
@@ -87,6 +92,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// The tool used to draw on the canvas. If the tool is changed, the previous tool will be deactivated and the new tool will be activated.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ToolBase Tool
         {
             get => currentTool;
@@ -126,6 +132,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Clears the canvas.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCanvas()
         {
             var command = new Command(() => renderer.ClearCanvas());
@@ -135,16 +142,19 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Returns true if there are any actions that can be undone. Otherwise returns false.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanUndo => unredoManager.CanUndo;
 
         /// <summary>
         /// Returns true if there are any actions that can be redone. Otherwise returns false.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanRedo => unredoManager.CanRedo;
 
         /// <summary>
         /// Undoes the last action. If there are no actions to undo, nothing happens.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Undo()
         {
             unredoManager.Undo();
@@ -153,6 +163,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Redoes the last action. If there are no actions to redo, nothing happens.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Redo()
         {
             unredoManager.Redo();
@@ -162,6 +173,7 @@ namespace Tizen.NUI.PenWave
         /// Sets the color of the canvas.
         /// </summary>
         /// <param name="color"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCanvasColor(Color color)
         {
             renderer.SetCanvasColor(color);
@@ -171,6 +183,7 @@ namespace Tizen.NUI.PenWave
         /// Toggles the visibility of the grid.
         /// </summary>
         /// <param name="gridType"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ToggleGrid(GridDensityType gridType)
         {
             renderer.ToggleGrid(gridType);
@@ -182,6 +195,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="path"></param>
         /// <param name="size"></param>
         /// <param name="position"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddPicture(string path, Size2D size, Position2D position)
         {
             var command = new Command(() => renderer.AddPicture(path, size, position));
@@ -192,6 +206,7 @@ namespace Tizen.NUI.PenWave
         /// Handles touch events.  This touch event is delivered to the current tool.
         /// </summary>
         /// <param name="touch"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void HandleInput(Touch touch)
         {
             currentTool?.HandleInput(touch, unredoManager);
@@ -201,6 +216,7 @@ namespace Tizen.NUI.PenWave
         /// Saves the canvas to a file.
         /// </summary>
         /// <param name="path"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SaveCanvas(string path)
         {
             renderer.SaveCanvas(path);
@@ -210,13 +226,29 @@ namespace Tizen.NUI.PenWave
         /// Loads the canvas from a file.
         /// </summary>
         /// <param name="path"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadCanvas(string path)
         {
             renderer.LoadCanvas(path);
         }
 
         /// <summary>
-        /// Disposes the PWCanvasView.
+        /// Takes a screen shot of the canvas and saves it to a file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="callback"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void TakeScreenShot(string path, int x, int y, int width, int height, PenWave.ThumbnailSavedCallback callback)
+        {
+            renderer.TakeScreenShot(path, x, y, width, height, callback);
+        }
+
+        /// <summary>
+        /// Disposes the PenWaveCanvas.
         /// </summary>
         /// <param name="type"></param>
         protected override void Dispose(DisposeTypes type)

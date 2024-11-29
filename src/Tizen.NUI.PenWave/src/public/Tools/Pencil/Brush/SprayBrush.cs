@@ -15,18 +15,28 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The spray brush strategy.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SprayBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply the brush settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(1);
-            PWEngine.SetBrushTexture(0);
-            PWEngine.SetBrushDistance(3.0f);
+            PenWave.Instance.SetStrokeType(1);
+            PenWave.Instance.SetBrushTexture(0);
+            PenWave.Instance.SetBrushDistance(3.0f);
         }
     }
 }

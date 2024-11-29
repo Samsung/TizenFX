@@ -43,7 +43,7 @@ namespace PenWaveSample
 
             var screenShotButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
-                PenWave.ThumbnailSavedDelegate ThumbnailsDelegate = OnThumbnails;
+                PenWave.ThumbnailSavedCallback ThumbnailsDelegate = OnThumbnails;
                 canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, ThumbnailsDelegate);
             });
             mToolPickerView.PickerView.Add(screenShotButton);

@@ -15,16 +15,26 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The stroke brush strategy.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class StrokeBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply the brush settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(0);
+            PenWave.Instance.SetStrokeType(0);
         }
     }
 }

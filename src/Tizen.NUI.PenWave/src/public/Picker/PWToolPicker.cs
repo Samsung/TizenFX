@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -22,11 +23,15 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// PWToolPicker class provides a user interface for selecting and configuring various drawing tools in the PenWave application.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PWToolPicker : View
     {
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath + "images/light/";
 
-        // 도구별 아이콘 및 색상 매핑
+        // the icons for different brush types
         private static readonly Dictionary<PencilTool.BrushType, string> BrushIconMap = new Dictionary<PencilTool.BrushType, string>
         {
             { PencilTool.BrushType.Stroke, "icon_pencil.png" },
@@ -40,6 +45,7 @@ namespace Tizen.NUI.PenWave
             { PencilTool.BrushType.SharpBrush, "icon_sharp_brush.png" },
         };
 
+        // the color palette for brushes
         private static readonly List<Color> BrushColorMap = new List<Color>
         {
             new Color("#F7B32C"), new Color("#FD5703"), new Color("#DA1727"),
@@ -47,19 +53,21 @@ namespace Tizen.NUI.PenWave
             new Color("#070044"), new Color("#0E0E0E")
         };
 
+        // the icons for different eraser types
         private static readonly Dictionary<EraserTool.EraserType, string> EraserIconMap = new Dictionary<EraserTool.EraserType, string>
         {
             { EraserTool.EraserType.Partial, "icon_eraser.png" },
             { EraserTool.EraserType.Full, "icon_full_eraser.png" },
         };
 
-
+        // the color palette for canvas background color
         private static readonly List<Color> CanvasColor = new List<Color>
         {
             new Color("#F0F0F0"), new Color("#B7B7B7"), new Color("#E3F2FF"),
             new Color("#202022"), new Color("#515151"), new Color("#17234D"),
         };
 
+        // the icons for different grid density types
         private static readonly Dictionary<GridDensityType, string> GridIconMap = new Dictionary<GridDensityType, string>
         {
             { GridDensityType.Small, "icon_small_grid_density.png" },
@@ -67,7 +75,7 @@ namespace Tizen.NUI.PenWave
             { GridDensityType.Large, "icon_large_grid_density.png" },
         };
 
-        private readonly PWCanvasView canvasView;
+        private readonly PenWaveCanvas canvasView;
         private readonly Dictionary<Type, ToolBase> tools;
 
         private View rootView;
@@ -75,17 +83,35 @@ namespace Tizen.NUI.PenWave
         private ImageView undoButton;
         private ImageView redoButton;
 
-        // UI 상태 색상 정의
+
         private const string IconStateNormalColor = "#17234d";
         private const string IconStateSelectedColor = "#FF6200";
         private const string IconStateDisabledColor = "#CACACA";
 
 
+        /// <summary>
+        /// The PickerView property. It contains the view that holds the tool buttons.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View PickerView { get; private set; }
+
+        /// <summary>
+        /// The PopupView property. It contains the view that holds the tool settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View PopupView { get; private set; }
+
+        /// <summary>
+        /// The ToolChanged event. It is triggered when the selected tool changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event Action<ToolBase> ToolChanged;
 
-        public PWToolPicker(PWCanvasView canvasView)
+        /// <summary>
+        /// Creates a new instance of PWToolPicker.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PWToolPicker(PenWaveCanvas canvasView)
         {
             this.canvasView = canvasView;
             tools = new Dictionary<Type, ToolBase>();
@@ -93,11 +119,13 @@ namespace Tizen.NUI.PenWave
             canvasView.ActionFinished += OnFinished;
         }
 
+        // Update UI when action finished. This method is called when the current action is finished.
         private void OnFinished(object sender, EventArgs e)
         {
             UpdateUI();
         }
 
+        // Initialize the tool picker and its components.
         public void Initialize()
         {
             InitializeUI();
@@ -106,6 +134,7 @@ namespace Tizen.NUI.PenWave
             UpdateUI();
         }
 
+        // Initialize the UI components of the tool picker.
         private void InitializeUI()
         {
             WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -164,6 +193,7 @@ namespace Tizen.NUI.PenWave
             canvasView.Add(this);
         }
 
+        // Initialize the canvas tools and their corresponding buttons.
         private void InitializeCanvasTools()
         {
             var backgroundColorButton = CreateToolButton(ResourcePath + "icon_color_palette.png", () =>
@@ -200,6 +230,7 @@ namespace Tizen.NUI.PenWave
             PickerView.Add(clearButton);
         }
 
+        // Show the color palette setting for the canvas background color.
         private void ShowPaletteSetting()
         {
             ClearPopupView();
@@ -239,6 +270,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(colorPicker);
         }
 
+        // Show the grid density setting for the canvas grid.
         private void ShowGridSetting()
         {
             ClearPopupView();
@@ -267,6 +299,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(gridPicker);
         }
 
+        // Initialize the tools and add them to the tool picker. Each tool has its own settings and behavior.
         private void InitializeTools()
         {
             var pencilToll = new PencilTool(PencilTool.BrushType.Stroke, Color.Black, 3.0f);
@@ -276,9 +309,10 @@ namespace Tizen.NUI.PenWave
             AddTool(eraserTool, "icon_eraser.png");
             AddTool(selectionTool, "icon_select.png");
 
-            canvasView.Tool = pencilToll; // 기본 도구 설정
+            canvasView.Tool = pencilToll;
         }
 
+        // Add a tool to the tool picker and create a button for it. The button will be used to select the tool and show its settings.
         private void AddTool(ToolBase tool, string icon)
         {
             tools[tool.GetType()] = tool;
@@ -291,7 +325,8 @@ namespace Tizen.NUI.PenWave
 
         }
 
-        public void SetTool(ToolBase tool)
+        // Set the current tool of the canvas view and show its settings.
+        private void SetTool(ToolBase tool)
         {
             if (tools.ContainsKey(tool.GetType()))
             {
@@ -301,6 +336,7 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        // Show the settings for the given tool in the popup view. Each tool has its own settings and behavior.
         private void ShowToolSettings(ToolBase tool)
         {
             ClearPopupView();
@@ -315,6 +351,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Show();
         }
 
+        // Show the settings for the pencil tool in the popup view. The pencil tool has brush type, color, and size settings.
         private void ShowPencilToolSettings(PencilTool pencilTool)
         {
             AddBrushPicker(pencilTool);
@@ -322,17 +359,20 @@ namespace Tizen.NUI.PenWave
             AddSizeSlider(pencilTool);
         }
 
+        // Show the settings for the eraser tool in the popup view. The eraser tool has eraser type and size settings.
         private void ShowEraserToolSettings(EraserTool eraserTool)
         {
             AddEraserTypePicker(eraserTool);
             AddSizeSlider(eraserTool);
         }
 
+        // Show the settings for the selection tool in the popup view. The selection tool has selection type settings.
         private void ShowSelectionToolSettings(SelectionTool selectionTool)
         {
             AddSelectionTypePicker(selectionTool);
         }
 
+        // Create a button for the given tool and add it to the popup view.
         private void AddBrushPicker(PencilTool pencilTool)
         {
             var brushPicker = new View
@@ -358,6 +398,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(brushPicker);
         }
 
+        // Create a button for the given color and add it to the popup view.
         private void AddColorPicker(PencilTool pencilTool)
         {
             var colorPicker = new View
@@ -394,6 +435,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(colorPicker);
         }
 
+        // Create a slider for the given tool and add it to the popup view. The slider controls the size of the tool.
         private void AddSizeSlider(ToolBase tool)
         {
 
@@ -431,6 +473,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(slider);
         }
 
+        // Create a button for the given eraser type and add it to the popup view. The button toggles between partial and full eraser modes.
         private void AddEraserTypePicker(EraserTool eraserTool)
         {
             var eraserPicker = new View
@@ -457,6 +500,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(eraserPicker);
         }
 
+        // Create a button for the given selection type and add it to the popup view. The button toggles between move, resize, and rotate modes.
         private void AddSelectionTypePicker(SelectionTool selectionTool)
         {
             var picker = new View
@@ -480,6 +524,10 @@ namespace Tizen.NUI.PenWave
             PopupView.Add(picker);
         }
 
+        /// <summary>
+        /// Create a tool button with the given icon path and click action.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageView CreateToolButton(string iconPath, Action OnClick)
         {
             var button = new ImageView
@@ -507,6 +555,7 @@ namespace Tizen.NUI.PenWave
             return button;
         }
 
+        // Update the UI based on the current state of the canvas view. This includes updating the selected tool, the undo/redo buttons, and the tool settings.
         private void UpdateUI()
         {
             ClearPopupView();
@@ -523,6 +572,10 @@ namespace Tizen.NUI.PenWave
 
         }
 
+        /// <summary>
+        /// Clear the popup view and hide it.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearPopupView()
         {
             int childNum = (int)PopupView.ChildCount;
@@ -533,6 +586,7 @@ namespace Tizen.NUI.PenWave
             PopupView.Hide();
         }
 
+        // Dispose the tool picker and its components.
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed) return;

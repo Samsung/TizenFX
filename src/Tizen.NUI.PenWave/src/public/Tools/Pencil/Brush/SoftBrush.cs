@@ -15,18 +15,28 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The soft brush strategy.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SoftBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply the brush settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(1);
-            PWEngine.SetBrushTexture(4);
-            PWEngine.SetBrushDistance(1.0f);
+            PenWave.Instance.SetStrokeType(1);
+            PenWave.Instance.SetBrushTexture(4);
+            PenWave.Instance.SetBrushDistance(1.0f);
         }
     }
 }

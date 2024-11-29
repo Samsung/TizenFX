@@ -16,10 +16,15 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.PenWave
 {
-    internal class Command : ICommand
+    /// <summary>
+    /// Represents a command that can be executed.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Command : ICommand
     {
         /// <summary>
         /// The action to be executed when command is invoked.
@@ -30,6 +35,7 @@ namespace Tizen.NUI.PenWave
         /// Constructor.
         /// </summary>
         /// <param name="executeAction">The action to be executed when the command is invoked.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action executeAction)
         {
             this.executeAction = executeAction;
@@ -38,6 +44,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Executes the command.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Execute()
         {
             executeAction?.Invoke();

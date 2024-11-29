@@ -15,18 +15,28 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The dot brush strategy.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class DotBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply the brush settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(1);
-            PWEngine.SetBrushTexture(1);
-            PWEngine.SetBrushDistance(2.0f);
+            PenWave.Instance.SetStrokeType(1);
+            PenWave.Instance.SetBrushTexture(1);
+            PenWave.Instance.SetBrushDistance(2.0f);
         }
     }
 }

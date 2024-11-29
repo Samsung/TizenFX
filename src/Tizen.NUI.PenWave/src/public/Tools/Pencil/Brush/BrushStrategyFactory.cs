@@ -23,13 +23,25 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The factory class that creates brush strategies.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class BrushStrategyFactory
     {
         private static readonly BrushStrategyFactory instance = new BrushStrategyFactory();
         private Dictionary<PencilTool.BrushType, IBrushStrategy> brushStrategies = new Dictionary<PencilTool.BrushType, IBrushStrategy>();
 
+        /// <summary>
+        /// Gets the singleton instance of the BrushStrategyFactory.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BrushStrategyFactory Instance => instance;
 
+        /// <summary>
+        /// Gets the brush strategy for the specified brush type.
+        /// </summary>
+        /// <param name="brushType">The brush type.</param>
         public IBrushStrategy GetBrushStrategy(PencilTool.BrushType brushType)
         {
             if (!brushStrategies.ContainsKey(brushType))

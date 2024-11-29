@@ -15,17 +15,27 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The dashed line brush strategy.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class DashedLineBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply brush settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(5);
-            PWEngine.SetDashArray("1 3");
+            PenWave.Instance.SetStrokeType(5);
+            PenWave.Instance.SetDashArray("1 3");
         }
     }
 }

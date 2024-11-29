@@ -23,6 +23,10 @@ namespace Tizen.NUI.PenWave
         public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
     }
 
+    /// <summary>
+    /// Enumeration for the grid density type.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum GridDensityType
     {
         None = 0,

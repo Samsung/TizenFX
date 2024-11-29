@@ -15,16 +15,26 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The brush strategy that increases the stroke size as the user draws longer strokes.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class VarStrokeIncBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply the brush settings to the PenWave instance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(7);
+            PenWave.Instance.SetStrokeType(7);
         }
     }
 }

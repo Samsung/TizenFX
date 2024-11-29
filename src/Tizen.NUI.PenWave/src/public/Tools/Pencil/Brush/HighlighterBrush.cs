@@ -15,18 +15,28 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The highlighter brush strategy.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class HighlighterBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Apply the brush settings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(1);
-            PWEngine.SetBrushTexture(3);
-            PWEngine.SetBrushDistance(0.25f);
+            PenWave.Instance.SetStrokeType(1);
+            PenWave.Instance.SetBrushTexture(3);
+            PenWave.Instance.SetBrushDistance(0.25f);
         }
     }
 }

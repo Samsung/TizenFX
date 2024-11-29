@@ -45,6 +45,7 @@ namespace Tizen.NUI.PenWave
 
         // Canvas id.
         private uint canvasId;
+        private PenWave engine;
 
         /// <summary>
         /// Constructor. Creates a new instance of CanvasRenderer. This constructor sets the current canvas to the specified canvas id. Also it sets paths to resources and initializes textures.
@@ -53,10 +54,11 @@ namespace Tizen.NUI.PenWave
         public CanvasRenderer(uint canvasId)
         {
             this.canvasId = canvasId;
-            PWEngine.SetCurrentCanvas(canvasId);
-            PWEngine.SetResourcePath(FrameworkInformation.ResourcePath + "images/");
-            PWEngine.SetFontPath(FontPath);
-            PWEngine.SetTexturePaths(TexturePaths, TexturePaths.Length);
+            engine = PenWave.Instance;
+            engine.SetCurrentCanvas(canvasId);
+            engine.SetResourcePath(FrameworkInformation.ResourcePath + "images/");
+            engine.SetFontPath(FontPath);
+            engine.SetTexturePaths(TexturePaths, TexturePaths.Length);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         public void InitializeGL()
         {
-            PWEngine.InitializeGL();
+            engine.InitializeGL();
         }
 
         /// <summary>
@@ -72,7 +74,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         public void TerminateGL()
         {
-            PWEngine.TerminateGL();
+            engine.TerminateGL();
         }
 
         /// <summary>
@@ -82,7 +84,7 @@ namespace Tizen.NUI.PenWave
         /// <returns></returns>
         public int RenderFrame(in DirectRenderingGLView.RenderCallbackInput input)
         {
-            return PWEngine.RenderFrameGL();
+            return engine.RenderFrameGL();
         }
 
         /// <summary>
@@ -92,8 +94,8 @@ namespace Tizen.NUI.PenWave
         /// <param name="height"></param>
         public void Resize(int width, int height)
         {
-            PWEngine.UpdateGLWindowSize(width, height);
-            PWEngine.RenderFullyReDraw();
+            engine.UpdateGLWindowSize(width, height);
+            engine.RenderFullyReDraw();
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         public void ClearCanvas()
         {
-            PWEngine.ClearCurrentCanvas();
+            engine.ClearCurrentCanvas();
         }
 
         /// <summary>
@@ -110,7 +112,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="path"></param>
         public void AddPicture(string path, Size2D size, Position2D position)
         {
-            PWEngine.AddPicture(path, position.X, position.Y, size.Width, size.Height);
+            engine.AddPicture(path, position.X, position.Y, size.Width, size.Height);
         }
 
         /// <summary>
@@ -119,7 +121,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="gridType"></param>
         public void ToggleGrid(GridDensityType gridType)
         {
-            PWEngine.ToggleGrid((int)gridType);
+            engine.ToggleGrid((int)gridType);
         }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="color"></param>
         public void SetCanvasColor(Color color)
         {
-            PWEngine.CanvasSetColor(ToHex(color), 1.0f);
+            engine.CanvasSetColor(ToHex(color), 1.0f);
         }
 
         /// <summary>
@@ -137,7 +139,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="path"></param>
         public void SaveCanvas(string path)
         {
-            PWEngine.SaveCanvas(canvasId, path);
+            engine.SaveCanvas(canvasId, path);
         }
 
         /// <summary>
@@ -152,10 +154,25 @@ namespace Tizen.NUI.PenWave
             }
             else
             {
-                PWEngine.LoadCanvas(canvasId, path);
+                engine.LoadCanvas(canvasId, path);
             }
         }
 
+        /// <summary>
+        /// Takes screenshot of the current canvas and saves it to the specified path. The area of the screenshot is defined by the coordinates and dimensions. The callback is called when the screenshot is saved. The callback has one parameter which is the path to the saved image. If the path is null, then the screenshot was not saved successfully.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="callback"></param>
+        public void TakeScreenShot(string path, int x, int y, int width, int height, PenWave.ThumbnailSavedCallback callback)
+        {
+            engine.TakeScreenshot(canvasId, path, x, y, width, height, callback);
+        }
+
+        // Converts Color to hex string.
         private string ToHex(Color color)
         {
             var red = (uint)(color.R * 255);

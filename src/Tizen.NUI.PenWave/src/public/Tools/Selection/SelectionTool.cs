@@ -28,6 +28,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Enumeration for the type of selection operation
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum SelectionType
         {
             Move  = 0,
@@ -78,6 +79,7 @@ namespace Tizen.NUI.PenWave
         /// Constructor for the selection tool.
         /// </summary>
         /// <param name="selectionType"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionTool(SelectionType selectionType)
         {
             Selection = selectionType;
@@ -86,19 +88,22 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// The type of selection operation. Default is move.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionType Selection { get; set; }
 
 
         /// <summary>
-        /// Activate the selection tool. This method is called when the tool is selected from the tools
+        /// Activate the selection tool.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Activate()
         {
         }
 
         /// <summary>
-        /// Deactivate the selection tool. This method is called when the tool is deselected from the tools
+        /// Deactivate the selection tool.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Deactivate()
         {
             currentMode = Mode.None;
@@ -110,7 +115,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <param name="touch"></param>
         /// <param name="unredoManager"></param>
-        public override void HandleInput(Touch touch, UnRedoManager unredoManager)
+        internal override void HandleInput(Touch touch, UnRedoManager unredoManager)
         {
             if (touch == null || touch.GetPointCount() == 0) return;
 
@@ -143,25 +148,25 @@ namespace Tizen.NUI.PenWave
         private  void StartDrawing(Vector2 position, uint touchTime)
         {
             initialTouch = new Vector2(position.X, position.Y);
-            isTouchedInsideSelectedArea = PWEngine.InsideSelectedArea(position.X, position.Y);
+            isTouchedInsideSelectedArea = PenWave.Instance.InsideSelectedArea(position.X, position.Y);
             if (!isTouchedInsideSelectedArea)
             {
-                PWEngine.DropSelectedDrawables();
-                drawableType = (DrawableType)PWEngine.SelectDrawable(position.X, position.Y);
+                PenWave.Instance.DropSelectedDrawables();
+                drawableType = (DrawableType)PenWave.Instance.SelectDrawable(position.X, position.Y);
             }
             else
             {
                 if (Selection == SelectionType.Rotate)
                 {
-                    PWEngine.StartRotating(position.X, position.Y);
+                    PenWave.Instance.StartRotating(position.X, position.Y);
                 }
                 else if (Selection == SelectionType.Scale)
                 {
                     float topLeftX = 0, topLeftY = 0, widthSelection = 0, heightSelection = 0;
-                    PWEngine.GetSelectionDimensions(ref topLeftX, ref topLeftY, ref widthSelection, ref heightSelection);
+                    PenWave.Instance.GetSelectionDimensions(ref topLeftX, ref topLeftY, ref widthSelection, ref heightSelection);
                     if (!Double.IsNaN(topLeftX))
                     {
-                        PWEngine.StartSelectionScale(
+                        PenWave.Instance.StartSelectionScale(
                             initialTouch.X >= topLeftX+widthSelection*0.5f,
                             initialTouch.X < topLeftX+widthSelection*0.5f,
                             initialTouch.Y >= topLeftY+heightSelection*0.5f,
@@ -186,26 +191,26 @@ namespace Tizen.NUI.PenWave
             {
                 if (currentMode == Mode.None)
                 {
-                    PWEngine.StartSelectingArea(position.X, position.Y);
+                    PenWave.Instance.StartSelectingArea(position.X, position.Y);
                 }
-                PWEngine.ResizeSelectedArea(position.X, position.Y);
+                PenWave.Instance.ResizeSelectedArea(position.X, position.Y);
                 currentMode = Mode.Resize;
             }
             else if (currentMode != Mode.Resize && drawableType != DrawableType.None)
             {
                 if (Selection == SelectionType.Move)
                 {
-                    PWEngine.DragSelectedDrawables(position.X, position.Y);
+                    PenWave.Instance.DragSelectedDrawables(position.X, position.Y);
                     currentMode = Mode.Move;
                 }
                 else if (Selection == SelectionType.Rotate)
                 {
-                    PWEngine.RotateSelected(position.X, position.Y);
+                    PenWave.Instance.RotateSelected(position.X, position.Y);
                     currentMode = Mode.Rotate;
                 }
                 else if (Selection == SelectionType.Scale)
                 {
-                    PWEngine.ScaleSelection(
+                    PenWave.Instance.ScaleSelection(
                                 (position.X-anchorX)/(startScaleX-anchorX),
                                 (position.Y-anchorY)/(startScaleY-anchorY)
                             );
@@ -220,23 +225,23 @@ namespace Tizen.NUI.PenWave
             switch (currentMode)
             {
                 case Mode.Move :
-                    PWEngine.EndDraging();
+                    PenWave.Instance.EndDraging();
                     break;
                 case Mode.Resize :
-                    drawableType = (DrawableType)PWEngine.SelectDrawables();
+                    drawableType = (DrawableType)PenWave.Instance.SelectDrawables();
                     break;
                 case Mode.Rotate :
-                    PWEngine.EndRotating(position.X, position.Y);
+                    PenWave.Instance.EndRotating(position.X, position.Y);
                     break;
                 case Mode.Scale :
-                    PWEngine.EndRotating(position.X, position.Y);
-                    PWEngine.EndSelectionScale(
+                    PenWave.Instance.EndRotating(position.X, position.Y);
+                    PenWave.Instance.EndSelectionScale(
                                     (position.X-anchorX)/(startScaleX-anchorX),
                                     (position.Y-anchorY)/(startScaleY-anchorY)
                                 );
                     break;
                 default :
-                    PWEngine.DropSelectedDrawables();
+                    PenWave.Instance.DropSelectedDrawables();
                     break;
             }
             isTouchedInsideSelectedArea = false;

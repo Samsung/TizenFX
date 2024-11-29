@@ -15,10 +15,16 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The UnRedoManager class manages undo and redo operations for commands.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class UnRedoManager
     {
         // Stacks to store undo and redo commands
@@ -29,6 +35,7 @@ namespace Tizen.NUI.PenWave
         /// Executes a command and clears the redo stack.
         /// </summary>
         /// <param name="command">The command to be executed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Execute(ICommand command)
         {
             command.Execute();
@@ -39,12 +46,13 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Undoes the last executed command and pushes it to the redo stack.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Undo()
         {
             if (undoStack.Count > 0)
             {
                 ICommand command = undoStack.Pop();
-                PWEngine.Undo();
+                PenWave.Instance.Undo();
                 redoStack.Push(command);
             }
         }
@@ -52,12 +60,13 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Redoes the last undone command and pushes it to the undo stack.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Redo()
         {
             if (redoStack.Count > 0)
             {
                 ICommand command = redoStack.Pop();
-                PWEngine.Redo();
+                PenWave.Instance.Redo();
                 undoStack.Push(command);
             }
         }
@@ -65,11 +74,13 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Determines whether an undo operation is possible.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanUndo => undoStack.Count > 0;
 
         /// <summary>
         /// Determines whether a redo operation is possible.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanRedo => redoStack.Count > 0;
     }
 }

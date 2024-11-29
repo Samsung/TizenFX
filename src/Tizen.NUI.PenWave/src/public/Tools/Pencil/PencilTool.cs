@@ -23,8 +23,16 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The pencil tool allows the user to draw shapes on the canvas using a stylus or finger.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PencilTool : ToolBase
     {
+        /// <summary>
+        /// The type of brush used to draw.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum BrushType
         {
             Stroke  = 0,
@@ -38,6 +46,7 @@ namespace Tizen.NUI.PenWave
             SharpBrush
         }
 
+        // The error codes returned from the native side when adding points to a shape.
         private enum ErrorShapeAddPointsType
         {
             NoError,
@@ -50,8 +59,13 @@ namespace Tizen.NUI.PenWave
             DrawingCanceled
         }
 
+        // The id of the current shape being drawn.
         private uint currentShapeId;
 
+        /// <summary>
+        /// Creates a new instance of a PencilTool.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PencilTool(BrushType brushType, Color color, float size)
         {
             Brush = brushType;
@@ -59,12 +73,25 @@ namespace Tizen.NUI.PenWave
             BrushSize = size;
         }
 
+        /// <summary>
+        /// The type of brush used to draw.
+        /// </summary>
+       [EditorBrowsable(EditorBrowsableState.Never)]
         public BrushType Brush { get; set; }
 
+        /// <summary>
+        /// The color of the brush used to draw.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color BrushColor { get; set; }
 
+        /// <summary>
+        /// The size of the brush used to draw.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float BrushSize { get; set; }
 
+        // Converts a color to a hex string. Used to pass colors to the native side.
         private string ToHex(Color color)
         {
             var red = (uint)(color.R * 255);
@@ -73,6 +100,7 @@ namespace Tizen.NUI.PenWave
             return $"#{red:X2}{green:X2}{blue:X2}";
         }
 
+        // Sets the brush type and applies the settings for that brush.
         private void SetBrushType(BrushType brushType)
         {
             var brushStragety = BrushStrategyFactory.Instance.GetBrushStrategy(brushType);
@@ -82,19 +110,30 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        /// <summary>
+        /// Activates the tool.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Activate()
         {
             SetBrushType(Brush);
-            PWEngine.SetStrokeColor(ToHex(BrushColor), 1.0f);
-            PWEngine.SetStrokeSize(BrushSize);
+            PenWave.Instance.SetStrokeColor(ToHex(BrushColor), 1.0f);
+            PenWave.Instance.SetStrokeSize(BrushSize);
         }
 
+        /// <summary>
+        /// Deactivates the tool.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Deactivate()
         {
             EndDrawing();
         }
 
-        public override void HandleInput(Touch touch, UnRedoManager unredoManager)
+        /// <summary>
+        /// Handles input from the user.
+        /// </summary>
+        internal override void HandleInput(Touch touch, UnRedoManager unredoManager)
         {
             if (touch == null || touch.GetPointCount() == 0) return;
 
@@ -125,17 +164,19 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        // Starts drawing a new shape. This will create a new shape on the canvas.
         private  void StartDrawing(Vector2 position, uint touchTime)
         {
-            currentShapeId = PWEngine.BeginShapeDraw(position.X, position.Y, touchTime);
+            currentShapeId = PenWave.Instance.BeginShapeDraw(position.X, position.Y, touchTime);
             NotifyActionStarted();
         }
 
+        // Continues drawing the current shape.
         private void ContinueDrawing(Vector2 position, uint touchTime)
         {
             if (currentShapeId > 0)
             {
-                var result = (ErrorShapeAddPointsType)PWEngine.DrawShape(currentShapeId, position.X, position.Y, touchTime);
+                var result = (ErrorShapeAddPointsType)PenWave.Instance.DrawShape(currentShapeId, position.X, position.Y, touchTime);
                 if (result == ErrorShapeAddPointsType.OverflowShape)
                 {
                     EndDrawing();
@@ -148,9 +189,10 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        // Ends drawing the current shape.
         private void EndDrawing()
         {
-            PWEngine.EndShapeDraw(currentShapeId, 0);
+            PenWave.Instance.EndShapeDraw(currentShapeId, 0);
             currentShapeId = 0;
             NotifyActionFinished();
         }

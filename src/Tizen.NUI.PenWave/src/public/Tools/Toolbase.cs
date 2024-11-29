@@ -14,13 +14,16 @@
  * limitations under the License.
  *
  */
+
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.PenWave
 {
     /// <summary>
     /// The base class for all tools in the PenWave.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class ToolBase
     {
         /// <summary>
@@ -38,16 +41,18 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <param name="touch">The touch event data.</param>
         /// <param name="unredoManager">The manager responsible for handling undo and redo operations.</param>
-        public virtual void HandleInput(Touch touch, UnRedoManager unredoManager) {}
+        internal virtual void HandleInput(Touch touch, UnRedoManager unredoManager) {}
 
         /// <summary>
         /// Activates the tool, making it ready to receive input and perform its functionality.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Activate();
 
         /// <summary>
         /// Deactivates the tool, stopping it from receiving input and performing its functionality.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Deactivate();
 
         /// <summary>

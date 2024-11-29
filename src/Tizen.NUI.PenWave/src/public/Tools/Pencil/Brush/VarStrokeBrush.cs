@@ -15,16 +15,26 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// A brush strategy that applies a variable stroke type.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class VarStrokeBrush : IBrushStrategy
     {
+        /// <summary>
+        /// Applies the settings for the brush.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PWEngine.SetStrokeType(6);
+            PenWave.Instance.SetStrokeType(6);
         }
     }
 }

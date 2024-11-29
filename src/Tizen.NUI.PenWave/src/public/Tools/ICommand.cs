@@ -15,17 +15,21 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.PenWave
 {
     /// <summary>
     /// Commands that can be executed.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public interface ICommand
     {
         /// <summary>
         /// Executes the command.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         void Execute();
     }
 }
