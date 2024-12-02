@@ -105,7 +105,7 @@ namespace Tizen.NUI.PenWave
         /// The ToolChanged event. It is triggered when the selected tool changes.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event Action<ToolBase> ToolChanged;
+        public event EventHandler ToolChanged;
 
         /// <summary>
         /// Creates a new instance of PWToolPicker.
@@ -332,7 +332,7 @@ namespace Tizen.NUI.PenWave
             {
                 canvasView.Tool = tool;
                 ShowToolSettings(tool);
-                ToolChanged?.Invoke(tool);
+                ToolChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

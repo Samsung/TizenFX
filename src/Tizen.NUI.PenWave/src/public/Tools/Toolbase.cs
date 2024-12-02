@@ -29,19 +29,21 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Events that are triggered when the tool starts an action.
         /// </summary>
-        internal event EventHandler ActionStarted;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler ActionStarted;
 
         /// <summary>
         /// Events that are triggered when the tool finishes an action.
         /// </summary>
-        internal event EventHandler ActionFinished;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler ActionFinished;
 
         /// <summary>
         /// Handles input events such as touch events and updates the state of the tool accordingly.
         /// </summary>
         /// <param name="touch">The touch event data.</param>
-        /// <param name="unredoManager">The manager responsible for handling undo and redo operations.</param>
-        internal virtual void HandleInput(Touch touch, UnRedoManager unredoManager) {}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract void HandleInput(Touch touch);
 
         /// <summary>
         /// Activates the tool, making it ready to receive input and perform its functionality.

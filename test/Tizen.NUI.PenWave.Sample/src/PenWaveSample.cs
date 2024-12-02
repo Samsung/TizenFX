@@ -15,9 +15,25 @@ namespace PenWaveSample
     {
         public static Program app;
         private Window mWindow;
-        private PWToolPicker mToolPickerView;
+        private PenWaveToolPicker mToolPickerView;
         private PenWaveCanvas canvasView;
         private ImageView thumbnailView;
+
+        public class TestTool : ToolBase
+        {
+            public override void Activate()
+            {
+            }
+
+            public override void Deactivate()
+            {
+            }
+
+            public override void HandleInput(Touch touch)
+            {
+                NotifyActionFinished();
+            }
+        }
 
         public Program(ThemeOptions option, WindowData windowData) : base(option, windowData)
         {
@@ -32,7 +48,7 @@ namespace PenWaveSample
 
         private void ToolPicker()
         {
-            mToolPickerView = new PWToolPicker(canvasView);
+            mToolPickerView = new PenWaveToolPicker(canvasView);
             mToolPickerView.Initialize();
 
             var pictureButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
@@ -43,14 +59,14 @@ namespace PenWaveSample
 
             var screenShotButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
-                PenWave.ThumbnailSavedCallback ThumbnailsDelegate = OnThumbnails;
-                canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, ThumbnailsDelegate);
+                canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, OnThumbnails);
             });
             mToolPickerView.PickerView.Add(screenShotButton);
         }
 
-        private void OnThumbnails()
+        private void OnThumbnails(object sender, EventArgs e)
         {
+            Tizen.Log.Error("NUI", $"OnThumbnails\n");
             string source = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png";
             string destination = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot_copy.png";
             File.Copy(source, destination, true);
