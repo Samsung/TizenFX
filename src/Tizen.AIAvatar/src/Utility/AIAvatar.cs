@@ -15,13 +15,15 @@
  *
  */
 
+using Tizen.Multimedia;
+
 namespace Tizen.AIAvatar
 {
-    internal class Test
+    internal static class AIAvatar
     {
-        public void CreateTest()
-        {
-          
-        }
+        internal const string LogTag = "Tizen.AIAvatar";
+
+        internal static AudioOptions DefaultAudioOptions = new AudioOptions(24000, AudioChannel.Mono, AudioSampleType.S16Le, AudioStreamType.System);
+        internal static AudioOptions CurrentAudioOptions = DefaultAudioOptions;
     }
 }
