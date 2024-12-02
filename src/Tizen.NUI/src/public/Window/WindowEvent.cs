@@ -1052,6 +1052,12 @@ namespace Tizen.NUI
 
         private bool OnWindowTouch(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -1069,6 +1075,12 @@ namespace Tizen.NUI
 
         private bool OnWindowInterceptTouch(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -1087,6 +1099,12 @@ namespace Tizen.NUI
 
         private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -1104,6 +1122,12 @@ namespace Tizen.NUI
 
         private bool OnWindowInterceptWheel(IntPtr view, IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -1123,6 +1147,12 @@ namespace Tizen.NUI
         // Callback for Stage KeyEventsignal
         private void OnStageKey(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (stageKeyHandler != null)
             {
                 KeyEventArgs e = new KeyEventArgs();
@@ -1135,6 +1165,12 @@ namespace Tizen.NUI
         // Callback for Stage InterceptKeyEventsignal
         private bool OnStageInterceptKey(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             bool consumed = false;
             if (stageInterceptKeyHandler != null)
             {
@@ -1266,6 +1302,12 @@ namespace Tizen.NUI
 
         private void OnWindowMouseInOutEvent(IntPtr view, IntPtr mouseEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (mouseEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("mouseEvent should not be null!");
@@ -1312,6 +1354,12 @@ namespace Tizen.NUI
 
         private void OnWindowMouseRelativeEvent(IntPtr view, IntPtr mouseEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (mouseEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("mouseEvent should not be null!");
@@ -1328,6 +1376,12 @@ namespace Tizen.NUI
 
         private void OnWindowPointerConstraintsEvent(IntPtr view, IntPtr constraintsEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (constraintsEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("constraintsEvent should not be null!");
@@ -1344,6 +1398,12 @@ namespace Tizen.NUI
 
         private bool OnWindowHover(IntPtr view, IntPtr hoverData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (hoverData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("hoverData should not be null!");
@@ -1688,6 +1748,12 @@ namespace Tizen.NUI
 
         private void OnDetentEvent(IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
             if (wheelEvent != global::System.IntPtr.Zero)
