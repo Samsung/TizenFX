@@ -815,9 +815,39 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance
             //because the execution order of Finalizes is non-deterministic.
 
+            if (activatedEventCallback != null)
+            {
+                ActivatedSignal().Disconnect(activatedEventCallback);
+            }
+
+            if (eventReceivedEventCallback != null)
+            {
+                EventReceivedSignal().Disconnect(eventReceivedEventCallback);
+            }
+
+            if (statusChangedEventCallback != null)
+            {
+                StatusChangedSignal().Disconnect(statusChangedEventCallback);
+            }
+
+            if (resizedEventCallback != null)
+            {
+                ResizedSignal().Disconnect(resizedEventCallback);
+            }
+
+            if (languageChangedEventCallback != null)
+            {
+                LanguageChangedSignal().Disconnect(languageChangedEventCallback);
+            }
+
             if (keyboardTypeChangedEventCallback != null)
             {
                 KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+            }
+
+            if (contentReceivedEventCallback != null)
+            {
+                ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
             }
 
             base.Dispose(type);
@@ -832,6 +862,12 @@ namespace Tizen.NUI
 
         private void OnActivated(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             ActivatedEventArgs e = new ActivatedEventArgs();
 
             if (data != null)
@@ -847,6 +883,12 @@ namespace Tizen.NUI
 
         private IntPtr OnEventReceived(IntPtr inputMethodContext, IntPtr eventData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return IntPtr.Zero;
+            }
+
             CallbackData callbackData = null;
 
             EventReceivedEventArgs e = new EventReceivedEventArgs();
@@ -876,6 +918,12 @@ namespace Tizen.NUI
 
         private void OnStatusChanged(bool statusChanged)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             StatusChangedEventArgs e = new StatusChangedEventArgs();
 
             e.StatusChanged = statusChanged;
@@ -888,6 +936,12 @@ namespace Tizen.NUI
 
         private void OnResized(int resized)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             ResizedEventArgs e = new ResizedEventArgs();
             e.Resized = resized;
 
@@ -899,6 +953,12 @@ namespace Tizen.NUI
 
         private void OnLanguageChanged(int languageChanged)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             LanguageChangedEventArgs e = new LanguageChangedEventArgs();
             e.LanguageChanged = languageChanged;
 
@@ -910,6 +970,12 @@ namespace Tizen.NUI
 
         private void OnKeyboardTypeChanged(KeyboardType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             KeyboardTypeChangedEventArgs e = new KeyboardTypeChangedEventArgs();
 
             e.KeyboardType = type;
@@ -922,6 +988,12 @@ namespace Tizen.NUI
 
         private void OnContentReceived(string content, string description, string mimeType)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             ContentReceivedEventArgs e = new ContentReceivedEventArgs();
             e.Content = content;
             e.Description = description;
