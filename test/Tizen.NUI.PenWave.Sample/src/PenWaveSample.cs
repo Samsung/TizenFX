@@ -19,6 +19,22 @@ namespace PenWaveSample
         private PenWaveCanvas canvasView;
         private ImageView thumbnailView;
 
+        public class TestTool : ToolBase
+        {
+            public override void Activate()
+            {
+            }
+
+            public override void Deactivate()
+            {
+            }
+
+            public override void HandleInput(Touch touch)
+            {
+                NotifyActionFinished();
+            }
+        }
+
         public Program(ThemeOptions option, WindowData windowData) : base(option, windowData)
         {
 

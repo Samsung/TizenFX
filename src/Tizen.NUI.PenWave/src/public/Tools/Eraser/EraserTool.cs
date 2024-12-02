@@ -29,6 +29,9 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class EraserTool : ToolBase
     {
+        /// The current state of the tool.
+        private bool isActive = false;
+
         /// <summary>
         /// The type of eraser tool.
         /// </summary>
@@ -82,7 +85,7 @@ namespace Tizen.NUI.PenWave
         /// Handle input events.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal override void HandleInput(Touch touch, UnRedoManager unredoManager)
+        public override void HandleInput(Touch touch)
         {
             if (touch == null || touch.GetPointCount() == 0) return;
 
@@ -106,8 +109,7 @@ namespace Tizen.NUI.PenWave
                     break;
                 case PointStateType.Up:
                 case PointStateType.Leave:
-                    var command = new Command(() => EndDrawing());
-                    unredoManager.Execute(command);
+                    EndDrawing();
                     break;
             }
         }
@@ -115,6 +117,7 @@ namespace Tizen.NUI.PenWave
         // Start drawing at the given position.
         private  void StartDrawing(Vector2 position, uint touchTime)
         {
+            isActive = true;
             PenWave.Instance.EraseShape((int)position.X, (int)position.Y, EraserRadius, (Eraser == EraserType.Partial));
             NotifyActionStarted();
         }
@@ -128,10 +131,13 @@ namespace Tizen.NUI.PenWave
         // End drawing at the given position.
         private void EndDrawing()
         {
-            PenWave.Instance.StopErasing();
-            NotifyActionFinished();
+            if (isActive)
+            {
+                PenWave.Instance.StopErasing();
+                NotifyActionFinished();
+                isActive = false;
+            }
         }
-
     }
 }
 
