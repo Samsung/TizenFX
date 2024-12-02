@@ -133,7 +133,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handles input from the user.
         /// </summary>
-        internal override void HandleInput(Touch touch, UnRedoManager unredoManager)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void HandleInput(Touch touch)
         {
             if (touch == null || touch.GetPointCount() == 0) return;
 
@@ -157,8 +158,6 @@ namespace Tizen.NUI.PenWave
                     break;
                 case PointStateType.Up:
                 case PointStateType.Leave:
-                    var command = new Command(() => EndDrawing());
-                    unredoManager.Execute(command);
                     EndDrawing();
                     break;
             }
@@ -168,7 +167,10 @@ namespace Tizen.NUI.PenWave
         private  void StartDrawing(Vector2 position, uint touchTime)
         {
             currentShapeId = PenWave.Instance.BeginShapeDraw(position.X, position.Y, touchTime);
-            NotifyActionStarted();
+            if (currentShapeId > 0)
+            {
+                NotifyActionStarted();
+            }
         }
 
         // Continues drawing the current shape.
@@ -192,9 +194,12 @@ namespace Tizen.NUI.PenWave
         // Ends drawing the current shape.
         private void EndDrawing()
         {
-            PenWave.Instance.EndShapeDraw(currentShapeId, 0);
-            currentShapeId = 0;
-            NotifyActionFinished();
+            if (currentShapeId > 0)
+            {
+                PenWave.Instance.EndShapeDraw(currentShapeId, 0);
+                currentShapeId = 0;
+                NotifyActionFinished();
+            }
         }
 
     }

@@ -23,6 +23,10 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The selection tool allows the user to select
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SelectionTool : ToolBase
     {
         /// <summary>
@@ -115,7 +119,8 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <param name="touch"></param>
         /// <param name="unredoManager"></param>
-        internal override void HandleInput(Touch touch, UnRedoManager unredoManager)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void HandleInput(Touch touch)
         {
             if (touch == null || touch.GetPointCount() == 0) return;
 

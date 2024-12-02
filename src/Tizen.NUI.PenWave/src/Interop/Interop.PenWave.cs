@@ -12,9 +12,9 @@ namespace Tizen.NUI.PenWave
 {
         internal static partial class Interop
         {
-                public static partial class PenWave
+                internal static partial class PenWave
                 {
-                        public const string Lib = "libhand-drawing-engine.so";
+                        private const string Lib = "libhand-drawing-engine.so";
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "InitializeGL")]
                         public static extern void InitializeGL();
@@ -72,8 +72,9 @@ namespace Tizen.NUI.PenWave
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CanvasGetZoomValue")]
                         public static extern int CanvasGetZoomValue();
+
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CanvasSetZoomValue")]
-                        public static extern float CanvasSetZoomValue(float zoomValue);
+                        public static extern void CanvasSetZoomValue(float zoomValue);
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CanvasMoveBegin")]
                         public static extern bool CanvasMoveBegin();
@@ -122,9 +123,6 @@ namespace Tizen.NUI.PenWave
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "GetBrushSize")]
                         public static extern float GetBrushSize();
 
-                        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "GetBrushColor")]
-                        public static extern float GetBrushColor([MarshalAs(UnmanagedType.LPStr)] StringBuilder hex);
-
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "GetBrushType")]
                         public static extern int GetBrushType();
 
@@ -143,10 +141,8 @@ namespace Tizen.NUI.PenWave
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CreateCanvas")]
                         public static extern uint CreateCanvas(int canvasWidth, int canvasHeight);
 
-                        // #if PICTURE
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CreateCanvasWithBackgroundImage")]
                         public static extern uint CreateCanvasWithBackgroundImage([MarshalAs(UnmanagedType.LPStr)] string path);
-                        // #endif
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "SetCurrentCanvas")]
                         public static extern void SetCurrentCanvas(uint canvasID);
@@ -223,13 +219,13 @@ namespace Tizen.NUI.PenWave
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "ToggleGrid")]
                         public static extern void ToggleGrid(int densityType);
 
-                        // #if CHART
+                        //CHART
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "ToggleChartGrid")]
                         public static extern void ToggleChartGrid(int densityType);
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "GetChartGridDensity")]
                         public static extern int GetChartGridDensity();
-                        // #endif
+                        //
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "Dump")]
                         public static extern void Dump();
@@ -249,7 +245,7 @@ namespace Tizen.NUI.PenWave
                         [return:MarshalAs(UnmanagedType.I1)]
                         public static extern bool Remove();
 
-                        // #if CHART
+                        //CHART
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "AddChart")]
                         public static extern void AddChart(int chartType, [MarshalAs(UnmanagedType.LPStr)] string path);
 
@@ -258,21 +254,21 @@ namespace Tizen.NUI.PenWave
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "ChartPosition")]
                         public static extern void ChartPosition(ref float x, ref float y);
-                        // #endif
+                        //
 
-                        // #if PICTURE
+                        // PICTURE
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "PlacePicture")]
                         public static extern void AddPicture([MarshalAs(UnmanagedType.LPStr)] string path, float x, float y, float width, float height);
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "SetCanvasBackground")]
                         public static extern void SetCanvasBackground([MarshalAs(UnmanagedType.LPStr)] string path, float x, float y, float width, float height);
-                        // #endif
+                        //
 
-                        // #if TEXT
+                        // TEXT
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "AddText")]
                         public static extern void AddText([MarshalAs(UnmanagedType.LPStr)] string text, float x, float y, float size);
-                        // #endif
-                        // #if NOTES
+                        //
+                        // NOTES
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "AddNote")]
                         public static extern uint AddNote(float x, float y, float w, float h);
 
@@ -296,7 +292,7 @@ namespace Tizen.NUI.PenWave
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "TouchedNote")]
                         public static extern uint TouchedNote(float x, float y);
-                        // #endif
+                        //
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "Undo")]
                         [return:MarshalAs(UnmanagedType.I1)]
@@ -305,6 +301,15 @@ namespace Tizen.NUI.PenWave
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "Redo")]
                         [return:MarshalAs(UnmanagedType.I1)]
                         public static extern bool Redo();
+
+                        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CanUndo")]
+                        [return:MarshalAs(UnmanagedType.I1)]
+                        public static extern bool CanUndo();
+
+                        [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CanRedo")]
+                        [return:MarshalAs(UnmanagedType.I1)]
+                        public static extern bool CanRedo();
+
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "ResetUndo")]
                         public static extern void ResetUndo();
@@ -343,24 +348,6 @@ namespace Tizen.NUI.PenWave
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "ResetProfiler")]
                         public static extern void ResetProfiler();
-
-                        //Wrappers for Marshalled APIS
-                        // public static void GetConfigurations(out ConfigParameter[] configParameters, out int count)
-                        // {
-                        //     IntPtr configArrayPtr = GetAllConfigurations();
-                        //     int engineConfigCount = GetConfigurationCount();
-                        //     count = engineConfigCount;
-
-                        //     ConfigParameter[] configArray = new ConfigParameter[count];
-
-                        //     for (int i = 0; i < count; i++)
-                        //     {
-                        //         configArray[i] = Marshal.PtrToStructure<ConfigParameter>(configArrayPtr);
-                        //         configArrayPtr += Marshal.SizeOf<ConfigParameter>();
-                        //     }
-
-                        //     configParameters = configArray;
-                        // }
                 }
         }
 }

@@ -25,35 +25,34 @@ namespace Tizen.NUI.PenWave
     /// The UnRedoManager class manages undo and redo operations for commands.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class UnRedoManager
+    internal class UnRedoManager
     {
         // Stacks to store undo and redo commands
-        private readonly Stack<ICommand> undoStack = new Stack<ICommand>();
-        private readonly Stack<ICommand> redoStack = new Stack<ICommand>();
+        private uint undoStack = 0;
+        private uint redoStack = 0;
 
         /// <summary>
         /// Executes a command and clears the redo stack.
         /// </summary>
         /// <param name="command">The command to be executed.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Execute(ICommand command)
+        internal void RegisterUndo()
         {
-            command.Execute();
-            undoStack.Push(command);
-            redoStack.Clear(); // Clear redo stack after executing a new command
+            undoStack++; // Push command to undo stack
+            redoStack = 0; // Clear redo stack after executing a new command
         }
 
         /// <summary>
         /// Undoes the last executed command and pushes it to the redo stack.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Undo()
+        internal void Undo()
         {
-            if (undoStack.Count > 0)
+            if (undoStack > 0)
             {
-                ICommand command = undoStack.Pop();
+                undoStack--; // Pop command from undo stack
                 PenWave.Instance.Undo();
-                redoStack.Push(command);
+                redoStack++; // Push command to redo stack
             }
         }
 
@@ -61,13 +60,13 @@ namespace Tizen.NUI.PenWave
         /// Redoes the last undone command and pushes it to the undo stack.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Redo()
+        internal void Redo()
         {
-            if (redoStack.Count > 0)
+            if (redoStack > 0)
             {
-                ICommand command = redoStack.Pop();
+                redoStack--; // Pop command from redo stack
                 PenWave.Instance.Redo();
-                undoStack.Push(command);
+                undoStack++; // Push command to undo stack
             }
         }
 
@@ -75,12 +74,12 @@ namespace Tizen.NUI.PenWave
         /// Determines whether an undo operation is possible.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool CanUndo => undoStack.Count > 0;
+        internal bool CanUndo => undoStack > 0;
 
         /// <summary>
         /// Determines whether a redo operation is possible.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool CanRedo => redoStack.Count > 0;
+        internal bool CanRedo => redoStack > 0;
     }
 }

@@ -15,9 +15,25 @@ namespace PenWaveSample
     {
         public static Program app;
         private Window mWindow;
-        private PWToolPicker mToolPickerView;
+        private PenWaveToolPicker mToolPickerView;
         private PenWaveCanvas canvasView;
         private ImageView thumbnailView;
+
+        public class TestTool : ToolBase
+        {
+            public override void Activate()
+            {
+            }
+
+            public override void Deactivate()
+            {
+            }
+
+            public override void HandleInput(Touch touch)
+            {
+                NotifyActionFinished();
+            }
+        }
 
         public Program(ThemeOptions option, WindowData windowData) : base(option, windowData)
         {
@@ -32,25 +48,42 @@ namespace PenWaveSample
 
         private void ToolPicker()
         {
-            mToolPickerView = new PWToolPicker(canvasView);
-            mToolPickerView.Initialize();
+            mToolPickerView = new PenWaveToolPicker(canvasView);
 
-            var pictureButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
+            mToolPickerView.AddButtonToPickerView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
-                canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", new Size2D(500, 500), new Position2D(100, 200));
+                var picker = new View
+                {
+                    Layout = new LinearLayout
+                    {
+                        LinearOrientation = LinearLayout.Orientation.Horizontal
+                    }
+                };
+                for (int i=0; i<2; i++)
+                {
+                    var button = new Button()
+                    {
+                        Text = "test_"+i.ToString(),
+                    };
+                    button.Clicked += (o, e) =>
+                    {
+                        canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", new Size2D(500, 500), new Position2D(100, 200));
+                    };
+                    picker.Add(button);
+                }
+                mToolPickerView.AddViewToPopupView(picker);
+                mToolPickerView.ShowPopupView();
             });
-            mToolPickerView.PickerView.Add(pictureButton);
 
-            var screenShotButton = mToolPickerView.CreateToolButton(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
+            mToolPickerView.AddButtonToPickerView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
-                PenWave.ThumbnailSavedCallback ThumbnailsDelegate = OnThumbnails;
-                canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, ThumbnailsDelegate);
+                canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, OnThumbnails);
             });
-            mToolPickerView.PickerView.Add(screenShotButton);
         }
 
-        private void OnThumbnails()
+        private void OnThumbnails(object sender, EventArgs e)
         {
+            Tizen.Log.Error("NUI", $"OnThumbnails\n");
             string source = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png";
             string destination = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot_copy.png";
             File.Copy(source, destination, true);

@@ -30,6 +30,12 @@ namespace Tizen.NUI.PenWave
     public class PenWaveCanvas : DirectRenderingGLView
     {
         /// <summary>
+        /// The delegate for the thumbnail saved callback.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private event EventHandler screenShotFinished;
+
+        /// <summary>
         /// Events that are triggered when the tool starts an action.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -117,16 +123,39 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        /// <summary>
+        /// Notifies that the canvas has started an action.
+        /// </summary>
+        private void NotifyActionStarted(object sender, EventArgs e)
+        {
+            ActionStarted?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Notifies that the canvas has finished an action.
+        /// </summary>
+        private void NotifyActionFinished(object sender, EventArgs e)
+        {
+            ActionFinished?.Invoke(this, EventArgs.Empty);
+        }
+
+
         // Event handlers for action started.
         private void OnStarted(object sender, EventArgs e)
         {
-            ActionStarted?.Invoke(this, e);
+            NotifyActionStarted(sender, e);
         }
 
         // Event handlers for action finished.
         private void OnFinished(object sender, EventArgs e)
         {
-            ActionFinished?.Invoke(this, e);
+            RegisterUndo();
+            NotifyActionFinished(sender, e);
+        }
+
+        private void RegisterUndo()
+        {
+            unredoManager.RegisterUndo();
         }
 
         /// <summary>
@@ -135,8 +164,9 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCanvas()
         {
-            var command = new Command(() => renderer.ClearCanvas());
-            unredoManager.Execute(command);
+            renderer.ClearCanvas();
+            RegisterUndo();
+            NotifyActionFinished(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -198,8 +228,9 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddPicture(string path, Size2D size, Position2D position)
         {
-            var command = new Command(() => renderer.AddPicture(path, size, position));
-            unredoManager.Execute(command);
+            renderer.AddPicture(path, size, position);
+            RegisterUndo();
+            NotifyActionFinished(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -209,7 +240,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void HandleInput(Touch touch)
         {
-            currentTool?.HandleInput(touch, unredoManager);
+            currentTool?.HandleInput(touch);
         }
 
         /// <summary>
@@ -232,6 +263,7 @@ namespace Tizen.NUI.PenWave
             renderer.LoadCanvas(path);
         }
 
+
         /// <summary>
         /// Takes a screen shot of the canvas and saves it to a file.
         /// </summary>
@@ -242,9 +274,15 @@ namespace Tizen.NUI.PenWave
         /// <param name="height"></param>
         /// <param name="callback"></param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void TakeScreenShot(string path, int x, int y, int width, int height, PenWave.ThumbnailSavedCallback callback)
+        public void TakeScreenShot(string path, int x, int y, int width, int height, EventHandler callback)
         {
-            renderer.TakeScreenShot(path, x, y, width, height, callback);
+            renderer.TakeScreenShot(path, x, y, width, height, OnTakeScreenShot);
+            screenShotFinished = callback;
+        }
+
+        private void OnTakeScreenShot()
+        {
+            screenShotFinished?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

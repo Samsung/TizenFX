@@ -51,7 +51,7 @@ namespace Tizen.NUI.PenWave
         /// Constructor. Creates a new instance of CanvasRenderer. This constructor sets the current canvas to the specified canvas id. Also it sets paths to resources and initializes textures.
         /// </summary>
         /// <param name="canvasId"></param>
-        public CanvasRenderer(uint canvasId)
+        internal CanvasRenderer(uint canvasId)
         {
             this.canvasId = canvasId;
             engine = PenWave.Instance;
@@ -64,7 +64,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Initializes OpenGL context. This method must be called before any other methods that require OpenGL context.
         /// </summary>
-        public void InitializeGL()
+        internal void InitializeGL()
         {
             engine.InitializeGL();
         }
@@ -72,7 +72,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Terminates OpenGL context. This method must be called after all methods that require OpenGL context are finished.
         /// </summary>
-        public void TerminateGL()
+        internal void TerminateGL()
         {
             engine.TerminateGL();
         }
@@ -82,7 +82,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public int RenderFrame(in DirectRenderingGLView.RenderCallbackInput input)
+        internal int RenderFrame(in DirectRenderingGLView.RenderCallbackInput input)
         {
             return engine.RenderFrameGL();
         }
@@ -92,7 +92,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void Resize(int width, int height)
+        internal void Resize(int width, int height)
         {
             engine.UpdateGLWindowSize(width, height);
             engine.RenderFullyReDraw();
@@ -101,7 +101,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Clears the current canvas. All strokes and pictures will be removed.
         /// </summary>
-        public void ClearCanvas()
+        internal void ClearCanvas()
         {
             engine.ClearCurrentCanvas();
         }
@@ -110,7 +110,7 @@ namespace Tizen.NUI.PenWave
         /// Adds picture
         /// </summary>
         /// <param name="path"></param>
-        public void AddPicture(string path, Size2D size, Position2D position)
+        internal void AddPicture(string path, Size2D size, Position2D position)
         {
             engine.AddPicture(path, position.X, position.Y, size.Width, size.Height);
         }
@@ -119,7 +119,7 @@ namespace Tizen.NUI.PenWave
         /// Toggles the grid
         /// </summary>
         /// <param name="gridType"></param>
-        public void ToggleGrid(GridDensityType gridType)
+        internal void ToggleGrid(GridDensityType gridType)
         {
             engine.ToggleGrid((int)gridType);
         }
@@ -128,7 +128,7 @@ namespace Tizen.NUI.PenWave
         /// Sets the canvas background color
         /// </summary>
         /// <param name="color"></param>
-        public void SetCanvasColor(Color color)
+        internal void SetCanvasColor(Color color)
         {
             engine.CanvasSetColor(ToHex(color), 1.0f);
         }
@@ -137,7 +137,7 @@ namespace Tizen.NUI.PenWave
         /// Saves the canvas
         /// </summary>
         /// <param name="path"></param>
-        public void SaveCanvas(string path)
+        internal void SaveCanvas(string path)
         {
             engine.SaveCanvas(canvasId, path);
         }
@@ -146,7 +146,7 @@ namespace Tizen.NUI.PenWave
         /// Loads the canvas from the specified path.
         /// </summary>
         /// <param name="path"></param>
-        public void LoadCanvas(string path)
+        internal void LoadCanvas(string path)
         {
             if (!File.Exists(path))
             {
@@ -167,7 +167,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="callback"></param>
-        public void TakeScreenShot(string path, int x, int y, int width, int height, PenWave.ThumbnailSavedCallback callback)
+        internal void TakeScreenShot(string path, int x, int y, int width, int height, PenWave.ThumbnailSavedCallback callback)
         {
             engine.TakeScreenshot(canvasId, path, x, y, width, height, callback);
         }

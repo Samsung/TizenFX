@@ -24,10 +24,10 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.PenWave
 {
     /// <summary>
-    /// PWToolPicker class provides a user interface for selecting and configuring various drawing tools in the PenWave application.
+    /// PenWaveToolPicker class provides a user interface for selecting and configuring various drawing tools in the PenWave application.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class PWToolPicker : View
+    public class PenWaveToolPicker : View
     {
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath + "images/light/";
 
@@ -78,7 +78,6 @@ namespace Tizen.NUI.PenWave
         private readonly PenWaveCanvas canvasView;
         private readonly Dictionary<Type, ToolBase> tools;
 
-        private View rootView;
         private ImageView selectedButton;
         private ImageView undoButton;
         private ImageView redoButton;
@@ -108,15 +107,16 @@ namespace Tizen.NUI.PenWave
         public event EventHandler ToolChanged;
 
         /// <summary>
-        /// Creates a new instance of PWToolPicker.
+        /// Creates a new instance of PenWaveToolPicker.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PWToolPicker(PenWaveCanvas canvasView)
+        public PenWaveToolPicker(PenWaveCanvas canvasView)
         {
             this.canvasView = canvasView;
             tools = new Dictionary<Type, ToolBase>();
 
             canvasView.ActionFinished += OnFinished;
+            Initialize();
         }
 
         // Update UI when action finished. This method is called when the current action is finished.
@@ -126,7 +126,7 @@ namespace Tizen.NUI.PenWave
         }
 
         // Initialize the tool picker and its components.
-        public void Initialize()
+        private void Initialize()
         {
             InitializeUI();
             InitializeCanvasTools();
@@ -139,18 +139,11 @@ namespace Tizen.NUI.PenWave
         {
             WidthResizePolicy = ResizePolicyType.FillToParent;
             HeightResizePolicy = ResizePolicyType.FillToParent;
-
-            // Root View 구성
-            rootView = new View
+            Layout = new LinearLayout
             {
-                Layout = new LinearLayout
-                {
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                },
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                LinearOrientation = LinearLayout.Orientation.Vertical,
             };
 
             // Picker View 구성
@@ -187,9 +180,8 @@ namespace Tizen.NUI.PenWave
             PopupView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
             canvasView.TouchEvent += (s, e) => { ClearPopupView(); return false; }; // Hide popup when touching outside it
 
-            rootView.Add(PickerView);
-            rootView.Add(PopupView);
-            Add(rootView);
+            Add(PickerView);
+            Add(PopupView);
             canvasView.Add(this);
         }
 
@@ -525,10 +517,54 @@ namespace Tizen.NUI.PenWave
         }
 
         /// <summary>
+        /// Add a button to the picker view with the given icon path and click action.
+        /// </summary>
+        /// <param name="iconPath"></param>
+        /// <param name="OnClick"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddButtonToPickerView(string iconPath, Action OnClick)
+        {
+            var button = CreateToolButton(iconPath, OnClick);
+            PickerView.Add(button);
+        }
+
+        /// <summary>
+        /// Add a button to the picker view with the given view.
+        /// </summary>
+        /// <param name="view"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddViewToPickerView(View view)
+        {
+            PickerView.Add(view);
+        }
+
+        /// <summary>
+        /// Add a button to the popup view with the given icon path and click action.
+        /// </summary>
+        /// <param name="iconPath"></param>
+        /// <param name="OnClick"></param>
+        public void AddButtonToPopupView(string iconPath, Action OnClick)
+        {
+            var button = CreateToolButton(iconPath, OnClick);
+            PopupView.Add(button);
+        }
+
+        /// <summary>
+        /// Add a button to the popup view with the given icon path and click action.
+        /// </summary>
+        /// <param name="iconPath"></param>
+        /// <param name="OnClick"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddViewToPopupView(View view)
+        {
+            PopupView.Add(view);
+        }
+
+        /// <summary>
         /// Create a tool button with the given icon path and click action.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView CreateToolButton(string iconPath, Action OnClick)
+        private ImageView CreateToolButton(string iconPath, Action OnClick)
         {
             var button = new ImageView
             {
@@ -584,6 +620,15 @@ namespace Tizen.NUI.PenWave
                 PopupView.Remove(PopupView.GetChildAt((uint)i));
             }
             PopupView.Hide();
+        }
+
+        /// <summary>
+        /// Show the popup view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ShowPopupView()
+        {
+            PopupView.Show();
         }
 
         // Dispose the tool picker and its components.
