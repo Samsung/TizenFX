@@ -1,4 +1,4 @@
-master:
+main:
   api-level: API13
   labels: [ API13 ]
   tizen-branch: tizen
