@@ -20,7 +20,6 @@ using Tizen.NUI;
 using Tizen.NUI.Scene3D;
 using System.Collections.Generic;
 using System.IO;
-using System;
 
 namespace AIAvatar
 {
@@ -191,8 +190,7 @@ namespace AIAvatar
             }
             else
             {
-                string avatarFilePath = System.IO.Path.Combine(avatarPathList[avatarIndex], avatarFilename);
-                defaultAIAvatar = CreateAvatar(avatarFilePath);
+                defaultAIAvatar = CreateAvatar(avatarPathList[avatarIndex] + avatarFilename);
                 Add(defaultAIAvatar);
             }            
         }
