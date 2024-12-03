@@ -48,6 +48,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
+        private Dictionary<Type, object> attached;
         private bool isThemeChanged = false;
 
         // Collection of image-sensitive properties, and need to update C# side cache value.

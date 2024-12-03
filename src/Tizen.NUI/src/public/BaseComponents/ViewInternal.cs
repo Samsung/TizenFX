@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using global::System.Diagnostics;
 using Tizen.NUI;
 
@@ -1342,6 +1343,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal T GetAttached<T>()
+        {
+            if (attached != null && attached.ContainsKey(typeof(T)))
+                return (T)attached[typeof(T)];
+            return default;
+        }
+
+        internal void ClearAttached<T>()
+        {
+            attached?.Remove(typeof(T));
+        }
+
+        internal void SetAttached<T>(T value)
+        {
+            attached ??= new Dictionary<Type, object>();
+            attached[typeof(T)] = value;
+        }
+
         /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
@@ -1469,6 +1488,9 @@ namespace Tizen.NUI.BaseComponents
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
                 }
+
+                attached?.Clear();
+                attached = null;
             }
 
             //Release your own unmanaged resources here.
