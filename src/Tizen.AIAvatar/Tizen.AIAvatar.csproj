@@ -12,7 +12,7 @@
     <ProjectReference Include="..\Tizen.Uix.Tts\Tizen.Uix.Tts.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
     <ProjectReference Include="..\Tizen.NUI.Scene3D\Tizen.NUI.Scene3D.csproj" />
-    <ProjectReference Include="..\Tizen.MachineLearning.Inference\Tizen.MachineLearning.Inference.csproj" />    
+    <ProjectReference Include="..\Tizen.MachineLearning.Inference\Tizen.MachineLearning.Inference.csproj" />
     <ProjectReference Include="..\Tizen.Multimedia.AudioIO\Tizen.Multimedia.AudioIO.csproj" />
     <ProjectReference Include="..\Tizen.Security\Tizen.Security.csproj" />
   </ItemGroup>
