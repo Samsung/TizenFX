@@ -1942,5 +1942,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void NotifyBackgroundChanged()
+        {
+            // NOTE
+            // Notify background modifications caused by one of BackgroundColor, BackgroundImage, Background and ClearBackground()
+            // By using reserved keyword "_background", user may get notified all background modifications.
+            NotifyPropertyChanged("_background");
+        }
     }
 }
