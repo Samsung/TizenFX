@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using Tizen.NUI;
+using System.ComponentModel;
 using Tizen.NUI.Scene3D;
 
 namespace Tizen.NUI.AIAvatar
@@ -11,6 +11,7 @@ namespace Tizen.NUI.AIAvatar
     /// LipSyncer class manages the synchronization of an avatar's mouth movements with audio input.
     /// It handles the creation, enqueuing, playing, pausing, and stopping of animations based on lip-sync data.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LipSyncer
     {
         private Model avatar;
@@ -28,11 +29,13 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Event triggered when the state of the animator changes.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AnimatorChangedEventArgs> AnimatorStateChanged;
 
         /// <summary>
         /// Initializes a new instance of the LipSyncer class.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LipSyncer()
         {
           
@@ -43,6 +46,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="avatar">The avatar to apply lip-sync animations to.</param>
         /// <param name="visemeDefinitionPath">The path to the viseme definition file.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Initialize(Model avatar, string visemeDefinitionPath)
         {
             this.avatar = avatar;
@@ -55,6 +59,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="lipAnimation">The animation to enqueue.</param>
         /// <param name="isAutoPlay">is auto play (default is true).</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Enqueue(Animation lipAnimation, bool isAutoPlay = true)
         {
             queuedAnimations.Enqueue(lipAnimation);
@@ -71,6 +76,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="stepTime">The time interval between each key frame (default is 0.08 seconds).</param>
         /// <param name="isStreaming">Indicates whether the animation is streaming (default is false).</param>
         /// <returns>The generated animation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation GenerateAnimationFromVowels(string[] vowels, float stepTime = 0.08f, bool isStreaming = false)
         {
             if (isStreaming)
@@ -93,6 +99,7 @@ namespace Tizen.NUI.AIAvatar
         /// Plays the current animation or dequeues and plays the next animation if available.
         /// If no animations are queued, plays a silence animation.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {         
             if (animationTimer == null)
@@ -110,6 +117,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Pauses the current animation.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
             if (currentAnimation != null)
@@ -122,6 +130,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Stops and disposes of the current animation.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
             if (currentAnimation != null)
@@ -141,6 +150,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Gets or sets the current state of the animator.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatorState CurrentAnimatorState
         {
             get => currentAnimatorState;

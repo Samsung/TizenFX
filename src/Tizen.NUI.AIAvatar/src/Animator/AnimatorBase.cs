@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Tizen.NUI.AIAvatar
@@ -24,6 +25,7 @@ namespace Tizen.NUI.AIAvatar
     /// <summary>
     /// The base class for all animator implementations. Provides basic functionality for adding, playing, stopping, pausing, and removing animations.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class AnimatorBase : IAnimator
     {
         private bool disposed = false;
@@ -38,11 +40,12 @@ namespace Tizen.NUI.AIAvatar
         /// A dictionary to store animations. Each animation has a unique ID of type uint, which can be used as a key to store and retrieve the animations.
         /// </summary>
         protected Dictionary<uint, Animation> animations = new Dictionary<uint, Animation>();
-       
+
 
         /// <summary>
         /// Event triggered when the state of the animator changes.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AnimatorChangedEventArgs> AnimatorStateChanged;
 
         /// <summary>
@@ -56,6 +59,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="animation">The animation to add.</param>
         /// <param name="name">The name of the animation.</param>
         /// <returns>The index of the added animation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Add(Animation animation, string name)
         {
             if (animation == null)
@@ -83,6 +87,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Gets the number of animations currently added to the animator.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Count
         {
             get
@@ -95,12 +100,14 @@ namespace Tizen.NUI.AIAvatar
         /// Plays an animation by its index.
         /// </summary>
         /// <param name="index">The index of the animation to play.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Play(uint index);
 
         /// <summary>
         /// Plays an animation by its name.
         /// </summary>
         /// <param name="name">The name of the animation to play.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play(string name)
         {
             if (nameToIndex.TryGetValue(name, out uint index))
@@ -116,17 +123,20 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Stops all currently playing animations.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Stop();
 
         /// <summary>
         /// Pauses all currently playing animations.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract void Pause();
 
         /// <summary>
         /// Removes an animation by its index.
         /// </summary>
         /// <param name="index">The index of the animation to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(uint index)
         {
             if (!animations.ContainsKey(index))
@@ -144,6 +154,7 @@ namespace Tizen.NUI.AIAvatar
         /// Removes an animation by its name.
         /// </summary>
         /// <param name="name">The name of the animation to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(string name)
         {
             uint index = GetIndexByName(name);
@@ -158,6 +169,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="name">The name of the animation.</param>
         /// <returns>The index of the animation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetIndexByName(string name)
         {
             if (!nameToIndex.TryGetValue(name, out uint index))
@@ -172,6 +184,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="index">The index of the animation.</param>
         /// <returns>The name of the animation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetNameByIndex(uint index)
         {
             if (!indexToName.TryGetValue(index, out string name))
@@ -186,6 +199,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="index">The zero-based index of the key element to retrieve.</param>
         /// <returns>The key element at the specified index.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetKeyElementAt(int index)
         {
             return animations.Keys.ElementAt(index);
@@ -194,6 +208,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Gets or sets the current state of the animator.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatorState CurrentAnimatorState
         {
             get => currentAnimatorState;
@@ -246,6 +261,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Releases all resources used by the AnimatorBase class.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             Dispose(true);

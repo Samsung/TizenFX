@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.Applications;
 
 namespace Tizen.NUI.AIAvatar
@@ -23,6 +24,7 @@ namespace Tizen.NUI.AIAvatar
     /// <summary>
     /// Represents an animator that plays animations in a serial manner.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SerialAnimator : AnimatorBase
     {
         private uint playIndex;
@@ -40,6 +42,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="index">The index of the animation to play.</param>
         /// <exception cref="ArgumentException">Thrown when the specified animation index does not exist.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Play(uint index)
         {
             Stop();
@@ -56,6 +59,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Stops the currently playing animation.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Stop()
         {
             if (animations.ContainsKey(playIndex))
@@ -70,6 +74,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Pauses the currently playing animation.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Pause()
         {
             if (animations.ContainsKey(playIndex))

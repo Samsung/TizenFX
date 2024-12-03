@@ -16,6 +16,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.NUI.AIAvatar
 {
@@ -34,11 +35,19 @@ namespace Tizen.NUI.AIAvatar
     {
         private Dictionary<string, List<KeyFrame>[]> blendShapeKeyFrames;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] NodeNames { get; private set; }
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] BlendShapeCounts { get; private set; }
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string BlendShapeKeyFormat { get; private set; }
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Duration { get; private set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LipData(string[] nodeNames,
                                  int[] blendShapeCounts,
                                  string blendShapeKeyFormat)
@@ -51,26 +60,31 @@ namespace Tizen.NUI.AIAvatar
             Initialize(nodeNames, blendShapeCounts);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDuration(float duration)
         {
             Duration = duration;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<KeyFrame> GetKeyFrames(string nodeName, int blendShapeId)
         {
             return blendShapeKeyFrames[nodeName][blendShapeId];
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddKeyFrame(string nodeName, int blendShapeId, float time, float value)
         {
             blendShapeKeyFrames[nodeName][blendShapeId].Add(new KeyFrame(time, value));
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddKeyFrame(string nodeName, int blendShapeId, KeyFrame value)
         {
             blendShapeKeyFrames[nodeName][blendShapeId].Add(value);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Initialize(string[] nodeNames, int[] blendShapeCounts)
         {
             Clear();
@@ -89,6 +103,7 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
             foreach (KeyValuePair<string, List<KeyFrame>[]> blendShapeData in blendShapeKeyFrames)

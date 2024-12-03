@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.AIAvatar
 {
@@ -24,6 +25,7 @@ namespace Tizen.NUI.AIAvatar
     /// <member name = "Previous" > The previous state of the avatar's motion.</member>  
     /// <member name = "Current" > The current state of the avatar's motion.</member>  
     /// </summary>  
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatorChangedEventArgs : EventArgs
     {
         /// <summary>  
@@ -32,6 +34,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="previous">The previous state of the avatar's motion.</param>  
         /// <param name="current">The current state of the avatar's motion.</param>  
         /// <param name="message">The current Animation of the Animation name.</param>  
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatorChangedEventArgs(AnimatorState previous, AnimatorState current, string message = "")
         {
             Previous = previous;
@@ -42,6 +45,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// The previous state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatorState Previous
         {
             get;
@@ -51,6 +55,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// The current state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatorState Current
         {
             get;
@@ -60,6 +65,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// The Message string.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Message
         {
             get;

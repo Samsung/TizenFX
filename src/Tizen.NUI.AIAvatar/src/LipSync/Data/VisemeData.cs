@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -24,18 +25,22 @@ namespace Tizen.NUI.AIAvatar
 {
     internal class VisemeData
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("visemeParameters")]
         public VisemeParameters visemeParameters { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("visemes")]
         public List<Viseme> visemes { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public VisemeData()
         {
             visemeParameters = new VisemeParameters();
             visemes = new List<Viseme>();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Dictionary<string, BlendShapeValue[]> GetVisemeMap()
         {
             Dictionary<string, BlendShapeValue[]> visemeMap
@@ -55,24 +60,30 @@ namespace Tizen.NUI.AIAvatar
 
     internal class VisemeParameters
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("keyFormat")]
         public string keyFormat { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("nodeNames")]
         public List<string> nodeNames { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("blendShapeCount")]
         public List<int> blendShapeCount { get; set; }
     }
 
     internal class Viseme
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("name")]
         public string name { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("symbol")]
         public string symbol { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonPropertyName("values")]
         public List<BlendShapeValue> values { get; set; }
     }

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System.ComponentModel;
 using Tizen.NUI.Scene3D;
 
 namespace Tizen.NUI.AIAvatar
@@ -21,11 +22,13 @@ namespace Tizen.NUI.AIAvatar
     /// <summary>
     /// Represents an interface for custom motion data operations.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public interface ICustomMotionData
     {
         /// <summary>
         /// Initializes the instance of the custom motion data.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Initialize();
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="durationMilliseconds">The duration in milliseconds for which to retrieve motion data.</param>
         /// <returns>An instance of MotionData representing the motion data for the given duration.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionData GetMotionData(int durationMilliseconds);
     }
 }

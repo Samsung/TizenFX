@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
 using Tizen.NUI.Scene3D;
@@ -27,6 +28,7 @@ namespace Tizen.NUI.AIAvatar
     /// The EmotionAnimator class extends SerialAnimator and provides functionality to play animations based on emotions.
     /// It manages emotion configurations, generates expression data animations, and loads necessary resources.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class EmotionAnimator : SerialAnimator
     {
 
@@ -39,6 +41,7 @@ namespace Tizen.NUI.AIAvatar
         /// If the emotion is not found, plays a random animation from the "normal" category.
         /// </summary>
         /// <param name="emotion">The emotion category to play.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play(string emotion)
         {
             if (expressionIdByCategory.TryGetValue(emotion.ToLower(), out List<uint> expressionList))
@@ -58,6 +61,7 @@ namespace Tizen.NUI.AIAvatar
         /// Throws exceptions if the model is null or its resources are not ready.
         /// </summary>
         /// <param name="model">The model to generate animations for.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void GenerateExpressionDataAnimation(Model model)
         {
             if (model == null)
@@ -98,6 +102,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         /// <param name="configPath">The path to the emotion configuration JSON file.</param>
         /// <param name="expressionResourcePath">The path to the directory containing expression resource files.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadEmotionConfig(in string configPath, in string expressionResourcePath)
         {
             try

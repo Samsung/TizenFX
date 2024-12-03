@@ -23,12 +23,14 @@ using Tizen.NUI;
 using System.Text.Json;
 using System.Linq;
 using System.Xml.Linq;
+using System.ComponentModel;
 
 namespace Tizen.NUI.AIAvatar
 {
     /// <summary>
     /// The AnimationLoader class provides methods to load and manage body and face motion data from specified resources.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimationLoader
     {
         /// <summary>
@@ -39,6 +41,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Gets the singleton instance of the AnimationLoader class.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static AnimationLoader Instance => instance.Value;
 
 
@@ -51,6 +54,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="synchronousLoad">A boolean indicating whether to load the data synchronously.</param>
         /// <returns>A MotionInfo object containing the loaded body motion data.</returns>
         /// <exception cref="Exception">Thrown if there is an error loading the body motion data.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionInfo LoadBodyMotion(in string resourcePath, bool useRootTranslationOnly, Vector3 scale = null, bool synchronousLoad = false)
         {
             try
@@ -75,6 +79,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="synchronousLoad">A boolean indicating whether to load the data synchronously.</param>
         /// <returns>A list of MotionInfo objects containing the loaded body motion data.</returns>
         /// <exception cref="Exception">Thrown if there is an error reading the body motion resource directory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<MotionInfo> LoadBodyMotions(in string bodyMotionDirectoryPath, bool useRootTranslationOnly, Vector3 scale = null, bool synchronousLoad = false)
         {
             try
@@ -108,6 +113,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="resourcePath">The path to the face motion resource file.</param>
         /// <returns>A MotionInfo object containing the loaded face motion data.</returns>
         /// <exception cref="Exception">Thrown if there is an error loading the face animation data.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionInfo LoadFaceMotion(in string resourcePath)
         {
             try
@@ -130,6 +136,7 @@ namespace Tizen.NUI.AIAvatar
         /// <param name="faceMotionDirectoryPath">The path to the directory containing face motion resource files.</param>
         /// <returns>A list of MotionInfo objects containing the loaded face motion data.</returns>
         /// <exception cref="Exception">Thrown if there is an error reading the face motion resource directory.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<MotionInfo> LoadFaceMotions(in string faceMotionDirectoryPath)
         {
             try

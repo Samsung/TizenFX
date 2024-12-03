@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
 
@@ -31,8 +32,10 @@ namespace Tizen.NUI.AIAvatar
 
         private bool isInitialized;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LipSyncTransformer() { }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Initialize(string visemeDefinitionPath)
         {
             try
@@ -70,6 +73,7 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LipData TransformVowelsToLipData(string[] vowels, float stepTime, bool isStreaming)
         {
             if (!isInitialized) throw new InvalidOperationException("LipSyncer is not initialized");

@@ -15,46 +15,56 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI.AIAvatar
 {
     /// <summary>
     /// Enumeration for the states.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AnimatorState
     {
         /// <summary>
         ///  Fail state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Failed = -1,
 
         /// <summary>
         /// Ready state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Ready = 0,
 
         /// <summary>
         /// Playing state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Playing = 3,
 
         /// <summary>
         /// Paused state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Paused = 4,
 
         /// <summary>
         /// Stopped state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Stopped = 5,
 
         /// <summary>
         /// AnimationFinished state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         AnimationFinished = 6,
 
         /// <summary>
         /// Unavailable state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Unavailable
     };
 }

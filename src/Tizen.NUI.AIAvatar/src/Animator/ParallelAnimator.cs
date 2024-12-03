@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Tizen.NUI;
 
@@ -25,12 +26,14 @@ namespace Tizen.NUI.AIAvatar
     /// <summary>
     /// The ParallelAnimator class extends the AnimatorBase class and provides methods to play, stop, and pause animations in parallel.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ParallelAnimator : AnimatorBase
     {
         /// <summary>
         /// Plays the animation at the specified index.
         /// </summary>
         /// <param name="index">The index of the animation to play.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Play(uint index)
         {
             Play(new List<uint> { index });
@@ -39,6 +42,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Stops all playing animations.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Stop()
         {
             Stop(null);
@@ -47,6 +51,7 @@ namespace Tizen.NUI.AIAvatar
         /// <summary>
         /// Pauses all playing animations.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Pause()
         {
             Pause(null);
@@ -56,6 +61,7 @@ namespace Tizen.NUI.AIAvatar
         /// Plays the specified animations in parallel.
         /// </summary>
         /// <param name="indexes">A list of indices of the animations to play. If null, all animations will be played.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play(IEnumerable<uint> indexes = null)
         {
             string names = string.Join(", ", indexes?.Select(index => GetNameByIndex(animations[index].ID)).Where(name => !string.IsNullOrEmpty(name)) ?? Enumerable.Empty<string>());
@@ -87,6 +93,7 @@ namespace Tizen.NUI.AIAvatar
         /// Stops the specified animations or all playing animations if no indices are provided.
         /// </summary>
         /// <param name="indexes">A list of indices of the animations to stop. If null, all playing animations will be stopped.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop(IEnumerable<uint> indexes = null)
         {
             int count = 0;
@@ -127,6 +134,7 @@ namespace Tizen.NUI.AIAvatar
         /// Pauses the specified animations or all playing animations if no indices are provided.
         /// </summary>
         /// <param name="indexes">A list of indices of the animations to pause. If null, all playing animations will be paused.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause(IEnumerable<uint> indexes = null)
         {
             int count = 0;
