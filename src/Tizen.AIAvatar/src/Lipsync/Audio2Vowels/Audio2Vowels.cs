@@ -16,6 +16,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 
 
 namespace Tizen.AIAvatar
@@ -23,6 +24,7 @@ namespace Tizen.AIAvatar
     /// <summary>
     /// The Audio2Vowels class is responsible for predicting vowels from audio data using a pre-trained TensorFlow model.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Audio2Vowels
     {
         /// <summary>
@@ -44,6 +46,7 @@ namespace Tizen.AIAvatar
         /// Initializes a new instance of the Audio2Vowels class with the specified TensorFlow model file path.
         /// </summary>
         /// <param name="tensorflowFilePath">The path to the pre-trained TensorFlow model file.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Audio2Vowels(string tensorflowFilePath)
         {
             classifiers = new Dictionary<int, VowelClassifier>();
@@ -55,6 +58,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <param name="audioData">The audio data to analyze.</param>
         /// <returns>An array of predicted vowels.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] PredictVowels(byte[] audioData)
         {
             VowelClassifier classifier = GetVowelClassifier(sampleRate);
@@ -65,6 +69,7 @@ namespace Tizen.AIAvatar
         /// Sets the sample rate of the audio data.
         /// </summary>
         /// <param name="rate">The sample rate to set.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSampleRate(int rate)
         {
             sampleRate = rate;
@@ -74,6 +79,7 @@ namespace Tizen.AIAvatar
         /// Gets the current sample rate of the audio data.
         /// </summary>
         /// <returns>The current sample rate.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetSampleRate()
         {
             return sampleRate;

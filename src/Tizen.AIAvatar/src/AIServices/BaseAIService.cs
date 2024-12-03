@@ -16,22 +16,26 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
     /// <summary>
     /// Abstract base class for AI services, providing common functionalities.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BaseAIService : IAIService, IDisposable
     {
         /// <summary>
         /// Gets the name of the AI service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)] 
         public abstract string ServiceName { get; }
 
         /// <summary>
         /// Gets the capabilities of the AI service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract ServiceCapabilities Capabilities { get; }
 
         /// <summary>
@@ -57,6 +61,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Releases all resources used by the AI service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Dispose()
         {
             Dispose(true);

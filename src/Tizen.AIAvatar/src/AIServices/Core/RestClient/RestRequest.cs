@@ -21,49 +21,58 @@ using System;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
     /// <summary>
     /// An enumeration representing various HTTP methods.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum Method
     {
         /// <summary>
         /// Represents the HTTP GET method.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Get,
 
         /// <summary>
         /// Represents the HTTP POST method.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Post,
 
         /// <summary>
         /// Represents the HTTP PUT method.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Put,
 
         /// <summary>
         /// Represents the HTTP DELETE method.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Delete,
 
         /// <summary>
         /// Represents the HTTP PATCH method.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Patch
     }
 
     /// <summary>
     /// Represents a RESTful API request.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class RestRequest
     {
         /// <summary>
         /// Initializes a new instance of the RestRequest class with the specified HTTP method.
         /// </summary>
         /// <param name="method">The HTTP method to use for the request.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RestRequest(Method method)
         {
             Resource = string.Empty;
@@ -76,6 +85,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <param name="resource">The resource URI for the request.</param>
         /// <param name="method">The HTTP method to use for the request.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RestRequest(string resource, Method method)
         {
             Resource = resource;
@@ -89,6 +99,7 @@ namespace Tizen.AIAvatar
         /// <param name="name">The name of the header.</param>
         /// <param name="value">The value of the header.</param>
         /// <returns>The current instance of RestRequest.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RestRequest AddHeader(string name, string value)
         {
             _headers[name] = value;
@@ -100,6 +111,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <param name="body">The object to serialize as JSON and include in the request body.</param>
         /// <returns>The current instance of RestRequest.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RestRequest AddJsonBody(object body)
         {
             _body = body;
@@ -116,6 +128,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <param name="jsonString">The JSON string to include in the request body.</param>
         /// <returns>The current instance of RestRequest.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RestRequest AddJsonStringBody(string jsonString)
         {
             _jsonStringBody = jsonString;
@@ -126,6 +139,18 @@ namespace Tizen.AIAvatar
             }
             return this;
         }
+
+        /// <summary>
+        /// The resource URI for the request.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Resource { get; }
+
+        /// <summary>
+        /// The HTTP method to use for the request.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Method Method { get; }
 
         /// <summary>
         /// Creates an HttpRequestMessage based on the current RestRequest instance.
@@ -174,15 +199,7 @@ namespace Tizen.AIAvatar
             };
         }
 
-        /// <summary>
-        /// The resource URI for the request.
-        /// </summary>
-        public string Resource { get; }
-
-        /// <summary>
-        /// The HTTP method to use for the request.
-        /// </summary>
-        public Method Method { get; }
+       
 
         /// <summary>
         /// A dictionary containing the headers for the request.

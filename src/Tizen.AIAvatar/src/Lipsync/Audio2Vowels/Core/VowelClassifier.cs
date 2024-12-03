@@ -43,13 +43,13 @@ namespace Tizen.AIAvatar
             mfccExtractor = new CustomMfccExtractor(sampleRate, frameDuration, hopDuration, featureCount);
         }
 
-        public float GetStepTime()
+        internal float GetStepTime()
         {
             return stepTime;
         }
 
 
-        public string[] Inference(byte[] audio, ISingleShotModel model)
+        internal string[] Inference(byte[] audio, ISingleShotModel model)
         {
             int length = PreprocessInput(audio, out float[] features, out List<float> audioEnergy);
             var outputData = InferenceModel(features, length, model);
@@ -58,7 +58,7 @@ namespace Tizen.AIAvatar
             return result.ToArray();
         }
 
-        public int PreprocessInput(byte[] audioByte, out float[] flattenedArray, out List<float> audioEnergy)
+        internal int PreprocessInput(byte[] audioByte, out float[] flattenedArray, out List<float> audioEnergy)
         {
             ConvertAudioToFloat(audioByte, out var audio);
 
@@ -78,7 +78,7 @@ namespace Tizen.AIAvatar
             return featureLength;
         }
 
-        public List<float[]> InferenceModel(float[] input, int length, ISingleShotModel model)
+        internal List<float[]> InferenceModel(float[] input, int length, ISingleShotModel model)
         {
             byte[] inputBuffer = new byte[4 * 12 * 1 * 1];
             byte[] outputBuffer;

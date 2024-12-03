@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -25,6 +26,7 @@ namespace Tizen.AIAvatar
     /// <summary>
     /// A class that provides methods to execute REST requests and handle responses.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class RestClient : IRestClient
     {
         private readonly HttpClient _httpClient;
@@ -33,6 +35,7 @@ namespace Tizen.AIAvatar
         /// Initializes a new instance of the RestClient class with the specified HttpClient.
         /// </summary>
         /// <param name="httpClient">The HttpClient instance to use for sending HTTP requests.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RestClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -44,6 +47,7 @@ namespace Tizen.AIAvatar
         /// <param name="request">The RestRequest object containing details of the request.</param>
         /// <returns>A RestResponse object representing the result of the request.</returns>
         /// <exception cref="Exception">Thrown when an error occurs during the request execution.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public async Task<RestResponse> ExecuteAsync(RestRequest request)
         {
             using var httpRequest = request?.CreateRequestMessage(_httpClient.BaseAddress);
@@ -84,6 +88,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Disposes of the resources used by the RestClient.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             _httpClient?.Dispose();

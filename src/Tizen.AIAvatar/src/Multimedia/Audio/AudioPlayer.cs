@@ -23,12 +23,14 @@ using Tizen.NUI;
 using Tizen.Multimedia;
 
 using static Tizen.AIAvatar.AIAvatar;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
     /// <summary>
     /// Represents an audio player capable of streaming and playing audio with support for audio ducking.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AudioPlayer : IDisposable
     {
 
@@ -55,6 +57,7 @@ namespace Tizen.AIAvatar
         /// Initializes a new instance of the <see cref="AudioPlayer"/> class.
         /// </summary>
         /// <param name="audioOptions">Optional audio options for playback configuration.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AudioPlayer(AudioOptions audioOptions = null)
         {
 
@@ -88,6 +91,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Initializes the audio stream for playback.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void InitializeStream()
         {
             isStreaming = true;
@@ -99,6 +103,7 @@ namespace Tizen.AIAvatar
         /// Adds a new audio buffer to the stream list.
         /// </summary>
         /// <param name="buffer">The audio buffer to add.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddStream(byte[] buffer)
         {
             streamList.Add(new MemoryStream(buffer));
@@ -108,6 +113,7 @@ namespace Tizen.AIAvatar
         /// Determines if the audio player is prepared with a valid stream.
         /// </summary>
         /// <returns>True if a valid stream is available; otherwise, false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsPrepare()
         {
             return streamList.Count > 0;
@@ -117,6 +123,7 @@ namespace Tizen.AIAvatar
         /// Plays the audio from the stream asynchronously.
         /// </summary>
         /// <param name="sampleRate">Optional sample rate for the audio playback.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void PlayStreamAudio(int sampleRate = 0)
         {
             InitializeStream();
@@ -143,6 +150,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <param name="audioBytes">The audio buffer to play.</param>
         /// <param name="sampleRate">Optional sample rate for the audio playback.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play(byte[] audioBytes, int sampleRate = 0)
         {
             isStreaming = false;
@@ -175,6 +183,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Pauses the current audio playback.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
             CurrentAudioPlayerState = AudioPlayerState.Paused;
@@ -184,6 +193,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Stops the current audio playback.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
             CurrentAudioPlayerState = AudioPlayerState.Stopped;
@@ -192,6 +202,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Destroys the audio player and clears all resources.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Destroy()
         {
             DestroyAudioPlayback();
@@ -202,6 +213,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Releases all resources used by the AudioPlayer.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             Dispose(true);
@@ -211,6 +223,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Releases all resources used by the AudioPlayer.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -270,6 +283,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Gets or sets the current state of the audio player.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AudioPlayerState CurrentAudioPlayerState
         {
             get => currentAudioPlayerState;

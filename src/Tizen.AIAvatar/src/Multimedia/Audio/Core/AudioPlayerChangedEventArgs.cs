@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
@@ -24,6 +25,7 @@ namespace Tizen.AIAvatar
     /// <member name = "Previous" > The previous state of the audio.</member>  
     /// <member name = "Current" > The current state of the audio.</member>  
     /// </summary>  
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AudioPlayerChangedEventArgs : EventArgs
     {
         /// <summary>  
@@ -31,6 +33,7 @@ namespace Tizen.AIAvatar
         /// </summary>  
         /// <param name="previous">The previous state of the audio.</param>  
         /// <param name="current">The current state of the audio.</param>  
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AudioPlayerChangedEventArgs(AudioPlayerState previous, AudioPlayerState current)
         {
             Previous = previous;
@@ -40,6 +43,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// The previous state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AudioPlayerState Previous
         {
             get;
@@ -49,6 +53,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// The current state.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AudioPlayerState Current
         {
             get;

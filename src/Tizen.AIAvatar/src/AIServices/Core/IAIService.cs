@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
@@ -23,47 +24,56 @@ namespace Tizen.AIAvatar
     /// Defines the capabilities that an AI service can support.
     /// </summary>
     [Flags]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ServiceCapabilities
     {
         /// <summary>
         /// No capabilities.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         None = 0,
 
         /// <summary>
         /// Capability for Text-to-Speech service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         TextToSpeech = 1,
 
         /// <summary>
         /// Capability for Speech-to-Text service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         SpeechToText = 2,
 
         /// <summary>
         /// Capability for Large Language Model service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         LargeLanguageModel = 4,
 
         /// <summary>
         /// Capability for Vision-related service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Vision = 8
     }
 
     /// <summary>
     /// Represents a generic AI service interface.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IAIService
     {
         /// <summary>
         /// Gets the name of the AI service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         string ServiceName { get; }
 
         /// <summary>
         /// Gets the capabilities of the AI service.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ServiceCapabilities Capabilities { get; }
     }
 }
