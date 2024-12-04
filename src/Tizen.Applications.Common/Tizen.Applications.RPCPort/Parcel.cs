@@ -163,6 +163,8 @@ namespace Tizen.Applications.RPCPort
         /// <param name="origin">The origin parcel.</param>
         /// <param name="startPos">The start position from origin parcel.</param>
         /// <param name="size">The size of the new parcel.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="ArgumentException">Thrown when arguments are invalid.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Parcel(Parcel origin, uint startPos, uint size)
@@ -555,6 +557,7 @@ namespace Tizen.Applications.RPCPort
         /// Reserves bytes to write later.
         /// <param name="size">The bytes to reserve.</param>
         /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reserve(uint size)
@@ -568,6 +571,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Pin the memory. Once it is called, the capacity would not be changed.
         /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pin()
@@ -582,6 +586,7 @@ namespace Tizen.Applications.RPCPort
         /// Gets the reader pointer of the parcel to the start.
         /// </summary>
         /// <returns>The position of the reader</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetReader()
@@ -597,6 +602,7 @@ namespace Tizen.Applications.RPCPort
         /// Sets the reader pointer of the parcel to the start.
         /// </summary>
         /// <param name="pos">The position to read.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetReader(uint pos)
@@ -611,6 +617,7 @@ namespace Tizen.Applications.RPCPort
         /// Gets the size of the raw data of the parcel.
         /// </summary>
         /// <returns>The size of data</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetDataSize()
@@ -627,6 +634,7 @@ namespace Tizen.Applications.RPCPort
         /// Sets the size of the raw data of the parcel.
         /// </summary>
         /// <param name="size">The size of data.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDataSize(uint size)
