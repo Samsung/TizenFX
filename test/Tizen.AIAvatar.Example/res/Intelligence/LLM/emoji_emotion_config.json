@@ -1,0 +1,94 @@
+{
+  "expressions": [
+    {
+      "name": "joy",
+      "filename": [
+        "F154_31_LaughC.json",
+        "F152_31_LaughB.json"
+      ]
+    },
+    {
+      "name": "sadness",
+      "filename": [
+        "F157_31_SadA.json",
+        "F055_31_Disappointed.json"
+      ]
+    },
+    {
+      "name": "anger",
+      "filename": [
+        "F153_31_ThumbsUpA.json",
+        "F147_31_Sullen.json"
+      ]
+    },
+    {
+      "name": "fear",
+      "filename": [
+        "F017_31_FacePalm.json",
+        "F139_31_Workhard.json"
+      ]
+    },
+    {
+      "name": "surprise",
+      "filename": [
+        "F022_31_Rich.json",
+        "F148_31_Shocked.json",
+        "F159_31_ShockedA.json"
+      ]
+    },
+    {
+      "name": "trust",
+      "filename": [
+        "F072_31_Wow.json",
+        "F001_31_Hi.json",
+        "F005_31_Okay.json"
+      ]
+    },
+    {
+      "name": "anticipation",
+      "filename": [
+        "F072_31_Wow.json",
+        "F001_31_Hi.json",
+        "F005_31_Okay.json"
+      ]
+    },
+    {
+      "name": "disgust",
+      "filename": [
+        "F150_31_Frustrated.json"
+      ]
+    },
+    {
+      "name": "normal",
+      "filename": [
+        "F136_31_Sorry.json",
+        "F031_31_Cute.json"
+      ]
+    }
+  ],
+  "ignoreBlendShapes": [
+    {
+      "name": "head_GEO",
+      "morphname": [
+        "JawOpen",
+        "MouthSmile_Left",
+        "MouthSmile_Right",
+        "LipsUpperClose",
+        "LipsLowerClose",
+        "LipsLowerDown",
+        "LipsUpperOpen",
+        "LipsFunnel",
+        "LipsPucker"
+      ]
+    },
+    {
+      "name": "mouth_GEO",
+      "morphname": [
+        "JawOpen",
+        "Tongue_Up",
+        "Tongue_Down",
+        "HAPPY_50"
+      ]
+    }
+  ]
+}
