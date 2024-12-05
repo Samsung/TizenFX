@@ -181,6 +181,34 @@ internal static partial class Interop
             //int rpc_port_parcel_create_without_header(rpc_port_parcel_h *h);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_without_header")]
             internal static extern ErrorCode CreateWithoutHeader(out IntPtr parcelHandle);
+
+            //int rpc_port_parcel_reserve(rpc_port_parcel_h h, unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_reserve")]
+            internal static extern ErrorCode Reserve(IntPtr parcelHandle, uint size);
+
+            //int rpc_port_parcel_set_data_size(rpc_port_parcel_h h, unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_set_data_size")]
+            internal static extern ErrorCode SetDataSize(IntPtr parcelHandle, uint size);
+
+            //int rpc_port_parcel_get_data_size(rpc_port_parcel_h h, unsigned int* size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_data_size")]
+            internal static extern ErrorCode GetDataSize(IntPtr parcelHandle, out uint size);
+
+            //int rpc_port_parcel_pin(rpc_port_parcel_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_pin")]
+            internal static extern ErrorCode Pin(IntPtr parcelHandle);
+
+            //int rpc_port_parcel_get_reader(rpc_port_parcel_h h, unsigned int* reader_pos);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_reader")]
+            internal static extern ErrorCode GetReader(IntPtr parcelHandle, out uint readerPos);
+
+            //int rpc_port_parcel_set_reader(rpc_port_parcel_h h, unsigned int reader_pos);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_set_reader")]
+            internal static extern ErrorCode SetReader(IntPtr parcelHandle, uint readerPos);
+
+            //int rpc_port_parcel_create_from_parcel(rpc_port_parcel_h* h, rpc_port_parcel_h origin_parcel, unsigned int start_pos, unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_parcel")]
+            internal static extern ErrorCode CreateFromParcel(out IntPtr parcelHandle, IntPtr originParcel, uint startPos, uint size);
         }
 
         internal static partial class Proxy
