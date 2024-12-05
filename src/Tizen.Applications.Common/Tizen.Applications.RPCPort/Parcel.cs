@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.RPCPort
@@ -154,6 +156,28 @@ namespace Tizen.Applications.RPCPort
     {
         private IntPtr _handle;
         private ParcelHeader _header;
+
+        /// <summary>
+        /// Constructs a sub parcel from origin parcel.
+        /// </summary>
+        /// <param name="origin">The origin parcel.</param>
+        /// <param name="startPos">The start position from origin parcel.</param>
+        /// <param name="size">The size of the new parcel.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="ArgumentException">Thrown when arguments are invalid.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Parcel(Parcel origin, uint startPos, uint size)
+        {
+            if (origin == null)
+                throw new ArgumentException();
+
+            Interop.LibRPCPort.ErrorCode error;
+
+            error = Interop.LibRPCPort.Parcel.CreateFromParcel(out _handle, origin._handle, startPos, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
 
         /// <summary>
         /// Constructs a new instance of the Parcel class.
@@ -527,6 +551,98 @@ namespace Tizen.Applications.RPCPort
             }
 
             return _header;
+        }
+
+        /// <summary>
+        /// Reserves bytes to write later.
+        /// <param name="size">The bytes to reserve.</param>
+        /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Reserve(uint size)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.Reserve(_handle, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Pin the memory. Once it is called, the capacity would not be changed.
+        /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Pin()
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.Pin(_handle);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets the reader pointer of the parcel to the start.
+        /// </summary>
+        /// <returns>The position of the reader</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetReader()
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.GetReader(_handle, out uint reader);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+            return reader;
+        }
+
+        /// <summary>
+        /// Sets the reader pointer of the parcel to the start.
+        /// </summary>
+        /// <param name="pos">The position to read.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetReader(uint pos)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.SetReader(_handle, pos);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets the size of the raw data of the parcel.
+        /// </summary>
+        /// <returns>The size of data</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetDataSize()
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.GetDataSize(_handle, out uint size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+
+            return size;
+        }
+
+        /// <summary>
+        /// Sets the size of the raw data of the parcel.
+        /// </summary>
+        /// <param name="size">The size of data.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDataSize(uint size)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.SetDataSize(_handle, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
         }
 
         #region IDisposable Support
