@@ -106,7 +106,7 @@ namespace Tizen.NUI.Samples
 
         private bool OnFrontTouchEvent(object source, View.TouchEventArgs e)
         {
-            Tizen.Log.Error("NUI", $"OnFrontTouchEvent {e.Touch.GetState(0)}\n");
+            Tizen.Log.Error("NUI", $"OnFrontTouchEvent {e.Touch.GetState(0)}z\n");
             return false;
         }
 
