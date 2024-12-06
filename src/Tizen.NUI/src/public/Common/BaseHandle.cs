@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
@@ -33,6 +34,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
+        private static Dictionary<IntPtr, HashSet<object>> nativeBindedHolder = new Dictionary<IntPtr, HashSet<object>>();
+
         static internal void Preload()
         {
             // Do nothing. Just call for load static values.
@@ -287,7 +290,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical OR operator for ||. 
+        /// Logical OR operator for ||.
         /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.
         /// </summary>
         /// <param name="x">The first BaseHandle to be compared.</param>
@@ -375,7 +378,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <remarks>
@@ -622,6 +625,9 @@ namespace Tizen.NUI
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
                 var nativeSwigCPtr = swigCPtr.Handle;
+
+                ClearHolder(nativeSwigCPtr);
+
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 if (swigCMemOwn)
                 {
@@ -652,6 +658,49 @@ namespace Tizen.NUI
         protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.BaseHandle.DeleteBaseHandle(swigCPtr.Handle);
+        }
+
+        /// <summary>
+        /// Adds the specified object to the set of objects that have been bound to the native object.
+        /// </summary>
+        /// <param name="obj">The object to add.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void AddToNativeHolder(object obj)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            if (!nativeBindedHolder.TryGetValue(swigCPtr.Handle, out var holders))
+            {
+                nativeBindedHolder.Add(swigCPtr.Handle, holders = new HashSet<object>());
+            }
+
+            holders.Add(obj);
+        }
+
+        /// <summary>
+        ///  Removes the specified object from the set of objects that have been bound to the native object.
+        /// </summary>
+        /// <param name="obj">The object to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void RemoveFromNativeHolder(object obj)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            if (nativeBindedHolder.TryGetValue(swigCPtr.Handle, out var holders))
+            {
+                holders.Remove(obj);
+
+                if (holders.Count == 0)
+                {
+                    nativeBindedHolder.Remove(swigCPtr.Handle);
+                }
+            }
         }
 
         /// <summary>
@@ -727,6 +776,14 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool IsDisposedOrQueued => disposed || isDisposeQueued;
+
+        static private void ClearHolder(IntPtr handle)
+        {
+            nativeBindedHolder.Remove(handle);
+        }
 
         [Conditional("NUI_DISPOSE_DEBUG_ON")]
         private void disposeDebuggingCtor()
