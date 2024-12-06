@@ -1491,13 +1491,13 @@ namespace Tizen.NUI.BaseComponents
 
                 attached?.Clear();
                 attached = null;
+
+                DisConnectFromSignals();
             }
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            DisConnectFromSignals();
 
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
