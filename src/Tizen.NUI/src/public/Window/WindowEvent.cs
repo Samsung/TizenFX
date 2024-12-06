@@ -1037,6 +1037,11 @@ namespace Tizen.NUI
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == IntPtr.Zero)
             {
                 NUILog.Error("OnWindowFocusedChanged() Window is null! Do nothing!");
@@ -1053,6 +1058,12 @@ namespace Tizen.NUI
 
         private bool OnWindowTouch(IntPtr view, IntPtr touchData)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -1070,6 +1081,12 @@ namespace Tizen.NUI
 
         private bool OnWindowInterceptTouch(IntPtr view, IntPtr touchData)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -1088,6 +1105,12 @@ namespace Tizen.NUI
 
         private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -1105,6 +1128,12 @@ namespace Tizen.NUI
 
         private bool OnWindowInterceptWheel(IntPtr view, IntPtr wheelEvent)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -1124,6 +1153,12 @@ namespace Tizen.NUI
         // Callback for Stage KeyEventsignal
         private void OnStageKey(IntPtr data)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (stageKeyHandler != null)
             {
                 KeyEventArgs e = new KeyEventArgs();
@@ -1136,6 +1171,12 @@ namespace Tizen.NUI
         // Callback for Stage InterceptKeyEventsignal
         private bool OnStageInterceptKey(IntPtr data)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             bool consumed = false;
             if (stageInterceptKeyHandler != null)
             {
@@ -1150,29 +1191,54 @@ namespace Tizen.NUI
         // Callback for Stage EventProcessingFinishedSignal
         private void OnEventProcessingFinished()
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             stageEventProcessingFinishedEventHandler?.Invoke(this, null);
         }
 
         // Callback for Stage ContextLostSignal
         private void OnContextLost()
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             stageContextLostEventHandler?.Invoke(this, null);
         }
 
         // Callback for Stage ContextRegainedSignal
         private void OnContextRegained()
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             stageContextRegainedEventHandler?.Invoke(this, null);
         }
 
         // Callback for Stage SceneCreatedSignal
         private void OnSceneCreated()
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             stageSceneCreatedEventHandler?.Invoke(this, null);
         }
 
         private void OnResized(IntPtr window, IntPtr windowSize)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == IntPtr.Zero)
             {
                 NUILog.Error("OnResized() Window is null! Do nothing!");
@@ -1196,6 +1262,11 @@ namespace Tizen.NUI
 
         private void OnWindowFocusedChanged2(IntPtr window, bool focusGained)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == IntPtr.Zero)
             {
                 NUILog.Error("OnWindowFocusedChanged() Window is null! Do nothing!");
@@ -1212,6 +1283,11 @@ namespace Tizen.NUI
 
         private void OnTransitionEffect(IntPtr window, int state, int type)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 return;
@@ -1229,6 +1305,11 @@ namespace Tizen.NUI
 
         private void OnMoved(IntPtr window, IntPtr position)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 return;
@@ -1245,6 +1326,11 @@ namespace Tizen.NUI
 
         private void OnOrientationChanged(IntPtr window, int orientation)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 return;
@@ -1261,12 +1347,23 @@ namespace Tizen.NUI
 
         private void OnKeyboardRepeatSettingsChanged()
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             keyboardRepeatSettingsChangedHandler?.Invoke(this, null);
             return;
         }
 
         private void OnWindowMouseInOutEvent(IntPtr view, IntPtr mouseEvent)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (mouseEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("mouseEvent should not be null!");
@@ -1283,6 +1380,11 @@ namespace Tizen.NUI
 
         private void OnMoveCompleted(IntPtr window, IntPtr position)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 return;
@@ -1298,6 +1400,11 @@ namespace Tizen.NUI
 
         private void OnResizeCompleted(IntPtr window, IntPtr size)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 return;
@@ -1313,6 +1420,12 @@ namespace Tizen.NUI
 
         private void OnWindowMouseRelativeEvent(IntPtr view, IntPtr mouseEvent)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (mouseEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("mouseEvent should not be null!");
@@ -1329,6 +1442,12 @@ namespace Tizen.NUI
 
         private void OnWindowPointerConstraintsEvent(IntPtr view, IntPtr constraintsEvent)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             if (constraintsEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("constraintsEvent should not be null!");
@@ -1345,6 +1464,12 @@ namespace Tizen.NUI
 
         private bool OnWindowHover(IntPtr view, IntPtr hoverData)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
             if (hoverData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("hoverData should not be null!");
@@ -1689,6 +1814,12 @@ namespace Tizen.NUI
 
         private void OnDetentEvent(IntPtr wheelEvent)
         {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
             if (wheelEvent != global::System.IntPtr.Zero)
@@ -1722,6 +1853,11 @@ namespace Tizen.NUI
 
         private void OnVisibilityChanged(IntPtr window, bool visibility)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 NUILog.Error("[ERR] OnVisibilityChanged() window is null");
@@ -1785,6 +1921,11 @@ namespace Tizen.NUI
 
         private void OnAuxiliaryMessage(IntPtr kData, IntPtr vData, IntPtr optionsArray)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (kData == IntPtr.Zero || vData == IntPtr.Zero)
             {
                 return;
@@ -1918,6 +2059,11 @@ namespace Tizen.NUI
 
         private void OnInsetsChanged(int partType, int partState, IntPtr extents)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (insetsChangedEventHandler != null)
             {
                 InsetsChangedEventArgs e = new InsetsChangedEventArgs();
@@ -1980,6 +2126,11 @@ namespace Tizen.NUI
 
         private void OnAccessibilityHighlight(IntPtr window, bool highlight)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             if (window == global::System.IntPtr.Zero)
             {
                 NUILog.Error("[ERR] OnAccessibilityHighlight() window is null");
