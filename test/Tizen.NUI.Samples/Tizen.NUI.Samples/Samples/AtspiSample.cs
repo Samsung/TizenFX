@@ -12,6 +12,7 @@ namespace Tizen.NUI.Samples
             window.BackgroundColor = Color.White;
 
             TextLabel text = new TextLabel("PASS");
+            text.TranslatableText = "REFLCD_FH9_BNR_PASSWORD";
             text.HorizontalAlignment = HorizontalAlignment.Center;
             text.VerticalAlignment = VerticalAlignment.Center;
             text.TextColor = Color.Blue;

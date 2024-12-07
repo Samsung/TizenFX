@@ -309,7 +309,9 @@ namespace Tizen.NUI.BaseComponents
                     throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textEditorTextSid = value;
+                AccessibilityAttributes["TranslatableText"] = textEditorTextSid;
                 Text = SetTranslatable(textEditorTextSid);
+                NUILog.Error($"TranslatetableText ID {textEditorTextSid}, Translated Text {Text}");
                 NotifyPropertyChanged();
             }
         }

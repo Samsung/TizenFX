@@ -435,6 +435,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else 
                 {
+                    NUILog.Error($"Set TranslatetableText{value}");
                     SetInternalTranslatableTextProperty(this, null, value);
                 }
             }
@@ -453,7 +454,9 @@ namespace Tizen.NUI.BaseComponents
                 }
                 string translatableText = null;
                 textLabelSid = value;
+                AccessibilityAttributes["TranslatableText"] = textLabelSid;
                 translatableText = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+                NUILog.Error($"TranslatetableText ID {textLabelSid}, Translated Text {translatableText}");
                 if (translatableText != null)
                 {
                     Text = translatableText;
