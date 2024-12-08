@@ -724,6 +724,17 @@ namespace Tizen.Network.WiFi
             return task.Task;
         }
 
+        internal string GetTDLSConnectedPeer()
+        {
+            string address = "";
+            int ret = Interop.WiFi.GetTdlsConnectedPeer(GetSafeHandle(), out address);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
+            }
+            return String.Copy(address);
+        }
+
         private void CheckReturnValue(int ret, string method, string privilege)
         {
             if (ret != (int)WiFiError.None)
