@@ -127,8 +127,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            bool hasLayout = (layout != null);
-
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
@@ -186,14 +184,12 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            bool hasLayout = (layout != null);
-
             // If View has a layout then do a deferred child removal
             // Actual child removal is performed by the layouting system so
             // transitions can be completed.
-            if (hasLayout)
+            if (Layout != null)
             {
-                (layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
+                (Layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
             }
 
             RemoveChild(child);
