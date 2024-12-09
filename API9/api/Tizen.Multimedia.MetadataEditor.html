@@ -1,0 +1,1288 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MetadataEditor
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MetadataEditor
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API9">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.MetadataEditor">
+
+
+  <h1 id="Tizen_Multimedia_MetadataEditor" data-uid="Tizen.Multimedia.MetadataEditor" class="text-break">Class MetadataEditor
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Metadata.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides a means to edit the metadata of MP3 and MP4 files.
+Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MetadataEditor : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">MetadataEditor</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L63">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor__ctor_" data-uid="Tizen.Multimedia.MetadataEditor.#ctor*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor__ctor_System_String_" data-uid="Tizen.Multimedia.MetadataEditor.#ctor(System.String)">MetadataEditor(string)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> class with the specified path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MetadataEditor(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path of the media file to edit the metadata.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
+        <td><p>The file is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p>The file does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required privilege to access the file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L179">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Album_" data-uid="Tizen.Multimedia.MetadataEditor.Album*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Album" data-uid="Tizen.Multimedia.MetadataEditor.Album">Album</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the album name of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Album { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L129">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Artist_" data-uid="Tizen.Multimedia.MetadataEditor.Artist*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Artist" data-uid="Tizen.Multimedia.MetadataEditor.Artist">Artist</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the artist of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Artist { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L229">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Author_" data-uid="Tizen.Multimedia.MetadataEditor.Author*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Author" data-uid="Tizen.Multimedia.MetadataEditor.Author">Author</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the author of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Author { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L333">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Comment_" data-uid="Tizen.Multimedia.MetadataEditor.Comment*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Comment" data-uid="Tizen.Multimedia.MetadataEditor.Comment">Comment</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the comment of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Comment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L393">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Conductor_" data-uid="Tizen.Multimedia.MetadataEditor.Conductor*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Conductor" data-uid="Tizen.Multimedia.MetadataEditor.Conductor">Conductor</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the conductor of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Conductor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L254">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Copyright_" data-uid="Tizen.Multimedia.MetadataEditor.Copyright*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Copyright" data-uid="Tizen.Multimedia.MetadataEditor.Copyright">Copyright</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the copyright of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Copyright { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L283">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Date_" data-uid="Tizen.Multimedia.MetadataEditor.Date*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Date" data-uid="Tizen.Multimedia.MetadataEditor.Date">Date</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the date of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Date { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MetadataEditor_Date_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If the media contains the ID3 tag, this refers to the recorded date.
+If the media is a mp4 format, this refers to the year, and the value to set will be converted into integer.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L308">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Description_" data-uid="Tizen.Multimedia.MetadataEditor.Description*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Description" data-uid="Tizen.Multimedia.MetadataEditor.Description">Description</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the description of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L204">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Genre_" data-uid="Tizen.Multimedia.MetadataEditor.Genre*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Genre" data-uid="Tizen.Multimedia.MetadataEditor.Genre">Genre</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the genre of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Genre { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L376">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_PictureCount_" data-uid="Tizen.Multimedia.MetadataEditor.PictureCount*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_PictureCount" data-uid="Tizen.Multimedia.MetadataEditor.PictureCount">PictureCount</h4>
+  <div class="markdown level1 summary"><p>Gets the count of album arts of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PictureCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L154">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Title_" data-uid="Tizen.Multimedia.MetadataEditor.Title*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Title" data-uid="Tizen.Multimedia.MetadataEditor.Title">Title</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the title of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L358">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_TrackNumber_" data-uid="Tizen.Multimedia.MetadataEditor.TrackNumber*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_TrackNumber" data-uid="Tizen.Multimedia.MetadataEditor.TrackNumber">TrackNumber</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the track number of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TrackNumber { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L418">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_UnsyncLyrics_" data-uid="Tizen.Multimedia.MetadataEditor.UnsyncLyrics*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_UnsyncLyrics" data-uid="Tizen.Multimedia.MetadataEditor.UnsyncLyrics">UnsyncLyrics</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the unsynchronized lyrics of media.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UnsyncLyrics { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L527">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_AddPicture_" data-uid="Tizen.Multimedia.MetadataEditor.AddPicture*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_AddPicture_System_String_" data-uid="Tizen.Multimedia.MetadataEditor.AddPicture(System.String)">AddPicture(string)</h4>
+  <div class="markdown level1 summary"><p>Appends the picture to the media file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddPicture(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path of the picture for adding to the metadata.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p>The file does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required privilege to access the file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
+        <td><p>The specified file is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L441">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Commit_" data-uid="Tizen.Multimedia.MetadataEditor.Commit*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Commit" data-uid="Tizen.Multimedia.MetadataEditor.Commit">Commit()</h4>
+  <div class="markdown level1 summary"><p>Writes the modified metadata to the media file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+Internal error.<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L618">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Dispose_" data-uid="Tizen.Multimedia.MetadataEditor.Dispose*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Dispose" data-uid="Tizen.Multimedia.MetadataEditor.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases all resources used by the <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L600">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Dispose_" data-uid="Tizen.Multimedia.MetadataEditor.Dispose*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.MetadataEditor.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Releases the resources used by the <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L588">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_Finalize_" data-uid="Tizen.Multimedia.MetadataEditor.Finalize*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_Finalize" data-uid="Tizen.Multimedia.MetadataEditor.Finalize">~MetadataEditor()</h4>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the MetadataEditor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~MetadataEditor()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L464">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_GetPicture_" data-uid="Tizen.Multimedia.MetadataEditor.GetPicture*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_GetPicture_System_Int32_" data-uid="Tizen.Multimedia.MetadataEditor.GetPicture(System.Int32)">GetPicture(int)</h4>
+  <div class="markdown level1 summary"><p>Gets the artwork image in the media file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Artwork GetPicture(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the picture to import.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Artwork.html">Artwork</a></td>
+        <td><p>The artwork included in the media file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">index</code> is greater than or equal to <a class="xref" href="Tizen.Multimedia.MetadataEditor.html#Tizen_Multimedia_MetadataEditor_PictureCount">PictureCount</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L564">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_MetadataEditor_RemovePicture_" data-uid="Tizen.Multimedia.MetadataEditor.RemovePicture*"></a>
+  <h4 id="Tizen_Multimedia_MetadataEditor_RemovePicture_System_Int32_" data-uid="Tizen.Multimedia.MetadataEditor.RemovePicture(System.Int32)">RemovePicture(int)</h4>
+  <div class="markdown level1 summary"><p>Removes the picture from the media file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemovePicture(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the picture to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.<br>
+-or-<br>
+The media file is read-only.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">index</code> is greater than or equal to <a class="xref" href="Tizen.Multimedia.MetadataEditor.html#Tizen_Multimedia_MetadataEditor_PictureCount">PictureCount</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia.Metadata/MetadataEditor/MetadataEditor.cs/#L34" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

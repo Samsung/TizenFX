@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AudioManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AudioManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.AudioManager">
+
+
+  <h1 id="Tizen_Multimedia_AudioManager" data-uid="Tizen.Multimedia.AudioManager" class="text-break">Class AudioManager
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides functionality to control volume levels and monitor the status of audio devices within the system.
+The <a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a> class enables developers to retrieve the volume controller,
+obtain a list of currently connected audio devices, and subscribe to events related to device connection changes
+as well as audio stream status changes, thereby facilitating comprehensive audio management.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class AudioManager</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AudioManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L44">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioManager_VolumeController_" data-uid="Tizen.Multimedia.AudioManager.VolumeController*"></a>
+  <h4 id="Tizen_Multimedia_AudioManager_VolumeController" data-uid="Tizen.Multimedia.AudioManager.VolumeController">VolumeController</h4>
+  <div class="markdown level1 summary"><p>Gets the volume controller, which allows for adjustment and retrieval of the current audio volume level.
+This property provides access to methods and properties that enable developers to manage volume settings
+for different audio streams and ensure that the audio experience meets user preferences.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AudioVolume VolumeController { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioVolume.html">AudioVolume</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioVolume.html">AudioVolume</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L55">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioManager_GetConnectedDevices_" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices*"></a>
+  <h4 id="Tizen_Multimedia_AudioManager_GetConnectedDevices" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices">GetConnectedDevices()</h4>
+  <div class="markdown level1 summary"><p>Retrieves a collection of all audio devices currently connected to the system.
+This method returns an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>, allowing developers to easily enumerate
+through all available audio devices, such as speakers, microphones, and headphones.
+It is useful for applications that need to adapt to changes in the audio environment or support
+multiple audio output/input devices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;AudioDevice&gt; GetConnectedDevices()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a>&gt;</td>
+        <td><p>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L111">View Source</a>
+  </span>
+  <h4 id="Tizen_Multimedia_AudioManager_DeviceConnectionChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceConnectionChanged">DeviceConnectionChanged</h4>
+  <div class="markdown level1 summary"><p>Occurs when the state of an audio device connection changes, such as when a device is connected or disconnected.
+Subscribing to this event allows developers to be notified of changes in the audio setup, enabling
+dynamic adjustments in the application to accommodate new devices or handle disconnections accordingly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;AudioDeviceConnectionChangedEventArgs&gt; DeviceConnectionChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L190">View Source</a>
+  </span>
+  <h4 id="Tizen_Multimedia_AudioManager_DeviceRunningChanged" data-uid="Tizen.Multimedia.AudioManager.DeviceRunningChanged">DeviceRunningChanged</h4>
+  <div class="markdown level1 summary"><p>Occurs when an audio stream starts running on a connected audio device.
+This event is triggered when a new audio stream begins after all previous streams have stopped.
+It is important to note that if this event is invoked while an audio stream is still running,
+it will not be triggered again until all streams have been stopped and a new one starts.
+This is especially useful for managing audio playback scenarios where multiple audio streams
+may be played sequentially.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;AudioDeviceRunningChangedEventArgs&gt; DeviceRunningChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioManager_DeviceRunningChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If this event is invoked once and the audio stream is still running on the device,<br>
+this event will not be invoked anymore, even if there are more audio streams to run.<br>
+This event is invoked only when all streams are stopped and a new stream starts to run.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>AudioManager failed to communicate internally or allocate memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia/AudioManager/AudioManager.cs/#L30" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

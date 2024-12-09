@@ -1,0 +1,720 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BluetoothAvrcp
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BluetoothAvrcp
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API5">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp">
+
+
+  <h1 id="Tizen_Network_Bluetooth_BluetoothAvrcp" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp" class="text-break">Class BluetoothAvrcp
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Bluetooth.html">Bluetooth</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Bluetooth.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class is used to notify changes of the target device (For example, media player) to the control device (For example, headset).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BluetoothAvrcp : BluetoothProfile</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Network.Bluetooth.BluetoothProfile.html">BluetoothProfile</a></div>
+        <div><span class="xref">BluetoothAvrcp</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L239">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyCurrentPosition_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyCurrentPosition*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyCurrentPosition_System_UInt32_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyCurrentPosition(System.UInt32)">NotifyCurrentPosition(uint)</h4>
+  <div class="markdown level1 summary"><p>Notifies the current position of the song to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyCurrentPosition(uint position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The current position in milliseconds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyCurrentPosition_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the current position state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L123">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyEqualizerState_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyEqualizerState*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyEqualizerState_Tizen_Network_Bluetooth_EqualizerState_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyEqualizerState(Tizen.Network.Bluetooth.EqualizerState)">NotifyEqualizerState(EqualizerState)</h4>
+  <div class="markdown level1 summary"><p>Notifies the equalize state to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyEqualizerState(EqualizerState state)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.EqualizerState.html">EqualizerState</a></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>The equalizer state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyEqualizerState_Tizen_Network_Bluetooth_EqualizerState__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the equalizer state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L216">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyPlayerState_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyPlayerState*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyPlayerState_Tizen_Network_Bluetooth_PlayerState_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyPlayerState(Tizen.Network.Bluetooth.PlayerState)">NotifyPlayerState(PlayerState)</h4>
+  <div class="markdown level1 summary"><p>Notifies the player state to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyPlayerState(PlayerState state)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.PlayerState.html">PlayerState</a></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>The player state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyPlayerState_Tizen_Network_Bluetooth_PlayerState__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the player state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L147">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyRepeatMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyRepeatMode*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyRepeatMode_Tizen_Network_Bluetooth_RepeatMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyRepeatMode(Tizen.Network.Bluetooth.RepeatMode)">NotifyRepeatMode(RepeatMode)</h4>
+  <div class="markdown level1 summary"><p>Notifies the repeat mode to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyRepeatMode(RepeatMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.RepeatMode.html">RepeatMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>The repeat mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyRepeatMode_Tizen_Network_Bluetooth_RepeatMode__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the repeat mode state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L193">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyScanMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyScanMode*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyScanMode_Tizen_Network_Bluetooth_ScanMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyScanMode(Tizen.Network.Bluetooth.ScanMode)">NotifyScanMode(ScanMode)</h4>
+  <div class="markdown level1 summary"><p>Notifies the scan mode to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyScanMode(ScanMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.ScanMode.html">ScanMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>The scan mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyScanMode_Tizen_Network_Bluetooth_ScanMode__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the scan mode state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L170">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyShuffleMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyShuffleMode*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyShuffleMode_Tizen_Network_Bluetooth_ShuffleMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyShuffleMode(Tizen.Network.Bluetooth.ShuffleMode)">NotifyShuffleMode(ShuffleMode)</h4>
+  <div class="markdown level1 summary"><p>Notifies the shuffle mode to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyShuffleMode(ShuffleMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.ShuffleMode.html">ShuffleMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>The shuffle mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyShuffleMode_Tizen_Network_Bluetooth_ShuffleMode__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the shuffle mode state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L262">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyTrack_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyTrack*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyTrack_Tizen_Network_Bluetooth_Track_" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.NotifyTrack(Tizen.Network.Bluetooth.Track)">NotifyTrack(Track)</h4>
+  <div class="markdown level1 summary"><p>Notifies the track to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyTrack(Track trackData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.Track.html">Track</a></td>
+        <td><span class="parametername">trackData</span></td>
+        <td><p>The data of the track.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAvrcp_NotifyTrack_Tizen_Network_Bluetooth_Track__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The remote device must be connected.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or when notifying the shuffle track state to the remote device fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L52">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_EqualizerStateChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.EqualizerStateChanged">EqualizerStateChanged</h4>
+  <div class="markdown level1 summary"><p>The EqualizerStateChanged event is invoked when the equalizer state is changed by the remote control device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EqualizerStateChangedEventArgs&gt; EqualizerStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.EqualizerStateChangedEventArgs.html">EqualizerStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L68">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_RepeatModeChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.RepeatModeChanged">RepeatModeChanged</h4>
+  <div class="markdown level1 summary"><p>The RepeatModeChanged event is invoked when the repeat mode is changed by the remote control device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RepeatModeChangedEventArgs&gt; RepeatModeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.RepeatModeChangedEventArgs.html">RepeatModeChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L100">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_ScanModeChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.ScanModeChanged">ScanModeChanged</h4>
+  <div class="markdown level1 summary"><p>The ScanModeChanged event is invoked when the scan mode is changed by the remote control device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ScanModeChangedEventArgs&gt; ScanModeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ScanModeChangedEventArgs.html">ScanModeChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L84">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_ShuffleModeChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.ShuffleModeChanged">ShuffleModeChanged</h4>
+  <div class="markdown level1 summary"><p>The ShuffleModeChanged event is invoked when the shuffle mode is changed by the remote control device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ShuffleModeChangedeventArgs&gt; ShuffleModeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ShuffleModeChangedeventArgs.html">ShuffleModeChangedeventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L36">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothAvrcp_TargetConnectionStateChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAvrcp.TargetConnectionStateChanged">TargetConnectionStateChanged</h4>
+  <div class="markdown level1 summary"><p>The TargetConnectionStateChanged event is invoked when the connection state is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TargetConnectionStateChangedEventArgs&gt; TargetConnectionStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.TargetConnectionStateChangedEventArgs.html">TargetConnectionStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAvrcp.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

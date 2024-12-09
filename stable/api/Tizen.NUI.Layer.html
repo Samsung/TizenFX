@@ -1,0 +1,830 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Layer
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Layer
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Layer">
+
+
+  <h1 id="Tizen_NUI_Layer" data-uid="Tizen.NUI.Layer" class="text-break">Class Layer
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Layers provide a mechanism for overlaying groups of actors on top of each other.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Layer : Container, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div><span class="xref">Layer</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L49">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer__ctor_" data-uid="Tizen.NUI.Layer.#ctor*"></a>
+  <h4 id="Tizen_NUI_Layer__ctor" data-uid="Tizen.NUI.Layer.#ctor">Layer()</h4>
+  <div class="markdown level1 summary"><p>Default constructor of Layer class to create a Layer object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Layer()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L150">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Behavior_" data-uid="Tizen.NUI.Layer.Behavior*"></a>
+  <h4 id="Tizen_NUI_Layer_Behavior" data-uid="Tizen.NUI.Layer.Behavior">Behavior</h4>
+  <div class="markdown level1 summary"><p>Layer behavior, type String (Layer.LayerBehavior).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Layer.LayerBehavior Behavior { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a>.<a class="xref" href="Tizen.NUI.Layer.LayerBehavior.html">LayerBehavior</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L241">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_ChildCount_" data-uid="Tizen.NUI.Layer.ChildCount*"></a>
+  <h4 id="Tizen_NUI_Layer_ChildCount" data-uid="Tizen.NUI.Layer.ChildCount">ChildCount</h4>
+  <div class="markdown level1 summary"><p>Get the number of children held by the layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ChildCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L270">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Depth_" data-uid="Tizen.NUI.Layer.Depth*"></a>
+  <h4 id="Tizen_NUI_Layer_Depth" data-uid="Tizen.NUI.Layer.Depth">Depth</h4>
+  <div class="markdown level1 summary"><p>Queries the depth of the layer.<br>
+0 is the bottommost layer, higher number is on the top.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Depth { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L253">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Name_" data-uid="Tizen.NUI.Layer.Name*"></a>
+  <h4 id="Tizen_NUI_Layer_Name" data-uid="Tizen.NUI.Layer.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the layer's name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L197">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Opacity_" data-uid="Tizen.NUI.Layer.Opacity*"></a>
+  <h4 id="Tizen_NUI_Layer_Opacity" data-uid="Tizen.NUI.Layer.Opacity">Opacity</h4>
+  <div class="markdown level1 summary"><p>Retrieves and sets the layer's opacity.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Opacity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L167">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Viewport_" data-uid="Tizen.NUI.Layer.Viewport*"></a>
+  <h4 id="Tizen_NUI_Layer_Viewport" data-uid="Tizen.NUI.Layer.Viewport">Viewport</h4>
+  <div class="markdown level1 summary"><p>Sets the viewport (in window coordinates), type rectangle.
+The contents of the layer will not be visible outside this box, when ViewportEnabled is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle Viewport { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L219">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Visibility_" data-uid="Tizen.NUI.Layer.Visibility*"></a>
+  <h4 id="Tizen_NUI_Layer_Visibility" data-uid="Tizen.NUI.Layer.Visibility">Visibility</h4>
+  <div class="markdown level1 summary"><p>Retrieves and sets the layer's visibility.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Visibility { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L321">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Add_" data-uid="Tizen.NUI.Layer.Add*"></a>
+  <h4 id="Tizen_NUI_Layer_Add_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Layer.Add(Tizen.NUI.BaseComponents.View)">Add(View)</h4>
+  <div class="markdown level1 summary"><p>Adds a child view to this layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Add(View child)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_Add_Tizen_NUI_BaseComponents_View_">Container.Add(View)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when child is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Layer_Add_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_Add_Tizen_NUI_BaseComponents_View_">Add</a>(<a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>)</div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L450">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_FindChildById_" data-uid="Tizen.NUI.Layer.FindChildById*"></a>
+  <h4 id="Tizen_NUI_Layer_FindChildById_System_UInt32_" data-uid="Tizen.NUI.Layer.FindChildById(System.UInt32)">FindChildById(uint)</h4>
+  <div class="markdown level1 summary"><p>Search through this layer's hierarchy for a view with the given unique ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View FindChildById(uint id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The id of the child to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>A handle to the view if found, or an empty handle if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Layer_FindChildById_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The actor itself is also considered in the search.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L390">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_GetChildAt_" data-uid="Tizen.NUI.Layer.GetChildAt*"></a>
+  <h4 id="Tizen_NUI_Layer_GetChildAt_System_UInt32_" data-uid="Tizen.NUI.Layer.GetChildAt(System.UInt32)">GetChildAt(uint)</h4>
+  <div class="markdown level1 summary"><p>Retrieves a child view by the index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override View GetChildAt(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the child to retrieve.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>The view for the given index or empty handle if children not initialized.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_GetChildAt_System_UInt32_">Container.GetChildAt(uint)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L417">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_GetChildCount_" data-uid="Tizen.NUI.Layer.GetChildCount*"></a>
+  <h4 id="Tizen_NUI_Layer_GetChildCount" data-uid="Tizen.NUI.Layer.GetChildCount">GetChildCount()</h4>
+  <div class="markdown level1 summary"><p>Get the child count of the layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API9 and will be removed in API11. Use ChildCount property instead&quot;)]
+public override uint GetChildCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The child count of the layer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_GetChildCount">Container.GetChildCount()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L407">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_GetParent_" data-uid="Tizen.NUI.Layer.GetParent*"></a>
+  <h4 id="Tizen_NUI_Layer_GetParent" data-uid="Tizen.NUI.Layer.GetParent">GetParent()</h4>
+  <div class="markdown level1 summary"><p>Get parent of the layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Container GetParent()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Container.html">Container</a></td>
+        <td><p>The view's container</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_GetParent">Container.GetParent()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L498">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Lower_" data-uid="Tizen.NUI.Layer.Lower*"></a>
+  <h4 id="Tizen_NUI_Layer_Lower" data-uid="Tizen.NUI.Layer.Lower">Lower()</h4>
+  <div class="markdown level1 summary"><p>Decrements the depth of the layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Lower()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L536">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_LowerToBottom_" data-uid="Tizen.NUI.Layer.LowerToBottom*"></a>
+  <h4 id="Tizen_NUI_Layer_LowerToBottom" data-uid="Tizen.NUI.Layer.LowerToBottom">LowerToBottom()</h4>
+  <div class="markdown level1 summary"><p>Lowers the layer to the bottom.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LowerToBottom()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L564">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_MoveAbove_" data-uid="Tizen.NUI.Layer.MoveAbove*"></a>
+  <h4 id="Tizen_NUI_Layer_MoveAbove_Tizen_NUI_Layer_" data-uid="Tizen.NUI.Layer.MoveAbove(Tizen.NUI.Layer)">MoveAbove(Layer)</h4>
+  <div class="markdown level1 summary"><p>Moves the layer directly above the given layer.<br>
+After the call, this layer's depth will be immediately above target.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveAbove(Layer target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>The layer to get on top of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L575">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_MoveBelow_" data-uid="Tizen.NUI.Layer.MoveBelow*"></a>
+  <h4 id="Tizen_NUI_Layer_MoveBelow_Tizen_NUI_Layer_" data-uid="Tizen.NUI.Layer.MoveBelow(Tizen.NUI.Layer)">MoveBelow(Layer)</h4>
+  <div class="markdown level1 summary"><p>Moves the layer directly below the given layer.<br>
+After the call, this layer's depth will be immediately below target.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveBelow(Layer target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>The layer to get below of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L479">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Raise_" data-uid="Tizen.NUI.Layer.Raise*"></a>
+  <h4 id="Tizen_NUI_Layer_Raise" data-uid="Tizen.NUI.Layer.Raise">Raise()</h4>
+  <div class="markdown level1 summary"><p>Increments the depth of the layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Raise()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L518">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_RaiseToTop_" data-uid="Tizen.NUI.Layer.RaiseToTop*"></a>
+  <h4 id="Tizen_NUI_Layer_RaiseToTop" data-uid="Tizen.NUI.Layer.RaiseToTop">RaiseToTop()</h4>
+  <div class="markdown level1 summary"><p>Raises the layer to the top.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RaiseToTop()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L358">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Layer_Remove_" data-uid="Tizen.NUI.Layer.Remove*"></a>
+  <h4 id="Tizen_NUI_Layer_Remove_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Layer.Remove(Tizen.NUI.BaseComponents.View)">Remove(View)</h4>
+  <div class="markdown level1 summary"><p>Removes a child view from this layer. If the view was not a child of this layer, this is a no-op.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Remove(View child)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_Remove_Tizen_NUI_BaseComponents_View_">Container.Remove(View)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when child is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Layer_Remove_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.NUI.Container.html#Tizen_NUI_Container_Remove_Tizen_NUI_BaseComponents_View_">Remove</a>(<a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>)</div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Layer.cs/#L28" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,689 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Model
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Model
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D.Model">
+
+
+  <h1 id="Tizen_NUI_Scene3D_Model" data-uid="Tizen.NUI.Scene3D.Model" class="text-break">Class Model
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Scene3D.html">Scene3D</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Model is a Class to show 3D mesh objects.
+Model supports glTF 2.0 and DLI model formats.
+Physically Based Rendering with Image Based Lighting is also supported.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Model : View, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div><span class="xref">Model</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_NUI_Scene3D_Model_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+  <h5 id="Tizen_NUI_Scene3D_Model_examples"><strong>Examples</strong></h5>
+  <pre><code>Model model = new Model(modelUrl)
+{
+    Size = new Size(width, height),
+};
+model.ResourcesLoaded += (s, e) =>
+{
+    model.PivotPoint = new Vector3(0.5f, 0.5f, 0.5f); // Use center as a Pivot.
+
+    int animationCount = model.GetAnimationCount();
+    if(animationCount > 0)
+    {
+        // Play an Animation of index 0.
+        model.GetAnimation(0).Play();
+    }
+};
+model.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
+window.Add(model);</code></pre>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L102">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model__ctor_System_String_System_String_" data-uid="Tizen.NUI.Scene3D.Model.#ctor(System.String,System.String)">Model(string, string)</h4>
+  <div class="markdown level1 summary"><p>Create an initialized Model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Model(string modelUrl, string resourceDirectoryUrl = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">modelUrl</span></td>
+        <td><p>model file url.(e.g. glTF, and DLI).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">resourceDirectoryUrl</span></td>
+        <td><p>The url to derectory containing resources: binary, image etc.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model__ctor_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If resourceDirectoryUrl is empty, the parent directory url of modelUrl is used for resource url.</p>
+<p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L125">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model__ctor_Tizen_NUI_Scene3D_Model_" data-uid="Tizen.NUI.Scene3D.Model.#ctor(Tizen.NUI.Scene3D.Model)">Model(Model)</h4>
+  <div class="markdown level1 summary"><p>Copy constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Model(Model model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.Model.html">Model</a></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>Source object to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model__ctor_Tizen_NUI_Scene3D_Model__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L743">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_Dispose_" data-uid="Tizen.NUI.Scene3D.Model.Dispose*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Scene3D.Model.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>To make transitionSet instance be disposed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Dispose_Tizen_NUI_DisposeTypes_">View.Dispose(DisposeTypes)</a></div>
+  <h5 id="Tizen_NUI_Scene3D_Model_Dispose_Tizen_NUI_DisposeTypes__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L581">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GenerateMotionDataAnimation*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.Model.GenerateMotionDataAnimation(Tizen.NUI.Scene3D.MotionData)">GenerateMotionDataAnimation(MotionData)</h4>
+  <div class="markdown level1 summary"><p>Generate animation by MotionData.
+If there is no animatable item for MotionData, return null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation GenerateMotionDataAnimation(MotionData motionData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
+        <td><span class="parametername">motionData</span></td>
+        <td><p>Source motion data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Generated animation from then given motion data, or null if there is no animatable item in <code data-dev-comment-type="paramref" class="paramref">motionData</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_Tizen_NUI_Scene3D_MotionData__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L346">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_GetAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_String_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation(System.String)">GetAnimation(string)</h4>
+  <div class="markdown level1 summary"><p>Retrieves animation with the given name.
+Note: This method should be called after Model load finished.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation GetAnimation(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>String name of animation to be retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animation that has the given name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L319">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_GetAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation(System.UInt32)">GetAnimation(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets animation at the index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation GetAnimation(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index of animation to be retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animation at the index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L303">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_GetAnimationCount_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimationCount*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_GetAnimationCount" data-uid="Tizen.NUI.Scene3D.Model.GetAnimationCount">GetAnimationCount()</h4>
+  <div class="markdown level1 summary"><p>Gets number of animations that has been loaded from model file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetAnimationCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The number of loaded animations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GetAnimationCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L289">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_" data-uid="Tizen.NUI.Scene3D.Model.SetImageBasedLightSource*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_System_String_System_String_System_Single_" data-uid="Tizen.NUI.Scene3D.Model.SetImageBasedLightSource(System.String,System.String,System.Single)">SetImageBasedLightSource(string, string, float)</h4>
+  <div class="markdown level1 summary"><p>Changes Image Based Light according to the given input textures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetImageBasedLightSource(string diffuseUrl, string specularUrl, float scaleFactor = 1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">diffuseUrl</span></td>
+        <td><p>The path of Cube map image that will be used as a diffuse IBL source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">specularUrl</span></td>
+        <td><p>The path of Cube map image that will be used as a specular IBL source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">scaleFactor</span></td>
+        <td><p>Scale factor that controls light source intensity in [0.0f, 1.0f]. Default value is 1.0f.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_System_String_System_String_System_Single__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L616">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Model_SetMotionData_" data-uid="Tizen.NUI.Scene3D.Model.SetMotionData*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Model_SetMotionData_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.Model.SetMotionData(Tizen.NUI.Scene3D.MotionData)">SetMotionData(MotionData)</h4>
+  <div class="markdown level1 summary"><p>Set values from MotionData.
+Note that this method doesn not apply KeyFrames animation.
+If you want to apply the animation, please use <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_Tizen_NUI_Scene3D_MotionData_">GenerateMotionDataAnimation(MotionData)</a> and play the result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMotionData(MotionData motionData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
+        <td><span class="parametername">motionData</span></td>
+        <td><p>Source motion data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_SetMotionData_Tizen_NUI_Scene3D_MotionData__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(uint)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(string)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L78" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,611 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AuthenticatorInformation
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AuthenticatorInformation
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation">
+
+
+  <h1 id="Tizen_Account_FidoClient_AuthenticatorInformation" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation" class="text-break">Class AuthenticatorInformation
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Account</span>.<a class="xref" href="Tizen.Account.FidoClient.html">FidoClient</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Account.FidoClient.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Contains information about the authenticators registered on the device.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public class AuthenticatorInformation</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AuthenticatorInformation</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Account_FidoClient_AuthenticatorInformation_examples"><strong>Examples</strong></h5>
+  <pre><code>    IEnumerable&lt;AuthenticatorInformation> authInfos = await UafAuthenticatorFinder.DiscoverAuthenticatorsAsync();
+    foreach (AuthenticatorInformation authInfo in authInfos)
+    {
+        string aaid = authInfo.Aaid;
+        string title = authInfo.Title;
+    }</code></pre>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L54">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Aaid_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Aaid*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Aaid" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Aaid">Aaid</h4>
+  <div class="markdown level1 summary"><p>The Authenticator AAID (Authenticator Attestation ID)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Aaid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L68">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AssertionScheme_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AssertionScheme*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AssertionScheme" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AssertionScheme">AssertionScheme</h4>
+  <div class="markdown level1 summary"><p>The Authenticator assertion scheme.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string AssertionScheme { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L103">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AttachmentHint_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttachmentHint*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AttachmentHint" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttachmentHint">AttachmentHint</h4>
+  <div class="markdown level1 summary"><p>The attachment hint of this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public AuthenticatorAttachmentHint AttachmentHint { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.FidoClient.AuthenticatorAttachmentHint.html">AuthenticatorAttachmentHint</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L117">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AttestationTypes_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttestationTypes*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AttestationTypes" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttestationTypes">AttestationTypes</h4>
+  <div class="markdown level1 summary"><p>The available attestation types for this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public IEnumerable&lt;AuthenticatorAttestationType&gt; AttestationTypes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorAttestationType.html">AuthenticatorAttestationType</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AuthenticationAlgorithm_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AuthenticationAlgorithm*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AuthenticationAlgorithm" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AuthenticationAlgorithm">AuthenticationAlgorithm</h4>
+  <div class="markdown level1 summary"><p>The Authenticator algorithm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public AuthenticationAlgorithm AuthenticationAlgorithm { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.FidoClient.AuthenticationAlgorithm.html">AuthenticationAlgorithm</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L61">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Description_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Description*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Description" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Description">Description</h4>
+  <div class="markdown level1 summary"><p>The Authenticator description</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Description { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L138">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Icon_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Icon*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Icon" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Icon">Icon</h4>
+  <div class="markdown level1 summary"><p>The icon of this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Icon { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L110">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_IsSecondFactorOnly_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.IsSecondFactorOnly*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_IsSecondFactorOnly" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.IsSecondFactorOnly">IsSecondFactorOnly</h4>
+  <div class="markdown level1 summary"><p>Denotes the Authenticator is Second factor only which is supported by U2F standards.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public bool IsSecondFactorOnly { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L89">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_KeyProtection_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.KeyProtection*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_KeyProtection" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.KeyProtection">KeyProtection</h4>
+  <div class="markdown level1 summary"><p>The key protection method of this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public KeyProtectionType KeyProtection { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.FidoClient.KeyProtectionType.html">KeyProtectionType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L96">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_MatcherProtection_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.MatcherProtection*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_MatcherProtection" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.MatcherProtection">MatcherProtection</h4>
+  <div class="markdown level1 summary"><p>The matcher protection method of this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public MatcherProtectionType MatcherProtection { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.FidoClient.MatcherProtectionType.html">MatcherProtectionType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L131">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayContentType_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayContentType*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayContentType" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayContentType">TcDisplayContentType</h4>
+  <div class="markdown level1 summary"><p>The Transaction Confirmation display type of this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string TcDisplayContentType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L124">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayType_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayType*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayType" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayType">TcDisplayType</h4>
+  <div class="markdown level1 summary"><p>The Transaction Confirmation display type of this Authenticator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public TransactionConfirmationDisplayType TcDisplayType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.FidoClient.TransactionConfirmationDisplayType.html">TransactionConfirmationDisplayType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L47">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Title_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Title*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Title" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The authenticator Title</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Title { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L82">View Source</a>
+  </span>
+  <a id="Tizen_Account_FidoClient_AuthenticatorInformation_UserVerification_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.UserVerification*"></a>
+  <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_UserVerification" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.UserVerification">UserVerification</h4>
+  <div class="markdown level1 summary"><p>The user verification method of this Authenticator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public UserVerificationMethod UserVerification { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.FidoClient.UserVerificationMethod.html">UserVerificationMethod</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L36" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

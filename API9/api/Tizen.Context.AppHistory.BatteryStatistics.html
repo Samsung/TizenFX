@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BatteryStatistics
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BatteryStatistics
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API9">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Context.AppHistory.BatteryStatistics">
+
+
+  <h1 id="Tizen_Context_AppHistory_BatteryStatistics" data-uid="Tizen.Context.AppHistory.BatteryStatistics" class="text-break">Class BatteryStatistics
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Context</span>.<a class="xref" href="Tizen.Context.AppHistory.html">AppHistory</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Context.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class provides APIs to query the battery consumption per application.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BatteryStatistics : AppStatistics</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Context.AppHistory.AppStatistics.html">AppStatistics</a></div>
+        <div><span class="xref">BatteryStatistics</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L38">View Source</a>
+  </span>
+  <a id="Tizen_Context_AppHistory_BatteryStatistics__ctor_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.#ctor*"></a>
+  <h4 id="Tizen_Context_AppHistory_BatteryStatistics__ctor" data-uid="Tizen.Context.AppHistory.BatteryStatistics.#ctor">BatteryStatistics()</h4>
+  <div class="markdown level1 summary"><p>The default constructor of BatteryStatistics class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BatteryStatistics()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the features are not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L66">View Source</a>
+  </span>
+  <a id="Tizen_Context_AppHistory_BatteryStatistics__ctor_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.#ctor*"></a>
+  <h4 id="Tizen_Context_AppHistory_BatteryStatistics__ctor_Tizen_Context_AppHistory_BatteryStatistics_SortOrderType_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.#ctor(Tizen.Context.AppHistory.BatteryStatistics.SortOrderType)">BatteryStatistics(SortOrderType)</h4>
+  <div class="markdown level1 summary"><p>The constructor of BatteryStatistics class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BatteryStatistics(BatteryStatistics.SortOrderType order)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Context.AppHistory.BatteryStatistics.html">BatteryStatistics</a>.<a class="xref" href="Tizen.Context.AppHistory.BatteryStatistics.SortOrderType.html">SortOrderType</a></td>
+        <td><span class="parametername">order</span></td>
+        <td><p>The criteria of the battery statistics sorted by.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the features are not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L206">View Source</a>
+  </span>
+  <a id="Tizen_Context_AppHistory_BatteryStatistics_SortOrder_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.SortOrder*"></a>
+  <h4 id="Tizen_Context_AppHistory_BatteryStatistics_SortOrder" data-uid="Tizen.Context.AppHistory.BatteryStatistics.SortOrder">SortOrder</h4>
+  <div class="markdown level1 summary"><p>Gets the criteria of battery statistics sorted by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BatteryStatistics.SortOrderType SortOrder { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Context.AppHistory.BatteryStatistics.html">BatteryStatistics</a>.<a class="xref" href="Tizen.Context.AppHistory.BatteryStatistics.SortOrderType.html">SortOrderType</a></td>
+        <td><p>The criteria of battery statistics sorted by.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L166">View Source</a>
+  </span>
+  <a id="Tizen_Context_AppHistory_BatteryStatistics_GetLastFullyChargedTime_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.GetLastFullyChargedTime*"></a>
+  <h4 id="Tizen_Context_AppHistory_BatteryStatistics_GetLastFullyChargedTime" data-uid="Tizen.Context.AppHistory.BatteryStatistics.GetLastFullyChargedTime">GetLastFullyChargedTime()</h4>
+  <div class="markdown level1 summary"><p>Gets the last time when the device was fully charged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetLastFullyChargedTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><p>The last time when the device was fully charged.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the statistics is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L125">View Source</a>
+  </span>
+  <a id="Tizen_Context_AppHistory_BatteryStatistics_Query_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.Query*"></a>
+  <h4 id="Tizen_Context_AppHistory_BatteryStatistics_Query_System_DateTime_System_DateTime_System_UInt32_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.Query(System.DateTime,System.DateTime,System.UInt32)">Query(DateTime, DateTime, uint)</h4>
+  <div class="markdown level1 summary"><p>Retrieves a given type of battery statistics.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;BatteryStatisticsData&gt; Query(DateTime startTime, DateTime endTime, uint resultSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">startTime</span></td>
+        <td><p>The start time of the data to be aggregated.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">endTime</span></td>
+        <td><p>The end time of the data to be aggregated.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">resultSize</span></td>
+        <td><p>The number of data records to be retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyList&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Context.AppHistory.BatteryStatisticsData.html">BatteryStatisticsData</a>&gt;</td>
+        <td><p>Battery statistics data retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when an invalid operation occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the features are not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to retrieve the application history.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L103">View Source</a>
+  </span>
+  <a id="Tizen_Context_AppHistory_BatteryStatistics_Query_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.Query*"></a>
+  <h4 id="Tizen_Context_AppHistory_BatteryStatistics_Query_System_DateTime_System_DateTime_" data-uid="Tizen.Context.AppHistory.BatteryStatistics.Query(System.DateTime,System.DateTime)">Query(DateTime, DateTime)</h4>
+  <div class="markdown level1 summary"><p>Retrieves a given type of battery statistics.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;BatteryStatisticsData&gt; Query(DateTime startTime, DateTime endTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">startTime</span></td>
+        <td><p>The start time of the data to be aggregated.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">endTime</span></td>
+        <td><p>The end time of the data to be aggregated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyList&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Context.AppHistory.BatteryStatisticsData.html">BatteryStatisticsData</a>&gt;</td>
+        <td><p>Battery statistics data retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid argument is used.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when invalid operation occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the features are not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the application has no privilege to retrieve the application history.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Context/Tizen.Context.AppHistory/BatteryStatistics.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

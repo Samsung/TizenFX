@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Security.WebAuthn
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Security.WebAuthn
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Security.WebAuthn">
+
+  <h1 id="Tizen_Security_WebAuthn" data-uid="Tizen.Security.WebAuthn" class="text-break">Namespace Tizen.Security.WebAuthn
+</h1>
+  <div class="markdown level0 summary"><p>The Web Authentication module provides a C# API enabling the creation and use of strong, attested, scoped, public key-based credentials by web applications, for the purpose of strongly authenticating users</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
+<p>It provides an <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html">Authenticator</a> class containing methods for creating public key-based credentials
+(<a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_MakeCredential_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredCreationOptions_Tizen_Security_WebAuthn_MakeCredentialCallbacks_">Authenticator.MakeCredential()</a>) and using them (<a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_GetAssertion_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Tizen_Security_WebAuthn_GetAssertionCallbacks_">Authenticator.GetAssertion()</a>). Both these operations are performed asynchronously. Callbacks passed as arguments are used to notify about the progress
+or when user's interaction is necessary. Due to significant amount of time required to complete both
+requests, cancelation is also possible with the help of Authenticator.Cancel(). The module also
+provides a variety of data types based on W3C Web Authentication API (<a href="https://www.w3.org/TR/webauthn-3/">https://www.w3.org/TR/webauthn-3/</a>)
+used to control the credential creation and assertion process.</p>
+<h2 id="related-features">Related features</h2>
+<p>This module is related with the following features:</p>
+<ul>
+<li><a href="http://tizen.org/feature/security.webauthn">http://tizen.org/feature/security.webauthn</a></li>
+<li><a href="http://tizen.org/feature/network.bluetooth.le">http://tizen.org/feature/network.bluetooth.le</a></li>
+<li>and network connection features (<a href="http://tizen.org/feature/network.wifi">http://tizen.org/feature/network.wifi</a>, <a href="http://tizen.org/feature/network.ethernet">http://tizen.org/feature/network.ethernet</a>, <a href="http://tizen.org/feature/network.telephony">http://tizen.org/feature/network.telephony</a>)</li>
+</ul>
+</div>
+    <h3 id="classes">Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AuthenticationExtension.html">AuthenticationExtension</a></h4>
+      <section><p>Authenticator extension.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AuthenticationSelectionCriteria.html">AuthenticationSelectionCriteria</a></h4>
+      <section><p>Authenticator selection criteria.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html">Authenticator</a></h4>
+      <section><p>Public web authentication API.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorAssertionResponse.html">AuthenticatorAssertionResponse</a></h4>
+      <section><p>The authenticator's response of <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_GetAssertion_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Tizen_Security_WebAuthn_GetAssertionCallbacks_">GetAssertion(ClientData, PubkeyCredRequestOptions, GetAssertionCallbacks)</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorAttestationResponse.html">AuthenticatorAttestationResponse</a></h4>
+      <section><p>The response of <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_MakeCredential_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredCreationOptions_Tizen_Security_WebAuthn_MakeCredentialCallbacks_">MakeCredential(ClientData, PubkeyCredCreationOptions, MakeCredentialCallbacks)</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.ClientData.html">ClientData</a></h4>
+      <section><p>Client data JSON.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.GetAssertionCallbacks.html">GetAssertionCallbacks</a></h4>
+      <section><p>Callback function list used to get assertion with <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_GetAssertion_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Tizen_Security_WebAuthn_GetAssertionCallbacks_">GetAssertion(ClientData, PubkeyCredRequestOptions, GetAssertionCallbacks)</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.HybridLinkedData.html">HybridLinkedData</a></h4>
+      <section><p>Linked device data.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.MakeCredentialCallbacks.html">MakeCredentialCallbacks</a></h4>
+      <section><p>Callback function list used to make credential with <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_MakeCredential_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredCreationOptions_Tizen_Security_WebAuthn_MakeCredentialCallbacks_">MakeCredential(ClientData, PubkeyCredCreationOptions, MakeCredentialCallbacks)</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a></h4>
+      <section><p>Public key credential response for <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_GetAssertion_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredRequestOptions_Tizen_Security_WebAuthn_GetAssertionCallbacks_">GetAssertion(ClientData, PubkeyCredRequestOptions, GetAssertionCallbacks)</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a></h4>
+      <section><p>Public key credential response for <a class="xref" href="Tizen.Security.WebAuthn.Authenticator.html#Tizen_Security_WebAuthn_Authenticator_MakeCredential_Tizen_Security_WebAuthn_ClientData_Tizen_Security_WebAuthn_PubkeyCredCreationOptions_Tizen_Security_WebAuthn_MakeCredentialCallbacks_">MakeCredential(ClientData, PubkeyCredCreationOptions, MakeCredentialCallbacks)</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a></h4>
+      <section><p>Make credential options.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredDescriptor.html">PubkeyCredDescriptor</a></h4>
+      <section><p>Public key credential descriptor.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredParam.html">PubkeyCredParam</a></h4>
+      <section><p>Parameter for credential generation.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a></h4>
+      <section><p>Get assertion options.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.RelyingPartyEntity.html">RelyingPartyEntity</a></h4>
+      <section><p>Relying Party entity.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.UserEntity.html">UserEntity</a></h4>
+      <section><p>User entity.</p>
+</section>
+    <h3 id="enums">Enums
+</h3>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AttestationPref.html">AttestationPref</a></h4>
+      <section><p>WebAuthn attestation preference.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorAttachment.html">AuthenticatorAttachment</a></h4>
+      <section><p>WebAuthn authentication attachment value.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.AuthenticatorTransport.html">AuthenticatorTransport</a></h4>
+      <section><p>WebAuthn authenticator transports.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.CoseAlgorithm.html">CoseAlgorithm</a></h4>
+      <section><p>WebAuthn COSE (CBOR Object Signing and Encryption) algorithms.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.HashAlgorithm.html">HashAlgorithm</a></h4>
+      <section><p>WebAuthn hash algorithms.
+Currently one hash algorithm is used, namely &quot;SHA-256&quot;.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a></h4>
+      <section><p>WebAuthn public key credential hint value.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredType.html">PubkeyCredType</a></h4>
+      <section><p>WebAuthn credential type.
+Currently one credential type is defined, namely &quot;public-key&quot;.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.ResidentKeyRequirement.html">ResidentKeyRequirement</a></h4>
+      <section><p>WebAuthn resident key requirement value.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.UserVerificationRequirement.html">UserVerificationRequirement</a></h4>
+      <section><p>WebAuthn user verification requirement value.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Security.WebAuthn.WauthnError.html">WauthnError</a></h4>
+      <section><p>WebAuthn error code.</p>
+</section>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

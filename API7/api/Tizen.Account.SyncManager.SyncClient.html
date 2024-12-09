@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SyncClient
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SyncClient
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Account.SyncManager.SyncClient">
+
+
+  <h1 id="Tizen_Account_SyncManager_SyncClient" data-uid="Tizen.Account.SyncManager.SyncClient" class="text-break">Class SyncClient
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Account</span>.<a class="xref" href="Tizen.Account.SyncManager.html">SyncManager</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Account.SyncManager.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The SyncClient APIs for managing the sync operations. Applications will call these APIs to schedule their sync operations.
+The sync service maintains sync requests from all the applications and invokes their respective callback methods to perform account synchronization operations.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class SyncClient</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">SyncClient</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L112">View Source</a>
+  </span>
+  <a id="Tizen_Account_SyncManager_SyncClient_AddDataChangeSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.AddDataChangeSyncJob*"></a>
+  <h4 id="Tizen_Account_SyncManager_SyncClient_AddDataChangeSyncJob_Tizen_Account_SyncManager_SyncJobData_Tizen_Account_SyncManager_SyncOption_" data-uid="Tizen.Account.SyncManager.SyncClient.AddDataChangeSyncJob(Tizen.Account.SyncManager.SyncJobData,Tizen.Account.SyncManager.SyncOption)">AddDataChangeSyncJob(SyncJobData, SyncOption)</h4>
+  <div class="markdown level1 summary"><p>Requests the sync manager to perform sync operations whenever the corresponding DB is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int AddDataChangeSyncJob(SyncJobData request, SyncOption syncOptions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncJobData.html">SyncJobData</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>The sync job information of the sync job request.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncOption.html">SyncOption</a></td>
+        <td><span class="parametername">syncOptions</span></td>
+        <td><p>Sync options determine a way to operate the sync job and can be used as ORing.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>A unique value which can manage sync jobs. The number of sync job IDs is limited as it is less than hundred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of a privilege is not defined.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when any of the arguments are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the application calling this API doesn't have a sync adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L80">View Source</a>
+  </span>
+  <a id="Tizen_Account_SyncManager_SyncClient_AddPeriodicSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.AddPeriodicSyncJob*"></a>
+  <h4 id="Tizen_Account_SyncManager_SyncClient_AddPeriodicSyncJob_Tizen_Account_SyncManager_SyncJobData_Tizen_Account_SyncManager_SyncPeriod_Tizen_Account_SyncManager_SyncOption_" data-uid="Tizen.Account.SyncManager.SyncClient.AddPeriodicSyncJob(Tizen.Account.SyncManager.SyncJobData,Tizen.Account.SyncManager.SyncPeriod,Tizen.Account.SyncManager.SyncOption)">AddPeriodicSyncJob(SyncJobData, SyncPeriod, SyncOption)</h4>
+  <div class="markdown level1 summary"><p>Requests the sync manager to perform periodic sync operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int AddPeriodicSyncJob(SyncJobData request, SyncPeriod period, SyncOption syncOptions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncJobData.html">SyncJobData</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>The sync job information of the sync job request.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncPeriod.html">SyncPeriod</a></td>
+        <td><span class="parametername">period</span></td>
+        <td><p>Determines the time interval of the periodic sync. The periodic sync operation can be triggered in that interval, but it does not guarantee the exact time. The minimum value is 30 minutes.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncOption.html">SyncOption</a></td>
+        <td><span class="parametername">syncOptions</span></td>
+        <td><p>Sync options determine a way to operate the sync job and can be used as ORing.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>A unique value which can manage sync jobs. The number of sync job IDs is limited as it is less than hundred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of a privilege not defined.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when any of the arguments are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the application calling this API doesn't have a sync adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L139">View Source</a>
+  </span>
+  <a id="Tizen_Account_SyncManager_SyncClient_GetAllSyncJobs_" data-uid="Tizen.Account.SyncManager.SyncClient.GetAllSyncJobs*"></a>
+  <h4 id="Tizen_Account_SyncManager_SyncClient_GetAllSyncJobs" data-uid="Tizen.Account.SyncManager.SyncClient.GetAllSyncJobs">GetAllSyncJobs()</h4>
+  <div class="markdown level1 summary"><p>Gets all the sync jobs registered with the sync manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;KeyValuePair&lt;int, SyncJobData&gt;&gt; GetAllSyncJobs()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">int</span>, <a class="xref" href="Tizen.Account.SyncManager.SyncJobData.html">SyncJobData</a>&gt;&gt;</td>
+        <td><p>Returns the list of SyncJobData corresponding to sync requests.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L174">View Source</a>
+  </span>
+  <a id="Tizen_Account_SyncManager_SyncClient_RemoveSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.RemoveSyncJob*"></a>
+  <h4 id="Tizen_Account_SyncManager_SyncClient_RemoveSyncJob_System_Int32_" data-uid="Tizen.Account.SyncManager.SyncClient.RemoveSyncJob(System.Int32)">RemoveSyncJob(int)</h4>
+  <div class="markdown level1 summary"><p>Requests the sync manager to remove the corresponding sync job based on the ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemoveSyncJob(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>A unique value of each sync job, it can be used to search a specific sync job and remove it.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the input arugments is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L48">View Source</a>
+  </span>
+  <a id="Tizen_Account_SyncManager_SyncClient_RequestOnDemandSyncJob_" data-uid="Tizen.Account.SyncManager.SyncClient.RequestOnDemandSyncJob*"></a>
+  <h4 id="Tizen_Account_SyncManager_SyncClient_RequestOnDemandSyncJob_Tizen_Account_SyncManager_SyncJobData_Tizen_Account_SyncManager_SyncOption_" data-uid="Tizen.Account.SyncManager.SyncClient.RequestOnDemandSyncJob(Tizen.Account.SyncManager.SyncJobData,Tizen.Account.SyncManager.SyncOption)">RequestOnDemandSyncJob(SyncJobData, SyncOption)</h4>
+  <div class="markdown level1 summary"><p>Requests the sync manager to perform one time sync operation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int RequestOnDemandSyncJob(SyncJobData request, SyncOption syncOptions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncJobData.html">SyncJobData</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>The sync job information of the sync job request.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Account.SyncManager.SyncOption.html">SyncOption</a></td>
+        <td><span class="parametername">syncOptions</span></td>
+        <td><p>Sync options determine a way to operate the sync job and can be used as ORing.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>An unique value which can manage sync jobs. The number of sync job ID is limite as it is less than hundred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when any of the arugments are null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the application calling this API doesn't have a sync adapter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Account.SyncManager/Tizen.Account.SyncManager/SyncClient.cs/#L29" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

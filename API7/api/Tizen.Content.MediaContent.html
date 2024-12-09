@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Content.MediaContent
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Content.MediaContent
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Content.MediaContent">
+
+  <h1 id="Tizen_Content_MediaContent" data-uid="Tizen.Content.MediaContent" class="text-break">Namespace Tizen.Content.MediaContent
+</h1>
+  <div class="markdown level0 summary"><p>The Tizen.Content.MediaContent namespace provides types used in the entire content service.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks">
+<p>The information about media items (i.e. image, audio, and video) are managed in the content database
+and operations that involve database require an active connection with the media content service.
+During media scanning, the media content service extracts the media information automatically. The media information
+includes basic file information like path, size, modified time, etc. and some metadata like ID3 tag, EXIF,
+thumbnail, etc. (thumbnail extracted only in the internal and the SD card storage.</p>
+<p>The media content service does not manage hidden files.</p>
+<p>In addition, if &quot;http://tizen.org/feature/content.scanning.others&quot; feature is not supported,
+other-type files which are not included in the media content types such as image, video, sound or music, are ignored.</p>
+</div>
+    <h3 id="classes">Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Album.html">Album</a></h4>
+      <section><p>Represents a logical collection grouping of related media information.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.AlbumColumns.html">AlbumColumns</a></h4>
+      <section><p>Provides the folder column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.AlbumCommand.html">AlbumCommand</a></h4>
+      <section><p>Provides commands to manage albums in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.AudioInfo.html">AudioInfo</a></h4>
+      <section><p>Represents the audio media information.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Bookmark.html">Bookmark</a></h4>
+      <section><p>Represents the media bookmark that allows you to mark an interesting moment
+in media (video and audio) to enable fast searching.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.BookmarkColumns.html">BookmarkColumns</a></h4>
+      <section><p>Provides the bookmark column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.BookmarkCommand.html">BookmarkCommand</a></h4>
+      <section><p>Provides commands to manage bookmarks in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.CountArguments.html">CountArguments</a></h4>
+      <section><p>Provides the ability to filter the result of the Count command.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.FaceInfo.html">FaceInfo</a></h4>
+      <section><p>Represents the face information for the media.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.FaceInfoColumns.html">FaceInfoColumns</a></h4>
+      <section><p>Provides the face info column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.FaceInfoCommand.html">FaceInfoCommand</a></h4>
+      <section><p>Provides commands to manage face information in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Folder.html">Folder</a></h4>
+      <section><p>Represents the folder information for the media.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.FolderColumns.html">FolderColumns</a></h4>
+      <section><p>Provides the folder column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.FolderCommand.html">FolderCommand</a></h4>
+      <section><p>Provides commands to manage folders and query related media items in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.FolderUpdatedEventArgs.html">FolderUpdatedEventArgs</a></h4>
+      <section><p>Provides data for the <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html#Tizen_Content_MediaContent_MediaDatabase_FolderUpdated">FolderUpdated</a> event.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.ImageInfo.html">ImageInfo</a></h4>
+      <section><p>Represents the image media stored in the device.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaCommand.html">MediaCommand</a></h4>
+      <section><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaCommand.html">MediaCommand</a> is a base class for command classes.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a></h4>
+      <section><p>Provides the ability to connect to and manage the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></h4>
+      <section><p>The exception that is thrown when a database operation failed.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaDataReader-1.html">MediaDataReader&lt;TRecord&gt;</a></h4>
+      <section><p>Provides a means of reading results obtained by executing a query.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaInfo.html">MediaInfo</a></h4>
+      <section><p>Represents the information related to the media stored.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaInfoColumns.html">MediaInfoColumns</a></h4>
+      <section><p>Provides the column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaInfoCommand.html">MediaInfoCommand</a></h4>
+      <section><p>Provides commands to manage the media information and query related items in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaInfoUpdatedEventArgs.html">MediaInfoUpdatedEventArgs</a></h4>
+      <section><p>Provides data for the <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html#Tizen_Content_MediaContent_MediaDatabase_MediaInfoUpdated">MediaInfoUpdated</a> event.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Playlist.html">Playlist</a></h4>
+      <section><p>Represents the playlist that is a group of media (usually songs).</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.PlaylistColumns.html">PlaylistColumns</a></h4>
+      <section><p>Provides the playlist column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.PlaylistCommand.html">PlaylistCommand</a></h4>
+      <section><p>Provides the commands to manage playlists in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.PlaylistMember.html">PlaylistMember</a></h4>
+      <section><p>Represents a member of the <a class="xref" href="Tizen.Content.MediaContent.Playlist.html">Playlist</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.PlaylistUpdateValues.html">PlaylistUpdateValues</a></h4>
+      <section><p>Provides means to set values used for the update command.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.PlayOrder.html">PlayOrder</a></h4>
+      <section><p>Represents an order of a member of the playlist.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.QueryArguments.html">QueryArguments</a></h4>
+      <section><p>The Base class for query arguments.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.RecordNotFoundException.html">RecordNotFoundException</a></h4>
+      <section><p>The exception that is thrown when no record is found in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.SelectArguments.html">SelectArguments</a></h4>
+      <section><p>Provides the ability to filter the result of a Select command.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Storage.html">Storage</a></h4>
+      <section><p>Represents the storage information for media.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.StorageColumns.html">StorageColumns</a></h4>
+      <section><p>Provides the storage column names that can be used for Select and Count commands.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.StorageCommand.html">StorageCommand</a></h4>
+      <section><p>Provides the commands to manage external storages in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Tag.html">Tag</a></h4>
+      <section><p>Represents a special piece of information that may be associated with media.
+Tagging allows a user to organize large number of items into logical groups providing
+a simplified and faster way of accessing media items.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.TagColumns.html">TagColumns</a></h4>
+      <section><p>Provides the tag column names that can be used for the <a class="xref" href="Tizen.Content.MediaContent.SelectArguments.html">SelectArguments</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.TagCommand.html">TagCommand</a></h4>
+      <section><p>Provides the commands to manage tags in the database.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.UnsupportedContentException.html">UnsupportedContentException</a></h4>
+      <section><p>The exception that is thrown when a requested operation is not supported for content.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.VideoInfo.html">VideoInfo</a></h4>
+      <section><p>Represents a video media information.</p>
+</section>
+    <h3 id="structs">Structs
+</h3>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Rectangle.html">Rectangle</a></h4>
+      <section><p>Represents the location of the object bounded by the rectangle defined by
+coordinates of top left corner, width, and height.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+</h3>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.IMediaDataReader.html">IMediaDataReader</a></h4>
+      <section><p>Provides a means of reading results obtained by executing a query.</p>
+</section>
+    <h3 id="enums">Enums
+</h3>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseError.html">MediaDatabaseError</a></h4>
+      <section><p>Specifies the database errors.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaInfoColumnKey.html">MediaInfoColumnKey</a></h4>
+      <section><p>Specifies the group keys for <a class="xref" href="Tizen.Content.MediaContent.MediaInfo.html">MediaInfo</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.MediaType.html">MediaType</a></h4>
+      <section><p>Specifies types of the <a class="xref" href="Tizen.Content.MediaContent.MediaInfo.html">MediaInfo</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.OperationType.html">OperationType</a></h4>
+      <section><p>Specifies database operation types.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.Orientation.html">Orientation</a></h4>
+      <section><p>Specifies orientation types of media.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Content.MediaContent.StorageType.html">StorageType</a></h4>
+      <section><p>Specifies the storage types.</p>
+</section>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

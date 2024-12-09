@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tizen.Inspections Guide </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Tizen.Inspections Guide ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="internals">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="tizeninspections-guide">Tizen.Inspections Guide</h2>
+
+<p><code>Tizen.Inspections</code> is used to collect data from applications and services. This API allows you to receive inspection events as well as request inspection data on demand (ex. receive crash reports if a process in the system crashes).</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Follow <a href="https://docs.tizen.org/application/dotnet/get-started/overview/">get started</a> page to setup Visual Studio for .NET development.</p>
+<p>To enable your application to use <code>Tizen.Inspections</code>:</p>
+<ol>
+<li><p>To use <code>Tizen.Inspections</code> to collect inspectable data, the application must be signed with a platform level distributor certificate. Refer this <a href="https://docs.tizen.org/application/dotnet/tutorials/certificates/getting-the-certificates/">guide</a> on how to sign an application with the custom certificate.</p>
+</li>
+<li><p>To use the methods and properties of the <code>Tizen.Inspections</code> namespace, include the namespace in your application::</p>
+<pre><code class="lang-c#">Using Tizen.Inspections
+</code></pre>
+</li>
+</ol>
+<h2 id="receive-inspection-events">Receive inspection events</h2>
+<p><code>Tizen.Inspections</code> allows to receive status notification published by the platform (at future, Tizen inpsections will support to receive status notification published by manufacturer's applications).</p>
+<p>In order to receive such notification, subscribe to the <code>EventReceived</code> event:</p>
+<pre><code class="lang-c#">void callback(object sender, EventReceivedEventArgs e)
+{
+    ...
+}
+
+void getInspectableDataFromEvents()
+{
+    Inspector.EventReceived += callback;
+}
+</code></pre>
+<p>When a new event arrives, callback is called. To read the inspection data out of the inspection context use <code>GetInspectableData()</code>:</p>
+<pre><code class="lang-c#">void callback(object sender, EventReceivedEventArgs e)
+{
+    if (e.Context.ModuleID == &quot;org.tizen.system.crash&quot;)
+    {
+        string[] parameters = {&quot;cs_info_json&quot;};
+        InspectionData data = e.Context.GetInspectableData(parameters);
+    }
+
+    ...
+}
+</code></pre>
+<p>Use the <code>parameters</code> argument to specify which data to read from the inspection context. Available parameters depend on the module that provides the context.</p>
+<p>In case of <code>&quot;org.tizen.system.crash&quot;</code> module, the proper values are:</p>
+<ul>
+<li><code>&quot;cs_info_json&quot;</code>: JSON report is returned, which contains information about crashed process such as callstack, mapped memory regions, and so on.</li>
+<li><code>&quot;cs_full&quot;</code>: Full crash report ZIP archive is collected.</li>
+</ul>
+<p>The obtained data is associated with the <code>data</code> Inspections handler. To read the data content, use <code>Read()</code> method:</p>
+<pre><code class="lang-c#">void callback(object sender, EventReceivedEventArgs e)
+{
+    if (e.Context.ModuleID == &quot;org.tizen.system.crash&quot;)
+    {
+        string[] parameters = {&quot;cs_info_json&quot;};
+        InspectionData data = e.Context.GetInspectableData(parameters);
+
+        byte[] buf = new byte[100];
+        while (true)
+        {
+            // Read data and check for EOF
+            if (data.Read(buf, 0, buf.Length) == 0)
+                break;
+
+            // Log received data
+            Log.Info(&quot;InspectionsExample&quot;, System.Text.Encoding.UTF8.GetString(buf));
+        }
+    }
+}
+</code></pre>
+<h2 id="request-diagnostic-data">Request diagnostic data</h2>
+<p><code>Tizen.Inspections</code> can also request diagnostic data from other modules (applications or services).</p>
+<p>For this purpose, call <code>RequestInspectableData()</code>. The <code>moduleId</code> parameter must be the id of the module that supports <code>Tizen.Inspections</code> requests:</p>
+<pre><code class="lang-c#">
+void requestInspectableData()
+{
+    string moduleId = &quot;org.tizen.some_service&quot;;
+    string[] parameters = {&quot;custom_parameter&quot;};
+
+    InspectionData data = Inspector.RequestInspectableData(moduleId, parameters);
+
+    byte[] buf = new byte[100];
+    while (true)
+    {
+        // Read data and check for EOF
+        if (data.Read(buf, 0, buf.Length) == 0)
+            break;
+
+        // Log received data
+        Log.Info(&quot;InspectionsExample&quot;, System.Text.Encoding.UTF8.GetString(buf));
+    }
+}
+</code></pre>
+<p>As in above example, after successful request, data may be read with <code>Read()</code> method.</p>
+<h2 id="related-information">Related information</h2>
+<ul>
+<li>Dependencies
+<ul>
+<li>Tizen 6.0 and Higher</li>
+</ul>
+</li>
+</ul>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

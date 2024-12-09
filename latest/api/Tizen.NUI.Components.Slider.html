@@ -1,0 +1,1382 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Slider
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Slider
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.Slider">
+
+
+  <h1 id="Tizen_NUI_Components_Slider" data-uid="Tizen.NUI.Components.Slider" class="text-break">Class Slider
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A slider lets users select a value from a continuous or discrete range of values by moving the slider thumb.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Slider : Control, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div><span class="xref">Slider</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L218">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider__ctor_" data-uid="Tizen.NUI.Components.Slider.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Slider__ctor" data-uid="Tizen.NUI.Components.Slider.#ctor">Slider()</h4>
+  <div class="markdown level1 summary"><p>The constructor of the Slider class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Slider()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L229">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider__ctor_" data-uid="Tizen.NUI.Components.Slider.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Slider__ctor_System_String_" data-uid="Tizen.NUI.Components.Slider.#ctor(System.String)">Slider(string)</h4>
+  <div class="markdown level1 summary"><p>The constructor of the Slider class with specific style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Slider(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>The string to initialize the Slider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L240">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider__ctor_" data-uid="Tizen.NUI.Components.Slider.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Slider__ctor_Tizen_NUI_Components_SliderStyle_" data-uid="Tizen.NUI.Components.Slider.#ctor(Tizen.NUI.Components.SliderStyle)">Slider(SliderStyle)</h4>
+  <div class="markdown level1 summary"><p>The constructor of the Slider class with specific style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Slider(SliderStyle sliderStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.SliderStyle.html">SliderStyle</a></td>
+        <td><span class="parametername">sliderStyle</span></td>
+        <td><p>The style object to initialize the Slider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L683">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_BgTrackColor_" data-uid="Tizen.NUI.Components.Slider.BgTrackColor*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_BgTrackColor" data-uid="Tizen.NUI.Components.Slider.BgTrackColor">BgTrackColor</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the color of the background track image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color BgTrackColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L456">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_CurrentValue_" data-uid="Tizen.NUI.Components.Slider.CurrentValue*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_CurrentValue" data-uid="Tizen.NUI.Components.Slider.CurrentValue">CurrentValue</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the current value of slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float CurrentValue { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L345">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_Direction_" data-uid="Tizen.NUI.Components.Slider.Direction*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_Direction" data-uid="Tizen.NUI.Components.Slider.Direction">Direction</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the direction type of slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Slider.DirectionType Direction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Slider.html">Slider</a>.<a class="xref" href="Tizen.NUI.Components.Slider.DirectionType.html">DirectionType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1255">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_DiscreteValue_" data-uid="Tizen.NUI.Components.Slider.DiscreteValue*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_DiscreteValue" data-uid="Tizen.NUI.Components.Slider.DiscreteValue">DiscreteValue</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the discrete value of slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float DiscreteValue { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Slider_DiscreteValue_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The discrete value is evenly spaced between MinValue and MaxValue.
+For example, MinValue is 0, MaxValue is 100, and DiscreteValue is 20.
+Then, the thumb can only go to 0, 20, 40, 60, 80, and 100.
+The default is 0.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L957">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_HighIndicatorImageURL_" data-uid="Tizen.NUI.Components.Slider.HighIndicatorImageURL*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_HighIndicatorImageURL" data-uid="Tizen.NUI.Components.Slider.HighIndicatorImageURL">HighIndicatorImageURL</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the resource url of the high indicator image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string HighIndicatorImageURL { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1087">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_HighIndicatorSize_" data-uid="Tizen.NUI.Components.Slider.HighIndicatorSize*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_HighIndicatorSize" data-uid="Tizen.NUI.Components.Slider.HighIndicatorSize">HighIndicatorSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the size of the high indicator object(image or text).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size HighIndicatorSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1024">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_HighIndicatorTextContent_" data-uid="Tizen.NUI.Components.Slider.HighIndicatorTextContent*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_HighIndicatorTextContent" data-uid="Tizen.NUI.Components.Slider.HighIndicatorTextContent">HighIndicatorTextContent</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the text content of the high indicator text object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string HighIndicatorTextContent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L382">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_Indicator_" data-uid="Tizen.NUI.Components.Slider.Indicator*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_Indicator" data-uid="Tizen.NUI.Components.Slider.Indicator">Indicator</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the indicator type, arrow or sign.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Slider.IndicatorType Indicator { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Slider.html">Slider</a>.<a class="xref" href="Tizen.NUI.Components.Slider.IndicatorType.html">IndicatorType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1231">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_IsDiscrete_" data-uid="Tizen.NUI.Components.Slider.IsDiscrete*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_IsDiscrete" data-uid="Tizen.NUI.Components.Slider.IsDiscrete">IsDiscrete</h4>
+  <div class="markdown level1 summary"><p>Flag to decide whether the thumb snaps to the nearest discrete value when the user drags the thumb or taps.</p>
+<p>The default value is false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDiscrete { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1135">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_IsValueShown_" data-uid="Tizen.NUI.Components.Slider.IsValueShown*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_IsValueShown" data-uid="Tizen.NUI.Components.Slider.IsValueShown">IsValueShown</h4>
+  <div class="markdown level1 summary"><p>Flag to decide whether the value indicator is shown</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValueShown { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L921">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_LowIndicatorImageURL_" data-uid="Tizen.NUI.Components.Slider.LowIndicatorImageURL*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_LowIndicatorImageURL" data-uid="Tizen.NUI.Components.Slider.LowIndicatorImageURL">LowIndicatorImageURL</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the resource url of the low indicator image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LowIndicatorImageURL { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1055">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_LowIndicatorSize_" data-uid="Tizen.NUI.Components.Slider.LowIndicatorSize*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_LowIndicatorSize" data-uid="Tizen.NUI.Components.Slider.LowIndicatorSize">LowIndicatorSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the size of the low indicator object(image or text).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size LowIndicatorSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L993">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_LowIndicatorTextContent_" data-uid="Tizen.NUI.Components.Slider.LowIndicatorTextContent*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_LowIndicatorTextContent" data-uid="Tizen.NUI.Components.Slider.LowIndicatorTextContent">LowIndicatorTextContent</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the text content of the low indicator text object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LowIndicatorTextContent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L427">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_MaxValue_" data-uid="Tizen.NUI.Components.Slider.MaxValue*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_MaxValue" data-uid="Tizen.NUI.Components.Slider.MaxValue">MaxValue</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the maximum value of slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MaxValue { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L398">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_MinValue_" data-uid="Tizen.NUI.Components.Slider.MinValue*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_MinValue" data-uid="Tizen.NUI.Components.Slider.MinValue">MinValue</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the minimum value of slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MinValue { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L714">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_SlidedTrackColor_" data-uid="Tizen.NUI.Components.Slider.SlidedTrackColor*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_SlidedTrackColor" data-uid="Tizen.NUI.Components.Slider.SlidedTrackColor">SlidedTrackColor</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the color of the slided track image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color SlidedTrackColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1119">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_SpaceBetweenTrackAndIndicator_" data-uid="Tizen.NUI.Components.Slider.SpaceBetweenTrackAndIndicator*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_SpaceBetweenTrackAndIndicator" data-uid="Tizen.NUI.Components.Slider.SpaceBetweenTrackAndIndicator">SpaceBetweenTrackAndIndicator</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the value of the space between track and indicator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint SpaceBetweenTrackAndIndicator { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L339">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_Style_" data-uid="Tizen.NUI.Components.Slider.Style*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_Style" data-uid="Tizen.NUI.Components.Slider.Style">Style</h4>
+  <div class="markdown level1 summary"><p>Return currently applied style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SliderStyle Style { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.SliderStyle.html">SliderStyle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Slider_Style_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Modifying contents in style may cause unexpected behaviour.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L625">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ThumbColor_" data-uid="Tizen.NUI.Components.Slider.ThumbColor*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ThumbColor" data-uid="Tizen.NUI.Components.Slider.ThumbColor">ThumbColor</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the color of the thumb image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color ThumbColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L583">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ThumbImageUrl_" data-uid="Tizen.NUI.Components.Slider.ThumbImageUrl*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ThumbImageUrl" data-uid="Tizen.NUI.Components.Slider.ThumbImageUrl">ThumbImageUrl</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the Url of the thumb image.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;string&gt; ThumbImageUrl { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NullReferenceException</span></td>
+        <td><p>Thrown when setting null value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L506">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ThumbImageURL_" data-uid="Tizen.NUI.Components.Slider.ThumbImageURL*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ThumbImageURL" data-uid="Tizen.NUI.Components.Slider.ThumbImageURL">ThumbImageURL</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the resource url of the thumb image object.</p>
+<p>Please use ThumbImageUrl property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ThumbImageURL { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L542">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ThumbImageURLSelector_" data-uid="Tizen.NUI.Components.Slider.ThumbImageURLSelector*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ThumbImageURLSelector" data-uid="Tizen.NUI.Components.Slider.ThumbImageURLSelector">ThumbImageURLSelector</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the resource url selector of the thumb image object.
+Getter returns copied selector value if exist, null otherwise.</p>
+<p>Please use ThumbImageUrl property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StringSelector ThumbImageURLSelector { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.NUI.Components.StringSelector</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NullReferenceException</span></td>
+        <td><p>Thrown when setting null value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L472">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ThumbSize_" data-uid="Tizen.NUI.Components.Slider.ThumbSize*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ThumbSize" data-uid="Tizen.NUI.Components.Slider.ThumbSize">ThumbSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the size of the thumb image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size ThumbSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L745">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_TrackThickness_" data-uid="Tizen.NUI.Components.Slider.TrackThickness*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_TrackThickness" data-uid="Tizen.NUI.Components.Slider.TrackThickness">TrackThickness</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the thickness value of the track.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint TrackThickness { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1167">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ValueIndicatorSize_" data-uid="Tizen.NUI.Components.Slider.ValueIndicatorSize*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ValueIndicatorSize" data-uid="Tizen.NUI.Components.Slider.ValueIndicatorSize">ValueIndicatorSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the size of the value indicator image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size ValueIndicatorSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1151">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ValueIndicatorText_" data-uid="Tizen.NUI.Components.Slider.ValueIndicatorText*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ValueIndicatorText" data-uid="Tizen.NUI.Components.Slider.ValueIndicatorText">ValueIndicatorText</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the text of value indicator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ValueIndicatorText { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1198">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ValueIndicatorUrl_" data-uid="Tizen.NUI.Components.Slider.ValueIndicatorUrl*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ValueIndicatorUrl" data-uid="Tizen.NUI.Components.Slider.ValueIndicatorUrl">ValueIndicatorUrl</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the resource url of the value indicator image object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ValueIndicatorUrl { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1537">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_ApplyStyle_" data-uid="Tizen.NUI.Components.Slider.ApplyStyle*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.Slider.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+  <div class="markdown level1 summary"><p>Apply style to scrollbar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">viewStyle</span></td>
+        <td><p>The style to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1679">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_CreateViewStyle_" data-uid="Tizen.NUI.Components.Slider.CreateViewStyle*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_CreateViewStyle" data-uid="Tizen.NUI.Components.Slider.CreateViewStyle">CreateViewStyle()</h4>
+  <div class="markdown level1 summary"><p>Get Slider style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ViewStyle CreateViewStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><p>The default slider style.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Tizen.NUI.Components.Control.CreateViewStyle()</span></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1689">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_Dispose_" data-uid="Tizen.NUI.Components.Slider.Dispose*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Slider.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>Dispose Slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Dispose type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1406">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_OnFocusGained_" data-uid="Tizen.NUI.Components.Slider.OnFocusGained*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_OnFocusGained" data-uid="Tizen.NUI.Components.Slider.OnFocusGained">OnFocusGained()</h4>
+  <div class="markdown level1 summary"><p>Focus gained callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnFocusGained()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Tizen.NUI.Components.Control.OnFocusGained()</span></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L1417">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Slider_OnFocusLost_" data-uid="Tizen.NUI.Components.Slider.OnFocusLost*"></a>
+  <h4 id="Tizen_NUI_Components_Slider_OnFocusLost" data-uid="Tizen.NUI.Components.Slider.OnFocusLost">OnFocusLost()</h4>
+  <div class="markdown level1 summary"><p>Focus Lost callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnFocusLost()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Tizen.NUI.Components.Control.OnFocusLost()</span></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L282">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Slider_SlidingFinished" data-uid="Tizen.NUI.Components.Slider.SlidingFinished">SlidingFinished</h4>
+  <div class="markdown level1 summary"><p>The sliding finished event handler.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;SliderSlidingFinishedEventArgs&gt; SlidingFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.SliderSlidingFinishedEventArgs.html">SliderSlidingFinishedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L266">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Slider_SlidingStarted" data-uid="Tizen.NUI.Components.Slider.SlidingStarted">SlidingStarted</h4>
+  <div class="markdown level1 summary"><p>The sliding started event handler.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;SliderSlidingStartedEventArgs&gt; SlidingStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.SliderSlidingStartedEventArgs.html">SliderSlidingStartedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Slider.cs/#L250">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Slider_ValueChanged" data-uid="Tizen.NUI.Components.Slider.ValueChanged">ValueChanged</h4>
+  <div class="markdown level1 summary"><p>The value changed event handler.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;SliderValueChangedEventArgs&gt; ValueChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.SliderValueChangedEventArgs.html">SliderValueChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/SliderBindableProperty.cs/#L7" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

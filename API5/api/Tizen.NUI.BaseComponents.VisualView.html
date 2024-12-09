@@ -1,0 +1,631 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class VisualView
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class VisualView
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API5">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.VisualView">
+
+
+  <h1 id="Tizen_NUI_BaseComponents_VisualView" data-uid="Tizen.NUI.BaseComponents.VisualView" class="text-break">Class VisualView
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A visual view control if a user adds any visual to it.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class VisualView : CustomView, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
+        <div><span class="xref">VisualView</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_NUI_BaseComponents_VisualView_examples"><strong>Examples</strong></h5>
+  <p>Example:</p>
+<pre><code>VisualView _visualView = new VisualView();
+ImageVisualMap imageVisualMap1 = new ImageVisualMap();
+imageVisualMap1.URL = &quot;./NUISample/res/images/image-1.jpg&quot;;
+imageVisualMap1.VisualSize = new Vector2( 300.0f, 300.0f );
+imageVisualMap1.Offset = new Vector2( 50.0f, 50.0f );
+imageVisualMap1.OffsetSizeMode = new Vector4( 1.0f, 1.0f, 1.0f, 1.0f );
+imageVisualMap1.Origin = AlignType.TOP_BEGIN;
+imageVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;
+_visualView.AddVisual(&quot;imageVisual1&quot;, imageVisualMap1);</code></pre>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L66">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView__ctor_" data-uid="Tizen.NUI.BaseComponents.VisualView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView__ctor" data-uid="Tizen.NUI.BaseComponents.VisualView.#ctor">VisualView()</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisualView()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L158">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_NumberOfVisuals_" data-uid="Tizen.NUI.BaseComponents.VisualView.NumberOfVisuals*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_NumberOfVisuals" data-uid="Tizen.NUI.BaseComponents.VisualView.NumberOfVisuals">NumberOfVisuals</h4>
+  <div class="markdown level1 summary"><p>Gets the total number of visuals which are added by users.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int NumberOfVisuals { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L88">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_AddVisual_" data-uid="Tizen.NUI.BaseComponents.VisualView.AddVisual*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_AddVisual_System_String_Tizen_NUI_VisualMap_" data-uid="Tizen.NUI.BaseComponents.VisualView.AddVisual(System.String,Tizen.NUI.VisualMap)">AddVisual(string, VisualMap)</h4>
+  <div class="markdown level1 summary"><p>Adds or updates a visual to visual view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddVisual(string visualName, VisualMap visualMap)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">visualName</span></td>
+        <td><p>The name of a visual to add. If a name is added to an existing visual name, the visual will be replaced.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualMap.html">VisualMap</a></td>
+        <td><span class="parametername">visualMap</span></td>
+        <td><p>The property map of a visual to create.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L230">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_AnimateVisual_" data-uid="Tizen.NUI.BaseComponents.VisualView.AnimateVisual*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_AnimateVisual_Tizen_NUI_VisualMap_System_String_System_Object_System_Int32_System_Int32_System_Nullable_Tizen_NUI_AlphaFunction_BuiltinFunctions__System_Object_" data-uid="Tizen.NUI.BaseComponents.VisualView.AnimateVisual(Tizen.NUI.VisualMap,System.String,System.Object,System.Int32,System.Int32,System.Nullable{Tizen.NUI.AlphaFunction.BuiltinFunctions},System.Object)">AnimateVisual(VisualMap, string, object, int, int, BuiltinFunctions?, object)</h4>
+  <div class="markdown level1 summary"><p>Creates a visual animation (transition) with the input parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualMap.html">VisualMap</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>The visual map to animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>The property of visual to animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">destinationValue</span></td>
+        <td><p>The destination value of property after animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startTime</span></td>
+        <td><p>The start time of visual animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">endTime</span></td>
+        <td><p>The end time of visual animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a>.<a class="xref" href="Tizen.NUI.AlphaFunction.BuiltinFunctions.html">BuiltinFunctions</a>?</td>
+        <td><span class="parametername">alphaFunction</span></td>
+        <td><p>The alpha function of visual animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">initialValue</span></td>
+        <td><p>The initial property value of visual animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animation instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L358">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_AnimateVisualAdd_" data-uid="Tizen.NUI.BaseComponents.VisualView.AnimateVisualAdd*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_AnimateVisualAdd_Tizen_NUI_VisualMap_System_String_System_Object_System_Int32_System_Int32_System_Nullable_Tizen_NUI_AlphaFunction_BuiltinFunctions__System_Object_" data-uid="Tizen.NUI.BaseComponents.VisualView.AnimateVisualAdd(Tizen.NUI.VisualMap,System.String,System.Object,System.Int32,System.Int32,System.Nullable{Tizen.NUI.AlphaFunction.BuiltinFunctions},System.Object)">AnimateVisualAdd(VisualMap, string, object, int, int, BuiltinFunctions?, object)</h4>
+  <div class="markdown level1 summary"><p>Adds a group visual animation (transition) map with the input parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualMap.html">VisualMap</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>The visual map to animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>The property of visual to animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">destinationValue</span></td>
+        <td><p>The destination value of property after animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startTime</span></td>
+        <td><p>The start time of visual animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">endTime</span></td>
+        <td><p>The end time of visual animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a>.<a class="xref" href="Tizen.NUI.AlphaFunction.BuiltinFunctions.html">BuiltinFunctions</a>?</td>
+        <td><span class="parametername">alphaFunction</span></td>
+        <td><p>The alpha function of visual animation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">initialValue</span></td>
+        <td><p>The initial property value of visual animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L478">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_AnimateVisualAddFinish_" data-uid="Tizen.NUI.BaseComponents.VisualView.AnimateVisualAddFinish*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_AnimateVisualAddFinish" data-uid="Tizen.NUI.BaseComponents.VisualView.AnimateVisualAddFinish">AnimateVisualAddFinish()</h4>
+  <div class="markdown level1 summary"><p>Finishes to add a visual animation (transition) map and creates a transition animation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation AnimateVisualAddFinish()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animation instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L74">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_OnInitialize_" data-uid="Tizen.NUI.BaseComponents.VisualView.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_OnInitialize" data-uid="Tizen.NUI.BaseComponents.VisualView.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"><p>Overrides the parent method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html#Tizen_NUI_BaseComponents_CustomView_OnInitialize">CustomView.OnInitialize()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L192">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_OnRelayout_" data-uid="Tizen.NUI.BaseComponents.VisualView.OnRelayout*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_" data-uid="Tizen.NUI.BaseComponents.VisualView.OnRelayout(Tizen.NUI.Vector2,Tizen.NUI.RelayoutContainer)">OnRelayout(Vector2, RelayoutContainer)</h4>
+  <div class="markdown level1 summary"><p>Overrides the method of OnRelayout() for CustomView class.<br>
+Called after the size negotiation has been finished for this control.<br>
+The control is expected to assign this given size to itself or its children.<br>
+Should be overridden by derived classes if they need to layout actors differently after certain operations like add or remove actors, resize, or after changing specific properties.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnRelayout(Vector2 size, RelayoutContainer container)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The allocated size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></td>
+        <td><span class="parametername">container</span></td>
+        <td><p>The control should add actors to this container that it is not able to allocate a size for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html#Tizen_NUI_BaseComponents_CustomView_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_">CustomView.OnRelayout(Vector2, RelayoutContainer)</a></div>
+  <h5 id="Tizen_NUI_BaseComponents_VisualView_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L170">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_RemoveAll_" data-uid="Tizen.NUI.BaseComponents.VisualView.RemoveAll*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_RemoveAll" data-uid="Tizen.NUI.BaseComponents.VisualView.RemoveAll">RemoveAll()</h4>
+  <div class="markdown level1 summary"><p>Removes all visuals of the visual view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAll()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L137">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_RemoveVisual_" data-uid="Tizen.NUI.BaseComponents.VisualView.RemoveVisual*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_RemoveVisual_System_String_" data-uid="Tizen.NUI.BaseComponents.VisualView.RemoveVisual(System.String)">RemoveVisual(string)</h4>
+  <div class="markdown level1 summary"><p>Removes a visual by name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveVisual(string visualName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">visualName</span></td>
+        <td><p>The name of a visual to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L494">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VisualView_VisualAnimate_" data-uid="Tizen.NUI.BaseComponents.VisualView.VisualAnimate*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VisualView_VisualAnimate_Tizen_NUI_VisualAnimator_" data-uid="Tizen.NUI.BaseComponents.VisualView.VisualAnimate(Tizen.NUI.VisualAnimator)">VisualAnimate(VisualAnimator)</h4>
+  <div class="markdown level1 summary"><p>temporary fix to pass TCT.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation VisualAnimate(VisualAnimator visualMap)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualAnimator.html">VisualAnimator</a></td>
+        <td><span class="parametername">visualMap</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.NUI/src/public/BaseComponents/VisualView.cs/#L42" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

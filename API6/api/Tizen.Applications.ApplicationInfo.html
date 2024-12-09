@@ -1,0 +1,783 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ApplicationInfo
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ApplicationInfo
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Applications.ApplicationInfo">
+
+
+  <h1 id="Tizen_Applications_ApplicationInfo" data-uid="Tizen.Applications.ApplicationInfo" class="text-break">Class ApplicationInfo
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class provides methods and properties to get information of the application.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ApplicationInfo : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ApplicationInfo</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L49">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo__ctor_" data-uid="Tizen.Applications.ApplicationInfo.#ctor*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo__ctor_System_String_" data-uid="Tizen.Applications.ApplicationInfo.#ctor(System.String)">ApplicationInfo(string)</h4>
+  <div class="markdown level1 summary"><p>A constructor of ApplicationInfo that takes the application ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ApplicationInfo(string applicationId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">applicationId</span></td>
+        <td><p>Application ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L66">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_ApplicationId_" data-uid="Tizen.Applications.ApplicationInfo.ApplicationId*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_ApplicationId" data-uid="Tizen.Applications.ApplicationInfo.ApplicationId">ApplicationId</h4>
+  <div class="markdown level1 summary"><p>Gets the application ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ApplicationId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L178">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_ApplicationType_" data-uid="Tizen.Applications.ApplicationInfo.ApplicationType*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_ApplicationType" data-uid="Tizen.Applications.ApplicationInfo.ApplicationType">ApplicationType</h4>
+  <div class="markdown level1 summary"><p>Gets the application type name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ApplicationType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L324">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_Categories_" data-uid="Tizen.Applications.ApplicationInfo.Categories*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_Categories" data-uid="Tizen.Applications.ApplicationInfo.Categories">Categories</h4>
+  <div class="markdown level1 summary"><p>Gets the application's category values specified in the tizen-manifest</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; Categories { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L200">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_ComponentType_" data-uid="Tizen.Applications.ApplicationInfo.ComponentType*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_ComponentType" data-uid="Tizen.Applications.ApplicationInfo.ComponentType">ComponentType</h4>
+  <div class="markdown level1 summary"><p>Gets the application component type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ApplicationComponentType ComponentType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.ApplicationComponentType.html">ApplicationComponentType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L134">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_ExecutablePath_" data-uid="Tizen.Applications.ApplicationInfo.ExecutablePath*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_ExecutablePath" data-uid="Tizen.Applications.ApplicationInfo.ExecutablePath">ExecutablePath</h4>
+  <div class="markdown level1 summary"><p>Gets the executable path of the application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ExecutablePath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L410">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_ExternalSharedDataPath_" data-uid="Tizen.Applications.ApplicationInfo.ExternalSharedDataPath*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_ExternalSharedDataPath" data-uid="Tizen.Applications.ApplicationInfo.ExternalSharedDataPath">ExternalSharedDataPath</h4>
+  <div class="markdown level1 summary"><p>Gets the external shared data path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ExternalSharedDataPath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L156">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_IconPath_" data-uid="Tizen.Applications.ApplicationInfo.IconPath*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_IconPath" data-uid="Tizen.Applications.ApplicationInfo.IconPath">IconPath</h4>
+  <div class="markdown level1 summary"><p>Gets the absolute path to the icon image.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string IconPath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L255">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_IsNoDisplay_" data-uid="Tizen.Applications.ApplicationInfo.IsNoDisplay*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_IsNoDisplay" data-uid="Tizen.Applications.ApplicationInfo.IsNoDisplay">IsNoDisplay</h4>
+  <div class="markdown level1 summary"><p>Checks whether the application information is nodisplay. If the application icon is not displayed on the menu screen, true; otherwise, false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsNoDisplay { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L278">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_IsOnBoot_" data-uid="Tizen.Applications.ApplicationInfo.IsOnBoot*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_IsOnBoot" data-uid="Tizen.Applications.ApplicationInfo.IsOnBoot">IsOnBoot</h4>
+  <div class="markdown level1 summary"><p>Checks whether the application is launched on booting time. If the application automatically starts on boot, true; otherwise, false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsOnBoot { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L300">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_IsPreload_" data-uid="Tizen.Applications.ApplicationInfo.IsPreload*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_IsPreload" data-uid="Tizen.Applications.ApplicationInfo.IsPreload">IsPreload</h4>
+  <div class="markdown level1 summary"><p>Checks whether the application is preloaded. If the application is preloaded, true; otherwise, false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPreload { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L112">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_Label_" data-uid="Tizen.Applications.ApplicationInfo.Label*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_Label" data-uid="Tizen.Applications.ApplicationInfo.Label">Label</h4>
+  <div class="markdown level1 summary"><p>Gets the label of the application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Label { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L222">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_Metadata_" data-uid="Tizen.Applications.ApplicationInfo.Metadata*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_Metadata" data-uid="Tizen.Applications.ApplicationInfo.Metadata">Metadata</h4>
+  <div class="markdown level1 summary"><p>Gets the application's metadata.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;string, string&gt; Metadata { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L90">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_PackageId_" data-uid="Tizen.Applications.ApplicationInfo.PackageId*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_PackageId" data-uid="Tizen.Applications.ApplicationInfo.PackageId">PackageId</h4>
+  <div class="markdown level1 summary"><p>Gets the package ID of the application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PackageId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L356">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_SharedDataPath_" data-uid="Tizen.Applications.ApplicationInfo.SharedDataPath*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_SharedDataPath" data-uid="Tizen.Applications.ApplicationInfo.SharedDataPath">SharedDataPath</h4>
+  <div class="markdown level1 summary"><p>Gets the shared data path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SharedDataPath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationInfo_SharedDataPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>An application that wants to use shared/data directory must declare <a href="http://tizen.org/privilege/appdir.shareddata">http://tizen.org/privilege/appdir.shareddata</a> privilege. If the application doesn't declare the privilege, the framework will not create shared/data directory for the application. This property will return empty string when the application doesn't have shared/data directory.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L374">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_SharedResourcePath_" data-uid="Tizen.Applications.ApplicationInfo.SharedResourcePath*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_SharedResourcePath" data-uid="Tizen.Applications.ApplicationInfo.SharedResourcePath">SharedResourcePath</h4>
+  <div class="markdown level1 summary"><p>Gets the shared resource path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SharedResourcePath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L392">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_SharedTrustedPath_" data-uid="Tizen.Applications.ApplicationInfo.SharedTrustedPath*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_SharedTrustedPath" data-uid="Tizen.Applications.ApplicationInfo.SharedTrustedPath">SharedTrustedPath</h4>
+  <div class="markdown level1 summary"><p>Gets the shared trust path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SharedTrustedPath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L461">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_Dispose_" data-uid="Tizen.Applications.ApplicationInfo.Dispose*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_Dispose" data-uid="Tizen.Applications.ApplicationInfo.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases all resources used by the ApplicationInfo class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L57">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_Finalize_" data-uid="Tizen.Applications.ApplicationInfo.Finalize*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_Finalize" data-uid="Tizen.Applications.ApplicationInfo.Finalize">~ApplicationInfo()</h4>
+  <div class="markdown level1 summary"><p>Destructor of the class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~ApplicationInfo()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L430">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ApplicationInfo_GetLocalizedLabel_" data-uid="Tizen.Applications.ApplicationInfo.GetLocalizedLabel*"></a>
+  <h4 id="Tizen_Applications_ApplicationInfo_GetLocalizedLabel_System_String_" data-uid="Tizen.Applications.ApplicationInfo.GetLocalizedLabel(System.String)">GetLocalizedLabel(string)</h4>
+  <div class="markdown level1 summary"><p>Gets the localized label of the application for the given locale.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetLocalizedLabel(string locale)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">locale</span></td>
+        <td><p>Locale.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The localized label.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/ApplicationInfo.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

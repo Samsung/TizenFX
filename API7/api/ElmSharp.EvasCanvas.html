@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EvasCanvas
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EvasCanvas
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ElmSharp.EvasCanvas">
+
+
+  <h1 id="ElmSharp_EvasCanvas" data-uid="ElmSharp.EvasCanvas" class="text-break">Class EvasCanvas
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Low-level Evas canvas functions. Subgroups will be present more than the high-level ones, though.
+Most of these functions deal with low-level Evas actions like:
+create/destroy raw canvases, not bound to any displaying engine.
+tell a canvas, I got focused (in a windowing context, for example).
+tell a canvas, a region should not be calculated anymore in rendering.
+tell a canvas, to render its contents immediately.
+Most users will be using Evas by means of the Ecore_Evas wrapper, which deals with all the above mentioned issues automatically for them. Thus, you will be looking at this section only if you're building low-level stuff.
+The groups within, present you functions that deal with the canvas directly too, and not yet with its objects. They are the functions you need to use at a minimum to get a working canvas.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class EvasCanvas</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">EvasCanvas</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L63">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_ImageCacheSize_" data-uid="ElmSharp.EvasCanvas.ImageCacheSize*"></a>
+  <h4 id="ElmSharp_EvasCanvas_ImageCacheSize" data-uid="ElmSharp.EvasCanvas.ImageCacheSize">ImageCacheSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the image cache.
+This function returns the image cache size of the canvas in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ImageCacheSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L48">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_Pointer_" data-uid="ElmSharp.EvasCanvas.Pointer*"></a>
+  <h4 id="ElmSharp_EvasCanvas_Pointer" data-uid="ElmSharp.EvasCanvas.Pointer">Pointer</h4>
+  <div class="markdown level1 summary"><p>Gets the current known default pointer coordinates.
+This function returns the current known canvas unit coordinates of the mouse pointer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Pointer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Point.html">Point</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L92">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_AddDamageRectangle_" data-uid="ElmSharp.EvasCanvas.AddDamageRectangle*"></a>
+  <h4 id="ElmSharp_EvasCanvas_AddDamageRectangle_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="ElmSharp.EvasCanvas.AddDamageRectangle(System.Int32,System.Int32,System.Int32,System.Int32)">AddDamageRectangle(int, int, int, int)</h4>
+  <div class="markdown level1 summary"><p>Adds a damage rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddDamageRectangle(int x, int y, int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The rectangle's top left corner's horizontal coordinate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The rectangle's top left corner's vertical coordinate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The rectangle's width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The rectangle's height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L125">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_AddEventAction_" data-uid="ElmSharp.EvasCanvas.AddEventAction*"></a>
+  <h4 id="ElmSharp_EvasCanvas_AddEventAction_ElmSharp_EvasObjectCallbackType_System_Action_" data-uid="ElmSharp.EvasCanvas.AddEventAction(ElmSharp.EvasObjectCallbackType,System.Action)">AddEventAction(EvasObjectCallbackType, Action)</h4>
+  <div class="markdown level1 summary"><p>Adds or registers an event to a given canvas event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddEventAction(EvasObjectCallbackType type, Action action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObjectCallbackType.html">EvasObjectCallbackType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of event that triggers.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The action to be called when the event is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L105">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_AddObscuredRectangle_" data-uid="ElmSharp.EvasCanvas.AddObscuredRectangle*"></a>
+  <h4 id="ElmSharp_EvasCanvas_AddObscuredRectangle_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="ElmSharp.EvasCanvas.AddObscuredRectangle(System.Int32,System.Int32,System.Int32,System.Int32)">AddObscuredRectangle(int, int, int, int)</h4>
+  <div class="markdown level1 summary"><p>Adds an &quot;obscured region&quot; to an Evas canvas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddObscuredRectangle(int x, int y, int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The rectangle's top left corner's horizontal coordinate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The rectangle's top left corner's vertical coordinate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The rectangle's width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The rectangle's height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L114">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_ClearObscuredRectangle_" data-uid="ElmSharp.EvasCanvas.ClearObscuredRectangle*"></a>
+  <h4 id="ElmSharp_EvasCanvas_ClearObscuredRectangle" data-uid="ElmSharp.EvasCanvas.ClearObscuredRectangle">ClearObscuredRectangle()</h4>
+  <div class="markdown level1 summary"><p>Removes all the &quot;obscured regions&quot; from an Evas canvas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearObscuredRectangle()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L146">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_DeleteEventAction_" data-uid="ElmSharp.EvasCanvas.DeleteEventAction*"></a>
+  <h4 id="ElmSharp_EvasCanvas_DeleteEventAction_ElmSharp_EvasObjectCallbackType_System_Action_" data-uid="ElmSharp.EvasCanvas.DeleteEventAction(ElmSharp.EvasObjectCallbackType,System.Action)">DeleteEventAction(EvasObjectCallbackType, Action)</h4>
+  <div class="markdown level1 summary"><p>Deletes an event to a given canvas event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteEventAction(EvasObjectCallbackType type, Action action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObjectCallbackType.html">EvasObjectCallbackType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of event that triggers.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The action to be called when the event is triggered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L79">View Source</a>
+  </span>
+  <a id="ElmSharp_EvasCanvas_FlushImageCache_" data-uid="ElmSharp.EvasCanvas.FlushImageCache*"></a>
+  <h4 id="ElmSharp_EvasCanvas_FlushImageCache" data-uid="ElmSharp.EvasCanvas.FlushImageCache">FlushImageCache()</h4>
+  <div class="markdown level1 summary"><p>Flushes the image cache of the canvas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlushImageCache()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/ElmSharp/ElmSharp/EvasCanvas.cs/#L33" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
