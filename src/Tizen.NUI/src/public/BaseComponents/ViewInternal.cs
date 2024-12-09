@@ -192,9 +192,9 @@ namespace Tizen.NUI.BaseComponents
         {
             LayoutCount++;
 
-            this.layout = layout;
-            this.layout?.AttachToOwner(this);
-            this.layout?.RequestLayout();
+            EnsureLayoutExtraData().Layout = layout;
+            layout?.AttachToOwner(this);
+            layout?.RequestLayout();
         }
 
         internal void AttachTransitionsToChildren(LayoutTransition transition)
@@ -1172,7 +1172,7 @@ namespace Tizen.NUI.BaseComponents
         {
             LayoutCount--;
 
-            layout = null;
+            EnsureLayoutExtraData().Layout = null;
         }
 
         internal ResourceLoadingStatusType GetBackgroundResourceStatus()
