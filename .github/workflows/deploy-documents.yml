@@ -1,41 +1,26 @@
-name: "Deploy Documents Test"
+name: "Deploy Documents"
 
 on:
+  schedule:
+  - cron: "0 16 * * *"
   workflow_dispatch:
 
 jobs:
-  build:
 
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-20.04
+    container:
+      image: tizendotnet/tizenfx-build-worker:2.5
+      options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET 6.x
-      uses: actions/setup-dotnet@v3
+    - uses: actions/checkout@v3
       with:
-        dotnet-version: '6.x'
-    - name: Display dotnet version
-      run: dotnet --version
+        repository: TizenAPI/TizenFX-Docs
 
-    - name: Install dotnet tools
-      run: dotnet tool install -g docfx --version 2.61.0
-
-    - name: Disply doxfx version
+    - name: Checkout TizenFX sources
       run: |
-        docfx --version
-        dotnet --list-sdks
-
-    - name: Git clone TizenFX
-      uses: actions/checkout@v3
-      with:
-        repository: shyunMin/TizenFX
-        ref: 'tizenfx-docs'
-
-    - name: Clone TizenFX sources
-      run: |
-        dotnet --version
         ./build.sh clone
-
     - name: Cache DocFX output
       id: cache-site
       uses: actions/cache@v2
@@ -43,34 +28,32 @@ jobs:
         path: _site
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
 
-    - name: Build TizenFX sources
-      if: steps.cache-site.outputs.cache-hit != 'true'
-      run: |   
+    - name: Build Documents
+      # if: steps.cache-site.outputs.cache-hit != 'true'
+      run: |
         ./build.sh restore
         ./build.sh build
         ./build.sh index
+    - name: Archive Artifacts
+      run: |
+        tar cfz site.tar.gz _site/
+    - uses: actions/upload-artifact@v3
+      with:
+        name: documents
+        path: site.tar.gz
 
-    # - name: Archive Artifacts
-    #   run: |
-    #     tar cfz site.tar.gz _site/
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: documents
-    #     path: site.tar.gz
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-20.04
 
-  # deploy:
-  #   needs: [build]
-  #   runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: documents
 
-    # steps:
-    # - uses: actions/download-artifact@v2
-    #   with:
-    #     name: documents
-
-    # - name: Extract Artifacts
-    #   run: |
-    #     tar xfz site.tar.gz
-
+    - name: Extract Artifacts
+      run: |
+        tar xfz site.tar.gz
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
