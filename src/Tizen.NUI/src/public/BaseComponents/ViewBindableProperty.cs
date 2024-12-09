@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019-2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -798,12 +798,13 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (relayoutRequired)
                 {
-                    view.layout?.RequestLayout();
+                    view.RequestLayout();
                 }
 
                 Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
             }
         }
+
         internal static object GetInternalSize2DProperty(BindableObject bindable)
         {
             var view = (View)bindable;
@@ -1577,7 +1578,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (relayoutRequired)
                 {
-                    view.layout?.RequestLayout();
+                    view.RequestLayout();
                 }
 
                 view.SetSize(width, height, depth);
