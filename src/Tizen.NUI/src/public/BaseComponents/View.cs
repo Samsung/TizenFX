@@ -945,6 +945,7 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalBackgroundColorProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+                NotifyBackgroundChanged();
             }
         }
 
@@ -976,6 +977,7 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalBackgroundImageProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+                NotifyBackgroundChanged();
             }
         }
 
@@ -1040,6 +1042,7 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalBackgroundProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+                NotifyBackgroundChanged();
             }
         }
 
