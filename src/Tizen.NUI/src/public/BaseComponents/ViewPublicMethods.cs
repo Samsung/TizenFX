@@ -310,6 +310,8 @@ namespace Tizen.NUI.BaseComponents
         {
             Interop.View.ClearBackground(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            NotifyBackgroundChanged();
         }
 
         /// <summary>
