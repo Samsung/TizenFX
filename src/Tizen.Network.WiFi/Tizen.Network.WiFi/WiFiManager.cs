@@ -232,7 +232,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the Wi-Fi safe handle.
+        /// Retrieves the Wi-Fi safe handle, which is used to manage Wi-Fi operations securely.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The instance of the SafeWiFiManagerHandle.</returns>
@@ -249,7 +249,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the result of the scan.
+        /// Retrieves the results of the Wi-Fi scan, providing a list of discovered Wi-Fi access points (APs).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list of the WiFiAP objects.</returns>
@@ -264,7 +264,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the result of ScanSpecificAPAsync(string essid) API.
+        /// Retrieves the results of the scan specific to a particular Wi-Fi access point (AP), providing a list of discovered APs matching the specified ESSID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list containing the WiFiAP objects.</returns>
@@ -279,7 +279,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the result of the BssidScanAsync() API.
+        /// Retrieves the results of the BSSID scan, providing a list of discovered Wi-Fi access points (APs) based on their BSSID (Basic Service Set Identifier).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <returns>A list of the WiFiAP objects.</returns>
@@ -294,7 +294,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the list of Wi-Fi configurations.
+        /// Retrieves the list of Wi-Fi configurations stored on the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list containing the WiFiConfiguration objects.</returns>
@@ -310,7 +310,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Saves the Wi-Fi configuration of the access point.
+        /// Saves the Wi-Fi configuration of the access point to the device's storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="configuration">The configuration to be stored.</param>
@@ -327,7 +327,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the object of the connected WiFiAP.
+        /// Retrieves the information of the currently connected Wi-Fi access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The connected Wi-Fi access point (AP) information.</returns>
@@ -343,7 +343,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Activates the Wi-Fi asynchronously.
+        /// Activates the Wi-Fi module asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the activate method is done or not.</returns>
@@ -377,7 +377,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Deactivates the Wi-Fi asynchronously.
+        /// Deactivates the Wi-Fi module asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task indicating whether the deactivate method is done or not.</returns>
@@ -394,7 +394,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Starts the scan asynchronously.
+        /// Initiates a Wi-Fi scan asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A task indicating whether the scan method is done or not.</returns>
@@ -428,7 +428,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Starts BSSID scan asynchronously.
+        /// Initiates a BSSID scan asynchronously.
         /// </summary>
         /// <remarks>
         /// This method must be called from MainThread.
@@ -447,7 +447,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Set Auto Scan Mode.
+        /// Sets the auto scan mode for the Wi-Fi module.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -463,7 +463,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Hidden Ap connect.
+        /// Connects to a hidden Wi-Fi access point asynchronously.
         /// </summary>
         /// <remarks>
         /// This method must be called from MainThread.
@@ -483,7 +483,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Create Specific scan handle.
+        /// Creates a specific scan handle for the Wi-Fi module.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -499,7 +499,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Destroys Specific scan handle.
+        /// Destroys the specific scan handle for the Wi-Fi module.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -515,7 +515,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Starts Multi Scan.
+        /// Starts a multi-frequency scan for available Wi-Fi networks asynchronously.
         /// </summary>
         /// <remarks>
         /// This method must be called from MainThread.
