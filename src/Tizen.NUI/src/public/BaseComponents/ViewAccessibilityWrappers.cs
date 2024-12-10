@@ -56,7 +56,9 @@ namespace Tizen.NUI.BaseComponents
 
             if (view is null)
             {
-                throw new ArgumentException($"RefObject 0x{refObjectPtr:x} is not a View", nameof(refObjectPtr));
+                // There is no guidance for exception handling in the application layer.
+                // Therefore, it is necessary to modify the code to display error messages to the user instead of exceptions occurring.
+                Tizen.Log.Error("NUI", $"RefObject 0x{refObjectPtr:x} is not a View nameof{refObjectPtr}");
             }
 
             return view;
@@ -65,6 +67,7 @@ namespace Tizen.NUI.BaseComponents
         private static T GetInterfaceFromRefObject<T>(IntPtr refObjectPtr)
         {
             var view = GetViewFromRefObject(refObjectPtr);
+            if (view == null) { return default(T); }
 
             // NUIViewAccessible::CallMethod<T> checks whether a given interface is implemented
             // before jumping to managed code, so this condition should always be true.
@@ -114,6 +117,7 @@ namespace Tizen.NUI.BaseComponents
         private static ulong AccessibilityCalculateStatesWrapper(IntPtr self, ulong initialStates)
         {
             View view = GetViewFromRefObject(self);
+            if (view == null) { return 0; }
 
             ulong bitMask = 0UL;
 
@@ -130,6 +134,7 @@ namespace Tizen.NUI.BaseComponents
         private static void AccessibilityGetAttributes(IntPtr self, Interop.ControlDevel.AccessibilityDelegate.AccessibilityGetAttributesCallback callback, IntPtr userData)
         {
             var view = GetViewFromRefObject(self);
+            if (view == null) { return ; }
             var attributes = view.AccessibilityAttributes;
             var classKey = "class";
 
@@ -151,7 +156,10 @@ namespace Tizen.NUI.BaseComponents
 
         private static IntPtr AccessibilityGetDescriptionWrapper(IntPtr self)
         {
-            string description = GetViewFromRefObject(self).AccessibilityGetDescription();
+            View view = GetViewFromRefObject(self);
+            if (view == null) { return IntPtr.Zero;}
+
+            string description = view.AccessibilityGetDescription();
 
             return DuplicateString(description);
         }
@@ -159,6 +167,8 @@ namespace Tizen.NUI.BaseComponents
         private static uint AccessibilityGetInterfaces(IntPtr self)
         {
             View view = GetViewFromRefObject(self);
+            if (view == null) { return 0; }
+
             uint flags = 0U;
 
             if (view is IAtspiEditableText)
@@ -196,7 +206,10 @@ namespace Tizen.NUI.BaseComponents
 
         private static IntPtr AccessibilityGetNameWrapper(IntPtr self)
         {
-            string name = GetViewFromRefObject(self).AccessibilityGetName();
+            View view = GetViewFromRefObject(self);
+            if (view == null) { return IntPtr.Zero; }
+
+            string name = view.AccessibilityGetName();
 
             return DuplicateString(name);
         }
@@ -216,18 +229,26 @@ namespace Tizen.NUI.BaseComponents
 
         private static bool AccessibilityDoActionWrapper(IntPtr self, IntPtr name)
         {
-            return GetViewFromRefObject(self).AccessibilityDoAction(Marshal.PtrToStringAnsi(name));
+            View view = GetViewFromRefObject(self);
+            if (view == null) { return false; }
+
+            return view.AccessibilityDoAction(Marshal.PtrToStringAnsi(name));
         }
 
         private static int AccessibilityGetActionCountWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetActionCount();
+            View view = GetViewFromRefObject(self);
+            if (view == null) { return 0; }
+
+            return view.AccessibilityGetActionCount();
         }
 
         private static IntPtr AccessibilityGetActionNameWrapper(IntPtr self, int index)
         {
-            string name = GetViewFromRefObject(self).AccessibilityGetActionName(index);
-
+            View view = GetViewFromRefObject(self);
+            if (view == null) { return IntPtr.Zero; }
+            
+            string name = view.AccessibilityGetActionName(index);
             return DuplicateString(name);
         }
 
@@ -244,7 +265,10 @@ namespace Tizen.NUI.BaseComponents
 
         private static bool AccessibilityIsScrollableWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityIsScrollable();
+            View view = GetViewFromRefObject(self);
+            if (view == null) { return false; }
+
+            return view.AccessibilityIsScrollable();
         }
 
         //
@@ -678,6 +702,8 @@ namespace Tizen.NUI.BaseComponents
         private static IntPtr AccessibilityGetValueTextWrapper(IntPtr self)
         {
             var view = GetViewFromRefObject(self);
+            if (view == null) { return IntPtr.Zero; }
+
             var value = GetInterfaceFromRefObject<IAtspiValue>(self);
             string text;
 
@@ -721,6 +747,7 @@ namespace Tizen.NUI.BaseComponents
         private static bool AccessibilityScrollToChildWrapper(IntPtr self, IntPtr child)
         {
             View view = GetViewFromRefObject(self);
+            if (view == null) { return false; }
 
             return view.AccessibilityScrollToChild(view.GetInstanceSafely<View>(child));
         }
