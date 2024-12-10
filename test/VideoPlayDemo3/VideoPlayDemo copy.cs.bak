@@ -1,0 +1,564 @@
+﻿// // using System;
+// // using Tizen.NUI;
+// // using Tizen.NUI.Components;
+// // using Tizen.NUI.BaseComponents;
+
+// // namespace VideoPlayDemo
+// // {
+// //     class Program : NUIApplication
+// //     {
+// //         class CustomBorder : DefaultBorder
+// //         {
+// //           private static readonly string ResourcePath = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource;
+// //           private static readonly string MaximalizeIcon = ResourcePath + "/maximalize.png";
+// //           private static readonly string CloseIcon = ResourcePath + "/close.png";
+// //           private static readonly string PlayIcon = ResourcePath + "/play.png";
+// //           private static readonly string PauseIcon = ResourcePath + "/pause.png";
+// //           private static readonly string SettingIcon = ResourcePath + "/setting.png";
+// //           private static readonly string SettingPressIcon = ResourcePath + "/setting_press.png";
+// //           private static readonly string VolumeIcon = ResourcePath + "/volume.png";
+// //           private static readonly string VolumePressIcon = ResourcePath + "/volume_press.png";
+// //           // private static readonly string LeftCornerIcon = ResourcePath + "/leftCorner.png";
+// //           // private static readonly string RightCornerIcon = ResourcePath + "/rightCorner.png";
+
+// //           private int width = 300;
+// //           private bool hide = false;
+// //           private string title;
+// //           private View borderView;
+// //           private TextLabel titleLabel;
+// //           private Rectangle preWinPositonSize;
+// //           private ImageView playPauseIcon;
+// //           private ImageView maximalizeIcon;
+// //           private ImageView closeIcon;
+// //           private ImageView settingIcon;
+// //           private ImageView volumeIcon;
+// //           private View leftCornerIcon;
+// //           private View rightCornerIcon;
+// //           private VideoView videoView;
+// //           private bool isPlay = false;
+
+// //           public CustomBorder(string title) : base()
+// //           {
+// //             OverlayMode = true;
+// //             // BorderLineThickness = 1;
+// //             // this.title = title;
+// //             // this.videoView = videoView;
+// //             // MinSize = new Size2D(600, 400);
+// //           }
+
+// //           public void SetVideoView(VideoView videoView)
+// //           {
+// //             // this.videoView = videoView;
+// //           }
+
+// //           // public override bool CreateTopBorderView(View topView)
+// //           // {
+// //           //   // if (topView == null)
+// //           //   // {
+// //           //   //   return false;
+// //           //   // }
+// //           //   topView.SizeHeight = 1;
+// //           //   // topView.Layout = new LinearLayout()
+// //           //   // {
+// //           //   //   LinearOrientation = LinearLayout.Orientation.Horizontal,
+// //           //   //   LinearAlignment = LinearLayout.Alignment.CenterVertical,
+// //           //   //   CellPadding = new Size2D(50, 50),
+// //           //   // };
+
+// //           //   // titleLabel = new TextLabel()
+// //           //   // {
+// //           //   //   Text = title,
+// //           //   //   TextColor = Color.White,
+// //           //   // };
+// //           //   // topView.Add(titleLabel);
+// //           //   return true;
+// //           // }
+
+// //         //   public override bool CreateBottomBorderView(View bottomView)
+// //         //   {
+// //         //     bottomView.SizeHeight = 124;
+
+// //         //     var contentsView = new View()
+// //         //     {
+// //         //       WidthSpecification = LayoutParamPolicies.MatchParent,
+// //         //       HeightSpecification = LayoutParamPolicies.MatchParent,
+// //         //       Layout = new LinearLayout()
+// //         //       {
+// //         //         LinearOrientation = LinearLayout.Orientation.Horizontal,
+// //         //         LinearAlignment = LinearLayout.Alignment.Center,
+// //         //         CellPadding = new Size2D(8, 0),
+// //         //       },
+// //         //       BackgroundColor = Color.Transparent,
+// //         //     };
+
+// //         //     playPauseIcon = new ImageView()
+// //         //     {
+// //         //         ResourceUrl = PlayIcon,
+// //         //     };
+
+// //         //     maximalizeIcon = new ImageView()
+// //         //     {
+// //         //         ResourceUrl = MaximalizeIcon,
+// //         //     };
+
+// //         //     closeIcon = new ImageView()
+// //         //     {
+// //         //         ResourceUrl = CloseIcon,
+// //         //     };
+
+// //         //     leftCornerIcon = new View()
+// //         //     {
+// //         //         Size2D = new Size2D(50, 50),
+// //         //     };
+
+// //         //     rightCornerIcon = new View()
+// //         //     {
+// //         //         Size2D = new Size2D(50, 50),
+// //         //     };
+// //         //     contentsView.Add(playPauseIcon);
+// //         //     contentsView.Add(maximalizeIcon);
+// //         //     contentsView.Add(closeIcon);
+
+// //         //     bottomView.Layout = new RelativeLayout();
+// //         //     RelativeLayout.SetRightRelativeOffset(rightCornerIcon, 1.0f);
+// //         //     RelativeLayout.SetHorizontalAlignment(rightCornerIcon, RelativeLayout.Alignment.End);
+// //         //     RelativeLayout.SetVerticalAlignment(rightCornerIcon, RelativeLayout.Alignment.End);
+// //         //     RelativeLayout.SetVerticalAlignment(leftCornerIcon, RelativeLayout.Alignment.End);
+// //         //     bottomView.Add(leftCornerIcon);
+// //         //     bottomView.Add(rightCornerIcon);
+// //         //     bottomView.Add(contentsView);
+
+
+
+// //         //     playPauseIcon.TouchEvent += OnPlayPauseIconTouched;
+// //         //     maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
+// //         //     closeIcon.TouchEvent += OnCloseIconTouched;
+// //         //     leftCornerIcon.TouchEvent += OnLeftBottomCornerIconTouched;
+// //         //     rightCornerIcon.TouchEvent += OnRightBottomCornerIconTouched;
+
+// //         //     return true;
+// //         //   }
+
+// //         //   public override void OnCreated(View borderView)
+// //         //   {
+// //         //     base.OnCreated(borderView);
+// //         //     this.borderView = borderView;
+// //         //     BorderWindow.EnableFloatingMode(true);
+// //         //   }
+
+// //         //   public override void OnResized(int width, int height)
+// //         //   {
+// //         //     if (borderView != null && titleLabel != null)
+// //         //     {
+// //         //       if (this.width > width && hide == false)
+// //         //       {
+// //         //         titleLabel.Hide();
+// //         //         hide = true;
+// //         //       }
+// //         //       else if (this.width < width && hide == true)
+// //         //       {
+// //         //         titleLabel.Show();
+// //         //         hide = false;
+// //         //       }
+// //         //     }
+// //         //     base.OnResized(width, height);
+// //         //     // UpdateIcons();
+// //         //   }
+
+// //         //   // private void UpdateIcons()
+// //         //   // {
+// //         //   //   if (BorderWindow != null && borderView != null)
+// //         //   //   {
+// //         //   //       if (BorderWindow.IsMaximized() == true)
+// //         //   //       {
+// //         //   //           if (maximalizeIcon != null)
+// //         //   //           {
+// //         //   //               maximalizeIcon.ResourceUrl = RestoreIcon;
+// //         //   //           }
+// //         //   //       }
+// //         //   //       else
+// //         //   //       {
+// //         //   //           if (maximalizeIcon != null)
+// //         //   //           {
+// //         //   //               maximalizeIcon.ResourceUrl = MaximalizeIcon;
+// //         //   //           }
+// //         //   //       }
+// //         //   //   }
+// //         //   // }
+
+// //         //   public override bool OnMaximizeIconTouched(object sender, View.TouchEventArgs e)
+// //         //   {
+// //         //     base.OnMaximizeIconTouched(sender, e);
+// //         //     if (e.Touch.GetState(0) == PointStateType.Up && videoView != null)
+// //         //     {
+// //         //       if (BorderWindow.IsMaximized() == true)
+// //         //       {
+// //         //         videoView.Underlay = true;
+// //         //       }
+// //         //       else
+// //         //       {
+// //         //         videoView.Underlay = false;
+// //         //       }
+// //         //     }
+// //         //     return true;
+// //         //   }
+
+// //         //   public override bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
+// //         //   {
+// //         //       if (e.Touch.GetState(0) == PointStateType.Up && app != null)
+// //         //       {
+// //         //           app.Exit();
+// //         //       }
+// //         //       return true;
+// //         //   }
+
+// //         //   public bool OnPlayPauseIconTouched(object sender, View.TouchEventArgs e)
+// //         //   {
+// //         //     if (e.Touch.GetState(0) == PointStateType.Up && videoView != null)
+// //         //     {
+// //         //       if (isPlay == true)
+// //         //       {
+// //         //         isPlay = false;
+// //         //         videoView.Pause();
+// //         //         playPauseIcon.ResourceUrl = PlayIcon;
+// //         //       }
+// //         //       else
+// //         //       {
+// //         //         isPlay = true;
+// //         //         videoView.Play();
+// //         //         playPauseIcon.ResourceUrl = PauseIcon;
+// //         //       }
+// //         //     }
+// //         //     return true;
+// //         //   }
+// //         }
+
+// //         public Program(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface) : base(windowSize, windowPosition, ThemeOptions.PlatformThemeEnabled, borderInterface)
+// //         {
+// //         }
+
+// //         public static Program app;
+// //         static CustomBorder customBorder;
+// //         View windowMainView;
+// //         VideoView videoView;
+// //         Window win = null;
+
+// //         protected override void OnCreate()
+// //         {
+// //             base.OnCreate();
+// //             Initialize();
+// //         }
+
+// //         void Initialize()
+// //         {
+// //             win = NUIApplication.GetDefaultWindow();
+// //             // win.BackgroundColor = Color.Blue;
+// //             var test = new View
+// //             {
+// //               Size2D = new Size2D(600, 400),
+// //               BackgroundColor = Color.Red,
+// //             };
+// //             win.Add(test);
+// //             win.Raise();
+// //             // win.KeyEvent += OnKeyEvent;
+
+// //             // windowMainView = new View()
+// //             // {
+// //             //    Layout = new LinearLayout()
+// //             //    {
+// //             //       LinearOrientation = LinearLayout.Orientation.Vertical,
+// //             //    },
+// //             //    WidthSpecification = LayoutParamPolicies.MatchParent,
+// //             //    HeightSpecification = LayoutParamPolicies.MatchParent,
+// //             //    BackgroundColor = Color.Black,
+// //             //    CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
+// //             //    CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+// //             //    ClippingMode = ClippingModeType.ClipToBoundingBox,
+// //             // };
+// //             // win.Add(windowMainView);
+
+
+// //             // videoView = new VideoView()
+// //             // {
+// //             //   Underlay = false,
+// //             //   WidthSpecification = LayoutParamPolicies.MatchParent,
+// //             //   HeightSpecification = LayoutParamPolicies.MatchParent,
+// //             //   ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "02_gallery_video.mp4",
+// //             //   Looping = true,
+// //             // };
+// //             // customBorder.SetVideoView(videoView);
+// //             // windowMainView.Add(videoView);
+// //             // videoView.Play();
+// //             // videoView.Pause();
+// //             // win.SetTransparency(true);
+
+// //             // win.InterceptTouchEvent += (s, e) =>
+// //             // {
+// //             //     if (e.Touch.GetState(0) == PointStateType.Down)
+// //             //     {
+// //             //       customBorder.OverlayBorderShow();
+// //             //     }
+// //             //     return true;
+// //             // };
+// //         }
+
+// //         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
+// //         {
+// //             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
+// //             {
+// //                 Exit();
+// //             }
+// //         }
+
+// //         static void Main(string[] args)
+// //         {
+// //             customBorder = new CustomBorder("  Video");
+// //             app = new Program("", new Size2D(600, 400), new Position2D(0, 0), customBorder);
+// //             app.Run(args);
+// //         }
+// //     }
+// // }
+
+
+
+// using System;
+// using Tizen.NUI;
+// using Tizen.NUI.Components;
+// using Tizen.NUI.BaseComponents;
+
+// namespace VideoPlayDemo
+// {
+//     class Program : NUIApplication
+//     {
+//         class LogOutput : ScrollableBase
+//         {
+//             public LogOutput()
+//             {
+//                 Size2D = new Size2D(500, 1000);
+//                 // WidthSpecification = LayoutParamPolicies.MatchParent;
+//                 // HeightSpecification = LayoutParamPolicies.MatchParent;
+//                 HideScrollbar = false;
+
+//                 ContentContainer.Layout = new LinearLayout
+//                 {
+//                     LinearOrientation = LinearLayout.Orientation.Vertical,
+//                     VerticalAlignment = VerticalAlignment.Top,
+//                 };
+//             }
+
+//             public void AddLog(string log)
+//             {
+//                 Console.WriteLine($"{log}\n");
+//                 var txt = new TextLabel
+//                 {
+//                     Text = log
+//                 };
+
+//                 ContentContainer.Add(txt);
+//                 if (ContentContainer.Children.Count > 30)
+//                 {
+//                     var remove = ContentContainer.Children.GetRange(0, 10);
+//                     foreach (var child in remove)
+//                     {
+//                         ContentContainer.Remove(child);
+//                     }
+//                 }
+//                 ElmSharp.EcoreMainloop.Post(() =>
+//                 {
+//                     ScrollTo((ContentContainer.Children.Count) * (txt.NaturalSize.Height), true);
+//                 });
+//             }
+//             public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+//             {
+//                 return null;
+//             }
+//         }
+
+//         private TapGestureDetector tapGestureDetector;
+//         private PanGestureDetector panGestureDetector;
+//         private LongPressGestureDetector longPressGestureDetector;
+
+//         public Program() : base()
+//         {
+//         }
+
+//         protected override void OnCreate()
+//         {
+//             base.OnCreate();
+//             Initialize();
+//         }
+
+//         void Initialize()
+//         {
+//             Window window = NUIApplication.GetDefaultWindow();
+//             window.BackgroundColor = Color.Grey;
+
+//             var root = new View
+//             {
+//                 WidthResizePolicy = ResizePolicyType.FillToParent,
+//                 HeightResizePolicy = ResizePolicyType.FillToParent,
+
+//             };
+//             root.Name = "root";
+
+//             // default hittest, do not parent-child
+//             var bottomView = new View
+//             {
+//                 Name = "bottomView",
+//                 Size2D = new Size2D(800, 800),
+//                 Position2D = new Position2D(410, 10),
+//                 BackgroundColor = Color.Blue,
+//             };
+
+//             var middleView = new View
+//             {
+//                 Name = "middleView",
+//                 Size2D = new Size2D(800, 800),
+//                 Position2D = new Position2D(500, 100),
+//                 BackgroundColor = Color.Yellow,
+//             };
+
+//             var topView = new View
+//             {
+//                 Name = "topView",
+//                 Size2D = new Size2D(800, 800),
+//                 Position2D = new Position2D(590, 190),
+//                 BackgroundColor = Color.Red,
+//             };
+
+//             var topChildView = new View
+//             {
+//                 Name = "topChildView",
+//                 Size2D = new Size2D(800, 800),
+//                 Position2D = new Position2D(90, 90),
+//                 BackgroundColor = Color.Orange,
+//             };
+
+//             var button = new Button
+//             {
+//                 Text = "Button"
+//             };
+
+
+//             var log = new LogOutput();
+
+//             // window.TouchEvent += (s, e) =>
+//             // {
+//             //     Tizen.Log.Error("NUI", $"window TouchEvent {e.Touch.GetState(0)}\n");
+//             //     log.AddLog($" ->window Touch {e.Touch.GetState(0)}\n");
+//             // };
+
+//             bottomView.InterceptTouchEvent += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"bottomView InterceptTouchEvent {e.Touch.GetState(0)}\n");
+//                 log.AddLog($" ->InterceptBlue View {e.Touch.GetState(0)}\n");
+//                 return false;
+//             };
+
+//             bottomView.TouchEvent += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"bottomView TouchEvent {e.Touch.GetState(0)}\n");
+//                 log.AddLog($" ->Blue View {e.Touch.GetState(0)}\n");
+//                 return false;
+//             };
+
+//             middleView.InterceptTouchEvent += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"middleView InterceptTouchEvent {e.Touch.GetState(0)}\n");
+//                 log.AddLog($" ->InterceptYellow View {e.Touch.GetState(0)}\n");
+//                 return false;
+//             };
+
+
+//             middleView.TouchEvent += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"middleView TouchEvent {e.Touch.GetState(0)}\n");
+//                 log.AddLog($" ->Yellow View {e.Touch.GetState(0)}\n");
+//                 return true;
+//             };
+
+//             tapGestureDetector = new TapGestureDetector();
+//             // tapGestureDetector.Attach(topView);
+//             // tapGestureDetector.Attach(topChildView);
+//             tapGestureDetector.Detected += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"tapGestureDetector++++++++++++\n");
+//                 log.AddLog($" ->OnTap\n");
+//             };
+
+//             panGestureDetector = new PanGestureDetector();
+//             // panGestureDetector.Attach(topView);
+//             panGestureDetector.Detected += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"panGestureDetector++++++++++++\n");
+//                 log.AddLog($" ->OnPan\n");
+
+//             };
+
+
+
+//             longPressGestureDetector = new LongPressGestureDetector();
+//             // longPressGestureDetector.Attach(topView);
+//             longPressGestureDetector.Detected += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"longPressGestureDetector++++++++++++\n");
+//                 log.AddLog($" ->OnLong\n");
+
+//             };
+
+//             GestureProcessor gestureProcessor = new GestureProcessor();
+//             gestureProcessor.AddDetector(tapGestureDetector);
+//             // gestureProcessor.AddDetector(panGestureDetector);
+//             gestureProcessor.AddDetector(longPressGestureDetector);
+
+//             topView.TouchEvent += (s, e) =>
+//             {
+
+//                 // detector에 일단 터치 이벤트를 보내고
+//                 // tap, pan등 제스처 동작이라고 감지되면 제스처 동작을 수행하고 컨슘여부를 받는다.
+//                 // bool consumed = detector.FeedTouch(s, e);
+//                 // or
+//                 // reconizer에 터치 이벤트를 보내서 제스처 동작을 인식시킨다?
+//                 bool consumed = gestureProcessor.FeedTouch(s, e.Touch);
+//                 // // bool consumed = gestureProcessor.FeedTouch(s, e);
+//                 // // consumed = consumed || OnTouch(touch);
+//                 Tizen.Log.Error("NUI", $"topView TouchEvent {e.Touch.GetState(0)}\n");
+//                 log.AddLog($" ->Red View {e.Touch.GetState(0)}\n");
+//                 return consumed;
+
+//                 // return true;
+//             };
+
+//             GestureProcessor gestureProcessor1 = new GestureProcessor();
+//             gestureProcessor1.AddDetector(panGestureDetector);
+//             topChildView.TouchEvent += (s, e) =>
+//             {
+//                 Tizen.Log.Error("NUI", $"topChildView TouchEvent {e.Touch.GetState(0)}\n");
+//                 // GestureOptions.Instance.FeedTouch(s, e.Touch);
+//                 log.AddLog($" ->Orange View {e.Touch.GetState(0)}\n");
+//                 gestureProcessor1.FeedTouch(s, e.Touch);
+//                 return true;
+//             };
+
+//             topView.Add(topChildView);
+//             topChildView.Add(button);
+
+//             root.Add(bottomView);
+//             root.Add(middleView);
+//             root.Add(topView);
+//             window.Add(root);
+//             window.Add(log);
+//         }
+
+//         private bool OnTap(View sender, TapGesture gesture)
+//         {
+//             return false;
+//         }
+
+//         static void Main(string[] args)
+//         {
+//             var app = new Program();
+//             app.Run(args);
+//         }
+//     }
+// }
