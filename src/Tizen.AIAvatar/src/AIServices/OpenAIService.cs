@@ -195,11 +195,11 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public async Task TextToSpeechStreamAsync(string text, string voice = null, Dictionary<string, object> options = null)
         {
-            const int SAMPLE_RATE = 24000;  // OpenAI TTS의 기본 샘플레이트
-            const int FRAME_DURATION_MS = 160;  // 160ms 단위로 분할
+            const int SAMPLE_RATE = 24000;
+            const int FRAME_DURATION_MS = 160;
             const int TAIL_DURATION_MS = 15;
-            const int BYTES_PER_SAMPLE = 2;  // 16-bit PCM
-            const int CHUNK_SIZE = (SAMPLE_RATE * FRAME_DURATION_MS * BYTES_PER_SAMPLE) / 1000;  // 160ms worth of PCM data
+            const int BYTES_PER_SAMPLE = 2;
+            const int CHUNK_SIZE = (SAMPLE_RATE * FRAME_DURATION_MS * BYTES_PER_SAMPLE) / 1000;
             const int TAIL_CHUNK_SIZE = (SAMPLE_RATE * TAIL_DURATION_MS * BYTES_PER_SAMPLE) / 1000;
 
             var client = ClientManager.GetClient(config.Endpoints.TextToSpeechEndpoint);
@@ -210,8 +210,7 @@ namespace Tizen.AIAvatar
                     model = "tts-1",
                     input = text,
                     voice = voice ?? "alloy",
-                    response_format = "pcm",  // PCM 포맷으로 변경
-                    //speed = options?.GetValueOrDefault("speed", 1.0)
+                    response_format = "pcm"
                 });
 
             try
@@ -243,8 +242,7 @@ namespace Tizen.AIAvatar
                     var chunk = new byte[currentChunkSize];
                     Array.Copy(audioData, bytesProcessed, chunk, 0, currentChunkSize);
                     bytesProcessed += Math.Min(CHUNK_SIZE, remainingBytes);
-
-                    // 현재 청크의 진행 정보와 함께 오디오 데이터를 이벤트로 전달
+                                        
                     OnTtsReceiving?.Invoke(this, new ttsStreamingEventArgs
                     {
                         Text = text,
@@ -254,9 +252,6 @@ namespace Tizen.AIAvatar
                         ProgressPercentage = (double)bytesProcessed / totalBytes * 100,
                         AudioData = chunk
                     });
-
-                    // 160ms 간격을 시뮬레이션하기 위한 딜레이 (실제 스트리밍 시나리오에서 필요한 경우)
-                    // await Task.Delay(FRAME_DURATION_MS);
                 }
 
                 OnTtsFinish?.Invoke(this, new ttsStreamingEventArgs
