@@ -253,6 +253,13 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_pairing_type")]
         internal static extern NotificationError GetPairingType(NotificationSafeHandle handle, out bool pairing);
 
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extension_image_size")]
+        internal static extern NotificationError SetExtensionImageSize(NotificationSafeHandle handle, int height);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extension_image_size")]
+        internal static extern NotificationError GetExtensionImageSize(NotificationSafeHandle handle, out int height);
+
         internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {
             NotificationError ret;

@@ -26,6 +26,11 @@ namespace Tizen.Applications.Notifications
         ClickOnButton3,
 
         /// <summary>
+        /// Event type : Click on thumbnail.
+        /// </summary>
+        ClickOnThumbnail = 7,
+
+        /// <summary>
         /// Event type : Click on text_input button.
         /// </summary>
         ClickOnReplyButton = 8,
