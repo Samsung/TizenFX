@@ -5202,8 +5202,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the number of renderers held by the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public uint RendererCount
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint RenderableCount
         {
             get
             {
