@@ -536,5 +536,20 @@ namespace Tizen.Network.WiFi
             WiFiManagerImpl.Instance.SetSpecificScanFreq(frequency);
             return WiFiManagerImpl.Instance.StartMultiScan();
         }
+
+        /// <summary>
+        /// Gets MAC address of peer connected through TDLS.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <returns>MAC address of the TDLS peer if connected on success or an empty string.</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public string TDLSConnectedPeer
+        {
+            get
+            {
+                return WiFiManagerImpl.Instance.TDLSConnectedPeer;
+            }
+        }
     }
 }
