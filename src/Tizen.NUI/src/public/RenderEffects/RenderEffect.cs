@@ -43,7 +43,10 @@ namespace Tizen.NUI
         /// <remarks>
         /// Created RenderEffect is immutable.
         /// </remarks>
-        /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
+        /// <param name="blurRadius">
+        /// The blur radius value. The unit is pixel for standard cases.
+        /// If the value is too big, blur may fail due to GPU constraints.
+        /// </param>
         /// <returns>Background blur effect with given blur radius.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static RenderEffect CreateBackgroundBlurEffect(float blurRadius)
