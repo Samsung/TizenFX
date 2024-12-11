@@ -429,7 +429,6 @@ namespace Tizen.NUI.BaseComponents
                 DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false,
                     propertyChanged: SetInternalDispatchHoverMotionProperty, defaultValueCreator: GetInternalDispatchHoverMotionProperty);
 
-
                 RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
                 RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
                 RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
@@ -5988,6 +5987,38 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return AutomationId;
+            }
+        }
+
+        /// <summary>
+        /// Gets of sets the current offscreen rendering type of the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public OffScreenRenderingType OffScreenRendering
+        {
+            get
+            {
+                return GetInternalOffScreenRendering();
+            }
+            set
+            {
+                SetInternalOffScreenRendering(value);
+                NotifyPropertyChanged();
+            }
+        }
+        private void SetInternalOffScreenRendering(OffScreenRenderingType value)
+        {
+            Object.InternalSetPropertyInt(SwigCPtr, Property.OffScreenRendering, (int)value);
+        }
+        private OffScreenRenderingType GetInternalOffScreenRendering()
+        {
+            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.OffScreenRendering);
+            switch (temp)
+            {
+                case 0: return OffScreenRenderingType.None;
+                case 1: return OffScreenRenderingType.RefreshOnce;
+                case 2: return OffScreenRenderingType.RefreshAlways;
+                default: return OffScreenRenderingType.None;
             }
         }
     }
