@@ -1535,26 +1535,33 @@ namespace Tizen.NUI.BaseComponents
             {
                 case (int)(VectorProperty.FillColor):
                 case (int)(VectorProperty.StrokeColor):
-                    Vector3 tmpVector3 = new Vector3(-1, -1, -1);
-                    if ((ret != null) && ret.Get(tmpVector3))
+                {
+                    float tmpVal1 = -1;
+                    float tmpVal2 = -1;
+                    float tmpVal3 = -1;
+                    if ((ret != null) && ret.GetVector3Component(out tmpVal1, out tmpVal2, out tmpVal3))
                     {
-                        val1 = tmpVector3.X;
-                        val2 = tmpVector3.Y;
-                        val3 = tmpVector3.Z;
+                        val1 = tmpVal1;
+                        val2 = tmpVal2;
+                        val3 = tmpVal3;
                     }
                     break;
+                }
 
                 case (int)(VectorProperty.TransformAnchor):
                 case (int)(VectorProperty.TransformPosition):
                 case (int)(VectorProperty.TransformScale):
                 case (int)(VectorProperty.TrimEnd):
-                    Vector2 tmpVector2 = new Vector2(-1, -1);
-                    if ((ret != null) && ret.Get(tmpVector2))
+                {
+                    float tmpVal1 = -1;
+                    float tmpVal2 = -1;
+                    if ((ret != null) && ret.GetVector2Component(out tmpVal1, out tmpVal2))
                     {
-                        val1 = tmpVector2.X;
-                        val2 = tmpVector2.Y;
+                        val1 = tmpVal1;
+                        val2 = tmpVal2;
                     }
                     break;
+                }
 
                 case (int)(VectorProperty.FillOpacity):
                 case (int)(VectorProperty.StrokeOpacity):
@@ -1562,12 +1569,14 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.TransformRotation):
                 case (int)(VectorProperty.TransformOpacity):
                 case (int)(VectorProperty.TrimStart):
-                    float tmpFloat = -1;
-                    if ((ret != null) && ret.Get(out tmpFloat))
+                {
+                    float tmpVal1 = -1;
+                    if ((ret != null) && ret.Get(out tmpVal1))
                     {
-                        val1 = tmpFloat;
+                        val1 = tmpVal1;
                     }
                     break;
+                }
                 default:
                     //do nothing
                     break;
