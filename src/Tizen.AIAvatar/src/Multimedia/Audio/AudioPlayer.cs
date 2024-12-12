@@ -89,17 +89,6 @@ namespace Tizen.AIAvatar
         }
 
         /// <summary>
-        /// Initializes the audio stream for playback.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void InitializeStream()
-        {
-            isStreaming = true;
-            streamIndex = 0;
-            streamList.Clear();
-        }
-
-        /// <summary>
         /// Adds a new audio buffer to the stream list.
         /// </summary>
         /// <param name="buffer">The audio buffer to add.</param>
@@ -120,11 +109,11 @@ namespace Tizen.AIAvatar
         }
 
         /// <summary>
-        /// Plays the audio from the stream asynchronously.
+        /// Prepare the audio from the stream asynchronously.
         /// </summary>
         /// <param name="sampleRate">Optional sample rate for the audio playback.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void PlayStreamAudio(int sampleRate = 0)
+        public void PrepareStreamAudio(int sampleRate = 0)
         {
             InitializeStream();
 
@@ -433,6 +422,13 @@ namespace Tizen.AIAvatar
             {
                 Log.Error(LogTag, $"Failed to write. {e.Message}");
             }
+        }
+
+        private void InitializeStream()
+        {
+            isStreaming = true;
+            streamIndex = 0;
+            streamList.Clear();
         }
 
         private void InitAudio(int sampleRate)

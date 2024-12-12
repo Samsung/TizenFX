@@ -228,7 +228,7 @@ namespace AIAvatar
             lipSyncer.Stop();
             audioPlayer.Stop();
 
-            audioPlayer.PlayStreamAudio(e.SampleRate);
+            audioPlayer.PrepareStreamAudio(e.SampleRate);
             audio2Vowels.SetSampleRate(e.SampleRate);
 
             ttsStreamingAudioBytes = e.AudioBytes;
