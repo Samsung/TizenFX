@@ -159,19 +159,27 @@ namespace Tizen.AIAvatar
             var request = new RestRequest(Method.Post)
                 .AddHeader("Authorization", $"Bearer {config.ApiKey}");
 
-            int taskID = (int)(options?["TaskID"] ?? 0);
+            int taskID = (int)(options?.GetValueOrDefault("TaskID", 0) ?? 0);
 
             if (options != null && options.TryGetValue("promptFilePath", out var jsonFilePathObj) && jsonFilePathObj is string jsonFilePath)
             {
                 // Read JSON file content
                 if (File.Exists(jsonFilePath))
                 {
-                    var jsonContent = await File.ReadAllTextAsync(jsonFilePath).ConfigureAwait(false);
-                    Prompt prompt = JsonSerializer.Deserialize<Prompt>(jsonContent);
-                    var msg = prompt.messages.Last();
-                    msg.content = String.Format(msg.content, message);
+                    try
+                    {
+                        var jsonContent = await File.ReadAllTextAsync(jsonFilePath).ConfigureAwait(false);
+                        Prompt prompt = JsonSerializer.Deserialize<Prompt>(jsonContent);
+                        var msg = prompt.messages.Last();
+                        msg.content = String.Format(msg.content, message);
 
-                    request.AddJsonBody(prompt);
+                        request.AddJsonBody(prompt);
+                    }
+                    catch (Exception ex)
+                    {
+                        ResponseHandler?.Invoke(this, new llmResponseEventArgs { TaskID = taskID, Error = ex.Message });
+                        return;
+                    }
                 }
                 else
                 {
