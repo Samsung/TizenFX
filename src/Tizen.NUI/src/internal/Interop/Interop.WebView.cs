@@ -355,6 +355,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterUserMediaPermissionRequestCallback")]
             public static extern void RegisterUserMediaPermissionRequestCallback(global::System.Runtime.InteropServices.HandleRef webViewRef, global::System.Runtime.InteropServices.HandleRef callbackRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_FeedMouseWheel")]
+            public static extern void FeedMouseWheel(global::System.Runtime.InteropServices.HandleRef webViewRef, bool yDirection, int step, int x, int y);
         }
     }
 }
