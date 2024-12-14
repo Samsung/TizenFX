@@ -3074,6 +3074,16 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Feed mouse wheel event forcefully.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedMouseWheel(bool yDirection, int step, int x, int y)
+        {
+            Interop.WebView.FeedMouseWheel(SwigCPtr, yDirection, step, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static WebView DownCast(BaseHandle handle)
         {
             WebView ret = new WebView(Interop.WebView.DownCast(BaseHandle.getCPtr(handle)), true);
