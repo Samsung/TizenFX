@@ -16,22 +16,16 @@
  */
 
 using System;
-using Tizen.AIAvatar;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.Security;
 
-using Tizen;
-using Tizen.Multimedia;
 
 namespace AIAvatar
 {
     partial class Program : NUIApplication
     {
         private Window window;
-        private Tizen.NUI.Size windowSize;
         private AvatarScene avatarScene;
-        private View circleMaskView;
 
         private UIControlPanel uiControlPanel;
 
@@ -42,9 +36,7 @@ namespace AIAvatar
         }
 
         private void Initialize()
-        {
-            //var asyncAudioCapture = new AsyncAudioCapture(24000, AudioChannel.Mono, AudioSampleType.S16Le);
-
+        {         
             window = NUIApplication.GetDefaultWindow();
             window.BackgroundColor = new Color(0.85f, 0.85f, 0.85f, 1.0f); ;
 
@@ -74,7 +66,7 @@ namespace AIAvatar
             {
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
-                BackgroundImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/UI_BG.png",
+                BackgroundImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Images/UI_BG.png",
             };
             backgroundView.TouchEvent += (o, e) =>
             {
@@ -89,25 +81,9 @@ namespace AIAvatar
 
         private void MakeAvatarScene()
         {
-            avatarScene = new AvatarScene();
-            avatarScene.UseFramebuffer = true;
-
-            avatarScene.SetAlphaMaskUrl(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/contact-cards-mask.png");
-            avatarScene.EnableCropToMask(false);
-            //window.Add(avatarScene);
+            avatarScene = new AvatarScene();           
+            window.Add(avatarScene);
             
-            circleMaskView = new View()
-            {
-                Size = new Tizen.NUI.Size(),
-                Position = new Position(0, 0),
-                BackgroundColor = new Tizen.NUI.Color(0.0f, 0.0f, 0.0f, 0.0f),//new Tizen.NUI.Color("#221F1F"),
-            };
-            window.Add(circleMaskView);
-            circleMaskView.Add(avatarScene);
-
-            //circleMaskView.ClippingMode = ClippingModeType.ClipChildren;
-            //circleMaskView.CornerRadius = new Vector4(0.5f,0.5f,0.5f,0.5f);
-            circleMaskView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
         }
 
         private void MakeUIPanel()
@@ -124,7 +100,7 @@ namespace AIAvatar
 
         private void RecalculatePositionSizeFromWindowSize()
         {
-            uiControlPanel.ReizeUIPanel(avatarScene, circleMaskView);
+            uiControlPanel.ReizeUIPanel(avatarScene);
         }
 
         private void OnKeyEvent(object sender, Window.KeyEventArgs e)
@@ -135,7 +111,7 @@ namespace AIAvatar
                 return;
             }
 
-            if (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "BackSpace")
+            if (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "BackSapce")
             {
                 ExitApplication();
             }
