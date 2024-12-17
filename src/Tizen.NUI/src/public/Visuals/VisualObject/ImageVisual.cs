@@ -75,8 +75,7 @@ namespace Tizen.NUI.Visuals
 
                     UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.URL, new PropertyValue(value));
 
-                    // Special case. If set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
-                    if (value.StartsWith("dali://") || value.StartsWith("enbuf://") || FastTrackUploading)
+                    if (SynchronousVisualCreationRequired())
                     {
                         UpdateVisualPropertyMap();
                     }
@@ -202,11 +201,26 @@ namespace Tizen.NUI.Visuals
         /// Optional.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string AlphaMaskURL
+        public string AlphaMaskUrl
         {
             set
             {
                 UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AlphaMaskURL, string.IsNullOrEmpty(value) ? null : new PropertyValue(value));
+
+                // When we never set CropToMask property before, we should set default value as true.
+                using (PropertyValue cropToMask = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask))
+                {
+                    if (cropToMask == null)
+                    {
+                        using PropertyValue setCropValue = new PropertyValue(true);
+                        UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask, setCropValue);
+                    }
+                }
+
+                if (SynchronousVisualCreationRequired())
+                {
+                    UpdateVisualPropertyMap();
+                }
             }
             get
             {
@@ -284,6 +298,7 @@ namespace Tizen.NUI.Visuals
         ///  - Seamless visual change didn't supported.<br />
         ///  - Alpha masking didn't supported. If you try, It will load as normal case.<br />
         ///  - Synchronous loading didn't supported. If you try, It will load as normal case.<br />
+        ///  - Synchronous sizing didn't supported. If you try, It will load as normal case.<br />
         ///  - Reload action didn't supported. If you try, It will load as normal case.<br />
         ///  - Atlas loading didn't supported. If you try, It will load as normal case.<br />
         ///  - Custom shader didn't supported. If you try, It will load as normal case.
@@ -295,7 +310,7 @@ namespace Tizen.NUI.Visuals
             {
                 UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.FastTrackUploading, new PropertyValue(value));
 
-                if (value && !string.IsNullOrEmpty(ResourceUrl))
+                if (value && isResourceUrlValid)
                 {
                     // Special case. If user set FastTrackUploading mean, user want to upload image As-Soon-As-Possible.
                     // Create ImageVisual synchronously.
@@ -622,6 +637,27 @@ namespace Tizen.NUI.Visuals
                 cachedVisualPropertyMap = temperalStoredPropertyMap;
                 temperalStoredPropertyMap = null;
             }
+        }
+
+        private bool SynchronousVisualCreationRequired()
+        {
+            // Special case. If we set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
+            if (isResourceUrlValid)
+            {
+                if (FastTrackUploading)
+                {
+                    return true;
+                }
+                if (ResourceUrl.StartsWith("dali://") || ResourceUrl.StartsWith("enbuf://"))
+                {
+                    return true;
+                }
+                if (!string.IsNullOrEmpty(AlphaMaskUrl) && (AlphaMaskUrl.StartsWith("dali://") || AlphaMaskUrl.StartsWith("enbuf://")))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
     }
