@@ -145,6 +145,7 @@ namespace Tizen.NUI.BaseComponents
         // Collection of image-sensitive properties, and need to update C# side cache value.
         private static readonly List<int> cachedNUIImageViewPropertyKeyList = new List<int> {
             ImageVisualProperty.URL,
+            ImageVisualProperty.AlphaMaskURL,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
             ImageVisualProperty.FastTrackUploading,
@@ -155,8 +156,9 @@ namespace Tizen.NUI.BaseComponents
         private bool imagePropertyUpdateProcessAttachedFlag = false;
         private Rectangle _border;
 
-        // Development Guide : Please make ensure that these 4 values are matched with current image.
+        // Development Guide : Please make ensure that these 5 values are matched with current image.
         private string _resourceUrl = "";
+        private string _alphaMaskUrl = "";
         private int _desired_width = -1;
         private int _desired_height = -1;
         private bool _fastTrackUploading = false;
@@ -858,6 +860,7 @@ namespace Tizen.NUI.BaseComponents
         ///  - Seamless visual change didn't supported.<br />
         ///  - Alpha masking didn't supported. If you try, It will load as normal case.<br />
         ///  - Synchronous loading didn't supported. If you try, It will load as normal case.<br />
+        ///  - Synchronous sizing didn't supported. If you try, It will load as normal case.<br />
         ///  - Reload action didn't supported. If you try, It will load as normal case.<br />
         ///  - Atlas loading didn't supported. If you try, It will load as normal case.<br />
         ///  - Custom shader didn't supported. If you try, It will load as normal case.
@@ -910,7 +913,7 @@ namespace Tizen.NUI.BaseComponents
                     UpdateImage(ImageVisualProperty.FastTrackUploading, setValue);
                     setValue?.Dispose();
 
-                    if (_fastTrackUploading && !string.IsNullOrEmpty(_resourceUrl))
+                    if (SynchronousVisualCreationRequired())
                     {
                         // Special case. If user set FastTrackUploading mean, user want to upload image As-Soon-As-Possible.
                         // Create ImageVisual synchronously.
@@ -982,6 +985,36 @@ namespace Tizen.NUI.BaseComponents
             using (PropertyValue urlValue = new PropertyValue(_resourceUrl))
             {
                 UpdateImage(ImageVisualProperty.URL, urlValue, false);
+            }
+            if (_desired_width != -1)
+            {
+                _desired_width = -1;
+                using (PropertyValue desiredWidthValue = new PropertyValue(_desired_width))
+                {
+                    UpdateImage(ImageVisualProperty.DesiredWidth, desiredWidthValue, false);
+                }
+            }
+            if (_desired_height != -1)
+            {
+                _desired_height = -1;
+                using (PropertyValue desiredHeightValue = new PropertyValue(_desired_height))
+                {
+                    UpdateImage(ImageVisualProperty.DesiredHeight, desiredHeightValue, false);
+                }
+            }
+            if (_fastTrackUploading)
+            {
+                _fastTrackUploading = false;
+                using (PropertyValue fastTrackUploadingValue = new PropertyValue(_fastTrackUploading))
+                {
+                    UpdateImage(ImageVisualProperty.FastTrackUploading, fastTrackUploadingValue, false);
+                }
+            }
+            if (!string.IsNullOrEmpty(_alphaMaskUrl))
+            {
+                _alphaMaskUrl = "";
+                using PropertyValue emptyValue = new PropertyValue();
+                UpdateImage(ImageVisualProperty.AlphaMaskURL, emptyValue, false);
             }
             imagePropertyUpdatedFlag = false;
         }
@@ -1090,17 +1123,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string ret = "";
-
-                PropertyValue maskUrl = GetCachedImageVisualProperty(ImageVisualProperty.AlphaMaskURL);
-                maskUrl?.Get(out ret);
-                maskUrl?.Dispose();
-
-                return ret;
+                return _alphaMaskUrl;
             }
             set
             {
-                PropertyValue setValue = new PropertyValue(value ?? "");
+                _alphaMaskUrl = value ?? "";
+
+                PropertyValue setValue = new PropertyValue(_alphaMaskUrl);
                 UpdateImage(ImageVisualProperty.AlphaMaskURL, setValue);
                 // When we never set CropToMask property before, we should set default value as true.
                 using (PropertyValue cropToMask = GetCachedImageVisualProperty(ImageVisualProperty.CropToMask))
@@ -1112,6 +1141,11 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
                 setValue?.Dispose();
+
+                if (SynchronousVisualCreationRequired())
+                {
+                    UpdateImage();
+                }
             }
         }
 
@@ -1911,7 +1945,21 @@ namespace Tizen.NUI.BaseComponents
             }
             using (PropertyValue desiredHeightValue = new PropertyValue(_desired_height))
             {
-                UpdateImage(ImageVisualProperty.DesiredWidth, desiredHeightValue, false);
+                UpdateImage(ImageVisualProperty.DesiredHeight, desiredHeightValue, false);
+            }
+            if (_fastTrackUploading)
+            {
+                _fastTrackUploading = false;
+                using (PropertyValue fastTrackUploadingValue = new PropertyValue(_fastTrackUploading))
+                {
+                    UpdateImage(ImageVisualProperty.FastTrackUploading, fastTrackUploadingValue, false);
+                }
+            }
+            if (!string.IsNullOrEmpty(_alphaMaskUrl))
+            {
+                _alphaMaskUrl = "";
+                using PropertyValue emptyValue = new PropertyValue();
+                UpdateImage(ImageVisualProperty.AlphaMaskURL, emptyValue, false);
             }
             imagePropertyUpdatedFlag = false;
         }
@@ -2046,8 +2094,8 @@ namespace Tizen.NUI.BaseComponents
                     {
                         UpdateImage(ImageVisualProperty.URL, setValue);
                     }
-                    // Special case. If we set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
-                    if (value.StartsWith("dali://") || value.StartsWith("enbuf://") || _fastTrackUploading)
+
+                    if (SynchronousVisualCreationRequired())
                     {
                         UpdateImage();
                     }
@@ -2087,7 +2135,10 @@ namespace Tizen.NUI.BaseComponents
 
                 // Update resourceUrl as empty value
                 _resourceUrl = "";
-                cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
+                if (cachedImagePropertyMap != null)
+                {
+                    cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
+                }
             }
         }
 
@@ -2099,7 +2150,7 @@ namespace Tizen.NUI.BaseComponents
             cachedImagePropertyMap = null;
             MergeCachedImageVisualProperty(map);
 
-            // Update _resourceUrl, _desired_width, _desired_height, _fastTrackUploading here.
+            // Update _resourceUrl, _alphaMaskUrl, _desired_width, _desired_height, _fastTrackUploading here.
             // Those values are C# side cached value.
             _desired_width = _desired_height = -1;
             _fastTrackUploading = false;
@@ -2107,14 +2158,20 @@ namespace Tizen.NUI.BaseComponents
             if (map != null)
             {
                 _resourceUrl = "";
+                _alphaMaskUrl = "";
                 foreach (int key in cachedNUIImageViewPropertyKeyList)
                 {
                     using PropertyValue propertyValue = map.Find(key);
                     if (propertyValue != null)
                     {
+                        // Note : Since ImageVisualProperty is not a constant value, we cannot use switch-case here.
                         if (key == ImageVisualProperty.URL)
                         {
                             propertyValue.Get(out _resourceUrl);
+                        }
+                        else if (key == ImageVisualProperty.AlphaMaskURL)
+                        {
+                            propertyValue.Get(out _alphaMaskUrl);
                         }
                         else if (key == ImageVisualProperty.DesiredWidth)
                         {
@@ -2404,6 +2461,27 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourceLoadedEventHandler(this, e);
             }
+        }
+
+        private bool SynchronousVisualCreationRequired()
+        {
+            // Special case. If we set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
+            if (!string.IsNullOrEmpty(_resourceUrl))
+            {
+                if (_fastTrackUploading)
+                {
+                    return true;
+                }
+                if (_resourceUrl.StartsWith("dali://") || _resourceUrl.StartsWith("enbuf://"))
+                {
+                    return true;
+                }
+                if (!string.IsNullOrEmpty(_alphaMaskUrl) && (_alphaMaskUrl.StartsWith("dali://") || _alphaMaskUrl.StartsWith("enbuf://")))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
