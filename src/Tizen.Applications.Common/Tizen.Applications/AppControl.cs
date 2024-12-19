@@ -932,7 +932,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
         /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetAutoRestart(AppControl appControl)
         {
@@ -967,7 +967,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
         /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void UnsetAutoRestart()
         {
