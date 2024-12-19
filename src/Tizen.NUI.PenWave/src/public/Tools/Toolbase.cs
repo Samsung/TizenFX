@@ -42,11 +42,17 @@ namespace Tizen.NUI.PenWave
         /// Handles input events such as touch events and updates the state of the tool accordingly.
         /// </summary>
         /// <param name="touch">The touch event data.</param>
+        /// <returns>True if the input was handled by the tool, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract bool HandleInput(Touch touch);
 
+        /// <summary>
+        /// Handles input events such as wheel events and updates the state of the tool accordingly.
+        /// </summary>
+        /// <param name="wheel">The wheel event data.</param>
+        /// <returns>True if the input was handled by the tool, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract bool HandleInput(Wheel touch);
+        public abstract bool HandleInput(Wheel wheel);
 
         /// <summary>
         /// Activates the tool, making it ready to receive input and perform its functionality.

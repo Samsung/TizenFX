@@ -17,7 +17,7 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
+
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 
@@ -29,10 +29,10 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PenWaveToolPicker : View
     {
-        private static readonly string ResourcePath = FrameworkInformation.ResourcePath + "images/light/";
+        private static readonly string s_resourcePath = FrameworkInformation.ResourcePath + "images/light/";
 
         // the icons for different brush types
-        private static readonly Dictionary<BrushType, string> BrushIconMap = new Dictionary<BrushType, string>
+        private static readonly Dictionary<BrushType, string> s_brushIconMap = new Dictionary<BrushType, string>
         {
             { BrushType.Stroke, "icon_pencil.png" },
             { BrushType.VarStroke, "icon_varstroke_dec.png" },
@@ -46,7 +46,7 @@ namespace Tizen.NUI.PenWave
         };
 
         // the color palette for brushes
-        private static readonly List<Color> BrushColorMap = new List<Color>
+        private static readonly List<Color> s_brushColorMap = new List<Color>
         {
             new Color("#F7B32C"), new Color("#FD5703"), new Color("#DA1727"),
             new Color("#FF00A8"), new Color("#74BFB8"), new Color("#4087C5"),
@@ -54,21 +54,21 @@ namespace Tizen.NUI.PenWave
         };
 
         // the icons for different eraser types
-        private static readonly Dictionary<EraserType, string> EraserIconMap = new Dictionary<EraserType, string>
+        private static readonly Dictionary<EraserType, string> s_eraserIconMap = new Dictionary<EraserType, string>
         {
             { EraserType.Partial, "icon_eraser.png" },
             { EraserType.Full, "icon_full_eraser.png" },
         };
 
         // the color palette for canvas background color
-        private static readonly List<Color> CanvasColor = new List<Color>
+        private static readonly List<Color> s_canvasColor = new List<Color>
         {
             new Color("#F0F0F0"), new Color("#B7B7B7"), new Color("#E3F2FF"),
             new Color("#202022"), new Color("#515151"), new Color("#17234D"),
         };
 
         // the icons for different grid density types
-        private static readonly Dictionary<GridDensityType, string> GridIconMap = new Dictionary<GridDensityType, string>
+        private static readonly Dictionary<GridDensityType, string> s_gridIconMap = new Dictionary<GridDensityType, string>
         {
             { GridDensityType.Small, "icon_small_grid_density.png" },
             { GridDensityType.Medium, "icon_medium_grid_density.png" },
@@ -139,7 +139,7 @@ namespace Tizen.NUI.PenWave
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
 
-            // Picker View 구성
+            // Picker View
             pickerView = new View
             {
                 CornerRadius = new Vector4(10, 10, 10, 10),
@@ -152,11 +152,11 @@ namespace Tizen.NUI.PenWave
                     HorizontalAlignment = HorizontalAlignment.Center,
                     CellPadding = new Size2D(5, 5),
                 },
-                BackgroundImage = ResourcePath + "menu_bg.png",
+                BackgroundImage = s_resourcePath + "menu_bg.png",
             };
             pickerView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
 
-            // Popup View 구성
+            // Popup View
             popupView = new View
             {
                 WidthSpecification = LayoutParamPolicies.WrapContent,
@@ -168,7 +168,7 @@ namespace Tizen.NUI.PenWave
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                     CellPadding = new Size2D(5, 5),
                 },
-                BackgroundImage = ResourcePath + "picker_popup_bg.png",
+                BackgroundImage = s_resourcePath + "picker_popup_bg.png",
                 Padding = new Extents(20, 20, 20, 20),
             };
             popupView.Hide();
@@ -183,33 +183,33 @@ namespace Tizen.NUI.PenWave
         // Initialize the canvas tools and their corresponding buttons.
         private void InitializeCanvasTools()
         {
-            var backgroundColorButton = CreateToolButton(ResourcePath + "icon_color_palette.png", () =>
+            var backgroundColorButton = CreateToolButton(s_resourcePath + "icon_color_palette.png", () =>
             {
               ShowPaletteSetting();
             });
             pickerView.Add(backgroundColorButton);
 
-            var gridButton = CreateToolButton(ResourcePath + "icon_medium_grid_density.png", () =>
+            var gridButton = CreateToolButton(s_resourcePath + "icon_medium_grid_density.png", () =>
             {
               ShowGridSetting();
             });
             pickerView.Add(gridButton);
 
-            undoButton = CreateToolButton(ResourcePath + "icon_undo.png", () =>
+            undoButton = CreateToolButton(s_resourcePath + "icon_undo.svg", () =>
             {
                 canvasView.Undo();
                 UpdateUI();
             });
             pickerView.Add(undoButton);
 
-            redoButton = CreateToolButton(ResourcePath + "icon_redo.png", () =>
+            redoButton = CreateToolButton(s_resourcePath + "icon_redo.svg", () =>
             {
                 canvasView.Redo();
                 UpdateUI();
             });
             pickerView.Add(redoButton);
 
-            var clearButton = CreateToolButton(ResourcePath + "icon_clear.png", () =>
+            var clearButton = CreateToolButton(s_resourcePath + "icon_clear.png", () =>
             {
                 canvasView.ClearCanvas();
                 UpdateUI();
@@ -235,13 +235,13 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            foreach (var color in CanvasColor)
+            foreach (var color in s_canvasColor)
             {
                 var button = new ImageView
                 {
                     Size2D = new Size2D(48, 48),
                     Color = color,
-                    ResourceUrl = ResourcePath + "/color_icon_base.png",
+                    ResourceUrl = s_resourcePath + "/color_icon_base.png",
                 };
                 button.TouchEvent += (s, e) =>
                 {
@@ -276,9 +276,9 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            foreach (var icon in GridIconMap)
+            foreach (var icon in s_gridIconMap)
             {
-                var button = CreateToolButton(ResourcePath + icon.Value, () =>
+                var button = CreateToolButton(s_resourcePath + icon.Value, () =>
                 {
                     canvasView.ToggleGrid(icon.Key);
                 });
@@ -311,7 +311,7 @@ namespace Tizen.NUI.PenWave
         {
             tools[tool.GetType()] = tool;
 
-            var toolButton = CreateToolButton(ResourcePath + icon, () =>
+            var toolButton = CreateToolButton(s_resourcePath + icon, () =>
             {
                 SetTool(tool);
             });
@@ -387,9 +387,9 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            foreach (var icon in BrushIconMap)
+            foreach (var icon in s_brushIconMap)
             {
-                var button = CreateToolButton(ResourcePath + icon.Value, () =>
+                var button = CreateToolButton(s_resourcePath + icon.Value, () =>
                 {
                     pencilTool.Brush = icon.Key;
                     pencilTool.Activate();
@@ -414,13 +414,13 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            foreach (var color in BrushColorMap)
+            foreach (var color in s_brushColorMap)
             {
                 var button = new ImageView
                 {
                     Size2D = new Size2D(48, 48),
                     Color = color,
-                    ResourceUrl = ResourcePath + "/color_icon_base.png",
+                    ResourceUrl = s_resourcePath + "/color_icon_base.png",
                 };
                 button.TouchEvent += (s, e) =>
                 {
@@ -490,9 +490,9 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            foreach (var icon in EraserIconMap)
+            foreach (var icon in s_eraserIconMap)
             {
-                var button = CreateToolButton(ResourcePath + icon.Value, () =>
+                var button = CreateToolButton(s_resourcePath + icon.Value, () =>
                 {
                     eraserTool.Eraser = eraserTool.Eraser == EraserType.Partial
                         ? EraserType.Full
@@ -519,7 +519,7 @@ namespace Tizen.NUI.PenWave
             var types = Enum.GetValues(typeof(SelectionType));
             foreach (SelectionType type in types)
             {
-                var button = CreateToolButton(ResourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
+                var button = CreateToolButton(s_resourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
                 {
                     selectionTool.Selection = type;
                 });
@@ -544,7 +544,7 @@ namespace Tizen.NUI.PenWave
             var types = Enum.GetValues(typeof(RulerType));
             foreach (RulerType type in types)
             {
-                var button = CreateToolButton(ResourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
+                var button = CreateToolButton(s_resourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
                 {
                     rulerTool.Ruler = type;
                 });
@@ -557,8 +557,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Add a button to the picker view with the given icon path and click action.
         /// </summary>
-        /// <param name="iconPath"></param>
-        /// <param name="OnClick"></param>
+        /// <param name="iconPath">The icon image path</param>
+        /// <param name="OnClick">The action</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddButtonToPickerView(string iconPath, Action OnClick)
         {
@@ -573,7 +573,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Add a button to the picker view with the given view.
         /// </summary>
-        /// <param name="view"></param>
+        /// <param name="view">The view</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddViewToPickerView(View view)
         {
@@ -583,8 +583,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Add a button to the popup view with the given icon path and click action.
         /// </summary>
-        /// <param name="iconPath"></param>
-        /// <param name="OnClick"></param>
+        /// <param name="iconPath">The icon image path</param>
+        /// <param name="OnClick">The action</param>
         public void AddButtonToPopupView(string iconPath, Action OnClick)
         {
             var button = CreateToolButton(iconPath, OnClick);
@@ -594,7 +594,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Sets a button to the popup view with the given view
         /// </summary>
-        /// <param name="view"></param>
+        /// <param name="view">The view</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetViewToPopupView(View view)
         {
@@ -673,7 +673,10 @@ namespace Tizen.NUI.PenWave
             popupView.Show();
         }
 
-        // Dispose the tool picker and its components.
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="type">The DisposeTypes</param>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed) return;
