@@ -24,6 +24,8 @@ namespace Tizen.NUI.Samples
             (DEMO_IMAGE_DIR + "../a.json", EncodedImageBuffer.ImageTypes.AnimatedVectorImage),
         };
 
+        string TestMaskImage = DEMO_IMAGE_DIR + "Dali/DaliDemo/shape-circle.png";
+
         public void Activate()
         {
             win = NUIApplication.GetDefaultWindow();
@@ -66,7 +68,18 @@ namespace Tizen.NUI.Samples
 
             imageUrl = buffer?.GenerateUrl();
             imageView.ResourceUrl = imageUrl?.ToString();
-            imageView.Play();
+
+            if (TestImages[index].Item2 == EncodedImageBuffer.ImageTypes.RegularImage)
+            {
+                var encodedMaskTask = CreateEncodedImageBufferAsync(TestMaskImage, EncodedImageBuffer.ImageTypes.RegularImage);
+                using var maskBuffer = await encodedMaskTask;
+                using var maskImageUrl = maskBuffer?.GenerateUrl();
+                imageView.AlphaMaskURL = maskImageUrl?.ToString();
+            }
+            else if (TestImages[index].Item2 == EncodedImageBuffer.ImageTypes.AnimatedVectorImage)
+            {
+                imageView.Play();
+            }
 
             imageUrl?.Dispose();
             buffer?.Dispose();

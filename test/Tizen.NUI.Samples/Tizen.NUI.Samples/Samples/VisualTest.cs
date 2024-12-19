@@ -19,6 +19,7 @@ namespace Tizen.NUI.Samples
             DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-4.jpg",
             DEMO_IMAGE_DIR + "Dali/ContactCard/gallery-small-5.jpg",
         };
+        string MaskImageUrl = DEMO_IMAGE_DIR + "Dali/DaliDemo/shape-circle.png";
 
         const float viewSizeWidth = 320.0f;
         const float viewSizeHeight = 280.0f;
@@ -54,6 +55,7 @@ namespace Tizen.NUI.Samples
         {
             if (e.Key.State == Key.StateType.Down)
             {
+                Tizen.Log.Error("NUI", $"Key pressed. {e.Key.KeyPressedName}\n");
                 if (e.Key.KeyPressedName == "1")
                 {
                     Tizen.Log.Error("NUI", $"Reset scene\n");
@@ -101,6 +103,25 @@ namespace Tizen.NUI.Samples
                         if(thumbnailVisual != null)
                         {
                             thumbnailVisual.SamplingMode = GetNextSamplingModeType(thumbnailVisual.SamplingMode);
+                        }
+                    }
+                }
+                else if(e.Key.KeyPressedName == "7")
+                {
+                    View focusedView = FocusManager.Instance.GetCurrentFocusView();
+                    if(focusedView != null)
+                    {
+                        var mainVisual = focusedView.FindVisualByName("mainImage") as Visuals.ImageVisual;
+                        if(mainVisual != null)
+                        {
+                            if(string.IsNullOrEmpty(mainVisual.AlphaMaskUrl))
+                            {
+                                mainVisual.AlphaMaskUrl = MaskImageUrl;
+                            }
+                            else
+                            {
+                                mainVisual.AlphaMaskUrl = null;
+                            }
                         }
                     }
                 }
