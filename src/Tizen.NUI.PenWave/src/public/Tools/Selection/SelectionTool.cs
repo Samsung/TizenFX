@@ -18,8 +18,6 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
@@ -61,7 +59,8 @@ namespace Tizen.NUI.PenWave
         private DrawableType drawableType = DrawableType.None;
 
         // Initial touch position
-        private Vector2 initialTouch = new Vector2(0, 0);
+        private float initialTouchX;
+        private float initialTouchY;
 
         // Variables used during scaling operations
         private float startScaleX;
@@ -107,8 +106,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handle input events from the touch.
         /// </summary>
-        /// <param name="touch"></param>
-        /// <param name="unredoManager"></param>
+        /// <param name="touch">The touch event.</param>
+        /// <returns>True if the input was handled, otherwise false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Touch touch)
         {
@@ -143,7 +142,8 @@ namespace Tizen.NUI.PenWave
         // Start drawing the selection area or interacting with the selected drawables.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            initialTouch = new Vector2(positionX, positionY);
+            initialTouchX = positionX;
+            initialTouchY = positionY;
             isTouchedInsideSelectedArea = PenWave.Instance.InsideSelectedArea(positionX, positionY);
             if (!isTouchedInsideSelectedArea)
             {
@@ -163,18 +163,18 @@ namespace Tizen.NUI.PenWave
                     if (!Double.IsNaN(topLeftX))
                     {
                         PenWave.Instance.StartSelectionScale(
-                            initialTouch.X >= topLeftX + widthSelection  * 0.5f,
-                            initialTouch.X <  topLeftX + widthSelection  * 0.5f,
-                            initialTouch.Y >= topLeftY + heightSelection * 0.5f,
-                            initialTouch.Y <  topLeftY + heightSelection * 0.5f,
+                            initialTouchX >= topLeftX + widthSelection  * 0.5f,
+                            initialTouchX <  topLeftX + widthSelection  * 0.5f,
+                            initialTouchY >= topLeftY + heightSelection * 0.5f,
+                            initialTouchY <  topLeftY + heightSelection * 0.5f,
                             ref anchorX,
                             ref anchorY
                         );
 
                         currentMode = Mode.Scale;
                     }
-                    startScaleX = initialTouch.X;
-                    startScaleY = initialTouch.Y;
+                    startScaleX = initialTouchX;
+                    startScaleY = initialTouchY;
                 }
             }
             NotifyActionStarted();
@@ -243,6 +243,11 @@ namespace Tizen.NUI.PenWave
             NotifyActionFinished();
         }
 
+        /// <summary>
+        /// Handle input events from the mouse wheel.
+        /// </summary>
+        /// <param name="wheel">The wheel event.</param>
+        /// <returns>True if the input was handled.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Wheel wheel)
         {

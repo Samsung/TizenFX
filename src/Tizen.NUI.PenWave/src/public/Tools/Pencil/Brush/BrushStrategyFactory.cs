@@ -18,8 +18,6 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
@@ -29,14 +27,19 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class BrushStrategyFactory
     {
-        private static readonly BrushStrategyFactory instance = new BrushStrategyFactory();
+        private static readonly BrushStrategyFactory s_instance = new BrushStrategyFactory();
         private Dictionary<BrushType, IBrushStrategy> brushStrategies = new Dictionary<BrushType, IBrushStrategy>();
+
+        /// <summary>
+        /// Private constructor.
+        /// </summary>
+        private BrushStrategyFactory() { }
 
         /// <summary>
         /// Gets the singleton instance of the BrushStrategyFactory.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BrushStrategyFactory Instance => instance;
+        public static BrushStrategyFactory Instance => s_instance;
 
         /// <summary>
         /// Gets the brush strategy for the specified brush type.

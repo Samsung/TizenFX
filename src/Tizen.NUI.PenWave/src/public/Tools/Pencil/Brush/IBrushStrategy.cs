@@ -15,11 +15,7 @@
  *
  */
 
-using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {

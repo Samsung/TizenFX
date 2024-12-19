@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI.PenWave
@@ -28,14 +27,49 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum BrushType
     {
+        /// <summary>
+        /// The Stroke brush type.
+        /// </summary>
         Stroke  = 0,
+
+        /// <summary>
+        /// The VarStroke brush type.
+        /// </summary>
         VarStroke,
+
+        /// <summary>
+        /// The DotBrush brush type.
+        /// </summary>
         DotBrush,
+
+        /// <summary>
+        /// The SprayBrush brush type.
+        /// </summary>
         SprayBrush,
+
+        /// <summary>
+        /// The DashedLine brush type.
+        /// </summary>
         DashedLine,
+
+        /// <summary>
+        /// The Highlighter brush type.
+        /// </summary>
         Highlighter,
+
+        /// <summary>
+        /// The VarStrokeInc brush type.
+        /// </summary>
         VarStrokeInc,
+
+        /// <summary>
+        /// The SoftBrush brush type.
+        /// </summary>
         SoftBrush,
+
+        /// <summary>
+        /// The SharpBrush brush type.
+        /// </summary>
         SharpBrush
     }
 
@@ -45,7 +79,14 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum EraserType
     {
+        /// <summary>
+        /// The partial eraser type.
+        /// </summary>
         Partial = 0,
+
+        /// <summary>
+        /// The full eraser type.
+        /// </summary>
         Full,
     }
 
@@ -55,8 +96,19 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum SelectionType
     {
+        /// <summary>
+        /// The move selection type.
+        /// </summary>
         Move  = 0,
+
+        /// <summary>
+        /// The scale selection type.
+        /// </summary>
         Scale,
+
+        /// <summary>
+        /// The rotate selection type.
+        /// </summary>
         Rotate,
     }
 
@@ -66,9 +118,24 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum GridDensityType
     {
+        /// <summary>
+        /// The none grid density type.
+        /// </summary>
         None = 0,
+
+        /// <summary>
+        /// The small grid density type.
+        /// </summary>
         Small = 1,
+
+        /// <summary>
+        /// The medium grid density type.
+        /// </summary>
         Medium = 2,
+
+        /// <summary>
+        /// The large grid density type.
+        /// </summary>
         Large = 4
     }
 
@@ -78,24 +145,66 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum RulerType
     {
+        /// <summary>
+        /// The line ruler type.
+        /// </summary>
         Line  = 0,
+
+        /// <summary>
+        /// The circle ruler type.
+        /// </summary>
         Circle,
+
+        /// <summary>
+        /// The rectangle ruler type.
+        /// </summary>
         Rectangle,
     }
 
-    // The error codes returned from the native side when adding points to a shape.
+    /// <summary>
+    /// The error codes returned from the native side when adding points to a shape.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ErrorShapeAddPointsType
     {
+        /// <summary>
+        /// No error occurred.
+        /// </summary>
         NoError = 0,
+
+        /// <summary>
+        /// Too many points (new shape has to be created)
+        /// </summary>
         OverflowShape,
+
+        /// <summary>
+        /// No canvas set
+        /// </summary>
         NoCanvasSet,
+
+        /// <summary>
+        /// No shapes in canvas
+        /// </summary>
         NoShapesInCanvas,
+
+        /// <summary>
+        /// Bad shapeID (not exists)
+        /// </summary>
         BadIdShape,
+
+        /// <summary>
+        /// Object with id=shapeID is not a shape
+        /// </summary>
         DrawableIsNotAShape,
+
+        /// <summary>
+        /// Object with id=shapeID is not a line
+        /// </summary>
         DrawableIsNotALine,
+
+        /// <summary>
+        /// Drawing has been canceled.
+        /// </summary>
         DrawingCanceled
     }
-
-
 }
