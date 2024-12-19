@@ -18,11 +18,12 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The RulerTool class allows the user to draw lines, circles and rectangles on the screen.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RulerTool : ToolBase
     {
@@ -33,10 +34,13 @@ namespace Tizen.NUI.PenWave
         private float dragStartY = 0;
         private bool isDrawingCircular = false;
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RulerTool(RulerType typeOfRuler)
+        public RulerTool(RulerType rulerType)
         {
-            Ruler = typeOfRuler;
+            Ruler = rulerType;
         }
 
         /// <summary>
@@ -65,6 +69,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handles input from the user.
         /// </summary>
+        /// <param name="touch">The touch event.</param>
+        /// <returns>True if the input was handled.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Touch touch)
         {
@@ -171,6 +177,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handles input from the user.
         /// </summary>
+        /// <param name="wheel">The wheel event.</param>
+        /// <returns>True if the input was handled.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Wheel wheel)
         {

@@ -15,11 +15,8 @@
  *
  */
 
-using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
@@ -74,6 +71,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handle input events.
         /// </summary>
+        /// <param name="touch">The touch event data.</param>
+        /// <returns>true if the event was handled, otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Touch touch)
         {
@@ -130,6 +129,11 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        /// <summary>
+        /// Handle input events. (Wheel)
+        /// </summary>
+        /// <param name="wheel">The wheel event data.</param>
+        /// <returns>true if the event was handled, otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Wheel wheel)
         {

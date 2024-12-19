@@ -32,9 +32,8 @@ namespace Tizen.NUI.PenWave
         private uint redoStack = 0;
 
         /// <summary>
-        /// Executes a command and clears the redo stack.
+        /// Registers a new command to the undo stack and clears the redo stack.
         /// </summary>
-        /// <param name="command">The command to be executed.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void RegisterUndo()
         {

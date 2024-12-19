@@ -15,22 +15,26 @@
  *
  */
 
-using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
+    /// <summary>
+    /// The CanvasTool class provides a tool that allows the user to move the canvas around.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CanvasTool : ToolBase
     {
-        private float mInitialTouchX;
-        private float mInitialTouchY;
-        private bool mIsCanvasMoving = false;
+        private float initialTouchX;
+        private float initialTouchY;
+        private bool isCanvasMoving = false;
         private PenWaveCanvas canvasView;
 
+        /// <summary>
+        /// Creates a new instance of a CanvasTool.
+        /// </summary>
+        /// <param name="canvasView">The PenWaveCanvas</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CanvasTool(PenWaveCanvas canvasView)
         {
@@ -57,6 +61,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handles input from the user.
         /// </summary>
+        /// <param name="touch">The touch event.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Touch touch)
         {
@@ -74,7 +79,7 @@ namespace Tizen.NUI.PenWave
             Vector2 position = touchPositionList[(int)pointStateIndex];
             if (touch.GetMouseButton(0) == MouseButton.Secondary)
             {
-                mIsCanvasMoving = true;
+                isCanvasMoving = true;
             }
             switch (touch.GetState(pointStateIndex))
             {
@@ -89,36 +94,43 @@ namespace Tizen.NUI.PenWave
                     EndDrawing();
                     break;
             }
-            return mIsCanvasMoving;
+            return isCanvasMoving;
         }
 
+        // Start drawing when the first touch down event occurs.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (mIsCanvasMoving)
+            if (isCanvasMoving)
             {
-                mInitialTouchX = positionX;
-                mInitialTouchY = positionY;
+                initialTouchX = positionX;
+                initialTouchY = positionY;
                 canvasView.MoveBegin();
             }
         }
 
+        // Continue drawing the touch motion events occur.
         private void ContinueDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (mIsCanvasMoving)
+            if (isCanvasMoving)
             {
-                canvasView.MoveUpdate((int)(positionX - mInitialTouchX), (int)(positionY - mInitialTouchY));
+                canvasView.MoveUpdate((int)(positionX - initialTouchX), (int)(positionY - initialTouchY));
             }
         }
 
+        // End drawing when the last touch up event occurs.
         private void EndDrawing()
         {
-            if (mIsCanvasMoving)
+            if (isCanvasMoving)
             {
                 canvasView.MoveEnd();
-                mIsCanvasMoving = false;
+                isCanvasMoving = false;
             }
         }
 
+        /// <summary>
+        /// Handles input from the user.
+        /// </summary>
+        /// <param name="wheel">The wheel event.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Wheel wheel)
         {

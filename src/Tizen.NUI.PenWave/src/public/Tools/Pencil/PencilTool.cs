@@ -15,11 +15,8 @@
  *
  */
 
-using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.PenWave
 {
@@ -46,7 +43,7 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// The type of brush used to draw.
         /// </summary>
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public BrushType Brush { get; set; }
 
         /// <summary>
@@ -103,6 +100,8 @@ namespace Tizen.NUI.PenWave
         /// <summary>
         /// Handles input from the user.
         /// </summary>
+        /// <param name="touch">The touch event.</param>
+        /// <returns>True if the input was handled, otherwise false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Touch touch)
         {
@@ -173,6 +172,11 @@ namespace Tizen.NUI.PenWave
             }
         }
 
+        /// <summary>
+        /// Handles input from the user.
+        /// </summary>
+        /// <param name="wheel">The wheel event.</param>
+        /// <returns>True if the input was handled, otherwise false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool HandleInput(Wheel wheel)
         {
