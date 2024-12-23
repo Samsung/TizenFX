@@ -170,6 +170,9 @@ namespace Tizen.NUI.BaseComponents
         private WebContext webContext = null;
         private WebCookieManager webCookieManager = null;
 
+        private EventHandler<WebViewDeviceConnectionChangedEventArgs> deviceConnectionChangedEventHandler;
+        private webViewDeviceConnectionChangedCallback deviceConnectionChangedCallback;
+
         /// <summary>
         /// Default constructor to create a WebView.
         /// </summary>
@@ -439,6 +442,15 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUserMediaPermissionRequestCallback(IntPtr permission, string message);
        
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void webViewDeviceConnectionChangedCallback(int deviceType);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void internalWebViewDeviceListGetCallback(IntPtr list, int size);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void WebViewDeviceListGetCallback(WebDeviceList list, int size);
+        private WebViewDeviceListGetCallback deviceListGetCallbackForUser;
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -1110,6 +1122,44 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewDeviceConnectionChangedEventArgs> DeviceConnectionChanged
+        {
+            add
+            {
+                if (deviceConnectionChangedEventHandler == null)
+                {
+                    deviceConnectionChangedCallback = OnDeviceConnectionChanged;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(deviceConnectionChangedCallback);
+                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                deviceConnectionChangedEventHandler += value;
+            }
+            remove
+            {
+                deviceConnectionChangedEventHandler -= value;
+                if (deviceConnectionChangedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterUserMediaPermissionRequestCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDeviceListGetCallback(WebViewDeviceListGetCallback callback)
+        {
+            deviceListGetCallbackForUser = callback;
+
+            internalWebViewDeviceListGetCallback cb = deviceListGet;
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate(cb);
+            Interop.WebView.RegisterDeviceListGetCallback(SwigCPtr, new HandleRef(this, ip));
+        }
+
+        private void deviceListGet(IntPtr list, int size)
+        {
+            deviceListGetCallbackForUser?.Invoke(new WebDeviceList(list, true), size);
+        }
 
         /// <summary>
         /// Options for searching texts.
@@ -3263,6 +3313,11 @@ namespace Tizen.NUI.BaseComponents
         private void OnUserMediaPermissionRequset(IntPtr permission, string message)
         {
             userMediaPermissionRequestEventHandler?.Invoke(this, new WebViewUserMediaPermissionRequestEventArgs(new WebUserMediaPermissionRequest(permission, true), message));
+        }
+
+        private void OnDeviceConnectionChanged(int deviceType)
+        {
+            deviceConnectionChangedEventHandler?.Invoke(this, new WebViewDeviceConnectionChangedEventArgs(deviceType));
         }
 
     }
