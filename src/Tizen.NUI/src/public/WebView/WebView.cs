@@ -449,6 +449,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void internalWebViewDeviceListGetCallback(IntPtr list, int size);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void WebViewDeviceListGetCallback(WebDeviceList list, int size);
         private WebViewDeviceListGetCallback deviceListGetCallbackForUser;
 
