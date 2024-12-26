@@ -1502,7 +1502,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (weakReferencesOfLottie.TryGetValue(id, out current))
             {
-                if (current.TryGetTarget(out currentView) && (currentView != null) && !currentView.IsDisposedOrQueued && current != null)
+                if (current != null && current.TryGetTarget(out currentView) && (currentView != null) && !currentView.IsDisposedOrQueued)
                 {
                     lock (currentView.InternalPropertyCallbacksLock)
                     {
