@@ -287,6 +287,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <param name="b">The signed byte value to be written into the parcel object.</param>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void WriteSByte(sbyte b)
         {
             Interop.LibRPCPort.Parcel.WriteByte(_handle, (byte)b);
@@ -307,6 +308,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <param name="b">The unsigned short data to write.</param>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void WriteUShort(ushort b)
         {
             var bytes = BitConverter.GetBytes(b);
@@ -342,6 +344,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <param name="b">The unsigned integer value to write.</param>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void WriteUInt(uint b)
         {
             var bytes = BitConverter.GetBytes(b);
@@ -363,6 +366,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <param name="b">The unsigned long data to write.</param>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void WriteULong(ulong b)
         {
             var bytes = BitConverter.GetBytes(b);
@@ -450,6 +454,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>The byte value.</returns>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public sbyte ReadSByte()
         {
             Interop.LibRPCPort.Parcel.ReadByte(_handle, out byte b);
@@ -472,6 +477,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>The unsigned short data.</returns>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ushort ReadUShort()
         {
             var bytes = Read(2);
@@ -496,6 +502,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>The integer data.</returns>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ReadUInt()
         {
             var bytes = Read(4);
@@ -520,6 +527,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>The unsigned long data.</returns>
         /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ulong ReadULong()
         {
             var bytes = Read(8);
