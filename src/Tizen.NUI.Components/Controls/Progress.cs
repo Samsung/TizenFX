@@ -726,7 +726,7 @@ namespace Tizen.NUI.Components
         {
             if (!IsEnabled)
             {
-                ControlState = ControlState.Disabled;
+                ControlState += ControlState.Disabled;
 
                 indeterminateAnimation?.Stop();
                 indeterminateAnimation = null;

@@ -195,19 +195,23 @@ namespace Tizen.NUI.Components
             if (styleApplying > 0) return;
 
             ControlState sourceState = ControlState;
-            ControlState targetState;
+            ControlState targetState = ControlState;
 
             // Normal, Disabled
-            targetState = IsEnabled ? ControlState.Normal : ControlState.Disabled;
+            if (IsEnabled) targetState -= ControlState.Disabled;
+            else targetState += ControlState.Disabled;
 
             // Selected, DisabledSelected
             if (IsSelected) targetState += ControlState.Selected;
+            else targetState -= ControlState.Selected;
 
             // Pressed, PressedSelected
             if (isPressed) targetState += ControlState.Pressed;
+            else targetState -= ControlState.Pressed;
 
             // Focused, FocusedPressed, FocusedPressedSelected, DisabledFocused, DisabledSelectedFocused
             if (IsFocused) targetState += ControlState.Focused;
+            else targetState -= ControlState.Focused;
 
             if (sourceState != targetState)
             {

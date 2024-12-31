@@ -1894,7 +1894,7 @@ namespace Tizen.NUI.Components
 
             if (!IsEnabled) // Disabled
             {
-                ControlState = ControlState.Disabled;
+                ControlState += ControlState.Disabled;
             }
             else if (!isFocused && !isPressed)
             {
