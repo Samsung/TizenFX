@@ -1,0 +1,796 @@
+{
+  "visemeParameters": {
+    "keyFormat": "uBlendShapeWeight[$idx]",
+    "nodeNames": [
+      "head_GEO",
+      "mouth_GEO"
+    ],
+    "blendShapeCount": [
+      68,
+      18
+    ]
+  },
+  "visemes": [
+    {
+      "name": "sil",
+      "symbol": "sil",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.5
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.5
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "E",
+      "symbol": "AE",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.5
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.35
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.4
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "A",
+      "symbol": "Ah",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.6
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.7
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.8
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 1.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "HM",
+      "symbol": "B_M_P",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.25
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.65
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "CH",
+      "symbol": "Ch_J",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.6
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.25
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.1
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "I",
+      "symbol": "EE",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.25
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.25
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.4
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.4
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.1
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "ER",
+      "symbol": "Er",
+      "values": [
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.2
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.1
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.3
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.6
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "IH",
+      "symbol": "IH",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.35
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.75
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.3
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.175
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "OH",
+      "symbol": "Oh",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.7
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.65
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.85
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 1.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "U",
+      "symbol": "W_OO",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.15
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.55
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.2
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "name": "O",
+      "symbol": "R",
+      "values": [
+        {
+          "nodeName": "head_GEO",
+          "id": 34,
+          "value": 0.2
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 40,
+          "value": 0.45
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 41,
+          "value": 0.45
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 10,
+          "value": 0.25
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 3,
+          "value": 1.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 21,
+          "value": 0.1
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 28,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 29,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 35,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 37,
+          "value": 0.0
+        },
+        {
+          "nodeName": "head_GEO",
+          "id": 38,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 8,
+          "value": 0.0
+        },
+        {
+          "nodeName": "mouth_GEO",
+          "id": 2,
+          "value": 0.0
+        }
+      ]
+    }
+  ]
+}

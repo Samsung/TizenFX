@@ -15,39 +15,30 @@
  *
  */
 
-using global::System;
-using System.IO;
-using System.Collections.Generic;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Scene3D;
-using Tizen.AIAvatar;
 using Tizen;
-using Tizen.Uix.Tts;
+using Tizen.NUI;
+using Tizen.NUI.Scene3D;
+using System.Collections.Generic;
+using System.IO;
 
 namespace AIAvatar
 {
     public class AvatarScene : SceneView
     {
-        private static readonly string ApplicationResourcePath = "/usr/apps/org.tizen.default-avatar-resource/shared/res/";
-        private static readonly string EmojiAvatarResourcePath = "/models/EmojiAvatar/";
-        private static readonly string DefaultMotionResourcePath = "/animation/motion/";
         private static string resourcePath = Utils.ResourcePath;
 
         private const int cameraAnimationDurationMilliSeconds = 2000;
         private const int sceneTransitionDurationMilliSeconds = 1500;
 
-        private Avatar defaultAIAvatar;
-        private List<AvatarInfo> avatarList;
-        private List<AnimationInfo> animationInfoList;
-        private LipSyncController lipSyncController;
+        private AIAvatar defaultAIAvatar;
+        private readonly string avatarFilename = "/model_external.gltf";
+        private List<string> avatarPathList = new List<string>();
+        private int avatarIndex = 0;
 
-        private bool isBlink = false;
         private bool isShowing = true;
 
-        private int avatarIndex = 0;
         private float iblFactor = 0.3f;
-
+            
         public float IBLFactor
         {
             get
@@ -75,102 +66,14 @@ namespace AIAvatar
 
             // Setup Default Avatar Position & Orientation
             SetupDefaultAvatar();
-
-            // Load Default Animations
-            LoadDefaultAnimations();
         }
 
-        private void LoadDefaultAnimations()
-        {
-            var motionAnimations = Directory.GetFiles(ApplicationResourcePath + DefaultMotionResourcePath, "*.bvh");
-            animationInfoList = new List<AnimationInfo>();
-
-            foreach (var path in motionAnimations)
-            {
-                var motionData = new MotionData();
-                motionData.LoadMotionCaptureAnimation(path, true, new Vector3(0.01f, 0.01f, 0.01f), false);
-
-                var animationInfo = new AnimationInfo(motionData, GetFileNameWithoutExtension(path));
-                animationInfoList.Add(animationInfo);
-            }
-        }
 
         public void SetupSceneViewIBLFactor(float value)
         {
             IBLFactor = value;
         }
 
-        public void StartAvatarTalk_1()
-        {
-            PlayLip("cs-CZ-Wavenet-A.wav");
-        }
-
-        public void StartAvatarTalk_2()
-        {
-            PlayLip("da-DK-Wavenet-A.wav");
-        }
-
-        public void StartAvatarTalk_3()
-        {
-            PlayLip("el-GR-Wavenet-A.wav");
-        }
-
-        public void StartAvatarTalkByPath()
-        {
-            PlayLip($"{resourcePath}/voice/voice_0.bin");
-        }
-
-        private void PlayLip(string source)
-        {
-            var path = $"{resourcePath}/voice/{source}";
-            var bytes = ReadAllBytes(path);
-
-            Tizen.Log.Error("AIAvatar", "audio path : " + path);
-            if (lipSyncController == null)
-            {
-                lipSyncController = new LipSyncController(defaultAIAvatar);
-            }
-
-            if (bytes != null)
-            {
-                lipSyncController.PlayLipSync(bytes);
-            }
-            else
-            {
-                Tizen.Log.Error("AIAvatar", "Fail to load bytes");
-            }
-        }
-
-        public void StartRandomAnimation()
-        {
-            var randomIdx = new Random().Next(0, animationInfoList.Count);
-            defaultAIAvatar.PlayAnimation(animationInfoList[randomIdx].MotionData);
-        }
-
-        public void StartMic()
-        {
-            InitMic();
-            lipSyncController?.StartMic();
-        }
-
-        public void StopMic()
-        {
-            InitMic();
-            lipSyncController?.StopMic();
-        }
-
-        public void EyeBlink()
-        {
-            if (!isBlink)
-            {
-                defaultAIAvatar.StartEyeBlink();
-            }
-            else
-            {
-                defaultAIAvatar.StopEyeBlink();
-            }
-            isBlink = !isBlink;
-        }
 
         public void ShowHide()
         {
@@ -185,36 +88,7 @@ namespace AIAvatar
             isShowing = !isShowing;
         }
 
-        public void InintTTsTest()
-        {
-            InitTTS();
-        }
-
-        public void StartTTSTest()
-        {
-            lipSyncController.StopTTS();
-            VoiceInfo voiceInfo = new VoiceInfo()
-            {
-                Language = "en_US",
-                Type = VoiceType.Female,
-            };
-
-            lipSyncController.PrepareTTS(Utils.TTSText, voiceInfo, (o, e) =>
-            {
-                lipSyncController.PlayPreparedTTS();
-            });
-        }
-
-        public void StopTTSTest()
-        {
-            if (lipSyncController == null)
-            {
-                Tizen.Log.Error("AIAvatar", "lipSyncController is null");
-                return;
-            }
-            lipSyncController.StopTTS();
-        }
-
+       
         public void SwitchCamera()
         {
             CameraTransition(1, cameraAnimationDurationMilliSeconds);
@@ -229,147 +103,134 @@ namespace AIAvatar
         public void ChangeAvatar()
         {
             DestroyAvatar();
-            if (avatarIndex + 1 <= avatarList.Count - 1)
+
+            if (avatarPathList.Count != 0)
             {
-                avatarIndex++;
+                avatarIndex = (avatarIndex + 1) % avatarPathList.Count;
+                defaultAIAvatar = CreateAvatar(avatarPathList[avatarIndex] + avatarFilename);
+                Add(defaultAIAvatar);
             }
-            else
-            {
-                avatarIndex = 0;
-            }
-            CreateAvatar();
 
         }
 
-        internal static string GetFileNameWithoutExtension(string path)
+        public void TriggerRandomBodyAnimation()
         {
-            return System.IO.Path.GetFileNameWithoutExtension(path);
+            defaultAIAvatar.PlayRandomBodyAnimation();
         }
 
-        private void InitTTS()
+        public void TriggerMultipleFacialAnimations()
         {
-            if (lipSyncController == null)
-            {
-                lipSyncController = new LipSyncController(defaultAIAvatar);
-            }
-            lipSyncController.InitializeTTS();
+            defaultAIAvatar.PlayMultipleFacialAnimations();
         }
 
-        private void InitMic()
+        public void TriggerExpressionAniatmion()
         {
-            if (lipSyncController == null)
-            {
-                lipSyncController = new LipSyncController(defaultAIAvatar);
-            }
-            lipSyncController.InitializeMic();
+            defaultAIAvatar.PlayExpressionAniatmion();
         }
 
-        private byte[] ReadAllBytes(string path)
+        public void TriggerLipSync()
         {
-            try
+            defaultAIAvatar.PlayLipSync();
+        }
+
+        public void TriggerAudioLipSync()
+        {
+            defaultAIAvatar.PlayAudioLipSync();
+        }
+
+        public void TriggerEyeBlink()
+        {
+            defaultAIAvatar.StartEyeBlink();
+        }
+
+        public void TriggerPauseAnimations()
+        {
+            defaultAIAvatar.PauseAnimations();
+        }
+
+        public void TriggerStopAnimations()
+        {
+            defaultAIAvatar.StopAnimations();
+        }
+
+
+        public void TriggerSamsungAIService()
+        {
+            defaultAIAvatar.TestSamsungAIService();
+        }
+
+
+        public bool CheckFilesInFolder(string folderPath, params string[] fileExtensions)
+        {
+            foreach (var extension in fileExtensions)
             {
-                var bytes = File.ReadAllBytes(path);
-                return bytes;
+                if (Directory.GetFiles(folderPath, $"*{extension}").Length > 0)
+                {
+                    return true;
+                }
             }
-            catch (Exception)
-            {
-                return null;
-            }
+            return false;
         }
 
         private void SetupDefaultAvatar()
         {
-            avatarList = AvatarExtension.GetDefaultAvatarList();
-            foreach (var info in avatarList)
-            {
-                Tizen.Log.Info("AvatarSample", $"Avatar Name :{info.Name}\n");
-                Tizen.Log.Info("AvatarSample", $"Avatar Thumbnail :{info.ThumbnailPath}\n");
+            var avatarPaths = Directory.GetDirectories(resourcePath + "/Model/");
+            foreach (var directoryInfo in avatarPaths)
+            {                
+                Log.Info(Utils.LogTag, $"Model Path : {directoryInfo}");
+                if(CheckFilesInFolder(directoryInfo, ".gltf", ".GLTF"))
+                {
+                    avatarPathList.Add(directoryInfo);
+                }
             }
 
-            CreateAvatar();
+            if (avatarPathList.Count == 0)
+            {
+                Log.Error(Utils.LogTag, "The avatar model is not available in the resource folder.");
+            }
+            else
+            {
+                defaultAIAvatar = CreateAvatar(avatarPathList[avatarIndex] + avatarFilename);
+                Add(defaultAIAvatar);
+            }            
         }
 
-        private void CreateAvatar()
+        private AIAvatar CreateAvatar(string path)
         {
-            defaultAIAvatar = new Avatar(avatarList[avatarIndex])
+            AIAvatar avatar = new AIAvatar(path)
             {
                 Position = new Position(0.0f, -1.70f, -2.0f),
                 Size = new Size(1.0f, 1.0f, 1.0f),
                 Orientation = new Rotation(new Radian(new Degree(0.0f)), Vector3.YAxis)
             };
-            //var animator = defaultAIAvatar.CurrentAnimator;
-            //animator.MotionStateChanged += OnMotionStateChanged;
-            //animator.LipStateChanged += OnLipStateChanged;
-            Add(defaultAIAvatar);
+
+
+            avatar.ResourcesLoaded += (sender, args) => 
+            {
+                avatar.Initialize();
+                Log.Debug(Utils.LogTag, "Resource Loaded");
+            };
+
+            return avatar;
+            
         }
 
         private void DestroyAvatar()
         {
             if (defaultAIAvatar != null)
             {
+                defaultAIAvatar.StopAnimations();
                 Remove(defaultAIAvatar);
-                /*
-                var animator = defaultAIAvatar.CurrentAnimator;
-                animator.MotionStateChanged -= OnMotionStateChanged;
-                animator.LipStateChanged -= OnLipStateChanged;
-*/
                 defaultAIAvatar.Dispose();
                 defaultAIAvatar = null;
             }
-
         }
 
-        private void OnMotionStateChanged(object sender, AvatarMotionChangedEventArgs e)
-        {
-            var avatar = sender as Avatar;//Avatar changed state
-
-            switch (e.Current)
-            {
-                case AvatarMotionState.Ready:
-                    Log.Error(Utils.LogTag, "Current Avatar State is Ready");
-                    break;
-
-                case AvatarMotionState.Playing:
-                    Log.Error(Utils.LogTag, "Current Avatar State is Playing");
-                    break;
-
-                case AvatarMotionState.Paused:
-                    Log.Error(Utils.LogTag, "Current Avatar State is Paused");
-                    break;
-
-                case AvatarMotionState.Stopped:
-                    Log.Error(Utils.LogTag, "Current Avatar State is Stopped");
-                    break;
-            }
-        }
-
-        private void OnLipStateChanged(object sender, AvatarMotionChangedEventArgs e)
-        {
-            var avatar = sender as Avatar;//Avatar changed state
-
-            switch (e.Current)
-            {
-                case AvatarMotionState.Ready:
-                    Log.Error(Utils.LogTag, "Current Avatar Lip is Ready");
-                    break;
-
-                case AvatarMotionState.Playing:
-                    Log.Error(Utils.LogTag, "Current Avatar Lip is Playing");
-                    break;
-
-                case AvatarMotionState.Paused:
-                    Log.Error(Utils.LogTag, "Current Avatar Lip is Paused");
-                    break;
-
-                case AvatarMotionState.Stopped:
-                    Log.Error(Utils.LogTag, "Current Avatar Lip is Stopped");
-                    break;
-            }
-        }
+    
 
         private void SetupSceneViewIBL()
         {
-            SetImageBasedLightSource(resourcePath + "images/" + "Irradiance.ktx", resourcePath + "images/" + "Radiance.ktx", IBLFactor);
+            SetImageBasedLightSource(resourcePath + "Images/" + "Irradiance.ktx", resourcePath + "Images/" + "Radiance.ktx", IBLFactor);
         }
 
         private void SetupDefaultCamera()
