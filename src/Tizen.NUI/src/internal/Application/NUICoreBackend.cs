@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -156,6 +156,16 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return application.AddIdle(func);
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            application.RemoveIdle(func);
         }
 
         /// <summary>

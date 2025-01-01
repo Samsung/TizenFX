@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -548,6 +548,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            ((NUICoreBackend)this.Backend).RemoveIdle(func);
+        }
+
+        /// <summary>
         /// Flush render/update thread messages synchronously.
         /// </summary>
         /// <remarks>
@@ -772,6 +782,7 @@ namespace Tizen.NUI
             BaseComponents.TextEditor.Preload();
             BaseComponents.TextField.Preload();
             Disposable.Preload();
+            Color.Preload();
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();
