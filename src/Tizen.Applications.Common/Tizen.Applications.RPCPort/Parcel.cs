@@ -283,6 +283,17 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Writes a single signed byte value into the parcel object.
+        /// </summary>
+        /// <param name="b">The signed byte value to be written into the parcel object.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteSByte(sbyte b)
+        {
+            Interop.LibRPCPort.Parcel.WriteByte(_handle, (byte)b);
+        }
+
+        /// <summary>
         /// Writes a short value into parcel object.
         /// </summary>
         /// <param name="b">The short data to write.</param>
@@ -290,6 +301,18 @@ namespace Tizen.Applications.RPCPort
         public void WriteShort(short b)
         {
             Interop.LibRPCPort.Parcel.WriteInt16(_handle, b);
+        }
+
+        /// <summary>
+        /// Writes a unsigned short value into parcel object.
+        /// </summary>
+        /// <param name="b">The unsigned short data to write.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteUShort(ushort b)
+        {
+            var bytes = BitConverter.GetBytes(b);
+            Write(bytes);
         }
 
         /// <summary>
@@ -317,6 +340,18 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Writes an unsigned integer value into the parcel object.
+        /// </summary>
+        /// <param name="b">The unsigned integer value to write.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteUInt(uint b)
+        {
+            var bytes = BitConverter.GetBytes(b);
+            Write(bytes);
+        }
+
+        /// <summary>
         /// Writes a long value into the parcel object.
         /// </summary>
         /// <param name="b">The long data to write.</param>
@@ -324,6 +359,18 @@ namespace Tizen.Applications.RPCPort
         public void WriteLong(long b)
         {
             Interop.LibRPCPort.Parcel.WriteInt64(_handle, b);
+        }
+
+        /// <summary>
+        /// Writes an unsigned long value into the parcel object.
+        /// </summary>
+        /// <param name="b">The unsigned long data to write.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteULong(ulong b)
+        {
+            var bytes = BitConverter.GetBytes(b);
+            Write(bytes);
         }
 
         /// <summary>
@@ -403,6 +450,18 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Reads a signed byte value from the parcel object.
+        /// </summary>
+        /// <returns>The byte value.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public sbyte ReadSByte()
+        {
+            Interop.LibRPCPort.Parcel.ReadByte(_handle, out byte b);
+            return (sbyte)b;
+        }
+
+        /// <summary>
         /// Reads a short value from the parcel object.
         /// </summary>
         /// <returns>The short data.</returns>
@@ -411,6 +470,20 @@ namespace Tizen.Applications.RPCPort
         {
             Interop.LibRPCPort.Parcel.ReadInt16(_handle, out short b);
             return b;
+        }
+
+        /// <summary>
+        /// Reads an unsigned short value from the parcel object.
+        /// </summary>
+        /// <returns>The unsigned short data.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ushort ReadUShort()
+        {
+            var bytes = Read(sizeof(ushort));
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToUInt16(bytes, 0);
         }
 
         /// <summary>
@@ -425,6 +498,20 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Reads an unsigned integer value from the parcel object.
+        /// </summary>
+        /// <returns>The integer data.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ReadUInt()
+        {
+            var bytes = Read(sizeof(uint));
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        /// <summary>
         /// Reads a long value from the parcel object.
         /// </summary>
         /// <returns>The long data.</returns>
@@ -433,6 +520,20 @@ namespace Tizen.Applications.RPCPort
         {
             Interop.LibRPCPort.Parcel.ReadInt64(_handle, out long b);
             return b;
+        }
+
+        /// <summary>
+        /// Reads an unsigned long value from the parcel object.
+        /// </summary>
+        /// <returns>The unsigned long data.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ulong ReadULong()
+        {
+            var bytes = Read(sizeof(ulong));
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToUInt64(bytes, 0);
         }
 
         /// <summary>
