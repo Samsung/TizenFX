@@ -480,7 +480,7 @@ namespace Tizen.Applications.RPCPort
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ushort ReadUShort()
         {
-            var bytes = Read(2);
+            var bytes = Read(sizeof(ushort));
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(bytes);
             return BitConverter.ToUInt16(bytes, 0);
@@ -505,7 +505,7 @@ namespace Tizen.Applications.RPCPort
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ReadUInt()
         {
-            var bytes = Read(4);
+            var bytes = Read(sizeof(uint));
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(bytes);
             return BitConverter.ToUInt32(bytes, 0);
@@ -530,7 +530,7 @@ namespace Tizen.Applications.RPCPort
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ulong ReadULong()
         {
-            var bytes = Read(8);
+            var bytes = Read(sizeof(ulong));
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(bytes);
             return BitConverter.ToUInt64(bytes, 0);
