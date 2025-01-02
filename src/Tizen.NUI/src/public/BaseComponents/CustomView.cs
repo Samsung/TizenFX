@@ -197,6 +197,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="depth">The depth in the hierarchy for the view.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated since API8 and will be removed in API10. Use OnSceneConnection instead.")]
         public virtual void OnStageConnection(int depth)
         {
@@ -208,6 +209,7 @@ namespace Tizen.NUI.BaseComponents
         /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated since API8 and will be removed in API10. Use OnSceneDisconnection instead.")]
         public virtual void OnStageDisconnection()
         {
@@ -382,6 +384,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use HeightForWidth property instead.")]
         public new virtual float GetHeightForWidth(float width)
         {
@@ -395,6 +398,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the width</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated since API9 and will be removed in API11. Use WidthForHeight property instead.")]
         public new virtual float GetWidthForHeight(float height)
         {
@@ -448,6 +452,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="styleManager">The StyleManager object.</param>
         /// <param name="change">Information denoting what has changed.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Deprecated in API9, Will be removed in API11.")]
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
