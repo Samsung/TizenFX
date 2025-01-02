@@ -28,6 +28,7 @@ namespace Tizen.NUI.BaseComponents
     /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
     public class FlexContainer : View
     {
@@ -175,6 +176,7 @@ namespace Tizen.NUI.BaseComponents
         /// Calling member functions with an uninitialized handle is not allowed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public FlexContainer() : this(Interop.FlexContainer.New(), true)
         {
@@ -190,6 +192,7 @@ namespace Tizen.NUI.BaseComponents
         /// the direction that flex items are laid out in the flex container.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum FlexDirectionType
         {
@@ -197,24 +200,28 @@ namespace Tizen.NUI.BaseComponents
             /// The flexible items are displayed vertically as a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Column,
             /// <summary>
             /// The flexible items are displayed vertically as a column, but in reverse order.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             ColumnReverse,
             /// <summary>
             /// The flexible items are displayed horizontally as a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Row,
             /// <summary>
             /// The flexible items are displayed horizontally as a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             RowReverse
         }
@@ -224,6 +231,7 @@ namespace Tizen.NUI.BaseComponents
         /// and on which sides the ?�start??and ?�end??are.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum ContentDirectionType
         {
@@ -231,18 +239,21 @@ namespace Tizen.NUI.BaseComponents
             /// Inherits the same direction from the parent.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Inherit,
             /// <summary>
             /// From left to right.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             LTR,
             /// <summary>
             /// From right to left.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             RTL
         }
@@ -252,6 +263,7 @@ namespace Tizen.NUI.BaseComponents
         /// space on the main axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum Justification
         {
@@ -259,30 +271,35 @@ namespace Tizen.NUI.BaseComponents
             /// Items are positioned at the beginning of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifyFlexStart,
             /// <summary>
             /// Items are positioned at the center of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifyCenter,
             /// <summary>
             /// Items are positioned at the end of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifyFlexEnd,
             /// <summary>
             /// Items are positioned with equal space between the lines.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifySpaceBetween,
             /// <summary>
             /// Items are positioned with equal space before, between, and after the lines.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifySpaceAround
         }
@@ -292,6 +309,7 @@ namespace Tizen.NUI.BaseComponents
         /// use all the available space on the cross axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum Alignment
         {
@@ -299,30 +317,35 @@ namespace Tizen.NUI.BaseComponents
             /// Inherits the same alignment from the parent (only valid for "alignSelf" property).
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignAuto,
             /// <summary>
             /// At the beginning of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignFlexStart,
             /// <summary>
             /// At the center of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignCenter,
             /// <summary>
             /// At the end of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignFlexEnd,
             /// <summary>
             /// Stretch to fit the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignStretch
         }
@@ -332,6 +355,7 @@ namespace Tizen.NUI.BaseComponents
         /// all the items on one flex line.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum WrapType
         {
@@ -339,12 +363,14 @@ namespace Tizen.NUI.BaseComponents
             /// Flex items laid out in single line (shrunk to fit the flex container along the main axis).
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             NoWrap,
             /// <summary>
             /// Flex items laid out in multiple lines if needed.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Wrap
         }
@@ -353,6 +379,7 @@ namespace Tizen.NUI.BaseComponents
         /// The primary direction in which content is ordered.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public ContentDirectionType ContentDirection
         {
@@ -385,6 +412,7 @@ namespace Tizen.NUI.BaseComponents
         /// The direction of the main axis which determines the direction that flex items are laid out.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public FlexDirectionType FlexDirection
         {
@@ -417,6 +445,7 @@ namespace Tizen.NUI.BaseComponents
         /// Whether the flex items should wrap or not if there is no enough room for them on one flex line.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public WrapType FlexWrap
         {
@@ -449,6 +478,7 @@ namespace Tizen.NUI.BaseComponents
         /// The alignment of flex items when the items do not use all available space on the main axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public Justification JustifyContent
         {
@@ -481,6 +511,7 @@ namespace Tizen.NUI.BaseComponents
         /// The alignment of flex items when the items do not use all available space on the cross axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public Alignment AlignItems
         {
@@ -513,6 +544,7 @@ namespace Tizen.NUI.BaseComponents
         /// Similar to "alignItems", but it aligns flex lines; so only works when there are multiple lines.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public Alignment AlignContent
         {
