@@ -5,6 +5,9 @@ scrpit_dir = os.path.dirname(os.path.abspath(__file__))
 runtime_dir = os.path.join(scrpit_dir, "../pkg/Tizen.NET/runtime.json")
 spec_dir = os.path.join(scrpit_dir, "csapi-tizenfx.spec")
 
+def parse_rid_as_int(rid):
+    return [int(part) for part in rid.split(".")]
+
 with open(runtime_dir) as json_file:
     json_data = json.load(json_file)
     json_string = json_data["runtimes"]
@@ -23,7 +26,7 @@ with open(runtime_dir) as json_file:
             rid_list.append(key)
 
     rid_list = list(set(rid_list))
-    rid_list.sort(reverse=True)
+    rid_list = sorted(rid_list, key=parse_rid_as_int, reverse=True)
 
     f = open(spec_dir,'r')
     origin_data = f.read()
