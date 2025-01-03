@@ -10,7 +10,8 @@ with open(runtime_dir) as json_file:
     json_string = json_data["runtimes"]
 
     key_list = json_string.keys()
-    rid_list = []
+    rid_list1 = []
+    rid_list2 = []
 
     for key in key_list:
         key = key.replace("-armel", "")
@@ -20,10 +21,16 @@ with open(runtime_dir) as json_file:
         key = key.replace("tizen.", "")
         key = key.replace("tizen", "")
         if key.strip():
-            rid_list.append(key)
+            if len(key) == 5:
+                rid_list1.append(key)
+            else:
+                rid_list2.append(key)
 
-    rid_list = list(set(rid_list))
-    rid_list.sort(reverse=True)
+    rid_list1 = list(set(rid_list1))
+    rid_list1.sort(reverse=True)
+    rid_list2 = list(set(rid_list2))
+    rid_list2.sort(reverse=True)
+    rid_list = rid_list2 + rid_list1
 
     f = open(spec_dir,'r')
     origin_data = f.read()
