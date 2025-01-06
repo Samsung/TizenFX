@@ -202,7 +202,7 @@ namespace Tizen.NUI.Visuals
         /// Optional.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string AlphaMaskURL
+        public string AlphaMaskUrl
         {
             set
             {
