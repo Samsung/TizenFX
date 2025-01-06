@@ -73,7 +73,7 @@ namespace Tizen.NUI.Visuals
                 {
                     isResourceUrlValid = true;
 
-                    UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.URL, new PropertyValue(value));
+                    UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.URL, value);
 
                     if (SynchronousVisualCreationRequired())
                     {
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Visuals
             get
             {
                 string ret = "";
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.URL);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.URL);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -103,12 +103,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.PixelArea, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.PixelArea, value, false);
             }
             get
             {
                 Vector4 ret = new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.PixelArea);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.PixelArea);
                 propertyValue?.Get(ret);
                 return ret;
             }
@@ -123,12 +123,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.PremultipliedAlpha, new PropertyValue(value), true);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.PremultipliedAlpha, value, true);
             }
             get
             {
                 bool ret = true;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.PremultipliedAlpha);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.PremultipliedAlpha);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -143,12 +143,12 @@ namespace Tizen.NUI.Visuals
             set
             {
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousLoading, new PropertyValue(value), value);
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousLoading, value, value);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousLoading);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousLoading);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -162,12 +162,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.OrientationCorrection, new PropertyValue(value), true);
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.OrientationCorrection, value, true);
             }
             get
             {
                 bool ret = true;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.OrientationCorrection);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.OrientationCorrection);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -185,12 +185,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousSizing, new PropertyValue(value), true);
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousSizing, value, true);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousSizing);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SynchronousSizing);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -205,15 +205,14 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AlphaMaskURL, string.IsNullOrEmpty(value) ? null : new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AlphaMaskURL, string.IsNullOrEmpty(value) ? null : value);
 
                 // When we never set CropToMask property before, we should set default value as true.
                 using (PropertyValue cropToMask = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask))
                 {
                     if (cropToMask == null)
                     {
-                        using PropertyValue setCropValue = new PropertyValue(true);
-                        UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask, setCropValue);
+                        UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask, true);
                     }
                 }
 
@@ -225,7 +224,7 @@ namespace Tizen.NUI.Visuals
             get
             {
                 string ret = "";
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.AlphaMaskURL);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.AlphaMaskURL);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -239,12 +238,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskContentScale, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskContentScale, value);
             }
             get
             {
                 float ret = 1.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskContentScale);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskContentScale);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -258,12 +257,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask, value);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.CropToMask);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -277,12 +276,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskingMode, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskingMode, value);
             }
             get
             {
                 int ret = (int)Tizen.NUI.BaseComponents.ImageView.MaskingModeType.MaskingOnLoading;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskingMode);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.MaskingMode);
                 propertyValue?.Get(out ret);
                 return (Tizen.NUI.BaseComponents.ImageView.MaskingModeType)ret;
             }
@@ -308,7 +307,7 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.FastTrackUploading, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.FastTrackUploading, value);
 
                 if (value && isResourceUrlValid)
                 {
@@ -320,7 +319,7 @@ namespace Tizen.NUI.Visuals
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.FastTrackUploading);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.FastTrackUploading);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -335,12 +334,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.ReleasePolicy, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.ReleasePolicy, value);
             }
             get
             {
                 int ret = (int)ReleasePolicyType.Detached;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.ReleasePolicy);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.ReleasePolicy);
                 propertyValue?.Get(out ret);
                 return (ReleasePolicyType)ret;
             }
@@ -357,12 +356,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode, value);
             }
             get
             {
                 int ret = (int)SamplingModeType.BoxThenLinear;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.SamplingMode);
                 propertyValue?.Get(out ret);
                 return (SamplingModeType)ret;
             }
@@ -379,12 +378,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredWidth, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredWidth, value);
             }
             get
             {
                 int ret = -1;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredWidth);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredWidth);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -401,12 +400,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredHeight, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredHeight, value);
             }
             get
             {
                 int ret = -1;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredHeight);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.DesiredHeight);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -421,12 +420,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.LoadPolicy, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.LoadPolicy, value);
             }
             get
             {
                 int ret = (int)LoadPolicyType.Attached;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.LoadPolicy);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.LoadPolicy);
                 propertyValue?.Get(out ret);
                 return (LoadPolicyType)ret;
             }
@@ -444,12 +443,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeU, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeU, value);
             }
             get
             {
                 int ret = (int)WrapModeType.Default;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeU);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeU);
                 propertyValue?.Get(out ret);
                 return (WrapModeType)ret;
             }
@@ -468,12 +467,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeV, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeV, value);
             }
             get
             {
                 int ret = (int)WrapModeType.Default;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeV);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeV);
                 propertyValue?.Get(out ret);
                 return (WrapModeType)ret;
             }
@@ -491,12 +490,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius, value, false);
             }
             get
             {
                 Vector4 ret = new Vector4();
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius);
                 propertyValue?.Get(ret);
                 return ret;
             }
@@ -512,12 +511,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy, new PropertyValue((int)value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy, value, false);
             }
             get
             {
                 int ret = (int)VisualTransformPolicyType.Absolute;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy);
                 propertyValue?.Get(out ret);
                 return (VisualTransformPolicyType)ret;
             }
@@ -533,12 +532,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness, value, false);
             }
             get
             {
                 Vector4 ret = new Vector4();
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness);
                 propertyValue?.Get(ret);
                 return ret;
             }
@@ -552,12 +551,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth, value, false);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -572,12 +571,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor, value, false);
             }
             get
             {
                 Color ret = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor);
                 propertyValue?.Get(ret);
                 return ret;
             }
@@ -596,12 +595,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset, value, false);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset);
                 propertyValue?.Get(out ret);
                 return ret;
             }
