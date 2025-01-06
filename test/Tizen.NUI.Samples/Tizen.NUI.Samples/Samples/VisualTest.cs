@@ -125,6 +125,24 @@ namespace Tizen.NUI.Samples
                         }
                     }
                 }
+                else if (e.Key.KeyPressedName == "8")
+                {
+                    // Toggle some transform infomations
+                    if (shadowVisual1 != null)
+                    {
+                        shadowVisual1.ExtraWidth = 20.0f - shadowVisual1.ExtraWidth;
+                        shadowVisual1.ExtraHeight = 20.0f - shadowVisual1.ExtraHeight;
+
+                        shadowVisual1.OffsetX = 100.0f - shadowVisual1.OffsetX;
+                    }
+                    if (shadowVisual2 != null)
+                    {
+                        shadowVisual2.ExtraWidth = 10.0f - shadowVisual2.ExtraWidth;
+                        shadowVisual2.ExtraHeight = 10.0f - shadowVisual2.ExtraHeight;
+
+                        shadowVisual2.OffsetY = 100.0f - shadowVisual2.OffsetY;
+                    }
+                }
             }
         }
 
