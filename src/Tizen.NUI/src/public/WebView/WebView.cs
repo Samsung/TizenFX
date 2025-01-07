@@ -1142,7 +1142,7 @@ namespace Tizen.NUI.BaseComponents
                 if (deviceConnectionChangedEventHandler == null)
                 {
                     IntPtr ip = IntPtr.Zero;
-                    Interop.WebView.RegisterUserMediaPermissionRequestCallback(SwigCPtr, new HandleRef(this, ip));
+                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, new HandleRef(this, ip));
                 }
             }
         }
@@ -1151,9 +1151,7 @@ namespace Tizen.NUI.BaseComponents
         public void SetDeviceListGetCallback(WebViewDeviceListGetCallback callback)
         {
             deviceListGetCallbackForUser = callback;
-
-            internalWebViewDeviceListGetCallback cb = deviceListGet;
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate(cb);
+            IntPtr ip = Marshal.GetFunctionPointerForDelegate((internalWebViewDeviceListGetCallback)deviceListGet);
             Interop.WebView.RegisterDeviceListGetCallback(SwigCPtr, new HandleRef(this, ip));
         }
 

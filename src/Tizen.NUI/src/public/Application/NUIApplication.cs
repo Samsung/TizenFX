@@ -523,7 +523,6 @@ namespace Tizen.NUI
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
             Backend.AddEventHandler(EventType.Resumed, OnResume);
             Backend.AddEventHandler(EventType.Paused, OnPause);
-            Backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
             base.Run(args);
         }
 
