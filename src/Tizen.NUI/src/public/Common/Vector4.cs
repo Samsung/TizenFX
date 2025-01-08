@@ -141,7 +141,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.X = 0.1f; 
+        /// vector4.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -174,7 +174,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.R = 0.1f; 
+        /// vector4.R = 0.1f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -207,7 +207,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.S = 0.1f; 
+        /// vector4.S = 0.1f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -240,7 +240,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Y = 0.5f; 
+        /// vector4.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -273,7 +273,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.G = 0.5f; 
+        /// vector4.G = 0.5f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -306,7 +306,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.T = 0.5f; 
+        /// vector4.T = 0.5f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -339,7 +339,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Z = 0.9f; 
+        /// vector4.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -372,7 +372,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.B = 0.9f; 
+        /// vector4.B = 0.9f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -405,7 +405,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.P = 0.9f; 
+        /// vector4.P = 0.9f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -438,7 +438,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.W = 1.0f; 
+        /// vector4.W = 1.0f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -471,7 +471,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.A = 1.0f; 
+        /// vector4.A = 1.0f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -504,7 +504,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Q = 1.0f; 
+        /// vector4.Q = 1.0f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -714,6 +714,18 @@ namespace Tizen.NUI
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector4(X, Y, Z, W);
+
+        internal void Reset() => Reset(0, 0, 0, 0);
+
+        internal void Reset(L.Color color) => Reset(color.R, color.G, color.B, color.A);
+
+        internal void Reset(L.Corner corner) => Reset(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+
+        internal void Reset(float x, float y, float z, float w)
+        {
+            Interop.Vector4.SetAll(SwigCPtr, x, y, z, w);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
 
         internal static Vector4 GetVector4FromPtr(global::System.IntPtr cPtr)
         {
