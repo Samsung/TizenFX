@@ -1616,96 +1616,55 @@ namespace Tizen.NUI
             }
         }
     }
+
     /// <summary>
     /// PositionAxis constants.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public struct PositionAxis
     {
+        private static readonly Position xaxis = new Position(1.0f, 0.0f, 0.0f);
+        private static readonly Position yaxis = new Position(0.0f, 1.0f, 0.0f);
+        private static readonly Position zaxis = new Position(0.0f, 0.0f, 1.0f);
+        private static readonly Position negativeXaxis = new Position(-1.0f, 0.0f, 0.0f);
+        private static readonly Position negativeYaxis = new Position(0.0f, -1.0f, 0.0f);
+        private static readonly Position negativeZaxis = new Position(0.0f, 0.0f, -1.0f);
+
         /// <summary>
         /// The X axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position X
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.XaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position X => xaxis;
+
         /// <summary>
         /// The Y axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Y
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.YaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Y => yaxis;
+
         /// <summary>
         /// The Z axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Z
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Z => zaxis;
+
         /// <summary>
         /// The Negative X axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position NegativeX
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeXaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position NegativeX => negativeXaxis;
+
         /// <summary>
         /// The Negative Y axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position NegativeY
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeYaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position NegativeY => negativeYaxis;
+
         /// <summary>
         /// The Negative Z axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position NegativeZ
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position NegativeZ => negativeZaxis;
     }
 
     /// <summary>

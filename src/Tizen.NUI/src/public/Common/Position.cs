@@ -29,6 +29,8 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
     public class Position : Disposable, ICloneable
     {
+        private static readonly Position one = new Position(1.0f, 1.0f, 1.0f);
+        private static readonly Position zero = new Position(0.0f, 0.0f, 0.0f);
 
         /// <summary>
         /// The constructor.
@@ -491,31 +493,13 @@ namespace Tizen.NUI
         /// Constant ( 1.0f, 1.0f, 1.0f ).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.OneGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position One => one;
 
         /// <summary>
         /// Constant ( 0.0f, 0.0f, 0.0f ).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZeroGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Zero => zero;
 
         /// <summary>
         /// The x component.
@@ -616,71 +600,17 @@ namespace Tizen.NUI
             }
         }
 
-        internal static Position XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.XaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position XAxis => PositionAxis.X;
 
-        internal static Position YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.YaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position YAxis => PositionAxis.Y;
 
-        internal static Position ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position ZAxis => PositionAxis.Z;
 
-        internal static Position NegativeXAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeXaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position NegativeXAxis => PositionAxis.NegativeX;
 
-        internal static Position NegativeYAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeYaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position NegativeYAxis => PositionAxis.NegativeY;
 
-        internal static Position NegativeZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position NegativeZAxis => PositionAxis.NegativeZ;
 
         /// <summary>
         /// The const array subscript operator overload. Should be 0, 1, or 2.
