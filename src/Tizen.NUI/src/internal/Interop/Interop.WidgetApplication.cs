@@ -24,9 +24,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetApplication_New")]
             public static extern global::System.IntPtr New(int jarg1, string jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WidgetApplication__SWIG_0")]
-            public static extern global::System.IntPtr NewWidgetApplication();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WidgetApplication__SWIG_1")]
             public static extern global::System.IntPtr NewWidgetApplication(global::System.Runtime.InteropServices.HandleRef jarg1);
 

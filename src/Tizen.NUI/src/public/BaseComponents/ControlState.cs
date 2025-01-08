@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020-2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020-2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Text;
 using System.ComponentModel;
 using System.Linq;
 
@@ -30,38 +30,37 @@ namespace Tizen.NUI.BaseComponents
     [Binding.TypeConverter(typeof(ControlStateTypeConverter))]
     public class ControlState : IEquatable<ControlState>
     {
-        private static readonly Dictionary<string, ControlState> stateDictionary = new Dictionary<string, ControlState>();
         //Default States
         /// <summary>
         /// The All state is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState All = Create("All");
+        public static readonly ControlState All = new ControlState(ControlStateUtility.FullMask);
         /// <summary>
         /// Normal State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Normal = Create("Normal");
+        public static readonly ControlState Normal = new ControlState(0UL);
         /// <summary>
         /// Focused State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Focused = Create("Focused");
+        public static readonly ControlState Focused =  new ControlState(nameof(Focused));
         /// <summary>
         /// Pressed State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Pressed = Create("Pressed");
+        public static readonly ControlState Pressed = new ControlState(nameof(Pressed));
         /// <summary>
         /// Disabled State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Disabled = Create("Disabled");
+        public static readonly ControlState Disabled = new ControlState(nameof(Disabled));
         /// <summary>
         /// Selected State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Selected = Create("Selected");
+        public static readonly ControlState Selected = new ControlState(nameof(Selected));
         /// <summary>
         /// SelectedPressed State.
         /// </summary>
@@ -86,20 +85,25 @@ namespace Tizen.NUI.BaseComponents
         /// This is used in a selector class. It represents all other states except for states that are already defined in a selector.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Other = Create("Other");
+        public static readonly ControlState Other = new ControlState(nameof(Other));
 
-        private List<ControlState> stateList = new List<ControlState>();
-        private readonly string name = "";
+        readonly ulong bitFlags;
+
 
         /// <summary>
         /// Gets or sets a value indicating whether it has combined states.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsCombined => stateList.Count > 1;
+        public bool IsCombined => (bitFlags != 0UL) && ((bitFlags & (bitFlags - 1UL)) != 0UL);
 
-        private ControlState() { }
+        private ControlState(ulong bitMask)
+        {
+            bitFlags = bitMask;
+        }
 
-        private ControlState(string name) : this() => this.name = name;
+        private ControlState(string name) : this(ControlStateUtility.Register(name))
+        {
+        }
 
         /// <summary>
         /// Create an instance of the <see cref="ControlState"/> with state name.
@@ -114,17 +118,9 @@ namespace Tizen.NUI.BaseComponents
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("name cannot be empty string", nameof(name));
+                throw new ArgumentException($"{nameof(name)} cannot be whitespace.", nameof(name));
 
-            name = name.Trim();
-
-            if (stateDictionary.TryGetValue(name, out ControlState state))
-                return state;
-
-            state = new ControlState(name);
-            state.stateList.Add(state);
-            stateDictionary.Add(name, state);
-            return state;
+            return new ControlState(name);
         }
 
         /// <summary>
@@ -135,32 +131,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState Create(params ControlState[] states)
         {
-            if (states.Length == 1)
-                return states[0];
+            ulong newbits = 0UL;
 
-            ControlState newState = new ControlState();
             for (int i = 0; i < states.Length; i++)
             {
-                if (states[i] == Normal)
-                    continue;
-
-                if (states[i] == All)
-                    return All;
-
-                newState.stateList.AddRange(states[i].stateList);
+                newbits |= states[i].bitFlags;
             }
 
-            if (newState.stateList.Count == 0)
-                return Normal;
-
-            newState.stateList = newState.stateList.Distinct().ToList();
-
-            if (newState.stateList.Count == 1)
-            {
-                return newState.stateList[0];
-            }
-
-            return newState;
+            return new ControlState(newbits);
         }
 
         /// <summary>
@@ -172,38 +150,16 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public bool Contains(ControlState state)
         {
-            if (state == null)
-                throw new ArgumentNullException(nameof(state));
-
-            if (!IsCombined)
-                return ReferenceEquals(this, state);
-
-            bool found;
-            for (int i = 0; i < state.stateList.Count; i++)
-            {
-                found = false;
-                for (int j = 0; j < stateList.Count; j++)
-                {
-                    if (ReferenceEquals(state.stateList[i], stateList[j]))
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) return false;
-            }
-
-            return true;
+            if (state is null) return false;
+            return (bitFlags & state.bitFlags) == state.bitFlags;
         }
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Equals(ControlState other)
         {
-            if (other is null || stateList.Count != other.stateList.Count)
-                return false;
-
-            return Contains(other);
+            if (other is null) return false;
+            return this.bitFlags == other.bitFlags;
         }
 
         ///  <inheritdoc/>
@@ -212,18 +168,34 @@ namespace Tizen.NUI.BaseComponents
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => (name.GetHashCode() * 397) ^ IsCombined.GetHashCode();
+        public override int GetHashCode() => bitFlags.GetHashCode();
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString()
         {
-            string name = "";
-            for (int i = 0; i < stateList.Count; i++)
+            var sbuilder = new StringBuilder();
+            var states = ControlStateUtility.RegisteredStates();
+
+            if (bitFlags == 0UL)
             {
-                name += ((i == 0) ? "" : ", ") + stateList[i].name;
+                return nameof(Normal);
             }
-            return name;
+            else if (bitFlags == ControlStateUtility.FullMask)
+            {
+                return nameof(All);
+            }
+
+            foreach (var (name, bitMask) in states)
+            {
+                if ((bitFlags & bitMask) > 0)
+                {
+                    if (sbuilder.Length != 0) sbuilder.Append(", ");
+                    sbuilder.Append(name);
+                }
+            }
+
+            return sbuilder.ToString();
         }
 
         /// <summary>
@@ -247,7 +219,6 @@ namespace Tizen.NUI.BaseComponents
                 // Only the left side is null.
                 return false;
             }
-            // Equals handles case of null on right side.
             return lhs.Equals(rhs);
         }
 
@@ -267,7 +238,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>The <see cref="ControlState"/> containing the result of the addition.</returns>
         /// <since_tizen> 9 </since_tizen>
-        public static ControlState operator +(ControlState lhs, ControlState rhs) => Create(lhs, rhs);
+        public static ControlState operator +(ControlState lhs, ControlState rhs) => Add(lhs, rhs);
 
         /// <summary>
         /// The substraction operator.
@@ -277,38 +248,36 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>The <see cref="ControlState"/> containing the result of the substraction.</returns>
         /// <exception cref="ArgumentNullException"> Thrown when lhs or rhs is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static ControlState operator -(ControlState lhs, ControlState rhs)
+        public static ControlState operator -(ControlState lhs, ControlState rhs) => Remove(lhs, rhs);
+
+        static ControlState Add(ControlState operand1, ControlState operand2)
         {
-            if (null == lhs)
+            if (operand1 is null)
             {
-                throw new ArgumentNullException(nameof(lhs));
+                throw new ArgumentNullException(nameof(operand1));
             }
-            else if (null == rhs)
+            if (operand2 is null)
             {
-                throw new ArgumentNullException(nameof(rhs));
-            }
-
-            if (!lhs.IsCombined)
-            {
-                return ReferenceEquals(lhs, rhs) ? Normal : lhs;
+                throw new ArgumentNullException(nameof(operand2));
             }
 
-            var rest = lhs.stateList.Except(rhs.stateList);
-            var count = rest.Count();
+            ulong newBitFlags = operand1.bitFlags | operand2.bitFlags;
 
-            if (count == 0)
+            return new ControlState(newBitFlags);
+        }
+
+        static ControlState Remove(ControlState operand1, ControlState operand2)
+        {
+            if (operand1 is null)
             {
-                return Normal;
+                throw new ArgumentNullException(nameof(operand1));
+            }
+            if (operand2 is null)
+            {
+                throw new ArgumentNullException(nameof(operand2));
             }
 
-            if (count == 1)
-            {
-                return rest.First();
-            }
-
-            ControlState newState = new ControlState();
-            newState.stateList.AddRange(rest);
-            return newState;
+            return new ControlState(operand1.bitFlags & ~(operand2.bitFlags));
         }
 
         class ControlStateTypeConverter : Binding.TypeConverter
@@ -319,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value = value.Trim();
 
-                    ControlState convertedState = new ControlState();
+                    ControlState convertedState = Normal;
                     string[] parts = value.Split(',');
                     foreach (string part in parts)
                     {

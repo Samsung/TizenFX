@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,8 @@ class Scene3DSample : NUIApplication
 
     Window mWindow;
     Vector2 mWindowSize;
+
+    private float mSceneViewSizeRate = 0.95f; // The scene view size relation as window size.
 
     SceneView mSceneView;
     Model mModel;
@@ -130,13 +132,16 @@ class Scene3DSample : NUIApplication
     {
         mSceneView = new SceneView()
         {
-            SizeWidth = mWindowSize.Width,
-            SizeHeight = mWindowSize.Height,
+            SizeWidth = mWindowSize.Width * mSceneViewSizeRate,
+            SizeHeight = mWindowSize.Height * mSceneViewSizeRate,
             PositionX = 0.0f,
             PositionY = 0.0f,
-            PivotPoint = PivotPoint.TopLeft,
-            ParentOrigin = ParentOrigin.TopLeft,
+            PivotPoint = PivotPoint.Center,
+            ParentOrigin = ParentOrigin.Center,
             PositionUsesPivotPoint = true,
+
+            UseFramebuffer = true,
+            BackgroundColor = Color.DarkOrchid,
         };
 
         mSceneView.CameraTransitionFinished += (o, e) =>
@@ -289,6 +294,13 @@ class Scene3DSample : NUIApplication
                 mMutex = false;
             }
         };
+
+        if (mModelRotateAnimation != null)
+        {
+            mModelRotateAnimation.Stop();
+            mModelRotateAnimation.Dispose();
+            mModelRotateAnimation = null;
+        }
 
         mModelRotateAnimation = new Animation(modelRotateAnimationDurationMilliseconds);
         mModelRotateAnimation.AnimateBy(mModel, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.YAxis));
@@ -452,9 +464,9 @@ class Scene3DSample : NUIApplication
                 }
                 case "f":
                 {
-                    if (mModelAnimation?.State == Animation.States.Playing)
+                    if (mModel != null && mModelLoadFinished)
                     {
-                        if (mModel != null && mModelLoadFinished)
+                        if (mModelAnimation != null && mModelAnimation.State == Animation.States.Playing)
                         {
                             mMotionAnimation = mModel.GenerateMotionDataAnimation(mAnimateMotionData);
 
@@ -473,13 +485,26 @@ class Scene3DSample : NUIApplication
                     }
                     break;
                 }
+                case "c":
+                {
+                    if (mSceneView != null)
+                    {
+                        mSceneView.CornerRadius = new Vector4(60.0f, 60.0f, 60.0f, 60.0f);
+                        mSceneView.CornerSquareness = new Vector4(0.6f, 0.6f, 0.6f, 0.6f);
+                        mSceneView.CornerRadiusPolicy = VisualTransformPolicyType.Absolute;
+                        mSceneView.BorderlineWidth = 20.0f;
+                        mSceneView.BorderlineColor = new Vector4(1.0f, 1.0f, 1.0f, 0.2f);
+                        mSceneView.BorderlineOffset = -1.0f;
+                    }
+                    break;
+                }
             }
 
             FullGC();
         }
         else if (e.Key.State == Key.StateType.Up)
         {
-            if (mModelAnimation?.State == Animation.States.Stopped)
+            if (mModelAnimation != null && mModelAnimation.State == Animation.States.Stopped)
             {
                 if (mMotionAnimation != null)
                 {
@@ -494,19 +519,24 @@ class Scene3DSample : NUIApplication
                     mModelAnimation.Play();
                 }
             }
+            if (mSceneView != null)
+            {
+                mSceneView.CornerRadius = Vector4.Zero;
+                mSceneView.BorderlineWidth = 0.0f;
+            }
         }
     }
 
     public void Activate()
     {
-        mWindow = Window.Instance;
-        mWindow.BackgroundColor = Color.DarkOrchid;
+        mWindow = Window.Default;
+        mWindow.BackgroundColor = Color.Blue;
         mWindowSize = mWindow.WindowSize;
 
         mWindow.Resized += (o, e) =>
         {
             mWindowSize = mWindow.WindowSize;
-            mSceneView.Size = new Size(mWindowSize);
+            mSceneView.Size = new Size(mWindowSize * mSceneViewSizeRate);
         };
 
         mWindow.KeyEvent += OnKeyEvent;

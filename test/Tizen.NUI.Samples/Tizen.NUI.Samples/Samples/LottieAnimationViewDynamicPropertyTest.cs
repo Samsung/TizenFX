@@ -15,6 +15,7 @@ namespace Tizen.NUI.Samples
         Window win;
         View root;
         Timer timer;
+        List<LottieAnimationView> lavList = new();
         public void Activate()
         {
             win = NUIApplication.GetDefaultWindow();
@@ -39,9 +40,11 @@ namespace Tizen.NUI.Samples
         bool OnTick(object sender, Timer.TickEventArgs e)
         {
             bool ret = false;
-            //ret = Test1();
-            //ret = Test2();
+            // ret = Test1();
+            // ret = Test2();
             ret = Test3();
+            // ret = Test4();
+            // ret = Test5();
             return ret;
         }
 
@@ -92,8 +95,55 @@ namespace Tizen.NUI.Samples
             return true;
         }
 
-        global::System.Random rand = new global::System.Random();
+        //create objects with same as before. Let's check whether leak occured or not.
         bool Test3()
+        {
+            if (timer.Interval == TIMER_INTERVAL)
+            {
+                // Change the interval more tight, to check memory leak
+                timer.Interval = TIMER_INTERVAL / 10;
+            }
+
+            MakeAll();
+            if (cnt % 2 == 0)
+            {
+                ForceFullGC();
+            }
+            cnt++;
+            return true;
+        }
+
+        //create objects first, and change ImageView property what might give effort to lottie images.
+        //Let's check whether dynamic callback still called or not.
+        bool Test4()
+        {
+            if (cnt == 0)
+            {
+                MakeAll();
+            }
+            else
+            {
+                LottieAnimationView lav = null;
+                if (lavList?.Count > 0)
+                {
+                    lav = lavList[0];
+                }
+                if (lav != null)
+                {
+                    // TODO : It will not affect to lottie image, but will create new visual.
+                    //        Let's make this sample works well in future.
+                    tlog.Debug(tag, $"non-Lottie relative property change start");
+                    lav.FastTrackUploading = true;
+                    lav.Play();
+                    tlog.Debug(tag, $"non-Lottie relative property change done");
+                }
+            }
+            cnt++;
+            return cnt < 2;
+        }
+
+        global::System.Random rand = new global::System.Random();
+        bool Test5()
         {
             var lav = new LottieAnimationView();
             lav.Size2D = new Size2D(300, 300);
@@ -108,7 +158,7 @@ namespace Tizen.NUI.Samples
             }
             lav.LoopCount = -1;
             lav.BackgroundColor = Color.White;
-            win.Add(lav);
+            root.Add(lav);
             lav.Play();
 
             var ret = lav.GetContentInfo();
@@ -132,15 +182,24 @@ namespace Tizen.NUI.Samples
         void MakeAll()
         {
             tlog.Debug(tag, $"MakeAll() start");
-            int width = (int)(root.Size.Width / NUM_OF_VIEW);
+            int width = (int)(root.Size.Width / (NUM_OF_VIEW + 2));
             for (int i = 0; i < NUM_OF_VIEW; i++)
             {
-                var lav = new LottieAnimationView();
+                LottieAnimationView lav;
+                if (lavList?.Count > i)
+                {
+                    lav = lavList[i];
+                }
+                else
+                {
+                    lav = new LottieAnimationView();
+                    lavList?.Add(lav);
+                    root.Add(lav);
+                }
                 lav.Size2D = new Size2D(width, width);
                 lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "done.json";
                 lav.LoopCount = -1;
                 lav.BackgroundColor = Color.White;
-                root.Add(lav);
 
                 LottieAnimationViewDynamicProperty pro = new LottieAnimationViewDynamicProperty
                 {
@@ -179,12 +238,67 @@ namespace Tizen.NUI.Samples
                 }
                 lav.Play();
             }
+
+            {
+                LottieAnimationView lav;
+                if (lavList?.Count > NUM_OF_VIEW + 0)
+                {
+                    lav = lavList[NUM_OF_VIEW + 0];
+                }
+                else
+                {
+                    lav = new LottieAnimationView();
+                    lavList?.Add(lav);
+                    root.Add(lav);
+                }
+                lav.Size2D = new Size2D(width, width);
+                lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "30.json";
+                lav.LoopCount = -1;
+                lav.BackgroundColor = Color.Black;
+                lav.Play();
+            }
+            {
+                LottieAnimationView lav;
+                if (lavList?.Count > NUM_OF_VIEW + 1)
+                {
+                    lav = lavList[NUM_OF_VIEW + 1];
+                }
+                else
+                {
+                    lav = new LottieAnimationView();
+                    lavList?.Add(lav);
+                    root.Add(lav);
+                }
+                lav.Size2D = new Size2D(width, width);
+                lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "100.json";
+                lav.LoopCount = -1;
+                lav.BackgroundColor = Color.Black;
+
+                LottieAnimationViewDynamicProperty pro = new LottieAnimationViewDynamicProperty
+                {
+                    // KeyPath = "**",
+                    KeyPath = "Shape Layer 1.Trim Paths 1",
+                    Property = LottieAnimationView.VectorProperty.TrimEnd,
+                    Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(OnTrimEnd),
+                };
+                lav.DoActionExtension(pro);
+                LottieAnimationViewDynamicProperty pro1 = new LottieAnimationViewDynamicProperty
+                {
+                    // KeyPath = "**",
+                    KeyPath = "Shape Layer 1.Trim Paths 1",
+                    Property = LottieAnimationView.VectorProperty.TrimStart,
+                    Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(OnTrimStart),
+                };
+                lav.DoActionExtension(pro1);
+                lav.Play();
+            }
             tlog.Debug(tag, $"MakeAll() end");
         }
 
         void DisposeAll()
         {
             tlog.Debug(tag, $"DisposeAll() start");
+            lavList?.Clear();
             int childNum = (int)root.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -201,6 +315,7 @@ namespace Tizen.NUI.Samples
         void ImplicitDispose()
         {
             tlog.Debug(tag, $"ImplicitDispose() start");
+            lavList?.Clear();
             int childNum = (int)root.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -260,12 +375,28 @@ namespace Tizen.NUI.Samples
             return new PropertyValue(frameNumber * 20.0f);
         }
 
+        private PropertyValue OnTrimEnd(int returnType, uint frameNumber)
+        {
+            tlog.Debug(tag, $"OnTrimEnd() returnType={returnType} frameNumber={frameNumber}");
+
+            return new PropertyValue(new Vector2(0.0f, 30.0f));
+        }
+
+        private PropertyValue OnTrimStart(int returnType, uint frameNumber)
+        {
+            tlog.Debug(tag, $"OnTrimStart() returnType={returnType} frameNumber={frameNumber}");
+
+            return new PropertyValue(0.0f);
+        }
+
         public void Deactivate()
         {
             root.Unparent();
             timer.Stop();
             DisposeAll();
             root.Dispose();
+            lavList?.Clear();
+            lavList = null;
         }
     }
 }

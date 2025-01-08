@@ -163,7 +163,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLengthReached event.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
         {
@@ -395,6 +395,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textEditor)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textEditorTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
@@ -408,18 +414,36 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionStarted(IntPtr textEditor)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             //no data to be sent to the user
             textEditorSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSelectionCleared(IntPtr textEditor)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             //no data to be sent to the user
             textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textEditorScrollStateChangedEventHandler != null)
             {
                 ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
@@ -437,12 +461,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textEditorCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textEditor)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textEditorMaxLengthReachedEventHandler != null)
             {
                 MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
@@ -456,6 +492,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textEditor, IntPtr href, uint hrefLength)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -468,12 +510,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textEditorSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             InputFilteredEventArgs e = new InputFilteredEventArgs();
 
             // Populate all members of "e" (InputFilteredEventArgs) with real data
@@ -552,7 +606,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLengthReached event arguments.
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class MaxLengthReachedEventArgs : EventArgs
         {
@@ -561,7 +615,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// TextEditor.
             /// </summary>
-            /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public TextEditor TextEditor
             {

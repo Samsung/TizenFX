@@ -26,7 +26,7 @@ namespace Tizen.NUI.Binding.Internals
     /// For internal use.
     /// </summary>
     /// <typeparam name="TRegistrable"></typeparam>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Registrar<TRegistrable> where TRegistrable : class
     {
@@ -37,7 +37,7 @@ namespace Tizen.NUI.Binding.Internals
         /// </summary>
         /// <param name="tview">The type of the view</param>
         /// <param name="trender">The type of the render.</param>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Register(Type tview, Type trender)
         {
@@ -78,7 +78,7 @@ namespace Tizen.NUI.Binding.Internals
         /// <typeparam name="TOut">The type of the handler</typeparam>
         /// <param name="type">The type.</param>
         /// <returns>The handler instance.</returns>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TOut GetHandler<TOut>(Type type) where TOut : TRegistrable
         {
@@ -92,7 +92,7 @@ namespace Tizen.NUI.Binding.Internals
         /// <param name="type">The type.</param>
         /// <param name="args">The args of the type</param>
         /// <returns>The handler instance.</returns>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TOut GetHandler<TOut>(Type type, params object[] args) where TOut : TRegistrable
         {
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Binding.Internals
         /// <typeparam name="TOut">The type</typeparam>
         /// <param name="obj">The object instance.</param>
         /// <returns>The handle of the obj.</returns>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TOut GetHandlerForObject<TOut>(object obj) where TOut : TRegistrable
         {
@@ -125,7 +125,7 @@ namespace Tizen.NUI.Binding.Internals
         /// <param name="obj">The object instance</param>
         /// <param name="args">The args of the type</param>
         /// <returns>The handler of the object.</returns>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TOut GetHandlerForObject<TOut>(object obj, params object[] args) where TOut : TRegistrable
         {
@@ -143,7 +143,7 @@ namespace Tizen.NUI.Binding.Internals
         /// </summary>
         /// <param name="viewType">The view type.</param>
         /// <returns>The type of the handle.</returns>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Type GetHandlerType(Type viewType)
         {
@@ -185,7 +185,7 @@ namespace Tizen.NUI.Binding.Internals
         /// </summary>
         /// <param name="obj">The object instance.</param>
         /// <returns>The type of the handler.</returns>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Type GetHandlerTypeForObject(object obj)
         {
@@ -221,7 +221,7 @@ namespace Tizen.NUI.Binding.Internals
     /// <summary>
     /// For internal use
     /// </summary>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Registrar
     {
@@ -231,7 +231,7 @@ namespace Tizen.NUI.Binding.Internals
 
         internal static Dictionary<string, Type> Effects { get; } = new Dictionary<string, Type>();
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<Assembly> ExtraAssemblies { get; set; }
     }

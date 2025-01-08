@@ -35,7 +35,13 @@ namespace Tizen.NUI.Samples
                 PivotPoint = PivotPoint.Center,
                 PositionUsesPivotPoint = true,
             };
+            root.PropertyChanged += (object o, global::System.ComponentModel.PropertyChangedEventArgs e) =>
+            {
+                Tizen.Log.Error("NUI", $"root view Property Changed! {e.PropertyName}\n");
+            };
             window.Add(root);
+
+            window.KeyEvent += WindowKeyEvent;
 
             canvasView = new CanvasView(window.Size)
             {
@@ -43,6 +49,10 @@ namespace Tizen.NUI.Samples
                 ParentOrigin = ParentOrigin.Center,
                 PivotPoint = PivotPoint.Center,
                 PositionUsesPivotPoint = true,
+            };
+            canvasView.PropertyChanged += (object o, global::System.ComponentModel.PropertyChangedEventArgs e) =>
+            {
+                Tizen.Log.Error("NUI", $"canvas view Property Changed! {e.PropertyName}\n");
             };
 
             RadialGradient roundedRectFillRadialGradient = new RadialGradient()
@@ -262,9 +272,12 @@ namespace Tizen.NUI.Samples
         {
             if (root != null)
             {
-                timer.Stop();
-                NUIApplication.GetDefaultWindow().Remove(root);
-                canvasView.Dispose();
+                Window window = NUIApplication.GetDefaultWindow();
+                window.KeyEvent -= WindowKeyEvent;
+                window.Remove(root);
+
+                timer?.Stop();
+                canvasView?.Dispose();
                 root.Dispose();
             }
         }
@@ -289,7 +302,29 @@ namespace Tizen.NUI.Samples
 
             count++;
 
+            if(canvasView.RasterizationRequestManually)
+            {
+                canvasView.RequestRasterization();
+            }
+
             return true;
+        }
+
+        private void WindowKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "1")
+                {
+                    canvasView.SynchronousLoading =!canvasView.SynchronousLoading;
+                    log.Error(tag, $"CanvasView.SynchronousLoading --> {canvasView.SynchronousLoading}\n");
+                }
+                else if (e.Key.KeyPressedName == "2")
+                {
+                    canvasView.RasterizationRequestManually =!canvasView.RasterizationRequestManually;
+                    log.Error(tag, $"CanvasView.RasterizationRequestManually --> {canvasView.RasterizationRequestManually}\n");
+                }
+            }
         }
     }
 }

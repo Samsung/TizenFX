@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Represents the result of <see cref="FaceRecognizer"/> operations.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceRecognitionResult
     {
         internal FaceRecognitionResult(bool recognized, double confidence, int label, Rectangle? area)
@@ -34,18 +37,21 @@ namespace Tizen.Multimedia.Vision
         /// Gets the value indicating the recognition is successful.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public bool Success { get; }
 
         /// <summary>
         /// Gets the label of the recognized face.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int Label { get; }
 
         /// <summary>
         /// Gets the location of the recognized face.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Rectangle? Area { get; }
 
         /// <summary>
@@ -55,6 +61,7 @@ namespace Tizen.Multimedia.Vision
         /// then threshold can be reduced (0.5-0.85).
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double Confidence { get; }
     }
 }

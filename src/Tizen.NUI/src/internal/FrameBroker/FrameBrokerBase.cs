@@ -292,8 +292,15 @@ namespace Tizen.NUI
             public Vec2 position;
         };
 
-        private IntPtr RectangleDataPtr()
+        private PropertyBuffer CreateQuadPropertyBuffer()
         {
+            /* Create Property buffer */
+            PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
+            PropertyMap vertexFormat = new PropertyMap();
+            vertexFormat.Add("aPosition", value);
+
+            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
+            
             TexturedQuadVertex vertex1 = new TexturedQuadVertex();
             TexturedQuadVertex vertex2 = new TexturedQuadVertex();
             TexturedQuadVertex vertex3 = new TexturedQuadVertex();
@@ -305,33 +312,42 @@ namespace Tizen.NUI
 
             TexturedQuadVertex[] texturedQuadVertexData = new TexturedQuadVertex[4] { vertex1, vertex2, vertex3, vertex4 };
 
-            int lenght = Marshal.SizeOf(vertex1);
-            IntPtr pA = Marshal.AllocHGlobal(lenght * 4);
+            int size = Marshal.SizeOf(vertex1);
+            IntPtr pA = Marshal.AllocHGlobal(checked(size * texturedQuadVertexData.Length));
 
-            for (int i = 0; i < 4; i++)
+            try
             {
-                Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * lenght, true);
+                for (int i = 0; i < texturedQuadVertexData.Length; i++)
+                {
+                    Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * size, true);
+                }
+
+                vertexBuffer.SetData(pA, (uint)texturedQuadVertexData.Length);
+            }
+            catch(Exception e)
+            {
+                Tizen.Log.Error("NUI", "Exception in FrameBrokerBase : " + e.Message);
+            }
+            finally
+            {
+                // Free AllocHGlobal memory after call PropertyBuffer.SetData()
+                Marshal.FreeHGlobal(pA);
             }
 
-            return pA;
+            value.Dispose();
+            vertexFormat.Dispose();
+
+            return vertexBuffer;
         }
 
         private Geometry CreateQuadGeometry()
         {
-            /* Create Property buffer */
-            PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
-            PropertyMap vertexFormat = new PropertyMap();
-            vertexFormat.Add("aPosition", value);
-
-            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
-            vertexBuffer.SetData(RectangleDataPtr(), 4);
+            PropertyBuffer vertexBuffer = CreateQuadPropertyBuffer();
 
             Geometry geometry = new Geometry();
             geometry.AddVertexBuffer(vertexBuffer);
             geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
 
-            value.Dispose();
-            vertexFormat.Dispose();
             vertexBuffer.Dispose();
 
             return geometry;

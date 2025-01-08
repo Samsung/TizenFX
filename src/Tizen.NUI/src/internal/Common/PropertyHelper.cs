@@ -30,26 +30,29 @@ namespace Tizen.NUI
     {
         private static readonly Dictionary<string, VisualPropertyData> visualPropertyTable = new Dictionary<string, VisualPropertyData>()
         {
-            { "backgroundColor",        new VisualPropertyData(View.Property.BACKGROUND, ColorVisualProperty.MixColor, ObjectColorToVector3, PropertyValueColorToVector3,
-                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectColorToAlpha, PropertyValueColorToAlpha)) },
-            { "backgroundOpacity",      new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectIntToFloat) },
-            { "boxShadow.BlurRadius",   new VisualPropertyData(View.Property.SHADOW, ColorVisualProperty.BlurRadius) },
-            { "boxShadow.Color",        new VisualPropertyData(View.Property.SHADOW, ColorVisualProperty.MixColor, ObjectColorToVector3, PropertyValueColorToVector3,
-                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectColorToAlpha, PropertyValueColorToAlpha)) },
-            { "boxShadow.CornerRadius", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
-            { "boxShadow.Offset",       new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
-            { "boxShadow.Opacity",      new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
-            { "cornerRadius",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
-                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
-                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
-            { "borderlineWidth",        new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, ObjectIntToFloat, null,
-                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineWidth, ObjectIntToFloat, null)) },
-            { "borderlineColor",        new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineColor, null, null,
-                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineColor, null, null)) },
-            { "borderlineOffset",       new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, null, null,
-                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineOffset, null, null)) },
-            { "imageShadow.Offset",     new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
-            { "shadow.CornerRadius",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
+            { "backgroundColor",            new VisualPropertyData(View.Property.BACKGROUND, ColorVisualProperty.MixColor, ObjectColorToVector4, PropertyValueColorToVector4) },
+            { "backgroundOpacity",          new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectIntToFloat) },
+            { "boxShadow.BlurRadius",       new VisualPropertyData(View.Property.SHADOW, ColorVisualProperty.BlurRadius) },
+            { "boxShadow.Color",            new VisualPropertyData(View.Property.SHADOW, ColorVisualProperty.MixColor, ObjectColorToVector4, PropertyValueColorToVector4) },
+            { "boxShadow.CornerRadius",     new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
+            { "boxShadow.CornerSquareness", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
+            { "boxShadow.Offset",           new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
+            { "boxShadow.Opacity",          new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
+            { "cornerRadius",               new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
+                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
+            { "cornerSquareness",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerSquareness, null, null,
+                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerSquareness, null, null))) },
+            { "borderlineWidth",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, ObjectIntToFloat, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineWidth, ObjectIntToFloat, null)) },
+            { "borderlineColor",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineColor, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineColor, null, null)) },
+            { "borderlineOffset",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineOffset, null, null)) },
+            { "imageShadow.Offset",         new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
+            { "shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
+            { "shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
         };
 
         static PropertyHelper() { }
@@ -141,24 +144,24 @@ namespace Tizen.NUI
             return sb.ToString();
         }
 
-        private static object ObjectColorToVector3(object value)
+        private static object ObjectColorToVector4(object value)
         {
             if (value is Vector4)
             {
                 var colorValue = value as Vector4;
-                return new Vector3(colorValue.R, colorValue.G, colorValue.B);
+                return new Vector4(colorValue.R, colorValue.G, colorValue.B, colorValue.A);
             }
 
             if (value is Color)
             {
                 var colorValue = value as Color;
-                return new Vector3(colorValue.R, colorValue.G, colorValue.B);
+                return new Vector4(colorValue.R, colorValue.G, colorValue.B, colorValue.A);
             }
 
             return null;
         }
 
-        private static PropertyValue PropertyValueColorToVector3(PropertyValue value)
+        private static PropertyValue PropertyValueColorToVector4(PropertyValue value)
         {
             var valueType = value.GetType();
 
@@ -169,43 +172,10 @@ namespace Tizen.NUI
 
             var colorValue = new Vector4();
             value.Get(colorValue);
-            using (var v3 = new Vector3(colorValue.R, colorValue.G, colorValue.B))
+            using (var v4 = new Vector4(colorValue.R, colorValue.G, colorValue.B, colorValue.A))
             {
                 colorValue.Dispose();
-                return new PropertyValue(v3);
-            }
-        }
-
-        private static object ObjectColorToAlpha(object value)
-        {
-            if (value is Vector4)
-            {
-                var colorValue = value as Vector4;
-                return colorValue.A;
-            }
-
-            if (value is Color)
-            {
-                var colorValue = value as Color;
-                return colorValue.A;
-            }
-
-            return null;
-        }
-
-        private static PropertyValue PropertyValueColorToAlpha(PropertyValue value)
-        {
-            var valueType = value.GetType();
-
-            if (valueType != PropertyType.Vector4)
-            {
-                return null;
-            }
-
-            using (var colorValue = new Vector4())
-            {
-                value.Get(colorValue);
-                return new PropertyValue(colorValue.A);
+                return new PropertyValue(v4);
             }
         }
 
@@ -294,18 +264,22 @@ namespace Tizen.NUI
                 var refined = keyFrames;
                 if (propertyValueConverter != null)
                 {
-                    // TODO Enable this code when csharp-binder is ready
-                    // refined = new KeyFrames();
-                    // for (uint i = 0; i < keyFrames.Count; i++)
-                    // {
-                    //     var keyFrame = keyFrames.GetKeyFrame(i);
-                    //     var newKeyFrame = propertyValueConverter(keyFrame);
-                    //     if (newKeyFrame == null)
-                    //     {
-                    //         return null;
-                    //     }
-                    //     refined.Add(newKeyFrame);
-                    // }
+                    uint keyFramesCount = keyFrames.GetKeyFrameCount();
+                    float keyFrameProgress;
+                    using PropertyValue keyFrameValue = new PropertyValue();
+
+                    refined = new KeyFrames();
+
+                    for (uint i = 0; i < keyFramesCount; i++)
+                    {
+                        keyFrames.GetKeyFrame(i, out keyFrameProgress, keyFrameValue);
+                        using var newKeyFrameValue = propertyValueConverter(keyFrameValue);
+                        if (newKeyFrameValue == null)
+                        {
+                            return null;
+                        }
+                        refined.Add(keyFrameProgress, newKeyFrameValue);
+                    }
                 }
 
                 return refined;

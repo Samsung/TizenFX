@@ -18,7 +18,7 @@ namespace Tizen.NUI.Samples
     int screenHeight;
 
     int addingInput;
-    private Window subWindow = null;
+    Window subWindow = null;
 
     private const string KEY_NUM_1 = "1";
     private const string KEY_NUM_2 = "2";
@@ -291,6 +291,9 @@ namespace Tizen.NUI.Samples
       mainWin.TouchEvent += WinTouchEvent;
       mainWin.BackgroundColor = Color.Cyan;
 
+      Rectangle rec = new Rectangle(20, 10, 400, 300);
+      mainWin.WindowPositionSize = rec;
+
       Information.TryGetValue<int>("http://tizen.org/feature/screen.width", out screenWidth);
       Information.TryGetValue<int>("http://tizen.org/feature/screen.height", out screenHeight);
       log.Fatal(tag, $"Initialize= screenWidth {screenWidth}, screenHeight {screenHeight} ");
@@ -416,6 +419,9 @@ namespace Tizen.NUI.Samples
           return false;
         };
 
+        subWindow.SetTransparency(true);
+        subWindow.BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
         var root = new View()
         {
           Layout = new LinearLayout()
@@ -424,7 +430,6 @@ namespace Tizen.NUI.Samples
           },
           WidthResizePolicy = ResizePolicyType.FillToParent,
           HeightResizePolicy = ResizePolicyType.FillToParent,
-          BackgroundColor = Color.Brown,
         };
 
         var image = new ImageView()
@@ -451,6 +456,8 @@ namespace Tizen.NUI.Samples
         subWindow.KeyEvent += OnSubWindowKeyEvent;
         subWindow.MoveCompleted += OnSubWindowMoveCompleted;
         subWindow.ResizeCompleted += OnSubWindowResizeCompleted;
+
+        subWindow.BlurInfo = new WindowBlurInfo(WindowBlurType.Background, 10, 50);
       }
       else
       {
@@ -476,6 +483,15 @@ namespace Tizen.NUI.Samples
       log.Fatal(tag, $"OnSubWindowResizeCompleted() called!, width:{size.Width}, height:{size.Height}");
     }
 
+    bool testOnTick(object o, Timer.TickEventArgs e)
+    {
+      if(subWindow.IsBottom)
+      {
+        log.Fatal(tag, $"current bottom flag is true and change to false");
+        subWindow.IsBottom = false;
+      }
+      return false;
+    }
 
     public void OnSubWindowKeyEvent(object sender, Window.KeyEventArgs e)
     {
@@ -539,15 +555,62 @@ namespace Tizen.NUI.Samples
             break;
 
           case KEY_NUM_6:
+            log.Fatal(tag, $"Modal window Test");
+            if(mainWin.IsModal)
+            {
+                log.Fatal(tag, $"current modal is true and change to false");
+                subWindow.Unparent();
+                subWindow.IsModal = false;
+            }
+            else
+            {
+                log.Fatal(tag, $"current modal is false and change to true");
+                subWindow.SetParent(mainWin);
+                subWindow.IsModal = true;
+            }
             break;
 
           case KEY_NUM_7:
+            log.Fatal(tag, $"Always On Top Window Test");
+            if(subWindow.IsAlwaysOnTop)
+            {
+                log.Fatal(tag, $"current AlwaysOnTop is true and change to false");
+                subWindow.IsAlwaysOnTop = false;
+            }
+            else
+            {
+                log.Fatal(tag, $"current AlwaysOnTop is false and change to true");
+                subWindow.IsAlwaysOnTop = true;
+            }
             break;
 
           case KEY_NUM_8:
+            WindowBlurInfo blurInfo = subWindow.BlurInfo;
+            log.Fatal(tag, $"blur type={blurInfo.BlurType}");
+            log.Fatal(tag, $"blur radius={blurInfo.BlurRadius}");
+            log.Fatal(tag, $"background Corner Radius={blurInfo.BackgroundCornerRadius}");
+            blurInfo.BlurType = WindowBlurType.Background;
+            blurInfo.BlurRadius += 10;
+            blurInfo.BackgroundCornerRadius += 10;
+            subWindow.BlurInfo = blurInfo;
             break;
 
           case KEY_NUM_9:
+            log.Fatal(tag, $"Set Bottom Test");
+            if(subWindow.IsBottom)
+            {
+                log.Fatal(tag, $"current bottom flag is true and change to false");
+                subWindow.IsBottom = false;
+            }
+            else
+            {
+                log.Fatal(tag, $"current bottom is false and change to true");
+                subWindow.IsBottom = true;
+
+                Timer timer = new Timer(5000);
+                timer.Tick += testOnTick;
+                timer.Start();
+            }
             break;
 
           default:

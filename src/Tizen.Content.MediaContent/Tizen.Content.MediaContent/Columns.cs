@@ -143,7 +143,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="MediaInfo.Timeline"/>
         /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Timeline => "MEDIA_TIMELINE";
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="AudioInfo.Composer"/>
         /// <seealso cref="VideoInfo.Composer"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Composer => "MEDIA_COMPOSER";
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="AudioInfo.DateRecorded"/>
         /// <seealso cref="VideoInfo.DateRecorded"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string DateRecorded => "MEDIA_RECORDED_DATE";
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="AudioInfo.Duration"/>
         /// <seealso cref="VideoInfo.Duration"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Duration => "MEDIA_DURATION";
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Longitude"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Longitude => "MEDIA_LONGITUDE";
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Latitude"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Latitude => "MEDIA_LATITUDE";
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Altitude"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Altitude => "MEDIA_ALTITUDE";
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.IsFavorite"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Favorite => "MEDIA_FAVOURITE";
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.IsDrm"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string IsDrm => "MEDIA_IS_DRM";
     }
 
@@ -465,6 +465,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="PlaylistCommand.Count(CountArguments)"/>
     /// <seealso cref="PlaylistCommand.Select(SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class PlaylistColumns
     {
         /// <summary>
@@ -476,6 +477,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Playlist.Name"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Name => "PLAYLIST_NAME";
 
         /// <summary>
@@ -487,6 +489,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Playlist.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Id => "PLAYLIST_ID";
 
         /// <summary>
@@ -498,6 +501,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="PlaylistCommand.UpdatePlayOrder(int, PlayOrder)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string MemberOrder => "PLAYLIST_MEMBER_ORDER";
 
         /// <summary>
@@ -510,6 +514,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="PlaylistCommand.AddMember(int, string)"/>
         /// <seealso cref="PlaylistCommand.RemoveMember(int, int)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Count => "PLAYLIST_MEDIA_COUNT";
     }
 
@@ -538,7 +543,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Tag.Name"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Name => "TAG_NAME";
 
         /// <summary>
@@ -551,7 +556,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="TagCommand.AddMedia(int, string)"/>
         /// <seealso cref="TagCommand.RemoveMedia(int, string)"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Count => "TAG_MEDIA_COUNT";
 
         /// <summary>
@@ -563,7 +568,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Tag.Id"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Id => "TAG_ID";
     }
 
@@ -579,6 +584,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="MediaInfoCommand.CountBookmark(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectBookmark(string, SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class BookmarkColumns
     {
         /// <summary>
@@ -590,6 +596,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Bookmark.Offset"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Offset => "BOOKMARK_MARKED_TIME";
 
         /// <summary>
@@ -601,6 +608,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Bookmark.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Id => "BOOKMARK_ID";
 
         /// <summary>
@@ -612,6 +620,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="Bookmark.Name"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Name => "BOOKMARK_NAME";
     }
 
@@ -626,7 +635,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="MediaInfoCommand.CountFaceInfo(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectFaceInfo(string, SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API11; Will be removed in API13.")]
+    [Obsolete("Deprecated since API11. Will be removed in API13.")]
     public static class FaceInfoColumns
     {
         /// <summary>
@@ -638,7 +647,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="FaceInfo.Tag"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public static string Tag => "MEDIA_FACE_TAG";
 
         /// <summary>
@@ -650,7 +659,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="FaceInfo.Id"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public static string Id => "MEDIA_FACE_ID";
     }
 }

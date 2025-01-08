@@ -29,13 +29,21 @@ namespace Tizen.NUI
     {
         private Window window;
         private int layoutCount = 0;
+
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
+
+        private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
+        private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
+
         /// <summary>
-        /// Creates a Layer object.
+        /// Default constructor of Layer class to create a Layer object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Layer() : this(Interop.Layer.New(), true)
@@ -50,8 +58,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose Explicit or Implicit
+        /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -67,6 +80,15 @@ namespace Tizen.NUI
                 Interop.ActorSignal.VisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 visibilityChangedEventCallback = null;
+            }
+
+            if (aggregatedVisibilityChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] aggregatedVisibilityChangedEventCallback");
+
+                Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                aggregatedVisibilityChangedEventCallback = null;
             }
 
             LayoutCount = 0;
@@ -348,12 +370,6 @@ namespace Tizen.NUI
                 Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this layer.");
                 return;
             }
-            // If the view had focus, it clears focus.
-            if (child == FocusManager.Instance.GetCurrentFocusView())
-            {
-                FocusManager.Instance.ClearFocus();
-            }
-
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -561,7 +577,7 @@ namespace Tizen.NUI
             LowerBelow(target);
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchorPoint(Vector3 anchorPoint)
         {
@@ -570,7 +586,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSize(float width, float height)
         {
@@ -579,7 +595,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetParentOrigin(Vector3 parentOrigin)
         {
@@ -588,7 +604,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
@@ -649,6 +665,35 @@ namespace Tizen.NUI
                     Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                     visibilityChangedEventCallback = null;
+                }
+            }
+        }
+        /// <summary>
+        /// An event for aggregated visibility change which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This event is sent when visible property of this or any of its parents (right up to the root) and Window changes.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AggregatedVisibilityChangedEventArgs> AggregatedVisibilityChanged
+        {
+            add
+            {
+                if (aggregatedVisibilityChangedEventHandler == null)
+                {
+                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                aggregatedVisibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                aggregatedVisibilityChangedEventHandler -= value;
+                if (aggregatedVisibilityChangedEventHandler == null && aggregatedVisibilityChangedEventCallback != null)
+                {
+                    Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    aggregatedVisibilityChangedEventCallback = null;
                 }
             }
         }
@@ -898,6 +943,18 @@ namespace Tizen.NUI
             if (visibilityChangedEventHandler != null)
             {
                 visibilityChangedEventHandler(this, e);
+            }
+        }
+
+        // Callback for Layer aggregated visibility change signal
+        private void OnAggregatedVisibilityChanged(IntPtr data, bool visibility)
+        {
+            AggregatedVisibilityChangedEventArgs e = new AggregatedVisibilityChangedEventArgs();
+            e.Visibility = visibility;
+
+            if (aggregatedVisibilityChangedEventHandler != null)
+            {
+                aggregatedVisibilityChangedEventHandler(this, e);
             }
         }
     }

@@ -59,7 +59,10 @@ namespace Tizen.System
             };
         }
 
-        internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory, Interop.Storage.StorageDevice devicetype, string fstype, string fsuuid, bool primary, int flags)
+        internal Storage(int storageID, Interop.Storage.StorageArea storageType,
+			Interop.Storage.StorageState storagestate, string rootDirectory,
+			Interop.Storage.StorageDevice devicetype, string fstype,
+			string fsuuid, bool primary, int flags, EventHandler eventhandler = null)
         {
             Id = storageID;
             _storagetype = storageType;
@@ -71,6 +74,9 @@ namespace Tizen.System
             _primary = primary;
             _flags = flags;
             information_set = true;
+            s_stateChangedEventHandler = eventhandler;
+            if (s_stateChangedEventHandler == null)
+                Log.Warn(LogTag, string.Format("Can't register event handler"));
 
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTotalSpace(Id, out _totalSpace);
             if (err != Interop.Storage.ErrorCode.None)
@@ -151,32 +157,32 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The storage ID.
+        /// The storage ID. It is the identifier used to determine whether the corresponding storage is internal or external.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         public int Id { get; }
         /// <summary>
-        /// The type of storage.
+        /// The type of storage. It has one of three values: internal, external or extended internal. 
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         public StorageArea StorageType { get { return (StorageArea)_storagetype; } }
         /// <summary>
-        /// The root directory for the storage.
+        /// The root directory for the storage. It generally has an absolute path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         public string RootDirectory { get; }
         /// <summary>
-        /// The total storage size in bytes.
+        /// The total storage space in bytes. The type of value is ulong.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         public ulong TotalSpace { get { return _totalSpace; } }
 
         /// <summary>
-        /// The StorageState.
+        /// The StorageState. It contains information about the mounted state of the storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -197,7 +203,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The StorageDevice.
+        /// The StorageDevice. It indicates information such as sdcard or USB storage.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -216,7 +222,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The type of file system.
+        /// The type of file system. For example, it can be ext3 or ext4.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -235,7 +241,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The UUID of the file system.
+        /// The UUID of the file system. It is a unique value that serves as immutable identifier.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -254,7 +260,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Information whether this is a primary partition.
+        /// Information whether this is a primary partition or not.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -273,7 +279,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The flags for the storage status.
+        /// The flags for the storage status. It is a piece of information representing storage.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -314,7 +320,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The available storage size in bytes.
+        /// The available storage size in bytes. The type of value is ulong.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
@@ -334,7 +340,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Absolute path for a given directory type in the storage.
+        /// Gets the absolute path to the root directory of the given storage.
         /// </summary>
         /// <remarks>
         /// The returned directory path may not exist, so you must make sure that it exists before using it.

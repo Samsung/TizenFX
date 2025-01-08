@@ -24,6 +24,8 @@ namespace Tizen.NUI
     class NDalicPINVOKE
     {
         public const string Lib = "libdali2-csharp-binder.so";
+        public const string WidgetViewerLib = "libdali2-csharp-binder-widget-viewer-dali.so";
+
         protected class SWIGExceptionHelper
         {
             /// <since_tizen> 3 </since_tizen>
@@ -253,12 +255,6 @@ namespace Tizen.NUI
             ThrowExceptionIfExists();
         }
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
-        public static extern void DeleteBaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_SWIGUpcast")]
-        public static extern global::System.IntPtr ApplicationUpcast(global::System.IntPtr jarg1);
-
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New__MANUAL_4")]
         public static extern global::System.IntPtr ApplicationNewManual4(int jarg1, string jarg2, string jarg3, int jarg4);
 
@@ -325,10 +321,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskDeviceOrientationChangedSignal")]
         public static extern global::System.IntPtr ApplicationTaskDeviceOrientationChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use NDalicPINVOKE.DeleteBaseHandle(...) instead.")]
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
-        public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
     }
 
     internal static class NDalicExtension

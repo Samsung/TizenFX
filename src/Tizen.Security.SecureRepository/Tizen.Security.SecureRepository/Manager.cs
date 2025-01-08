@@ -26,41 +26,49 @@ namespace Tizen.Security.SecureRepository
     public class Manager
     {
         /// <summary>
-        /// Creates a new full alias, which is concatenation of owner ID and alias.
+        /// Creates a new full alias, which is a concatenation of owner ID and alias.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="ownerId">Data owner's ID. This should be package ID if data
-        /// owner is application. If you want to access data stored by system services,
-        /// use CreateFullSystemAlias() instead.</param>
+        /// <remarks>
+        /// Data owner's ID should be package ID, if data owner is an application.
+        /// If you want to access data stored by system services, use CreateFullSystemAlias() instead.
+        /// </remarks>
+        /// <param name="ownerId">Data owner's ID.</param>
         /// <param name="alias">Data alias.</param>
+        /// <returns>Full alias, a concatenation of owner ID and alias.</returns>
         static public string CreateFullAlias(string ownerId, string alias)
         {
             return ownerId + Manager.OwnerIdSeperator + alias;
         }
 
         /// <summary>
-        /// Creates a new full alias, which is concatenation of system service's
+        /// Creates a new full alias, which is a concatenation of system service's
         /// owner ID and alias.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="alias">Data alias, which is owned by system service.</param>
+        /// <returns>Full alias, a concatenation of system service's owner ID and alias.</returns>
         static public string CreateFullSystemAlias(string alias)
         {
             return Manager.CreateFullAlias(Manager.SystemOwnerId, alias);
         }
 
         /// <summary>
-        /// Removes an entry (no matter of type) from the key manager.
+        /// Removes an entry (no matter what type) from the key manager.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="alias">Item alias to be removed.</param>
-        /// <exception cref="ArgumentNullException">The alias is null.</exception>
-        /// <exception cref="ArgumentException">The alias is in the invalid format.</exception>
-        /// <exception cref="InvalidOperationException">The alias does not exist.</exception>
         /// <remarks>
         /// To remove item, client must remove permission to the specified item.
         /// </remarks>
-        /// <remarks>The item owner can remove by default.</remarks>
+        /// <remarks>The item owner can remove an entry by default.</remarks>
+        /// <param name="alias">Item alias to be removed.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="alias"/> is null.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="alias"/> is in the invalid format.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when <paramref name="alias"/> does not exist.
+        /// </exception>
         static public void RemoveAlias(string alias)
         {
             if (alias == null)
@@ -75,6 +83,8 @@ namespace Tizen.Security.SecureRepository
         /// Allows another application to access client's application data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>Data identified by alias should exist.</remarks>
+        /// <remarks>The item owner can set permissions.</remarks>
         /// <param name="alias">Item alias for which access will be granted.</param>
         /// <param name="otherPackageId">
         /// Package ID of the application that will gain access rights.
@@ -84,14 +94,15 @@ namespace Tizen.Security.SecureRepository
         /// otherPackageId.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// The alias or otherPackageId is null.
+        /// Thrown when <paramref name="alias"/> or <paramref name="otherPackageId"/> is null.
         /// </exception>
         /// <exception cref="ArgumentException">
-        /// The alias or otherPackageId is in the invalid format.
+        /// Thrown when <paramref name="alias"/> or
+        /// <paramref name="otherPackageId"/> has an invalid format.
         /// </exception>
-        /// <exception cref="InvalidOperationException">The alias does not exist.</exception>
-        /// <remarks>Data identified by alias should exist.</remarks>
-        /// <remarks>The item owner can set permissions.</remarks>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when <paramref name="alias"/> does not exist.
+        ///</exception>
         static public void SetPermission(
             string alias, string otherPackageId, int permissions)
         {

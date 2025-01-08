@@ -783,7 +783,7 @@ namespace Tizen.NUI
         /// This is a desktop type. No other windows can be placed below this type of window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Desktop        
+        Desktop
     }
 
     /// <summary>
@@ -2208,6 +2208,28 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the render mode of text.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextRenderMode
+    {
+        /// <summary>
+        /// default, synchronous text loading.
+        /// </summary>
+        Sync,
+
+        /// <summary>
+        /// automatically requests an asynchronous text load in OnRelayout.
+        /// </summary>
+        AsyncAuto,
+
+        /// <summary>
+        /// users should manually request rendering using the async text method.
+        /// </summary>
+        AsyncManual
+    }
+
+    /// <summary>
     /// Pre-defined SlideTransition Direction
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2271,5 +2293,30 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+    }
+
+    /// <summary>
+    /// Enumeration of window blur type.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum WindowBlurType
+    {
+        /// <summary>
+        /// None type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        None = 0,
+        /// <summary>
+        /// background blur for the window.
+        /// It has a blur effect ot th background area of the window, making it appear blurred.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Background = 1,
+        /// <summary>
+        /// behind blur for the window.
+        /// It has a blur effect ot th beind area of except the window background.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Behind = 2,        
     }
 }

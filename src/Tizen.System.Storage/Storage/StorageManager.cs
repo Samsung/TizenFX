@@ -55,12 +55,15 @@ namespace Tizen.System
         private static EventHandler s_ExtendedInternalStorageChangedEventHandler;
         private static Interop.Storage.StorageChangedCallback s_ChangedEventCallback = (int id, Interop.Storage.StorageDevice devicetype, Interop.Storage.StorageState state, string fstype, string fsuuid, string rootDirectory, bool primary, int flags, IntPtr userData) =>
         {
-            Storage storage = new Storage(id, Interop.Storage.StorageArea.External, state, rootDirectory, devicetype, fstype, fsuuid, primary, flags);
-
+            EventHandler eventhandler = null;
             if (devicetype == Interop.Storage.StorageDevice.ExtendedInternalStorage)
-                s_ExtendedInternalStorageChangedEventHandler?.Invoke(storage, EventArgs.Empty);
+                eventhandler = s_ExtendedInternalStorageChangedEventHandler;
             else
-                s_ExternalStorageChangedEventHandler?.Invoke(storage, EventArgs.Empty);
+                eventhandler = s_ExternalStorageChangedEventHandler;
+
+            Storage storage = new Storage(id, Interop.Storage.StorageArea.External,
+			    state, rootDirectory, devicetype, fstype, fsuuid, primary, flags, eventhandler);
+            eventhandler?.Invoke(storage, EventArgs.Empty);
         };
 
         private static void RegisterChangedEvent(StorageArea type)
@@ -106,6 +109,19 @@ namespace Tizen.System
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
+        /// <seealso cref="UnSetChangedEvent(StorageArea, EventHandler)"/>
+        /// <example>
+        /// <code>
+        /// EventHandler callback = (s, e) =>
+        /// {
+        ///   var storage = s as Storage;
+        ///   if (storage == null) return;
+        /// };
+        ///
+        /// StorageManager.SetChangedEvent(StorageArea.External, callback);
+        /// StorageManager.UnSetChangedEvent(StorageArea.External, callback);
+        /// </code>
+        /// </example>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -135,6 +151,7 @@ namespace Tizen.System
         /// <since_tizen> 5 </since_tizen>
         /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="NotSupportedException">Thrown when the storage is not supported.</exception>
+        /// <seealso cref="SetChangedEvent(StorageArea, EventHandler)"/>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)

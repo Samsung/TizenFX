@@ -68,7 +68,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of PropertyValue class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue() : this(Interop.PropertyValue.NewPropertyValue(), true)
@@ -241,6 +241,39 @@ namespace Tizen.NUI
         internal PropertyValue(AngleAxis angleAxis) : this(Interop.PropertyValue.NewPropertyValueAngleAxis(AngleAxis.getCPtr(angleAxis)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates a Vector2 property value componentwise.
+        /// </summary>
+        /// <param name="xValue">X value of Vector2.</param>
+        /// <param name="yValue">Y value of Vector2.</param>
+        internal PropertyValue(float xValue, float yValue) : this(Interop.PropertyValue.NewPropertyValueVector2Componentwise(xValue, yValue), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Creates a Vector3 property value componentwise.
+        /// </summary>
+        /// <param name="xValue">X value of Vector3.</param>
+        /// <param name="yValue">Y value of Vector3.</param>
+        /// <param name="zValue">Z value of Vector3.</param>
+        internal PropertyValue(float xValue, float yValue, float zValue) : this(Interop.PropertyValue.NewPropertyValueVector3Componentwise(xValue, yValue, zValue), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Creates a Vector4 property value componentwise.
+        /// </summary>
+        /// <param name="xValue">X value of Vector4.</param>
+        /// <param name="yValue">Y value of Vector4.</param>
+        /// <param name="zValue">Z value of Vector4.</param>
+        /// <param name="wValue">W value of Vector4.</param>
+        internal PropertyValue(float xValue, float yValue, float zValue, float wValue) : this(Interop.PropertyValue.NewPropertyValueVector4Componentwise(xValue, yValue, zValue, wValue), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// <summary>
@@ -831,6 +864,48 @@ namespace Tizen.NUI
         {
             bool ret = Interop.PropertyValue.GetAngleAxis(SwigCPtr, AngleAxis.getCPtr(angleAxisValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get each components of Vector2. It will be failed if the type is not Vector2.
+        /// </summary>
+        /// <param name="xValue">X value of Vector2 component</param>
+        /// <param name="yValue">Y value of Vector2 component</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        internal bool GetVector2Component(out float xValue, out float yValue)
+        {
+            bool ret = Interop.PropertyValue.PropertyValueGetVector2Componentwise(SwigCPtr, out xValue, out yValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get each components of Vector3. It will be failed if the type is not Vector3.
+        /// </summary>
+        /// <param name="xValue">X value of Vector3 component</param>
+        /// <param name="yValue">Y value of Vector3 component</param>
+        /// <param name="zValue">Z value of Vector3 component</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        internal bool GetVector3Component(out float xValue, out float yValue, out float zValue)
+        {
+            bool ret = Interop.PropertyValue.PropertyValueGetVector3Componentwise(SwigCPtr, out xValue, out yValue, out zValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get each components of Vector4. It will be failed if the type is not Vector4.
+        /// </summary>
+        /// <param name="xValue">X value of Vector4 component</param>
+        /// <param name="yValue">Y value of Vector4 component</param>
+        /// <param name="zValue">Z value of Vector4 component</param>
+        /// <param name="wValue">W value of Vector4 component</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        internal bool GetVector4Component(out float xValue, out float yValue, out float zValue, out float wValue)
+        {
+            bool ret = Interop.PropertyValue.PropertyValueGetVector4Componentwise(SwigCPtr, out xValue, out yValue, out zValue, out wValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

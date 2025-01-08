@@ -26,84 +26,102 @@ namespace Tizen.NUI.BaseComponents
         /// ResourceURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceURLProperty = null;
+
+        internal static void SetInternalResourceURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             instance.InternalResourceURL = (string)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalResourceURLProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceURL;
-        });
+        }
 
         /// <summary>
         /// ResourceUrlProperty
         /// </summary>
+        /// <remarks>
+        /// This property does not have same logic with LottieAnimationView.ResourceUrl.
+        /// Should use new keyword!
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly new BindableProperty ResourceUrlProperty = null;
+
+        internal static new void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             instance.InternalResourceUrl = (string)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static new object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceUrl;
-        });
+        }
 
         /// <summary>
         /// RepeatCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RepeatCountProperty = BindableProperty.Create(nameof(RepeatCount), typeof(int), typeof(AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RepeatCountProperty = null;
+
+        internal static void SetInternalRepeatCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalRepeatCount = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalRepeatCountProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalRepeatCount;
-        });
+        }
 
         /// <summary>
         /// CurrentFrameProperty
         /// </summary>
+        /// <remarks>
+        /// This property does not have same logic with LottieAnimationView.CurrentFrame.
+        /// Should use new keyword!
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly new BindableProperty CurrentFrameProperty = null;
+
+        internal static new void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentFrame = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static new object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        }
 
         /// <summary>
         /// RepeatModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RepeatModeProperty = BindableProperty.Create(nameof(RepeatMode), typeof(RepeatModes), typeof(AnimatedVectorImageView), default(RepeatModes), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RepeatModeProperty = null;
+
+        static internal void SetInternalRepeatModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalRepeatMode = (Tizen.NUI.BaseComponents.AnimatedVectorImageView.RepeatModes)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        static internal object GetInternalRepeatModeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalRepeatMode;
-        });
+        }
     }
 }

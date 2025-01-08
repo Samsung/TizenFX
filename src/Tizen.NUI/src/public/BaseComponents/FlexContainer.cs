@@ -33,106 +33,141 @@ namespace Tizen.NUI.BaseComponents
     {
         /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create(nameof(ContentDirection), typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty ContentDirectionProperty = null;
+        internal static void SetInternalContentDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalContentDirectionProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection).Get(out temp);
             return (ContentDirectionType)temp;
-        }));
+        }
+
         /// <summary> Property of FlexDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create(nameof(FlexDirection), typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty FlexDirectionProperty = null;
+        internal static void SetInternalFlexDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalFlexDirectionProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection).Get(out temp);
             return (FlexDirectionType)temp;
-        }));
+        }
+
         /// <summary> Property of FlexWrap </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create(nameof(FlexWrap), typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty FlexWrapProperty = null;
+        internal static void SetInternalFlexWrapProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalFlexWrapProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap).Get(out temp);
             return (WrapType)temp;
-        }));
+        }
+
         /// <summary> Property of JustifyContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create(nameof(JustifyContent), typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty JustifyContentProperty = null;
+        internal static void SetInternalJustifyContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalJustifyContentProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent).Get(out temp);
             return (Justification)temp;
-        }));
+        }
+
         /// <summary> Property of AlignItems </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create(nameof(AlignItems), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty AlignItemsProperty = null;
+        internal static void SetInternalAlignItemsProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalAlignItemsProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems).Get(out temp);
             return (Alignment)temp;
-        }));
+        }
+
         /// <summary> Property of AlignContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignContentProperty = BindableProperty.Create(nameof(AlignContent), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty AlignContentProperty = null;
+        internal static void SetInternalAlignContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalAlignContentProperty(BindableObject bindable)
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent).Get(out temp);
             return (Alignment)temp;
-        }));
+        }
+
+        static FlexContainer()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ContentDirectionProperty = BindableProperty.Create(nameof(ContentDirection), typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit,
+                    propertyChanged: SetInternalContentDirectionProperty, defaultValueCreator: GetInternalContentDirectionProperty);
+
+                FlexDirectionProperty = BindableProperty.Create(nameof(FlexDirection), typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column,
+                    propertyChanged: SetInternalFlexDirectionProperty, defaultValueCreator: GetInternalFlexDirectionProperty);
+
+                FlexWrapProperty = BindableProperty.Create(nameof(FlexWrap), typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap,
+                    propertyChanged: SetInternalFlexWrapProperty, defaultValueCreator: GetInternalFlexWrapProperty);
+
+                JustifyContentProperty = BindableProperty.Create(nameof(JustifyContent), typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart,
+                    propertyChanged: SetInternalJustifyContentProperty, defaultValueCreator: GetInternalJustifyContentProperty);
+
+                AlignItemsProperty = BindableProperty.Create(nameof(AlignItems), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto,
+                    propertyChanged: SetInternalAlignItemsProperty, defaultValueCreator: GetInternalAlignItemsProperty);
+
+                AlignContentProperty = BindableProperty.Create(nameof(AlignContent), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto,
+                    propertyChanged: SetInternalAlignContentProperty, defaultValueCreator: GetInternalAlignContentProperty);
+            }
+        }
 
 
         /// <summary>
@@ -323,11 +358,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (ContentDirectionType)GetValue(ContentDirectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (ContentDirectionType)GetValue(ContentDirectionProperty);
+                }
+                else
+                {
+                    return (ContentDirectionType)GetInternalContentDirectionProperty(this);
+                }
             }
             set
             {
-                SetValue(ContentDirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ContentDirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalContentDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -341,11 +390,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (FlexDirectionType)GetValue(FlexDirectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (FlexDirectionType)GetValue(FlexDirectionProperty);
+                }
+                else
+                {
+                    return (FlexDirectionType)GetInternalFlexDirectionProperty(this);
+                }
             }
             set
             {
-                SetValue(FlexDirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FlexDirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalFlexDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -359,11 +422,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (WrapType)GetValue(FlexWrapProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (WrapType)GetValue(FlexWrapProperty);
+                }
+                else
+                {
+                    return (WrapType)GetInternalFlexWrapProperty(this);
+                }
             }
             set
             {
-                SetValue(FlexWrapProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FlexWrapProperty, value);
+                }
+                else
+                {
+                    SetInternalFlexWrapProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -377,11 +454,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Justification)GetValue(JustifyContentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Justification)GetValue(JustifyContentProperty);
+                }
+                else
+                {
+                    return (Justification)GetInternalJustifyContentProperty(this);
+                }
             }
             set
             {
-                SetValue(JustifyContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(JustifyContentProperty, value);
+                }
+                else
+                {
+                    SetInternalJustifyContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -395,11 +486,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Alignment)GetValue(AlignItemsProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Alignment)GetValue(AlignItemsProperty);
+                }
+                else
+                {
+                    return (Alignment)GetInternalAlignItemsProperty(this);
+                }
             }
             set
             {
-                SetValue(AlignItemsProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AlignItemsProperty, value);
+                }
+                else
+                {
+                    SetInternalAlignItemsProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -413,11 +518,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Alignment)GetValue(AlignContentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Alignment)GetValue(AlignContentProperty);
+                }
+                else
+                {
+                    return (Alignment)GetInternalAlignContentProperty(this);
+                }
             }
             set
             {
-                SetValue(AlignContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AlignContentProperty, value);
+                }
+                else
+                {
+                    SetInternalAlignContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

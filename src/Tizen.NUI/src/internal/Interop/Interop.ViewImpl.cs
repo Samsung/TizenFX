@@ -85,9 +85,6 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsKeyboardFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_AccessibilityActivate")]
-            public static extern void AccessibilityActivate(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_KeyboardEnter")]
             public static extern void KeyboardEnter(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -150,17 +147,12 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_18 delegate18, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_19 delegate19,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_20 delegate20, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_21 delegate21,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_24 delegate24, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_25 delegate25,
-                Tizen.NUI.ViewImpl.SwigDelegateViewImpl_26 delegate26,
-                Tizen.NUI.ViewImpl.SwigDelegateViewImpl_28 delegate28, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_29 delegate29,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_30 delegate30, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_31 delegate31,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_32 delegate32, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_33 delegate33,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_34 delegate34, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_35 delegate35,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_36 delegate36, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_37 delegate37,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_38 delegate38, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_39 delegate39,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_40 delegate40);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

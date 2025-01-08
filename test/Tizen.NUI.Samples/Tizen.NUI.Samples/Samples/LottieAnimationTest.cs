@@ -9,8 +9,10 @@ namespace Tizen.NUI.Samples
         {
             lav = new LottieAnimationView();
             lav.SynchronousLoading = false;
+            lav.NotifyAfterRasterization = true;
             lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "a.json";
             lav.LoopCount = -1;
+            lav.FrameSpeedFactor = 2.0f; // 2x speed
             lav.BackgroundColor = Color.White;
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(lav);
             Tizen.Log.Error("NUI", $"Total frame before resource ready : {lav.TotalFrame} / might be 0 if still load images. or, might be valid value if load finished during above logic running.\n");

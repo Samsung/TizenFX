@@ -28,7 +28,7 @@ namespace Tizen.NUI
         private bool? antiAliasing = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of BorderVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public BorderVisual() : base()

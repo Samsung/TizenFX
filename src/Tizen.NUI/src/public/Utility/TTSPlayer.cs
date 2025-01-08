@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TTSPlayer : BaseHandle
     {
-        private static readonly TTSPlayer instance = TTSPlayer.Get();
+        private static readonly TTSPlayer[] instance = {TTSPlayer.GetInternal(TTSMode.Default), TTSPlayer.GetInternal(TTSMode.Notification), TTSPlayer.GetInternal(TTSMode.ScreenReader)};
         private StateChangedEventCallbackType stateChangedEventCallback;
 
         internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         private event EventHandler<StateChangedEventArgs> stateChangedEventHandler;
 
         /// <summary>
-        /// State changed event.
+        /// The StateChanged event is triggered when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return instance;
+                return instance[(int)TTSMode.Default];
             }
         }
 
@@ -149,11 +149,32 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get(TTSMode mode)
         {
-            global::System.IntPtr cPtr = Interop.TtsPlayer.Get((int)mode);
+            return instance[(int)mode];
+        }
+
+        /// <summary>
+        /// Gets the singleton of the TTS player for the default mode.
+        /// </summary>
+        /// <returns> A handle of the TTS player for the default mode.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static TTSPlayer Get()
+        {
+            return TTSPlayer.Instance;
+        }
+
+        private static TTSPlayer GetInternal(TTSMode mode)
+        {
+            global::System.IntPtr cPtr = Interop.TtsPlayer.Get((int) mode);
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("TTSPlayer.Instance called before Application created, or after Application terminated!");
+            }
 
             TTSPlayer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TTSPlayer;
             if (ret != null)
             {
+                NUILog.ErrorBacktrace("TTSPlayer.GetInternal() Should be called only one time!");
                 object dummyObect = new object();
 
                 HandleRef CPtr = new HandleRef(dummyObect, cPtr);
@@ -169,31 +190,17 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Gets the singleton of the TTS player for the default mode.
-        /// </summary>
-        /// <returns> A handle of the TTS player for the default mode.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static TTSPlayer Get()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
         {
-            global::System.IntPtr cPtr = Interop.TtsPlayer.Get();
-
-            TTSPlayer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TTSPlayer;
-            if (ret != null)
+            if (disposing)
             {
-                object dummyObect = new object();
-
-                HandleRef CPtr = new HandleRef(dummyObect, cPtr);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
             }
             else
             {
-                ret = new TTSPlayer(cPtr, true);
+                base.Dispose(disposing);
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -281,13 +288,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// State changed argument.
+        /// This class represents the event arguments used when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// PrevState.
+            /// The previous state of the TTS player before the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TTSState PrevState
@@ -297,7 +304,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// NextState.
+            /// The new state of the TTS player after the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TTSState NextState

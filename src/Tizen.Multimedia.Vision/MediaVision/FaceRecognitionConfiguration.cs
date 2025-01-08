@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class FaceRecognitionConfiguration : EngineConfiguration
     {
         private const string KeyModelType = "MV_FACE_RECOGNITION_MODEL_TYPE";
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceRecognitionConfiguration() : base("face_recognition")
         {
         }
@@ -42,6 +44,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public FaceRecognitionModelType ModelType
         {
             get

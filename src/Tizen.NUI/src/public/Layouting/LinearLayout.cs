@@ -23,14 +23,14 @@ using System.Linq;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class implements a linear box layout, automatically handling right to left or left to right direction change.
+    /// This class implements a linear box layout, automatically handling right to left or left to right direction change.
     /// </summary>
     public class LinearLayout : LayoutGroup
     {
         private Alignment linearAlignment = Alignment.Top;
 
         /// <summary>
-        /// [Draft] Enumeration for the direction in which the content is laid out
+        /// Enumeration for the direction in which the content is laid out
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public enum Orientation
@@ -46,7 +46,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Enumeration for the alignment of the linear layout items
+        /// Enumeration for the alignment of the linear layout items
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use HorizontalAlignment and VerticalAlignment instead.")]
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the orientation in the layout
+        /// Get/Set the orientation in the layout
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public LinearLayout.Orientation LinearOrientation
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Get/Set the padding between cells in the layout
+        /// Get/Set the padding between cells in the layout
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Size2D CellPadding
@@ -135,7 +135,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// [Draft] Get/Set the alignment in the layout
+        /// Get/Set the alignment in the layout
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use HorizontalAlignment and VerticalAlignment properties instead.")]
@@ -202,7 +202,7 @@ namespace Tizen.NUI
         private Orientation linearOrientation = Orientation.Horizontal;
 
         /// <summary>
-        /// [Draft] Constructor
+        /// Default constructor of LinearLayout class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public LinearLayout()
@@ -623,7 +623,7 @@ namespace Tizen.NUI
                 // Child layout1 is MatchParent and its margin is 20. (This margin is not ad
                 // Child layout2 is MatchParent and its margin is 0.
                 // Then, child layout1's size is 30 and child layout2's size is 50.
-                if ((childDesiredHeight == LayoutParamPolicies.WrapContent) || ((childDesiredHeight > 0) && (!useRemainingHeight)))
+                if ((childDesiredHeight == LayoutParamPolicies.WrapContent) || ((childDesiredHeight >= 0) && (!useRemainingHeight)))
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 

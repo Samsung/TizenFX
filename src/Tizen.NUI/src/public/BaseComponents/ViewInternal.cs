@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using global::System.Diagnostics;
 using Tizen.NUI;
 
@@ -51,7 +52,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
-        private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
+        // TODO : Re-open this API when we resolve Animation issue.
+        // private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
 
         internal virtual LayoutItem CreateDefaultLayout()
         {
@@ -495,7 +497,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentParentOrigin()
         {
 
-            if(internalCurrentParentOrigin == null)
+            if (internalCurrentParentOrigin == null)
             {
                 internalCurrentParentOrigin = new Position(0, 0, 0);
             }
@@ -519,7 +521,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentAnchorPoint()
         {
 
-            if(internalCurrentAnchorPoint == null)
+            if (internalCurrentAnchorPoint == null)
             {
                 internalCurrentAnchorPoint = new Position(0, 0, 0);
             }
@@ -564,7 +566,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetTargetSize()
         {
 
-            if(internalTargetSize == null)
+            if (internalTargetSize == null)
             {
                 internalTargetSize = new Vector3(0, 0, 0);
             }
@@ -581,7 +583,7 @@ namespace Tizen.NUI.BaseComponents
         internal Size2D GetCurrentSize()
         {
 
-            if(internalCurrentSize == null)
+            if (internalCurrentSize == null)
             {
                 internalCurrentSize = new Size2D(0, 0);
             }
@@ -646,7 +648,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentPosition()
         {
 
-            if(internalCurrentPosition == null)
+            if (internalCurrentPosition == null)
             {
                 internalCurrentPosition = new Position(0, 0, 0);
             }
@@ -662,7 +664,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetCurrentWorldPosition()
         {
 
-            if(internalCurrentWorldPosition == null)
+            if (internalCurrentWorldPosition == null)
             {
                 internalCurrentWorldPosition = new Vector3(0, 0, 0);
             }
@@ -679,7 +681,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector2 GetCurrentScreenPosition()
         {
 
-            if(internalCurrentScreenPosition == null)
+            if (internalCurrentScreenPosition == null)
             {
                 internalCurrentScreenPosition = new Vector2(0, 0);
             }
@@ -791,7 +793,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetCurrentScale()
         {
 
-            if(internalCurrentScale == null)
+            if (internalCurrentScale == null)
             {
                 internalCurrentScale = new Vector3(0, 0, 0);
             }
@@ -808,7 +810,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetCurrentWorldScale()
         {
 
-            if(internalCurrentWorldScale == null)
+            if (internalCurrentWorldScale == null)
             {
                 internalCurrentWorldScale = new Vector3(0, 0, 0);
             }
@@ -885,7 +887,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector4 GetCurrentColor()
         {
 
-            if(internalCurrentColor == null)
+            if (internalCurrentColor == null)
             {
                 internalCurrentColor = new Vector4(0, 0, 0, 0);
             }
@@ -909,7 +911,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector4 GetCurrentWorldColor()
         {
 
-            if(internalCurrentWorldColor == null)
+            if (internalCurrentWorldColor == null)
             {
                 internalCurrentWorldColor = new Vector4(0, 0, 0, 0);
             }
@@ -1001,12 +1003,12 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetSizeModeFactor()
         {
 
-                if (internalSizeModeFactor == null)
-                {
-                    internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
-                return internalSizeModeFactor;
+            if (internalSizeModeFactor == null)
+            {
+                internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
+            return internalSizeModeFactor;
         }
 
         internal void SetMinimumSize(Vector2 size)
@@ -1143,12 +1145,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal void RemoveChild(View child)
         {
-            // If the view had focus, it clears focus.
-            if (child == FocusManager.Instance.GetCurrentFocusView())
-            {
-                Tizen.Log.Debug("NUI", $"ClearFocus due to View id:({child.ID}) removed from scene\n");
-                FocusManager.Instance.ClearFocus();
-            }
             // Do actual child removal
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1217,7 +1213,8 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateBackgroundExtraData(object source, EventArgs e)
         {
             // Note : To allow event attachment during UpdateBackgroundExtraData, let we make flag as false before call UpdateBackgroundExtraData().
-            backgroundExtraDataUpdateProcessAttachedFlag = false;
+            // TODO : Re-open this API when we resolve Animation issue.
+            // backgroundExtraDataUpdateProcessAttachedFlag = false;
             UpdateBackgroundExtraData();
         }
 
@@ -1227,6 +1224,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal virtual void UpdateBackgroundExtraData()
         {
+            if (Disposed)
+            {
+                return;
+            }
+
             if (backgroundExtraData == null)
             {
                 return;
@@ -1257,7 +1259,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
         }
 
-        /// TODO open as a protected level
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal virtual void ApplyCornerRadius()
         {
             if (backgroundExtraData == null) return;
@@ -1269,6 +1271,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
                 Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
             if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ShadowCornerRadius))
@@ -1277,11 +1283,15 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
                 Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
         }
 
-        /// TODO open as a protected level
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;
@@ -1333,6 +1343,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal T GetAttached<T>()
+        {
+            if (attached != null && attached.ContainsKey(typeof(T)))
+                return (T)attached[typeof(T)];
+            return default;
+        }
+
+        internal void ClearAttached<T>()
+        {
+            attached?.Remove(typeof(T));
+        }
+
+        internal void SetAttached<T>(T value)
+        {
+            attached ??= new Dictionary<Type, object>();
+            attached[typeof(T)] = value;
+        }
+
         /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
@@ -1355,76 +1383,93 @@ namespace Tizen.NUI.BaseComponents
 
             //_mergedStyle = null;
 
-            internalMaximumSize?.Dispose();
-            internalMaximumSize = null;
-            internalMinimumSize?.Dispose();
-            internalMinimumSize = null;
-            internalMargin?.Dispose();
-            internalMargin = null;
-            internalPadding?.Dispose();
-            internalPadding = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCellIndex?.Dispose();
-            internalCellIndex = null;
-            internalBackgroundColor?.Dispose();
-            internalBackgroundColor = null;
-            internalColor?.Dispose();
-            internalColor = null;
-            internalPivotPoint?.Dispose();
-            internalPivotPoint = null;
-            internalPosition?.Dispose();
-            internalPosition = null;
-            internalPosition2D?.Dispose();
-            internalPosition2D = null;
-            internalScale?.Dispose();
-            internalScale = null;
-            internalSize?.Dispose();
-            internalSize = null;
-            internalSize2D?.Dispose();
-            internalSize2D = null;
-
-            panGestureDetector?.Dispose();
-            panGestureDetector = null;
-            longGestureDetector?.Dispose();
-            longGestureDetector = null;
-            pinchGestureDetector?.Dispose();
-            pinchGestureDetector = null;
-            tapGestureDetector?.Dispose();
-            tapGestureDetector = null;
-            rotationGestureDetector?.Dispose();
-            rotationGestureDetector = null;
-
-            internalCurrentParentOrigin?.Dispose();
-            internalCurrentParentOrigin = null;
-            internalCurrentAnchorPoint?.Dispose();
-            internalCurrentAnchorPoint = null;
-            internalTargetSize?.Dispose();
-            internalTargetSize = null;
-            internalCurrentSize?.Dispose();
-            internalCurrentSize = null;
-            internalCurrentPosition?.Dispose();
-            internalCurrentPosition = null;
-            internalCurrentWorldPosition?.Dispose();
-            internalCurrentWorldPosition = null;
-            internalCurrentScale?.Dispose();
-            internalCurrentScale = null;
-            internalCurrentWorldScale?.Dispose();
-            internalCurrentWorldScale = null;
-            internalCurrentColor?.Dispose();
-            internalCurrentColor = null;
-            internalCurrentWorldColor?.Dispose();
-            internalCurrentWorldColor = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCurrentScreenPosition?.Dispose();
-            internalCurrentScreenPosition = null;
-
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                internalMaximumSize?.Dispose();
+                internalMaximumSize = null;
+                internalMinimumSize?.Dispose();
+                internalMinimumSize = null;
+                internalMargin?.Dispose();
+                internalMargin = null;
+                internalPadding?.Dispose();
+                internalPadding = null;
+                internalSizeModeFactor?.Dispose();
+                internalSizeModeFactor = null;
+                internalCellIndex?.Dispose();
+                internalCellIndex = null;
+                internalBackgroundColor?.Dispose();
+                internalBackgroundColor = null;
+                internalColor?.Dispose();
+                internalColor = null;
+                internalPivotPoint?.Dispose();
+                internalPivotPoint = null;
+                internalPosition?.Dispose();
+                internalPosition = null;
+                internalPosition2D?.Dispose();
+                internalPosition2D = null;
+                internalScale?.Dispose();
+                internalScale = null;
+                internalSize?.Dispose();
+                internalSize = null;
+                internalSize2D?.Dispose();
+                internalSize2D = null;
+
+                panGestureDetector?.Dispose();
+                panGestureDetector = null;
+                longGestureDetector?.Dispose();
+                longGestureDetector = null;
+                pinchGestureDetector?.Dispose();
+                pinchGestureDetector = null;
+                tapGestureDetector?.Dispose();
+                tapGestureDetector = null;
+                rotationGestureDetector?.Dispose();
+                rotationGestureDetector = null;
+
+                internalCurrentParentOrigin?.Dispose();
+                internalCurrentParentOrigin = null;
+                internalCurrentAnchorPoint?.Dispose();
+                internalCurrentAnchorPoint = null;
+                internalTargetSize?.Dispose();
+                internalTargetSize = null;
+                internalCurrentSize?.Dispose();
+                internalCurrentSize = null;
+                internalCurrentPosition?.Dispose();
+                internalCurrentPosition = null;
+                internalCurrentWorldPosition?.Dispose();
+                internalCurrentWorldPosition = null;
+                internalCurrentScale?.Dispose();
+                internalCurrentScale = null;
+                internalCurrentWorldScale?.Dispose();
+                internalCurrentWorldScale = null;
+                internalCurrentColor?.Dispose();
+                internalCurrentColor = null;
+                internalCurrentWorldColor?.Dispose();
+                internalCurrentWorldColor = null;
+                internalSizeModeFactor?.Dispose();
+                internalSizeModeFactor = null;
+                internalCurrentScreenPosition?.Dispose();
+                internalCurrentScreenPosition = null;
+
+                if (visualContainers != null)
+                {
+                    foreach (var visualContainer in visualContainers)
+                    {
+                        visualContainer?.Dispose();
+                    }
+                    visualContainers = null;
+                }
+
+                foreach (View view in Children)
+                {
+                    if (view != null)
+                    {
+                        view.InternalParent = null;
+                    }
+                }
+
                 if (themeData != null)
                 {
                     themeData.selectorData?.Reset(this);
@@ -1443,25 +1488,18 @@ namespace Tizen.NUI.BaseComponents
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
                 }
+
+                attached?.Clear();
+                attached = null;
+
+                DisConnectFromSignals();
             }
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            DisConnectFromSignals();
-
-            foreach (View view in Children)
-            {
-                view.InternalParent = null;
-            }
-
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-            if (backgroundExtraDataUpdateProcessAttachedFlag)
-            {
-                ProcessorController.Instance.ProcessorOnceEvent -= UpdateBackgroundExtraData;
-                backgroundExtraDataUpdateProcessAttachedFlag = false;
-            }
 
             LayoutCount = 0;
 
@@ -1614,6 +1652,14 @@ namespace Tizen.NUI.BaseComponents
                 hitTestResultDataCallback = null;
             }
 
+            if (visibilityChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
+
+                Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                visibilityChangedEventCallback = null;
+            }
 
             if (interceptTouchDataCallback != null)
             {
@@ -1622,6 +1668,15 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 interceptTouchDataCallback = null;
+            }
+
+            if (layoutDirectionChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
+
+                Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                layoutDirectionChangedEventCallback = null;
             }
 
             if (touchDataCallback != null)
@@ -1680,6 +1735,97 @@ namespace Tizen.NUI.BaseComponents
                 backgroundResourceLoadedCallback = null;
             }
 
+            // For ViewAccessibility
+            if (gestureInfoCallback != null)
+            {
+                NUILog.Debug($"[Dispose] gestureInfoCallback");
+
+                gestureInfoSignal?.Disconnect(gestureInfoCallback);
+                gestureInfoSignal?.Dispose();
+                gestureInfoSignal = null;
+                gestureInfoCallback = null;
+            }
+
+            if (getDescriptionCallback != null)
+            {
+                NUILog.Debug($"[Dispose] getDescriptionCallback");
+
+                getDescriptionSignal?.Disconnect(getDescriptionCallback);
+                getDescriptionSignal?.Dispose();
+                getDescriptionSignal = null;
+                getDescriptionCallback = null;
+            }
+
+            if (getNameCallback != null)
+            {
+                NUILog.Debug($"[Dispose] getNameCallback");
+
+                getNameSignal?.Disconnect(getNameCallback);
+                getNameSignal?.Dispose();
+                getNameSignal = null;
+                getNameCallback = null;
+            }
+
+            if (activateCallback != null)
+            {
+                NUILog.Debug($"[Dispose] activateCallback");
+
+                ActivateSignal?.Disconnect(activateCallback);
+                ActivateSignal?.Dispose();
+                ActivateSignal = null;
+                activateCallback = null;
+            }
+
+            if (readingSkippedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingSkippedCallback");
+
+                ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
+                ReadingSkippedSignal?.Dispose();
+                ReadingSkippedSignal = null;
+                readingSkippedCallback = null;
+            }
+
+            if (readingPausedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingPausedCallback");
+
+                ReadingPausedSignal?.Disconnect(readingPausedCallback);
+                ReadingPausedSignal?.Dispose();
+                ReadingPausedSignal = null;
+                readingPausedCallback = null;
+            }
+
+            if (readingResumedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingResumedCallback");
+
+                ReadingResumedSignal?.Disconnect(readingResumedCallback);
+                ReadingResumedSignal?.Dispose();
+                ReadingResumedSignal = null;
+                readingResumedCallback = null;
+            }
+
+            if (readingCancelledCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingCancelledCallback");
+
+                ReadingCancelledSignal?.Disconnect(readingCancelledCallback);
+                ReadingCancelledSignal?.Dispose();
+                ReadingCancelledSignal = null;
+                readingCancelledCallback = null;
+            }
+
+            if (readingStoppedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] readingStoppedCallback");
+
+                ReadingStoppedSignal?.Disconnect(readingStoppedCallback);
+                ReadingStoppedSignal?.Dispose();
+                ReadingStoppedSignal = null;
+                readingStoppedCallback = null;
+            }
+
             NDalicPINVOKE.ThrowExceptionIfExists();
             NUILog.Debug($"[Dispose] DisConnectFromSignals END");
         }
@@ -1688,7 +1834,7 @@ namespace Tizen.NUI.BaseComponents
         /// Apply initial style to the view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void InitializeStyle(ViewStyle style = null)
+        protected void InitializeStyle(ViewStyle style = null)
         {
             if (style == null && ThemeManager.InitialThemeDisabled)
             {
@@ -1818,5 +1964,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void NotifyBackgroundChanged()
+        {
+            // NOTE
+            // Notify background modifications caused by one of BackgroundColor, BackgroundImage, Background and ClearBackground()
+            // By using reserved keyword "_background", user may get notified all background modifications.
+            NotifyPropertyChanged("_background");
+        }
     }
 }

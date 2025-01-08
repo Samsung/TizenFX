@@ -24,6 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class PersonRecognitionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyFaceRecognitionModelFilePath = "MV_SURVEILLANCE_FACE_RECOGNITION_MODEL_FILE_PATH";
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="modelPath"/> is null.</exception>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public PersonRecognitionConfiguration(string modelPath)
         {
             FaceRecognitionModelPath = modelPath;
@@ -46,6 +48,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="PersonRecognitionConfiguration"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string FaceRecognitionModelPath
         {
             get

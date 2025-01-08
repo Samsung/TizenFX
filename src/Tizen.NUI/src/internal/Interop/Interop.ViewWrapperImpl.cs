@@ -21,8 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewWrapperImpl
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get")]
             public static extern int ControlBehaviourFlagCountGet();
@@ -32,9 +30,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_New")]
             public static extern global::System.IntPtr New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ViewWrapperImpl")]
-            public static extern void DeleteViewWrapperImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_director_connect")]
             public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1,
@@ -49,8 +44,6 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_18 delegate18, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_19 delegate19,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_20 delegate20, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_21 delegate21,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_24 delegate24, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_25 delegate25,
-                Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_26 delegate26,
-                Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_28 delegate28, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_29 delegate29,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_30 delegate30, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_31 delegate31,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_32 delegate32, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_33 delegate33,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_34 delegate34, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_35 delegate35,
@@ -105,9 +98,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_ApplyThemeStyle")]
             public static extern void ApplyThemeStyle(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetControlWrapperImpl__SWIG_0")]
-            public static extern global::System.IntPtr GetControlWrapperImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

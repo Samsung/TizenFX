@@ -579,13 +579,13 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("CollectionView InternalItemSource.")]
-        [Property("SPEC", "Tizen.NUI.Components.CollectionView.InternalItemSource A")]
+        [Description("CollectionView InternalSource.")]
+        [Property("SPEC", "Tizen.NUI.Components.CollectionView.InternalSource A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "huayong.xu@samsung.com")]
-        public void CollectionViewInternalItemSource()
+        public void CollectionViewInternalSource()
         {
             tlog.Debug(tag, $"CollectionViewInternalItemSource START");
 
@@ -595,8 +595,8 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<CollectionView>(testingTarget, "should be an instance of testing target class!");
 
-            testingTarget.InternalItemSource = null;
-            Assert.IsNull(testingTarget.InternalItemSource, "should be null.");
+            testingTarget.InternalSource = null;
+            Assert.IsNull(testingTarget.InternalSource, "should be null.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"CollectionViewInternalItemSource END (OK)");

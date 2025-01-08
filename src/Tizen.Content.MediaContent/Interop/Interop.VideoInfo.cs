@@ -23,7 +23,7 @@ internal static partial class Interop
     internal static partial class VideoInfo
     {
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_destroy", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError Destroy(IntPtr handle);
+        internal static extern MediaContentError Destroy(IntPtr handle); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetAlbum(IntPtr handle, out IntPtr albumName); // Deprecated since API12
@@ -59,9 +59,9 @@ internal static partial class Interop
         internal static extern MediaContentError GetDuration(IntPtr handle, out int duration); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_width", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetWidth(IntPtr handle, out int width);
+        internal static extern MediaContentError GetWidth(IntPtr handle, out int width); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_height", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetHeight(IntPtr handle, out int width);
+        internal static extern MediaContentError GetHeight(IntPtr handle, out int width); // Deprecated since API12
     }
 }

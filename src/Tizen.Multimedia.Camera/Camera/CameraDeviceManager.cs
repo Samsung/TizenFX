@@ -66,6 +66,28 @@ namespace Tizen.Multimedia
                             .Any();
 
         /// <summary>
+        /// Gets the state of Camera Device Manager support.
+        /// </summary>
+        /// <returns>true if camera device manager is supported.</returns>
+        /// <since_tizen> 11 </since_tizen>
+        public static bool IsCameraDeviceManagerSupported
+        {
+            get
+            {
+                try
+                {
+                    using (var cameraDeviceManager = new CameraDeviceManager()) {}
+                }
+                catch (NotSupportedException)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Retrieves all the supported camera devices and returns its information.
         /// </summary>
         /// <returns>
@@ -123,7 +145,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.GetProductId(Handle, out ushort productId).ThrowIfFailed("failed to get product ID");
+            Native.GetProductId(Handle, device, out ushort productId).ThrowIfFailed("failed to get product ID");
 
             return productId;
         }
@@ -138,7 +160,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.GetVendorId(Handle, out ushort vendorId).ThrowIfFailed("failed to get vendor ID");
+            Native.GetVendorId(Handle, device, out ushort vendorId).ThrowIfFailed("failed to get vendor ID");
 
             return vendorId;
         }

@@ -37,7 +37,7 @@ namespace Tizen.NUI
         {
             string result = value.ToString();
             FieldInfo info = typeof(T).GetField(result);
-            var attributes = info.GetCustomAttributes(typeof(DescriptionAttribute), true);
+            var attributes = info?.GetCustomAttributes(typeof(DescriptionAttribute), true);
             if (null != attributes?.FirstOrDefault() && attributes?.First() as DescriptionAttribute is var firstAttribute && firstAttribute != null)
             {
                 result = firstAttribute.Description;
@@ -74,7 +74,7 @@ namespace Tizen.NUI
                 }
             }
 
-            var value = type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault().GetValue(null);
+            var value = type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault()?.GetValue(null);
             return value != null ? (T)value : default(T);
             //throw new ArgumentException($"{description} can't be found.", "Description");
         }

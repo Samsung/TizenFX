@@ -26,7 +26,7 @@ using Tizen.NUI.StyleSheets;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.BindablePropertyConverter")]
     [TypeConversion(typeof(BindableProperty))]
@@ -92,7 +92,7 @@ namespace Tizen.NUI.Binding
             throw new XamlParseException($"Can't resolve {value}. Syntax is [[prefix:]Type.]PropertyName.", lineinfo);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Binding
                 return null;
             }
             Type type = Type.GetType("Tizen.NUI." + parts[0]);
-            return ConvertFrom(type, parts[1], null);
+            return type == null ? null : ConvertFrom(type, parts[1], null);
         }
 
         BindableProperty ConvertFrom(Type type, string propertyName, IXmlLineInfo lineinfo)

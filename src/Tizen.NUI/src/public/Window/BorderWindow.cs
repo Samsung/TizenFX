@@ -289,14 +289,16 @@ namespace Tizen.NUI
                 if (hasBottomView) borderHeight += bottomView.SizeHeight;
 
                 // Sets the minimum / maximum size to be resized by RequestResizeToServer.
-                if (borderInterface.MinSize != null)
+                var minSize = borderInterface.MinSize;
+                if (null != minSize)
                 {
-                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width + (int)borderInterface.BorderLineThickness * 2, borderInterface.MinSize.Height + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
+                    using Size2D mimimumSize = new Size2D(minSize.Width + (int)borderInterface.BorderLineThickness * 2, minSize.Height + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                     SetMimimumSize(mimimumSize);
                 }
-                if (borderInterface.MaxSize != null)
+                var maxSize = borderInterface.MaxSize;
+                if (null != maxSize)
                 {
-                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width + (int)borderInterface.BorderLineThickness * 2, borderInterface.MaxSize.Height + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
+                    using Size2D maximumSize = new Size2D(maxSize.Width + (int)borderInterface.BorderLineThickness * 2, maxSize.Height + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                     SetMaximumSize(maximumSize);
                 }
 

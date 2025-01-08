@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// This class provides the methods for encrypting and decrypting data.
+    /// Provides the methods for encrypting and decrypting data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Cipher
@@ -27,18 +27,21 @@ namespace Tizen.Security.SecureRepository.Crypto
         private readonly CipherParameters _parameters;
 
         /// <summary>
-        /// A constructor of Cipher that takes the algorithm specific parameters.
+        /// Initializes an instance of Cipher class with CipherParameters.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="parameters">The algorithm specific parameters.</param>
+        /// <param name="parameters">Algorithm specific parameters.</param>
         public Cipher(CipherParameters parameters)
         {
             _parameters = parameters;
         }
 
         /// <summary>
-        /// The algorithm specific parameters.
+        /// Gets algorithm specific parameters.
         /// </summary>
+        /// <value>
+        /// Algorithm specific parameters.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public CipherParameters Parameters
         {
@@ -46,34 +49,35 @@ namespace Tizen.Security.SecureRepository.Crypto
         }
 
         /// <summary>
-        /// Decrypts data using the selected key and the algorithm.
+        /// Decrypts data using selected key and the algorithm.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="keyAlias">Alias of the key to be used for decryption.</param>
-        /// <param name="password">
-        /// The password used in decrypting a key value. If password of policy is
-        /// provided in SaveKey(), the same password should be provided.
-        /// </param>
-        /// <param name="cipherText">
-        /// Data to be decrypted (some algorithms may require additional information
-        /// embedded in encrypted data.AES GCM is an example).
-        /// </param>
-        /// <returns>Decrypted data.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// The keyAlias or cipherText is null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// The mandatory algorithm parameter is missing or invalid.
-        /// The optional algorithm parameter is invalid.
-        /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The key-protecting password isn't matched.
-        /// The key does not exist with the keyAlias.
-        /// </exception>
         /// <remarks>
-        /// The key type specified by keyAlias should be compatible with the algorithm
+        /// Key type specified by keyAlias should be compatible with the algorithm
         /// specified in Parameters.
         /// </remarks>
+        /// <remarks>
+        /// If password of policy is provided in SaveKey(), the same password should be provided.
+        /// </remarks>
+        /// <remarks>
+        /// Some algorithms may require additional information embedded in encrypted data.
+        /// AES GCM is an example.
+        /// </remarks>
+        /// <param name="keyAlias">Alias of the key to be used for decryption.</param>
+        /// <param name="password">Password used in decrypting a key value.</param>
+        /// <param name="cipherText">Data to be decrypted.</param>
+        /// <returns>Decrypted data.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="keyAlias"/> or <paramref name="cipherText"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when mandatory algorithm parameter is missing or invalid.
+        /// Thrown when optional algorithm parameter is invalid.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when key-protecting password does not match.
+        /// Thrown when key does not exist with given keyAlias.
+        /// </exception>
         public byte[] Decrypt(string keyAlias, string password, byte[] cipherText)
         {
             if (keyAlias == null || cipherText == null)
@@ -103,33 +107,34 @@ namespace Tizen.Security.SecureRepository.Crypto
         /// Encrypts data using selected key and algorithm.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="keyAlias">Alias of the key to be used for encryption.</param>
-        /// <param name="password">
-        /// The password used in decrypting a key value. If password of policy is
-        /// provided in SaveKey(), the same password should be provided.
-        /// </param>
-        /// <param name="plainText">
-        /// Data to be encrypted. In case of the AES algorithm, there are no restrictions on
-        /// the size of data. For RSA, the size must be smaller or equal to (key_size_in
-        /// bytes - 42). Example: For 1024 RSA key, the maximum data size is
-        /// 1024/8 - 42 = 86.
-        /// </param>
-        /// <returns>Encrypted data.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// The keyAlias or plainText is null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// The mandatory algorithm parameter is missing or invalid.
-        /// The optional algorithm parameter is invalid.
-        /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The key-protecting password isn't matched.
-        /// The key does not exist with the keyAlias.
-        /// </exception>
         /// <remarks>
-        /// The key type specified by the keyAlias should be compatible with the algorithm
+        /// Key type specified by the keyAlias should be compatible with the algorithm
         /// specified in Parameters.
         /// </remarks>
+        /// <remarks>
+        /// If password of policy is provided in SaveKey(), the same password should be provided.
+        /// </remarks>
+        /// <remarks>
+        /// In case of the AES algorithm, there are no restrictions on
+        /// the size of plaintext data. For RSA, the size must be smaller or equal to (key_size_in
+        /// bytes - 42). Example: For 1024 RSA key, the maximum data size is
+        /// 1024/8 - 42 = 86.
+        /// </remarks>
+        /// <param name="keyAlias">Alias of the key to be used for encryption.</param>
+        /// <param name="password">Password used in decrypting a key value.</param>
+        /// <param name="plainText">Data to be encrypted.</param>
+        /// <returns>Encrypted data.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="keyAlias"/> or <paramref name="plainText"/> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when mandatory algorithm parameter is missing or invalid.
+        /// Thrown when optional algorithm parameter is invalid.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when key-protecting password does not match.
+        /// Thrown when key does not exist with given <paramref name="keyAlias"/>.
+        /// </exception>
         public byte[] Encrypt(string keyAlias, string password, byte[] plainText)
         {
             if (keyAlias == null || plainText == null)

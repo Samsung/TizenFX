@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
 {
@@ -963,8 +962,6 @@ namespace Tizen.NUI.Components
 
             WheelEvent += OnWheelEvent;
 
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
-
             SetKeyboardNavigationSupport(true);
         }
 
@@ -1205,7 +1202,7 @@ namespace Tizen.NUI.Components
             scrolling = false;
             this.InterceptTouchEvent -= OnInterruptTouchingChildTouched;
 
-            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            ScrollEventArgs eventArgs = new ScrollEventArgs((ContentContainer != null) ? ContentContainer.CurrentPosition : Position.Zero);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
             EmitScrollFinishedEvent();
 
@@ -1388,9 +1385,9 @@ namespace Tizen.NUI.Components
                 mPanGestureDetector?.Dispose();
                 mPanGestureDetector = null;
 
-                if(!(ContentContainer?.Disposed ?? true) && propertyNotification != null)
+                if(ContentContainer != null && propertyNotification != null)
                 {
-                    ContentContainer?.RemovePropertyNotification(propertyNotification);
+                    ContentContainer.RemovePropertyNotification(propertyNotification);
                 }
                 propertyNotification?.Dispose();
                 propertyNotification = null;
@@ -1398,10 +1395,6 @@ namespace Tizen.NUI.Components
 
             WheelEvent -= OnWheelEvent;
 
-            if (type == DisposeTypes.Explicit)
-            {
-
-            }
             base.Dispose(type);
         }
 
@@ -1812,17 +1805,6 @@ namespace Tizen.NUI.Components
         internal void BaseRemove(View view)
         {
             base.Remove(view);
-        }
-
-        internal override bool OnAccessibilityPan(PanGesture gestures)
-        {
-            if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
-            {
-                return false;
-            }
-
-            OnPanGesture(gestures);
-            return true;
         }
 
         private float CustomScrollAlphaFunction(float progress)

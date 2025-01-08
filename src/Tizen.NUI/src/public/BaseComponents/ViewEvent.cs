@@ -43,11 +43,12 @@ namespace Tizen.NUI.BaseComponents
         private HoverEventCallbackType hoverEventCallback;
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
+        private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
+        private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
         private EventHandler keyInputFocusGainedEventHandler;
-
         private KeyInputFocusGainedCallbackType keyInputFocusGainedCallback;
-        private EventHandler keyInputFocusLostEventHandler;
 
+        private EventHandler keyInputFocusLostEventHandler;
         private KeyInputFocusLostCallbackType keyInputFocusLostCallback;
         private EventHandler onRelayoutEventHandler;
         private OnRelayoutEventCallbackType onRelayoutEventCallback;
@@ -64,30 +65,43 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OffWindowEventCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool KeyCallbackType(IntPtr control, IntPtr keyEvent);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResourcesLoadedCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void _backgroundResourceLoadedCallbackType(IntPtr view);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyInputFocusGainedCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyInputFocusLostCallbackType(IntPtr control);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OnRelayoutEventCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OnWindowEventCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
@@ -477,6 +491,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
         /// <summary>
         /// An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br />
         /// This event is sent when the visibility of this or a parent view is changed.<br />
@@ -514,6 +529,43 @@ namespace Tizen.NUI.BaseComponents
                     Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                     visibilityChangedEventCallback = null;
+                }
+            }
+        }
+        /// <summary>
+        /// An event for aggregated visibility change which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This event is sent when visible property of this View, any of its parents (right up to the root layer) or Window changes.<br />
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This event is NOT sent if the view becomes transparent (or the reverse), it's ONLY linked with Show() and Hide() of View and Window.
+        /// For reference, a view is only shown if the view, its parents (up to the root view) and Window are also visible,
+        /// they are not transparent, and the view has a non-zero size.
+        /// So if its parent is not visible, the view is not shown.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AggregatedVisibilityChangedEventArgs> AggregatedVisibilityChanged
+        {
+            add
+            {
+                if (aggregatedVisibilityChangedEventHandler == null)
+                {
+                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                aggregatedVisibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                aggregatedVisibilityChangedEventHandler -= value;
+                if (aggregatedVisibilityChangedEventHandler == null && aggregatedVisibilityChangedEventCallback != null)
+                {
+                    Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    aggregatedVisibilityChangedEventCallback = null;
                 }
             }
         }
@@ -699,6 +751,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusGained(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (IsNativeHandleInvalid())
             {
                 if (this.Disposed)
@@ -737,6 +795,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusLost(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (IsNativeHandleInvalid())
             {
                 if (this.Disposed)
@@ -775,6 +839,12 @@ namespace Tizen.NUI.BaseComponents
 
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (keyEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("keyEvent should not be null!");
@@ -804,6 +874,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnRelayout signal
         private void OnRelayout(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (onRelayoutEventHandler != null)
             {
                 onRelayoutEventHandler(this, null);
@@ -813,6 +889,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View HitTestResultSignal
         private bool OnHitTestResult(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -827,6 +909,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnInterceptTouch(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -846,7 +934,19 @@ namespace Tizen.NUI.BaseComponents
 
             if (interceptTouchDataEventHandler != null)
             {
-                consumed = interceptTouchDataEventHandler(this, e);
+                if(NUIApplication.IsGeometryHittestEnabled())
+                {
+                    Delegate[] delegateList = interceptTouchDataEventHandler.GetInvocationList();
+                    // Oring the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
+                    {
+                        consumed |= del(this, e);
+                    }
+                }
+                else
+                {
+                    consumed = interceptTouchDataEventHandler(this, e);
+                }
             }
 
             return consumed;
@@ -855,6 +955,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -874,7 +980,19 @@ namespace Tizen.NUI.BaseComponents
 
             if (touchDataEventHandler != null)
             {
-                consumed = touchDataEventHandler(this, e);
+                if(NUIApplication.IsGeometryHittestEnabled())
+                {
+                    Delegate[] delegateList = touchDataEventHandler.GetInvocationList();
+                    // Oring the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
+                    {
+                        consumed |= del(this, e);
+                    }
+                }
+                else
+                {
+                    consumed = touchDataEventHandler(this, e);
+                }
             }
 
             if (enableControlState && !consumed)
@@ -894,6 +1012,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (hoverEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("hoverEvent should not be null!");
@@ -928,6 +1052,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View InterceptWheel signal
         private bool OnInterceptWheel(IntPtr view, IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -957,6 +1087,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
             if (wheelEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("wheelEvent should not be null!");
@@ -992,6 +1128,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnWindow signal
         private void OnWindow(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (onWindowEventHandler != null)
             {
                 onWindowEventHandler(this, null);
@@ -1001,6 +1143,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OffWindow signal
         private void OffWindow(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (offWindowEventHandler != null)
             {
                 offWindowEventHandler(this, null);
@@ -1010,10 +1158,25 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View visibility change signal
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
-            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
-            if (data != IntPtr.Zero)
+            if (Disposed || IsDisposeQueued)
             {
-                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
+            IntPtr changedViewCPtr = Interop.Actor.GetVisiblityChangedActor();
+            if (changedViewCPtr != IntPtr.Zero)
+            {
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(changedViewCPtr) as View;
+                if(e.View != null)
+                {
+                    Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, changedViewCPtr));
+                }
+                else
+                {
+                    e.View = new View(changedViewCPtr, true);
+                }
             }
             e.Visibility = visibility;
             e.Type = type;
@@ -1024,9 +1187,33 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        // Callback for View aggregated visibility change signal
+        private void OnAggregatedVisibilityChanged(IntPtr data, bool visibility)
+        {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            AggregatedVisibilityChangedEventArgs e = new AggregatedVisibilityChangedEventArgs();
+            e.Visibility = visibility;
+
+            if (aggregatedVisibilityChangedEventHandler != null)
+            {
+                aggregatedVisibilityChangedEventHandler(this, e);
+            }
+        }
+
         // Callback for View layout direction change signal
         private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             LayoutDirectionChangedEventArgs e = new LayoutDirectionChangedEventArgs();
             if (data != IntPtr.Zero)
             {
@@ -1042,7 +1229,13 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourcesLoaded(IntPtr view)
         {
-            if(!CheckResourceReady())
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            if (!CheckResourceReady())
             {
                 return;
             }
@@ -1055,6 +1248,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnBackgroundResourceLoaded(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
 
@@ -1201,7 +1400,7 @@ namespace Tizen.NUI.BaseComponents
             private VisibilityChangeType _type;
 
             /// <summary>
-            /// The view, or child of view, whose visibility has changed.
+            /// The view, whose visibility has changed.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public View View
@@ -1376,11 +1575,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Offset)GetValue(TouchAreaOffsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Offset)GetValue(TouchAreaOffsetProperty);
+                }
+                else
+                {
+                    return (Offset)GetInternalTouchAreaOffsetProperty(this);
+                }
             }
             set
             {
-                SetValue(TouchAreaOffsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TouchAreaOffsetProperty, value);
+                }
+                else
+                {
+                    SetInternalTouchAreaOffsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1412,11 +1625,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(DispatchKeyEventsProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(DispatchKeyEventsProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalDispatchKeyEventsProperty(this);
+                }
             }
             set
             {
-                SetValue(DispatchKeyEventsProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DispatchKeyEventsProperty, value);
+                }
+                else
+                {
+                    SetInternalDispatchKeyEventsProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1747,11 +1974,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(DispatchTouchMotionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(DispatchTouchMotionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalDispatchTouchMotionProperty(this);
+                }
             }
             set
             {
-                SetValue(DispatchTouchMotionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DispatchTouchMotionProperty, value);
+                }
+                else
+                {
+                    SetInternalDispatchTouchMotionProperty(this, null, value);
+                }
             }
         }
 
@@ -1777,11 +2018,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(DispatchHoverMotionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(DispatchHoverMotionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalDispatchHoverMotionProperty(this);
+                }
             }
             set
             {
-                SetValue(DispatchHoverMotionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DispatchHoverMotionProperty, value);
+                }
+                else
+                {
+                    SetInternalDispatchHoverMotionProperty(this, null, value);
+                }
             }
         }
 

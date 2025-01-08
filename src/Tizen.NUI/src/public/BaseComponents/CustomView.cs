@@ -26,37 +26,50 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class CustomView : ViewWrapper
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create(nameof(FocusNavigationSupport), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty FocusNavigationSupportProperty = null;
+        internal static void SetInternalFocusNavigationSupportProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
             {
                 customView.SetKeyboardNavigationSupport((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFocusNavigationSupportProperty(BindableObject bindable)
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardNavigationSupported();
-        });
+        }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create(nameof(FocusGroup), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty FocusGroupProperty = null;
+        internal static void SetInternalFocusGroupProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
             {
                 customView.SetAsKeyboardFocusGroup((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFocusGroupProperty(BindableObject bindable)
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardFocusGroup();
-        });
+        }
+
+        static CustomView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                FocusNavigationSupportProperty = BindableProperty.Create(nameof(FocusNavigationSupport), typeof(bool), typeof(CustomView), false,
+                    propertyChanged: SetInternalFocusNavigationSupportProperty, defaultValueCreator: GetInternalFocusNavigationSupportProperty);
+                FocusGroupProperty = BindableProperty.Create(nameof(FocusGroup), typeof(bool), typeof(CustomView), false,
+                    propertyChanged: SetInternalFocusGroupProperty, defaultValueCreator: GetInternalFocusGroupProperty);
+            }
+        }
 
         /// <summary>
         /// Create an instance of customView.
@@ -91,11 +104,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(FocusNavigationSupportProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(FocusNavigationSupportProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalFocusNavigationSupportProperty(this);
+                }
             }
             set
             {
-                SetValue(FocusNavigationSupportProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FocusNavigationSupportProperty, value);
+                }
+                else
+                {
+                    SetInternalFocusNavigationSupportProperty(this, null, value);
+                }
             }
         }
 
@@ -108,11 +135,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(FocusGroupProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(FocusGroupProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalFocusGroupProperty(this);
+                }
             }
             set
             {
-                SetValue(FocusGroupProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FocusGroupProperty, value);
+                }
+                else
+                {
+                    SetInternalFocusGroupProperty(this, null, value);
+                }
             }
         }
 
@@ -510,35 +551,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
-        /// </summary>
-        /// <param name="gestures">The pan gesture.</param>
-        /// <returns>True if the pan gesture has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityPan(PanGesture gestures)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e., value change of slider control).
-        /// </summary>
-        /// <param name="isIncrease">Whether the value should be increased or decreased.</param>
-        /// <returns>True if the value changed action has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityValueChange(bool isIncrease)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility zoom action.
-        /// </summary>
-        /// <returns>True if the zoom action has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityZoom()
-        {
-            return false;
-        }
-
-        /// <summary>
         /// Allows deriving classes to disable any of the gesture detectors.<br />
         /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br />
         /// </summary>
@@ -792,9 +804,6 @@ namespace Tizen.NUI.BaseComponents
             viewWrapperImpl.OnLayoutNegotiated = new ViewWrapperImpl.OnLayoutNegotiatedDelegate(OnLayoutNegotiated);
             viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
             viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
-            viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
-            viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
-            viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
             viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);
             viewWrapperImpl.OnFocusLost = new ViewWrapperImpl.OnFocusLostDelegate(OnFocusLost);
             viewWrapperImpl.GetNextFocusableView = new ViewWrapperImpl.GetNextFocusableViewDelegate(GetNextFocusableView);

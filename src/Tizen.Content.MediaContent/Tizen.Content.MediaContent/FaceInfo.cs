@@ -22,7 +22,7 @@ namespace Tizen.Content.MediaContent
     /// Represents the face information for the media.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API11; Will be removed in API13.")]
+    [Obsolete("Deprecated since API11. Will be removed in API13.")]
     public class FaceInfo
     {
         internal FaceInfo(IntPtr handle)
@@ -52,7 +52,7 @@ namespace Tizen.Content.MediaContent
         /// The coordinates of the rectangle are orientation-applied values.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Rectangle Rect { get; }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The unique ID of face information.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public string Id { get; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The media ID that the face information is added.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public string MediaInfoId { get; }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The tag of face information.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public string Tag { get; }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The orientation of face information.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Orientation Orientation { get; }
 
         internal static FaceInfo FromHandle(IntPtr handle)
@@ -97,7 +97,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>A string representation of the current face info.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public override string ToString() =>
             $"Id={Id}, MediaInfoId={MediaInfoId}, Rect=({Rect}), Tag={Tag}";
     }

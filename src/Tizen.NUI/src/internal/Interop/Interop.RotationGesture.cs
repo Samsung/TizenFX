@@ -21,14 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class RotationGesture
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGestureDetector__SWIG_0")]
-            public static extern global::System.IntPtr NewRotationGestureDetector();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_New")]
             public static extern global::System.IntPtr RotationGestureDetectorNew();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_DownCast")]
-            public static extern global::System.IntPtr RotationGestureDetectorDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGestureDetector")]
             public static extern void DeleteRotationGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -42,17 +37,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_DetectedSignal")]
             public static extern global::System.IntPtr RotationGestureDetectorDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGesture__SWIG_0")]
-            public static extern global::System.IntPtr NewRotationGesture(int jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_New")]
             public static extern global::System.IntPtr New(int jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGesture__SWIG_1")]
-            public static extern global::System.IntPtr NewRotationGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGesture")]
             public static extern void DeleteRotationGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -96,12 +82,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGestureDetectedSignal")]
             public static extern void DeleteRotationGestureDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_SWIGUpcast")]
-            public static extern global::System.IntPtr RotationGestureDetectorUpcast(global::System.IntPtr jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

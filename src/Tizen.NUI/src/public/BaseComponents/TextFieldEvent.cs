@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
         private bool invokeTextChanged = true;
 
         /// <summary>
-        /// The TextChanged event.
+        /// The TextChanged event is triggered whenever the text in the TextField changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TextChangedEventArgs> TextChanged
@@ -124,7 +124,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The MaxLengthReached event.
+        /// The MaxLengthReached event is triggered when the text entered in the TextField exceeds its maximum allowed length.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MaxLengthReachedEventArgs> MaxLengthReached
@@ -350,18 +350,36 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionStarted(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             //no data to be sent to the user
             textFieldSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSelectionCleared(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             //no data to be sent to the user
             textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnTextChanged(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textFieldTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
@@ -375,12 +393,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCursorPositionChanged(IntPtr textField, uint oldPosition)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textFieldCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textFieldMaxLengthReachedEventHandler != null)
             {
                 MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
@@ -394,6 +424,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textField, IntPtr href, uint hrefLength)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -406,12 +442,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionChanged(IntPtr textField, uint oldStart, uint oldEnd)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textFieldSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnInputFiltered(IntPtr textField, InputFilterType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             InputFilteredEventArgs e = new InputFilteredEventArgs();
 
             // Populate all members of "e" (InputFilteredEventArgs) with real data
@@ -429,7 +477,7 @@ namespace Tizen.NUI.BaseComponents
             private TextField textField;
 
             /// <summary>
-            /// TextField.
+            /// Gets or sets TextField.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TextField TextField
@@ -454,7 +502,7 @@ namespace Tizen.NUI.BaseComponents
             private TextField textField;
 
             /// <summary>
-            /// TextField.
+            /// Gets or sets TextField.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TextField TextField

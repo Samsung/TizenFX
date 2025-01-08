@@ -30,25 +30,75 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     {
         private List<Drawable> drawables; //The list of added drawables
 
-        static CanvasView() { }
-
         /// <summary>
         /// ViewBoxProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty ViewBoxProperty = null;
+        internal static void SetInternalViewBoxProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
             if (newValue != null)
             {
                 instance.InternalViewBox = (Tizen.NUI.Size2D)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalViewBoxProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
             return instance.InternalViewBox;
-        });
+        }
+
+        /// <summary>
+        /// SynchronousLoadingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty SynchronousLoadingProperty = null;
+        internal static void SetInternalSynchronousLoadingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalSynchronousLoading = (bool)newValue;
+            }
+        }
+        internal static object GetInternalSynchronousLoadingProperty(BindableObject bindable)
+        {
+            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            return instance.InternalSynchronousLoading;
+        }
+
+        /// <summary>
+        /// RasterizationRequestManuallyProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty RasterizationRequestManuallyProperty = null;
+        internal static void SetInternalRasterizationRequestManuallyProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalRasterizationRequestManually = (bool)newValue;
+            }
+        }
+        internal static object GetInternalRasterizationRequestManuallyProperty(BindableObject bindable)
+        {
+            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            return instance.InternalRasterizationRequestManually;
+        }
+
+        static CanvasView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null,
+                  propertyChanged: SetInternalViewBoxProperty, defaultValueCreator: GetInternalViewBoxProperty);
+                SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), true,
+                  propertyChanged: SetInternalSynchronousLoadingProperty, defaultValueCreator: GetInternalSynchronousLoadingProperty);
+                RasterizationRequestManuallyProperty = BindableProperty.Create(nameof(RasterizationRequestManually), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), false,
+                  propertyChanged: SetInternalRasterizationRequestManuallyProperty, defaultValueCreator: GetInternalRasterizationRequestManuallyProperty);
+            }
+        }
 
         /// <summary>
         /// Creates an initialized CanvasView.
@@ -119,11 +169,25 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             get
             {
-                return GetValue(ViewBoxProperty) as Size2D;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ViewBoxProperty) as Size2D;
+                }
+                else
+                {
+                    return GetInternalViewBoxProperty(this) as Size2D;
+                }
             }
             set
             {
-                SetValue(ViewBoxProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ViewBoxProperty, value);
+                }
+                else
+                {
+                    SetInternalViewBoxProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -142,6 +206,110 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             {
                 PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
                 SetProperty(Interop.CanvasView.PropertyViewBoxGet(), setVal);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                setVal?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Whether we rasterize CanvasView synchronously or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SynchronousLoading
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(SynchronousLoadingProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalSynchronousLoadingProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SynchronousLoadingProperty, value);
+                }
+                else
+                {
+                    SetInternalSynchronousLoadingProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalSynchronousLoading
+        {
+            get
+            {
+                bool retVal = true;
+                PropertyValue synchronousLoadingPropertyValue = GetProperty(Interop.CanvasView.PropertySynchronousLoadingGet());
+                synchronousLoadingPropertyValue?.Get(out retVal);
+                synchronousLoadingPropertyValue?.Dispose();
+                return retVal;
+            }
+            set
+            {
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.CanvasView.PropertySynchronousLoadingGet(), setVal);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                setVal?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Whether we rasterize CanvasView manually or not.
+        /// </summary>
+        /// <remarks>
+        /// If true, need to call <see cref="RequestRasterization()"/> to rasterize CanvasView.
+        /// If false, CanvasView will be rasterized automatically even if we don't call <see cref="RequestRasterization()"/>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RasterizationRequestManually
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RasterizationRequestManuallyProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRasterizationRequestManuallyProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RasterizationRequestManuallyProperty, value);
+                }
+                else
+                {
+                    SetInternalRasterizationRequestManuallyProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalRasterizationRequestManually
+        {
+            get
+            {
+                bool retVal = false;
+                PropertyValue rasterizationRequestManuallyValue = GetProperty(Interop.CanvasView.PropertyRasterizationRequestManuallyGet());
+                rasterizationRequestManuallyValue?.Get(out retVal);
+                rasterizationRequestManuallyValue?.Dispose();
+                return retVal;
+            }
+            set
+            {
+                PropertyValue setVal = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.CanvasView.PropertyRasterizationRequestManuallyGet(), setVal);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 setVal?.Dispose();
             }
@@ -195,6 +363,16 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             Interop.CanvasView.RemoveAllDrawables(View.getCPtr(this));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             drawables.Clear();
+        }
+
+        /// <summary>
+        /// Reqeust rasterization manually to the CanvasView.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestRasterization()
+        {
+            Interop.CanvasView.RequestRasterization(View.getCPtr(this));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

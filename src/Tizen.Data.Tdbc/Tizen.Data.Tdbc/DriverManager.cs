@@ -58,6 +58,11 @@ namespace Tizen.Data.Tdbc
                 throw new SystemException("Failed to open connection due to: " + ex);
             }
 
+            if (conn == null)
+            {
+                throw new SystemException("Failed to open connection");
+            }
+
             conn.Open(uri);
             return conn;
         }
@@ -88,6 +93,11 @@ namespace Tizen.Data.Tdbc
             catch (Exception ex)
             {
                 throw new SystemException("Failed to open connection due to: " + ex);
+            }
+
+            if (conn == null)
+            {
+                throw new SystemException("Failed to open connection");
             }
 
             conn.Open(connectionString);

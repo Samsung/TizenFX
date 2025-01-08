@@ -21,7 +21,7 @@ using NativeWebRTC = Interop.NativeWebRTC;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a media source with contents read from a file.
+    /// Represents a media source that reads media data from a file.
     /// </summary>
     /// <remarks>
     /// Depending on where the source file is located either the media storage privilege (http://tizen.org/privilege/mediastorage) is required or<br/>
@@ -107,15 +107,11 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the transceiver direction for receiving media stream.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver direction is set.
+        /// This method does not throw state exception anymore(Since API Leve 12). It can be called in any state.<br/>
         /// </remarks>
         /// <param name="type">The media type.</param>
         /// <param name="direction">The transceiver direction.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     MediaSource is not attached yet.<br/>
-        /// -or-<br/>
-        ///     The WebRTC is not in the valid state.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
         public void SetTransceiverDirection(MediaType type, TransceiverDirection direction)

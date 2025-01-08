@@ -68,6 +68,7 @@ internal static partial class Interop
             Move = 0x08,
             ClearData = 0x10,
             Progress = 0x20,
+            ClearCache = 0x800,
         }
 
         internal enum EventType
@@ -76,7 +77,8 @@ internal static partial class Interop
             Uninstall = 1,
             Update = 2,
             Move = 3,
-            ClearData = 4
+            ClearData = 4,
+            ClearCache = 1000,
         }
 
         internal enum CertCompareResultType

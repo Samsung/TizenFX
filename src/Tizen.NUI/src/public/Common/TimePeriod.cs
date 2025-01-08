@@ -55,6 +55,7 @@ namespace Tizen.NUI
         /// A delay before the time period in milliseconds
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1065: Do not raise exceptions in unexpected locations")]
         public int DelayMilliseconds
         {
             set
@@ -74,6 +75,7 @@ namespace Tizen.NUI
         /// The duration of the time period in milliseconds
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1065: Do not raise exceptions in unexpected locations")]
         public int DurationMilliseconds
         {
             set

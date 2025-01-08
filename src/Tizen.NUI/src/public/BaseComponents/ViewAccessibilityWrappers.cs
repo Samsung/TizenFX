@@ -45,6 +45,9 @@ namespace Tizen.NUI.BaseComponents
 
             Marshal.StructureToPtr(ad, ptr, false);
             Interop.ControlDevel.DaliAccessibilitySetAccessibilityDelegate(ptr, Convert.ToUInt32(size));
+
+            // Do not free AllocHGlobal memory, for performance. It will be used for native side very frequencly.
+            // Note that Marshal.AllocHGlobal memory will be freed after process terminated.
         }
 
         private static View GetViewFromRefObject(IntPtr refObjectPtr)

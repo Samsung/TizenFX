@@ -22,8 +22,8 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
 using Tizen.NUI.BaseComponents;
+using Tizen.Common;
 
 namespace Tizen.NUI
 {
@@ -32,7 +32,7 @@ namespace Tizen.NUI
     /// The window has an orientation and indicator properties.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class Window : BaseHandle
+    public partial class Window : BaseHandle, IWindowProvider
     {
         private HandleRef stageCPtr;
         private Layer rootLayer;
@@ -416,13 +416,58 @@ namespace Tizen.NUI
             BottomRight = 8,
         }
 
+        /// <summary>
+        /// The Pointer edge boundary for grab.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum PointerBoundary
+        {
+            /// <summary>
+            /// Default value
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+
+            /// <summary>
+            /// Top
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Top = 1,
+
+            /// <summary>
+            /// Right
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Right = 2,
+
+            /// <summary>
+            /// Bottom
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Bottom = 3,
+
+            /// <summary>
+            /// Left
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Left = 4,
+
+        }
 
         /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This has been deprecated in API12, please use Default instead")]
         public static Window Instance { get; internal set; }
+
+        /// <summary>
+        /// Gets the default window.
+        /// The main window or default window is automatically created when the application is launched,
+        /// and it remains constant and unchanged throughout the application's operation.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public static Window Default { get; internal set; }
 
         /// <summary>
         /// Gets or sets a window type.
@@ -824,6 +869,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="level">The notification window level.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool SetNotificationLevel(NotificationLevel level)
         {
@@ -878,6 +925,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenOffMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/display</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 4 </since_tizen>
         public bool SetScreenOffMode(ScreenOffMode screenOffMode)
         {
@@ -903,6 +952,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="brightness">The preferred brightness (0 to 100).</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
+        /// <privilege>http://tizen.org/privilege/display</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool SetBrightness(int brightness)
         {
@@ -1060,6 +1111,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to grab.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKeyTopmost(int DaliKey)
         {
@@ -1074,6 +1127,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKeyTopmost(int DaliKey)
         {
@@ -1092,6 +1147,8 @@ namespace Tizen.NUI
         /// <param name="DaliKey">The key code to grab.</param>
         /// <param name="GrabMode">The grab mode for the key.</param>
         /// <returns>True if the grab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool GrabKey(int DaliKey, KeyGrabMode GrabMode)
         {
@@ -1106,6 +1163,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="DaliKey">The key code to ungrab.</param>
         /// <returns>True if the ungrab succeeds.</returns>
+        /// <privilege>http://tizen.org/privilege/keygrab</privilege>
+        /// <exception cref="UnauthorizedAccessException">This exception can be thrown due to permission denied.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool UngrabKey(int DaliKey)
         {
@@ -1654,26 +1713,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ObjectRegistry GetObjectRegistry()
-        {
-            global::System.IntPtr cPtr = Interop.Stage.GetObjectRegistry(stageCPtr);
-
-            ObjectRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ObjectRegistry;
-            if (ret != null)
-            {
-                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            else
-            {
-                ret = new ObjectRegistry(cPtr, true);
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
         {
             Interop.Stage.SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
@@ -2217,6 +2256,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the last pan gesture state the window gets.
+        /// </summary>
+        /// <returns>The last pan gesture state the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gesture.StateType GetLastPanGestureState()
+        {
+            Gesture.StateType ret = (Gesture.StateType)Interop.Window.InternalRetrievingLastPanGestureState(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Sets the necessary for window rotation Acknowledgement.
         /// After this function called, SendRotationCompletedAcknowledgement() should be called to complete window rotation.
         ///
@@ -2250,20 +2301,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
         }
 
         /// <summary>
         /// Add FrameUpdateCallback with root view.
         /// FrameUpdateCallbackInterface can only detach Views under given view.
         /// </summary>
+        /// <remarks>
+        /// We can give rootView as null if we want to make frameUpdateCallback don't have any dependency with some view.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback, View rootView)
         {
-            if(rootView != null)
-            {
-                frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
-            }
+            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
         }
 
         /// <summary>
@@ -2507,5 +2558,140 @@ namespace Tizen.NUI
                 return new NUI.SafeNativeWindowHandle(this);
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the window is modal or not.
+        /// The modal property of a window requires that it be set to a parent window.
+        /// The window modal function operates on the specified parent window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsModal
+        {
+            get
+            {
+                bool ret = Interop.Window.IsModal(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetModal(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the window is always on top of other windows or not.
+        /// This is valid between windows that have no notification level or a notification level of 'none'.
+        /// If it has a notification level, this will not do anything.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsAlwaysOnTop
+        {
+            get
+            {
+                bool ret = Interop.Window.IsAlwaysOnTop(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetAlwaysOnTop(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the window is the bottom of other windows or not.
+        /// If the enable flag is true, this window will be placed below other windows.
+        /// Otherwise, if it's called with a false value, it will be located above other windows..
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsBottom
+        {
+            get
+            {
+                bool ret = Interop.Window.IsBottom(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetBottom(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Requests relative motion grab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionGrab(PointerBoundary boundary)
+        {
+            bool ret = Interop.Window.RelativeMotionGrab(SwigCPtr, (uint)boundary);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests relative motion ungrab
+        /// </summary>
+        /// <returns>True if RelativeMotionGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RelativeMotionUnGrab()
+        {
+            bool ret = Interop.Window.RelativeMotionUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets or gets the window blur using window blur information.
+        /// 
+        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        /// This supports different types of blurring effects, including blurring the window's background only.
+        /// Or blurring the area surrounding the window while keeping the window itself clear.
+        /// The more information is written WindowBlurInfo struct.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WindowBlurInfo BlurInfo
+        {
+            get
+            {
+                IntPtr internalBlurInfo = Interop.Window.GetBlur(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                WindowBlurInfo blurInfo = new WindowBlurInfo();
+                blurInfo.BlurType = (WindowBlurType)Interop.WindowBlurInfo.GetBlurType(internalBlurInfo);
+                blurInfo.BlurRadius = Interop.WindowBlurInfo.GetBlurRadius(internalBlurInfo);
+                blurInfo.BackgroundCornerRadius = Interop.WindowBlurInfo.GetBackgroundCornerRadius(internalBlurInfo);
+
+                Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+
+                return blurInfo;
+            }
+            set
+            {
+                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                try {
+                    Interop.Window.SetBlur(SwigCPtr, internalBlurInfo);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                finally {
+                    Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+                }
+            }            
+        }
+
+        IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
+        float IWindowProvider.X => WindowPosition.X;
+        float IWindowProvider.Y => WindowPosition.Y;
+        float IWindowProvider.Width => WindowSize.Width;
+        float IWindowProvider.Height => WindowSize.Height;
+        int IWindowProvider.Rotation => (int)GetCurrentOrientation();
     }
 }

@@ -24,8 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class SlideTransitionItem
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_SlideTransition")]
-            public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_New")]
             public static extern IntPtr New(HandleRef view, HandleRef direction, HandleRef timePeriod);

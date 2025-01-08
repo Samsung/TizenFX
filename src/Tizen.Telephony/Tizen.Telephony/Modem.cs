@@ -20,6 +20,9 @@ namespace Tizen.Telephony
 {
     /// <summary>
     /// This class provides APIs to obtain information from the modem.
+    /// It includes properties such as Imei, which allows users to retrieve the International
+    /// Mobile Station Equipment Identity (IMEI) of a mobile phone. By utilizing these features,
+    /// developers can gather valuable information about the modem and incorporate it into their applications effectively.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Modem

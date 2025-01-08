@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// Creates a VertexBuffer.
+        /// The constructor to creates a VertexBuffer.
         /// </summary>
         /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
         /// <since_tizen> 8 </since_tizen>
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException"> Thrown when vertices is null or length of the vertices is 0. </exception>
         /// <exception cref="OverflowException"> Thrown when length of the vertices is overflow. </exception>
         /// <since_tizen> 8 </since_tizen>
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1715: Identifiers should have correct prefix")]
         public void SetData<VertexType>(VertexType[] vertices) where VertexType : struct
         {
             if (null == vertices || vertices.Length == 0)
@@ -63,12 +63,21 @@ namespace Tizen.NUI
             int structSize = Marshal.SizeOf<VertexType>();
             global::System.IntPtr buffer = Marshal.AllocHGlobal(checked(structSize * vertices.Length));
 
-            for (int i = 0; i < vertices.Length; i++)
+            try
             {
-                Marshal.StructureToPtr(vertices[i], buffer + i * structSize, true);
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    Marshal.StructureToPtr(vertices[i], buffer + i * structSize, true);
+                }
+
+                Interop.VertexBuffer.SetData(SwigCPtr, buffer, (uint)vertices.Length);
+            }
+            finally
+            {
+                // Free AllocHGlobal memory after call Interop.VertexBuffer.SetData()
+                Marshal.FreeHGlobal(buffer);
             }
 
-            Interop.VertexBuffer.SetData(SwigCPtr, buffer, (uint)vertices.Length);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

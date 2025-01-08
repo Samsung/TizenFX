@@ -68,12 +68,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityActivatedDelegate();
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityZoomDelegate();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusGainedDelegate();
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusLostDelegate();
@@ -117,9 +111,6 @@ namespace Tizen.NUI
         public new OnLayoutNegotiatedDelegate OnLayoutNegotiated;
         public new OnStyleChangeDelegate OnStyleChange;
         public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
-        public new OnAccessibilityPanDelegate OnAccessibilityPan;
-        public new OnAccessibilityValueChangeDelegate OnAccessibilityValueChange;
-        public new OnAccessibilityZoomDelegate OnAccessibilityZoom;
         public OnFocusGainedDelegate OnFocusGained;
         public OnFocusLostDelegate OnFocusLost;
         public new GetNextFocusableViewDelegate GetNextFocusableView;
@@ -289,9 +280,6 @@ namespace Tizen.NUI
             Delegate21 = new DelegateViewWrapperImpl_21(DirectorOnInitialize);
             Delegate24 = new DelegateViewWrapperImpl_24(DirectorOnStyleChange);
             Delegate25 = new DelegateViewWrapperImpl_25(DirectorOnAccessibilityActivated);
-            Delegate26 = new DelegateViewWrapperImpl_26(DirectorOnAccessibilityPan);
-            Delegate28 = new DelegateViewWrapperImpl_28(DirectorOnAccessibilityValueChange);
-            Delegate29 = new DelegateViewWrapperImpl_29(DirectorOnAccessibilityZoom);
             Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnFocusGained);
             Delegate31 = new DelegateViewWrapperImpl_31(DirectorOnFocusLost);
             Delegate32 = new DelegateViewWrapperImpl_32(DirectorGetNextFocusableActor);
@@ -301,7 +289,7 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
 
 
@@ -328,9 +316,6 @@ namespace Tizen.NUI
             Delegate21 = null;
             Delegate24 = null;
             Delegate25 = null;
-            Delegate26 = null;
-            Delegate28 = null;
-            Delegate29 = null;
             Delegate30 = null;
             Delegate31 = null;
             Delegate32 = null;
@@ -340,7 +325,7 @@ namespace Tizen.NUI
             Delegate36 = null;
             Delegate37 = null;
             Delegate38 = null;
-            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         }
 
         private void DirectorOnSceneConnection(int depth)
@@ -375,7 +360,7 @@ namespace Tizen.NUI
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            var value = new PropertyValue(propertyValue, true);
+            var value = new PropertyValue(propertyValue, false);
             OnPropertySet?.Invoke(index, value);
             value.Dispose();
         }
@@ -394,15 +379,11 @@ namespace Tizen.NUI
             var ani = Registry.GetManagedBaseHandleFromNativePtr(animation) as Animation;
             if (ani != null)
             {
-                HandleRef CPtr = new HandleRef(this, animation);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
-
                 useRegisterAnimation = true;
             }
             else
             {
-                ani = new Animation(animation, true);
+                ani = new Animation(animation, false);
             }
             var vector3 = new Vector3(targetSize, false);
             OnSizeAnimation?.Invoke(ani, vector3);
@@ -493,15 +474,11 @@ namespace Tizen.NUI
             var nuiStyleManger = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
             if (nuiStyleManger != null)
             {
-                HandleRef CPtr = new HandleRef(this, styleManager);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
-
                 useRegisterStyleManager = true;
             }
             else
             {
-                nuiStyleManger = new StyleManager(styleManager, true);
+                nuiStyleManger = new StyleManager(styleManager, false);
             }
             OnStyleChange?.Invoke(nuiStyleManger, (StyleChangeType)change);
 
@@ -515,25 +492,6 @@ namespace Tizen.NUI
         private bool DirectorOnAccessibilityActivated()
         {
             return OnAccessibilityActivated?.Invoke() ?? false;
-        }
-
-        private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
-        {
-            // Take memory ownership, but do not register into Registry.
-            var panGesture = new PanGesture(gesture, true, false);
-            var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
-            panGesture.Dispose();
-            return ret;
-        }
-
-        private bool DirectorOnAccessibilityValueChange(bool isIncrease)
-        {
-            return OnAccessibilityValueChange?.Invoke(isIncrease) ?? false;
-        }
-
-        private bool DirectorOnAccessibilityZoom()
-        {
-            return OnAccessibilityZoom?.Invoke() ?? false;
         }
 
         private void DirectorOnFocusGained()
@@ -695,9 +653,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_21 Delegate21;
         private DelegateViewWrapperImpl_24 Delegate24;
         private DelegateViewWrapperImpl_25 Delegate25;
-        private DelegateViewWrapperImpl_26 Delegate26;
-        private DelegateViewWrapperImpl_28 Delegate28;
-        private DelegateViewWrapperImpl_29 Delegate29;
         private DelegateViewWrapperImpl_30 Delegate30;
         private DelegateViewWrapperImpl_31 Delegate31;
         private DelegateViewWrapperImpl_32 Delegate32;

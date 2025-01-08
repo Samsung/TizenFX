@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the reason.
+        /// Gets the reason for the playback interruption.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PlaybackInterruptionReason Reason { get; }

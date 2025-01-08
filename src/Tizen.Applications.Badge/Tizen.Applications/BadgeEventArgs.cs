@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// The class for event arguments of the badge event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class BadgeEventArgs : EventArgs
     {
         internal BadgeEventArgs()
@@ -32,6 +33,7 @@ namespace Tizen.Applications
         /// Enumeration for the badge action.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public enum Action : int
         {
             /// <summary>
@@ -54,12 +56,14 @@ namespace Tizen.Applications
         /// The property for the badge object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public Badge Badge { get; internal set; }
 
         /// <summary>
         /// The property for the action value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public Action Reason { get; internal set; }
     }
 }

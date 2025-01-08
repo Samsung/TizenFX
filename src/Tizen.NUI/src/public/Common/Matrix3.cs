@@ -135,6 +135,7 @@ namespace Tizen.NUI
         /// </code>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1065: Do not raise exceptions in unexpected locations")]
         public static Matrix3 Identity
         {
             get

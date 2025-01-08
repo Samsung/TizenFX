@@ -68,6 +68,7 @@ namespace Tizen.NUI.Samples
                 imageViews[i].ResourceUrl = url[i];
                 imageViews[i].PlaceHolderUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/placeholder_image.png";
                 imageViews[i].TransitionEffect = true;
+                imageViews[i].SetTransitionEffectOption(0.0f, 1.0f, 0.0f, 3.0f, AlphaFunction.BuiltinFunctions.EaseInOut);
                 mainWin.Add(imageViews[i]);
             }
 

@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.RPCPort
@@ -156,10 +158,32 @@ namespace Tizen.Applications.RPCPort
         private ParcelHeader _header;
 
         /// <summary>
-        /// Constructor for this class.
+        /// Constructs a sub parcel from origin parcel.
         /// </summary>
-        /// <param name="withHeader">If it's false, the parcel object does not have the header.</param>
+        /// <param name="origin">The origin parcel.</param>
+        /// <param name="startPos">The start position from origin parcel.</param>
+        /// <param name="size">The size of the new parcel.</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="ArgumentException">Thrown when arguments are invalid.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Parcel(Parcel origin, uint startPos, uint size)
+        {
+            if (origin == null)
+                throw new ArgumentException();
+
+            Interop.LibRPCPort.ErrorCode error;
+
+            error = Interop.LibRPCPort.Parcel.CreateFromParcel(out _handle, origin._handle, startPos, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Constructs a new instance of the Parcel class.
+        /// </summary>
+        /// <param name="withHeader">Determines whether the created parcel object includes a header or not.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal I/O error occurs during the construction process.</exception>
         /// <since_tizen> 11 </since_tizen>
         public Parcel(bool withHeader)
         {
@@ -188,10 +212,10 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Constructor with port object.
+        /// Creates a new parcel object from a specified port object.
         /// </summary>
-        /// <param name="port">Port object.</param>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <param name="port">The port object to create a parcel from.</param>
+        /// <exception cref="InvalidIOException">An internal IO error occurred while creating the parcel.</exception>
         /// <since_tizen> 5 </since_tizen>
         public Parcel(Port port)
         {
@@ -203,10 +227,10 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Constructor with the raw bytes.
+        /// Constructs a new Parcel object from the specified raw bytes.
         /// </summary>
-        /// <param name="bytes">The raw bytes.</param>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <param name="bytes">An array of bytes that represents the content of the parcel.</param>
+        /// <exception cref="InvalidOperationException">Thrown if an invalid argument is passed in or an internal I/O error occurs.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Parcel(byte[] bytes)
         {
@@ -218,10 +242,10 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Gets the raw bytes of the parcel.
+        /// Converts the current parcel into its raw bytes representation.
         /// </summary>
-        /// <returns>The raw bytes of the parcel.</returns>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <returns>An array of bytes containing the contents of the parcel.</returns>
+        /// <exception cref="InvalidIOException">Thrown if an internal I/O error occurs during conversion.</exception>
         /// <since_tizen> 9 </since_tizen>
         public byte[] ToBytes()
         {
@@ -234,9 +258,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Sends parcel data through the port.
+        /// Sends parcel data through the specified port.
         /// </summary>
-        /// <param name="p">The RPC port object for writing data.</param>
+        /// <param name="port">The RPC port object for writing data.</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Send(Port p)
@@ -249,9 +273,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a byte value into parcel object.
+        /// Writes a single byte value into the parcel object.
         /// </summary>
-        /// <param name="b">byte data.</param>
+        /// <param name="b">The byte value to be written into the parcel object.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteByte(byte b)
         {
@@ -259,9 +283,20 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Writes a single signed byte value into the parcel object.
+        /// </summary>
+        /// <param name="b">The signed byte value to be written into the parcel object.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteSByte(sbyte b)
+        {
+            Interop.LibRPCPort.Parcel.WriteByte(_handle, (byte)b);
+        }
+
+        /// <summary>
         /// Writes a short value into parcel object.
         /// </summary>
-        /// <param name="b">short data.</param>
+        /// <param name="b">The short data to write.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteShort(short b)
         {
@@ -269,9 +304,35 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes an int value into parcel object.
+        /// Writes a unsigned short value into parcel object.
         /// </summary>
-        /// <param name="b">int data.</param>
+        /// <param name="b">The unsigned short data to write.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteUShort(ushort b)
+        {
+            var bytes = BitConverter.GetBytes(b);
+            Write(bytes);
+        }
+
+        /// <summary>
+        /// Writes an integer value into the parcel object.
+        /// </summary>
+        /// <param name="b">The integer value to write.</param>
+        /// <example>
+        /// Here's an example showing how to write an integer value into a parcel object:
+        ///
+        /// <code>
+        /// // Create a new parcel object
+        /// Parcel parcel = new Parcel();
+        ///
+        /// // Write an integer value into the parcel object
+        /// parcel.WriteInt(42);
+        ///
+        /// // Do something else with the parcel object...
+        /// ...
+        /// </code>
+        /// </example>
         /// <since_tizen> 5 </since_tizen>
         public void WriteInt(int b)
         {
@@ -279,9 +340,21 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a long value into parcel object.
+        /// Writes an unsigned integer value into the parcel object.
         /// </summary>
-        /// <param name="b">long data.</param>
+        /// <param name="b">The unsigned integer value to write.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteUInt(uint b)
+        {
+            var bytes = BitConverter.GetBytes(b);
+            Write(bytes);
+        }
+
+        /// <summary>
+        /// Writes a long value into the parcel object.
+        /// </summary>
+        /// <param name="b">The long data to write.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteLong(long b)
         {
@@ -289,9 +362,21 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a float value into parcel object.
+        /// Writes an unsigned long value into the parcel object.
         /// </summary>
-        /// <param name="b">float data.</param>
+        /// <param name="b">The unsigned long data to write.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void WriteULong(ulong b)
+        {
+            var bytes = BitConverter.GetBytes(b);
+            Write(bytes);
+        }
+
+        /// <summary>
+        /// Writes a float value into the parcel object.
+        /// </summary>
+        /// <param name="b">The float data to write into the parcel object.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteFloat(float b)
         {
@@ -299,9 +384,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a double value into parcel object.
+        /// Writes a double value into the parcel object.
         /// </summary>
-        /// <param name="b">double data.</param>
+        /// <param name="b">The double data to write.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteDouble(double b)
         {
@@ -309,9 +394,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a string value into parcel object.
+        /// Writes a string value into the parcel object.
         /// </summary>
-        /// <param name="b">string data.</param>
+        /// <param name="b">The string data to be written into the parcel object.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteString(string b)
         {
@@ -319,9 +404,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a bool value into parcel object.
+        /// Writes a boolean value into the parcel object.
         /// </summary>
-        /// <param name="b">bool data.</param>
+        /// <param name="b">The boolean value to write.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteBool(bool b)
         {
@@ -329,9 +414,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a Bundle data into parcel object.
+        /// Writes a Bundle data into the parcel object.
         /// </summary>
-        /// <param name="b">Bundle data.</param>
+        /// <param name="b">The Bundle object to write.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteBundle(Bundle b)
         {
@@ -344,9 +429,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a count of an array into parcel object.
+        /// Writes a count of an array into the parcel object.
         /// </summary>
-        /// <param name="cnt">Array count.</param>
+        /// <param name="cnt">The number of elements in the array.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteArrayCount(int cnt)
         {
@@ -354,9 +439,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a byte value from parcel object.
+        /// Reads a byte value from the parcel object.
         /// </summary>
-        /// <returns>byte data.</returns>
+        /// <returns>The byte value.</returns>
         /// <since_tizen> 5 </since_tizen>
         public byte ReadByte()
         {
@@ -365,9 +450,21 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a short value from parcel object.
+        /// Reads a signed byte value from the parcel object.
         /// </summary>
-        /// <returns>short data.</returns>
+        /// <returns>The byte value.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public sbyte ReadSByte()
+        {
+            Interop.LibRPCPort.Parcel.ReadByte(_handle, out byte b);
+            return (sbyte)b;
+        }
+
+        /// <summary>
+        /// Reads a short value from the parcel object.
+        /// </summary>
+        /// <returns>The short data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public short ReadShort()
         {
@@ -376,9 +473,23 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads an int value from parcel object.
+        /// Reads an unsigned short value from the parcel object.
         /// </summary>
-        /// <returns>int data.</returns>
+        /// <returns>The unsigned short data.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ushort ReadUShort()
+        {
+            var bytes = Read(sizeof(ushort));
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToUInt16(bytes, 0);
+        }
+
+        /// <summary>
+        /// Reads an integer value from the parcel object.
+        /// </summary>
+        /// <returns>The integer data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public int ReadInt()
         {
@@ -387,9 +498,23 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a long value from parcel object.
+        /// Reads an unsigned integer value from the parcel object.
         /// </summary>
-        /// <returns>long data.</returns>
+        /// <returns>The integer data.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ReadUInt()
+        {
+            var bytes = Read(sizeof(uint));
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        /// <summary>
+        /// Reads a long value from the parcel object.
+        /// </summary>
+        /// <returns>The long data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public long ReadLong()
         {
@@ -398,9 +523,23 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a float value from parcel object.
+        /// Reads an unsigned long value from the parcel object.
         /// </summary>
-        /// <returns>float data.</returns>
+        /// <returns>The unsigned long data.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ulong ReadULong()
+        {
+            var bytes = Read(sizeof(ulong));
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToUInt64(bytes, 0);
+        }
+
+        /// <summary>
+        /// Reads a float value from the parcel object.
+        /// </summary>
+        /// <returns>The float data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public float ReadFloat()
         {
@@ -409,9 +548,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a double value from parcel object.
+        /// Reads a double value from the parcel object.
         /// </summary>
-        /// <returns>double data.</returns>
+        /// <returns>The double data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public double ReadDouble()
         {
@@ -420,9 +559,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a string value from parcel object.
+        /// Reads a string value from the parcel object.
         /// </summary>
-        /// <returns>string data.</returns>
+        /// <returns>The string data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public string ReadString()
         {
@@ -431,9 +570,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a bool value from parcel object.
+        /// Reads a boolean value from the parcel object.
         /// </summary>
-        /// <returns>bool data.</returns>
+        /// <returns>The boolean data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool ReadBool()
         {
@@ -442,9 +581,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a Bundle value from parcel object.
+        /// Reads a Bundle value from the parcel object.
         /// </summary>
-        /// <returns>Bundle data.</returns>
+        /// <returns>The Bundle data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public Bundle ReadBundle()
         {
@@ -460,9 +599,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a count of an array from parcel object.
+        /// Reads a count of an array from a parcel object.
         /// </summary>
-        /// <returns>Array count.</returns>
+        /// <returns>The number of elements in the array.</returns>
         /// <since_tizen> 5 </since_tizen>
         public int ReadArrayCount()
         {
@@ -471,9 +610,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes bytes into parcel object.
+        /// Writes bytes into the parcel object.
         /// </summary>
-        /// <param name="bytes">Array of bytes.</param>
+        /// <param name="bytes">An array of bytes containing the data to be written.</param>
         /// <since_tizen> 5 </since_tizen>
         public void Write(byte[] bytes)
         {
@@ -486,10 +625,10 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads bytes from parcel object.
+        /// Reads bytes from the parcel object.
         /// </summary>
-        /// <param name="size">Bytes to read.</param>
-        /// <returns>Array of bytes.</returns>
+        /// <param name="size">The number of bytes to read.</param>
+        /// <returns>An array of bytes that were read from the parcel.</returns>
         /// <since_tizen> 5 </since_tizen>
         public byte[] Read(int size)
         {
@@ -513,6 +652,98 @@ namespace Tizen.Applications.RPCPort
             }
 
             return _header;
+        }
+
+        /// <summary>
+        /// Reserves bytes to write later.
+        /// <param name="size">The bytes to reserve.</param>
+        /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Reserve(uint size)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.Reserve(_handle, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Pin the memory. Once it is called, the capacity would not be changed.
+        /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Pin()
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.Pin(_handle);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets the reader pointer of the parcel to the start.
+        /// </summary>
+        /// <returns>The position of the reader</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetReader()
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.GetReader(_handle, out uint reader);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+            return reader;
+        }
+
+        /// <summary>
+        /// Sets the reader pointer of the parcel to the start.
+        /// </summary>
+        /// <param name="pos">The position to read.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetReader(uint pos)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.SetReader(_handle, pos);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets the size of the raw data of the parcel.
+        /// </summary>
+        /// <returns>The size of data</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetDataSize()
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.GetDataSize(_handle, out uint size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+
+            return size;
+        }
+
+        /// <summary>
+        /// Sets the size of the raw data of the parcel.
+        /// </summary>
+        /// <param name="size">The size of data.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDataSize(uint size)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            error = Interop.LibRPCPort.Parcel.SetDataSize(_handle, size);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
         }
 
         #region IDisposable Support

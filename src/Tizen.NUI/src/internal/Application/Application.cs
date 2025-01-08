@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -363,6 +363,47 @@ namespace Tizen.NUI
                 OnResourcesChanged(changedResources);
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void RootIdleCallbackType();
+
+        private RootIdleCallbackType rootIdleCallback = null;
+        private Dictionary<System.Delegate, bool> idleCallbackMap = new Dictionary<System.Delegate, bool>();
+
+        private void RootIdleCallback()
+        {
+            if (idleCallbackMap == null || IsDisposedOrQueued)
+            {
+                Tizen.Log.Error("NUI", $"[Error] Application disposed! Fail to execute idle callback!\n");
+                return;
+            }
+
+            Tizen.Log.Debug("NUI", $"Application RootIdleCallback comes\n");
+            // Reset root idle callback as null now, since we could call AddIdle during delegate function invoke
+            rootIdleCallback = null;
+
+            // Copy key list of idle callback map
+            // (Since idle callback could change the dictionary itself during iteration, we need to make a copy of keys first)
+            List<System.Delegate> delegateList = new List<System.Delegate>();
+            foreach (var func in idleCallbackMap.Keys)
+            {
+                delegateList.Add(func);
+            }
+
+            foreach (var func in delegateList)
+            {
+                // Remove delegate at map first, and then invoke it.
+                bool isValid = false;
+                if (idleCallbackMap?.Remove(func, out isValid) ?? false)
+                {
+                    if (isValid)
+                    {
+                        func.DynamicInvoke();
+                    }
+                }
+            }
+            Tizen.Log.Debug("NUI", $"Application RootIdleCallback finished\n");
+        }
+
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             SetCurrentApplication(this);
@@ -376,145 +417,150 @@ namespace Tizen.NUI
                 return;
             }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (applicationInitEventCallbackDelegate != null)
+            if (type == DisposeTypes.Explicit)
             {
-                initSignal?.Disconnect(applicationInitEventCallbackDelegate);
-                initSignal?.Dispose();
-                initSignal = null;
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+                if (applicationInitEventCallbackDelegate != null)
+                {
+                    initSignal?.Disconnect(applicationInitEventCallbackDelegate);
+                    initSignal?.Dispose();
+                    initSignal = null;
+                }
+
+                if (applicationTerminateEventCallbackDelegate != null)
+                {
+                    terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
+                    terminateSignal?.Dispose();
+                    terminateSignal = null;
+                }
+
+                if (applicationPauseEventCallbackDelegate != null)
+                {
+                    pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
+                    pauseSignal?.Dispose();
+                    pauseSignal = null;
+                }
+
+                if (applicationResumeEventCallbackDelegate != null)
+                {
+                    resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
+                    resumeSignal?.Dispose();
+                    resumeSignal = null;
+                }
+
+                if (applicationResetEventCallbackDelegate != null)
+                {
+                    resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
+                    resetSignal?.Dispose();
+                    resetSignal = null;
+                }
+
+                if (applicationLanguageChangedEventCallbackDelegate != null)
+                {
+                    languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
+                    languageChangedSignal?.Dispose();
+                    languageChangedSignal = null;
+                }
+
+                if (applicationRegionChangedEventCallbackDelegate != null)
+                {
+                    regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
+                    regionChangedSignal?.Dispose();
+                    regionChangedSignal = null;
+                }
+
+                if (applicationBatteryLowEventCallbackDelegate != null)
+                {
+                    batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
+                    batteryLowSignal?.Dispose();
+                    batteryLowSignal = null;
+                }
+
+                if (applicationMemoryLowEventCallbackDelegate != null)
+                {
+                    memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
+                    memoryLowSignal?.Dispose();
+                    memoryLowSignal = null;
+                }
+
+                if (applicationDeviceOrientationChangedEventCallback != null)
+                {
+                    deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
+                    deviceOrientationChangedSignal?.Dispose();
+                    deviceOrientationChangedSignal = null;
+                }
+
+                if (applicationAppControlEventCallbackDelegate != null)
+                {
+                    appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
+                    appControlSignal?.Dispose();
+                    appControlSignal = null;
+                }
+
+                //Task
+                if (applicationTaskInitEventCallbackDelegate != null)
+                {
+                    taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
+                    taskInitSignal?.Dispose();
+                    taskInitSignal = null;
+                }
+
+                if (applicationTaskTerminateEventCallbackDelegate != null)
+                {
+                    taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
+                    taskTerminateSignal?.Dispose();
+                    taskTerminateSignal = null;
+                }
+
+                if (applicationTaskLanguageChangedEventCallbackDelegate != null)
+                {
+                    taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
+                    taskLanguageChangedSignal?.Dispose();
+                    taskLanguageChangedSignal = null;
+                }
+
+                if (applicationTaskRegionChangedEventCallbackDelegate != null)
+                {
+                    taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
+                    taskRegionChangedSignal?.Dispose();
+                    taskRegionChangedSignal = null;
+                }
+
+                if (applicationTaskBatteryLowEventCallbackDelegate != null)
+                {
+                    taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
+                    taskBatteryLowSignal?.Dispose();
+                    taskBatteryLowSignal = null;
+                }
+
+                if (applicationTaskMemoryLowEventCallbackDelegate != null)
+                {
+                    taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
+                    taskMemoryLowSignal?.Dispose();
+                    taskMemoryLowSignal = null;
+                }
+
+                if (applicationTaskDeviceOrientationChangedEventCallback != null)
+                {
+                    taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
+                    taskDeviceOrientationChangedSignal?.Dispose();
+                    taskDeviceOrientationChangedSignal = null;
+                }
+
+                if (applicationTaskAppControlEventCallbackDelegate != null)
+                {
+                    taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
+                    taskAppControlSignal?.Dispose();
+                    taskAppControlSignal = null;
+                }
+
+                window?.Dispose();
+                window = null;
             }
 
-            if (applicationTerminateEventCallbackDelegate != null)
-            {
-                terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
-                terminateSignal?.Dispose();
-                terminateSignal = null;
-            }
-
-            if (applicationPauseEventCallbackDelegate != null)
-            {
-                pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
-                pauseSignal?.Dispose();
-                pauseSignal = null;
-            }
-
-            if (applicationResumeEventCallbackDelegate != null)
-            {
-                resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
-                resumeSignal?.Dispose();
-                resumeSignal = null;
-            }
-
-            if (applicationResetEventCallbackDelegate != null)
-            {
-                resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
-                resetSignal?.Dispose();
-                resetSignal = null;
-            }
-
-            if (applicationLanguageChangedEventCallbackDelegate != null)
-            {
-                languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
-                languageChangedSignal?.Dispose();
-                languageChangedSignal = null;
-            }
-
-            if (applicationRegionChangedEventCallbackDelegate != null)
-            {
-                regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
-                regionChangedSignal?.Dispose();
-                regionChangedSignal = null;
-            }
-
-            if (applicationBatteryLowEventCallbackDelegate != null)
-            {
-                batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
-                batteryLowSignal?.Dispose();
-                batteryLowSignal = null;
-            }
-
-            if (applicationMemoryLowEventCallbackDelegate != null)
-            {
-                memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
-                memoryLowSignal?.Dispose();
-                memoryLowSignal = null;
-            }
-
-            if (applicationDeviceOrientationChangedEventCallback != null)
-            {
-                deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
-                deviceOrientationChangedSignal?.Dispose();
-                deviceOrientationChangedSignal = null;
-            }
-
-            if (applicationAppControlEventCallbackDelegate != null)
-            {
-                appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
-                appControlSignal?.Dispose();
-                appControlSignal = null;
-            }
-
-            //Task
-            if (applicationTaskInitEventCallbackDelegate != null)
-            {
-                taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
-                taskInitSignal?.Dispose();
-                taskInitSignal = null;
-            }
-
-            if (applicationTaskTerminateEventCallbackDelegate != null)
-            {
-                taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
-                taskTerminateSignal?.Dispose();
-                taskTerminateSignal = null;
-            }
-
-            if (applicationTaskLanguageChangedEventCallbackDelegate != null)
-            {
-                taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
-                taskLanguageChangedSignal?.Dispose();
-                taskLanguageChangedSignal = null;
-            }
-
-            if (applicationTaskRegionChangedEventCallbackDelegate != null)
-            {
-                taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
-                taskRegionChangedSignal?.Dispose();
-                taskRegionChangedSignal = null;
-            }
-
-            if (applicationTaskBatteryLowEventCallbackDelegate != null)
-            {
-                taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
-                taskBatteryLowSignal?.Dispose();
-                taskBatteryLowSignal = null;
-            }
-
-            if (applicationTaskMemoryLowEventCallbackDelegate != null)
-            {
-                taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
-                taskMemoryLowSignal?.Dispose();
-                taskMemoryLowSignal = null;
-            }
-
-            if (applicationTaskDeviceOrientationChangedEventCallback != null)
-            {
-                taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
-                taskDeviceOrientationChangedSignal?.Dispose();
-                taskDeviceOrientationChangedSignal = null;
-            }
-
-            if (applicationTaskAppControlEventCallbackDelegate != null)
-            {
-                taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
-                taskAppControlSignal?.Dispose();
-                taskAppControlSignal = null;
-            }
-
-            window?.Dispose();
-            window = null;
+            idleCallbackMap = null;
 
             base.Dispose(type);
         }
@@ -660,18 +706,25 @@ namespace Tizen.NUI
                     initSignal = this.InitSignal();
                     initSignal?.Connect(applicationInitEventCallbackDelegate);
                 }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.Initialized] Only one listener is allowed\n");
+                }
             }
 
             remove
             {
                 if (applicationInitEventHandler != null)
                 {
-                    initSignal?.Disconnect(applicationInitEventCallbackDelegate);
-                    initSignal?.Dispose();
-                    initSignal = null;
+                    applicationInitEventHandler -= value;
+                    if (applicationInitEventHandler == null)
+                    {
+                        initSignal?.Disconnect(applicationInitEventCallbackDelegate);
+                        initSignal?.Dispose();
+                        initSignal = null;
+                        applicationInitEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationInitEventHandler -= value;
             }
         }
 
@@ -684,15 +737,10 @@ namespace Tizen.NUI
             DisposeQueue.Instance.Initialize();
             Tizen.Tracer.End();
 
-            Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
-            Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
-            // Initialize ProcessorController Singleton class. This is also required to create ProcessorController on main thread.
-            ProcessorController.Instance.Initialize();
-            Tizen.Tracer.End();
-
             Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
-            Window.Instance = GetWindow();
+            Window.Instance = Window.Default = GetWindow();
+
 #if !PROFILE_TV
             //tv profile never use default focus indicator, so this is not needed!
             _ = FocusManager.Instance;
@@ -729,10 +777,13 @@ namespace Tizen.NUI
                 if (applicationTerminateEventHandler == null)
                 {
                     applicationTerminateEventHandler += value;
-
                     applicationTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTerminate);
                     terminateSignal = this.TerminateSignal();
                     terminateSignal?.Connect(applicationTerminateEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.Terminating] Only one listener is allowed\n");
                 }
             }
 
@@ -740,12 +791,15 @@ namespace Tizen.NUI
             {
                 if (applicationTerminateEventHandler != null)
                 {
-                    terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
-                    terminateSignal?.Dispose();
-                    terminateSignal = null;
+                    applicationTerminateEventHandler -= value;
+                    if (applicationTerminateEventHandler == null)
+                    {
+                        terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
+                        terminateSignal?.Dispose();
+                        terminateSignal = null;
+                        applicationTerminateEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTerminateEventHandler -= value;
             }
         }
 
@@ -779,10 +833,13 @@ namespace Tizen.NUI
                 if (applicationPauseEventHandler == null)
                 {
                     applicationPauseEventHandler += value;
-
                     applicationPauseEventCallbackDelegate = new NUIApplicationPauseEventCallbackDelegate(OnNUIApplicationPause);
                     pauseSignal = this.PauseSignal();
                     pauseSignal?.Connect(applicationPauseEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.Paused] Only one listener is allowed\n");
                 }
             }
 
@@ -790,12 +847,15 @@ namespace Tizen.NUI
             {
                 if (applicationPauseEventHandler != null)
                 {
-                    pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
-                    pauseSignal?.Dispose();
-                    pauseSignal = null;
+                    applicationPauseEventHandler -= value;
+                    if (applicationTerminateEventHandler == null)
+                    {
+                        pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
+                        pauseSignal?.Dispose();
+                        pauseSignal = null;
+                        applicationPauseEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationPauseEventHandler -= value;
             }
         }
 
@@ -820,10 +880,13 @@ namespace Tizen.NUI
                 if (applicationResumeEventHandler == null)
                 {
                     applicationResumeEventHandler += value;
-
                     applicationResumeEventCallbackDelegate = new NUIApplicationResumeEventCallbackDelegate(OnNUIApplicationResume);
                     resumeSignal = this.ResumeSignal();
                     resumeSignal?.Connect(applicationResumeEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.Resumed] Only one listener is allowed\n");
                 }
             }
 
@@ -831,12 +894,15 @@ namespace Tizen.NUI
             {
                 if (applicationResumeEventHandler != null)
                 {
-                    resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
-                    resumeSignal?.Dispose();
-                    resumeSignal = null;
+                    applicationResumeEventHandler -= value;
+                    if (applicationResumeEventHandler == null)
+                    {
+                        resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
+                        resumeSignal?.Dispose();
+                        resumeSignal = null;
+                        applicationResumeEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationResumeEventHandler -= value;
             }
         }
 
@@ -861,10 +927,13 @@ namespace Tizen.NUI
                 if (applicationResetEventHandler == null)
                 {
                     applicationResetEventHandler += value;
-
                     applicationResetEventCallbackDelegate = new NUIApplicationResetEventCallbackDelegate(OnNUIApplicationReset);
                     resetSignal = this.ResetSignal();
                     resetSignal?.Connect(applicationResetEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.Reset] Only one listener is allowed\n");
                 }
             }
 
@@ -872,12 +941,15 @@ namespace Tizen.NUI
             {
                 if (applicationResetEventHandler != null)
                 {
-                    resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
-                    resetSignal?.Dispose();
-                    resetSignal = null;
+                    applicationResetEventHandler -= value;
+                    if (applicationResetEventHandler == null)
+                    {
+                        resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
+                        resetSignal?.Dispose();
+                        resetSignal = null;
+                        applicationResetEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationResetEventHandler -= value;
             }
         }
 
@@ -902,10 +974,13 @@ namespace Tizen.NUI
                 if (applicationLanguageChangedEventHandler == null)
                 {
                     applicationLanguageChangedEventHandler += value;
-
                     applicationLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationLanguageChanged);
                     languageChangedSignal = this.LanguageChangedSignal();
                     languageChangedSignal?.Connect(applicationLanguageChangedEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.LanguageChanged] Only one listener is allowed\n");
                 }
             }
 
@@ -913,12 +988,15 @@ namespace Tizen.NUI
             {
                 if (applicationLanguageChangedEventHandler != null)
                 {
-                    languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
-                    languageChangedSignal?.Dispose();
-                    languageChangedSignal = null;
+                    applicationLanguageChangedEventHandler -= value;
+                    if (applicationLanguageChangedEventHandler == null)
+                    {
+                        languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
+                        languageChangedSignal?.Dispose();
+                        languageChangedSignal = null;
+                        applicationLanguageChangedEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationLanguageChangedEventHandler -= value;
             }
         }
 
@@ -943,10 +1021,13 @@ namespace Tizen.NUI
                 if (applicationRegionChangedEventHandler == null)
                 {
                     applicationRegionChangedEventHandler += value;
-
                     applicationRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationRegionChanged);
                     regionChangedSignal = this.RegionChangedSignal();
                     regionChangedSignal?.Connect(applicationRegionChangedEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.RegionChanged] Only one listener is allowed\n");
                 }
             }
 
@@ -954,12 +1035,15 @@ namespace Tizen.NUI
             {
                 if (applicationRegionChangedEventHandler != null)
                 {
-                    regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
-                    regionChangedSignal?.Dispose();
-                    regionChangedSignal = null;
+                    applicationRegionChangedEventHandler -= value;
+                    if (applicationRegionChangedEventHandler == null)
+                    {
+                        regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
+                        regionChangedSignal?.Dispose();
+                        regionChangedSignal = null;
+                        applicationRegionChangedEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationRegionChangedEventHandler -= value;
             }
         }
 
@@ -984,10 +1068,13 @@ namespace Tizen.NUI
                 if (applicationBatteryLowEventHandler == null)
                 {
                     applicationBatteryLowEventHandler += value;
-
                     applicationBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationBatteryLow);
                     batteryLowSignal = this.BatteryLowSignal();
                     batteryLowSignal?.Connect(applicationBatteryLowEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.BatteryLow] Only one listener is allowed\n");
                 }
             }
 
@@ -995,12 +1082,15 @@ namespace Tizen.NUI
             {
                 if (applicationBatteryLowEventHandler != null)
                 {
-                    batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
-                    batteryLowSignal?.Dispose();
-                    batteryLowSignal = null;
+                    applicationBatteryLowEventHandler -= value;
+                    if (applicationBatteryLowEventHandler == null)
+                    {
+                        batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
+                        batteryLowSignal?.Dispose();
+                        batteryLowSignal = null;
+                        applicationBatteryLowEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationBatteryLowEventHandler -= value;
             }
         }
 
@@ -1024,10 +1114,13 @@ namespace Tizen.NUI
                 if (applicationMemoryLowEventHandler == null)
                 {
                     applicationMemoryLowEventHandler += value;
-
                     applicationMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationMemoryLow);
                     memoryLowSignal = this.MemoryLowSignal();
                     memoryLowSignal?.Connect(applicationMemoryLowEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.MemoryLow] Only one listener is allowed\n");
                 }
             }
 
@@ -1035,12 +1128,15 @@ namespace Tizen.NUI
             {
                 if (applicationMemoryLowEventHandler != null)
                 {
-                    memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
-                    memoryLowSignal?.Dispose();
-                    memoryLowSignal = null;
+                    applicationMemoryLowEventHandler -= value;
+                    if (applicationMemoryLowEventHandler == null)
+                    {
+                        memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
+                        memoryLowSignal?.Dispose();
+                        memoryLowSignal = null;
+                        applicationMemoryLowEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationMemoryLowEventHandler -= value;
             }
         }
 
@@ -1064,10 +1160,13 @@ namespace Tizen.NUI
                 if (applicationDeviceOrientationChangedEventHandler == null)
                 {
                     applicationDeviceOrientationChangedEventHandler += value;
-
                     applicationDeviceOrientationChangedEventCallback = new NUIApplicationDeviceOrientationChangedEventCallback(OnNUIApplicationDeviceOrientationChanged);
                     deviceOrientationChangedSignal = this.DeviceOrientationChangedSignal();
                     deviceOrientationChangedSignal?.Connect(applicationDeviceOrientationChangedEventCallback);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.DeviceOrientationChanged] Only one listener is allowed\n");
                 }
             }
 
@@ -1075,12 +1174,15 @@ namespace Tizen.NUI
             {
                 if (applicationDeviceOrientationChangedEventHandler != null)
                 {
-                    deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
-                    deviceOrientationChangedSignal?.Dispose();
-                    deviceOrientationChangedSignal = null;
+                    applicationDeviceOrientationChangedEventHandler -= value;
+                    if (applicationDeviceOrientationChangedEventHandler == null)
+                    {
+                        deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
+                        deviceOrientationChangedSignal?.Dispose();
+                        deviceOrientationChangedSignal = null;
+                        applicationDeviceOrientationChangedEventCallback = null;
+                    }
                 }
-
-                applicationDeviceOrientationChangedEventHandler -= value;
             }
         }
 
@@ -1103,10 +1205,13 @@ namespace Tizen.NUI
                 if (applicationAppControlEventHandler == null)
                 {
                     applicationAppControlEventHandler += value;
-
                     applicationAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationAppControl);
                     appControlSignal = this.AppControlSignal();
                     appControlSignal?.Connect(applicationAppControlEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.AppControl] Only one listener is allowed\n");
                 }
             }
 
@@ -1114,12 +1219,15 @@ namespace Tizen.NUI
             {
                 if (applicationAppControlEventHandler != null)
                 {
-                    appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
-                    appControlSignal?.Dispose();
-                    appControlSignal = null;
+                    applicationAppControlEventHandler -= value;
+                    if (applicationAppControlEventHandler == null)
+                    {
+                        appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
+                        appControlSignal?.Dispose();
+                        appControlSignal = null;
+                        applicationAppControlEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationAppControlEventHandler -= value;
             }
         }
 
@@ -1146,11 +1254,14 @@ namespace Tizen.NUI
                 // Restricted to only one listener
                 if (applicationTaskInitEventHandler == null)
                 {
-                    Tizen.Log.Fatal("NUI", "TaskInitialized Property adding");
                     applicationTaskInitEventHandler += value;
                     applicationTaskInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationTaskInit);
                     taskInitSignal = this.TaskInitSignal();
                     taskInitSignal?.Connect(applicationTaskInitEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskInitialized] Only one listener is allowed\n");
                 }
             }
 
@@ -1158,12 +1269,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskInitEventHandler != null)
                 {
-                    taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
-                    taskInitSignal?.Dispose();
-                    taskInitSignal = null;
+                    applicationTaskInitEventHandler -= value;
+                    if (applicationTaskInitEventHandler == null)
+                    {
+                        taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
+                        taskInitSignal?.Dispose();
+                        taskInitSignal = null;
+                        applicationTaskInitEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskInitEventHandler -= value;
             }
         }
 
@@ -1190,10 +1304,13 @@ namespace Tizen.NUI
                 if (applicationTaskTerminateEventHandler == null)
                 {
                     applicationTaskTerminateEventHandler += value;
-
                     applicationTaskTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTaskTerminate);
                     taskTerminateSignal = this.TaskTerminateSignal();
                     taskTerminateSignal?.Connect(applicationTaskTerminateEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskTerminating] Only one listener is allowed\n");
                 }
             }
 
@@ -1201,12 +1318,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskTerminateEventHandler != null)
                 {
-                    taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
-                    taskTerminateSignal?.Dispose();
-                    taskTerminateSignal = null;
+                    applicationTaskTerminateEventHandler -= value;
+                    if (applicationTaskTerminateEventHandler == null)
+                    {
+                        taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
+                        taskTerminateSignal?.Dispose();
+                        taskTerminateSignal = null;
+                        applicationTaskTerminateEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskTerminateEventHandler -= value;
             }
         }
 
@@ -1232,10 +1352,13 @@ namespace Tizen.NUI
                 if (applicationTaskLanguageChangedEventHandler == null)
                 {
                     applicationTaskLanguageChangedEventHandler += value;
-
                     applicationTaskLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationTaskLanguageChanged);
                     taskLanguageChangedSignal = this.TaskLanguageChangedSignal();
                     taskLanguageChangedSignal?.Connect(applicationTaskLanguageChangedEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskLanguageChanged] Only one listener is allowed\n");
                 }
             }
 
@@ -1243,12 +1366,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskLanguageChangedEventHandler != null)
                 {
-                    taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
-                    taskLanguageChangedSignal?.Dispose();
-                    taskLanguageChangedSignal = null;
+                    applicationTaskLanguageChangedEventHandler -= value;
+                    if (applicationTaskLanguageChangedEventHandler == null)
+                    {
+                        taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
+                        taskLanguageChangedSignal?.Dispose();
+                        taskLanguageChangedSignal = null;
+                        applicationTaskLanguageChangedEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskLanguageChangedEventHandler -= value;
             }
         }
 
@@ -1274,10 +1400,13 @@ namespace Tizen.NUI
                 if (applicationTaskRegionChangedEventHandler == null)
                 {
                     applicationTaskRegionChangedEventHandler += value;
-
                     applicationTaskRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationTaskRegionChanged);
                     taskRegionChangedSignal = this.TaskRegionChangedSignal();
                     taskRegionChangedSignal?.Connect(applicationTaskRegionChangedEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskRegionChanged] Only one listener is allowed\n");
                 }
             }
 
@@ -1285,12 +1414,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskRegionChangedEventHandler != null)
                 {
-                    taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
-                    taskRegionChangedSignal?.Dispose();
-                    taskRegionChangedSignal = null;
+                    applicationTaskRegionChangedEventHandler -= value;
+                    if (applicationTaskRegionChangedEventHandler == null)
+                    {
+                        taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
+                        taskRegionChangedSignal?.Dispose();
+                        taskRegionChangedSignal = null;
+                        applicationTaskRegionChangedEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskRegionChangedEventHandler -= value;
             }
         }
 
@@ -1316,10 +1448,13 @@ namespace Tizen.NUI
                 if (applicationTaskBatteryLowEventHandler == null)
                 {
                     applicationTaskBatteryLowEventHandler += value;
-
                     applicationTaskBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationTaskBatteryLow);
                     taskBatteryLowSignal = this.TaskBatteryLowSignal();
                     taskBatteryLowSignal?.Connect(applicationTaskBatteryLowEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskBatteryLow] Only one listener is allowed\n");
                 }
             }
 
@@ -1327,12 +1462,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskBatteryLowEventHandler != null)
                 {
-                    taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
-                    taskBatteryLowSignal?.Dispose();
-                    taskBatteryLowSignal = null;
+                    applicationTaskBatteryLowEventHandler -= value;
+                    if (applicationTaskBatteryLowEventHandler == null)
+                    {
+                        taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
+                        taskBatteryLowSignal?.Dispose();
+                        taskBatteryLowSignal = null;
+                        applicationTaskBatteryLowEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskBatteryLowEventHandler -= value;
             }
         }
 
@@ -1357,10 +1495,13 @@ namespace Tizen.NUI
                 if (applicationTaskMemoryLowEventHandler == null)
                 {
                     applicationTaskMemoryLowEventHandler += value;
-
                     applicationTaskMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationTaskMemoryLow);
                     taskMemoryLowSignal = this.TaskMemoryLowSignal();
                     taskMemoryLowSignal?.Connect(applicationTaskMemoryLowEventCallbackDelegate);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskMemoryLow] Only one listener is allowed\n");
                 }
             }
 
@@ -1368,12 +1509,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskMemoryLowEventHandler != null)
                 {
-                    taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
-                    taskMemoryLowSignal?.Dispose();
-                    taskMemoryLowSignal = null;
+                    applicationTaskMemoryLowEventHandler -= value;
+                    if (applicationTaskMemoryLowEventHandler == null)
+                    {
+                        taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
+                        taskMemoryLowSignal?.Dispose();
+                        taskMemoryLowSignal = null;
+                        applicationTaskMemoryLowEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskMemoryLowEventHandler -= value;
             }
         }
 
@@ -1397,10 +1541,13 @@ namespace Tizen.NUI
                 if (applicationTaskDeviceOrientationChangedEventHandler == null)
                 {
                     applicationTaskDeviceOrientationChangedEventHandler += value;
-
                     applicationTaskDeviceOrientationChangedEventCallback = new NUIApplicationDeviceOrientationChangedEventCallback(OnNUIApplicationTaskDeviceOrientationChanged);
                     taskDeviceOrientationChangedSignal = this.TaskDeviceOrientationChangedSignal();
                     taskDeviceOrientationChangedSignal?.Connect(applicationTaskDeviceOrientationChangedEventCallback);
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskDeviceOrientationChanged] Only one listener is allowed\n");
                 }
             }
 
@@ -1408,12 +1555,15 @@ namespace Tizen.NUI
             {
                 if (applicationTaskDeviceOrientationChangedEventHandler != null)
                 {
-                    taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
-                    taskDeviceOrientationChangedSignal?.Dispose();
-                    taskDeviceOrientationChangedSignal = null;
+                    applicationTaskDeviceOrientationChangedEventHandler -= value;
+                    if (applicationTaskDeviceOrientationChangedEventHandler == null)
+                    {
+                        taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
+                        taskDeviceOrientationChangedSignal?.Dispose();
+                        taskDeviceOrientationChangedSignal = null;
+                        applicationTaskDeviceOrientationChangedEventCallback = null;
+                    }
                 }
-
-                applicationTaskDeviceOrientationChangedEventHandler -= value;
             }
         }
 
@@ -1442,18 +1592,25 @@ namespace Tizen.NUI
                     taskAppControlSignal = this.TaskAppControlSignal();
                     taskAppControlSignal?.Connect(applicationTaskAppControlEventCallbackDelegate);
                 }
+                else
+                {
+                    Tizen.Log.Error("NUI", "[Application.TaskAppControl] Only one listener is allowed\n");
+                }
             }
 
             remove
             {
                 if (applicationTaskAppControlEventHandler != null)
                 {
-                    taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
-                    taskAppControlSignal?.Dispose();
-                    taskAppControlSignal = null;
+                    applicationTaskAppControlEventHandler -= value;
+                    if (applicationTaskAppControlEventHandler == null)
+                    {
+                        taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
+                        taskAppControlSignal?.Dispose();
+                        taskAppControlSignal = null;
+                        applicationTaskAppControlEventCallbackDelegate = null;
+                    }
                 }
-
-                applicationTaskAppControlEventHandler -= value;
             }
         }
 
@@ -1610,13 +1767,76 @@ namespace Tizen.NUI
         /// </remarks>
         public bool AddIdle(System.Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
-            System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+            bool idleAdded = false; // default value is false
 
-            bool ret = Interop.Application.AddIdle(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+            if (idleCallbackMap == null || IsDisposedOrQueued)
+            {
+                Tizen.Log.Error("NUI", $"[Error] Application disposed! failed to add idle {func}\n");
+                return false;
+            }
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            // Register root idle callback for Tizen.NUI.Application
+            if (rootIdleCallback == null)
+            {
+                rootIdleCallback = RootIdleCallback;
+                System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootIdleCallback);
+                System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+
+                bool ret = Interop.Application.AddIdle(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                if (!ret)
+                {
+                    rootIdleCallback = null;
+                    Tizen.Log.Error("NUI", $"[Error] failed to add idle {func}\n");
+                    return false;
+                }
+            }
+
+            if (idleCallbackMap.TryGetValue(func, out bool isValid))
+            {
+                idleAdded = true; // success case
+                if (!isValid)
+                {
+                    idleCallbackMap[func] = true;
+                }
+                else
+                {
+                    Tizen.Log.Debug("NUI", $"Already added idle {func}\n");
+                }
+            }
+            else if (idleCallbackMap.TryAdd(func, true))
+            {
+                idleAdded = true; // success case
+            }
+
+            if (!idleAdded)
+            {
+                Tizen.Log.Error("NUI", $"[Error] failed to add idle {func}\n");
+            }
+
+            return idleAdded;
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            if (idleCallbackMap == null || IsDisposedOrQueued)
+            {
+                Tizen.Log.Error("NUI", $"[Error] Application disposed! failed to remove idle {func}\n");
+                return;
+            }
+
+            if (idleCallbackMap.TryGetValue(func, out bool isValid))
+            {
+                if (isValid)
+                {
+                    idleCallbackMap[func] = false;
+                }
+            }
         }
 
         /**
@@ -1812,13 +2032,6 @@ namespace Tizen.NUI
         {
             Interop.Application.Quit(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
-        {
-            bool ret = Interop.Application.AddIdle(SwigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public Window GetWindow()

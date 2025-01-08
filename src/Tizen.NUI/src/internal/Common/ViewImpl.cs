@@ -184,18 +184,6 @@ namespace Tizen.NUI
         /// Do not use this, that will be deprecated.
         [Obsolete("Do not use this, that will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AccessibilityActivate()
-        {
-            Interop.ViewImpl.AccessibilityActivate(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// [Obsolete("Do not use this, that will be deprecated.")]
-        /// </summary>
-        /// Do not use this, that will be deprecated.
-        [Obsolete("Do not use this, that will be deprecated.")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void KeyboardEnter()
         {
             Interop.ViewImpl.KeyboardEnter(SwigCPtr);
@@ -349,27 +337,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public virtual bool OnAccessibilityPan(PanGesture gesture)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26) ? Interop.ViewImplSignal.OnAccessibilityPanSwigExplicitViewImpl(SwigCPtr, PanGesture.getCPtr(gesture)) : Interop.ViewImplSignal.OnAccessibilityPan(SwigCPtr, PanGesture.getCPtr(gesture)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnAccessibilityValueChange(bool isIncrease)
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28) ? Interop.ViewImplSignal.OnAccessibilityValueChangeSwigExplicitViewImpl(SwigCPtr, isIncrease) : Interop.ViewImplSignal.OnAccessibilityValueChange(SwigCPtr, isIncrease));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual bool OnAccessibilityZoom()
-        {
-            bool ret = (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29) ? Interop.ViewImplSignal.OnAccessibilityZoomSwigExplicitViewImpl(SwigCPtr) : Interop.ViewImplSignal.OnAccessibilityZoom(SwigCPtr));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public virtual void OnKeyInputFocusGained()
         {
             if (SwigDerivedClassHasMethod("OnKeyInputFocusGained", swigMethodTypes30)) Interop.ViewImplSignal.OnKeyInputFocusGainedSwigExplicitViewImpl(SwigCPtr); else Interop.ViewImplSignal.OnKeyInputFocusGained(SwigCPtr);
@@ -482,12 +449,6 @@ namespace Tizen.NUI
                 swigDelegate24 = new SwigDelegateViewImpl_24(SwigDirectorOnStyleChange);
             if (SwigDerivedClassHasMethod("OnAccessibilityActivated", swigMethodTypes25))
                 swigDelegate25 = new SwigDelegateViewImpl_25(SwigDirectorOnAccessibilityActivated);
-            if (SwigDerivedClassHasMethod("OnAccessibilityPan", swigMethodTypes26))
-                swigDelegate26 = new SwigDelegateViewImpl_26(SwigDirectorOnAccessibilityPan);
-            if (SwigDerivedClassHasMethod("OnAccessibilityValueChange", swigMethodTypes28))
-                swigDelegate28 = new SwigDelegateViewImpl_28(SwigDirectorOnAccessibilityValueChange);
-            if (SwigDerivedClassHasMethod("OnAccessibilityZoom", swigMethodTypes29))
-                swigDelegate29 = new SwigDelegateViewImpl_29(SwigDirectorOnAccessibilityZoom);
             if (SwigDerivedClassHasMethod("OnKeyInputFocusGained", swigMethodTypes30))
                 swigDelegate30 = new SwigDelegateViewImpl_30(SwigDirectorOnKeyInputFocusGained);
             if (SwigDerivedClassHasMethod("OnKeyInputFocusLost", swigMethodTypes31))
@@ -510,7 +471,7 @@ namespace Tizen.NUI
                 swigDelegate39 = new SwigDelegateViewImpl_39(SwigDirectorSignalConnected);
             if (SwigDerivedClassHasMethod("SignalDisconnected", swigMethodTypes40))
                 swigDelegate40 = new SwigDelegateViewImpl_40(SwigDirectorSignalDisconnected);
-            Interop.ViewImpl.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate9, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate26, swigDelegate28, swigDelegate29, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
+            Interop.ViewImpl.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate9, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18, swigDelegate19, swigDelegate20, swigDelegate21, swigDelegate24, swigDelegate25, swigDelegate30, swigDelegate31, swigDelegate32, swigDelegate33, swigDelegate34, swigDelegate35, swigDelegate36, swigDelegate37, swigDelegate38, swigDelegate39, swigDelegate40);
         }
 
         private void SwigDirectorDisconnect()
@@ -536,9 +497,6 @@ namespace Tizen.NUI
             swigDelegate21 = null;
             swigDelegate24 = null;
             swigDelegate25 = null;
-            swigDelegate26 = null;
-            swigDelegate28 = null;
-            swigDelegate29 = null;
             swigDelegate30 = null;
             swigDelegate31 = null;
             swigDelegate32 = null;
@@ -550,7 +508,7 @@ namespace Tizen.NUI
             swigDelegate38 = null;
             swigDelegate39 = null;
             swigDelegate40 = null;
-            Interop.ViewImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            Interop.ViewImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
@@ -595,7 +553,7 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            OnPropertySet(index, new PropertyValue(propertyValue, true));
+            OnPropertySet(index, new PropertyValue(propertyValue, false));
         }
 
         private void SwigDirectorOnSizeSet(global::System.IntPtr targetSize)
@@ -685,21 +643,6 @@ namespace Tizen.NUI
         private bool SwigDirectorOnAccessibilityActivated()
         {
             return OnAccessibilityActivated();
-        }
-
-        private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
-        {
-            return OnAccessibilityPan(new PanGesture(gesture, true));
-        }
-
-        private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
-        {
-            return OnAccessibilityValueChange(isIncrease);
-        }
-
-        private bool SwigDirectorOnAccessibilityZoom()
-        {
-            return OnAccessibilityZoom();
         }
 
         private void SwigDirectorOnKeyInputFocusGained()
@@ -816,9 +759,6 @@ namespace Tizen.NUI
         private SwigDelegateViewImpl_21 swigDelegate21;
         private SwigDelegateViewImpl_24 swigDelegate24;
         private SwigDelegateViewImpl_25 swigDelegate25;
-        private SwigDelegateViewImpl_26 swigDelegate26;
-        private SwigDelegateViewImpl_28 swigDelegate28;
-        private SwigDelegateViewImpl_29 swigDelegate29;
         private SwigDelegateViewImpl_30 swigDelegate30;
         private SwigDelegateViewImpl_31 swigDelegate31;
         private SwigDelegateViewImpl_32 swigDelegate32;
@@ -852,9 +792,6 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes21 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes24 = new global::System.Type[] { typeof(StyleManager), typeof(StyleChangeType) };
         private static global::System.Type[] swigMethodTypes25 = System.Array.Empty<global::System.Type>();
-        private static global::System.Type[] swigMethodTypes26 = new global::System.Type[] { typeof(PanGesture) };
-        private static global::System.Type[] swigMethodTypes28 = new global::System.Type[] { typeof(bool) };
-        private static global::System.Type[] swigMethodTypes29 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes30 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes31 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes32 = new global::System.Type[] { typeof(View), typeof(View.FocusDirection), typeof(bool) };

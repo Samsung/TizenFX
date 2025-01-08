@@ -39,6 +39,7 @@ namespace Tizen.NUI
         public Shadow() : base()
         {
             BlurRadius = 0;
+            CutoutPolicy = ColorVisualCutoutPolicyType.None;
             Color = defaultColor;
         }
 
@@ -50,9 +51,23 @@ namespace Tizen.NUI
         /// <param name="offset">Optional. The position offset value (x, y) from the top left corner. See <see cref="ShadowBase.Offset"/>.</param>
         /// <param name="extents">Optional. The shadow will extend its size by specified amount of length. See <see cref="ShadowBase.Extents"/>.</param>
         /// <since_tizen> 9 </since_tizen>
-        public Shadow(float blurRadius, Color color, Vector2 offset = null, Vector2 extents = null) : base(offset, extents)
+        public Shadow(float blurRadius, Color color, Vector2 offset = null, Vector2 extents = null) : this(blurRadius, ColorVisualCutoutPolicyType.None, color, offset, extents)
+        {
+        }
+
+        /// <summary>
+        /// Create a Shadow with custom values.
+        /// </summary>
+        /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
+        /// <param name="cutoutPolicy">The policy of the shadow cutout.</param>
+        /// <param name="color">The color for the shadow.</param>
+        /// <param name="offset">Optional. The position offset value (x, y) from the top left corner. See <see cref="ShadowBase.Offset"/>.</param>
+        /// <param name="extents">Optional. The shadow will extend its size by specified amount of length. See <see cref="ShadowBase.Extents"/>.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shadow(float blurRadius, ColorVisualCutoutPolicyType cutoutPolicy, Color color, Vector2 offset = null, Vector2 extents = null) : base(offset, extents)
         {
             BlurRadius = blurRadius;
+            CutoutPolicy = cutoutPolicy;
             Color = color == null ? new Color(defaultColor) : new Color(color);
         }
 
@@ -61,7 +76,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(Shadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.BlurRadius, other.Color, other.Offset, other.Extents)
+        public Shadow(Shadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.BlurRadius, other.CutoutPolicy, other.Color, other.Offset, other.Extents)
         {
         }
 
@@ -93,11 +108,23 @@ namespace Tizen.NUI
         /// <summary>
         /// The blur radius value for the shadow. Bigger value, much blurry.
         /// </summary>
-        /// <remark>
+        /// <remarks>
         /// Negative value is ignored. (no blur)
-        /// </remark>
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public float BlurRadius { get; internal set; }
+
+        /// <summary>
+        /// The Cutout policy for this shadow.
+        /// </summary>
+        /// <remarks>
+        /// ColorVisualCutoutPolicyType.None = Fully render the shadow color (Default)<br/>
+        /// ColorVisualCutoutPolicyType.CutoutView = Do not render inside bounding box of view<br/>
+        /// ColorVisualCutoutPolicyType.CutoutViewWithCornerRadius = Do not render inside view, consider corner radius value<br/>
+        /// We don't support this property for xaml yet.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ColorVisualCutoutPolicyType CutoutPolicy { get; internal set;}
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -127,6 +154,7 @@ namespace Tizen.NUI
                 int hash = base.GetHashCode();
                 hash = (hash * 7) + (Color == null ? 0 : Color.GetHashCode());
                 hash = (hash * 7) + (BlurRadius.GetHashCode());
+                hash = (hash * 7) + (CutoutPolicy.GetHashCode());
                 return hash;
             }
         }
@@ -151,6 +179,8 @@ namespace Tizen.NUI
             map[ColorVisualProperty.MixColor] = new PropertyValue(Color ?? noColor);
 
             map[ColorVisualProperty.BlurRadius] = new PropertyValue(BlurRadius < 0 ? 0 : BlurRadius);
+
+            map[ColorVisualProperty.CutoutPolicy] = new PropertyValue((int)CutoutPolicy);
 
             return map;
         }

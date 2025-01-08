@@ -21,15 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class Animation
         {
-            //Animation Pinvoke
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Animation__SWIG_0")]
-            public static extern global::System.IntPtr NewAnimation();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_New")]
             public static extern global::System.IntPtr New(float jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Animation")]
             public static extern void DeleteAnimation(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -121,6 +115,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetLoopingMode")]
             public static extern int GetLoopingMode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetAnimationId")]
+            public static extern uint GetAnimationId(global::System.Runtime.InteropServices.HandleRef nuiAnimation);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetProgressNotification")]
             public static extern void SetProgressNotification(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
@@ -255,9 +252,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AnimationSignal")]
             public static extern void DeleteAnimationSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

@@ -24,6 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Interop;
 using NativeEncoder = Interop.ImageUtil.Encode;
+using NativeUtil = Interop.ImageUtil;
 
 namespace Tizen.Multimedia.Util
 {
@@ -34,8 +35,11 @@ namespace Tizen.Multimedia.Util
     public abstract class ImageEncoder : IDisposable
     {
         private ImageEncoderHandle _handle;
+        internal IntPtr _imageUtilHandle;
+        internal IntPtr _animationHandle;
 
-        private bool _hasResolution;
+        internal Size? _resolution;
+        internal ColorSpace? _colorSpace;
 
         internal ImageEncoder(ImageFormat format)
         {
@@ -88,16 +92,14 @@ namespace Tizen.Multimedia.Util
                     "The height of resolution can't be less than or equal to zero.");
             }
 
-            NativeEncoder.SetResolution(Handle, (uint)resolution.Width, (uint)resolution.Height).
-                ThrowIfFailed("Failed to set the resolution");
-
-            _hasResolution = true;
+            _resolution = resolution;
         }
 
         /// <summary>
         /// Sets the color-space of the output image.
         /// </summary>
         /// <param name="colorSpace">The target color-space.</param>
+        /// <value>The default color space is <see cref="ColorSpace.Rgba8888"/>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the encoder.</exception>
         /// <seealso cref="ImageUtil.GetSupportedColorSpaces(ImageFormat)"/>
@@ -111,19 +113,18 @@ namespace Tizen.Multimedia.Util
                 throw new NotSupportedException($"{colorSpace.ToString()} is not supported for {OutputFormat}.");
             }
 
-            NativeEncoder.SetColorspace(Handle, colorSpace.ToImageColorSpace()).
-                ThrowIfFailed("Failed to set the color space");
+            _colorSpace = colorSpace;
         }
 
-        private void RunEncoding(object outStream)
+        internal virtual void RunEncoding(object outStream)
         {
             IntPtr outBuffer = IntPtr.Zero;
+            int size = 0;
 
             try
             {
-                NativeEncoder.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
-
-                NativeEncoder.Run(Handle, out var size).ThrowIfFailed("Failed to encode given image");
+                NativeEncoder.RunToBuffer(Handle, _imageUtilHandle, out outBuffer, out size).
+                    ThrowIfFailed("Failed to encode given image");
 
                 byte[] buf = new byte[size];
                 Marshal.Copy(outBuffer, buf, 0, (int)size);
@@ -132,6 +133,7 @@ namespace Tizen.Multimedia.Util
             finally
             {
                 Marshal.FreeHGlobal(outBuffer);
+                NativeUtil.Destroy(_imageUtilHandle).ThrowIfFailed("Failed to destroy ImageUtil handle");
             }
         }
 
@@ -195,10 +197,9 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentException("buffer is empty.", nameof(inputBuffer));
             }
 
-            return EncodeAsync(handle =>
-            {
-                NativeEncoder.SetInputBuffer(handle, inputBuffer).
-                        ThrowIfFailed("Failed to configure encoder; InputBuffer");
+            return EncodeAsync(handle => {
+                NativeUtil.Create((uint)_resolution.Value.Width, (uint)_resolution.Value.Height, _colorSpace.Value.ToImageColorSpace(),
+                    inputBuffer, inputBuffer.Length, out _imageUtilHandle).ThrowIfFailed("Failed to create ImageUtil handle");
             }, outStream);
         }
 
@@ -206,9 +207,14 @@ namespace Tizen.Multimedia.Util
         {
             Configure(Handle);
 
-            if (_hasResolution == false)
+            if (!_resolution.HasValue)
             {
                 throw new InvalidOperationException("Resolution is not set.");
+            }
+            if (!_colorSpace.HasValue)
+            {
+                _colorSpace = ColorSpace.Rgba8888;
+                Log.Info("Tizen.Multimedia.Util", "ColorSpace was set to default value(Rgba8888).");
             }
         }
 
@@ -413,6 +419,8 @@ namespace Tizen.Multimedia.Util
     /// <since_tizen> 4 </since_tizen>
     public class GifEncoder : ImageEncoder
     {
+        private IEnumerable<GifFrame> _frames;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GifEncoder"/> class.
         /// </summary>
@@ -453,26 +461,55 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentNullException(nameof(frames));
             }
 
-            if (frames.Count() == 0)
+            if (!frames.Any())
             {
                 throw new ArgumentException("frames is a empty collection", nameof(frames));
             }
 
-            return EncodeAsync(handle =>
+            _frames = frames;
+
+            return EncodeAsync(handle => {}, outStream);
+        }
+
+        internal override void RunEncoding(object outStream)
+        {
+            IntPtr outBuffer = IntPtr.Zero;
+
+            NativeEncoder.AnimationCreate(AnimationType.Gif, out _animationHandle).
+                ThrowIfFailed("Failed to create animation handle");
+
+            try
             {
-                foreach (GifFrame frame in frames)
+                foreach (GifFrame frame in _frames)
                 {
                     if (frame == null)
                     {
-                        throw new ArgumentNullException(nameof(frames));
+                        throw new ArgumentNullException(nameof(frame));
                     }
-                    NativeEncoder.SetInputBuffer(handle, frame.Buffer).
-                        ThrowIfFailed("Failed to configure encoder; Buffer");
 
-                    NativeEncoder.SetGifFrameDelayTime(handle, (ulong)frame.Delay).
-                        ThrowIfFailed("Failed to configure encoder; Delay");
+                    NativeUtil.Create((uint)_resolution.Value.Width, (uint)_resolution.Value.Height, _colorSpace.Value.ToImageColorSpace(),
+                        frame.Buffer, frame.Buffer.Length, out _imageUtilHandle).ThrowIfFailed("Failed to create ImageUtil handle");
+                    NativeEncoder.AnimationAddFrame(_animationHandle, _imageUtilHandle, frame.Delay).
+                        ThrowIfFailed("Failed to add frame");
+
+                    NativeUtil.Destroy(_imageUtilHandle).ThrowIfFailed("Failed to destroy ImageUtil handle");
                 }
-            }, outStream);
+
+                NativeEncoder.AnimationSaveToBuffer(_animationHandle, out outBuffer, out ulong size).
+                    ThrowIfFailed("Failed to encode given image");
+
+                byte[] buf = new byte[size];
+                Marshal.Copy(outBuffer, buf, 0, (int)size);
+                (outStream as Stream).Write(buf, 0, (int)size);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(outBuffer);
+                if (_animationHandle != IntPtr.Zero)
+                {
+                    NativeEncoder.AnimationDestroy(_animationHandle).ThrowIfFailed("Failed to destroy animation handle");
+                }
+            }
         }
     }
 

@@ -17,6 +17,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using Tizen.Common;
 
 namespace Tizen.NUI.WindowSystem.Shell
 {
@@ -39,13 +41,29 @@ namespace Tizen.NUI.WindowSystem.Shell
         private event EventHandler _dragStarted;
         private event EventHandler _dragEnded;
 
+
+        /// <summary>
+        /// Drop target type of PerformDrop request of KVM Service.
+        /// </summary>
+        public enum DropTarget
+        {
+            /// <summary>
+            /// Drop to KVM Service window self.
+            /// </summary>
+            KVMServiceWin = 0,
+            /// <summary>
+            /// Drop to the window that under pointer.
+            /// </summary>
+            UnderPointer = 1,
+        };
+
         /// <summary>
         /// Creates a new KVM Service handle.
         /// </summary>
         /// <param name="tzShell">The TizenShell instance.</param>
         /// <param name="win">The window to provide service of the quickpanel.</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
         public KVMService(TizenShell tzShell, Window win)
         {
             if (tzShell == null)
@@ -63,7 +81,40 @@ namespace Tizen.NUI.WindowSystem.Shell
 
             _tzsh = tzShell;
             _tzshWin = win.GetNativeId();
-            _kvmService = Interop.KVMService.Create(_tzsh.GetNativeHandle(), (IntPtr)_tzshWin);
+            _kvmService = Interop.KVMService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_kvmService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+        }
+
+        /// <summary>
+        /// Creates a new KVM Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window provider for the quickpanel service.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public KVMService(TizenShell tzShell, IWindowProvider win)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
+            _kvmService = Interop.KVMService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
             if (_kvmService == IntPtr.Zero)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
@@ -188,6 +239,16 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
+        /// Requests to perform drop to given target.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void PerformDrop(DropTarget target)
+        {
+            int res = Interop.KVMService.PerformDropTarget(_kvmService, (uint)target);
+            _tzsh.ErrorCodeThrow(res);
+        }
+
+        /// <summary>
         /// Requests to cancel current drag.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
@@ -206,6 +267,23 @@ namespace Tizen.NUI.WindowSystem.Shell
         {
             int res = Interop.KVMService.ReceiveDragData(_kvmService, mimeType);
             _tzsh.ErrorCodeThrow(res);
+        }
+
+        /// <summary>
+        /// Requests to receive the mimetype list of drag source.
+        /// </summary>
+        /// <returns>
+        /// The list of mimetype.
+        /// If there are no mimetype, returns null.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public List<string> GetSourceMimetypes()
+        {
+            int res = Interop.KVMService.GetSourceMimetypes(_kvmService, out string[] mimetypes, out int mimeTypeCount);
+            _tzsh.ErrorCodeThrow(res);
+
+            if (mimetypes == null) return null;
+            return new List<string>(mimetypes);
         }
 
         /// <summary>

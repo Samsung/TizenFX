@@ -56,7 +56,7 @@ namespace Tizen.Multimedia.Vision
             {
                 Log.Error(MediaVisionLog.Tag, e.ToString());
                 InteropFace.Destroy(_handle);
-                throw e;
+                throw;
             }
         }
 

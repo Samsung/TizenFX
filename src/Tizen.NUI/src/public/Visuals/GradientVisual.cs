@@ -33,7 +33,7 @@ namespace Tizen.NUI
         private GradientVisualSpreadMethodType? _spreadMethod = null;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of GradientVisual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public GradientVisual() : base()

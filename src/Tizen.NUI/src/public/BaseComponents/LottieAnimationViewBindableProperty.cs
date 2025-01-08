@@ -26,126 +26,167 @@ namespace Tizen.NUI.BaseComponents
         /// URLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty URLProperty = BindableProperty.Create(nameof(URL), typeof(string), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty URLProperty = null;
+
+        internal static void SetInternalURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalURL = (string)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalURLProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalURL;
-        });
+        }
 
         /// <summary>
         /// CurrentFrameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentFrameProperty = null;
+
+        internal static void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentFrame = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        }
 
         /// <summary>
         /// LoopingModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopingModeProperty = BindableProperty.Create(nameof(LoopingMode), typeof(LoopingModeType), typeof(LottieAnimationView), default(LoopingModeType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopingModeProperty = null;
+
+        internal static void SetInternalLoopingModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalLoopingMode = (Tizen.NUI.BaseComponents.LottieAnimationView.LoopingModeType)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLoopingModeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalLoopingMode;
-        });
+        }
 
         /// <summary>
         /// LoopCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopCountProperty = null;
+
+        internal static void SetInternalLoopCountProperty(BindableObject bindable, object oldValue, object newValue)
+
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalLoopCount = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLoopCountProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalLoopCount;
-        });
+        }
 
         /// <summary>
         /// StopBehaviorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(LottieAnimationView), default(StopBehaviorType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StopBehaviorProperty = null;
+
+        internal static void SetInternalStopBehaviorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalStopBehavior = (Tizen.NUI.BaseComponents.LottieAnimationView.StopBehaviorType)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalStopBehaviorProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalStopBehavior;
-        });
+        }
 
         /// <summary>
         /// RedrawInScalingDownProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RedrawInScalingDownProperty = BindableProperty.Create(nameof(RedrawInScalingDown), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RedrawInScalingDownProperty = null;
+
+        internal static void SetInternalRedrawInScalingDownProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalRedrawInScalingDown = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalRedrawInScalingDownProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalRedrawInScalingDown;
-        });
+        }
 
         /// <summary>
         /// EnableFrameCacheProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableFrameCacheProperty = BindableProperty.Create(nameof(EnableFrameCache), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableFrameCacheProperty = null;
+
+        internal static void SetInternalEnableFrameCacheProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
             {
                 instance.InternalEnableFrameCache = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalEnableFrameCacheProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalEnableFrameCache;
-        });
+        }
+
+        /// <summary>
+        /// NotifyAfterRasterizationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty NotifyAfterRasterizationProperty = null;
+
+        internal static void SetInternalNotifyAfterRasterizationProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalNotifyAfterRasterization = (bool)newValue;
+            }
+        }
+
+        internal static object GetInternalNotifyAfterRasterizationProperty(BindableObject bindable)
+        {
+            var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
+            return instance.InternalNotifyAfterRasterization;
+        }
     }
 }

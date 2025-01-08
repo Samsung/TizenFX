@@ -23,11 +23,11 @@ namespace Tizen.NUI.ParticleSystem
     {
         internal static partial class ParticleEmitter
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_New_SWIG_0")]
-            internal static extern global::System.IntPtr New(HandleRef view);
-            
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ParticleEmitter")]
             internal static extern void DeleteParticleEmitter(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_New_SWIG_0")]
+            internal static extern global::System.IntPtr New(HandleRef view);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Assign")]
             internal static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -40,7 +40,7 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetDomain")]
             internal static extern void SetDomain(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-  
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetRenderer")]
             internal static extern void SetRenderer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
@@ -73,10 +73,10 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_RemoveModifierAt")]
             internal static extern void RemoveModifierAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetModifierAt")]
             internal static extern global::System.IntPtr GetModifierAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleList")]
             internal static extern global::System.IntPtr GetParticleList(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -97,7 +97,7 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetActiveParticleLimit")]
             internal static extern uint GetActiveParticleLimit(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
             // ParticleRenderer
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_SetTexture")]
             internal static extern void SetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -112,7 +112,7 @@ namespace Tizen.NUI.ParticleSystem
             internal static extern int NewParticle(global::System.IntPtr emitter, float lifetime);
 
             // ParticleList
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamiInt")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamInt")]
             internal static extern uint AddLocalStreamInt(global::System.Runtime.InteropServices.HandleRef jarg1, int defaultValue);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamFloat")]

@@ -129,19 +129,6 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Assignment operator.
-        /// </summary>
-        /// <param name="model">Source object to be assigned.</param>
-        /// <returns>Reference to this.</returns>
-        internal Model Assign(Model model)
-        {
-            Model ret = new Model(Interop.Model.ModelAssign(SwigCPtr, Model.getCPtr(model)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            ret.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
-            return ret;
-        }
-
-        /// <summary>
         /// Get The original pivot point of the model
         /// </summary>
         /// <remarks>
@@ -185,6 +172,44 @@ namespace Tizen.NUI.Scene3D
             get
             {
                 return GetModelRoot();
+            }
+        }
+
+        /// <summary>
+        /// Whether this Model casts shadow or not by directional light.
+        /// If it is true, this Model is drawn on Shadow Map.
+        /// Default value is true.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShadowCast
+        {
+            get
+            {
+                return IsShadowCasting();
+            }
+            set
+            {
+                CastShadow(value);
+            }
+        }
+
+        /// <summary>
+        /// Whether this Model receives shadow or not by directional light.
+        /// If it is true, shadows are drawn on this Model.
+        /// Default value is true.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShadowReceive
+        {
+            get
+            {
+                return IsShadowReceiving();
+            }
+            set
+            {
+                ReceiveShadow(value);
             }
         }
 
@@ -595,11 +620,59 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Sets whether this Model casts shadow or not.
+        /// If it is true, this model is drawn on Shadow Map.
+        /// Note: This method affects all of the child ModelNode.
+        /// However, same property of each child ModelNode can be changed respectively and it not changes parent's property.
+        /// </summary>
+        /// <param name="castShadow">Whether this Model casts shadow or not.</param>
+        private void CastShadow(bool castShadow)
+        {
+            Interop.Model.CastShadow(SwigCPtr, castShadow);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves whether the Model casts shadow or not for Light.
+        /// Note: IBL does not cast any shadow.
+        /// </summary>
+        /// <returns>True if this model casts shadow.</returns>
+        private bool IsShadowCasting()
+        {
+            var isShadowCasting = Interop.Model.IsShadowCasting(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return isShadowCasting;
+        }
+
+        /// <summary>
+        /// Sets whether this Model receives shadow or not.
+        /// If it is true, shadows are drawn on this model.
+        /// Note: This method affects all of the child ModelNode.
+        /// However, same property of each child ModelNode can be changed respectively and it not changes parent's property.
+        /// </summary>
+        /// <param name="receiveShadow">Whether this Model receives shadow or not.</param>
+        private void ReceiveShadow(bool receiveShadow)
+        {
+            Interop.Model.ReceiveShadow(SwigCPtr, receiveShadow);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves whether the Model receives shadow or not for Light
+        /// If it is true, this model is drawn on Shadow Map.
+        /// </summary>
+        /// <returns>True if this model receives shadow.</returns>
+        private bool IsShadowReceiving()
+        {
+            var isShadowReceiving = Interop.Model.IsShadowReceiving(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return isShadowReceiving;
+        }
+
+        /// <summary>
         /// Retrieves model root Actor.
         /// </summary>
         /// <returns>Root View of the model.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private ModelNode GetModelRoot()
         {
             global::System.IntPtr cPtr = Interop.Model.GetModelRoot(SwigCPtr);

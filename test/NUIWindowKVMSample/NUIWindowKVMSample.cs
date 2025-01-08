@@ -39,7 +39,7 @@ namespace NUIWindowKVMSample
             text.WidthResizePolicy = ResizePolicyType.FillToParent;
             windowView.Add(text);
 
-            KVMServiceWindow kvmServiceWindow = new KVMServiceWindow(new Rectangle(2500, 0, 60, 1440));
+            kvmServiceWindow = new KVMServiceWindow(new Rectangle(2500, 0, 60, 1440));
             kvmServiceWindow.Show();
         }
 
@@ -48,6 +48,18 @@ namespace NUIWindowKVMSample
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
             {
                 Exit();
+            }
+            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "d" || e.Key.KeyPressedName == "D"))
+            {
+                Log.Debug("KVMSample", e.Key.KeyPressedName + " pressed!");
+                dropTimer = new Timer(5000);
+                dropTimer.Tick += (source, args) => {
+                    Log.Debug("KVMSample", "Timer tick!");
+                    kvmServiceWindow.PerformDrop();
+                    dropTimer.Stop();
+                    return false;
+                };
+                dropTimer.Start();
             }
         }
 
@@ -96,6 +108,8 @@ namespace NUIWindowKVMSample
         }
 
         private DragAndDrop dnd;
+        private KVMServiceWindow kvmServiceWindow;
+        private Timer dropTimer;
     }
 
     class KVMServiceWindow : Window
@@ -123,6 +137,11 @@ namespace NUIWindowKVMSample
             kvmService.DragEnded += OnDragEnded;
         }
 
+        public void PerformDrop()
+        {
+            kvmService.PerformDrop(Tizen.NUI.WindowSystem.Shell.KVMService.DropTarget.UnderPointer);
+        }
+
         private void OnDnDEvent(object sender, DragEvent e)
         {
             if (e.DragType == DragType.Enter)
@@ -148,9 +167,17 @@ namespace NUIWindowKVMSample
         {
             Log.Debug("KVMSample", "Tizen KVM: Drag started");
 
+            List<string> mimeTypes;
+            mimeTypes = kvmService.GetSourceMimetypes();
+            if (mimeTypes == null)
+                Log.Debug("KVMSample", "Tizen KVM: There're no Source mimetypes");
+            else
+                Log.Debug("KVMSample", "Tizen KVM: Source mimetypes: " + string.Join(", ", mimeTypes));
+            string mimeType = mimeTypes[0];
+
             // Request the drag data to the Display server.
             // The drag data can get at DnD Listener (OnDnDEvent function)
-            kvmService.ReceiveDragData("text/plain");
+            kvmService.ReceiveDragData(mimeType);
         }
 
         private void OnDragEnded(object sender, EventArgs e)

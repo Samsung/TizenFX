@@ -421,31 +421,6 @@ namespace Tizen.Multimedia.Remoting
         {
             Native.UpdateDisplayRotaton(Handle, rotation.ToNative()).ThrowIfError("Failed to set display rotation.");
         }
-
-        /// <summary>
-        /// Sets the index of current playing media.
-        /// </summary>
-        /// <param name="index">The index of current playing media.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated. Please use SetInfoOfCurrentPlayingMedia instead.")]
-        public static void SetIndexOfCurrentPlayingMedia(string index)
-        {
-            if (index == null)
-            {
-                throw new ArgumentNullException(nameof(index));
-            }
-
-            Native.SetIndexOfCurrentPlayingMedia(Handle, index)
-                .ThrowIfError("Failed to set the index of current playing media");
-
-            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
-        }
         #endregion Set information
 
 

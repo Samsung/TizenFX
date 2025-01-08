@@ -25,6 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class ImageObject : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public ImageObject()
         {
             InteropImage.Create(out _handle).Validate("Failed to create image object");
@@ -57,6 +59,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public ImageObject(string path)
         {
             if (path == null)
@@ -92,6 +95,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="Fill(MediaVisionSource, Rectangle)"/>
         /// <seealso cref="Fill(MediaVisionSource, ImageFillConfiguration, Rectangle)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public double RecognitionRate
         {
             get
@@ -111,6 +115,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <seealso cref="SetLabel(int)"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public int? GetLabel()
         {
             var ret = InteropImage.GetLabel(Handle, out var label);
@@ -130,6 +135,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="label">The label which will be assigned to the image object.</param>
         /// <seealso cref="GetLabel"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void SetLabel(int label)
         {
             InteropImage.SetLabel(Handle, label).Validate("Failed to set label");
@@ -147,6 +153,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Fill(MediaVisionSource source)
         {
             InvokeFill(source, null, null);
@@ -167,6 +174,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Fill(MediaVisionSource source, ImageFillConfiguration config)
         {
             InvokeFill(source, config, null);
@@ -186,6 +194,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Fill(MediaVisionSource source, Rectangle rect)
         {
             InvokeFill(source, null, rect);
@@ -208,6 +217,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Fill(MediaVisionSource source, ImageFillConfiguration config, Rectangle rect)
         {
             InvokeFill(source, config, rect);
@@ -245,6 +255,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException">The <see cref="ImageObject"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Save(string path)
         {
             if (path == null)
@@ -269,6 +280,7 @@ namespace Tizen.Multimedia.Vision
         /// Releases all the resources used by the <see cref="ImageObject"/> object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void Dispose()
         {
             Dispose(true);
@@ -282,6 +294,7 @@ namespace Tizen.Multimedia.Vision
         /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

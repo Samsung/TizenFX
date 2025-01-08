@@ -34,7 +34,9 @@ namespace Tizen.NUI.BaseComponents
         /// StyleNameProperty (DALi json)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(View), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StyleNameProperty = null;
+
+        internal static void SetInternalStyleNameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -54,43 +56,48 @@ namespace Tizen.NUI.BaseComponents
                 view.ApplyStyle(style);
                 view.SetThemeApplied();
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalStyleNameProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             if (!string.IsNullOrEmpty(view.styleName)) return view.styleName;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.StyleName);
-        }));
+        }
 
         /// <summary>
         /// KeyInputFocusProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty KeyInputFocusProperty = BindableProperty.Create(nameof(KeyInputFocus), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty KeyInputFocusProperty = null;
+
+        internal static void SetInternalKeyInputFocusProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus, (bool)newValue);
+                view.SetInternalKeyInputFocus((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalKeyInputFocusProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus);
-        }));
+            return view.GetInternalKeyInputFocus();
+        }
 
         /// <summary>
         /// BackgroundColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
+        public static readonly BindableProperty BackgroundColorProperty = null;
 
+        internal static void SetInternalBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+
+            if (NUIApplication.IsUsingXaml)
+            {
                 view.themeData?.selectorData?.ClearBackground(view);
 
                 if (newValue is Selector<Color> selector)
@@ -102,158 +109,168 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.SetBackgroundColor((Color)newValue);
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
 
-                if (view.internalBackgroundColor == null)
-                {
-                    view.internalBackgroundColor = new Color(view.OnBackgroundColorChanged, 0, 0, 0, 0);
-                }
-
-                int visualType = (int)Visual.Type.Invalid;
-                Interop.View.InternalRetrievingVisualPropertyInt(view.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
-                if (visualType == (int)Visual.Type.Color)
-                {
-                    Interop.View.InternalRetrievingVisualPropertyVector4(view.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(view.internalBackgroundColor));
-                }
-                return view.internalBackgroundColor;
             }
-        );
+            else
+            {
+                view.SetBackgroundColor((Color)newValue);
+            }
+        }
+        internal static object GetInternalBackgroundColorProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+
+            if (view.internalBackgroundColor == null)
+            {
+                view.internalBackgroundColor = new Color(view.OnBackgroundColorChanged, 0, 0, 0, 0);
+            }
+
+            int visualType = (int)Visual.Type.Invalid;
+            Interop.View.InternalRetrievingVisualPropertyInt(view.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            if (visualType == (int)Visual.Type.Color)
+            {
+                Interop.View.InternalRetrievingVisualPropertyVector4(view.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(view.internalBackgroundColor));
+            }
+            return view.internalBackgroundColor;
+        }
 
         /// <summary>
         /// ColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ColorProperty = null;
+
+        internal static void SetInternalColorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+
+            view.themeData?.selectorData?.Color?.Reset(view);
+
+            if (newValue is Selector<Color> selector)
             {
-                var view = (View)bindable;
-
-                view.themeData?.selectorData?.Color?.Reset(view);
-
-                if (newValue is Selector<Color> selector)
-                {
-                    if (selector.HasAll()) view.SetColor(selector.All);
-                    else view.EnsureSelectorData().Color = new TriggerableSelector<Color>(view, selector, view.SetColor, true);
-                }
-                else
-                {
-                    view.SetColor((Color)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-
-                if (view.internalColor == null)
-                {
-                    view.internalColor = new Color(view.OnColorChanged, 0, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector4(view.SwigCPtr, View.Property.COLOR, view.internalColor.SwigCPtr);
-                return view.internalColor;
+                if (selector.HasAll()) view.SetColor(selector.All);
+                else view.EnsureSelectorData().Color = new TriggerableSelector<Color>(view, selector, view.SetColor, true);
             }
-        );
+            else
+            {
+                view.SetColor((Color)newValue);
+            }
+        }
+        internal static object GetInternalColorProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+
+            if (view.internalColor == null)
+            {
+                view.internalColor = new Color(view.OnColorChanged, 0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(view.SwigCPtr, View.Property.COLOR, view.internalColor.SwigCPtr);
+            return view.internalColor;
+        }
 
         /// <summary>
         /// ColorRedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
-                view.SetColorRed((float?)newValue);
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
+        public static readonly BindableProperty ColorRedProperty = null;
 
-                return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorRed);
-            }
-        );
+        internal static void SetInternalColorRedProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            view.SetInternalColorRed((float)newValue);
+        }
+        internal static object GetInternalColorRedProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            return view.GetInternalColorRed();
+        }
 
         /// <summary>
         /// ColorGreenProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColorGreenProperty = BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
-                view.SetColorGreen((float?)newValue);
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
+        public static readonly BindableProperty ColorGreenProperty = null;
 
-                return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorGreen);
-            }
-        );
+        internal static void SetInternalColorGreenProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            view.SetInternalColorGreen((float)newValue);
+
+        }
+        internal static object GetInternalColorGreenProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            return view.GetInternalColorGreen();
+        }
 
         /// <summary>
         /// ColorBlueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColorBlueProperty = BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
-                view.SetColorBlue((float?)newValue);
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
+        public static readonly BindableProperty ColorBlueProperty = null;
 
-                return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorBlue);
-            }
-        );
+        internal static void SetInternalColorBlueProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            view.SetInternalColorBlue((float)newValue);
 
-        /// <summary> BackgroundImageProperty </summary>
+        }
+        internal static object GetInternalColorBlueProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            return view.GetInternalColorBlue();
+        }
+
+        /// <summary> 
+        /// BackgroundImageProperty 
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string),
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageProperty = null;
+
+        internal static void SetInternalBackgroundImageProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (NUIApplication.IsUsingXaml)
             {
                 if (String.Equals(oldValue, newValue))
                 {
                     NUILog.Debug($"oldValue={oldValue} newValue={newValue} are same. just return here");
                     return;
                 }
-
-                var view = (View)bindable;
-
-                if (view.themeData?.selectorData != null)
-                {
-                    view.themeData.selectorData.BackgroundColor?.Reset(view);
-                    view.themeData.selectorData.BackgroundImage?.Reset(view);
-                }
-
-                if (newValue is Selector<string> selector)
-                {
-                    if (selector.HasAll()) view.SetBackgroundImage(selector.All);
-                    else view.EnsureSelectorData().BackgroundImage = new TriggerableSelector<string>(view, selector, view.SetBackgroundImage, true);
-                }
-                else
-                {
-                    view.SetBackgroundImage((string)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                string backgroundImage = "";
-
-                Interop.View.InternalRetrievingVisualPropertyString(view.SwigCPtr, Property.BACKGROUND, ImageVisualProperty.URL, out backgroundImage);
-
-                return backgroundImage;
             }
-        );
+
+            var view = (View)bindable;
+
+            if (view.themeData?.selectorData != null)
+            {
+                view.themeData.selectorData.BackgroundColor?.Reset(view);
+                view.themeData.selectorData.BackgroundImage?.Reset(view);
+            }
+
+            if (newValue is Selector<string> selector)
+            {
+                if (selector.HasAll()) view.SetBackgroundImage(selector.All);
+                else view.EnsureSelectorData().BackgroundImage = new TriggerableSelector<string>(view, selector, view.SetBackgroundImage, true);
+            }
+            else
+            {
+                view.SetBackgroundImage((string)newValue);
+            }
+        }
+        internal static object GetInternalBackgroundImageProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+
+            return (string)view.backgroundImageUrl;
+        }
 
 
-        /// <summary>BackgroundImageBorderProperty</summary>
+        /// <summary>
+        /// BackgroundImageBorderProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageBorderProperty = null;
+
+        internal static void SetInternalBackgroundImageBorderProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
 
@@ -268,512 +285,543 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.SetBackgroundImageBorder((Rectangle)newValue);
             }
-        }),
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBackgroundImageBorderProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             return view.backgroundExtraData?.BackgroundImageBorder;
-        });
+        }
 
         /// <summary>
         /// BackgroundProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(nameof(Background), typeof(PropertyMap), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundProperty = null;
+
+        internal static void SetInternalBackgroundProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
+                PropertyMap map = (PropertyMap)newValue;
+
+                // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
+                view.backgroundExtraData = null;
+                view.backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
+
+                // Update backgroundImageUrl and backgroundImageSynchronousLoading from Map
+                foreach (int key in cachedNUIViewBackgroundImagePropertyKeyList)
                 {
-                    var propertyValue = new PropertyValue((PropertyMap)newValue);
-                    Object.SetProperty(view.SwigCPtr, Property.BACKGROUND, propertyValue);
-
-                    view.backgroundExtraData = null;
-
-                    // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
-                    view.backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-                    if (view.backgroundExtraDataUpdateProcessAttachedFlag)
+                    using PropertyValue propertyValue = map.Find(key);
+                    if (propertyValue != null)
                     {
-                        ProcessorController.Instance.ProcessorOnceEvent -= view.UpdateBackgroundExtraData;
-                        view.backgroundExtraDataUpdateProcessAttachedFlag = false;
+                        if (key == ImageVisualProperty.URL)
+                        {
+                            propertyValue.Get(out view.backgroundImageUrl);
+                        }
+                        else if (key == ImageVisualProperty.SynchronousLoading)
+                        {
+                            propertyValue.Get(out view.backgroundImageSynchronousLoading);
+                        }
                     }
-
-                    propertyValue.Dispose();
-                    propertyValue = null;
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
 
-                // Sync as current properties
-                view.UpdateBackgroundExtraData();
-
-                PropertyMap tmp = new PropertyMap();
-                var propertyValue = Object.GetProperty(view.SwigCPtr, Property.BACKGROUND);
-                propertyValue.Get(tmp);
-                propertyValue.Dispose();
-                propertyValue = null;
-                return tmp;
+                using var mapValue = new PropertyValue(map);
+                Object.SetProperty(view.SwigCPtr, Property.BACKGROUND, mapValue);
             }
-        );
+        }
+        internal static object GetInternalBackgroundProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+
+            // Sync as current properties
+            view.UpdateBackgroundExtraData();
+
+            PropertyMap tmp = new PropertyMap();
+            var propertyValue = Object.GetProperty(view.SwigCPtr, Property.BACKGROUND);
+            propertyValue.Get(tmp);
+            propertyValue.Dispose();
+            propertyValue = null;
+            return tmp;
+        }
 
         /// <summary>
         /// StateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StateProperty = BindableProperty.Create(nameof(State), typeof(States), typeof(View), States.Normal, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StateProperty = null;
+
+        internal static void SetInternalStateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.STATE, (int)newValue);
+                view.SetInternalState((States)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalStateProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            int temp = 0;
-            temp = Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.STATE);
-            switch (temp)
-            {
-                case 0: return States.Normal;
-                case 1: return States.Focused;
-                case 2: return States.Disabled;
-                default: return States.Normal;
-            }
-        }));
+            return view.GetInternalState();
+        }
 
         /// <summary>
         /// SubStateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SubStateProperty = BindableProperty.Create(nameof(SubState), typeof(States), typeof(View), States.Normal, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SubStateProperty = null;
+
+        internal static void SetInternalSubStateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            string valueToString = "";
             if (newValue != null)
             {
-                valueToString = ((States)newValue).GetDescription();
-                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.SubState, valueToString);
+                view.SetInternalSubState((States)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalSubStateProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string temp;
-            temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.SubState);
-            return temp.GetValueByDescription<States>();
-        }));
+            return view.GetInternalSubState();
+        }
 
         /// <summary>
         /// TooltipProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TooltipProperty = BindableProperty.Create(nameof(Tooltip), typeof(PropertyMap), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TooltipProperty = null;
+
+        internal static void SetInternalTooltipProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.TOOLTIP, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalTooltipProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.TOOLTIP).Get(temp);
             return temp;
-        }));
+        }
 
         /// <summary>
         /// FlexProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexProperty = BindableProperty.Create(nameof(Flex), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexProperty = null;
+
+        internal static void SetInternalFlexProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX, (float)newValue);
+                view.SetInternalFlex((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalFlexProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX);
-        }));
+            return view.GetInternalFlex();
+        }
 
         /// <summary>
         /// AlignSelfProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignSelfProperty = BindableProperty.Create(nameof(AlignSelf), typeof(int), typeof(View), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignSelfProperty = null;
+
+        internal static void SetInternalAlignSelfProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf, (int)newValue);
+                view.SetInternalAlignSelf((int)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalAlignSelfProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf);
-        }));
+            return view.GetInternalAlignSelf();
+        }
 
         /// <summary>
         /// FlexMarginProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexMarginProperty = BindableProperty.Create(nameof(FlexMargin), typeof(Vector4), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexMarginProperty = null;
+
+        internal static void SetInternalFlexMarginProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, ((Vector4)newValue).SwigCPtr);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalFlexMarginProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Object.InternalRetrievingPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, temp.SwigCPtr);
             return temp;
-        }));
+        }
 
         /// <summary>
         /// CellIndexProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CellIndexProperty = BindableProperty.Create(nameof(CellIndex), typeof(Vector2), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CellIndexProperty = null;
+
+        internal static void SetInternalCellIndexProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    Object.InternalSetPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, ((Vector2)newValue).SwigCPtr);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalCellIndex == null)
-                {
-                    view.internalCellIndex = new Vector2(view.OnCellIndexChanged, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, view.internalCellIndex.SwigCPtr);
-                return view.internalCellIndex;
+                Object.InternalSetPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, ((Vector2)newValue).SwigCPtr);
             }
-        );
+
+        }
+        internal static object GetInternalCellIndexProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalCellIndex == null)
+            {
+                view.internalCellIndex = new Vector2(view.OnCellIndexChanged, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, view.internalCellIndex.SwigCPtr);
+            return view.internalCellIndex;
+
+        }
 
         /// <summary>
         /// RowSpanProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowSpanProperty = BindableProperty.Create(nameof(RowSpan), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RowSpanProperty = null;
+
+        internal static void SetInternalRowSpanProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan, (float)newValue);
+                view.SetInternalRowSpan((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRowSpanProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan);
-        }));
+            return view.GetInternalRowSpan();
+        }
 
         /// <summary>
         /// ColumnSpanProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnSpanProperty = BindableProperty.Create(nameof(ColumnSpan), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ColumnSpanProperty = null;
+
+        internal static void SetInternalColumnSpanProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan, (float)newValue);
+                view.SetInternalColumnSpan((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalColumnSpanProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan);
-        }));
+            return view.GetInternalColumnSpan();
+        }
 
         /// <summary>
         /// CellHorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CellHorizontalAlignmentProperty = BindableProperty.Create(nameof(CellHorizontalAlignment), typeof(HorizontalAlignmentType), typeof(View), HorizontalAlignmentType.Left, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CellHorizontalAlignmentProperty = null;
+
+        internal static void SetInternalCellHorizontalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            string valueToString = "";
-
             if (newValue != null)
             {
-                valueToString = ((HorizontalAlignmentType)newValue).GetDescription();
-                Object.InternalSetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment, valueToString);
+                view.SetInternalCellHorizontalAlignment((HorizontalAlignmentType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalCellHorizontalAlignmentProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string temp;
-            temp = Object.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment);
-            return temp.GetValueByDescription<HorizontalAlignmentType>();
-        }));
+            return view.GetInternalCellHorizontalAlignment();
+        }
 
         /// <summary>
         /// CellVerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CellVerticalAlignmentProperty = BindableProperty.Create(nameof(CellVerticalAlignment), typeof(VerticalAlignmentType), typeof(View), VerticalAlignmentType.Top, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CellVerticalAlignmentProperty = null;
+
+        internal static void SetInternalCellVerticalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            string valueToString = "";
-
             if (newValue != null)
             {
-                valueToString = ((VerticalAlignmentType)newValue).GetDescription();
-                Object.InternalSetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment, valueToString);
+                view.SetInternalCellVerticalAlignment((VerticalAlignmentType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalCellVerticalAlignmentProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string temp;
-            temp = Object.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment);
-            return temp.GetValueByDescription<VerticalAlignmentType>();
-        }));
+            return view.GetInternalCellVerticalAlignment();
+        }
 
         /// <summary>
         /// "DO not use this, that will be deprecated. Use 'View Weight' instead of BindableProperty"
         /// This needs to be hidden as inhouse API until all applications using it have been updated.  Do not make public.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WeightProperty = BindableProperty.Create(nameof(Weight), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WeightProperty = null;
+
+        internal static void SetInternalWeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
                 view.Weight = (float)newValue;
             }
-        },
-
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWeightProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return view.Weight;
-        });
+        }
 
         /// <summary>
         /// LeftFocusableViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LeftFocusableViewProperty = null;
+
+        internal static void SetInternalLeftFocusableViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null) { view.LeftFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.LeftFocusableViewId = -1; }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLeftFocusableViewProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.LeftFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.LeftFocusableViewId); }
             return null;
-        });
+        }
 
         /// <summary>
         /// RightFocusableViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightFocusableViewProperty = BindableProperty.Create(nameof(View.RightFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RightFocusableViewProperty = null;
+
+        internal static void SetInternalRightFocusableViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null) { view.RightFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.RightFocusableViewId = -1; }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalRightFocusableViewProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.RightFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.RightFocusableViewId); }
             return null;
-        });
+        }
 
         /// <summary>
         /// UpFocusableViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpFocusableViewProperty = BindableProperty.Create(nameof(View.UpFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpFocusableViewProperty = null;
+
+        internal static void SetInternalUpFocusableViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null) { view.UpFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.UpFocusableViewId = -1; }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalUpFocusableViewProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.UpFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.UpFocusableViewId); }
             return null;
-        });
+        }
 
         /// <summary>
         /// DownFocusableViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DownFocusableViewProperty = BindableProperty.Create(nameof(View.DownFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DownFocusableViewProperty = null;
+
+        internal static void SetInternalDownFocusableViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null) { view.DownFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.DownFocusableViewId = -1; }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDownFocusableViewProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.DownFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.DownFocusableViewId); }
             return null;
-        });
+        }
 
         /// <summary>
         /// ClockwiseFocusableViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.ClockwiseFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ClockwiseFocusableViewProperty = null;
+
+        internal static void SetInternalClockwiseFocusableViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null && (newValue is View)) { view.ClockwiseFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.ClockwiseFocusableViewId = -1; }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalClockwiseFocusableViewProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.ClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.ClockwiseFocusableViewId); }
             return null;
-        });
+        }
 
         /// <summary>
         /// CounterClockwiseFocusableViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CounterClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.CounterClockwiseFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CounterClockwiseFocusableViewProperty = null;
+
+        internal static void SetInternalCounterClockwiseFocusableViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null && (newValue is View)) { view.CounterClockwiseFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.CounterClockwiseFocusableViewId = -1; }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCounterClockwiseFocusableViewProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.CounterClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.CounterClockwiseFocusableViewId); }
             return null;
-        });
+        }
 
         /// <summary>
         /// FocusableProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusableProperty = BindableProperty.Create(nameof(Focusable), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusableProperty = null;
+
+        internal static void SetInternalFocusableProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            if (newValue != null) { view.SetKeyboardFocusable((bool)newValue); }
-        },
-        defaultValueCreator: (bindable) =>
+            if (newValue != null) { view.SetInternalFocusable((bool)newValue); }
+        }
+        internal static object GetInternalFocusableProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.IsKeyboardFocusable();
-        });
+            return view.GetInternalFocusable();
+        }
 
         /// <summary>
         /// FocusableChildrenProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool), typeof(View), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusableChildrenProperty = null;
+
+        internal static void SetInternalFocusableChildrenProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            if (newValue != null) { view.SetKeyboardFocusableChildren((bool)newValue); }
-        },
-        defaultValueCreator: (bindable) =>
+            if (newValue != null) { view.SetInternalFocusableChildren((bool)newValue); }
+        }
+        internal static object GetInternalFocusableChildrenProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.AreChildrenKeyBoardFocusable();
-        });
+            return view.GetInternalFocusableChildren();
+        }
 
         /// <summary>
         /// FocusableInTouchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusableInTouchProperty = null;
+
+        internal static void SetInternalFocusableInTouchProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            if (newValue != null) { view.SetFocusableInTouch((bool)newValue); }
-        },
-        defaultValueCreator: (bindable) =>
+            if (newValue != null) { view.SetInternalFocusableInTouch((bool)newValue); }
+        }
+        internal static object GetInternalFocusableInTouchProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.IsFocusableInTouch();
-        });
+            return view.GetInternalFocusableInTouch();
+        }
 
         /// <summary>
         /// Size2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty Size2DProperty = null;
+
+        internal static void SetInternalSize2DProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
+                // Size property setter is only used by user.
+                // Framework code uses SetSize() instead of Size property setter.
+                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                // SuggestedMinimumWidth/Height is used by Layout calculation.
+                int width = ((Size2D)newValue).Width;
+                int height = ((Size2D)newValue).Height;
+                view.userSizeWidth = (float)width;
+                view.userSizeHeight = (float)height;
+
+                bool relayoutRequired = false;
+                // To avoid duplicated size setup, change internal policy directly.
+                if (view.widthPolicy != width)
                 {
-                    // Size property setter is only used by user.
-                    // Framework code uses SetSize() instead of Size property setter.
-                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
-                    // SuggestedMinimumWidth/Height is used by Layout calculation.
-                    int width = ((Size2D)newValue).Width;
-                    int height = ((Size2D)newValue).Height;
-                    view.userSizeWidth = (float)width;
-                    view.userSizeHeight = (float)height;
-
-                    bool relayoutRequired = false;
-                    // To avoid duplicated size setup, change internal policy directly.
-                    if (view.widthPolicy != width)
-                    {
-                        view.widthPolicy = width;
-                        relayoutRequired = true;
-                    }
-                    if (view.heightPolicy != height)
-                    {
-                        view.heightPolicy = height;
-                        relayoutRequired = true;
-                    }
-                    if (relayoutRequired)
-                    {
-                        view.layout?.RequestLayout();
-                    }
-
-                    Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
+                    view.widthPolicy = width;
+                    relayoutRequired = true;
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalSize2D == null)
+                if (view.heightPolicy != height)
                 {
-                    view.internalSize2D = new Size2D(view.OnSize2DChanged, 0, 0);
+                    view.heightPolicy = height;
+                    relayoutRequired = true;
                 }
-                Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
+                if (relayoutRequired)
+                {
+                    view.layout?.RequestLayout();
+                }
 
-                return view.internalSize2D;
+                Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
             }
-        );
+        }
+        internal static object GetInternalSize2DProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalSize2D == null)
+            {
+                view.internalSize2D = new Size2D(view.OnSize2DChanged, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
+
+            return view.internalSize2D;
+        }
 
         /// <summary>
         /// OpacityProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OpacityProperty = BindableProperty.Create(nameof(Opacity), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OpacityProperty = null;
+
+        internal static void SetInternalOpacityProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
 
@@ -786,1067 +834,968 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                view.SetOpacity((float?)newValue);
+                view.SetInternalOpacity((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalOpacityProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.OPACITY);
-        }));
+            return view.GetInternalOpacity();
+        }
 
         /// <summary>
         /// Position2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty Position2DProperty = null;
+
+        internal static void SetInternalPosition2DProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, ((Position2D)newValue).SwigCPtr);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalPosition2D == null)
-                {
-                    view.internalPosition2D = new Position2D(view.OnPosition2DChanged, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition2D.SwigCPtr);
-                return view.internalPosition2D;
+                Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, ((Position2D)newValue).SwigCPtr);
             }
-        );
+        }
+        internal static object GetInternalPosition2DProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalPosition2D == null)
+            {
+                view.internalPosition2D = new Position2D(view.OnPosition2DChanged, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition2D.SwigCPtr);
+            return view.internalPosition2D;
+        }
 
         /// <summary>
         /// PositionUsesPivotPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionUsesPivotPointProperty = BindableProperty.Create(nameof(PositionUsesPivotPoint), typeof(bool), typeof(View), true, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionUsesPivotPointProperty = null;
+
+        internal static void SetInternalPositionUsesPivotPointProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint, (bool)newValue);
+                view.SetInternalPositionUsesPivotPoint((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalPositionUsesPivotPointProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint);
-        }));
+            return view.GetInternalPositionUsesPivotPoint();
+        }
 
         /// <summary>
         /// SiblingOrderProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SiblingOrderProperty = BindableProperty.Create(nameof(SiblingOrder), typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SiblingOrderProperty = null;
+
+        internal static void SetInternalSiblingOrderProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            int value;
             if (newValue != null)
             {
-                value = (int)newValue;
-                if (value < 0)
-                {
-                    NUILog.Error("SiblingOrder should be bigger than 0 or equal to 0.");
-                    return;
-                }
-                var siblings = view.GetParent()?.Children;
-                if (siblings != null)
-                {
-                    int currentOrder = siblings.IndexOf(view);
-                    if (value != currentOrder)
-                    {
-                        if (value == 0) { view.LowerToBottom(); }
-                        else if (value < siblings.Count - 1)
-                        {
-                            if (value > currentOrder) { view.RaiseAbove(siblings[value]); }
-                            else { view.LowerBelow(siblings[value]); }
-                        }
-                        else { view.RaiseToTop(); }
-                    }
-                }
+                view.SetInternalSiblingOrder((int)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSiblingOrderProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            var parentChildren = view.GetParent()?.Children;
-            int currentOrder = 0;
-            if (parentChildren != null)
-            {
-                currentOrder = parentChildren.IndexOf(view);
-
-                if (currentOrder < 0) { return 0; }
-                else if (currentOrder < parentChildren.Count) { return currentOrder; }
-            }
-
-            return 0;
-        });
+            return view.GetInternalSiblingOrder();
+        }
 
         /// <summary>
         /// ParentOriginProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ParentOriginProperty = BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ParentOriginProperty = null;
+
+        internal static void SetInternalParentOriginProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, ((Position)newValue).SwigCPtr);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalParentOriginProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             Position temp = new Position(0.0f, 0.0f, 0.0f);
             Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, temp.SwigCPtr);
             return temp;
-        })
-        );
+        }
+
 
         /// <summary>
         /// PivotPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PivotPointProperty = BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PivotPointProperty = null;
+
+        internal static void SetInternalPivotPointProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    view.SetAnchorPoint((Position)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalPivotPoint == null)
-                {
-                    view.internalPivotPoint = new Position(view.OnPivotPointChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.AnchorPoint, view.internalPivotPoint.SwigCPtr);
-                return view.internalPivotPoint;
+                view.SetAnchorPoint((Position)newValue);
             }
-        );
+        }
+        internal static object GetInternalPivotPointProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalPivotPoint == null)
+            {
+                view.internalPivotPoint = new Position(view.OnPivotPointChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.AnchorPoint, view.internalPivotPoint.SwigCPtr);
+            return view.internalPivotPoint;
+        }
 
         /// <summary>
         /// SizeWidthProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SizeWidthProperty = null;
+
+        internal static void SetInternalSizeWidthProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                // Size property setter is only used by user.
-                // Framework code uses SetSize() instead of Size property setter.
-                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
-                // SuggestedMinimumWidth/Height is used by Layout calculation.
-                float width = (float)newValue;
-                view.userSizeWidth = width;
-
-                // To avoid duplicated size setup, change internal policy directly.
-                int widthPolicy = (int)System.Math.Ceiling(width);
-                if (view.widthPolicy != widthPolicy)
-                {
-                    view.widthPolicy = widthPolicy;
-                    view.layout?.RequestLayout();
-                }
-
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, width);
+                view.SetInternalSizeWidth((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalSizeWidthProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth);
-        }));
+            return view.GetInternalSizeWidth();
+        }
 
         /// <summary>
         /// SizeHeightProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SizeHeightProperty = null;
+
+        internal static void SetInternalSizeHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                // Size property setter is only used by user.
-                // Framework code uses SetSize() instead of Size property setter.
-                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
-                // SuggestedMinimumWidth/Height is used by Layout calculation.
-                float height = (float)newValue;
-                view.userSizeHeight = height;
-
-                // To avoid duplicated size setup, change internal policy directly.
-                int heightPolicy = (int)System.Math.Ceiling(height);
-                if (view.heightPolicy != heightPolicy)
-                {
-                    view.heightPolicy = heightPolicy;
-                    view.layout?.RequestLayout();
-                }
-
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, height);
+                view.SetInternalSizeHeight((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalSizeHeightProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight);
-        }));
+            return view.GetInternalSizeHeight();
+        }
 
         /// <summary>
         /// PositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionProperty = null;
+
+        internal static void SetInternalPositionProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.POSITION, ((Position)newValue).SwigCPtr);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalPosition == null)
-                {
-                    view.internalPosition = new Position(view.OnPositionChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition.SwigCPtr);
-                return view.internalPosition;
+                Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.POSITION, ((Position)newValue).SwigCPtr);
             }
-        );
+        }
+        internal static object GetInternalPositionProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalPosition == null)
+            {
+                view.internalPosition = new Position(view.OnPositionChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition.SwigCPtr);
+            return view.internalPosition;
+        }
 
         /// <summary>
         /// PositionXProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionXProperty = null;
+
+        internal static void SetInternalPositionXProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionX, (float)newValue);
+                view.SetInternalPositionX((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalPositionXProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionX);
-        }));
+            return view.GetInternalPositionX();
+        }
 
         /// <summary>
         /// PositionYProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionYProperty = null;
+
+        internal static void SetInternalPositionYProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionY, (float)newValue);
+                view.SetInternalPositionY((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalPositionYProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionY);
-        }));
+            return view.GetInternalPositionY();
+        }
 
         /// <summary>
         /// PositionZProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionZProperty = BindableProperty.Create(nameof(PositionZ), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionZProperty = null;
+
+        internal static void SetInternalPositionZProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionZ, (float)newValue);
+                view.SetInternalPositionZ((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalPositionZProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionZ);
-        }));
+            return view.GetInternalPositionZ();
+        }
 
         /// <summary>
         /// OrientationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OrientationProperty = BindableProperty.Create(nameof(Orientation), typeof(Rotation), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OrientationProperty = null;
+
+        internal static void SetInternalOrientationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ORIENTATION, new Tizen.NUI.PropertyValue((Rotation)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalOrientationProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             Rotation temp = new Rotation();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ORIENTATION).Get(temp);
             return temp;
-        }));
+        }
 
         /// <summary>
         /// ScaleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScaleProperty = BindableProperty.Create(nameof(Scale), typeof(Vector3), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScaleProperty = null;
+
+        internal static void SetInternalScaleProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    view.SetScale((Vector3)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalScale == null)
-                {
-                    view.internalScale = new Vector3(view.OnScaleChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SCALE, view.internalScale.SwigCPtr);
-                return view.internalScale;
+                view.SetScale((Vector3)newValue);
             }
-        );
+
+        }
+        internal static object GetInternalScaleProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalScale == null)
+            {
+                view.internalScale = new Vector3(view.OnScaleChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SCALE, view.internalScale.SwigCPtr);
+            return view.internalScale;
+        }
 
         /// <summary>
         /// ScaleXProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScaleXProperty = BindableProperty.Create(nameof(ScaleX), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScaleXProperty = null;
+
+        internal static void SetInternalScaleXProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleX, (float)newValue);
+                view.SetInternalScaleX((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalScaleXProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleX);
-        }));
+            return view.GetInternalScaleX();
+        }
 
         /// <summary>
         /// ScaleYProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScaleYProperty = BindableProperty.Create(nameof(ScaleY), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScaleYProperty = null;
+
+        internal static void SetInternalScaleYProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleY, (float)newValue);
+                view.SetInternalScaleY((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalScaleYProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleY);
-        }));
+            return view.GetInternalScaleY();
+        }
 
         /// <summary>
         /// ScaleZProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScaleZProperty = BindableProperty.Create(nameof(ScaleZ), typeof(float), typeof(View), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScaleZProperty = null;
+
+        internal static void SetInternalScaleZProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ, (float)newValue);
+                view.SetInternalScaleZ((float)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalScaleZProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ);
-        }));
+            return view.GetInternalScaleZ();
+        }
 
         /// <summary>
         /// NameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(View), string.Empty,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty NameProperty = null;
+
+        internal static void SetInternalNameProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    view.internalName = (string)newValue;
-                    Object.InternalSetPropertyString(view.SwigCPtr, View.Property.NAME, (string)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                return view.internalName;
+                view.internalName = (string)newValue;
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.NAME, (string)newValue);
             }
-        );
+        }
+        internal static object GetInternalNameProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            return view.internalName;
+        }
 
         /// <summary>
         /// SensitiveProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SensitiveProperty = BindableProperty.Create(nameof(Sensitive), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SensitiveProperty = null;
+
+        internal static void SetInternalSensitiveProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE, (bool)newValue);
+                view.SetInternalSensitive((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalSensitiveProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE);
-        }));
+            return view.GetInternalSensitive();
+        }
 
         /// <summary>
         /// IsEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsEnabledProperty = null;
+
+        internal static void SetInternalIsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled, (bool)newValue);
-                view.OnEnabled((bool)newValue);
+                view.SetInternalIsEnabled((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalIsEnabledProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled);
-        }));
+            return view.GetInternalIsEnabled();
+        }
 
         /// <summary>
         /// DispatchKeyEventsProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DispatchKeyEventsProperty = BindableProperty.Create(nameof(DispatchKeyEvents), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DispatchKeyEventsProperty = null;
+
+        internal static void SetInternalDispatchKeyEventsProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalDispatchKeyEventsProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents);
-        }));
+        }
 
         /// <summary>
         /// LeaveRequiredProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeaveRequiredProperty = BindableProperty.Create(nameof(LeaveRequired), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LeaveRequiredProperty = null;
+
+        internal static void SetInternalLeaveRequiredProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired, (bool)newValue);
+                view.SetInternalLeaveRequired((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalLeaveRequiredProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired);
-        }));
+            return view.GetInternalLeaveRequired();
+        }
 
         /// <summary>
         /// InheritOrientationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InheritOrientationProperty = BindableProperty.Create(nameof(InheritOrientation), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InheritOrientationProperty = null;
+
+        internal static void SetInternalInheritOrientationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation, (bool)newValue);
+                view.SetInternalInheritOrientation((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalInheritOrientationProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation);
-        }));
+            return view.GetInternalInheritOrientation();
+        }
 
         /// <summary>
         /// InheritScaleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InheritScaleProperty = BindableProperty.Create(nameof(InheritScale), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InheritScaleProperty = null;
+
+        internal static void SetInternalInheritScaleProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritScale, (bool)newValue);
+                view.SetInternalInheritScale((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalInheritScaleProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritScale);
-        }));
+            return view.GetInternalInheritScale();
+        }
 
         /// <summary>
         /// DrawModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DrawModeProperty = BindableProperty.Create(nameof(DrawMode), typeof(DrawModeType), typeof(View), DrawModeType.Normal, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DrawModeProperty = null;
+
+        internal static void SetInternalDrawModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.DrawMode, (int)newValue);
+                view.SetInternalDrawMode((DrawModeType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalDrawModeProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return (DrawModeType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.DrawMode);
-        }));
+            return view.GetInternalDrawMode();
+        }
 
         /// <summary>
         /// SizeModeFactorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SizeModeFactorProperty = BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SizeModeFactorProperty = null;
+
+        internal static void SetInternalSizeModeFactorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
-                    Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, ((Vector3)newValue).SwigCPtr);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if (view.internalSizeModeFactor == null)
-                {
-                    view.internalSizeModeFactor = new Vector3(view.OnSizeModeFactorChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, view.internalSizeModeFactor.SwigCPtr);
-                return view.internalSizeModeFactor;
+                Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, ((Vector3)newValue).SwigCPtr);
             }
-        );
+
+        }
+        internal static object GetInternalSizeModeFactorProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if (view.internalSizeModeFactor == null)
+            {
+                view.internalSizeModeFactor = new Vector3(view.OnSizeModeFactorChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, view.internalSizeModeFactor.SwigCPtr);
+            return view.internalSizeModeFactor;
+        }
 
         /// <summary>
         /// WidthResizePolicyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WidthResizePolicyProperty = BindableProperty.Create(nameof(WidthResizePolicy), typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WidthResizePolicyProperty = null;
+
+        internal static void SetInternalWidthResizePolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                if ((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
-                {
-                    if (view.widthConstraint == null)
-                    {
-                        view.widthConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, View.Property.SizeWidth);
-                        view.widthConstraint.Apply();
-                    }
-                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.WidthResizePolicy, (int)ResizePolicyType.FillToParent);
-                }
-                else
-                {
-                    view.widthConstraint?.Remove();
-                    view.widthConstraint?.Dispose();
-                    view.widthConstraint = null;
-
-                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.WidthResizePolicy, (int)newValue);
-                }
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch ((ResizePolicyType)newValue)
-                {
-                    case ResizePolicyType.UseNaturalSize:
-                        {
-                            view.WidthSpecification = LayoutParamPolicies.WrapContent;
-                            break;
-                        }
-                    case ResizePolicyType.FillToParent:
-                        {
-                            view.WidthSpecification = LayoutParamPolicies.MatchParent;
-                            break;
-                        }
-                    case ResizePolicyType.FitToChildren:
-                        {
-                            view.WidthSpecification = LayoutParamPolicies.WrapContent;
-                            break;
-                        }
-                    default:
-                        break;
-                }
+                view.SetInternalWidthResizePolicy((ResizePolicyType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalWidthResizePolicyProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string temp;
-
-            temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.WidthResizePolicy);
-            return temp.GetValueByDescription<ResizePolicyType>();
-        }));
+            return view.GetInternalWidthResizePolicy();
+        }
 
         /// <summary>
         /// HeightResizePolicyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HeightResizePolicyProperty = BindableProperty.Create(nameof(HeightResizePolicy), typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HeightResizePolicyProperty = null;
+
+        internal static void SetInternalHeightResizePolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                if ((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
-                {
-                    if (view.heightConstraint == null)
-                    {
-                        view.heightConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, View.Property.SizeHeight);
-                        view.heightConstraint.Apply();
-                    }
-
-                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.HeightResizePolicy, (int)ResizePolicyType.FillToParent);
-                }
-                else
-                {
-                    view.heightConstraint?.Remove();
-                    view.heightConstraint?.Dispose();
-                    view.heightConstraint = null;
-
-                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.HeightResizePolicy, (int)newValue);
-                }
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch ((ResizePolicyType)newValue)
-                {
-                    case ResizePolicyType.UseNaturalSize:
-                        {
-                            view.HeightSpecification = LayoutParamPolicies.WrapContent;
-                            break;
-                        }
-                    case ResizePolicyType.FillToParent:
-                        {
-                            view.HeightSpecification = LayoutParamPolicies.MatchParent;
-                            break;
-                        }
-                    case ResizePolicyType.FitToChildren:
-                        {
-                            view.HeightSpecification = LayoutParamPolicies.WrapContent;
-                            break;
-                        }
-                    default:
-                        break;
-                }
+                view.SetInternalHeightResizePolicy((ResizePolicyType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalHeightResizePolicyProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string temp;
-
-            temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.HeightResizePolicy);
-            return temp.GetValueByDescription<ResizePolicyType>();
-        }));
+            return view.GetInternalHeightResizePolicy();
+        }
 
         /// <summary>
         /// SizeScalePolicyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SizeScalePolicyProperty = BindableProperty.Create(nameof(SizeScalePolicy), typeof(SizeScalePolicyType), typeof(View), SizeScalePolicyType.UseSizeSet, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SizeScalePolicyProperty = null;
+
+        internal static void SetInternalSizeScalePolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            string valueToString = "";
             if (newValue != null)
             {
-                valueToString = ((SizeScalePolicyType)newValue).GetDescription();
-
-                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.SizeScalePolicy, valueToString);
+                view.SetInternalSizeScalePolicy((SizeScalePolicyType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalSizeScalePolicyProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return (SizeScalePolicyType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.SizeScalePolicy);
-        }));
+            return view.GetInternalSizeScalePolicy();
+        }
 
         /// <summary>
         /// WidthForHeightProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WidthForHeightProperty = BindableProperty.Create(nameof(WidthForHeight), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WidthForHeightProperty = null;
+
+        internal static void SetInternalWidthForHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight, (bool)newValue);
+                view.SetInternalWidthForHeight((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalWidthForHeightProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight);
-        }));
+            return view.GetInternalWidthForHeight();
+        }
 
         /// <summary>
         /// HeightForWidthProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HeightForWidthProperty = BindableProperty.Create(nameof(HeightForWidth), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HeightForWidthProperty = null;
+
+        internal static void SetInternalHeightForWidthProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth, (bool)newValue);
+                view.SetInternalHeightForWidth((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalHeightForWidthProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth);
-        }));
+            return view.GetInternalHeightForWidth();
+        }
 
         /// <summary>
         /// PaddingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PaddingProperty = null;
+
+        internal static void SetInternalPaddingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
+                if (view.Layout != null)
                 {
-                    if (view.Layout != null)
+                    view.Layout.Padding = new Extents((Extents)newValue);
+                    if ((view.Padding.Start != 0) || (view.Padding.End != 0) || (view.Padding.Top != 0) || (view.Padding.Bottom != 0))
                     {
-                        view.Layout.Padding = new Extents((Extents)newValue);
-                        if ((view.Padding.Start != 0) || (view.Padding.End != 0) || (view.Padding.Top != 0) || (view.Padding.Bottom != 0))
-                        {
-                            var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
-                            Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
-                            tmp?.Dispose();
-                        }
-                        view.Layout.RequestLayout();
-                    }
-                    else
-                    {
-                        var tmp = new PropertyValue((Extents)newValue);
+                        var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
                         Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
                         tmp?.Dispose();
                     }
+                    view.Layout.RequestLayout();
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if ((view.internalPadding == null) || (view.Layout != null))
+                else
                 {
-                    ushort start = 0, end = 0, top = 0, bottom = 0;
-                    if (view.Layout != null)
-                    {
-                        if (view.Layout.Padding != null)
-                        {
-                            start = view.Layout.Padding.Start;
-                            end = view.Layout.Padding.End;
-                            top = view.Layout.Padding.Top;
-                            bottom = view.Layout.Padding.Bottom;
-                        }
-                    }
-                    view.internalPadding = new Extents(view.OnPaddingChanged, start, end, top, bottom);
-                }
-
-                if (view.Layout == null)
-                {
-                    var tmp = Object.GetProperty(view.SwigCPtr, Property.PADDING);
-                    tmp?.Get(view.internalPadding);
+                    var tmp = new PropertyValue((Extents)newValue);
+                    Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
                     tmp?.Dispose();
                 }
-
-                return view.internalPadding;
             }
-        );
+        }
+        internal static object GetInternalPaddingProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if ((view.internalPadding == null) || (view.Layout != null))
+            {
+                ushort start = 0, end = 0, top = 0, bottom = 0;
+                if (view.Layout != null)
+                {
+                    if (view.Layout.Padding != null)
+                    {
+                        start = view.Layout.Padding.Start;
+                        end = view.Layout.Padding.End;
+                        top = view.Layout.Padding.Top;
+                        bottom = view.Layout.Padding.Bottom;
+                    }
+                }
+                view.internalPadding = new Extents(view.OnPaddingChanged, start, end, top, bottom);
+            }
+
+            if (view.Layout == null)
+            {
+                var tmp = Object.GetProperty(view.SwigCPtr, Property.PADDING);
+                tmp?.Get(view.internalPadding);
+                tmp?.Dispose();
+            }
+
+            return view.internalPadding;
+        }
 
         /// <summary>
         /// SizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SizeProperty = null;
+
+        internal static void SetInternalSizeProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
+                // Size property setter is only used by user.
+                // Framework code uses SetSize() instead of Size property setter.
+                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                // SuggestedMinimumWidth/Height is used by Layout calculation.
+                float width = ((Size)newValue).Width;
+                float height = ((Size)newValue).Height;
+                float depth = ((Size)newValue).Depth;
+
+                view.userSizeWidth = width;
+                view.userSizeHeight = height;
+
+                // Set Specification so when layouts measure this View it matches the value set here.
+                // All Views are currently Layouts.
+                int widthPolicy = (int)System.Math.Ceiling(width);
+                int heightPolicy = (int)System.Math.Ceiling(height);
+
+                bool relayoutRequired = false;
+                // To avoid duplicated size setup, change internal policy directly.
+                if (view.widthPolicy != widthPolicy)
                 {
-                    // Size property setter is only used by user.
-                    // Framework code uses SetSize() instead of Size property setter.
-                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
-                    // SuggestedMinimumWidth/Height is used by Layout calculation.
-                    float width = ((Size)newValue).Width;
-                    float height = ((Size)newValue).Height;
-                    float depth = ((Size)newValue).Depth;
-
-                    view.userSizeWidth = width;
-                    view.userSizeHeight = height;
-
-                    // Set Specification so when layouts measure this View it matches the value set here.
-                    // All Views are currently Layouts.
-                    int widthPolicy = (int)System.Math.Ceiling(width);
-                    int heightPolicy = (int)System.Math.Ceiling(height);
-
-                    bool relayoutRequired = false;
-                    // To avoid duplicated size setup, change internal policy directly.
-                    if (view.widthPolicy != widthPolicy)
-                    {
-                        view.widthPolicy = widthPolicy;
-                        relayoutRequired = true;
-                    }
-                    if (view.heightPolicy != heightPolicy)
-                    {
-                        view.heightPolicy = heightPolicy;
-                        relayoutRequired = true;
-                    }
-                    if (relayoutRequired)
-                    {
-                        view.layout?.RequestLayout();
-                    }
-
-                    view.SetSize(width, height, depth);
+                    view.widthPolicy = widthPolicy;
+                    relayoutRequired = true;
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-
-                if (view.internalSize == null)
+                if (view.heightPolicy != heightPolicy)
                 {
-                    view.internalSize = new Size(view.OnSizeChanged, 0, 0, 0);
+                    view.heightPolicy = heightPolicy;
+                    relayoutRequired = true;
                 }
-                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
+                if (relayoutRequired)
+                {
+                    view.layout?.RequestLayout();
+                }
 
-                return view.internalSize;
+                view.SetSize(width, height, depth);
             }
-        );
+        }
+        internal static object GetInternalSizeProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+
+            if (view.internalSize == null)
+            {
+                view.internalSize = new Size(view.OnSizeChanged, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
+
+            return view.internalSize;
+        }
 
         /// <summary>
         /// MinimumSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinimumSizeProperty = BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
+        public static readonly BindableProperty MinimumSizeProperty = null;
 
-                    Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, ((Size2D)newValue).SwigCPtr);
-                }
-            },
-            defaultValueCreator: (bindable) =>
+        internal static void SetInternalMinimumSizeProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
 
-                var view = (View)bindable;
-                if (view.internalMinimumSize == null)
-                {
-                    view.internalMinimumSize = new Size2D(view.OnMinimumSizeChanged, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
-                return view.internalMinimumSize;
+                Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, ((Size2D)newValue).SwigCPtr);
             }
-        );
+        }
+        internal static object GetInternalMinimumSizeProperty(BindableObject bindable)
+        {
+
+            var view = (View)bindable;
+            if (view.internalMinimumSize == null)
+            {
+                view.internalMinimumSize = new Size2D(view.OnMinimumSizeChanged, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
+            return view.internalMinimumSize;
+        }
 
         /// <summary>
         /// MaximumSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaximumSizeProperty = BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
-                if (newValue != null)
-                {
+        public static readonly BindableProperty MaximumSizeProperty = null;
 
-                    Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, ((Size2D)newValue).SwigCPtr);
-                }
-            },
-            defaultValueCreator: (bindable) =>
+        internal static void SetInternalMaximumSizeProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
 
-                if (view.internalMaximumSize == null)
-                {
-                    view.internalMaximumSize = new Size2D(view.OnMaximumSizeChanged, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
-                return view.internalMaximumSize;
+                Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, ((Size2D)newValue).SwigCPtr);
             }
-        );
+        }
+        internal static object GetInternalMaximumSizeProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+
+            if (view.internalMaximumSize == null)
+            {
+                view.internalMaximumSize = new Size2D(view.OnMaximumSizeChanged, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
+            return view.internalMaximumSize;
+        }
 
         /// <summary>
         /// InheritPositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InheritPositionProperty = BindableProperty.Create(nameof(InheritPosition), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InheritPositionProperty = null;
+
+        internal static void SetInternalInheritPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritPosition, (bool)newValue);
+                view.SetInternalInheritPosition((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalInheritPositionProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritPosition);
-        }));
+            return view.GetInternalInheritPosition();
+        }
 
         /// <summary>
         /// ClippingModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ClippingModeProperty = BindableProperty.Create(nameof(ClippingMode), typeof(ClippingModeType), typeof(View), ClippingModeType.Disabled, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ClippingModeProperty = null;
+
+        internal static void SetInternalClippingModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.ClippingMode, (int)newValue);
+                view.SetInternalClippingMode((ClippingModeType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalClippingModeProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return (ClippingModeType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.ClippingMode);
-        }));
+            return view.GetInternalClippingMode();
+        }
 
         /// <summary>
         /// InheritLayoutDirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InheritLayoutDirectionProperty = BindableProperty.Create(nameof(InheritLayoutDirection), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InheritLayoutDirectionProperty = null;
+
+        internal static void SetInternalInheritLayoutDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection, (bool)newValue);
+                view.SetInternalInheritLayoutDirection((bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalInheritLayoutDirectionProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection);
-        }));
+            return view.GetInternalInheritLayoutDirection();
+        }
 
         /// <summary>
         /// LayoutDirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutDirectionProperty = BindableProperty.Create(nameof(LayoutDirection), typeof(ViewLayoutDirectionType), typeof(View), ViewLayoutDirectionType.LTR, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutDirectionProperty = null;
+
+        internal static void SetInternalLayoutDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection, (int)newValue);
+                view.SetInternalLayoutDirection((ViewLayoutDirectionType)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalLayoutDirectionProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
-            return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection);
-        }));
+            return view.GetInternalLayoutDirection();
+        }
 
         /// <summary>
         /// MarginProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MarginProperty = null;
+
+        internal static void SetInternalMarginProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
+            if (newValue != null)
             {
-                var view = (View)bindable;
-                if (newValue != null)
+                if (view.Layout != null)
                 {
-                    if (view.Layout != null)
+                    view.Layout.Margin = new Extents((Extents)newValue);
+                    if ((view.Margin.Start != 0) || (view.Margin.End != 0) || (view.Margin.Top != 0) || (view.Margin.Bottom != 0))
                     {
-                        view.Layout.Margin = new Extents((Extents)newValue);
-                        if ((view.Margin.Start != 0) || (view.Margin.End != 0) || (view.Margin.Top != 0) || (view.Margin.Bottom != 0))
-                        {
-                            var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
-                            Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
-                            tmp?.Dispose();
-                        }
-                        view.Layout.RequestLayout();
-                    }
-                    else
-                    {
-                        var tmp = new PropertyValue((Extents)newValue);
+                        var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
                         Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
                         tmp?.Dispose();
                     }
+                    view.Layout.RequestLayout();
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                if ((view.internalMargin == null) || (view.Layout != null))
+                else
                 {
-                    ushort start = 0, end = 0, top = 0, bottom = 0;
-                    if (view.Layout != null)
-                    {
-                        if (view.Layout.Margin != null)
-                        {
-                            start = view.Layout.Margin.Start;
-                            end = view.Layout.Margin.End;
-                            top = view.Layout.Margin.Top;
-                            bottom = view.Layout.Margin.Bottom;
-                        }
-                    }
-                    view.internalMargin = new Extents(view.OnMarginChanged, start, end, top, bottom);
-                }
-
-                if (view.Layout == null)
-                {
-
-                    var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
-                    tmp?.Get(view.internalMargin);
+                    var tmp = new PropertyValue((Extents)newValue);
+                    Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
                     tmp?.Dispose();
                 }
-
-                return view.internalMargin;
             }
-        );
+        }
+        internal static object GetInternalMarginProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            if ((view.internalMargin == null) || (view.Layout != null))
+            {
+                ushort start = 0, end = 0, top = 0, bottom = 0;
+                if (view.Layout != null)
+                {
+                    if (view.Layout.Margin != null)
+                    {
+                        start = view.Layout.Margin.Start;
+                        end = view.Layout.Margin.End;
+                        top = view.Layout.Margin.Top;
+                        bottom = view.Layout.Margin.Bottom;
+                    }
+                }
+                view.internalMargin = new Extents(view.OnMarginChanged, start, end, top, bottom);
+            }
+
+            if (view.Layout == null)
+            {
+
+                var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
+                tmp?.Get(view.internalMargin);
+                tmp?.Dispose();
+            }
+
+            return view.internalMargin;
+        }
 
         /// <summary>
         /// UpdateAreaHintProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpdateAreaHintProperty = BindableProperty.Create(nameof(UpdateAreaHint), typeof(Vector4), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpdateAreaHintProperty = null;
+
+        internal static void SetInternalUpdateAreaHintProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -1854,21 +1803,23 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), ((Vector4)newValue).SwigCPtr);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalUpdateAreaHintProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 
             Object.InternalRetrievingPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), temp.SwigCPtr);
             return temp;
-        }));
+        }
 
         /// <summary>
         /// ImageShadow Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageShadowProperty = null;
+
+        internal static void SetInternalImageShadowProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
 
@@ -1883,8 +1834,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.SetShadow((ImageShadow)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalImageShadowProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
@@ -1896,13 +1847,15 @@ namespace Tizen.NUI.BaseComponents
 
             var shadow = new ImageShadow(map);
             return shadow.IsEmpty() ? null : shadow;
-        }));
+        }
 
         /// <summary>
         /// Shadow Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BoxShadowProperty = null;
+
+        internal static void SetInternalBoxShadowProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
 
@@ -1917,8 +1870,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.SetShadow((Shadow)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalBoxShadowProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
@@ -1930,216 +1883,195 @@ namespace Tizen.NUI.BaseComponents
 
             var shadow = new Shadow(map);
             return shadow.IsEmpty() ? null : shadow;
-        }));
+        }
 
         /// <summary>
         /// CornerRadius Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Vector4), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CornerRadiusProperty = null;
+
+        internal static void SetInternalCornerRadiusProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadius = (Vector4)newValue;
             view.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCornerRadiusProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.CornerRadius;
-        });
+            return view.backgroundExtraData == null ? Vector4.Zero : view.backgroundExtraData.CornerRadius;
+        }
 
         /// <summary>
         /// CornerRadiusPolicy Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType), typeof(View), VisualTransformPolicyType.Absolute, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = (VisualTransformPolicyType)newValue;
+        public static readonly BindableProperty CornerRadiusPolicyProperty = null;
 
-            if (view.backgroundExtraData.CornerRadius != null)
-            {
-                view.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-            }
-        },
-        defaultValueCreator: (bindable) =>
+        internal static void SetInternalCornerRadiusPolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
-        });
+            view.SetInternalCornerRadiusPolicy((VisualTransformPolicyType)newValue);
+        }
+        internal static object GetInternalCornerRadiusPolicyProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            return view.GetInternalCornerRadiusPolicy();
+        }
 
         /// <summary>
         /// BorderlineWidth Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderlineWidthProperty = null;
+
+        internal static void SetInternalBorderlineWidthProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineWidth = (float)newValue;
-            view.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
-        },
-        defaultValueCreator: (bindable) =>
+            view.SetInternalBorderlineWidth((float)newValue);
+        }
+        internal static object GetInternalBorderlineWidthProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineWidth;
-        });
+            return view.GetInternalBorderlineWidth();
+        }
 
         /// <summary>
         /// BorderlineColor Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
+        public static readonly BindableProperty BorderlineColorProperty = null;
 
-                view.themeData?.selectorData?.BorderlineColor?.Reset(view);
+        internal static void SetInternalBorderlineColorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
 
-                if (newValue is Selector<Color> selector)
-                {
-                    if (selector.HasAll()) view.SetBorderlineColor(selector.All);
-                    else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
-                }
-                else
-                {
-                    view.SetBorderlineColor((Color)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
+            view.themeData?.selectorData?.BorderlineColor?.Reset(view);
+
+            if (newValue is Selector<Color> selector)
             {
-                var view = (View)bindable;
-                return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
+                if (selector.HasAll()) view.SetBorderlineColor(selector.All);
+                else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
             }
-        );
+            else
+            {
+                view.SetBorderlineColor((Color)newValue);
+            }
+        }
+        internal static object GetInternalBorderlineColorProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
+        }
 
         /// <summary>
         /// BorderlineColorSelector Property
         /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
         /// So this API is internally used only.
         /// </summary>
-        internal static readonly BindableProperty BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineColorSelectorProperty = null;
 
-                view.themeData?.selectorData?.BorderlineColor?.Reset(view);
+        internal static void SetInternalBorderlineColorSelectorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = (View)bindable;
 
-                if (newValue is Selector<Color> selector)
-                {
-                    if (selector.HasAll()) view.SetBorderlineColor(selector.All);
-                    else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
-                }
-                else
-                {
-                    view.SetBorderlineColor((Color)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
+            view.themeData?.selectorData?.BorderlineColor?.Reset(view);
+
+            if (newValue is Selector<Color> selector)
             {
-                var view = (View)bindable;
-                var selector = view.themeData?.selectorData?.BorderlineColor?.Get();
-                return (null != selector) ? selector : new Selector<Color>();
+                if (selector.HasAll()) view.SetBorderlineColor(selector.All);
+                else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
             }
-        );
+            else
+            {
+                view.SetBorderlineColor((Color)newValue);
+            }
+        }
+        internal static object GetInternalBorderlineColorSelectorProperty(BindableObject bindable)
+        {
+            var view = (View)bindable;
+            var selector = view.themeData?.selectorData?.BorderlineColor?.Get();
+            return (null != selector) ? selector : new Selector<Color>();
+        }
 
         /// <summary>
         /// BorderlineOffset Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderlineOffsetProperty = null;
+
+        internal static void SetInternalBorderlineOffsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineOffset = (float)newValue;
-            view.UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
-        },
-        defaultValueCreator: (bindable) =>
+            view.SetInternalBorderlineOffset((float)newValue);
+        }
+        internal static object GetInternalBorderlineOffsetProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineOffset;
-        });
+            return view.GetInternalBorderlineOffset();
+        }
 
         /// <summary>
         /// EnableControlState property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableControlStateProperty = BindableProperty.Create(nameof(EnableControlState), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableControlStateProperty = null;
+
+        internal static void SetInternalEnableControlStateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-            bool prev = view.enableControlState;
-            view.enableControlState = (bool)newValue;
-
-            if (prev != view.enableControlState)
-            {
-                if (prev)
-                {
-                    view.TouchEvent -= view.EmptyOnTouch;
-                }
-                else
-                {
-                    view.TouchEvent += view.EmptyOnTouch;
-                }
-            }
-        },
-        defaultValueCreator: (bindable) =>
+            view.SetInternalEnableControlState((bool)newValue);
+        }
+        internal static object GetInternalEnableControlStateProperty(BindableObject bindable)
         {
-            return ((View)bindable).enableControlState;
-        });
+            return ((View)bindable).GetInternalEnableControlState();
+        }
 
         /// <summary>
         /// ThemeChangeSensitive property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThemeChangeSensitiveProperty = null;
+
+        internal static void SetInternalThemeChangeSensitiveProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-
-            if (view.ThemeChangeSensitive == (bool)newValue) return;
-
-            if (view.themeData == null) view.themeData = new ThemeData();
-
-            view.themeData.ThemeChangeSensitive = (bool)newValue;
-
-            if (view.themeData.ThemeChangeSensitive && !view.themeData.ListeningThemeChangeEvent)
-            {
-                view.themeData.ListeningThemeChangeEvent = true;
-                ThemeManager.ThemeChangedInternal.Add(view.OnThemeChanged);
-            }
-            else if (!view.themeData.ThemeChangeSensitive && view.themeData.ListeningThemeChangeEvent)
-            {
-                view.themeData.ListeningThemeChangeEvent = false;
-                ThemeManager.ThemeChangedInternal.Remove(view.OnThemeChanged);
-            }
-        },
-        defaultValueCreator: (bindable) =>
+            view.SetInternalThemeChangeSensitive((bool)newValue);
+        }
+        internal static object GetInternalThemeChangeSensitiveProperty(BindableObject bindable)
         {
-            return ((View)bindable).themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
-        });
+            return ((View)bindable).GetInternalThemeChangeSensitive();
+        }
 
         /// <summary>
         /// AccessibilityNameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityNameProperty = BindableProperty.Create(nameof(AccessibilityName), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityNameProperty = null;
+
+        internal static void SetInternalAccessibilityNameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-
                 Object.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityName, (string)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAccessibilityNameProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityName);
-        });
+        }
 
         /// <summary>
         /// AccessibilityDescriptionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityDescriptionProperty = BindableProperty.Create(nameof(AccessibilityDescription), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityDescriptionProperty = null;
+
+        internal static void SetInternalAccessibilityDescriptionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -2147,19 +2079,21 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription, (string)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAccessibilityDescriptionProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription);
-        });
+        }
 
         /// <summary>
         /// AccessibilityTranslationDomainProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityTranslationDomainProperty = BindableProperty.Create(nameof(AccessibilityTranslationDomain), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityTranslationDomainProperty = null;
+
+        internal static void SetInternalAccessibilityTranslationDomainProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -2167,19 +2101,21 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain, (string)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAccessibilityTranslationDomainProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain);
-        });
+        }
 
         /// <summary>
         /// AccessibilityRoleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(Role), typeof(View), default(Role), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityRoleProperty = null;
+
+        internal static void SetInternalAccessibilityRoleProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -2187,19 +2123,21 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole, (int)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAccessibilityRoleProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             return (Role)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole);
-        });
+        }
 
         /// <summary>
         /// AccessibilityHighlightableProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityHighlightableProperty = BindableProperty.Create(nameof(AccessibilityHighlightable), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityHighlightableProperty = null;
+
+        internal static void SetInternalAccessibilityHighlightableProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -2207,19 +2145,21 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable, (bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAccessibilityHighlightableProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable);
-        });
+        }
 
         /// <summary>
         /// AccessibilityHiddenProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityHiddenProperty = BindableProperty.Create(nameof(AccessibilityHidden), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityHiddenProperty = null;
+
+        internal static void SetInternalAccessibilityHiddenProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -2227,326 +2167,361 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden, (bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAccessibilityHiddenProperty(BindableObject bindable)
         {
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden);
-        });
+        }
 
         /// <summary>
         /// ExcludeLayoutingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ExcludeLayoutingProperty = BindableProperty.Create(nameof(ExcludeLayouting), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ExcludeLayoutingProperty = null;
+
+        internal static void SetInternalExcludeLayoutingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            var instance = (View)bindable;
             if (newValue != null)
             {
-                instance.InternalExcludeLayouting = (bool)newValue;
+                instance.SetInternalExcludeLayouting((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalExcludeLayoutingProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalExcludeLayouting;
-        });
+            var instance = (View)bindable;
+            return instance.GetInternalExcludeLayouting();
+        }
 
         /// <summary>
         /// TooltipTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TooltipTextProperty = BindableProperty.Create(nameof(TooltipText), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TooltipTextProperty = null;
+
+        internal static void SetInternalTooltipTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalTooltipText = (string)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTooltipTextProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTooltipText;
-        });
+        }
 
         /// <summary>
         /// PositionUsesAnchorPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionUsesAnchorPointProperty = BindableProperty.Create(nameof(PositionUsesAnchorPoint), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionUsesAnchorPointProperty = null;
+
+        internal static void SetInternalPositionUsesAnchorPointProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalPositionUsesAnchorPoint = (bool)newValue;
+                instance.SetInternalPositionUsesAnchorPoint((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalPositionUsesAnchorPointProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalPositionUsesAnchorPoint;
-        });
+            return instance.GetInternalPositionUsesAnchorPoint();
+        }
 
         /// <summary>
         /// AnchorPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AnchorPointProperty = null;
+
+        internal static void SetInternalAnchorPointProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalAnchorPoint = (Tizen.NUI.Position)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAnchorPointProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalAnchorPoint;
-        });
+        }
 
         /// <summary>
         /// WidthSpecificationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WidthSpecificationProperty = null;
+
+        internal static void SetInternalWidthSpecificationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalWidthSpecification = (int)newValue;
+                instance.SetInternalWidthSpecification((int)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWidthSpecificationProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalWidthSpecification;
-        });
+            return instance.GetInternalWidthSpecification();
+        }
 
         /// <summary>
         /// HeightSpecificationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HeightSpecificationProperty = BindableProperty.Create(nameof(HeightSpecification), typeof(int), typeof(View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HeightSpecificationProperty = null;
+
+        internal static void SetInternalHeightSpecificationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalHeightSpecification = (int)newValue;
+                instance.SetInternalHeightSpecification((int)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalHeightSpecificationProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalHeightSpecification;
-        });
+            return instance.GetInternalHeightSpecification();
+        }
 
         /// <summary>
         /// LayoutTransitionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutTransitionProperty = BindableProperty.Create(nameof(LayoutTransition), typeof(Tizen.NUI.LayoutTransition), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutTransitionProperty = null;
+
+        internal static void SetInternalLayoutTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalLayoutTransition = (Tizen.NUI.LayoutTransition)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLayoutTransitionProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalLayoutTransition;
-        });
+        }
 
         /// <summary>
         /// PaddingEXProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PaddingEXProperty = BindableProperty.Create(nameof(PaddingEX), typeof(Tizen.NUI.Extents), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PaddingEXProperty = null;
+
+        internal static void SetInternalPaddingEXProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalPaddingEX = (Tizen.NUI.Extents)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalPaddingEXProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalPaddingEX;
-        });
+        }
 
         /// <summary>
         /// LayoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.LayoutItem), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutProperty = null;
+
+        internal static void SetInternalLayoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalLayout = (Tizen.NUI.LayoutItem)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLayoutProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalLayout;
-        });
+        }
 
         /// <summary>
         /// BackgroundImageSynchronosLoadingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageSynchronosLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronosLoading), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageSynchronosLoadingProperty = null;
+
+        internal static void SetInternalBackgroundImageSynchronosLoadingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalBackgroundImageSynchronosLoading = (bool)newValue;
+                instance.SetInternalBackgroundImageSynchronosLoading((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBackgroundImageSynchronosLoadingProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalBackgroundImageSynchronosLoading;
-        });
+            return instance.GetInternalBackgroundImageSynchronosLoading();
+        }
 
         /// <summary>
         /// BackgroundImageSynchronousLoadingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageSynchronousLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronousLoading), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageSynchronousLoadingProperty = null;
+
+        internal static void SetInternalBackgroundImageSynchronousLoadingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalBackgroundImageSynchronousLoading = (bool)newValue;
+                instance.SetInternalBackgroundImageSynchronousLoading((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBackgroundImageSynchronousLoadingProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalBackgroundImageSynchronousLoading;
-        });
+            return instance.GetInternalBackgroundImageSynchronousLoading();
+        }
 
         /// <summary>
         /// EnableControlStatePropagationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableControlStatePropagationProperty = BindableProperty.Create(nameof(EnableControlStatePropagation), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableControlStatePropagationProperty = null;
+
+        internal static void SetInternalEnableControlStatePropagationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalEnableControlStatePropagation = (bool)newValue;
+                instance.SetInternalEnableControlStatePropagation((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalEnableControlStatePropagationProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalEnableControlStatePropagation;
-        });
+            return instance.GetInternalEnableControlStatePropagation();
+        }
 
         /// <summary>
         /// PropagatableControlStatesProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PropagatableControlStatesProperty = BindableProperty.Create(nameof(PropagatableControlStates), typeof(ControlState), typeof(View), ControlState.All, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PropagatableControlStatesProperty = null;
+
+        internal static void SetInternalPropagatableControlStatesProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalPropagatableControlStates = (ControlState)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalPropagatableControlStatesProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalPropagatableControlStates;
-        });
+        }
 
         /// <summary>
         /// GrabTouchAfterLeaveProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GrabTouchAfterLeaveProperty = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GrabTouchAfterLeaveProperty = null;
+
+        internal static void SetInternalGrabTouchAfterLeaveProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalGrabTouchAfterLeave = (bool)newValue;
+                instance.SetInternalGrabTouchAfterLeave((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalGrabTouchAfterLeaveProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalGrabTouchAfterLeave;
-        });
+            return instance.GetInternalGrabTouchAfterLeave();
+        }
 
         /// <summary>
         /// AllowOnlyOwnTouchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AllowOnlyOwnTouchProperty = BindableProperty.Create(nameof(AllowOnlyOwnTouch), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AllowOnlyOwnTouchProperty = null;
+
+        internal static void SetInternalAllowOnlyOwnTouchProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalAllowOnlyOwnTouch = (bool)newValue;
+                instance.SetInternalAllowOnlyOwnTouch((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAllowOnlyOwnTouchProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalAllowOnlyOwnTouch;
-        });
-
+            return instance.GetInternalAllowOnlyOwnTouch();
+        }
 
         /// <summary>
         /// BlendEquationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BlendEquationProperty = BindableProperty.Create(nameof(BlendEquation), typeof(BlendEquationType), typeof(View), default(BlendEquationType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BlendEquationProperty = null;
+
+        internal static void SetInternalBlendEquationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalBlendEquation = (Tizen.NUI.BlendEquationType)newValue;
+                instance.SetInternalBlendEquation((BlendEquationType)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBlendEquationProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalBlendEquation;
-        });
+            return instance.GetInternalBlendEquation();
+        }
 
         /// <summary>
         /// TransitionOptionsProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TransitionOptionsProperty = BindableProperty.Create(nameof(TransitionOptions), typeof(TransitionOptions), typeof(View), default(TransitionOptions), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TransitionOptionsProperty = null;
+
+        internal static void SetInternalTransitionOptionsProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalTransitionOptions = (Tizen.NUI.TransitionOptions)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTransitionOptionsProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTransitionOptions;
-        });
+        }
 
         /// <summary>
         /// AutomationIdProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AutomationIdProperty = BindableProperty.Create(nameof(AutomationId), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutomationIdProperty = null;
+
+        internal static void SetInternalAutomationIdProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2554,67 +2529,74 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyString(instance.SwigCPtr, View.Property.AutomationId, (string)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAutomationIdProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
 
             return Object.InternalGetPropertyString(instance.SwigCPtr, View.Property.AutomationId);
-        });
+        }
 
         /// <summary>
         /// TouchAreaOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TouchAreaOffsetProperty = BindableProperty.Create(nameof(TouchAreaOffset), typeof(Offset), typeof(View), default(Offset), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TouchAreaOffsetProperty = null;
+
+        internal static void SetInternalTouchAreaOffsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalTouchAreaOffset = (Tizen.NUI.Offset)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTouchAreaOffsetProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTouchAreaOffset;
-        });
+        }
 
         /// <summary>
         /// DispatchTouchMotionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DispatchTouchMotionProperty = BindableProperty.Create(nameof(DispatchTouchMotion), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DispatchTouchMotionProperty = null;
+
+        internal static void SetInternalDispatchTouchMotionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalDispatchTouchMotion = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDispatchTouchMotionProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalDispatchTouchMotion;
-        });
+        }
 
         /// <summary>
         /// DispatchHoverMotionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DispatchHoverMotionProperty = null;
+
+        internal static void SetInternalDispatchHoverMotionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
                 instance.InternalDispatchHoverMotion = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+
+        internal static object GetInternalDispatchHoverMotionProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalDispatchHoverMotion;
-        });
+        }
 
         /// <summary>
         /// Gets View's Size2D set by user.
@@ -2630,6 +2612,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
+                backgroundImageUrl = null;
+
                 var empty = new PropertyValue();
                 // Clear background
                 Object.SetProperty(SwigCPtr, Property.BACKGROUND, empty);
@@ -2643,65 +2627,59 @@ namespace Tizen.NUI.BaseComponents
                 value = value.Replace("*Resource*", resource);
             }
 
-            if (backgroundExtraData == null)
-            {
+            backgroundImageUrl = value;
 
+            // Fast return for usual cases.
+            if (backgroundExtraData == null && !backgroundImageSynchronousLoading)
+            {
                 Object.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
-                BackgroundImageSynchronousLoading = backgroundImageSynchronousLoading;
                 return;
             }
 
-            var map = new PropertyMap();
-            var url = new PropertyValue(value);
-            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            var cornerRadius = new PropertyValue(cornerRadiusValue);
-            var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-            var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            var borderlineColor = new PropertyValue(borderlineColorValue);
-            var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
-            var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
-            var npatchType = new PropertyValue((int)Visual.Type.NPatch);
-            var border = (backgroundExtraData.BackgroundImageBorder != null) ? new PropertyValue(backgroundExtraData.BackgroundImageBorder) : null;
-            var imageType = new PropertyValue((int)Visual.Type.Image);
+            using var map = new PropertyMap();
+            using var url = new PropertyValue(value);
+            using var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
 
             map.Add(ImageVisualProperty.URL, url)
-               .Add(Visual.Property.CornerRadius, cornerRadius)
-               .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
-               .Add(Visual.Property.BorderlineWidth, borderlineWidth)
-               .Add(Visual.Property.BorderlineColor, borderlineColor)
-               .Add(Visual.Property.BorderlineOffset, borderlineOffset)
                .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
 
-            if (backgroundExtraData.BackgroundImageBorder != null)
+            if ((backgroundExtraData?.BackgroundImageBorder) != null)
             {
+                using var npatchType = new PropertyValue((int)Visual.Type.NPatch);
+                using var border = new PropertyValue(backgroundExtraData.BackgroundImageBorder);
                 map.Add(Visual.Property.Type, npatchType)
                    .Add(NpatchImageVisualProperty.Border, border);
             }
             else
             {
+                using var imageType = new PropertyValue((int)Visual.Type.Image);
                 map.Add(Visual.Property.Type, imageType);
+            }
+
+            if (backgroundExtraData != null)
+            {
+                using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+                using var cornerRadius = new PropertyValue(cornerRadiusValue);
+                using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
+                using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
+                using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
+                using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+                using var borderlineColor = new PropertyValue(borderlineColorValue);
+                using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
+
+                map.Add(Visual.Property.CornerRadius, cornerRadius)
+                   .Add(Visual.Property.CornerSquareness, cornerSquareness)
+                   .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
+                   .Add(Visual.Property.BorderlineWidth, borderlineWidth)
+                   .Add(Visual.Property.BorderlineColor, borderlineColor)
+                   .Add(Visual.Property.BorderlineOffset, borderlineOffset);
             }
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
-            var mapValue = new PropertyValue(map);
+            using var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
-
-            imageType?.Dispose();
-            border?.Dispose();
-            npatchType?.Dispose();
-            synchronousLoading?.Dispose();
-            borderlineOffset?.Dispose();
-            borderlineColor?.Dispose();
-            borderlineColorValue?.Dispose();
-            borderlineWidth?.Dispose();
-            cornerRadiusPolicy?.Dispose();
-            cornerRadius?.Dispose();
-            cornerRadiusValue?.Dispose();
-            url?.Dispose();
-            map?.Dispose();
-            mapValue?.Dispose();
         }
 
         private void SetBackgroundImageBorder(Rectangle value)
@@ -2760,27 +2738,32 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            // Background property will be Color after now. Remove background image url information.
+            backgroundImageUrl = null;
+
             if (backgroundExtraData == null)
             {
-
                 Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
                 return;
             }
 
-            var map = new PropertyMap();
-            var colorType = new PropertyValue((int)Visual.Type.Color);
-            var mixColor = new PropertyValue(value);
-            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            var cornerRadius = new PropertyValue(cornerRadiusValue);
-            var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-            var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            var borderlineColor = new PropertyValue(borderlineColorValue);
-            var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
+            using var map = new PropertyMap();
+            using var colorType = new PropertyValue((int)Visual.Type.Color);
+            using var mixColor = new PropertyValue(value);
+            using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+            using var cornerRadius = new PropertyValue(cornerRadiusValue);
+            using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
+            using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
+            using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
+            using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
+            using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            using var borderlineColor = new PropertyValue(borderlineColorValue);
+            using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
             map.Add(Visual.Property.Type, colorType)
                .Add(ColorVisualProperty.MixColor, mixColor)
                .Add(Visual.Property.CornerRadius, cornerRadius)
+               .Add(Visual.Property.CornerSquareness, cornerSquareness)
                .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
                .Add(Visual.Property.BorderlineWidth, borderlineWidth)
                .Add(Visual.Property.BorderlineColor, borderlineColor)
@@ -2791,17 +2774,6 @@ namespace Tizen.NUI.BaseComponents
             var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
 
-            borderlineOffset?.Dispose();
-            borderlineColor?.Dispose();
-            borderlineColorValue?.Dispose();
-            borderlineWidth?.Dispose();
-            cornerRadiusPolicy?.Dispose();
-            cornerRadius?.Dispose();
-            cornerRadiusValue?.Dispose();
-            mixColor?.Dispose();
-            colorType?.Dispose();
-            map?.Dispose();
-            mapValue?.Dispose();
         }
 
         private void SetColor(Color value)

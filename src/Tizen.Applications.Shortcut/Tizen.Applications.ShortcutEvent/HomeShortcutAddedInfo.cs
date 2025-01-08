@@ -16,22 +16,27 @@
 
 namespace Tizen.Applications.Shortcut
 {
+    using System;
+
     /// <summary>
     /// A class that contains the shortcut information.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class HomeShortcutAddedInfo : ShortcutAddedInfo
     {
         /// <summary>
         /// Gets the name of the application.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string AppId { get; internal set; }
 
         /// <summary>
         /// Gets the specific information for creating a new shortcut.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Uri { get; internal set; }
     }
 }

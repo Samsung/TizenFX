@@ -100,9 +100,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CustomActor__SWIG_0")]
             public static extern global::System.IntPtr NewCustomActor();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActor_DownCast")]
-            public static extern global::System.IntPtr CustomActorDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CustomActor")]
             public static extern void DeleteCustomActor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -117,12 +114,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActor_Assign")]
             public static extern global::System.IntPtr CustomActorAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActorImpl_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomActor_SWIGUpcast")]
-            public static extern global::System.IntPtr CustomActorUpcast(global::System.IntPtr jarg1);
         }
     }
 }

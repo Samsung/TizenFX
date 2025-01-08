@@ -21,7 +21,9 @@ using NativeWebRTC = Interop.NativeWebRTC;
 
 namespace Tizen.Multimedia.Remoting
 {
-    /// <summary>Represents a null source.</summary>
+    /// <summary>
+    /// Represents a media source that only receives media streams from peer.
+    /// </summary>
     /// <remarks>
     /// If you add this source, WebRTC only receives media stream.<br/>
     /// <see cref="TransceiverDirection"/> is set <see cref="TransceiverDirection.RecvOnly"/> by default.
@@ -64,16 +66,11 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the transceiver codec for receiving media stream.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.<br/>
-        ///
+        /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
         /// </remarks>
         /// <param name="type">The media type.</param>
         /// <param name="codec">The transceiver codec.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     MediaSource is not attached yet.<br/>
-        /// -or-<br/>
-        ///     The WebRTC is not in the valid state.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="GetTransceiverCodec"/>
         /// <since_tizen> 10 </since_tizen>
@@ -84,14 +81,12 @@ namespace Tizen.Multimedia.Remoting
                 throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
             }
 
-            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
-
             NativeWebRTC.SetTransceiverCodec(WebRtc.Handle, SourceId.Value, type, codec).
                 ThrowIfFailed("Failed to set transceiver codec");
         }
 
         /// <summary>
-        /// Retrieves the supported transceiver codecs.
+        /// Retrieves the supported transceiver codecs for receiving media stream.
         /// </summary>
         /// <param name="type">The media type.</param>
         /// <returns>The supported transceiver codecs.</returns>

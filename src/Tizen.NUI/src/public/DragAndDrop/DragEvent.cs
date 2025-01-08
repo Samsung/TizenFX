@@ -16,30 +16,31 @@
  */
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Drag source event type.
+    /// Enumeration for the drag source event types.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     public enum DragSourceEventType
     {
         /// <summary>
-        /// Drag and drop is started.
+        /// Indicates that the drag and drop operation has started.
         /// </summary>
         Start,
         /// <summary>
-        /// Drag and drop is cancelled.
+        /// Indicates that the drag and drop operation has been cancelled.
         /// </summary>
         Cancel,
         /// <summary>
-        /// Drag and drop is accepted.
+        /// Indicates that the drag and drop operation has been accepted by the target.
         /// </summary>
         Accept,
         /// <summary>
-        /// Drag and drop is finished.
+        /// Indicates that the drag and drop operation has finished.
         /// </summary>
         Finish
     }
@@ -60,10 +61,16 @@ namespace Tizen.NUI
         /// The drag data to send
         /// </summary>
         public string Data { get; set; }
+
+        /// <summary>
+        /// The mime types and drag data set
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, string> DataMap;
     }
 
     /// <summary>
-    /// Drag event type.
+    /// This enumeration defines the different types of drag events that can occur when a drag-and-drop operation is performed on a target view.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     public enum DragType
@@ -106,6 +113,13 @@ namespace Tizen.NUI
         /// The mime type of drag object
         /// </summary>
         public string MimeType { get; set; }
+
+        /// <summary>
+        /// The mime types of drag object
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string [] MimeTypes { get; set; }
+
         /// <summary>
         /// The drag data to receive
         /// </summary>

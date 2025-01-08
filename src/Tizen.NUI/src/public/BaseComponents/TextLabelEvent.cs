@@ -35,11 +35,162 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler textLabelTextFitChangedEventHandler;
         private TextFitChangedCallbackDelegate textLabelTextFitChangedCallbackDelegate;
 
+        private EventHandler<AsyncTextRenderedEventArgs> textLabelAsyncTextRenderedEventHandler;
+        private AsyncTextRenderedCallbackDelegate textLabelAsyncTextRenderedCallbackDelegate;
+
+        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncNaturalSizeComputedEventHandler;
+        private AsyncNaturalSizeComputedCallbackDelegate textLabelAsyncNaturalSizeComputedCallbackDelegate;
+
+        private EventHandler<AsyncTextSizeComputedEventArgs> textLabelAsyncHeightForWidthComputedEventHandler;
+        private AsyncHeightForWidthComputedCallbackDelegate textLabelAsyncHeightForWidthComputedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TextFitChangedCallbackDelegate(IntPtr textLabel);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AsyncTextRenderedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AsyncNaturalSizeComputedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AsyncHeightForWidthComputedCallbackDelegate(IntPtr textLabel, float width, float height);
+
+
+        /// <summary>
+        /// The AsyncHeightForWidthComputed signal is emitted when the async natural size computed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AsyncTextSizeComputedEventArgs> AsyncHeightForWidthComputed
+        {
+            add
+            {
+                if (textLabelAsyncHeightForWidthComputedEventHandler == null)
+                {
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = OnAsyncHeightForWidthComputed;
+                    Interop.TextLabel.AsyncHeightForWidthComputedConnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                textLabelAsyncHeightForWidthComputedEventHandler += value;
+            }
+            remove
+            {
+                textLabelAsyncHeightForWidthComputedEventHandler -= value;
+                if (textLabelAsyncHeightForWidthComputedEventHandler == null && textLabelAsyncHeightForWidthComputedCallbackDelegate != null)
+                {
+                    Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
+                }
+            }
+        }
+
+        private void OnAsyncHeightForWidthComputed(IntPtr textLabel, float width, float height)
+        {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
+
+            if (textLabelAsyncHeightForWidthComputedEventHandler != null)
+            {
+                textLabelAsyncHeightForWidthComputedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// The AsyncNaturalSizeComputed signal is emitted when the async natural size computed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AsyncTextSizeComputedEventArgs> AsyncNaturalSizeComputed
+        {
+            add
+            {
+                if (textLabelAsyncNaturalSizeComputedEventHandler == null)
+                {
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = OnAsyncNaturalSizeComputed;
+                    Interop.TextLabel.AsyncNaturalSizeComputedConnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                textLabelAsyncNaturalSizeComputedEventHandler += value;
+            }
+            remove
+            {
+                textLabelAsyncNaturalSizeComputedEventHandler -= value;
+                if (textLabelAsyncNaturalSizeComputedEventHandler == null && textLabelAsyncNaturalSizeComputedCallbackDelegate != null)
+                {
+                    Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
+                }
+            }
+        }
+
+        private void OnAsyncNaturalSizeComputed(IntPtr textLabel, float width, float height)
+        {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
+
+            if (textLabelAsyncNaturalSizeComputedEventHandler != null)
+            {
+                textLabelAsyncNaturalSizeComputedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// The AsyncTextRendered signal is emitted when the async text rendered.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AsyncTextRenderedEventArgs> AsyncTextRendered
+        {
+            add
+            {
+                if (textLabelAsyncTextRenderedEventHandler == null)
+                {
+                    textLabelAsyncTextRenderedCallbackDelegate = OnAsyncTextRendered;
+                    Interop.TextLabel.AsyncTextRenderedConnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                textLabelAsyncTextRenderedEventHandler += value;
+            }
+            remove
+            {
+                textLabelAsyncTextRenderedEventHandler -= value;
+                if (textLabelAsyncTextRenderedEventHandler == null && textLabelAsyncTextRenderedCallbackDelegate != null)
+                {
+                    Interop.TextLabel.AsyncTextRenderedDisconnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    textLabelAsyncTextRenderedCallbackDelegate = null;
+                }
+            }
+        }
+
+        private void OnAsyncTextRendered(IntPtr textLabel, float width, float height)
+        {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            AsyncTextRenderedEventArgs e = new AsyncTextRenderedEventArgs(width, height);
+
+            if (textLabelAsyncTextRenderedEventHandler != null)
+            {
+                textLabelAsyncTextRenderedEventHandler(this, e);
+            }
+        }
 
         /// <summary>
         /// The AnchorClicked signal is emitted when the anchor is clicked.
@@ -75,6 +226,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textLabel, IntPtr href, uint hrefLength)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -120,6 +277,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextFitChanged(IntPtr textLabel)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textLabelTextFitChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }

@@ -26,11 +26,13 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Clipboard.
+    /// This class provides methods to interact with the system clipboard, allowing users to get and set clipboard content.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class Clipboard : BaseHandle
     {
+        private static readonly Clipboard instance = Clipboard.GetInternal();
+
         /// <summary>
         /// User callback for clipboard event.
         /// </summary>
@@ -42,11 +44,6 @@ namespace Tizen.NUI
         internal bool hasClipboardDataReceived = false;
         internal Dictionary<uint, ClipboardCallback> receivedCallbackDictionary = new Dictionary<uint, ClipboardCallback>();
 
-        private Clipboard() : this(Interop.Clipboard.Get(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         private Clipboard(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -55,7 +52,55 @@ namespace Tizen.NUI
         /// Gets the singleton instance of Clipboard.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Clipboard Instance { get; } = new Clipboard();
+        public static Clipboard Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        private static Clipboard GetInternal()
+        {
+            global::System.IntPtr cPtr = Interop.Clipboard.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("Clipboard.Instance called before Application created, or after Application terminated!");
+                // Do not throw exception until TCT test passed.
+            }
+
+            Clipboard ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Clipboard;
+            if (ret != null)
+            {
+                NUILog.ErrorBacktrace("Clipboard.GetInternal() Should be called only one time!");
+                object dummyObect = new object();
+
+                HandleRef CPtr = new HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new Clipboard(cPtr, true);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
+        }
 
         /// <summary>
         /// Request set the given data to the clipboard.
@@ -150,7 +195,13 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -169,11 +220,13 @@ namespace Tizen.NUI
                 if (clipboardDataReceivedCallback != null)
                 {
                     this.ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
+                    clipboardDataReceivedCallback = null;
                 }
 
                 if (clipboardDataSelectedCallback != null)
                 {
                     this.ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                    clipboardDataSelectedCallback = null;
                 }
             }
 

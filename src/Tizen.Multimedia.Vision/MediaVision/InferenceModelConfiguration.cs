@@ -35,6 +35,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.inference.face</feature>
     /// <feature>http://tizen.org/feature/vision.inference.image</feature>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API15.")]
     public class InferenceModelConfiguration : EngineConfiguration
     {
         private IntPtr _inferenceHandle = IntPtr.Zero;
@@ -73,6 +74,7 @@ namespace Tizen.Multimedia.Vision
         /// <feature>http://tizen.org/feature/vision.inference.image</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public InferenceModelConfiguration() : base("inference")
         {
             InteropInference.Create(out _inferenceHandle).Validate("Failed to create inference configuration");
@@ -101,6 +103,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException">Internal operation error.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public void LoadInferenceModel()
         {
             InteropInference.Configure(_inferenceHandle, GetHandle(this)).
@@ -130,6 +133,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <returns>If there's no supported backend, empty collection will be returned.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public IEnumerable<InferenceBackendType> SupportedBackend
         {
             get
@@ -193,6 +197,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException">Input file path is null.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string ConfigurationFilePath
         {
             get
@@ -215,6 +220,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException">Input file path is null.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string WeightFilePath
         {
             get
@@ -240,6 +246,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentNullException">Input file path is null.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string CategoryFilePath
         {
             get
@@ -265,6 +272,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentNullException">Metadata file path is null.</exception>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public string MetadataFilePath
         {
             get
@@ -340,6 +348,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The engine type is not supported.</exception>
         /// <seealso cref="SupportedBackend"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public InferenceBackendType Backend
         {
             get
@@ -370,6 +379,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public InferenceTargetDevice Device
         {
             get
@@ -601,6 +611,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <seealso cref="MaxOutputNumber"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         public Rectangle? Roi
         {
             get
@@ -651,6 +662,7 @@ namespace Tizen.Multimedia.Vision
         /// true to release both managed and unmanaged resources, otherwise false to release only unmanaged resources.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API15.")]
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

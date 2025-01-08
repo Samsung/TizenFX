@@ -38,41 +38,69 @@ internal static partial class Interop
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_destroy")]
             internal static extern ImageUtilError Destroy(IntPtr handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_resolution")]
-            internal static extern ImageUtilError SetResolution(ImageEncoderHandle handle, uint width, uint height);
-
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_colorspace")]
-            internal static extern ImageUtilError SetColorspace(ImageEncoderHandle handle, ImageColorSpace colorspace);
-
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_quality")]
             internal static extern ImageUtilError SetQuality(ImageEncoderHandle handle, int quality);
 
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_png_compression")]
             internal static extern ImageUtilError SetPngCompression(ImageEncoderHandle handle, PngCompression compression);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_gif_frame_delay_time")]
-            internal static extern ImageUtilError SetGifFrameDelayTime(ImageEncoderHandle handle, ulong delayTime);
-
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_output_path")]
-            internal static extern ImageUtilError SetOutputPath(ImageEncoderHandle handle, string path);
-
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_input_buffer")]
-            internal static extern ImageUtilError SetInputBuffer(ImageEncoderHandle handle, byte[] srcBuffer);
-
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_output_buffer")]
-            internal static extern ImageUtilError SetOutputBuffer(ImageEncoderHandle handle, out IntPtr dstBuffer);
-
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run")]
-            internal static extern ImageUtilError Run(ImageEncoderHandle handle, out ulong size);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run_to_buffer")]
+            internal static extern ImageUtilError RunToBuffer(ImageEncoderHandle handle, IntPtr imageUtilHandle, out IntPtr buffer, out int size);
 
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_lossless")]
             internal static extern ImageUtilError SetLossless(ImageEncoderHandle handle, bool lossless);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_create")]
+            internal static extern ImageUtilError AnimationCreate(AnimationType type, out IntPtr animHandle);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_loop_count")]
+            internal static extern ImageUtilError AnimationSetLoopCount(IntPtr animHandle, uint count);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_background_color")]
+            internal static extern ImageUtilError AnimationSetBackgroundColor(IntPtr animHandle, byte r, byte g, byte b, byte a);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_lossless")]
+            internal static extern ImageUtilError AnimationSetLossless(IntPtr animHandle, bool isLossless);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_add_frame")]
+            internal static extern ImageUtilError AnimationAddFrame(IntPtr animHandle, IntPtr utilHandle, uint delayTime);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_save_to_file")]
+            internal static extern ImageUtilError AnimationSaveToFile(IntPtr animHandle, string path);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_save_to_buffer")]
+            internal static extern ImageUtilError AnimationSaveToBuffer(IntPtr animHandle, out IntPtr dstBuffer, out ulong size);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_destroy")]
+            internal static extern ImageUtilError AnimationDestroy(IntPtr animHandle);
         }
     }
 
     internal class ImageEncoderHandle : SafeHandle
     {
         protected ImageEncoderHandle() : base(IntPtr.Zero, true)
+        {
+        }
+
+        public override bool IsInvalid => handle == IntPtr.Zero;
+
+
+        protected override bool ReleaseHandle()
+        {
+            var ret = ImageUtil.Encode.Destroy(handle);
+            if (ret != ImageUtilError.None)
+            {
+                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    internal class AgifImageEncoderHandle : SafeHandle
+    {
+        protected AgifImageEncoderHandle() : base(IntPtr.Zero, true)
         {
         }
 

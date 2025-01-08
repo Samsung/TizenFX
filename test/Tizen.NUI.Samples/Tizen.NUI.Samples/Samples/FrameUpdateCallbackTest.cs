@@ -65,7 +65,9 @@ namespace Tizen.NUI.Samples
         private const int DEFAULT_SPACE = 9;
         private const int DEVIDE_BAR_SIZE = 4;
 
-        private const uint FRAME_UPDATE_CALLBACK_VERSION = 0u;
+        private const float DEGREE_PER_POSITION = 0.05f;
+
+        private const uint FRAME_UPDATE_CALLBACK_VERSION = 1u;
 
         public class FrameUpdateCallback : FrameUpdateCallbackInterface
         {
@@ -268,17 +270,20 @@ namespace Tizen.NUI.Samples
 
                     // check views in screen are still moving or stopped.
                     float newPosition = viewPosition[i] + movement - lastMovement;
+                    float positionDiff = 0.0f;
                     if (i >= leftIndex && i <= rightIndex)
                     {
                         Vector3 previousPosition = new Vector3();
                         GetPosition(viewId[i], previousPosition);
-                        if (Math.Abs(previousPosition.X - newPosition) >= 1.0f)
+                        positionDiff = newPosition - previousPosition.X;
+                        if (Math.Abs(positionDiff) >= 1.0f)
                         {
                             isStillMoving = false;
                         }
                     }
-                    // update new position.
+                    // update new position and rotiation
                     SetPosition(viewId[i], new Vector3(newPosition, 0.0f, 0.0f));
+                    SetOrientation(viewId[i], new Rotation(new Radian(new Degree(positionDiff * DEGREE_PER_POSITION)), Vector3.ZAxis));
                     positionChanged = true;
                 }
                 isResetTouchedViewPossible = isStillMoving;
@@ -396,6 +401,27 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            if(contentsView != null)
+            {
+                contentsView.Unparent();
+                contentsView.Dispose();
+            }
+            if(baseView != null)
+            {
+                baseView.Unparent();
+                baseView.Dispose();
+            }
+
+            if(frameUpdateCallback != null)
+            {
+                window.RenderingBehavior = RenderingBehaviorType.IfRequired;
+                window.RemoveFrameUpdateCallback(frameUpdateCallback);
+                animationOffTimer?.Stop();
+                animationState = TOUCH_ANIMATION_STATE.END_ANIMATION;
+
+                frameUpdateCallback = null;
+                animationOffTimer?.Dispose();
+            }
         }
 
         void Initialize()
@@ -564,12 +590,15 @@ namespace Tizen.NUI.Samples
             // Add frame callback on window.
             // OnUpdate callback of frameUpdateCallback will be called before every render frame.
             // We can set root view what given frameUpdateCallback used
+            // Or, we can skip root view as null if we don't want to make frameUpdateCallback don't have dependency with some view.
+            // For this sample, let we use controlView as root view.
+
             window.AddFrameUpdateCallback(frameUpdateCallback, controlView);
+            // window.AddFrameUpdateCallback(frameUpdateCallback, null);
 
             // compute limit position the container could go.
             leftDirectionLimit = (float)window.Size.Width - (totalSize + (float)(INITIAL_POSITION));
 
-            window.RenderingBehavior = RenderingBehaviorType.Continuously; // make rendering be done for upto 60 fps even though there is no update in main thread.
             animationState = TOUCH_ANIMATION_STATE.ON_ANIMATION; // make rendering state on.
         }
 
@@ -767,7 +796,6 @@ namespace Tizen.NUI.Samples
         {
             if (frameUpdateCallback.IsResetTouchedViewPossible())
             {
-                window.RenderingBehavior = RenderingBehaviorType.IfRequired;
                 window.RemoveFrameUpdateCallback(frameUpdateCallback);
                 animationOffTimer.Stop();
                 animationState = TOUCH_ANIMATION_STATE.END_ANIMATION;

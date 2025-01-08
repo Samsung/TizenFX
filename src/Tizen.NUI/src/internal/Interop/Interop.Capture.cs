@@ -24,23 +24,12 @@ namespace Tizen.NUI
     {
         internal static partial class Capture
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Upcast")]
-            public static extern IntPtr Upcast(IntPtr jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Capture")]
-            public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_New")]
             public static extern IntPtr New();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_DownCast")]
-            public static extern IntPtr Downcast(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Capture")]
             public static extern void Delete(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Assign")]
-            public static extern IntPtr Assign(HandleRef jarg1, HandleRef jarg2);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_1")]
             public static extern void Start1(HandleRef capture, HandleRef source, HandleRef size, string path, HandleRef clearColor);
@@ -56,6 +45,13 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetImageQuality")]
             public static extern void SetImageQuality(HandleRef capture, uint quality);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetExclusive")]
+            public static extern void SetExclusive(HandleRef capture, bool exclusive);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_IsExclusive")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsExclusive(HandleRef capture);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Empty")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
@@ -73,20 +69,14 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Emit")]
             public static extern void SignalEmit(HandleRef jarg1, HandleRef jarg2, int jarg3);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Capture_Signal")]
-            public static extern IntPtr NewSignal();
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Capture_Signal")]
-            public static extern void DeleteSignal(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Get")]
             public static extern IntPtr Get(HandleRef jarg1);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetImageUrl")]
+            public static extern IntPtr GetImageUrl(HandleRef capture);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetNativeImageSource")]
             public static extern IntPtr GetNativeImageSourcePtr(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GenerateUrl")]
-            public static extern IntPtr GenerateUrl(HandleRef capture);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetCapturedBuffer")]
             public static extern IntPtr GetCapturedBuffer(HandleRef capture);

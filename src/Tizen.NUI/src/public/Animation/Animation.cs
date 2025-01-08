@@ -35,6 +35,23 @@ namespace Tizen.NUI
     /// The overall animation time is superseded by the values given in the animation time used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br />
     /// If any of the individual calls to those functions exceeds the overall animation time (Duration), then the overall animation time is automatically extended.<br />
     /// </summary>
+    /// <example><code>
+    /// View view = new View()
+    /// {
+    ///     Size2D = new Size2D(100, 100),
+    ///     Position2D = new Position2D(100, 100),
+    ///     BackgroundColor = Color.Red,
+    /// };
+    ///
+    /// Window.Default.Add(view);
+    /// Animation animation = new Animation();
+    /// const float destinationValue = 300.0f;
+    /// const int startTime = 0; // animation starts at 0 second point. no delay.
+    /// const int endTime = 5000; // animation ends at 5 second point.
+    /// animation.AnimateTo(view, "PositionX", destinationValue, startTime, endTime); // position x animation.
+    /// animation.AnimateTo(view, "SizeHeight", destinationValue + 100, startTime + 1000, endTime + 2000); // size height animation.
+    /// animation.Play();
+    /// </code></example>
     /// <since_tizen> 3 </since_tizen>
     public class Animation : BaseHandle
     {
@@ -529,6 +546,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the animation's ID. 0 if animation is invalid.
+        /// Read-only
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ID
+        {
+            get
+            {
+                return GetId();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use PropertyList instead")]
@@ -940,7 +970,6 @@ namespace Tizen.NUI
                 using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
-#if NUI_ANIMATION_PROPERTY_CHANGE_1
                         var targetValueIntPtr = current.RefineValueIntPtr(destinationValue);
                         if (targetValueIntPtr == global::System.IntPtr.Zero)
                         {
@@ -948,11 +977,6 @@ namespace Tizen.NUI
                         }
                         AnimateToIntPtr(current.Property, targetValueIntPtr, alphaFunction, time);
                         Interop.PropertyValue.DeletePropertyValueIntPtr(targetValueIntPtr);
-#else
-                        var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
-                        AnimateTo(current.Property, targetValue, alphaFunction, time);
-                        targetValue.Dispose();
-#endif
                         current = current.NextResult;
                     }
             }
@@ -1245,6 +1269,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Plays the animation.
         /// </summary>
+        /// <example><code>
+        /// var animation = new Animation();
+        /// animation.Play();
+        /// </code></example>
         /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
@@ -1284,6 +1312,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Pauses the animation.
         /// </summary>
+        /// <example><code>
+        /// var animation = new Animation();
+        /// animation.Play();
+        /// animation.Pause();
+        /// </code></example>
         /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
@@ -1294,6 +1327,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Stops the animation.
         /// </summary>
+        /// <example><code>
+        /// var animation = new Animation();
+        /// animation.Play();
+        /// animation.Stop();
+        /// </code></example>
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
@@ -1397,7 +1435,7 @@ namespace Tizen.NUI
             }
 
             //if the value is not assignable and there's an implicit conversion, convert
-            if (value != null && !toType.IsAssignableFrom(value.GetType()))
+            if (value != null && toType != null && !toType.IsAssignableFrom(value.GetType()))
             {
                 var opImplicit = GetImplicitConversionOperator(value.GetType(), value.GetType(), toType)
                                  ?? GetImplicitConversionOperator(toType, value.GetType(), toType);
@@ -1590,6 +1628,19 @@ namespace Tizen.NUI
         {
             Animation.States ret = (Animation.States)Interop.Animation.GetState(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal uint GetId()
+        {
+            uint ret = 0u;
+
+            if(!Disposed && !IsDisposeQueued)
+            {
+                ret = Interop.Animation.GetAnimationId(SwigCPtr);
+            }
+
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

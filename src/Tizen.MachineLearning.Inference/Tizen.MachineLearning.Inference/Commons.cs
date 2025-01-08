@@ -272,7 +272,7 @@ namespace Tizen.MachineLearning.Inference
         /// <summary>
         /// The maximum number of other/tensor instances that other/tensors may have.
         /// </summary>
-        internal const int SizeLimit = 16;
+        internal const int SizeLimit = 256;
 
         /// <summary>
         /// Unknown Type of Tensor information. It is internally used for error check.

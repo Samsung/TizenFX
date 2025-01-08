@@ -21,14 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class Ruler
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_SWIGUpcast")]
-            public static extern global::System.IntPtr DefaultRulerUpcast(global::System.IntPtr jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_SWIGUpcast")]
-            public static extern global::System.IntPtr FixedRulerUpcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerDomain__SWIG_0")]
             public static extern global::System.IntPtr NewRulerDomain(float jarg1, float jarg2, bool jarg3);

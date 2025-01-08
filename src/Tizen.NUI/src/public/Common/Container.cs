@@ -34,7 +34,15 @@ namespace Tizen.NUI
     {
         /// <summary> XamlStyleProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(XamlStyle), typeof(Container), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.Style = (XamlStyle)newvalue);
+        public static BindableProperty XamlStyleProperty = null;
+        internal static void SetInternalXamlStyleProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((View)bindable).MergedStyle.Style = (XamlStyle)newValue;
+        }
+        internal static object GetInternalXamlStyleProperty(BindableObject bindable)
+        {
+            return ((View)bindable).MergedStyle.Style;
+        }
 
         internal BaseHandle InternalParent;
         private List<View> childViews = new List<View>();
@@ -45,9 +53,15 @@ namespace Tizen.NUI
         static internal new void Preload()
         {
             Animatable.Preload();
+        }
 
-            // Do nothing. Just call for load static values.
-            var temporalXamlStyleProperty = XamlStyleProperty;
+        static Container()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(XamlStyle), typeof(Container), default(XamlStyle),
+                    propertyChanged: SetInternalXamlStyleProperty, defaultValueCreator: GetInternalXamlStyleProperty);
+            }
         }
 
         internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
@@ -92,11 +106,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (XamlStyle)GetValue(XamlStyleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (XamlStyle)GetValue(XamlStyleProperty);
+                }
+                else
+                {
+                    return (XamlStyle)GetInternalXamlStyleProperty(this);
+                }
             }
             set
             {
-                SetValue(XamlStyleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(XamlStyleProperty, value);
+                }
+                else
+                {
+                    SetInternalXamlStyleProperty(this, null, value);
+                }
             }
         }
 
@@ -114,7 +142,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// List of children of Container.
+        /// Gets the list of children of Container.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public List<View> Children
@@ -268,10 +296,7 @@ namespace Tizen.NUI
 
             foreach (View child in copiedChildren)
             {
-                if (!(child?.Disposed ?? true))
-                {
-                    child.DisposeRecursively();
-                }
+                child?.DisposeRecursively();
             }
         }
 

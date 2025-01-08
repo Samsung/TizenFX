@@ -24,17 +24,9 @@ namespace Tizen.NUI
     {
         internal static partial class EncodedImageBuffer
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_New")]
-            public static extern IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_New__SWIG_1")]
             public static extern IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, int imageType);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_EncodedImageBuffer__SWIG_0")]
-            public static extern IntPtr NewEncodedImageBuffer();
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_EncodedImageBuffer__SWIG_1")]
-            public static extern IntPtr NewEncodedImageBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_EncodedImageBuffer")]
             public static extern void DeleteEncodedImageBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);

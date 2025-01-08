@@ -43,9 +43,6 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool Emit(HandleRef jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Keyboard_Repeat_Settings_Changed_Signal_new")]
-            public static extern global::System.IntPtr NewSignal();
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Keyboard_Repeat_Settings_Changed_Signal_delete")]
             public static extern void DeleteSignal(HandleRef jarg1);
         }

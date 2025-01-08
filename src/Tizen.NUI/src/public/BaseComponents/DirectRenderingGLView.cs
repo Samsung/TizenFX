@@ -116,6 +116,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Creates an initialized DirectRenderingGLView.
+        /// </summary>
+        /// <param name="colorFormat">The format of the color buffer</param>
+        /// <param name="backendMode">The backend mode</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DirectRenderingGLView(ColorFormat colorFormat, BackendMode backendMode) : this(Interop.GLView.New((int)backendMode, (int)colorFormat), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Enumeration for the color format of the color buffer
         /// </summary>
         public enum ColorFormat
@@ -129,6 +140,50 @@ namespace Tizen.NUI.BaseComponents
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
             RGBA8888
+        }
+
+        /// <summary>
+        /// Enumeration for backend mode
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum BackendMode
+        {
+            /// <summary>
+            /// DirectRendering mode executes GL code within DALi graphics
+            /// pipeline but creates isolated context hence it doesn't alter any
+            /// DALi rendering state. When Renderer is about to be drawn, the callback
+            /// will be executed and the custom code "injected" into the pipeline.
+            /// This allows rendering directly to the surface rather than offscreen.
+            /// </summary>
+            DirectRendering = 0,
+
+            /// <summary>
+            /// DirectRenderingThread mode executes GL code on separate thread
+            /// and then blits the result within DALi graphics commands stream.
+            /// The mode is logically compatible with the EglImageOffscreenRendering.
+            /// </summary>
+            DirectRenderingThread,
+
+            /// <summary>
+            /// EglImageOffscreenRendering mode executes GL code in own thread
+            /// and renders to the offscreen NativeImage (EGL) buffer. This backend
+            /// will render in parallel but has higher memory footprint and may suffer
+            /// performance issues due to using EGL image.
+            /// </summary>
+            EglImageOffscreenRendering,
+
+            /// <summary>
+            /// UnsafeDirectRendering mode executes GL code within DALi graphics
+            /// pipeline WITHOUT isolating the GL context so should be used with caution!
+            /// The custom rendering code is executed within current window context and
+            /// may alter the GL state. This mode is considered unsafe and should be used
+            /// only when drawing on main GL context is necessary!
+            ///
+            /// When Renderer is about to be drawn, the callback
+            /// will be executed and the custom code "injected" into the pipeline.
+            /// This allows rendering directly to the surface rather than offscreen.
+            /// </summary>
+            UnsafeDirectRendering
         }
 
         /// <summary>
@@ -186,19 +241,27 @@ namespace Tizen.NUI.BaseComponents
                 if (textures != null)
                 {
                     int count = textures.Count;
-                    int intptrBytes = checked(Marshal.SizeOf(typeof(IntPtr)) * count);
-                    if (intptrBytes > 0)
+                    if (count > 0)
                     {
                         IntPtr[] texturesArray = new IntPtr[count];
                         for (int i = 0; i < count; i++)
                         {
                             texturesArray[i] = HandleRef.ToIntPtr(Texture.getCPtr(textures[i]));
                         }
-                        IntPtr unmanagedPointer = Marshal.AllocHGlobal(intptrBytes);
-                        Marshal.Copy(texturesArray, 0, unmanagedPointer, texturesArray.Length);
-
-                        Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, texturesArray.Length);
-                        Marshal.FreeHGlobal(unmanagedPointer);
+                        IntPtr unmanagedPointer = Marshal.AllocHGlobal(checked(Marshal.SizeOf(typeof(IntPtr)) * texturesArray.Length));
+                        try
+                        {
+                            Marshal.Copy(texturesArray, 0, unmanagedPointer, texturesArray.Length);
+                            Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, texturesArray.Length);
+                        }
+                        catch(Exception e)
+                        {
+                            Tizen.Log.Error("NUI", "Exception in GlViewBindTextureResources : " + e.Message);
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(unmanagedPointer);
+                        }
                     }
                 }
             }

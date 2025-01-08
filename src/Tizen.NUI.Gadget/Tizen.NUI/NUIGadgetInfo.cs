@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
@@ -26,7 +27,7 @@ using SystemIO = System.IO;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// This class provides properties to get information the gadget.
+    /// This class provides properties to retrieve information the gadget.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -70,6 +71,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the gadget resource path of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public string GadgetResourcePath
+        {
+            get; private set;
+        }
+
+        /// <summary>
         /// Gets the executable file of the gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
@@ -85,7 +95,17 @@ namespace Tizen.NUI
 
         internal string ResourceClassName { get; set; }
 
-        internal Assembly Assembly { get; set; }
+        /// <summary>
+        /// Gets the assembly of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public Assembly Assembly { get; internal set; }
+
+        /// <summary>
+        /// Gets the assembly of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public NUIGadgetAssembly NUIGadgetAssembly { get; set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
@@ -176,7 +196,17 @@ namespace Tizen.NUI
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
 
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/";
+            if (!Directory.Exists(info.ResourcePath))
+            {
+                info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+            }
+
+            info.GadgetResourcePath = info.ResourcePath + info.ResourceType + "/";
+            if (!Directory.Exists(info.GadgetResourcePath))
+            {
+                info.GadgetResourcePath = info.ResourcePath;
+            }
             return info;
         }
     }
