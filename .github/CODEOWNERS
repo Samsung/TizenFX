@@ -8,42 +8,42 @@
 
 # ACCOUNT
 /src/Tizen.Account.AccountManager/ @randeepsingh01 @d1-agarwal
-/src/Tizen.Account.FidoClient/ @randeepsingh01
-/src/Tizen.Account.OAuth2/ @randeepsingh01
+/src/Tizen.Account.FidoClient/ @randeepsingh01 @Shivam‐Verma‐1808
+/src/Tizen.Account.OAuth2/ @randeepsingh01 @Shivam‐Verma‐1808
 /src/Tizen.Account.SyncManager/ @randeepsingh01 @d1-agarwal
 
 # APPLICATION FW
 /src/Tizen.Applications.Alarm/ @kilig
-# /src/Tizen.Applications.AttachPanel/
-# /src/Tizen.Applications.Badge/
+/src/Tizen.Applications.AttachPanel/ @amit-patel
+/src/Tizen.Applications.Badge/ @sukhyungkang
 /src/Tizen.Applications.Cion/ @jusung
-/src/Tizen.Applications.Common/ @hjhun
-/src/Tizen.Applications.ComponentBased.ComponentManager/ @hjhun
-/src/Tizen.Applications.ComponentBased.Default/ @hjhun
-/src/Tizen.Applications.ComponentBased.Port/ @hjhun
-/src/Tizen.Applications.ComponentBased/ @hjhun
+/src/Tizen.Applications.Common/ @upple
+/src/Tizen.Applications.ComponentBased.ComponentManager/ @upple
+/src/Tizen.Applications.ComponentBased.Default/ @upple
+/src/Tizen.Applications.ComponentBased.Port/ @upple
+/src/Tizen.Applications.ComponentBased/ @upple
 /src/Tizen.Applications.DataControl/ @jusung
 /src/Tizen.Applications.EventManager/ @jusung
 /src/Tizen.Applications.MessagePort/ @jusung
-# /src/Tizen.Applications.Notification/
-# /src/Tizen.Applications.NotificationEventListener/
+/src/Tizen.Applications.Notification/ @sukhyungkang
+/src/Tizen.Applications.NotificationEventListener/ @sukhyungkang
 /src/Tizen.Applications.PackageManager/ @jeremy-jang
-# /src/Tizen.Applications.Preference/
-#/src/Tizen.Applications.RemoteView/
-/src/Tizen.Applications.Service/ @hjhun
-# /src/Tizen.Applications.Shortcut/
+/src/Tizen.Applications.Preference/ @sukhyungkang
+/src/Tizen.Applications.RemoteView/ @sukhyungkang
+/src/Tizen.Applications.Service/ @upple
+/src/Tizen.Applications.Shortcut/ @sukhyungkang
 /src/Tizen.Applications.ThemeManager/ @jeremy-jang
-# /src/Tizen.Applications.ToastMessage/
-/src/Tizen.Applications.UI/ @hjhun
-# /src/Tizen.Applications.WatchApplication/
-# /src/Tizen.Applications.WatchfaceComplication/
-# /src/Tizen.Applications.WidgetApplication/
-# /src/Tizen.Applications.WidgetControl/
+/src/Tizen.Applications.ToastMessage/ @sukhyungkang
+/src/Tizen.Applications.UI/ @upple
+/src/Tizen.Applications.WatchApplication/ @sukhyungkang
+/src/Tizen.Applications.WatchfaceComplication/ @sukhyungkang
+/src/Tizen.Applications.WidgetApplication/ @sukhyungkang
+/src/Tizen.Applications.WidgetControl/ @sukhyungkang
 
 # CONTENT
 /src/Tizen.Content.Download/ @chleun-moon @SeonahMoon
 /src/Tizen.Content.MediaContent/ @hsgwon @eunhaechoi
-# /src/Tizen.Content.MimeType/
+/src/Tizen.Content.MimeType/ @sukhyungkang
 
 # CONTEXT
 /src/Tizen.Context/ @yj99-shin
@@ -120,25 +120,27 @@
 /src/Tizen.Pims.Contacts/ @randeepsingh01 @chauhan321
 
 # SECURITY
-/src/Tizen.Security/ @t-swierczek
-/src/Tizen.Security.DevicePolicyManager/ @y01k
-/src/Tizen.Security.PrivacyPrivilegeManager/ @e-borowski @t-swierczek @z-abramowska
+/src/Tizen.Security/ @t-swierczek @terry2000s
+/src/Tizen.Security.PrivacyPrivilegeManager/ @e-borowski @t-swierczek @z-abramowska @terry2000s
 /src/Tizen.Security.SecureRepository/ @terry2000s @kjackiewicz
+
+# SECURITY (Deprecated)
+/src/Tizen.Security.DevicePolicyManager/ @y01k
 /src/Tizen.Security.TEEC/  @terry2000s @kjackiewicz
 
 # SENSOR
-/src/Tizen.Sensor/ @chanwoochoi
+/src/Tizen.Sensor/ @chanwoochoi @SangyounKwak
 
 # SYSTEM
-/src/Tizen.System/ @chanwoochoi @ppdl
-/src/Tizen.System.Feedback/ @chanwoochoi
+/src/Tizen.System/ @chanwoochoi @germonado
+/src/Tizen.System.Feedback/ @chanwoochoi @germonado
 /src/Tizen.System.Information/ @chanwoochoi @ppdl
-# /src/Tizen.System.MediaKey/
+/src/Tizen.System.MediaKey/ @sukhyungkang
 /src/Tizen.System.PlatformConfig/ @chanwoochoi @ppdl
-# /src/Tizen.System.PowerUsage/
-# /src/Tizen.System.Resource/
-# /src/Tizen.System.Session/
-/src/Tizen.System.Storage/ @chanwoochoi
+/src/Tizen.System.PowerUsage/ @chanwoochoi
+/src/Tizen.System.Resource/ @chanwoochoi @ul24 @SangyounKwak
+/src/Tizen.System.Session/ @chanwoochoi
+/src/Tizen.System.Storage/ @chanwoochoi @ul24
 /src/Tizen.System.SystemSettings/ @jinwangan
 /src/Tizen.System.Usb/ @chanwoochoi @ppdl
 
@@ -147,7 +149,7 @@
 
 # UIX
 /src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
-/src/Tizen.Uix.InputMethodManager/ @urmain @sooyeon-kim
+/src/Tizen.Uix.InputMethodManager/ @imfine98 @Inhong
 # /src/Tizen.Uix.Sticker/ 
 /src/Tizen.Uix.Stt/ @urmain @sooyeon-kim
 /src/Tizen.Uix.SttEngine/ @urmain @sooyeon-kim
