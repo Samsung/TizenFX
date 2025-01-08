@@ -28,6 +28,11 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector4TypeConverter))]
     public class Vector4 : Disposable, ICloneable
     {
+        private static readonly Vector4 one = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        private static readonly Vector4 zero = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 xaxis = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 yaxis = new Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+        private static readonly Vector4 zaxis = new Vector4(0.0f, 0.0f, 1.0f, 0.0f);
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
@@ -98,80 +103,34 @@ namespace Tizen.NUI
         /// Actual value is (1.0f,1.0f,1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.OneGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 One => one;
 
         /// <summary>
         /// The vector representing the x-axis.
         /// Actual value is (1.0f,0.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.XaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 XAxis => xaxis;
 
         /// <summary>
         /// The vector representing the y-axis.
         /// Actual value is (0.0f,1.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.YaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 YAxis => yaxis;
 
         /// <summary>
         /// The vector representing the z-axis.
         /// Actual value is (0.0f,0.0f,1.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.ZaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
-
+        public static Vector4 ZAxis => zaxis;
         /// <summary>
         /// A Vector2 object representing the zero vector.
         /// Actual value is (0.0f, 0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.ZeroGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 Zero => zero;
 
         /// <summary>
         /// The x component.
