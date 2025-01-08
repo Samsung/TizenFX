@@ -24,7 +24,10 @@ namespace Tizen.NUI.L
     [EditorBrowsable(EditorBrowsableState.Never)]
     public readonly struct Vector2
     {
-        public static readonly Vector2 Zero = new Vector2(0.0f, 0.0f);
+        /// <summary>
+        /// The zero vector2.
+        /// </summary>
+        public static readonly Vector2 Zero = new (0.0f, 0.0f);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector2"/> struct.
@@ -52,6 +55,8 @@ namespace Tizen.NUI.L
         {
             get;
         }
+
+        public readonly bool IsZero => X == 0 && Y == 0;
 
         /// <summary>
         /// Gets the width component of the vector2.
