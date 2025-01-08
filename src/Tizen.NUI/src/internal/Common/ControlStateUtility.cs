@@ -55,6 +55,8 @@ namespace Tizen.NUI
             string trimmed = stateName.Trim();
             ulong bitMask = 0UL;
 
+            if (trimmed == "All") return FullMask;
+
             if (trimmed != "Normal" && !registeredStates.TryGetValue(trimmed, out bitMask))
             {
                 if (nextBitPosition + 1 > MaxBitWidth)

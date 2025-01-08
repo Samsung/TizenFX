@@ -115,6 +115,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public static ControlState Create(string name)
         {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException($"{nameof(name)} cannot be whitespace.", nameof(name));
+
             return new ControlState(name);
         }
 
@@ -175,6 +180,10 @@ namespace Tizen.NUI.BaseComponents
             if (bitFlags == 0UL)
             {
                 return nameof(Normal);
+            }
+            else if (bitFlags == ControlStateUtility.FullMask)
+            {
+                return nameof(All);
             }
 
             foreach (var (name, bitMask) in states)
