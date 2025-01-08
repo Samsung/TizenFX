@@ -25,6 +25,8 @@ namespace Tizen.NUI
     using System.Reflection;
     using System.Globalization;
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     using Tizen.NUI.BaseComponents;
 
@@ -61,6 +63,7 @@ namespace Tizen.NUI
         private System.IntPtr finishedCallbackOfNative;
 
         private AnimationProgressReachedEventCallbackType animationProgressReachedEventCallback;
+        private TaskCompletionSource animationTaskCompletionSource;
 
         private string[] properties = null;
         private string[] destValue = null;
@@ -1348,6 +1351,13 @@ namespace Tizen.NUI
         {
             Interop.Animation.Clear(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (animationTaskCompletionSource != null)
+            {
+                animationTaskCompletionSource.SetCanceled();
+                animationTaskCompletionSource = null;
+            }
+
         }
 
         internal object ConvertTo(object value, Type toType)
@@ -1363,6 +1373,33 @@ namespace Tizen.NUI
             };
 
             return ConvertTo(value, toType, getConverter);
+        }
+
+        /// <summary>
+        /// Plays the animation asynchronously.
+        /// </summary>
+        /// <returns>A Task that completes when the animation finishes.</returns>
+        internal Task PlayAsync()
+        {
+            if (DisableAnimation)
+            {
+                return Task.FromCanceled(CancellationToken.None);
+            }
+
+            if (animationTaskCompletionSource != null)
+            {
+                animationTaskCompletionSource.SetCanceled();
+            }
+            animationTaskCompletionSource = new TaskCompletionSource();
+            void finished(object sender, EventArgs e)
+            {
+                Finished -= finished;
+                animationTaskCompletionSource.SetResult();
+                animationTaskCompletionSource = null;
+            }
+            Finished += finished;
+            Play();
+            return animationTaskCompletionSource.Task;
         }
 
         internal object ConvertTo(object value, Type toType, Func<object> getConverter)
