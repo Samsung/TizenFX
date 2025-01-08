@@ -1904,64 +1904,34 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct SlideTransitionDirection
     {
+        private static readonly Vector2 top = new Vector2(0, -1);
+        private static readonly Vector2 bottom = new Vector2(0, 1);
+        private static readonly Vector2 left = new Vector2(-1, 0);
+        private static readonly Vector2 right = new Vector2(1, 0);
+
         /// <summary>
         /// Top
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Top
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionTopGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Top => top;
+
         /// <summary>
         /// Bottom
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Bottom
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionBottomGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Bottom => bottom;
 
         /// <summary>
         /// Right
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Right
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionRightGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Right => right;
 
         /// <summary>
         /// Left
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Left
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionLeftGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Left => left;
     }
 
     /// <summary>
