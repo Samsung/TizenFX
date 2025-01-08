@@ -447,6 +447,7 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void internalWebViewDeviceListGetCallback(IntPtr list, int size);
+        private internalWebViewDeviceListGetCallback internalDeviceListGetCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1131,8 +1132,7 @@ namespace Tizen.NUI.BaseComponents
                 if (deviceConnectionChangedEventHandler == null)
                 {
                     deviceConnectionChangedCallback = OnDeviceConnectionChanged;
-                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(deviceConnectionChangedCallback);
-                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(deviceConnectionChangedCallback));
                 }
                 deviceConnectionChangedEventHandler += value;
             }
@@ -1141,8 +1141,7 @@ namespace Tizen.NUI.BaseComponents
                 deviceConnectionChangedEventHandler -= value;
                 if (deviceConnectionChangedEventHandler == null)
                 {
-                    IntPtr ip = IntPtr.Zero;
-                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, IntPtr.Zero);
                 }
             }
         }
@@ -1151,8 +1150,8 @@ namespace Tizen.NUI.BaseComponents
         public void SetDeviceListGetCallback(WebViewDeviceListGetCallback callback)
         {
             deviceListGetCallbackForUser = callback;
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate((internalWebViewDeviceListGetCallback)deviceListGet);
-            Interop.WebView.RegisterDeviceListGetCallback(SwigCPtr, new HandleRef(this, ip));
+            internalDeviceListGetCallback ??= deviceListGet;
+            Interop.WebView.RegisterDeviceListGetCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(internalDeviceListGetCallback));
         }
 
         private void deviceListGet(IntPtr list, int size)
