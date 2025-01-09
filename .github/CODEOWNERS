@@ -46,7 +46,7 @@
 /src/Tizen.Content.MimeType/ @sukhyungkang
 
 # CONTEXT
-/src/Tizen.Context/ @yj99-shin
+# /src/Tizen.Context/
 
 # DATA
 # /src/Tizen.Data.Tdbc.Driver.Sqlite/
@@ -101,7 +101,7 @@
 /test/Tizen.NUI.WindowSystem.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
 
 # NETWORK
-/src/Tizen.Network.Bluetooth/ @dh79pyun @Wootak
+/src/Tizen.Network.Bluetooth/ @dh79pyun @wootak-jung
 /src/Tizen.Network.Connection/ @chleun-moon
 /src/Tizen.Network.IoTConnectivity/ @dh79pyun
 /src/Tizen.Network.Nfc/ @dh79pyun @jh8801.jung
@@ -115,9 +115,9 @@
 /src/Tizen.Nlp/ @jihoon48.kim @Inhong
 
 # PIMS
-/src/Tizen.PhonenumberUtils/ @randeepsingh01 @chauhan321
-/src/Tizen.Pims.Calendar/ @randeepsingh01 @chauhan321
-/src/Tizen.Pims.Contacts/ @randeepsingh01 @chauhan321
+/src/Tizen.PhonenumberUtils/ @randeepsingh01
+/src/Tizen.Pims.Calendar/ @randeepsingh01
+/src/Tizen.Pims.Contacts/ @randeepsingh01
 
 # SECURITY
 /src/Tizen.Security/ @t-swierczek @terry2000s
@@ -145,7 +145,7 @@
 /src/Tizen.System.Usb/ @chanwoochoi @ppdl
 
 # TELEPHONY
-/src/Tizen.Telephony/ @dh79.pyun @wootak.jung
+/src/Tizen.Telephony/ @dh79.pyun @wootak-jung
 
 # UIX
 /src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
