@@ -299,5 +299,27 @@ namespace Tizen.NUI
             }
             return ret;
         }
+
+        internal static int InternalRetrievingVisualPropertyInt(HandleRef actor, int visualIndex, int visualPropertyIndex, out int retrievingInt)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.View.InternalRetrievingVisualPropertyInt(actor, visualIndex, visualPropertyIndex, out retrievingInt);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        internal static int InternalRetrievingVisualPropertyVector4(HandleRef actor, int visualIndex, int visualPropertyIndex, HandleRef retrievingVector4)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, retrievingVector4);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
     }
 }
