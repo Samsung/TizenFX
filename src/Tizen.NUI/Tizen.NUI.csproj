@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <NoWarn>$(NoWarn);CS0618;CS0809;CS1591;CA1054;CA1056</NoWarn>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>9.0</LangVersion>
     </PropertyGroup>
     <PropertyGroup>
         <DefineConstants>$(DefineConstants);NUI_DEBUG_OFF;</DefineConstants>
