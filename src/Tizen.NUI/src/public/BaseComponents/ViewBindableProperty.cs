@@ -126,10 +126,11 @@ namespace Tizen.NUI.BaseComponents
             }
 
             int visualType = (int)Visual.Type.Invalid;
-            Interop.View.InternalRetrievingVisualPropertyInt(view.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            Object.InternalRetrievingVisualPropertyInt(view.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+
             if (visualType == (int)Visual.Type.Color)
             {
-                Interop.View.InternalRetrievingVisualPropertyVector4(view.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(view.internalBackgroundColor));
+                Object.InternalRetrievingVisualPropertyVector4(view.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(view.internalBackgroundColor));
             }
             return view.internalBackgroundColor;
         }
@@ -221,8 +222,8 @@ namespace Tizen.NUI.BaseComponents
             return view.GetInternalColorBlue();
         }
 
-        /// <summary> 
-        /// BackgroundImageProperty 
+        /// <summary>
+        /// BackgroundImageProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = null;
