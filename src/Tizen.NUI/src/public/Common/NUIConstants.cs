@@ -1323,15 +1323,15 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public struct ParentOrigin
     {
-        private static readonly Position topLeft = new Position(Top, Left, Middle);
-        private static readonly Position topCenter = new Position(Top, Middle, Middle);
-        private static readonly Position topRight = new Position(Top, Right, Middle);
-        private static readonly Position centerLeft = new Position(Middle, Left, Middle);
+        private static readonly Position topLeft = new Position(Left, Top, Middle);
+        private static readonly Position topCenter = new Position(Middle, Top, Middle);
+        private static readonly Position topRight = new Position(Right, Top, Middle);
+        private static readonly Position centerLeft = new Position(Left, Middle, Middle);
         private static readonly Position center = new Position(Middle, Middle, Middle);
-        private static readonly Position centerRight = new Position(Middle, Right, Middle);
-        private static readonly Position bottomLeft = new Position(Bottom, Left, Middle);
-        private static readonly Position bottomCenter = new Position(Bottom, Middle, Middle);
-        private static readonly Position bottomRight = new Position(Bottom, Right, Middle);
+        private static readonly Position centerRight = new Position(Right, Middle, Middle);
+        private static readonly Position bottomLeft = new Position(Left, Bottom, Middle);
+        private static readonly Position bottomCenter = new Position(Middle, Bottom, Middle);
+        private static readonly Position bottomRight = new Position(Right, Bottom, Middle);
 
         /// <summary>
         /// Top
