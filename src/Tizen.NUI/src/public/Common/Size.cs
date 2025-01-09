@@ -28,6 +28,7 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
     public class Size : Disposable, ICloneable
     {
+        private static readonly Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
 
         /// <summary>
         /// The constructor.
@@ -80,16 +81,7 @@ namespace Tizen.NUI
         /// The Zero constant, (0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static Size Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZeroGet();
-                Size ret = (cPtr == global::System.IntPtr.Zero) ? null : new Size(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Size Zero => zero;
 
         /// <summary>
         /// The Width property for the width component of size
