@@ -70,7 +70,7 @@ namespace Tizen.NUI
                 Tizen.Log.Fatal("NUI", $"[ERROR] current threadID : {Thread.CurrentThread.ManagedThreadId}");
                 Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
                 global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
-                for (int i = 0; i < st.FrameCount; i++)
+                for (int i = 0; i < global::System.Math.Min(5, st.FrameCount); i++)
                 {
                     global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
                     Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod());
