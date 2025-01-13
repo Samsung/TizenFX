@@ -8,23 +8,23 @@
 
 # ACCOUNT
 /src/Tizen.Account.AccountManager/ @randeepsingh01 @d1-agarwal
-/src/Tizen.Account.FidoClient/ @randeepsingh01 @Shivam‐Verma‐1808
-/src/Tizen.Account.OAuth2/ @randeepsingh01 @Shivam‐Verma‐1808
+/src/Tizen.Account.FidoClient/ @randeepsingh01 @s01-verma
+/src/Tizen.Account.OAuth2/ @randeepsingh01 @s01-verma
 /src/Tizen.Account.SyncManager/ @randeepsingh01 @d1-agarwal
 
 # APPLICATION FW
 /src/Tizen.Applications.Alarm/ @kilig
 /src/Tizen.Applications.AttachPanel/ @amit-patel
 /src/Tizen.Applications.Badge/ @sukhyungkang
-/src/Tizen.Applications.Cion/ @jusung
+/src/Tizen.Applications.Cion/ @jusung-son
 /src/Tizen.Applications.Common/ @upple
 /src/Tizen.Applications.ComponentBased.ComponentManager/ @upple
 /src/Tizen.Applications.ComponentBased.Default/ @upple
 /src/Tizen.Applications.ComponentBased.Port/ @upple
 /src/Tizen.Applications.ComponentBased/ @upple
-/src/Tizen.Applications.DataControl/ @jusung
-/src/Tizen.Applications.EventManager/ @jusung
-/src/Tizen.Applications.MessagePort/ @jusung
+/src/Tizen.Applications.DataControl/ @jusung-son
+/src/Tizen.Applications.EventManager/ @jusung-son
+/src/Tizen.Applications.MessagePort/ @jusung-son
 /src/Tizen.Applications.Notification/ @sukhyungkang
 /src/Tizen.Applications.NotificationEventListener/ @sukhyungkang
 /src/Tizen.Applications.PackageManager/ @jeremy-jang
@@ -62,8 +62,8 @@
 /src/Tizen.MachineLearning.Train/ @again4you
 
 # MESSAGING
-/src/Tizen.Messaging.Push/ @randeepsingh01 @kamaljeet
-/src/Tizen.Messaging/ @randeepsingh01 @kamaljeet
+/src/Tizen.Messaging.Push/ @randeepsingh01
+/src/Tizen.Messaging/ @randeepsingh01
 
 # MULTIMEDIA FW
 /src/Tizen.Multimedia/ @hsgwon @sangchul1011 @eunhaechoi
@@ -122,7 +122,7 @@
 # SECURITY
 /src/Tizen.Security/ @t-swierczek @terry2000s
 /src/Tizen.Security.PrivacyPrivilegeManager/ @e-borowski @t-swierczek @z-abramowska @terry2000s
-/src/Tizen.Security.SecureRepository/ @terry2000s @kjackiewicz
+/src/Tizen.Security.SecureRepository/ @terry2000s @dmichaluk
 
 # SECURITY (Deprecated)
 /src/Tizen.Security.DevicePolicyManager/ @y01k
@@ -151,12 +151,12 @@
 /src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
 /src/Tizen.Uix.InputMethodManager/ @imfine98 @Inhong
 # /src/Tizen.Uix.Sticker/ 
-/src/Tizen.Uix.Stt/ @urmain @sooyeon-kim
-/src/Tizen.Uix.SttEngine/ @urmain @sooyeon-kim
-/src/Tizen.Uix.Tts/ @urmain @sooyeon-kim
-/src/Tizen.Uix.TtsEngine/ @urmain @sooyeon-kim
-/src/Tizen.Uix.VoiceControl/ @urmain @sooyeon-kim
-/src/Tizen.Uix.VoiceControlManager/ @urmain @sooyeon-kim
+/src/Tizen.Uix.Stt/ @urmain @syeonholic
+/src/Tizen.Uix.SttEngine/ @urmain @syeonholic
+/src/Tizen.Uix.Tts/ @urmain @syeonholic
+/src/Tizen.Uix.TtsEngine/ @urmain @syeonholic
+/src/Tizen.Uix.VoiceControl/ @urmain @syeonholic
+/src/Tizen.Uix.VoiceControlManager/ @urmain @syeonholic
 
 # ELMSHARP (Deprecated)
 /src/ElmSharp.Wearable/ @rookiejava @myroot @JoonghyunCho
