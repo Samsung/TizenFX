@@ -37,6 +37,11 @@ namespace Tizen.NUI
         private static readonly Vector3 negativeYaxis = new Vector3(0.0f, -1.0f, 0.0f);
         private static readonly Vector3 negativeZaxis = new Vector3(0.0f, 0.0f, -1.0f);
 
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The default constructor of Vector3 class.
         /// </summary>

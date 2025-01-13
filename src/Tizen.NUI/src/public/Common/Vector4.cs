@@ -34,6 +34,11 @@ namespace Tizen.NUI
         private static readonly Vector4 yaxis = new Vector4(0.0f, 1.0f, 0.0f, 0.0f);
         private static readonly Vector4 zaxis = new Vector4(0.0f, 0.0f, 1.0f, 0.0f);
 
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The default constructor initializes the vector to 0.
         /// </summary>
