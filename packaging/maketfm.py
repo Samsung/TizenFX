@@ -9,7 +9,12 @@ root = tree.getroot()
 
 tfm_list1 = [] #tizen90, tizen80, tizen70, tizen60, tizen50, tizen40
 tfm_list2 = [] #tizen10.0
-tfm_list3 = [] #net6.0-tizen9.0, net6.0-tizen8.0, net6.0-tizen, net6.0
+tfm_list3 = [] #net8.0-tizen10.0, net8.0-tizen, net8.0, net6.0-tizen9.0, net6.0-tizen8.0, net6.0-tizen, net6.0
+
+def sort_tfm(tfm):
+    tfm = list(set(tfm))
+    return sorted(tfm, reverse=True)
+
 for meta_child in root.iter():
     if meta_child.tag == "{http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd}metadata":
         for depen_child in meta_child:
@@ -26,16 +31,7 @@ for meta_child in root.iter():
                             tfm_list3.append(tfm.strip() + "-tizen")
                         tfm_list3.append(tfm.strip())
 
-
-tfm_list1 = list(set(tfm_list1))
-tfm_list1.sort(reverse=True)
-tfm_list2 = list(set(tfm_list2))
-tfm_list2.sort(reverse=True)
-tfm_list3 = list(set(tfm_list3))
-tfm_list3.sort(key=len)
-tfm_list3.sort(key=lambda s: float(re.search(r'(\d+)\.', s).group()[0]))
-tfm_list3.reverse()
-tfm_list = tfm_list3 + tfm_list2 + tfm_list1
+tfm_list = sort_tfm(tfm_list3) + sort_tfm(tfm_list2) + sort_tfm(tfm_list1)
 
 f = open(spec_dir,'r')
 origin_data = f.read()
