@@ -32,6 +32,11 @@ namespace Tizen.NUI
         private static readonly Position one = new Position(1.0f, 1.0f, 1.0f);
         private static readonly Position zero = new Position(0.0f, 0.0f, 0.0f);
 
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The constructor.
         /// </summary>

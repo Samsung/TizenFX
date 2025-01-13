@@ -1333,6 +1333,11 @@ namespace Tizen.NUI
         private static readonly Position bottomCenter = new Position(Middle, Bottom, Middle);
         private static readonly Position bottomRight = new Position(Right, Bottom, Middle);
 
+        internal static void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Top
         /// </summary>
@@ -1521,6 +1526,11 @@ namespace Tizen.NUI
         private static readonly Position negativeXaxis = new Position(-1.0f, 0.0f, 0.0f);
         private static readonly Position negativeYaxis = new Position(0.0f, -1.0f, 0.0f);
         private static readonly Position negativeZaxis = new Position(0.0f, 0.0f, -1.0f);
+
+        internal static void Preload()
+        {
+            // Do nothing. Jsut call for load static values.
+        }
 
         /// <summary>
         /// The X axis
@@ -1909,6 +1919,11 @@ namespace Tizen.NUI
         private static readonly Vector2 left = new Vector2(-1, 0);
         private static readonly Vector2 right = new Vector2(1, 0);
 
+        internal static void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Top
         /// </summary>
@@ -1957,5 +1972,19 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Behind = 2,        
+    }
+
+    internal struct NUIConstants
+    {
+        internal static void Preload()
+        {
+            ParentOrigin.Preload();
+            SlideTransitionDirection.Preload();
+            PositionAxis.Preload();
+            Position.Preload();
+            Vector2.Preload();
+            Vector3.Preload();
+            Vector4.Preload();
+        }
     }
 }
