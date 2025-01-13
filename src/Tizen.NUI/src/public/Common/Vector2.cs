@@ -35,6 +35,11 @@ namespace Tizen.NUI
         private static readonly Vector2 negativeXaxis = new Vector2(-1.0f, 0.0f);
         private static readonly Vector2 negativeYaxis = new Vector2(0.0f, -1.0f);
 
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The default constructor initializes the vector to 0.
         /// </summary>
