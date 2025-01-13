@@ -14,7 +14,7 @@
 
 # APPLICATION FW
 /src/Tizen.Applications.Alarm/ @kilig
-/src/Tizen.Applications.AttachPanel/ @amit-patel
+/src/Tizen.Applications.AttachPanel/ @engfaruque
 /src/Tizen.Applications.Badge/ @sukhyungkang
 /src/Tizen.Applications.Cion/ @jusung-son
 /src/Tizen.Applications.Common/ @upple
@@ -145,7 +145,7 @@
 /src/Tizen.System.Usb/ @chanwoochoi @ppdl
 
 # TELEPHONY
-/src/Tizen.Telephony/ @dh79.pyun @wootak-jung
+/src/Tizen.Telephony/ @dh79pyun @wootak-jung
 
 # UIX
 /src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
