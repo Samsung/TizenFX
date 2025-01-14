@@ -84,8 +84,8 @@ namespace Tizen.NUI.PenWave
         public override void Activate()
         {
             SetBrushType(Brush);
-            PenWave.Instance.SetStrokeColor(ToHex(BrushColor), 1.0f);
-            PenWave.Instance.SetStrokeSize(BrushSize);
+            PenWaveRenderer.Instance.SetStrokeColor(ToHex(BrushColor), 1.0f);
+            PenWaveRenderer.Instance.SetStrokeSize(BrushSize);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Tizen.NUI.PenWave
         // Starts drawing a new shape. This will create a new shape on the canvas.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            _currentShapeId = PenWave.Instance.BeginShapeDraw(positionX, positionY, touchTime);
+            _currentShapeId = PenWaveRenderer.Instance.BeginShapeDraw(positionX, positionY, touchTime);
             if (_currentShapeId > 0)
             {
                 NotifyActionStarted();
@@ -148,7 +148,7 @@ namespace Tizen.NUI.PenWave
         {
             if (_currentShapeId > 0)
             {
-                var result = PenWave.Instance.DrawShape(_currentShapeId, positionX, positionY, touchTime);
+                var result = PenWaveRenderer.Instance.DrawShape(_currentShapeId, positionX, positionY, touchTime);
                 if (result == ErrorShapeAddPointsType.OverflowShape)
                 {
                     EndDrawing();
@@ -166,7 +166,7 @@ namespace Tizen.NUI.PenWave
         {
             if (_currentShapeId > 0)
             {
-                PenWave.Instance.EndShapeDraw(_currentShapeId, 0);
+                PenWaveRenderer.Instance.EndShapeDraw(_currentShapeId, 0);
                 _currentShapeId = 0;
                 NotifyActionFinished();
             }

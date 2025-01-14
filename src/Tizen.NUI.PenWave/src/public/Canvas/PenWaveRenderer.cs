@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2024 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,29 @@
  *
  */
 
+using System.IO;
+using Tizen.NUI.BaseComponents;
+
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.PenWave
 {
     /// <summary>
-    /// PenWave class provides functions to draw on the canvas.
+    /// PenWaveRenderer class provides functions to draw on the canvas.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class PenWave
+    public class PenWaveRenderer
     {
+        private static readonly string s_fontPath = FrameworkInformation.ResourcePath + "fonts/font.ttf";
+        private static readonly string[] s_texturePaths = {
+            FrameworkInformation.ResourcePath + "images/textures/brush_acrylic.png",
+            FrameworkInformation.ResourcePath + "images/textures/brush_sponge.png",
+            FrameworkInformation.ResourcePath + "images/textures/dot_brush.png",
+            FrameworkInformation.ResourcePath + "images/textures/highlighter.png",
+            FrameworkInformation.ResourcePath + "images/textures/soft_brush.png"
+        };
+
         /// <summary>
         /// The delegate for the thumbnail saved callback.
         /// </summary>
@@ -33,14 +45,30 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void ScreenShotCallback();
 
-        private static readonly PenWave s_instance = new PenWave();
-        private PenWave() { }
+        private static readonly PenWaveRenderer s_instance = new PenWaveRenderer();
+        private PenWaveRenderer()
+        {
+            SetResourcePath(FrameworkInformation.ResourcePath + "images/");
+            SetFontPath(s_fontPath);
+            SetTexturePaths(s_texturePaths, s_texturePaths.Length);
+        }
 
         /// <summary>
-        /// Gets the singleton instance of PenWave.
+        /// Gets the singleton instance of PenWaveRenderer.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PenWave Instance => s_instance;
+        public static PenWaveRenderer Instance => s_instance;
+
+        /// <summary>
+        /// Renders frame using OpenGL context. This method should be called from the render thread. It returns 0 when there is no more work to do. Otherwise it returns 1.
+        /// </summary>
+        /// <param name="input">DirectRenderingGLView.RenderCallbackInput</param>
+        /// <returns></returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RenderFrame(in DirectRenderingGLView.RenderCallbackInput input)
+        {
+            return RenderFrameGL();
+        }
 
         /// <summary>
         /// Initializes the PenWave library.
@@ -48,7 +76,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void InitializeGL()
         {
-            Interop.PenWave.InitializeGL();
+            Interop.PenWaveRenderer.InitializeGL();
         }
 
         /// <summary>
@@ -57,7 +85,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int RenderFrameGL()
         {
-            return Interop.PenWave.RenderFrameGL();
+            return Interop.PenWaveRenderer.RenderFrameGL();
         }
 
         /// <summary>
@@ -66,7 +94,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RenderFullyReDraw()
         {
-            Interop.PenWave.RenderFullyReDraw();
+            Interop.PenWaveRenderer.RenderFullyReDraw();
         }
 
         /// <summary>
@@ -75,7 +103,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void TerminateGL()
         {
-            Interop.PenWave.TerminateGL();
+            Interop.PenWaveRenderer.TerminateGL();
         }
 
         /// <summary>
@@ -84,9 +112,10 @@ namespace Tizen.NUI.PenWave
         /// <param name="w">The width</param>
         /// <param name="h">The height</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void UpdateGLWindowSize(int w, int h)
+        public void Resize(int w, int h)
         {
-            Interop.PenWave.UpdateGLWindowSize(w, h);
+            Interop.PenWaveRenderer.UpdateGLWindowSize(w, h);
+            RenderFullyReDraw();
         }
 
         /// <summary>
@@ -96,7 +125,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void UpdateGLWindowOrientation(int angle)
         {
-            Interop.PenWave.UpdateGLWindowOrientation(angle);
+            Interop.PenWaveRenderer.UpdateGLWindowOrientation(angle);
         }
 
         /// <summary>
@@ -109,7 +138,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint BeginShapeDraw(float x, float y, uint time = 1)
         {
-            return Interop.PenWave.BeginShapeDraw(x, y, time);
+            return Interop.PenWaveRenderer.BeginShapeDraw(x, y, time);
         }
 
         /// <summary>
@@ -130,7 +159,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ErrorShapeAddPointsType DrawShape(uint shapeID, float x, float y, uint time = 1)
         {
-            return (ErrorShapeAddPointsType)Interop.PenWave.DrawShape(shapeID, x, y, time);
+            return (ErrorShapeAddPointsType)Interop.PenWaveRenderer.DrawShape(shapeID, x, y, time);
         }
 
         /// <summary>
@@ -149,7 +178,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ErrorShapeAddPointsType EndShapeDraw(uint shapeID, uint time = 1)
         {
-            return (ErrorShapeAddPointsType)Interop.PenWave.EndShapeDraw(shapeID, time);
+            return (ErrorShapeAddPointsType)Interop.PenWaveRenderer.EndShapeDraw(shapeID, time);
         }
 
         /// <summary>
@@ -161,7 +190,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint BeginLineDraw(float x, float y, uint time = 1)
         {
-            return Interop.PenWave.BeginLineDraw(x, y, time);
+            return Interop.PenWaveRenderer.BeginLineDraw(x, y, time);
         }
 
         /// <summary>
@@ -181,7 +210,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ErrorShapeAddPointsType DrawLine(uint shapeID, float x, float y, uint time = 1)
         {
-            return (ErrorShapeAddPointsType)Interop.PenWave.DrawLine(shapeID, x, y, time);
+            return (ErrorShapeAddPointsType)Interop.PenWaveRenderer.DrawLine(shapeID, x, y, time);
         }
 
         /// <summary>
@@ -199,7 +228,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ErrorShapeAddPointsType EndLineDraw(uint shapeID, uint time = 1)
         {
-            return (ErrorShapeAddPointsType)Interop.PenWave.EndLineDraw(shapeID, time);
+            return (ErrorShapeAddPointsType)Interop.PenWaveRenderer.EndLineDraw(shapeID, time);
         }
 
 
@@ -210,7 +239,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StopErasing()
         {
-            Interop.PenWave.StopErasing();
+            Interop.PenWaveRenderer.StopErasing();
         }
 
         /// <summary>
@@ -224,7 +253,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EraseShape(int x, int y, float radius, bool partial)
         {
-            return Interop.PenWave.EraseShape(x, y, radius, partial);
+            return Interop.PenWaveRenderer.EraseShape(x, y, radius, partial);
         }
 
         /// <summary>
@@ -239,7 +268,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddRectanglePath(float xStart, float yStart, float x, float y, bool finished)
         {
-            return Interop.PenWave.AddRectanglePath(xStart, yStart, x, y, finished);
+            return Interop.PenWaveRenderer.AddRectanglePath(xStart, yStart, x, y, finished);
         }
 
         /// <summary>
@@ -255,7 +284,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddArcPath(float xCenter, float yCenter, float radius, float x, float y, bool finished)
         {
-            return Interop.PenWave.AddArcPath(xCenter, yCenter, radius, x, y, finished);
+            return Interop.PenWaveRenderer.AddArcPath(xCenter, yCenter, radius, x, y, finished);
         }
 
         /// <summary>
@@ -275,7 +304,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ErrorShapeAddPointsType ResizeShapePath(uint shapeID, float x, float y)
         {
-            return (ErrorShapeAddPointsType)Interop.PenWave.ResizeShapePath(shapeID, x, y);
+            return (ErrorShapeAddPointsType)Interop.PenWaveRenderer.ResizeShapePath(shapeID, x, y);
         }
 
         /// <summary>
@@ -293,7 +322,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int FinishShapePath(uint shapeID)
         {
-            return Interop.PenWave.FinishShapePath(shapeID);
+            return Interop.PenWaveRenderer.FinishShapePath(shapeID);
         }
 
         /// <summary>
@@ -303,7 +332,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanvasZoomBegin()
         {
-            return Interop.PenWave.CanvasZoomBegin();
+            return Interop.PenWaveRenderer.CanvasZoomBegin();
         }
 
         /// <summary>
@@ -318,7 +347,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanvasZoom(float x, float y, float zoom, float dx, float dy)
         {
-            return Interop.PenWave.CanvasZoom(x, y, zoom, dx, dy);
+            return Interop.PenWaveRenderer.CanvasZoom(x, y, zoom, dx, dy);
         }
 
         /// <summary>
@@ -328,7 +357,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanvasZoomEnd()
         {
-            return Interop.PenWave.CanvasZoomEnd();
+            return Interop.PenWaveRenderer.CanvasZoomEnd();
         }
 
         /// <summary>
@@ -338,7 +367,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int CanvasGetZoomValue()
         {
-            return Interop.PenWave.CanvasGetZoomValue();
+            return Interop.PenWaveRenderer.CanvasGetZoomValue();
         }
 
         /// <summary>
@@ -348,7 +377,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void CanvasSetZoomValue(int zoomValue)
         {
-            Interop.PenWave.CanvasSetZoomValue((float)zoomValue);
+            Interop.PenWaveRenderer.CanvasSetZoomValue((float)zoomValue);
         }
 
         /// <summary>
@@ -360,7 +389,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void CanvasSetZoomValue(int x, int y, int zoomValue)
         {
-            Interop.PenWave.CanvasSetZoomValue(x, y, (float)zoomValue);
+            Interop.PenWaveRenderer.CanvasSetZoomValue(x, y, (float)zoomValue);
         }
 
         /// <summary>
@@ -370,7 +399,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanvasMoveBegin()
         {
-            return Interop.PenWave.CanvasMoveBegin();
+            return Interop.PenWaveRenderer.CanvasMoveBegin();
         }
 
         /// <summary>
@@ -382,7 +411,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanvasMove(int x, int y)
         {
-            return Interop.PenWave.CanvasMove(x, y);
+            return Interop.PenWaveRenderer.CanvasMove(x, y);
         }
 
         /// <summary>
@@ -392,7 +421,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanvasMoveEnd()
         {
-            return Interop.PenWave.CanvasMoveEnd();
+            return Interop.PenWaveRenderer.CanvasMoveEnd();
         }
 
         /// <summary>
@@ -401,9 +430,20 @@ namespace Tizen.NUI.PenWave
         /// <param name="hexColor">The rgb color value</param>
         /// <param name="a">The alpha value</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void CanvasSetColor(string hexColor, float a)
+        public void SetCanvasColor(string hexColor, float a)
         {
-            Interop.PenWave.CanvasSetColor(hexColor, a);
+            Interop.PenWaveRenderer.CanvasSetColor(hexColor, a);
+        }
+
+        /// <summary>
+        /// Set Canvas Color
+        /// </summary>
+        /// <param name="hexColor">The rgb color value</param>
+        /// <param name="a">The alpha value</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetCanvasColor(Color color)
+        {
+            SetCanvasColor(ToHex(color), color.A);
         }
 
         /// <summary>
@@ -414,7 +454,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void CanvasSetSize(int width, int height)
         {
-            Interop.PenWave.CanvasSetSize(width, height);
+            Interop.PenWaveRenderer.CanvasSetSize(width, height);
         }
 
         /// <summary>
@@ -424,7 +464,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetResourcePath(string resourcePath)
         {
-            Interop.PenWave.SetResourcePath(resourcePath);
+            Interop.PenWaveRenderer.SetResourcePath(resourcePath);
         }
 
         /// <summary>
@@ -434,7 +474,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontPath(string fontPath)
         {
-            Interop.PenWave.SetFontPath(fontPath);
+            Interop.PenWaveRenderer.SetFontPath(fontPath);
         }
 
         /// <summary>
@@ -445,7 +485,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTexturePaths(string[] texturePaths, int textureCount)
         {
-            Interop.PenWave.SetTexturePaths(texturePaths, textureCount);
+            Interop.PenWaveRenderer.SetTexturePaths(texturePaths, textureCount);
         }
 
         /// <summary>
@@ -455,7 +495,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStrokeSize(float size)
         {
-            Interop.PenWave.SetStrokeSize(size);
+            Interop.PenWaveRenderer.SetStrokeSize(size);
         }
 
         /// <summary>
@@ -466,7 +506,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStrokeColor(string hexColor, float a)
         {
-            Interop.PenWave.SetStrokeColor(hexColor, a);
+            Interop.PenWaveRenderer.SetStrokeColor(hexColor, a);
         }
 
         /// <summary>
@@ -476,7 +516,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStrokeType(int brushType)
         {
-            Interop.PenWave.SetStrokeType(brushType);
+            Interop.PenWaveRenderer.SetStrokeType(brushType);
         }
 
         /// <summary>
@@ -486,7 +526,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetBrushTexture(int textureId)
         {
-            Interop.PenWave.SetBrushTexture(textureId);
+            Interop.PenWaveRenderer.SetBrushTexture(textureId);
         }
 
         /// <summary>
@@ -496,7 +536,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetBrushDistance(float distance)
         {
-            Interop.PenWave.SetBrushDistance(distance);
+            Interop.PenWaveRenderer.SetBrushDistance(distance);
         }
 
         /// <summary>
@@ -506,7 +546,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDashArray(string dashArray)
         {
-            Interop.PenWave.SetDashArray(dashArray);
+            Interop.PenWaveRenderer.SetDashArray(dashArray);
         }
 
         /// <summary>
@@ -516,7 +556,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetLineAngle(float angle)
         {
-            Interop.PenWave.SetLineAngle(angle);
+            Interop.PenWaveRenderer.SetLineAngle(angle);
         }
 
         /// <summary>
@@ -526,7 +566,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetBrushSize()
         {
-            return Interop.PenWave.GetBrushSize();
+            return Interop.PenWaveRenderer.GetBrushSize();
         }
 
         /// <summary>
@@ -536,7 +576,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetBrushType()
         {
-            return Interop.PenWave.GetBrushType();
+            return Interop.PenWaveRenderer.GetBrushType();
         }
 
         /// <summary>
@@ -546,7 +586,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetBrushTexture()
         {
-            return Interop.PenWave.GetBrushTexture();
+            return Interop.PenWaveRenderer.GetBrushTexture();
         }
 
         /// <summary>
@@ -556,7 +596,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetBrushDistance()
         {
-            return Interop.PenWave.GetBrushDistance();
+            return Interop.PenWaveRenderer.GetBrushDistance();
         }
 
         /// <summary>
@@ -566,7 +606,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetLineAngle()
         {
-            return Interop.PenWave.GetLineAngle();
+            return Interop.PenWaveRenderer.GetLineAngle();
         }
 
         /// <summary>
@@ -576,7 +616,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetShapeCount()
         {
-            return Interop.PenWave.GetShapeCount();
+            return Interop.PenWaveRenderer.GetShapeCount();
         }
 
         /// <summary>
@@ -588,7 +628,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint CreateCanvas(int canvasWidth, int canvasHeight)
         {
-            return Interop.PenWave.CreateCanvas(canvasWidth, canvasHeight);
+            return Interop.PenWaveRenderer.CreateCanvas(canvasWidth, canvasHeight);
         }
 
         /// <summary>
@@ -599,7 +639,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint CreateCanvasWithBackgroundImage(string path)
         {
-            return Interop.PenWave.CreateCanvasWithBackgroundImage(path);
+            return Interop.PenWaveRenderer.CreateCanvasWithBackgroundImage(path);
         }
 
         /// <summary>
@@ -609,7 +649,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCurrentCanvas(uint canvasID)
         {
-            Interop.PenWave.SetCurrentCanvas(canvasID);
+            Interop.PenWaveRenderer.SetCurrentCanvas(canvasID);
         }
 
         /// <summary>
@@ -618,7 +658,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCurrentCanvas()
         {
-            Interop.PenWave.ClearCurrentCanvas();
+            Interop.PenWaveRenderer.ClearCurrentCanvas();
         }
 
         /// <summary>
@@ -629,7 +669,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartSelectingArea(float x, float y)
         {
-            Interop.PenWave.StartSelectingArea(x, y);
+            Interop.PenWaveRenderer.StartSelectingArea(x, y);
         }
 
         /// <summary>
@@ -640,7 +680,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ResizeSelectedArea(float x, float y)
         {
-            Interop.PenWave.ResizeSelectedArea(x, y);
+            Interop.PenWaveRenderer.ResizeSelectedArea(x, y);
         }
 
         /// <summary>
@@ -652,7 +692,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool InsideSelectedArea(float x, float y)
         {
-            return Interop.PenWave.InsideSelectedArea(x, y);
+            return Interop.PenWaveRenderer.InsideSelectedArea(x, y);
         }
 
         /// <summary>
@@ -666,7 +706,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetSelectionDimensions(ref float x, ref float y, ref float width, ref float height)
         {
-            return Interop.PenWave.GetSelectionDimensions(ref x, ref y, ref width, ref height);
+            return Interop.PenWaveRenderer.GetSelectionDimensions(ref x, ref y, ref width, ref height);
         }
 
         /// <summary>
@@ -678,7 +718,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int TouchedDrawable(float x, float y)
         {
-            return Interop.PenWave.TouchedDrawable(x, y);
+            return Interop.PenWaveRenderer.TouchedDrawable(x, y);
         }
 
         /// <summary>
@@ -690,7 +730,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectDrawable(float x, float y)
         {
-            return Interop.PenWave.SelectDrawable(x, y);
+            return Interop.PenWaveRenderer.SelectDrawable(x, y);
         }
 
         /// <summary>
@@ -700,7 +740,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectDrawables()
         {
-            return Interop.PenWave.SelectDrawables();
+            return Interop.PenWaveRenderer.SelectDrawables();
         }
 
         /// <summary>
@@ -711,7 +751,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DragSelectedDrawables(float x, float y)
         {
-            Interop.PenWave.DragSelectedDrawables(x, y);
+            Interop.PenWaveRenderer.DragSelectedDrawables(x, y);
         }
 
         /// <summary>
@@ -720,7 +760,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EndDraging()
         {
-            Interop.PenWave.EndDraging();
+            Interop.PenWaveRenderer.EndDraging();
         }
 
         /// <summary>
@@ -732,7 +772,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool StartRotating(float x, float y)
         {
-            return Interop.PenWave.StartRotating(x, y);
+            return Interop.PenWaveRenderer.StartRotating(x, y);
         }
 
         /// <summary>
@@ -744,7 +784,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RotateSelected(float x, float y)
         {
-            return Interop.PenWave.RotateSelected(x, y);
+            return Interop.PenWaveRenderer.RotateSelected(x, y);
         }
 
         /// <summary>
@@ -756,7 +796,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EndRotating(float x, float y)
         {
-            return Interop.PenWave.EndRotating(x, y);
+            return Interop.PenWaveRenderer.EndRotating(x, y);
         }
 
         /// <summary>
@@ -772,7 +812,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartSelectionScale(bool anchorLeft, bool anchorRight, bool anchorTop, bool anchorBottom, ref float anchorX, ref float anchorY)
         {
-            Interop.PenWave.StartSelectionScale(anchorLeft, anchorRight, anchorTop, anchorBottom, ref anchorX, ref anchorY);
+            Interop.PenWaveRenderer.StartSelectionScale(anchorLeft, anchorRight, anchorTop, anchorBottom, ref anchorX, ref anchorY);
         }
 
         /// <summary>
@@ -783,7 +823,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScaleSelection(float scaleFactorX, float scaleFactorY)
         {
-            Interop.PenWave.ScaleSelection(scaleFactorX, scaleFactorY);
+            Interop.PenWaveRenderer.ScaleSelection(scaleFactorX, scaleFactorY);
         }
 
         /// <summary>
@@ -794,7 +834,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EndSelectionScale(float scaleFactorX, float scaleFactorY)
         {
-            Interop.PenWave.EndSelectionScale(scaleFactorX, scaleFactorY);
+            Interop.PenWaveRenderer.EndSelectionScale(scaleFactorX, scaleFactorY);
         }
 
         /// <summary>
@@ -803,7 +843,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DropSelectedDrawables()
         {
-            Interop.PenWave.DropSelectedDrawables();
+            Interop.PenWaveRenderer.DropSelectedDrawables();
         }
 
         /// <summary>
@@ -815,7 +855,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectedAreaZoom(float x, float y, float zoom)
         {
-            Interop.PenWave.SelectedAreaZoom(x, y, zoom);
+            Interop.PenWaveRenderer.SelectedAreaZoom(x, y, zoom);
         }
 
         /// <summary>
@@ -827,7 +867,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SaveCanvas(uint canvasID, string path)
         {
-            return Interop.PenWave.SaveCanvas(canvasID, path);
+            return Interop.PenWaveRenderer.SaveCanvas(canvasID, path);
         }
 
         /// <summary>
@@ -839,7 +879,12 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadCanvas(uint canvasID, string path)
         {
-            return Interop.PenWave.LoadCanvas(canvasID, path);
+            if (!File.Exists(path))
+            {
+                Tizen.Log.Error("NUI", $"Loading canvas error. canvasID :{canvasID} path : {path}\n");
+                return false;
+            }
+            return Interop.PenWaveRenderer.LoadCanvas(canvasID, path);
         }
 
         /// <summary>
@@ -853,19 +898,19 @@ namespace Tizen.NUI.PenWave
         /// <param name="height">Height</param>
         /// <param name="thumbSaved">save callback function</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void TakeScreenshot(uint canvasID, string path, int x, int y, int width, int height, ScreenShotCallback thumbSaved)
+        public void TakeScreenShot(uint canvasID, string path, int x, int y, int width, int height, ScreenShotCallback thumbSaved)
         {
-            Interop.PenWave.TakeScreenshot(canvasID, path, x, y, width, height, thumbSaved);
+            Interop.PenWaveRenderer.TakeScreenShot(canvasID, path, x, y, width, height, thumbSaved);
         }
 
         /// <summary>
         /// ToggleGrid
         /// </summary>
-        /// <param name="densityType">The density type</param>
+        /// <param name="gridType">The density type</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ToggleGrid(int densityType)
+        public void ToggleGrid(GridDensityType gridType)
         {
-            Interop.PenWave.ToggleGrid(densityType);
+            Interop.PenWaveRenderer.ToggleGrid((int)gridType);
         }
 
         /// <summary>
@@ -875,7 +920,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ToggleChartGrid(int densityType)
         {
-            Interop.PenWave.ToggleChartGrid(densityType);
+            Interop.PenWaveRenderer.ToggleChartGrid(densityType);
         }
 
         /// <summary>
@@ -885,7 +930,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetChartGridDensity()
         {
-            return Interop.PenWave.GetChartGridDensity();
+            return Interop.PenWaveRenderer.GetChartGridDensity();
         }
 
         /// <summary>
@@ -893,9 +938,9 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <returns>Returns true if successful. otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Copy()
+        public bool CopySelectedDrawables()
         {
-            return Interop.PenWave.Copy();
+            return Interop.PenWaveRenderer.Copy();
         }
 
         /// <summary>
@@ -905,9 +950,9 @@ namespace Tizen.NUI.PenWave
         /// <param name="y">Point Y coordinate</param>
         /// <returns>Returns true if successful. otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Paste(float x, float y)
+        public int PasteDrawables(float x, float y)
         {
-            return Interop.PenWave.Paste(x, y);
+            return Interop.PenWaveRenderer.Paste(x, y);
         }
 
         /// <summary>
@@ -915,9 +960,9 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         /// <returns>Returns true if successful. otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Cut()
+        public bool CutSelectedDrawables()
         {
-            return Interop.PenWave.Cut();
+            return Interop.PenWaveRenderer.Cut();
         }
 
         /// <summary>
@@ -927,7 +972,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Remove()
         {
-            return Interop.PenWave.Remove();
+            return Interop.PenWaveRenderer.Remove();
         }
 
         /// <summary>
@@ -938,7 +983,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddChart(int chartType, string path)
         {
-            Interop.PenWave.AddChart(chartType, path);
+            Interop.PenWaveRenderer.AddChart(chartType, path);
         }
 
         /// <summary>
@@ -948,7 +993,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeMode(int mode)
         {
-            Interop.PenWave.ChangeMode(mode);
+            Interop.PenWaveRenderer.ChangeMode(mode);
         }
 
         /// <summary>
@@ -959,7 +1004,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChartPosition(ref float x, ref float y)
         {
-            Interop.PenWave.ChartPosition(ref x, ref y);
+            Interop.PenWaveRenderer.ChartPosition(ref x, ref y);
         }
 
         /// <summary>
@@ -973,7 +1018,8 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddPicture(string path, float x, float y, float width, float height)
         {
-            Interop.PenWave.AddPicture(path, x, y, width, height);
+            Interop.PenWaveRenderer.AddPicture(path, x, y, width, height);
+            RenderFullyReDraw();
         }
 
         /// <summary>
@@ -986,9 +1032,9 @@ namespace Tizen.NUI.PenWave
         /// <param name="width">Width</param>
         /// <param name="height">Height</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetCanvasBackground(string path, float x, float y, float width, float height)
+        public void SetCanvasBackgroundImage(string path, float x, float y, float width, float height)
         {
-            Interop.PenWave.SetCanvasBackground(path, x, y, width, height);
+            Interop.PenWaveRenderer.SetCanvasBackground(path, x, y, width, height);
         }
 
         /// <summary>
@@ -1001,7 +1047,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddText(string text, float x, float y, float size)
         {
-            Interop.PenWave.AddText(text, x, y, size);
+            Interop.PenWaveRenderer.AddText(text, x, y, size);
         }
 
         /// <summary>
@@ -1015,7 +1061,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddNote(float x, float y, float width, float height)
         {
-            return Interop.PenWave.AddNote(x, y, width, height);
+            return Interop.PenWaveRenderer.AddNote(x, y, width, height);
         }
 
         /// <summary>
@@ -1025,7 +1071,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveNote(uint noteID)
         {
-            Interop.PenWave.RemoveNote(noteID);
+            Interop.PenWaveRenderer.RemoveNote(noteID);
         }
 
         /// <summary>
@@ -1034,7 +1080,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearNote()
         {
-            Interop.PenWave.ClearNote();
+            Interop.PenWaveRenderer.ClearNote();
         }
 
         /// <summary>
@@ -1046,7 +1092,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DragNote(float x, float y)
         {
-            return Interop.PenWave.DragNote(x, y);
+            return Interop.PenWaveRenderer.DragNote(x, y);
         }
 
         /// <summary>
@@ -1056,7 +1102,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EndNoteDragging()
         {
-            return Interop.PenWave.EndNoteDragging();
+            return Interop.PenWaveRenderer.EndNoteDragging();
         }
 
         /// <summary>
@@ -1067,7 +1113,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetNoteColor(string hexColor, float a)
         {
-            Interop.PenWave.SetNoteColor(hexColor, a);
+            Interop.PenWaveRenderer.SetNoteColor(hexColor, a);
         }
 
         /// <summary>
@@ -1077,7 +1123,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetActiveNote(uint noteID)
         {
-            Interop.PenWave.SetActiveNote(noteID);
+            Interop.PenWaveRenderer.SetActiveNote(noteID);
         }
 
         /// <summary>
@@ -1087,7 +1133,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Undo()
         {
-            return Interop.PenWave.Undo();
+            return Interop.PenWaveRenderer.Undo();
         }
 
         /// <summary>
@@ -1097,7 +1143,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Redo()
         {
-            return Interop.PenWave.Redo();
+            return Interop.PenWaveRenderer.Redo();
         }
 
         /// <summary>
@@ -1107,7 +1153,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanUndo()
         {
-            return Interop.PenWave.CanUndo();
+            return Interop.PenWaveRenderer.CanUndo();
         }
 
         /// <summary>
@@ -1117,7 +1163,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanRedo()
         {
-            return Interop.PenWave.CanRedo();
+            return Interop.PenWaveRenderer.CanRedo();
         }
 
         /// <summary>
@@ -1126,7 +1172,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ResetUndo()
         {
-            Interop.PenWave.ResetUndo();
+            Interop.PenWaveRenderer.ResetUndo();
         }
 
         /// <summary>
@@ -1135,7 +1181,16 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ResetRedo()
         {
-            Interop.PenWave.ResetRedo();
+            Interop.PenWaveRenderer.ResetRedo();
+        }
+
+        // Converts Color to hex string.
+        private string ToHex(Color color)
+        {
+            var red = (uint)(color.R * 255);
+            var green = (uint)(color.G * 255);
+            var blue = (uint)(color.B * 255);
+            return $"#{red:X2}{green:X2}{blue:X2}";
         }
     }
 }

@@ -91,25 +91,51 @@ namespace Tizen.NUI.PenWave
     }
 
     /// <summary>
-    /// Enumeration for the type of selection operation
+    /// Enumeration for the type of selection transform
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum SelectionType
+    public enum SelectionTransformType
     {
         /// <summary>
-        /// The move selection type.
+        /// The move type.
         /// </summary>
         Move  = 0,
 
         /// <summary>
-        /// The scale selection type.
+        /// The scale type.
         /// </summary>
         Scale,
 
         /// <summary>
-        /// The rotate selection type.
+        /// The rotate type.
         /// </summary>
         Rotate,
+    }
+
+    /// <summary>
+    /// Enumeration for the type of selection operation
+    /// </summary>
+    public enum SelectionOperationType
+    {
+        /// <summary>
+        /// The none operation type.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// The copy operation type.
+        /// </summary>
+        Copy,
+
+        /// <summary>
+        /// The cut operation type.
+        /// </summary>
+        Cut,
+
+        /// <summary>
+        /// The paste operation type.
+        /// </summary>
+        Paste,
     }
 
     /// <summary>

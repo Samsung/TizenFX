@@ -13,11 +13,11 @@ namespace PenWaveSample
 {
     class Program : NUIApplication
     {
-        public static Program app;
-        private Window mWindow;
-        private PenWaveToolPicker mToolPickerView;
-        private PenWaveCanvas canvasView;
-        private ImageView thumbnailView;
+        public static Program App;
+        private Window _window;
+        private PenWaveToolPicker _toolPickerView;
+        private PenWaveCanvas _canvasView;
+        private ImageView _thumbnailView;
 
         public class TestTool : ToolBase
         {
@@ -54,9 +54,9 @@ namespace PenWaveSample
 
         private void ToolPicker()
         {
-            mToolPickerView = new PenWaveToolPicker(canvasView);
+            _toolPickerView = new PenWaveToolPicker(_canvasView);
 
-            mToolPickerView.AddButtonToPickerView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
+            _toolPickerView.AddButtonToPickerView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
                 var picker = new View
                 {
@@ -73,17 +73,17 @@ namespace PenWaveSample
                     };
                     button.Clicked += (o, e) =>
                     {
-                        canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", 100, 200, 500, 500);
+                        _canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", 100, 200, 500, 500);
                     };
                     picker.Add(button);
                 }
-                mToolPickerView.SetViewToPopupView(picker);
-                mToolPickerView.ShowPopupView();
+                _toolPickerView.SetViewToPopupView(picker);
+                _toolPickerView.ShowPopupView();
             });
 
-            mToolPickerView.AddButtonToPickerView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
+            _toolPickerView.AddButtonToPickerView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/icon_picture.png", () =>
             {
-                canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, OnThumbnails);
+                _canvasView.TakeScreenShot("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png", 0, 0, 1920, 1080, OnThumbnails);
             });
         }
 
@@ -93,15 +93,15 @@ namespace PenWaveSample
             string source = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot.png";
             string destination = "/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/screenshot_copy.png";
             File.Copy(source, destination, true);
-            thumbnailView.ResourceUrl = destination;
-            thumbnailView.Size2D = new Size2D(300, 300);
+            _thumbnailView.ResourceUrl = destination;
+            _thumbnailView.Size2D = new Size2D(300, 300);
         }
 
         private void Buttons()
         {
 
-            canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", 100, 100, 500, 500);
-            canvasView.CurrentTool = new PencilTool(BrushType.DashedLine, Color.Blue, 10);
+            _canvasView.AddPicture(Tizen.Applications.Application.Current.DirectoryInfo.Resource+"images/pictures/venus.png", 100, 100, 500, 500);
+            _canvasView.CurrentTool = new PencilTool(BrushType.DashedLine, Color.Blue, 10);
             var view = new View()
             {
                 WidthResizePolicy = ResizePolicyType.FillToParent,
@@ -111,13 +111,13 @@ namespace PenWaveSample
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                 },
             };
-            canvasView.Add(view);
+            _canvasView.Add(view);
             var button = new Button()
             {
                 Text = "Eraser"
             };
             button.Clicked += (o, e) => {
-                canvasView.CurrentTool = new EraserTool(EraserType.Partial, 20);
+                _canvasView.CurrentTool = new EraserTool(EraserType.Partial, 20);
             };
             view.Add(button);
 
@@ -126,7 +126,7 @@ namespace PenWaveSample
                 Text = "Move"
             };
             button2.Clicked += (o, e) => {
-                canvasView.CurrentTool = new SelectionTool(SelectionType.Move);
+                _canvasView.CurrentTool = new SelectionTool(SelectionTransformType.Move);
             };
             view.Add(button2);
 
@@ -135,7 +135,7 @@ namespace PenWaveSample
                 Text = "Scale"
             };
             button3.Clicked += (o, e) => {
-                canvasView.CurrentTool = new SelectionTool(SelectionType.Scale);
+                _canvasView.CurrentTool = new SelectionTool(SelectionTransformType.Scale);
             };
             view.Add(button3);
 
@@ -149,19 +149,19 @@ namespace PenWaveSample
                 Text = "Redo"
             };
 
-            Undo.IsEnabled = canvasView.CanUndo;
+            Undo.IsEnabled = _canvasView.CanUndo;
             Undo.Clicked += (o, e) => {
-                canvasView.Undo();
-                Redo.IsEnabled = canvasView.CanRedo;
-                Undo.IsEnabled = canvasView.CanUndo;
+                _canvasView.Undo();
+                Redo.IsEnabled = _canvasView.CanRedo;
+                Undo.IsEnabled = _canvasView.CanUndo;
             };
             view.Add(Undo);
 
-            Redo.IsEnabled = canvasView.CanRedo;
+            Redo.IsEnabled = _canvasView.CanRedo;
             Redo.Clicked += (o, e) => {
-                canvasView.Redo();
-                Undo.IsEnabled = canvasView.CanUndo;
-                Redo.IsEnabled = canvasView.CanRedo;
+                _canvasView.Redo();
+                Undo.IsEnabled = _canvasView.CanUndo;
+                Redo.IsEnabled = _canvasView.CanRedo;
             };
             view.Add(Redo);
 
@@ -171,7 +171,7 @@ namespace PenWaveSample
                 Text = "Save"
             };
             Save.Clicked += (o, e) => {
-                canvasView.SaveCanvas("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/savecanvas.txt");
+                _canvasView.SaveCanvas("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/savecanvas.txt");
             };
             view.Add(Save);
 
@@ -180,7 +180,7 @@ namespace PenWaveSample
                 Text = "Load"
             };
             Load.Clicked += (o, e) => {
-                canvasView.LoadCanvas("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/savecanvas.txt");
+                _canvasView.LoadCanvas("/home/puro/workspace/submit/TizenFX/test/Tizen.NUI.PenWave.Sample/savecanvas.txt");
             };
             view.Add(Load);
 
@@ -191,27 +191,27 @@ namespace PenWaveSample
                 Text = "Clear"
             };
             Clear.Clicked += (o, e) => {
-                canvasView.ClearCanvas();
+                _canvasView.ClearCanvas();
             };
             view.Add(Clear);
 
 
-            canvasView.ToggleGrid(GridDensityType.Small);
-            canvasView.SetCanvasColor(Color.AquaMarine);
+            _canvasView.ToggleGrid(GridDensityType.Small);
+            _canvasView.SetCanvasColor(Color.AquaMarine);
         }
 
         private void InitializeView()
         {
-            mWindow = GetDefaultWindow();
-            mWindow.BackgroundColor = Color.White;
-            canvasView = new PenWaveCanvas();
-            mWindow.Add(canvasView);
+            _window = GetDefaultWindow();
+            _window.BackgroundColor = Color.White;
+            _canvasView = new PenWaveCanvas();
+            _window.Add(_canvasView);
 
 
-            canvasView.TouchEvent += OnTouchEvent;
-            canvasView.WheelEvent += OnWheelEvent;
-            thumbnailView = new ImageView();
-            canvasView.Add(thumbnailView);
+            _canvasView.TouchEvent += OnTouchEvent;
+            _canvasView.WheelEvent += OnWheelEvent;
+            _thumbnailView = new ImageView();
+            _canvasView.Add(_thumbnailView);
 
             ToolPicker();
 
@@ -220,18 +220,18 @@ namespace PenWaveSample
         }
 
 
-        private float mInitialTouchX;
-        private float mInitialTouchY;
-        private bool mIsCanvasMoving = false;
+        private float _initialTouchX;
+        private float _initialTouchY;
+        private bool _isCanvasMoving = false;
         private bool OnTouchEvent(object sender, View.TouchEventArgs args)
         {
-            canvasView.HandleInput(args.Touch);
+            _canvasView.HandleInput(args.Touch);
             return false;
         }
 
         private bool OnWheelEvent(object sender, View.WheelEventArgs args)
         {
-            canvasView.HandleInput(args.Wheel);
+            _canvasView.HandleInput(args.Wheel);
             return false;
         }
 
@@ -241,9 +241,9 @@ namespace PenWaveSample
             WindowData newWindowData = new WindowData();
             newWindowData.FrontBufferRendering = true;
             newWindowData.WindowMode = WindowMode.Opaque;
-            app = new Program(ThemeOptions.None, newWindowData);
-            app.Run(args);
-            app.Dispose();
+            App = new Program(ThemeOptions.None, newWindowData);
+            App.Run(args);
+            App.Dispose();
         }
     }
 }

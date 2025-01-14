@@ -31,9 +31,9 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyBrushSettings()
         {
-            PenWave.Instance.SetStrokeType(1);
-            PenWave.Instance.SetBrushTexture(4);
-            PenWave.Instance.SetBrushDistance(1.0f);
+            PenWaveRenderer.Instance.SetStrokeType(1);
+            PenWaveRenderer.Instance.SetBrushTexture(4);
+            PenWaveRenderer.Instance.SetBrushDistance(1.0f);
         }
     }
 }

@@ -298,7 +298,7 @@ namespace Tizen.NUI.PenWave
             var eraserTool = new EraserTool(EraserType.Partial, 48.0f);
             AddTool(eraserTool, "icon_eraser.png");
 
-            var selectionTool = new SelectionTool(SelectionType.Move);
+            var selectionTool = new SelectionTool(SelectionTransformType.Move);
             AddTool(selectionTool, "icon_select.png");
 
             var rulerTool = new RulerTool(RulerType.Line);
@@ -367,6 +367,7 @@ namespace Tizen.NUI.PenWave
         private void ShowSelectionToolSettings(SelectionTool selectionTool)
         {
             AddSelectionTypePicker(selectionTool);
+            AddCopyPastePicker(selectionTool);
         }
 
         private void ShowRulerToolSettings(RulerTool rulerTool)
@@ -401,6 +402,7 @@ namespace Tizen.NUI.PenWave
             _popupView.Add(brushPicker);
         }
 
+        private ImageView _currentColorBorderButton;
         // Create a button for the given color and add it to the popup view.
         private void AddColorPicker(PencilTool pencilTool)
         {
@@ -423,6 +425,11 @@ namespace Tizen.NUI.PenWave
                     Color = color,
                     ResourceUrl = s_resourcePath + "/color_icon_base.png",
                 };
+                var buttonBorder = new ImageView
+                {
+                    Size2D = new Size2D(48, 48),
+                };
+                button.Add(buttonBorder);
                 button.TouchEvent += (s, e) =>
                 {
                     if (e.Touch.GetState(0) == PointStateType.Down)
@@ -431,6 +438,19 @@ namespace Tizen.NUI.PenWave
                         pencilTool.Activate();
                     }
                     return true;
+                };
+                buttonBorder.TouchEvent += (s, e) =>
+                {
+                    if (e.Touch.GetState(0) == PointStateType.Down)
+                    {
+                        if (_currentColorBorderButton)
+                        {
+                            _currentColorBorderButton.ResourceUrl = "";
+                        }
+                        buttonBorder.ResourceUrl = s_resourcePath + "/color_icon_selected.png";
+                        _currentColorBorderButton = buttonBorder;;
+                    }
+                    return false;
                 };
 
                 colorPicker.Add(button);
@@ -517,16 +537,46 @@ namespace Tizen.NUI.PenWave
                 }
             };
 
-            var types = Enum.GetValues(typeof(SelectionType));
-            foreach (SelectionType type in types)
+            var types = Enum.GetValues(typeof(SelectionTransformType));
+            foreach (SelectionTransformType type in types)
             {
                 var button = CreateToolButton(s_resourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
                 {
-                    selectionTool.Selection = type;
+                    selectionTool.Transform = type;
                 });
                 picker.Add(button);
             }
 
+            _popupView.Add(picker);
+        }
+
+        private void AddCopyPastePicker(SelectionTool selectionTool)
+        {
+            var picker = new View
+            {
+                Layout = new LinearLayout
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size2D(5, 5),
+                }
+            };
+
+            var types = Enum.GetValues(typeof(SelectionOperationType));
+            foreach (SelectionOperationType type in types)
+            {
+                if (type != SelectionOperationType.None)
+                {
+                    var button = CreateToolButton(s_resourcePath + $"icon_{type.ToString().ToLower()}.png", () =>
+                    {
+                        selectionTool.DoOperation(type);
+                    });
+                    if (!selectionTool.CanCopyPaste)
+                    {
+                        button.Color = new Color(_iconStateDisabledColor);
+                    }
+                    picker.Add(button);
+                }
+            }
             _popupView.Add(picker);
         }
 
@@ -648,7 +698,6 @@ namespace Tizen.NUI.PenWave
             {
                 _redoButton.Color = _canvasView.CanRedo ? new Color(_iconStateNormalColor) : new Color(_iconStateDisabledColor);
             }
-
         }
 
         /// <summary>

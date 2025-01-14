@@ -50,7 +50,7 @@ namespace Tizen.NUI.PenWave
             if (_undoStack > 0)
             {
                 _undoStack--; // Pop command from undo stack
-                PenWave.Instance.Undo();
+                PenWaveRenderer.Instance.Undo();
                 _redoStack++; // Push command to redo stack
             }
         }
@@ -64,7 +64,7 @@ namespace Tizen.NUI.PenWave
             if (_redoStack > 0)
             {
                 _redoStack--; // Pop command from redo stack
-                PenWave.Instance.Redo();
+                PenWaveRenderer.Instance.Redo();
                 _undoStack++; // Push command to undo stack
             }
         }

@@ -23,7 +23,7 @@ namespace Tizen.NUI.PenWave
 {
         internal static partial class Interop
         {
-                internal static partial class PenWave
+                internal static partial class PenWaveRenderer
                 {
                         private const string Lib = "libhand-drawing-engine.so";
 
@@ -239,7 +239,7 @@ namespace Tizen.NUI.PenWave
                         public static extern bool LoadCanvas(uint canvasID, [MarshalAs(UnmanagedType.LPStr)] string path);
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "TakeScreenshot")]
-                        public static extern void TakeScreenshot(uint canvasID, [MarshalAs(UnmanagedType.LPStr)] string path, int x, int y, int width, int height, [MarshalAs(UnmanagedType.FunctionPtr)] Tizen.NUI.PenWave.PenWave.ScreenShotCallback thumbSaved);
+                        public static extern void TakeScreenShot(uint canvasID, [MarshalAs(UnmanagedType.LPStr)] string path, int x, int y, int width, int height, [MarshalAs(UnmanagedType.FunctionPtr)] Tizen.NUI.PenWave.PenWaveRenderer.ScreenShotCallback thumbSaved);
 
                         [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "ToggleGrid")]
                         public static extern void ToggleGrid(int densityType);

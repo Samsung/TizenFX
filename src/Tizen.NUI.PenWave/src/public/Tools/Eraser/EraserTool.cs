@@ -108,14 +108,14 @@ namespace Tizen.NUI.PenWave
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
             _isActive = true;
-            PenWave.Instance.EraseShape((int)positionX, (int)positionY, EraserRadius, (Eraser == EraserType.Partial));
+            PenWaveRenderer.Instance.EraseShape((int)positionX, (int)positionY, EraserRadius, (Eraser == EraserType.Partial));
             NotifyActionStarted();
         }
 
         // Continue drawing at the given position.
         private void ContinueDrawing(float positionX, float positionY, uint touchTime)
         {
-            PenWave.Instance.EraseShape((int)positionX, (int)positionY, EraserRadius, (Eraser == EraserType.Partial));
+            PenWaveRenderer.Instance.EraseShape((int)positionX, (int)positionY, EraserRadius, (Eraser == EraserType.Partial));
         }
 
         // End drawing at the given position.
@@ -123,7 +123,7 @@ namespace Tizen.NUI.PenWave
         {
             if (_isActive)
             {
-                PenWave.Instance.StopErasing();
+                PenWaveRenderer.Instance.StopErasing();
                 NotifyActionFinished();
                 _isActive = false;
             }
