@@ -149,7 +149,13 @@ namespace Tizen.NUI.BaseComponents
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Equals(ControlState other) => value.Equals(other.value);
+        public bool Equals(ControlState other)
+        {
+            if (other is null)
+                return false;
+
+            return value.Equals(other.value);
+        }
 
         ///  <inheritdoc/>
         /// <since_tizen> 9 </since_tizen>
