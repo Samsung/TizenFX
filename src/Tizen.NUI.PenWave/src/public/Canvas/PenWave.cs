@@ -33,14 +33,14 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void ScreenShotCallback();
 
-        private static readonly PenWave instance = new PenWave();
+        private static readonly PenWave s_instance = new PenWave();
         private PenWave() { }
 
         /// <summary>
         /// Gets the singleton instance of PenWave.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PenWave Instance => instance;
+        public static PenWave Instance => s_instance;
 
         /// <summary>
         /// Initializes the PenWave library.

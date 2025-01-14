@@ -50,23 +50,23 @@ namespace Tizen.NUI.PenWave
         }
 
         // Flag to check if the touch is inside the selected area
-        private bool isTouchedInsideSelectedArea = false;
+        private bool _isTouchedInsideSelectedArea = false;
 
         // Current mode of operation
-        private Mode currentMode = Mode.None;
+        private Mode _currentMode = Mode.None;
 
         // Type of drawable object being interacted with
-        private DrawableType drawableType = DrawableType.None;
+        private DrawableType _drawableType = DrawableType.None;
 
         // Initial touch position
-        private float initialTouchX;
-        private float initialTouchY;
+        private float _initialTouchX;
+        private float _initialTouchY;
 
         // Variables used during scaling operations
-        private float startScaleX;
-        private float startScaleY;
-        private float anchorX;
-        private float anchorY;
+        private float _startScaleX;
+        private float _startScaleY;
+        private float _anchorX;
+        private float _anchorY;
 
         /// <summary>
         /// Constructor for the selection tool.
@@ -99,7 +99,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Deactivate()
         {
-            currentMode = Mode.None;
+            _currentMode = Mode.None;
             EndDrawing(0, 0, 0);
         }
 
@@ -142,13 +142,13 @@ namespace Tizen.NUI.PenWave
         // Start drawing the selection area or interacting with the selected drawables.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            initialTouchX = positionX;
-            initialTouchY = positionY;
-            isTouchedInsideSelectedArea = PenWave.Instance.InsideSelectedArea(positionX, positionY);
-            if (!isTouchedInsideSelectedArea)
+            _initialTouchX = positionX;
+            _initialTouchY = positionY;
+            _isTouchedInsideSelectedArea = PenWave.Instance.InsideSelectedArea(positionX, positionY);
+            if (!_isTouchedInsideSelectedArea)
             {
                 PenWave.Instance.DropSelectedDrawables();
-                drawableType = (DrawableType)PenWave.Instance.SelectDrawable(positionX, positionY);
+                _drawableType = (DrawableType)PenWave.Instance.SelectDrawable(positionX, positionY);
             }
             else
             {
@@ -163,18 +163,18 @@ namespace Tizen.NUI.PenWave
                     if (!Double.IsNaN(topLeftX))
                     {
                         PenWave.Instance.StartSelectionScale(
-                            initialTouchX >= topLeftX + widthSelection  * 0.5f,
-                            initialTouchX <  topLeftX + widthSelection  * 0.5f,
-                            initialTouchY >= topLeftY + heightSelection * 0.5f,
-                            initialTouchY <  topLeftY + heightSelection * 0.5f,
-                            ref anchorX,
-                            ref anchorY
+                            _initialTouchX >= topLeftX + widthSelection  * 0.5f,
+                            _initialTouchX <  topLeftX + widthSelection  * 0.5f,
+                            _initialTouchY >= topLeftY + heightSelection * 0.5f,
+                            _initialTouchY <  topLeftY + heightSelection * 0.5f,
+                            ref _anchorX,
+                            ref _anchorY
                         );
 
-                        currentMode = Mode.Scale;
+                        _currentMode = Mode.Scale;
                     }
-                    startScaleX = initialTouchX;
-                    startScaleY = initialTouchY;
+                    _startScaleX = _initialTouchX;
+                    _startScaleY = _initialTouchY;
                 }
             }
             NotifyActionStarted();
@@ -183,33 +183,33 @@ namespace Tizen.NUI.PenWave
         // Continue drawing the selection area or interacting with the selected drawables.
         private void ContinueDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (drawableType == DrawableType.None)
+            if (_drawableType == DrawableType.None)
             {
-                if (currentMode == Mode.None)
+                if (_currentMode == Mode.None)
                 {
                     PenWave.Instance.StartSelectingArea(positionX, positionY);
                 }
                 PenWave.Instance.ResizeSelectedArea(positionX, positionY);
-                currentMode = Mode.Resize;
+                _currentMode = Mode.Resize;
             }
-            else if (currentMode != Mode.Resize && drawableType != DrawableType.None)
+            else if (_currentMode != Mode.Resize && _drawableType != DrawableType.None)
             {
                 if (Selection == SelectionType.Move)
                 {
                     PenWave.Instance.DragSelectedDrawables(positionX, positionY);
-                    currentMode = Mode.Move;
+                    _currentMode = Mode.Move;
                 }
                 else if (Selection == SelectionType.Rotate)
                 {
                     PenWave.Instance.RotateSelected(positionX, positionY);
-                    currentMode = Mode.Rotate;
+                    _currentMode = Mode.Rotate;
                 }
                 else if (Selection == SelectionType.Scale)
                 {
                     PenWave.Instance.ScaleSelection(
-                                (positionX - anchorX) / (startScaleX - anchorX),
-                                (positionY - anchorY) / (startScaleY - anchorY));
-                    currentMode = Mode.Scale;
+                                (positionX - _anchorX) / (_startScaleX - _anchorX),
+                                (positionY - _anchorY) / (_startScaleY - _anchorY));
+                    _currentMode = Mode.Scale;
                 }
             }
         }
@@ -217,13 +217,13 @@ namespace Tizen.NUI.PenWave
         // End drawing the selection area or interacting with the selected drawables.
         private void EndDrawing(float positionX, float positionY, uint touchTime)
         {
-            switch (currentMode)
+            switch (_currentMode)
             {
                 case Mode.Move :
                     PenWave.Instance.EndDraging();
                     break;
                 case Mode.Resize :
-                    drawableType = (DrawableType)PenWave.Instance.SelectDrawables();
+                    _drawableType = (DrawableType)PenWave.Instance.SelectDrawables();
                     break;
                 case Mode.Rotate :
                     PenWave.Instance.EndRotating(positionX, positionY);
@@ -231,15 +231,15 @@ namespace Tizen.NUI.PenWave
                 case Mode.Scale :
                     PenWave.Instance.EndRotating(positionX, positionY);
                     PenWave.Instance.EndSelectionScale(
-                                    (positionX - anchorX) / (startScaleX - anchorX),
-                                    (positionY - anchorY) / (startScaleY - anchorY));
+                                    (positionX - _anchorX) / (_startScaleX - _anchorX),
+                                    (positionY - _anchorY) / (_startScaleY - _anchorY));
                     break;
                 default :
                     PenWave.Instance.DropSelectedDrawables();
                     break;
             }
-            isTouchedInsideSelectedArea = false;
-            currentMode = Mode.None;
+            _isTouchedInsideSelectedArea = false;
+            _currentMode = Mode.None;
             NotifyActionFinished();
         }
 

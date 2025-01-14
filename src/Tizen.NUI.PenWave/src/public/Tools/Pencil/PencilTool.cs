@@ -27,7 +27,7 @@ namespace Tizen.NUI.PenWave
     public class PencilTool : ToolBase
     {
         // The id of the current shape being drawn.
-        private uint currentShapeId;
+        private uint _currentShapeId;
 
         /// <summary>
         /// Creates a new instance of a PencilTool.
@@ -136,8 +136,8 @@ namespace Tizen.NUI.PenWave
         // Starts drawing a new shape. This will create a new shape on the canvas.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            currentShapeId = PenWave.Instance.BeginShapeDraw(positionX, positionY, touchTime);
-            if (currentShapeId > 0)
+            _currentShapeId = PenWave.Instance.BeginShapeDraw(positionX, positionY, touchTime);
+            if (_currentShapeId > 0)
             {
                 NotifyActionStarted();
             }
@@ -146,9 +146,9 @@ namespace Tizen.NUI.PenWave
         // Continues drawing the current shape.
         private void ContinueDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (currentShapeId > 0)
+            if (_currentShapeId > 0)
             {
-                var result = PenWave.Instance.DrawShape(currentShapeId, positionX, positionY, touchTime);
+                var result = PenWave.Instance.DrawShape(_currentShapeId, positionX, positionY, touchTime);
                 if (result == ErrorShapeAddPointsType.OverflowShape)
                 {
                     EndDrawing();
@@ -164,10 +164,10 @@ namespace Tizen.NUI.PenWave
         // Ends drawing the current shape.
         private void EndDrawing()
         {
-            if (currentShapeId > 0)
+            if (_currentShapeId > 0)
             {
-                PenWave.Instance.EndShapeDraw(currentShapeId, 0);
-                currentShapeId = 0;
+                PenWave.Instance.EndShapeDraw(_currentShapeId, 0);
+                _currentShapeId = 0;
                 NotifyActionFinished();
             }
         }

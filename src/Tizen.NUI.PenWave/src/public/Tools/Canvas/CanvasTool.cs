@@ -26,10 +26,10 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CanvasTool : ToolBase
     {
-        private float initialTouchX;
-        private float initialTouchY;
-        private bool isCanvasMoving = false;
-        private PenWaveCanvas canvasView;
+        private float _initialTouchX;
+        private float _initialTouchY;
+        private bool _isCanvasMoving = false;
+        private PenWaveCanvas _canvasView;
 
         /// <summary>
         /// Creates a new instance of a CanvasTool.
@@ -38,7 +38,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CanvasTool(PenWaveCanvas canvasView)
         {
-            this.canvasView = canvasView;
+            _canvasView = canvasView;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Tizen.NUI.PenWave
             Vector2 position = touchPositionList[(int)pointStateIndex];
             if (touch.GetMouseButton(0) == MouseButton.Secondary)
             {
-                isCanvasMoving = true;
+                _isCanvasMoving = true;
             }
             switch (touch.GetState(pointStateIndex))
             {
@@ -94,36 +94,36 @@ namespace Tizen.NUI.PenWave
                     EndDrawing();
                     break;
             }
-            return isCanvasMoving;
+            return _isCanvasMoving;
         }
 
         // Start drawing when the first touch down event occurs.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (isCanvasMoving)
+            if (_isCanvasMoving)
             {
-                initialTouchX = positionX;
-                initialTouchY = positionY;
-                canvasView.MoveBegin();
+                _initialTouchX = positionX;
+                _initialTouchY = positionY;
+                _canvasView.MoveBegin();
             }
         }
 
         // Continue drawing the touch motion events occur.
         private void ContinueDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (isCanvasMoving)
+            if (_isCanvasMoving)
             {
-                canvasView.MoveUpdate((int)(positionX - initialTouchX), (int)(positionY - initialTouchY));
+                _canvasView.MoveUpdate((int)(positionX - _initialTouchX), (int)(positionY - _initialTouchY));
             }
         }
 
         // End drawing when the last touch up event occurs.
         private void EndDrawing()
         {
-            if (isCanvasMoving)
+            if (_isCanvasMoving)
             {
-                canvasView.MoveEnd();
-                isCanvasMoving = false;
+                _canvasView.MoveEnd();
+                _isCanvasMoving = false;
             }
         }
 
@@ -136,9 +136,9 @@ namespace Tizen.NUI.PenWave
         {
             Vector2 point = wheel.Point;
             float zoom = 1.0f - ((float)wheel.Z * 0.05f);
-            canvasView.ZoomBegin();
-            canvasView.ZoomUpdate(point.X, point.Y, zoom, 0, 0);
-            canvasView.ZoomEnd();
+            _canvasView.ZoomBegin();
+            _canvasView.ZoomUpdate(point.X, point.Y, zoom, 0, 0);
+            _canvasView.ZoomEnd();
             return true;
         }
 

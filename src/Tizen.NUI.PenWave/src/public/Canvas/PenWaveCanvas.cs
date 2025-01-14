@@ -40,11 +40,11 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler ActionFinished;
 
-        private UnRedoManager unredoManager;
-        private CanvasRenderer renderer;
-        private PropertyNotification propertyNotification;
-        private ToolBase currentTool;
-        private ToolBase canvasTool;
+        private UnRedoManager _unredoManager;
+        private CanvasRenderer _renderer;
+        private PropertyNotification _propertyNotification;
+        private ToolBase _currentTool;
+        private ToolBase _canvasTool;
 
         /// <summary>
         /// Creates a new instance of a PenWaveCanvas.
@@ -52,7 +52,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PenWaveCanvas() : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            renderer = new CanvasRenderer(PenWave.Instance.CreateCanvas(-1, -1));
+            _renderer = new CanvasRenderer(PenWave.Instance.CreateCanvas(-1, -1));
             InitializeCanvas();
         }
 
@@ -63,29 +63,29 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PenWaveCanvas(string backgroundPath) : base(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.UnsafeDirectRendering)
         {
-            renderer = new CanvasRenderer(PenWave.Instance.CreateCanvasWithBackgroundImage(backgroundPath));
+            _renderer = new CanvasRenderer(PenWave.Instance.CreateCanvasWithBackgroundImage(backgroundPath));
             InitializeCanvas();
         }
 
         // Initialize canvas
         private void InitializeCanvas()
         {
-            unredoManager = new UnRedoManager();
-            canvasTool = new CanvasTool(this);
+            _unredoManager = new UnRedoManager();
+            _canvasTool = new CanvasTool(this);
             this.WidthResizePolicy = ResizePolicyType.FillToParent;
             this.HeightResizePolicy = ResizePolicyType.FillToParent;
 
             this.RenderingMode = GLRenderingMode.Continuous;
-            this.RegisterGLCallbacks(renderer.InitializeGL, renderer.RenderFrame, renderer.TerminateGL);
+            this.RegisterGLCallbacks(_renderer.InitializeGL, _renderer.RenderFrame, _renderer.TerminateGL);
             this.SetGraphicsConfig(false, false, 0, GLESVersion.Version20);
 
-            propertyNotification = this.AddPropertyNotification("size", PropertyCondition.Step(1.0f));
-            propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
+            _propertyNotification = this.AddPropertyNotification("size", PropertyCondition.Step(1.0f));
+            _propertyNotification.Notified += (object source, PropertyNotification.NotifyEventArgs args) =>
             {
                 Tizen.NUI.BaseComponents.View target = args.PropertyNotification.GetTarget() as Tizen.NUI.BaseComponents.View;
                 if (target != null)
                 {
-                    renderer.Resize((int)target.SizeWidth, (int)target.SizeHeight);
+                    _renderer.Resize((int)target.SizeWidth, (int)target.SizeHeight);
                 }
             };
         }
@@ -96,24 +96,24 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ToolBase CurrentTool
         {
-            get => currentTool;
+            get => _currentTool;
             set
             {
-                if (value == currentTool) return;
-                if (currentTool!= null)
+                if (value == _currentTool) return;
+                if (_currentTool!= null)
                 {
-                    currentTool.Deactivate();
-                    currentTool.ActionStarted -= OnStarted;
-                    currentTool.ActionFinished -= OnFinished;;
+                    _currentTool.Deactivate();
+                    _currentTool.ActionStarted -= OnStarted;
+                    _currentTool.ActionFinished -= OnFinished;;
                 }
 
-                currentTool = value;
+                _currentTool = value;
 
-                if (currentTool != null)
+                if (_currentTool != null)
                 {
-                    currentTool.Activate();
-                    currentTool.ActionStarted += OnStarted;
-                    currentTool.ActionFinished += OnFinished;
+                    _currentTool.Activate();
+                    _currentTool.ActionStarted += OnStarted;
+                    _currentTool.ActionFinished += OnFinished;
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace Tizen.NUI.PenWave
 
         private void RegisterUndo()
         {
-            unredoManager.RegisterUndo();
+            _unredoManager.RegisterUndo();
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCanvas()
         {
-            renderer.ClearCanvas();
+            _renderer.ClearCanvas();
             RegisterUndo();
             NotifyActionFinished(this, EventArgs.Empty);
         }
@@ -168,13 +168,13 @@ namespace Tizen.NUI.PenWave
         /// Returns true if there are any actions that can be undone. Otherwise returns false.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool CanUndo => unredoManager.CanUndo;
+        public bool CanUndo => _unredoManager.CanUndo;
 
         /// <summary>
         /// Returns true if there are any actions that can be redone. Otherwise returns false.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool CanRedo => unredoManager.CanRedo;
+        public bool CanRedo => _unredoManager.CanRedo;
 
         /// <summary>
         /// Undoes the last action. If there are no actions to undo, nothing happens.
@@ -182,7 +182,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Undo()
         {
-            unredoManager.Undo();
+            _unredoManager.Undo();
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Redo()
         {
-            unredoManager.Redo();
+            _unredoManager.Redo();
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCanvasColor(Color color)
         {
-            renderer.SetCanvasColor(color);
+            _renderer.SetCanvasColor(color);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ToggleGrid(GridDensityType gridType)
         {
-            renderer.ToggleGrid(gridType);
+            _renderer.ToggleGrid(gridType);
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddPicture(string path, float x, float y, float width, float height)
         {
-            renderer.AddPicture(path, x, y, width, height);
+            _renderer.AddPicture(path, x, y, width, height);
             RegisterUndo();
             NotifyActionFinished(this, EventArgs.Empty);
         }
@@ -237,18 +237,18 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void HandleInput(Touch touch)
         {
-            if (!canvasTool.HandleInput(touch))
+            if (!_canvasTool.HandleInput(touch))
             {
-                currentTool?.HandleInput(touch);
+                _currentTool?.HandleInput(touch);
             }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void HandleInput(Wheel wheel)
         {
-            if (!canvasTool.HandleInput(wheel))
+            if (!_canvasTool.HandleInput(wheel))
             {
-                currentTool?.HandleInput(wheel);
+                _currentTool?.HandleInput(wheel);
             }
         }
 
@@ -259,7 +259,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SaveCanvas(string path)
         {
-            renderer.SaveCanvas(path);
+            _renderer.SaveCanvas(path);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadCanvas(string path)
         {
-            renderer.LoadCanvas(path);
+            _renderer.LoadCanvas(path);
         }
 
 
@@ -285,7 +285,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void TakeScreenShot(string path, int x, int y, int width, int height, EventHandler callback)
         {
-            renderer.TakeScreenShot(path, x, y, width, height, () => {
+            _renderer.TakeScreenShot(path, x, y, width, height, () => {
                 callback?.Invoke(this, EventArgs.Empty);
             });
         }
@@ -297,7 +297,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MoveBegin()
         {
-            return renderer.CanvasMoveBegin();
+            return _renderer.CanvasMoveBegin();
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MoveUpdate(int x, int y)
         {
-            return renderer.CanvasMoveUpdate(x, y);
+            return _renderer.CanvasMoveUpdate(x, y);
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MoveEnd()
         {
-            return renderer.CanvasMoveEnd();
+            return _renderer.CanvasMoveEnd();
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ZoomBegin()
         {
-            return renderer.CanvasZoomBegin();
+            return _renderer.CanvasZoomBegin();
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ZoomUpdate(float x, float y, float zoom, float dx, float dy)
         {
-            return renderer.CanvasZoomUpdate(x, y, zoom, dx, dy);
+            return _renderer.CanvasZoomUpdate(x, y, zoom, dx, dy);
         }
 
         /// <summary>
@@ -354,7 +354,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ZoomEnd()
         {
-            return renderer.CanvasZoomEnd();
+            return _renderer.CanvasZoomEnd();
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetZoomValue()
         {
-            return renderer.CanvasGetZoomValue();
+            return _renderer.CanvasGetZoomValue();
         }
 
         /// <summary>
@@ -374,7 +374,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetZoomValue(int zoomValue)
         {
-            renderer.CanvasSetZoomValue(zoomValue);
+            _renderer.CanvasSetZoomValue(zoomValue);
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetZoomValue(int x, int y, int zoomValue)
         {
-            renderer.CanvasSetZoomValue(x, y, zoomValue);
+            _renderer.CanvasSetZoomValue(x, y, zoomValue);
         }
 
         /// <summary>
@@ -396,9 +396,9 @@ namespace Tizen.NUI.PenWave
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed) return;
-            currentTool.ActionStarted -= OnStarted;
-            currentTool.ActionFinished -= OnFinished;;
-            renderer.TerminateGL();
+            _currentTool.ActionStarted -= OnStarted;
+            _currentTool.ActionFinished -= OnFinished;;
+            _renderer.TerminateGL();
             base.Dispose(type);
         }
     }
