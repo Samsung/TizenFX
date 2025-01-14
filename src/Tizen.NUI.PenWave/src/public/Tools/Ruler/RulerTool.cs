@@ -29,10 +29,10 @@ namespace Tizen.NUI.PenWave
     {
 
         // The id of the current shape being drawn.
-        private uint currentShapeId;
-        private float dragStartX = 0;
-        private float dragStartY = 0;
-        private bool isDrawingCircular = false;
+        private uint _currentShapeId;
+        private float _dragStartX = 0;
+        private float _dragStartY = 0;
+        private bool _isDrawingCircular = false;
 
         /// <summary>
         /// The constructor.
@@ -107,31 +107,31 @@ namespace Tizen.NUI.PenWave
 
             if (Ruler == RulerType.Line)
             {
-                currentShapeId = PenWave.Instance.BeginLineDraw(positionX, positionY, touchTime);
-                isDrawingCircular = false;
+                _currentShapeId = PenWave.Instance.BeginLineDraw(positionX, positionY, touchTime);
+                _isDrawingCircular = false;
             }
             else if (Ruler == RulerType.Circle)
             {
-                if(!isDrawingCircular)
+                if(!_isDrawingCircular)
                 {
-                    dragStartX = positionX;
-                    dragStartY = positionY;
-                    isDrawingCircular = true;
+                    _dragStartX = positionX;
+                    _dragStartY = positionY;
+                    _isDrawingCircular = true;
                 }
                 else
                 {
-                    double rad = Math.Sqrt(((dragStartX - positionX) * (dragStartX - positionX)) + ((dragStartY - positionY) * (dragStartY - positionY)));
-                    currentShapeId = PenWave.Instance.AddArcPath(dragStartX, dragStartY,(float) rad, positionX, positionY, false );
-                    isDrawingCircular = false;
+                    double rad = Math.Sqrt(((_dragStartX - positionX) * (_dragStartX - positionX)) + ((_dragStartY - positionY) * (_dragStartY - positionY)));
+                    _currentShapeId = PenWave.Instance.AddArcPath(_dragStartX, _dragStartY,(float) rad, positionX, positionY, false );
+                    _isDrawingCircular = false;
                 }
             }
             else if (Ruler == RulerType.Rectangle)
             {
-                currentShapeId = PenWave.Instance.AddRectanglePath(positionX, positionY, 400.0f, 400.0f, false);
-                isDrawingCircular = false;
+                _currentShapeId = PenWave.Instance.AddRectanglePath(positionX, positionY, 400.0f, 400.0f, false);
+                _isDrawingCircular = false;
             }
 
-            if (currentShapeId > 0)
+            if (_currentShapeId > 0)
             {
                 NotifyActionStarted();
             }
@@ -140,18 +140,18 @@ namespace Tizen.NUI.PenWave
 
         private void ContinueDrawing(float positionX, float positionY, uint touchTime)
         {
-            if (currentShapeId > 0)
+            if (_currentShapeId > 0)
             {
                 if (Ruler == RulerType.Line)
                 {
-                    PenWave.Instance.DrawLine(currentShapeId, positionX, positionY, touchTime);
+                    PenWave.Instance.DrawLine(_currentShapeId, positionX, positionY, touchTime);
                 }
                 else
                 {
-                    var res = PenWave.Instance.ResizeShapePath(currentShapeId, positionX, positionY);
+                    var res = PenWave.Instance.ResizeShapePath(_currentShapeId, positionX, positionY);
                     if (res == ErrorShapeAddPointsType.DrawingCanceled)
                     {
-                        PenWave.Instance.FinishShapePath(currentShapeId);
+                        PenWave.Instance.FinishShapePath(_currentShapeId);
                     }
                 }
             }
@@ -159,17 +159,17 @@ namespace Tizen.NUI.PenWave
 
         private void EndDrawing()
         {
-            if (currentShapeId > 0)
+            if (_currentShapeId > 0)
             {
                 if (Ruler == RulerType.Line)
                 {
-                    PenWave.Instance.EndLineDraw(currentShapeId, 0);
+                    PenWave.Instance.EndLineDraw(_currentShapeId, 0);
                 }
                 else
                 {
-                    PenWave.Instance.FinishShapePath(currentShapeId);
+                    PenWave.Instance.FinishShapePath(_currentShapeId);
                 }
-                currentShapeId = 0;
+                _currentShapeId = 0;
                 NotifyActionFinished();
             }
         }

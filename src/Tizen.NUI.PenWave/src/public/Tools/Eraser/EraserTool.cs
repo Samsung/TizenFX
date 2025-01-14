@@ -27,7 +27,7 @@ namespace Tizen.NUI.PenWave
     public class EraserTool : ToolBase
     {
         /// The current state of the tool.
-        private bool isActive = false;
+        private bool _isActive = false;
 
         /// <summary>
         /// Constructor
@@ -107,7 +107,7 @@ namespace Tizen.NUI.PenWave
         // Start drawing at the given position.
         private  void StartDrawing(float positionX, float positionY, uint touchTime)
         {
-            isActive = true;
+            _isActive = true;
             PenWave.Instance.EraseShape((int)positionX, (int)positionY, EraserRadius, (Eraser == EraserType.Partial));
             NotifyActionStarted();
         }
@@ -121,11 +121,11 @@ namespace Tizen.NUI.PenWave
         // End drawing at the given position.
         private void EndDrawing()
         {
-            if (isActive)
+            if (_isActive)
             {
                 PenWave.Instance.StopErasing();
                 NotifyActionFinished();
-                isActive = false;
+                _isActive = false;
             }
         }
 

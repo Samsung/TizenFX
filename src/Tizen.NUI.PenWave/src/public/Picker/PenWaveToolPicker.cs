@@ -29,6 +29,13 @@ namespace Tizen.NUI.PenWave
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PenWaveToolPicker : View
     {
+        /// <summary>
+        /// The ToolChanged event. It is triggered when the selected tool changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler ToolChanged;
+
+        // the resource path for images and icons
         private static readonly string s_resourcePath = FrameworkInformation.ResourcePath + "images/light/";
 
         // the icons for different brush types
@@ -75,29 +82,23 @@ namespace Tizen.NUI.PenWave
             { GridDensityType.Large, "icon_large_grid_density.png" },
         };
 
-        private readonly PenWaveCanvas canvasView;
-        private readonly Dictionary<Type, ToolBase> tools;
+        private readonly PenWaveCanvas _canvasView;
+        private readonly Dictionary<Type, ToolBase> _tools;
 
-        private ImageView selectedButton;
-        private ImageView undoButton;
-        private ImageView redoButton;
+        private ImageView _selectedButton;
+        private ImageView _undoButton;
+        private ImageView _redoButton;
 
 
-        private const string IconStateNormalColor = "#17234d";
-        private const string IconStateSelectedColor = "#FF6200";
-        private const string IconStateDisabledColor = "#CACACA";
+        private const string _iconStateNormalColor = "#17234d";
+        private const string _iconStateSelectedColor = "#FF6200";
+        private const string _iconStateDisabledColor = "#CACACA";
 
         /// The pickerView property. It contains the view that holds the tool buttons.
-        private View pickerView;
+        private View _pickerView;
 
         /// The popupView property. It contains the view that holds the tool settings.
-        private View popupView;
-
-        /// <summary>
-        /// The ToolChanged event. It is triggered when the selected tool changes.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ToolChanged;
+        private View _popupView;
 
         /// <summary>
         /// Creates a new instance of PenWaveToolPicker.
@@ -105,10 +106,10 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PenWaveToolPicker(PenWaveCanvas canvasView)
         {
-            this.canvasView = canvasView;
-            tools = new Dictionary<Type, ToolBase>();
+            _canvasView = canvasView;
+            _tools = new Dictionary<Type, ToolBase>();
 
-            canvasView.ActionFinished += OnFinished;
+            _canvasView.ActionFinished += OnFinished;
             Initialize();
         }
 
@@ -140,7 +141,7 @@ namespace Tizen.NUI.PenWave
             };
 
             // Picker View
-            pickerView = new View
+            _pickerView = new View
             {
                 CornerRadius = new Vector4(10, 10, 10, 10),
                 WidthSpecification = LayoutParamPolicies.WrapContent,
@@ -154,10 +155,10 @@ namespace Tizen.NUI.PenWave
                 },
                 BackgroundImage = s_resourcePath + "menu_bg.png",
             };
-            pickerView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
+            _pickerView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
 
             // Popup View
-            popupView = new View
+            _popupView = new View
             {
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
@@ -171,13 +172,13 @@ namespace Tizen.NUI.PenWave
                 BackgroundImage = s_resourcePath + "picker_popup_bg.png",
                 Padding = new Extents(20, 20, 20, 20),
             };
-            popupView.Hide();
-            popupView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
-            canvasView.TouchEvent += (s, e) => { ClearPopupView(); return false; }; // Hide popup when touching outside it
+            _popupView.Hide();
+            _popupView.TouchEvent += (s, e) => { return true; }; // Prevent touch events from propagating to the canvas view
+            _canvasView.TouchEvent += (s, e) => { ClearPopupView(); return false; }; // Hide popup when touching outside it
 
-            Add(pickerView);
-            Add(popupView);
-            canvasView.Add(this);
+            Add(_pickerView);
+            Add(_popupView);
+            _canvasView.Add(this);
         }
 
         // Initialize the canvas tools and their corresponding buttons.
@@ -187,34 +188,34 @@ namespace Tizen.NUI.PenWave
             {
               ShowPaletteSetting();
             });
-            pickerView.Add(backgroundColorButton);
+            _pickerView.Add(backgroundColorButton);
 
             var gridButton = CreateToolButton(s_resourcePath + "icon_medium_grid_density.png", () =>
             {
               ShowGridSetting();
             });
-            pickerView.Add(gridButton);
+            _pickerView.Add(gridButton);
 
-            undoButton = CreateToolButton(s_resourcePath + "icon_undo.svg", () =>
+            _undoButton = CreateToolButton(s_resourcePath + "icon_undo.svg", () =>
             {
-                canvasView.Undo();
+                _canvasView.Undo();
                 UpdateUI();
             });
-            pickerView.Add(undoButton);
+            _pickerView.Add(_undoButton);
 
-            redoButton = CreateToolButton(s_resourcePath + "icon_redo.svg", () =>
+            _redoButton = CreateToolButton(s_resourcePath + "icon_redo.svg", () =>
             {
-                canvasView.Redo();
+                _canvasView.Redo();
                 UpdateUI();
             });
-            pickerView.Add(redoButton);
+            _pickerView.Add(_redoButton);
 
             var clearButton = CreateToolButton(s_resourcePath + "icon_clear.png", () =>
             {
-                canvasView.ClearCanvas();
+                _canvasView.ClearCanvas();
                 UpdateUI();
             });
-            pickerView.Add(clearButton);
+            _pickerView.Add(clearButton);
         }
 
         // Show the color palette setting for the canvas background color.
@@ -222,7 +223,7 @@ namespace Tizen.NUI.PenWave
         {
             ClearPopupView();
 
-            popupView.Show();
+            _popupView.Show();
 
             var colorPicker = new View
             {
@@ -247,7 +248,7 @@ namespace Tizen.NUI.PenWave
                 {
                     if (e.Touch.GetState(0) == PointStateType.Down)
                     {
-                        canvasView.SetCanvasColor(color);
+                        _canvasView.SetCanvasColor(color);
                     }
                     return true;
                 };
@@ -255,7 +256,7 @@ namespace Tizen.NUI.PenWave
                 colorPicker.Add(button);
             }
 
-            popupView.Add(colorPicker);
+            _popupView.Add(colorPicker);
         }
 
         // Show the grid density setting for the canvas grid.
@@ -263,7 +264,7 @@ namespace Tizen.NUI.PenWave
         {
             ClearPopupView();
 
-            popupView.Show();
+            _popupView.Show();
 
              var gridPicker = new View
             {
@@ -280,12 +281,12 @@ namespace Tizen.NUI.PenWave
             {
                 var button = CreateToolButton(s_resourcePath + icon.Value, () =>
                 {
-                    canvasView.ToggleGrid(icon.Key);
+                    _canvasView.ToggleGrid(icon.Key);
                 });
                 gridPicker.Add(button);
             }
 
-            popupView.Add(gridPicker);
+            _popupView.Add(gridPicker);
         }
 
         // Initialize the tools and add them to the tool picker. Each tool has its own settings and behavior.
@@ -303,28 +304,28 @@ namespace Tizen.NUI.PenWave
             var rulerTool = new RulerTool(RulerType.Line);
             AddTool(rulerTool, "icon_shape.png");
 
-            canvasView.CurrentTool = pencilTool;
+            _canvasView.CurrentTool = pencilTool;
         }
 
         // Add a tool to the tool picker and create a button for it. The button will be used to select the tool and show its settings.
         private void AddTool(ToolBase tool, string icon)
         {
-            tools[tool.GetType()] = tool;
+            _tools[tool.GetType()] = tool;
 
             var toolButton = CreateToolButton(s_resourcePath + icon, () =>
             {
                 SetTool(tool);
             });
-            pickerView.Add(toolButton);
+            _pickerView.Add(toolButton);
 
         }
 
         // Set the current tool of the canvas view and show its settings.
         private void SetTool(ToolBase tool)
         {
-            if (tools.ContainsKey(tool.GetType()))
+            if (_tools.ContainsKey(tool.GetType()))
             {
-                canvasView.CurrentTool = tool;
+                _canvasView.CurrentTool = tool;
                 ShowToolSettings(tool);
                 ToolChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -344,7 +345,7 @@ namespace Tizen.NUI.PenWave
             else if (tool is RulerTool rulerTool)
                 ShowRulerToolSettings(rulerTool);
 
-            popupView.Show();
+            _popupView.Show();
         }
 
         // Show the settings for the pencil tool in the popup view. The pencil tool has brush type, color, and size settings.
@@ -397,7 +398,7 @@ namespace Tizen.NUI.PenWave
                 brushPicker.Add(button);
             }
 
-            popupView.Add(brushPicker);
+            _popupView.Add(brushPicker);
         }
 
         // Create a button for the given color and add it to the popup view.
@@ -435,7 +436,7 @@ namespace Tizen.NUI.PenWave
                 colorPicker.Add(button);
             }
 
-            popupView.Add(colorPicker);
+            _popupView.Add(colorPicker);
         }
 
         // Create a slider for the given tool and add it to the popup view. The slider controls the size of the tool.
@@ -473,7 +474,7 @@ namespace Tizen.NUI.PenWave
                 tool.Activate();
             };
 
-            popupView.Add(slider);
+            _popupView.Add(slider);
         }
 
         // Create a button for the given eraser type and add it to the popup view. The button toggles between partial and full eraser modes.
@@ -501,7 +502,7 @@ namespace Tizen.NUI.PenWave
                 });
                 eraserPicker.Add(button);
             }
-            popupView.Add(eraserPicker);
+            _popupView.Add(eraserPicker);
         }
 
         // Create a button for the given selection type and add it to the popup view. The button toggles between move, resize, and rotate modes.
@@ -526,7 +527,7 @@ namespace Tizen.NUI.PenWave
                 picker.Add(button);
             }
 
-            popupView.Add(picker);
+            _popupView.Add(picker);
         }
 
         // Create a button for the given ruler type and add it to the popup view. The button toggles between line, rectangle, and circular ruler modes.
@@ -551,7 +552,7 @@ namespace Tizen.NUI.PenWave
                 picker.Add(button);
             }
 
-            popupView.Add(picker);
+            _popupView.Add(picker);
         }
 
         /// <summary>
@@ -567,7 +568,7 @@ namespace Tizen.NUI.PenWave
                 ClearPopupView();
                 OnClick?.Invoke();
             });
-            pickerView.Add(button);
+            _pickerView.Add(button);
         }
 
         /// <summary>
@@ -577,7 +578,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddViewToPickerView(View view)
         {
-            pickerView.Add(view);
+            _pickerView.Add(view);
         }
 
         /// <summary>
@@ -588,7 +589,7 @@ namespace Tizen.NUI.PenWave
         public void AddButtonToPopupView(string iconPath, Action OnClick)
         {
             var button = CreateToolButton(iconPath, OnClick);
-            popupView.Add(button);
+            _popupView.Add(button);
         }
 
         /// <summary>
@@ -599,7 +600,7 @@ namespace Tizen.NUI.PenWave
         public void SetViewToPopupView(View view)
         {
             ClearPopupView();
-            popupView.Add(view);
+            _popupView.Add(view);
         }
 
         /// <summary>
@@ -612,19 +613,19 @@ namespace Tizen.NUI.PenWave
             {
                 Size2D = new Size2D(48, 48),
                 ResourceUrl = iconPath,
-                Color = new Color(IconStateNormalColor),
+                Color = new Color(_iconStateNormalColor),
             };
 
             button.TouchEvent += (s, e) =>
             {
                 if (e.Touch.GetState(0) == PointStateType.Down)
                 {
-                    if (selectedButton != null)
+                    if (_selectedButton != null)
                     {
-                        selectedButton.Color = new Color(IconStateNormalColor);
+                        _selectedButton.Color = new Color(_iconStateNormalColor);
                     }
-                    selectedButton = button;
-                    button.Color = new Color(IconStateSelectedColor);
+                    _selectedButton = button;
+                    button.Color = new Color(_iconStateSelectedColor);
                     OnClick?.Invoke();
                 }
                 return true;
@@ -638,14 +639,14 @@ namespace Tizen.NUI.PenWave
         {
             ClearPopupView();
             // Update undo/redo buttons state and colors
-            if (undoButton != null)
+            if (_undoButton != null)
             {
-                undoButton.Color = canvasView.CanUndo ? new Color(IconStateNormalColor) : new Color(IconStateDisabledColor);
+                _undoButton.Color = _canvasView.CanUndo ? new Color(_iconStateNormalColor) : new Color(_iconStateDisabledColor);
             }
 
-            if (redoButton != null)
+            if (_redoButton != null)
             {
-                redoButton.Color = canvasView.CanRedo ? new Color(IconStateNormalColor) : new Color(IconStateDisabledColor);
+                _redoButton.Color = _canvasView.CanRedo ? new Color(_iconStateNormalColor) : new Color(_iconStateDisabledColor);
             }
 
         }
@@ -656,12 +657,12 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearPopupView()
         {
-            int childNum = (int)popupView.ChildCount;
+            int childNum = (int)_popupView.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
-                popupView.Remove(popupView.GetChildAt((uint)i));
+                _popupView.Remove(_popupView.GetChildAt((uint)i));
             }
-            popupView.Hide();
+            _popupView.Hide();
         }
 
         /// <summary>
@@ -670,7 +671,7 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ShowPopupView()
         {
-            popupView.Show();
+            _popupView.Show();
         }
 
         /// <summary>
@@ -680,7 +681,7 @@ namespace Tizen.NUI.PenWave
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed) return;
-            canvasView.ActionFinished -= OnFinished;;
+            _canvasView.ActionFinished -= OnFinished;;
             base.Dispose(type);
         }
     }

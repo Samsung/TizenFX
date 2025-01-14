@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2024 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +37,9 @@ namespace Tizen.NUI.PenWave
         };
 
         // Canvas id.
-        private uint canvasId;
+        private uint _canvasId;
         // PenWave engine.
-        private PenWave engine;
+        private PenWave _engine;
 
         /// <summary>
         /// Constructor. Creates a new instance of CanvasRenderer. This constructor sets the current canvas to the specified canvas id. Also it sets paths to resources and initializes textures.
@@ -47,12 +47,12 @@ namespace Tizen.NUI.PenWave
         /// <param name="canvasId">The canvas id</param>
         internal CanvasRenderer(uint canvasId)
         {
-            this.canvasId = canvasId;
-            engine = PenWave.Instance;
-            engine.SetCurrentCanvas(canvasId);
-            engine.SetResourcePath(FrameworkInformation.ResourcePath + "images/");
-            engine.SetFontPath(s_fontPath);
-            engine.SetTexturePaths(s_texturePaths, s_texturePaths.Length);
+            _canvasId = canvasId;
+            _engine = PenWave.Instance;
+            _engine.SetCurrentCanvas(canvasId);
+            _engine.SetResourcePath(FrameworkInformation.ResourcePath + "images/");
+            _engine.SetFontPath(s_fontPath);
+            _engine.SetTexturePaths(s_texturePaths, s_texturePaths.Length);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         internal void InitializeGL()
         {
-            engine.InitializeGL();
+            _engine.InitializeGL();
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         internal void TerminateGL()
         {
-            engine.TerminateGL();
+            _engine.TerminateGL();
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Tizen.NUI.PenWave
         /// <returns></returns>
         internal int RenderFrame(in DirectRenderingGLView.RenderCallbackInput input)
         {
-            return engine.RenderFrameGL();
+            return _engine.RenderFrameGL();
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace Tizen.NUI.PenWave
         /// <param name="height">The height</param>
         internal void Resize(int width, int height)
         {
-            engine.UpdateGLWindowSize(width, height);
-            engine.RenderFullyReDraw();
+            _engine.UpdateGLWindowSize(width, height);
+            _engine.RenderFullyReDraw();
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Tizen.NUI.PenWave
         /// </summary>
         internal void ClearCanvas()
         {
-            engine.ClearCurrentCanvas();
+            _engine.ClearCurrentCanvas();
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace Tizen.NUI.PenWave
         /// <param name="height">The height</param>
         internal void AddPicture(string path, float x, float y, float width, float height)
         {
-            engine.AddPicture(path, x, y, width, height);
-            engine.RenderFullyReDraw();
+            _engine.AddPicture(path, x, y, width, height);
+            _engine.RenderFullyReDraw();
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="gridType">The grid type</param>
         internal void ToggleGrid(GridDensityType gridType)
         {
-            engine.ToggleGrid((int)gridType);
+            _engine.ToggleGrid((int)gridType);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="color">The background color</param>
         internal void SetCanvasColor(Color color)
         {
-            engine.CanvasSetColor(ToHex(color), color.A);
+            _engine.CanvasSetColor(ToHex(color), color.A);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="path">The file path</param>
         internal void SaveCanvas(string path)
         {
-            engine.SaveCanvas(canvasId, path);
+            _engine.SaveCanvas(_canvasId, path);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Tizen.NUI.PenWave
             }
             else
             {
-                engine.LoadCanvas(canvasId, path);
+                _engine.LoadCanvas(_canvasId, path);
             }
         }
 
@@ -168,7 +168,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="callback">Callback when screenshot is complete</param>
         internal void TakeScreenShot(string path, int x, int y, int width, int height, PenWave.ScreenShotCallback callback)
         {
-            engine.TakeScreenshot(canvasId, path, x, y, width, height, callback);
+            _engine.TakeScreenshot(_canvasId, path, x, y, width, height, callback);
         }
 
         // Converts Color to hex string.
@@ -186,7 +186,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>True if the canvas move begin is successful, otherwise false</returns>
         internal bool CanvasMoveBegin()
         {
-            return engine.CanvasMoveBegin();
+            return _engine.CanvasMoveBegin();
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>True if the canvas move update is successful, otherwise false</returns>
         internal bool CanvasMoveUpdate(int x, int y)
         {
-            return engine.CanvasMove(x, y);
+            return _engine.CanvasMove(x, y);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>True if the canvas move end is successful, otherwise false</returns>
         internal bool CanvasMoveEnd()
         {
-            return engine.CanvasMoveEnd();
+            return _engine.CanvasMoveEnd();
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>True if the canvas zoom begin is successful, otherwise false</returns>
         internal bool CanvasZoomBegin()
         {
-            return engine.CanvasZoomBegin();
+            return _engine.CanvasZoomBegin();
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>True if the canvas zoom update is successful, otherwise false</returns>
         internal bool CanvasZoomUpdate(float x, float y, float zoom, float dx, float dy)
         {
-            return engine.CanvasZoom(x, y, zoom, dx, dy);
+            return _engine.CanvasZoom(x, y, zoom, dx, dy);
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>True if the canvas zoom end is successful, otherwise false</returns>
         internal bool CanvasZoomEnd()
         {
-            return engine.CanvasZoomEnd();
+            return _engine.CanvasZoomEnd();
         }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace Tizen.NUI.PenWave
         /// <returns>The zoom value</returns>
         internal int CanvasGetZoomValue()
         {
-            return engine.CanvasGetZoomValue();
+            return _engine.CanvasGetZoomValue();
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="zoomValue">The zoom value</param>
         internal void CanvasSetZoomValue(int zoomValue)
         {
-            engine.CanvasSetZoomValue(zoomValue);
+            _engine.CanvasSetZoomValue(zoomValue);
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace Tizen.NUI.PenWave
         /// <param name="zoomValue">The zoom value</param>
         internal void CanvasSetZoomValue(int x, int y, int zoomValue)
         {
-            engine.CanvasSetZoomValue(x, y, zoomValue);
+            _engine.CanvasSetZoomValue(x, y, zoomValue);
         }
     }
 }

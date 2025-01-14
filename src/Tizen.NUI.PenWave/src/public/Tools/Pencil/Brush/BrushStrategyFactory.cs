@@ -28,7 +28,7 @@ namespace Tizen.NUI.PenWave
     public sealed class BrushStrategyFactory
     {
         private static readonly BrushStrategyFactory s_instance = new BrushStrategyFactory();
-        private Dictionary<BrushType, IBrushStrategy> brushStrategies = new Dictionary<BrushType, IBrushStrategy>();
+        private Dictionary<BrushType, IBrushStrategy> _brushStrategies = new Dictionary<BrushType, IBrushStrategy>();
 
         /// <summary>
         /// Private constructor.
@@ -47,9 +47,9 @@ namespace Tizen.NUI.PenWave
         /// <param name="brushType">The brush type.</param>
         public IBrushStrategy GetBrushStrategy(BrushType brushType)
         {
-            if (!brushStrategies.ContainsKey(brushType))
+            if (!_brushStrategies.ContainsKey(brushType))
             {
-                brushStrategies[brushType] = brushType switch
+                _brushStrategies[brushType] = brushType switch
                 {
                     BrushType.Stroke => new StrokeBrush(),
                     BrushType.VarStroke => new VarStrokeBrush(),
@@ -64,7 +64,7 @@ namespace Tizen.NUI.PenWave
                 };
             }
 
-            return brushStrategies[brushType];
+            return _brushStrategies[brushType];
         }
 
     }

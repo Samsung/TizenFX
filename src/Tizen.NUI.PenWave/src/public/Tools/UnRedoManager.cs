@@ -28,8 +28,8 @@ namespace Tizen.NUI.PenWave
     internal class UnRedoManager
     {
         // Stacks to store undo and redo commands
-        private uint undoStack = 0;
-        private uint redoStack = 0;
+        private uint _undoStack = 0;
+        private uint _redoStack = 0;
 
         /// <summary>
         /// Registers a new command to the undo stack and clears the redo stack.
@@ -37,8 +37,8 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void RegisterUndo()
         {
-            undoStack++; // Push command to undo stack
-            redoStack = 0; // Clear redo stack after executing a new command
+            _undoStack++; // Push command to undo stack
+            _redoStack = 0; // Clear redo stack after executing a new command
         }
 
         /// <summary>
@@ -47,11 +47,11 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void Undo()
         {
-            if (undoStack > 0)
+            if (_undoStack > 0)
             {
-                undoStack--; // Pop command from undo stack
+                _undoStack--; // Pop command from undo stack
                 PenWave.Instance.Undo();
-                redoStack++; // Push command to redo stack
+                _redoStack++; // Push command to redo stack
             }
         }
 
@@ -61,11 +61,11 @@ namespace Tizen.NUI.PenWave
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void Redo()
         {
-            if (redoStack > 0)
+            if (_redoStack > 0)
             {
-                redoStack--; // Pop command from redo stack
+                _redoStack--; // Pop command from redo stack
                 PenWave.Instance.Redo();
-                undoStack++; // Push command to undo stack
+                _undoStack++; // Push command to undo stack
             }
         }
 
@@ -73,12 +73,12 @@ namespace Tizen.NUI.PenWave
         /// Determines whether an undo operation is possible.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal bool CanUndo => undoStack > 0;
+        internal bool CanUndo => _undoStack > 0;
 
         /// <summary>
         /// Determines whether a redo operation is possible.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal bool CanRedo => redoStack > 0;
+        internal bool CanRedo => _redoStack > 0;
     }
 }
