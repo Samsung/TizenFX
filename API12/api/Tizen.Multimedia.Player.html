@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Player">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.Player">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Multimedia_Player" data-uid="Tizen.Multimedia.Player" class="text-break">Class Player
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Player" data-uid="Tizen.Multimedia.Player" class="mt-0 text-break"><span class="entity-type">Class</span>
+Player
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L72" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.MediaPlayer.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>Provides the ability to control media playback.</p>
@@ -110,7 +82,7 @@
 
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
@@ -122,15 +94,21 @@
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L49">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Multimedia_Player__ctor_" data-uid="Tizen.Multimedia.Player.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_Player__ctor" data-uid="Tizen.Multimedia.Player.#ctor">Player()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Player.html">Player</a> class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L49">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player__ctor" data-uid="Tizen.Multimedia.Player.#ctor">Player()</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Player.html">Player</a> class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -143,24 +121,27 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L807">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AdaptiveVariants_" data-uid="Tizen.Multimedia.Player.AdaptiveVariants*"></a>
-  <h4 id="Tizen_Multimedia_Player_AdaptiveVariants" data-uid="Tizen.Multimedia.Player.AdaptiveVariants">AdaptiveVariants</h4>
-  <div class="markdown level1 summary"><p>Gets the adaptive variants of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L807">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AdaptiveVariants" data-uid="Tizen.Multimedia.Player.AdaptiveVariants">AdaptiveVariants</h4>
+    <section>
+    <p>Gets the adaptive variants of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public AdaptiveVariants AdaptiveVariants { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -181,22 +162,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L717">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioCodecType_" data-uid="Tizen.Multimedia.Player.AudioCodecType*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioCodecType" data-uid="Tizen.Multimedia.Player.AudioCodecType">AudioCodecType</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the default codec type of the audio decoder.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L717">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioCodecType" data-uid="Tizen.Multimedia.Player.AudioCodecType">AudioCodecType</h4>
+    <section>
+    <p>Gets or sets the default codec type of the audio decoder.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public CodecType AudioCodecType { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -226,7 +210,7 @@ The following functions should be called after the codec type is set. :<br>
 <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioPitchEnabled">AudioPitchEnabled</a><br></p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -260,22 +244,25 @@ Operation failed; internal error.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L452">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioEffect_" data-uid="Tizen.Multimedia.Player.AudioEffect*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioEffect" data-uid="Tizen.Multimedia.Player.AudioEffect">AudioEffect</h4>
-  <div class="markdown level1 summary"><p>Gets the audio effect of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L452">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioEffect" data-uid="Tizen.Multimedia.Player.AudioEffect">AudioEffect</h4>
+    <section>
+    <p>Gets the audio effect of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public AudioEffect AudioEffect { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -295,7 +282,7 @@ It also provides functions to adjust the configurations of the player such as pl
 Note that only one video player can be played at one time.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -312,22 +299,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L237">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioLatencyMode_" data-uid="Tizen.Multimedia.Player.AudioLatencyMode*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioLatencyMode" data-uid="Tizen.Multimedia.Player.AudioLatencyMode">AudioLatencyMode</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the audio latency mode.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L237">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioLatencyMode" data-uid="Tizen.Multimedia.Player.AudioLatencyMode">AudioLatencyMode</h4>
+    <section>
+    <p>Gets or sets the audio latency mode.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public AudioLatencyMode AudioLatencyMode { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -348,7 +338,7 @@ audio output interval can be increased, so it can keep more audio data to play.
 But, state transition like pause or resume can be more slower than default(<a class="xref" href="Tizen.Multimedia.AudioLatencyMode.html#Tizen_Multimedia_AudioLatencyMode_Mid">Mid</a>).</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -373,28 +363,31 @@ But, state transition like pause or resume can be more slower than default(<a cl
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_AudioLatencyMode_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_AudioLatencyMode_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioOffload">AudioOffload</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L826">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioOffload_" data-uid="Tizen.Multimedia.Player.AudioOffload*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioOffload" data-uid="Tizen.Multimedia.Player.AudioOffload">AudioOffload</h4>
-  <div class="markdown level1 summary"><p>Gets the audio offload settings of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L826">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioOffload" data-uid="Tizen.Multimedia.Player.AudioOffload">AudioOffload</h4>
+    <section>
+    <p>Gets the audio offload settings of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public AudioOffload AudioOffload { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -415,22 +408,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L653">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioPitch_" data-uid="Tizen.Multimedia.Player.AudioPitch*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioPitch" data-uid="Tizen.Multimedia.Player.AudioPitch">AudioPitch</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the pitch of the audio.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L653">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioPitch" data-uid="Tizen.Multimedia.Player.AudioPitch">AudioPitch</h4>
+    <section>
+    <p>Gets or sets the pitch of the audio.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public float AudioPitch { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -451,7 +447,7 @@ This function is used for audio content only.
 This function could be unavailable depending on the audio codec type.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -485,30 +481,33 @@ The function is not available depending on the audio codec type. (Since tizen 6.
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_AudioPitch_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_AudioPitch_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioPitchEnabled">AudioPitchEnabled</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioOffload">AudioOffload</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioCodecType">AudioCodecType</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L606">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioPitchEnabled_" data-uid="Tizen.Multimedia.Player.AudioPitchEnabled*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioPitchEnabled" data-uid="Tizen.Multimedia.Player.AudioPitchEnabled">AudioPitchEnabled</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the audio pitch control is enabled.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L606">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioPitchEnabled" data-uid="Tizen.Multimedia.Player.AudioPitchEnabled">AudioPitchEnabled</h4>
+    <section>
+    <p>Gets or sets a value indicating whether the audio pitch control is enabled.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool AudioPitchEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -529,7 +528,7 @@ To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerS
 This function could be unavailable depending on the audio codec type.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -556,30 +555,33 @@ The function is not available depending on the audio codec type. (Since tizen 6.
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_AudioPitchEnabled_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_AudioPitchEnabled_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioPitch">AudioPitch</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioOffload">AudioOffload</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioCodecType">AudioCodecType</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L394">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_AudioTrackInfo_" data-uid="Tizen.Multimedia.Player.AudioTrackInfo*"></a>
-  <h4 id="Tizen_Multimedia_Player_AudioTrackInfo" data-uid="Tizen.Multimedia.Player.AudioTrackInfo">AudioTrackInfo</h4>
-  <div class="markdown level1 summary"><p>Gets the audio track information of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L394">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioTrackInfo" data-uid="Tizen.Multimedia.Player.AudioTrackInfo">AudioTrackInfo</h4>
+    <section>
+    <p>Gets the audio track information of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayerTrackInfo AudioTrackInfo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -601,22 +603,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L168">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_BufferingTime_" data-uid="Tizen.Multimedia.Player.BufferingTime*"></a>
-  <h4 id="Tizen_Multimedia_Player_BufferingTime" data-uid="Tizen.Multimedia.Player.BufferingTime">BufferingTime</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the streaming buffering time.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L168">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_BufferingTime" data-uid="Tizen.Multimedia.Player.BufferingTime">BufferingTime</h4>
+    <section>
+    <p>Gets or sets the streaming buffering time.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayerBufferingTime BufferingTime { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -634,7 +639,7 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -666,28 +671,31 @@ Note that only one video player can be played at one time.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_BufferingTime_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_BufferingTime_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.PlayerBufferingTime.html">PlayerBufferingTime</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L102">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Cookie_" data-uid="Tizen.Multimedia.Player.Cookie*"></a>
-  <h4 id="Tizen_Multimedia_Player_Cookie" data-uid="Tizen.Multimedia.Player.Cookie">Cookie</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the cookie for streaming playback.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Cookie" data-uid="Tizen.Multimedia.Player.Cookie">Cookie</h4>
+    <section>
+    <p>Gets or sets the cookie for streaming playback.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Cookie { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -705,7 +713,7 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -732,22 +740,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L332">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Display_" data-uid="Tizen.Multimedia.Player.Display*"></a>
-  <h4 id="Tizen_Multimedia_Player_Display" data-uid="Tizen.Multimedia.Player.Display">Display</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the display of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L332">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Display" data-uid="Tizen.Multimedia.Player.Display">Display</h4>
+    <section>
+    <p>Gets or sets the display of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Display Display { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -770,7 +781,7 @@ If a user wants to use video and UI sync mode, please use <a class="xref" href="
 But <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_DisplaySettings">DisplaySettings</a> is not supported in UI sync mode.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -802,22 +813,25 @@ But <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_D
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L293">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_DisplaySettings_" data-uid="Tizen.Multimedia.Player.DisplaySettings*"></a>
-  <h4 id="Tizen_Multimedia_Player_DisplaySettings" data-uid="Tizen.Multimedia.Player.DisplaySettings">DisplaySettings</h4>
-  <div class="markdown level1 summary"><p>Gets the display settings of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L293">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_DisplaySettings" data-uid="Tizen.Multimedia.Player.DisplaySettings">DisplaySettings</h4>
+    <section>
+    <p>Gets the display settings of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayerDisplaySettings DisplaySettings { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -839,22 +853,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L80">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Handle_" data-uid="Tizen.Multimedia.Player.Handle*"></a>
-  <h4 id="Tizen_Multimedia_Player_Handle" data-uid="Tizen.Multimedia.Player.Handle">Handle</h4>
-  <div class="markdown level1 summary"><p>Gets the native handle of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L80">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Handle" data-uid="Tizen.Multimedia.Player.Handle">Handle</h4>
+    <section>
+    <p>Gets the native handle of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IntPtr Handle { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -875,7 +892,7 @@ It also provides functions to adjust the configurations of the player such as pl
 Note that only one video player can be played at one time.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -892,22 +909,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L531">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_IsAudioOnly_" data-uid="Tizen.Multimedia.Player.IsAudioOnly*"></a>
-  <h4 id="Tizen_Multimedia_Player_IsAudioOnly" data-uid="Tizen.Multimedia.Player.IsAudioOnly">IsAudioOnly</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the player is in audio only mode.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L531">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_IsAudioOnly" data-uid="Tizen.Multimedia.Player.IsAudioOnly">IsAudioOnly</h4>
+    <section>
+    <p>Gets or sets a value indicating whether the player is in audio only mode.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsAudioOnly { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -928,7 +948,7 @@ It also provides functions to adjust the configurations of the player such as pl
 Note that only one video player can be played at one time.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -950,22 +970,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L266">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_IsLooping_" data-uid="Tizen.Multimedia.Player.IsLooping*"></a>
-  <h4 id="Tizen_Multimedia_Player_IsLooping" data-uid="Tizen.Multimedia.Player.IsLooping">IsLooping</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicationg whether the media source is played in a loop.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L266">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_IsLooping" data-uid="Tizen.Multimedia.Player.IsLooping">IsLooping</h4>
+    <section>
+    <p>Gets or sets a value indicationg whether the media source is played in a loop.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsLooping { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -986,7 +1009,7 @@ It also provides functions to adjust the configurations of the player such as pl
 Note that only one video player can be played at one time.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1003,22 +1026,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L471">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Muted_" data-uid="Tizen.Multimedia.Player.Muted*"></a>
-  <h4 id="Tizen_Multimedia_Player_Muted" data-uid="Tizen.Multimedia.Player.Muted">Muted</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicationg whether the audio output of the player is muted.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L471">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Muted" data-uid="Tizen.Multimedia.Player.Muted">Muted</h4>
+    <section>
+    <p>Gets or sets a value indicationg whether the audio output of the player is muted.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool Muted { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1039,7 +1065,7 @@ It also provides functions to adjust the configurations of the player such as pl
 Note that only one video player can be played at one time.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1056,22 +1082,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L566">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_ReplayGain_" data-uid="Tizen.Multimedia.Player.ReplayGain*"></a>
-  <h4 id="Tizen_Multimedia_Player_ReplayGain" data-uid="Tizen.Multimedia.Player.ReplayGain">ReplayGain</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether the replay gain is enabled.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L566">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_ReplayGain" data-uid="Tizen.Multimedia.Player.ReplayGain">ReplayGain</h4>
+    <section>
+    <p>Gets or sets a value indicating whether the replay gain is enabled.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool ReplayGain { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1091,7 +1120,7 @@ otherwise, the replaygain is not affected by tag and properties.</p>
   <div class="markdown level1 remarks"><p>This function could be unavailable depending on the audio codec type.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1118,29 +1147,32 @@ The function is not available depending on the audio codec type. (Since tizen 6.
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_ReplayGain_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_ReplayGain_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioOffload">AudioOffload</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioCodecType">AudioCodecType</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L788">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SphericalVideo_" data-uid="Tizen.Multimedia.Player.SphericalVideo*"></a>
-  <h4 id="Tizen_Multimedia_Player_SphericalVideo" data-uid="Tizen.Multimedia.Player.SphericalVideo">SphericalVideo</h4>
-  <div class="markdown level1 summary"><p>Gets the spherical video porperties of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L788">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SphericalVideo" data-uid="Tizen.Multimedia.Player.SphericalVideo">SphericalVideo</h4>
+    <section>
+    <p>Gets the spherical video porperties of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public SphericalVideo SphericalVideo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1161,22 +1193,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L201">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_State_" data-uid="Tizen.Multimedia.Player.State*"></a>
-  <h4 id="Tizen_Multimedia_Player_State" data-uid="Tizen.Multimedia.Player.State">State</h4>
-  <div class="markdown level1 summary"><p>Gets the current state of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L201">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_State" data-uid="Tizen.Multimedia.Player.State">State</h4>
+    <section>
+    <p>Gets the current state of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayerState State { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1197,7 +1232,7 @@ It also provides functions to adjust the configurations of the player such as pl
 Note that only one video player can be played at one time.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1214,22 +1249,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L432">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_StreamInfo_" data-uid="Tizen.Multimedia.Player.StreamInfo*"></a>
-  <h4 id="Tizen_Multimedia_Player_StreamInfo" data-uid="Tizen.Multimedia.Player.StreamInfo">StreamInfo</h4>
-  <div class="markdown level1 summary"><p>Gets the stream information of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L432">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_StreamInfo" data-uid="Tizen.Multimedia.Player.StreamInfo">StreamInfo</h4>
+    <section>
+    <p>Gets the stream information of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public StreamInfo StreamInfo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1251,22 +1289,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L413">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SubtitleTrackInfo_" data-uid="Tizen.Multimedia.Player.SubtitleTrackInfo*"></a>
-  <h4 id="Tizen_Multimedia_Player_SubtitleTrackInfo" data-uid="Tizen.Multimedia.Player.SubtitleTrackInfo">SubtitleTrackInfo</h4>
-  <div class="markdown level1 summary"><p>Gets the sutitle track information of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L413">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SubtitleTrackInfo" data-uid="Tizen.Multimedia.Player.SubtitleTrackInfo">SubtitleTrackInfo</h4>
+    <section>
+    <p>Gets the sutitle track information of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayerTrackInfo SubtitleTrackInfo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1288,22 +1329,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L132">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_UserAgent_" data-uid="Tizen.Multimedia.Player.UserAgent*"></a>
-  <h4 id="Tizen_Multimedia_Player_UserAgent" data-uid="Tizen.Multimedia.Player.UserAgent">UserAgent</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the user agent for streaming playback.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L132">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_UserAgent" data-uid="Tizen.Multimedia.Player.UserAgent">UserAgent</h4>
+    <section>
+    <p>Gets or sets the user agent for streaming playback.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string UserAgent { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1321,7 +1365,7 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1348,22 +1392,25 @@ Note that only one video player can be played at one time.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L759">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_VideoCodecType_" data-uid="Tizen.Multimedia.Player.VideoCodecType*"></a>
-  <h4 id="Tizen_Multimedia_Player_VideoCodecType" data-uid="Tizen.Multimedia.Player.VideoCodecType">VideoCodecType</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the codec type of the video decoder.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L759">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_VideoCodecType" data-uid="Tizen.Multimedia.Player.VideoCodecType">VideoCodecType</h4>
+    <section>
+    <p>Gets or sets the codec type of the video decoder.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public CodecType VideoCodecType { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1385,7 +1432,7 @@ The default codec type could be different depending on the device capability.</p
 <p>The availability could be changed depending on the codec capability.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1419,22 +1466,25 @@ Operation failed; internal error.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L499">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Volume_" data-uid="Tizen.Multimedia.Player.Volume*"></a>
-  <h4 id="Tizen_Multimedia_Player_Volume" data-uid="Tizen.Multimedia.Player.Volume">Volume</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the current volume of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L499">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Volume" data-uid="Tizen.Multimedia.Player.Volume">Volume</h4>
+    <section>
+    <p>Gets or sets the current volume of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public float Volume { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1452,7 +1502,7 @@ Operation failed; internal error.</p>
   <div class="markdown level1 remarks"><p>Valid volume range is from 0 to 1.0, inclusive.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1476,24 +1526,27 @@ Operation failed; internal error.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L823">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_ApplyAudioStreamPolicy_" data-uid="Tizen.Multimedia.Player.ApplyAudioStreamPolicy*"></a>
-  <h4 id="Tizen_Multimedia_Player_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Player.ApplyAudioStreamPolicy(Tizen.Multimedia.AudioStreamPolicy)">ApplyAudioStreamPolicy(AudioStreamPolicy)</h4>
-  <div class="markdown level1 summary"><p>Applies the specified audio stream policy to the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L823">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Player.ApplyAudioStreamPolicy(Tizen.Multimedia.AudioStreamPolicy)">ApplyAudioStreamPolicy(AudioStreamPolicy)</h4>
+    <section>
+    <p>Applies the specified audio stream policy to the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1520,7 +1573,7 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
 <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_RingtoneVoip">RingtoneVoip</a> and <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_MediaExternalOnly">MediaExternalOnly</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1554,28 +1607,31 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L582">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_CaptureVideoAsync_" data-uid="Tizen.Multimedia.Player.CaptureVideoAsync*"></a>
-  <h4 id="Tizen_Multimedia_Player_CaptureVideoAsync" data-uid="Tizen.Multimedia.Player.CaptureVideoAsync">CaptureVideoAsync()</h4>
-  <div class="markdown level1 summary"><p>Captures the current frame of the video being played, asynchronously.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L582">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_CaptureVideoAsync" data-uid="Tizen.Multimedia.Player.CaptureVideoAsync">CaptureVideoAsync()</h4>
+    <section>
+    <p>Captures the current frame of the video being played, asynchronously.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;CapturedFrame&gt; CaptureVideoAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1594,7 +1650,7 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1621,15 +1677,18 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L256">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_ClearSubtitle_" data-uid="Tizen.Multimedia.Player.ClearSubtitle*"></a>
-  <h4 id="Tizen_Multimedia_Player_ClearSubtitle" data-uid="Tizen.Multimedia.Player.ClearSubtitle">ClearSubtitle()</h4>
-  <div class="markdown level1 summary"><p>Clears the the subtitle path of the media player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L256">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_ClearSubtitle" data-uid="Tizen.Multimedia.Player.ClearSubtitle">ClearSubtitle()</h4>
+    <section>
+    <p>Clears the the subtitle path of the media player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1639,7 +1698,7 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1661,15 +1720,18 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L1030">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_DisableExportingAudioData_" data-uid="Tizen.Multimedia.Player.DisableExportingAudioData*"></a>
-  <h4 id="Tizen_Multimedia_Player_DisableExportingAudioData" data-uid="Tizen.Multimedia.Player.DisableExportingAudioData">DisableExportingAudioData()</h4>
-  <div class="markdown level1 summary"><p>Disable to decode an audio data.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L1030">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_DisableExportingAudioData" data-uid="Tizen.Multimedia.Player.DisableExportingAudioData">DisableExportingAudioData()</h4>
+    <section>
+    <p>Disable to decode an audio data.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1681,7 +1743,7 @@ state.
 This function could be unavailable depending on the audio codec type.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1706,22 +1768,25 @@ This function could be unavailable depending on the audio codec type.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_DisableExportingAudioData_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_DisableExportingAudioData_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_EnableExportingAudioData_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_PlayerAudioExtractOption_">EnableExportingAudioData(AudioMediaFormat, PlayerAudioExtractOption)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioCodecType">AudioCodecType</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L1102">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_DisableExportingVideoFrame_" data-uid="Tizen.Multimedia.Player.DisableExportingVideoFrame*"></a>
-  <h4 id="Tizen_Multimedia_Player_DisableExportingVideoFrame" data-uid="Tizen.Multimedia.Player.DisableExportingVideoFrame">DisableExportingVideoFrame()</h4>
-  <div class="markdown level1 summary"><p>Disables to decode a video data.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L1102">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_DisableExportingVideoFrame" data-uid="Tizen.Multimedia.Player.DisableExportingVideoFrame">DisableExportingVideoFrame()</h4>
+    <section>
+    <p>Disables to decode a video data.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1732,7 +1797,7 @@ This function could be unavailable depending on the audio codec type.</p>
 state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1757,21 +1822,24 @@ state.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_DisableExportingVideoFrame_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_DisableExportingVideoFrame_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_EnableExportingVideoFrame">EnableExportingVideoFrame()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L127">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Dispose_" data-uid="Tizen.Multimedia.Player.Dispose*"></a>
-  <h4 id="Tizen_Multimedia_Player_Dispose" data-uid="Tizen.Multimedia.Player.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Releases all resources used by the current instance.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L127">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Dispose" data-uid="Tizen.Multimedia.Player.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the current instance.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1784,22 +1852,25 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L993">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_EnableExportingAudioData_" data-uid="Tizen.Multimedia.Player.EnableExportingAudioData*"></a>
-  <h4 id="Tizen_Multimedia_Player_EnableExportingAudioData_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_PlayerAudioExtractOption_" data-uid="Tizen.Multimedia.Player.EnableExportingAudioData(Tizen.Multimedia.AudioMediaFormat,Tizen.Multimedia.PlayerAudioExtractOption)">EnableExportingAudioData(AudioMediaFormat, PlayerAudioExtractOption)</h4>
-  <div class="markdown level1 summary"><p>Enable to decode an audio data for exporting PCM from a data.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L993">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_EnableExportingAudioData_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_PlayerAudioExtractOption_" data-uid="Tizen.Multimedia.Player.EnableExportingAudioData(Tizen.Multimedia.AudioMediaFormat,Tizen.Multimedia.PlayerAudioExtractOption)">EnableExportingAudioData(AudioMediaFormat, PlayerAudioExtractOption)</h4>
+    <section>
+    <p>Enable to decode an audio data for exporting PCM from a data.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1835,7 +1906,7 @@ and all the packets have to be destroyed before <a class="xref" href="Tizen.Mult
 <p>This function could be unavailable depending on the audio codec type.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1869,8 +1940,8 @@ The function is not available depending on the audio codec type. (Since tizen 6.
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_EnableExportingAudioData_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_PlayerAudioExtractOption__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_EnableExportingAudioData_Tizen_Multimedia_AudioMediaFormat_Tizen_Multimedia_PlayerAudioExtractOption__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.PlayerAudioExtractOption.html">PlayerAudioExtractOption</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_DisableExportingAudioData">DisableExportingAudioData()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioOffload">AudioOffload</a></div>
@@ -1878,15 +1949,18 @@ The function is not available depending on the audio codec type. (Since tizen 6.
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L1062">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_EnableExportingVideoFrame_" data-uid="Tizen.Multimedia.Player.EnableExportingVideoFrame*"></a>
-  <h4 id="Tizen_Multimedia_Player_EnableExportingVideoFrame" data-uid="Tizen.Multimedia.Player.EnableExportingVideoFrame">EnableExportingVideoFrame()</h4>
-  <div class="markdown level1 summary"><p>Enables to decode a video data for every frame.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L1062">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_EnableExportingVideoFrame" data-uid="Tizen.Multimedia.Player.EnableExportingVideoFrame">EnableExportingVideoFrame()</h4>
+    <section>
+    <p>Enables to decode a video data for every frame.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1904,7 +1978,7 @@ It is recommended to destroy the packet as quickly as possible after the decoded
 All the packets have to be destroyed before <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Unprepare">Unprepare()</a> is called.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1931,28 +2005,31 @@ The player is not in the valid state.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_EnableExportingVideoFrame_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_EnableExportingVideoFrame_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_DisableExportingVideoFrame">DisableExportingVideoFrame()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L199">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_GetDownloadProgress_" data-uid="Tizen.Multimedia.Player.GetDownloadProgress*"></a>
-  <h4 id="Tizen_Multimedia_Player_GetDownloadProgress" data-uid="Tizen.Multimedia.Player.GetDownloadProgress">GetDownloadProgress()</h4>
-  <div class="markdown level1 summary"><p>Gets the download progress of the streaming contents.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L199">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_GetDownloadProgress" data-uid="Tizen.Multimedia.Player.GetDownloadProgress">GetDownloadProgress()</h4>
+    <section>
+    <p>Gets the download progress of the streaming contents.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public DownloadProgress GetDownloadProgress()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1972,7 +2049,7 @@ The player is not in the valid state.</p>
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1996,22 +2073,25 @@ The player is not in the valid state.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L621">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_GetPlayPosition_" data-uid="Tizen.Multimedia.Player.GetPlayPosition*"></a>
-  <h4 id="Tizen_Multimedia_Player_GetPlayPosition" data-uid="Tizen.Multimedia.Player.GetPlayPosition">GetPlayPosition()</h4>
-  <div class="markdown level1 summary"><p>Gets the current playback position in milliseconds of the media.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L621">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_GetPlayPosition" data-uid="Tizen.Multimedia.Player.GetPlayPosition">GetPlayPosition()</h4>
+    <section>
+    <p>Gets the current playback position in milliseconds of the media.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int GetPlayPosition()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2031,7 +2111,7 @@ The player is not in the valid state.</p>
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2051,30 +2131,33 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_GetPlayPosition_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_GetPlayPosition_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_">SetPlayPositionAsync(int, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean_">SetPlayPositionNanosecondsAsync(long, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPositionNanoseconds">GetPlayPositionNanoseconds()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L715">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_GetPlayPositionNanoseconds_" data-uid="Tizen.Multimedia.Player.GetPlayPositionNanoseconds*"></a>
-  <h4 id="Tizen_Multimedia_Player_GetPlayPositionNanoseconds" data-uid="Tizen.Multimedia.Player.GetPlayPositionNanoseconds">GetPlayPositionNanoseconds()</h4>
-  <div class="markdown level1 summary"><p>Gets the current playback position in nanoseconds of the media.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L715">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_GetPlayPositionNanoseconds" data-uid="Tizen.Multimedia.Player.GetPlayPositionNanoseconds">GetPlayPositionNanoseconds()</h4>
+    <section>
+    <p>Gets the current playback position in nanoseconds of the media.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public long GetPlayPositionNanoseconds()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2094,7 +2177,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2114,30 +2197,33 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_GetPlayPositionNanoseconds_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_GetPlayPositionNanoseconds_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_">SetPlayPositionAsync(int, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean_">SetPlayPositionNanosecondsAsync(long, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPosition">GetPlayPosition()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L911">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_GetVideoRoi_" data-uid="Tizen.Multimedia.Player.GetVideoRoi*"></a>
-  <h4 id="Tizen_Multimedia_Player_GetVideoRoi" data-uid="Tizen.Multimedia.Player.GetVideoRoi">GetVideoRoi()</h4>
-  <div class="markdown level1 summary"><p>Get the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L911">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_GetVideoRoi" data-uid="Tizen.Multimedia.Player.GetVideoRoi">GetVideoRoi()</h4>
+    <section>
+    <p>Get the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ScaleRectangle GetVideoRoi()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2156,7 +2242,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
   <div class="markdown level1 remarks"><p>The specified ROI area is valid only in <span class="xref">Tizen.Multimedia.PlayerDisplayType.Overlay</span>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2176,23 +2262,26 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_GetVideoRoi_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_GetVideoRoi_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Display">Display</a></div>
       <div><a class="xref" href="Tizen.Multimedia.StreamInfo.html#Tizen_Multimedia_StreamInfo_GetVideoProperties">GetVideoProperties()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle_">SetVideoRoi(ScaleRectangle)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L300">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_OnPreparing_" data-uid="Tizen.Multimedia.Player.OnPreparing*"></a>
-  <h4 id="Tizen_Multimedia_Player_OnPreparing" data-uid="Tizen.Multimedia.Player.OnPreparing">OnPreparing()</h4>
-  <div class="markdown level1 summary"><p>Called when the <span class="xref">Tizen.Multimedia.Player.Prepare</span> is invoked.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L300">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_OnPreparing" data-uid="Tizen.Multimedia.Player.OnPreparing">OnPreparing()</h4>
+    <section>
+    <p>Called when the <span class="xref">Tizen.Multimedia.Player.Prepare</span> is invoked.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -2205,15 +2294,18 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L446">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_OnUnprepared_" data-uid="Tizen.Multimedia.Player.OnUnprepared*"></a>
-  <h4 id="Tizen_Multimedia_Player_OnUnprepared" data-uid="Tizen.Multimedia.Player.OnUnprepared">OnUnprepared()</h4>
-  <div class="markdown level1 summary"><p>Called after the <a class="xref" href="Tizen.Multimedia.Player.html">Player</a> is unprepared.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L446">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_OnUnprepared" data-uid="Tizen.Multimedia.Player.OnUnprepared">OnUnprepared()</h4>
+    <section>
+    <p>Called after the <a class="xref" href="Tizen.Multimedia.Player.html">Player</a> is unprepared.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -2224,21 +2316,24 @@ Note that only one video player can be played at one time.</p>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
-  <h5 id="Tizen_Multimedia_Player_OnUnprepared_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_OnUnprepared_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Unprepare">Unprepare()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L518">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Pause_" data-uid="Tizen.Multimedia.Player.Pause*"></a>
-  <h4 id="Tizen_Multimedia_Player_Pause" data-uid="Tizen.Multimedia.Player.Pause">Pause()</h4>
-  <div class="markdown level1 summary"><p>Pauses playing the media content.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L518">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Pause" data-uid="Tizen.Multimedia.Player.Pause">Pause()</h4>
+    <section>
+    <p>Pauses playing the media content.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -2249,7 +2344,7 @@ Note that only one video player can be played at one time.</p>
 It has no effect if the player is already in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2269,28 +2364,31 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_Pause_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_Pause_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L315">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_PrepareAsync_" data-uid="Tizen.Multimedia.Player.PrepareAsync*"></a>
-  <h4 id="Tizen_Multimedia_Player_PrepareAsync" data-uid="Tizen.Multimedia.Player.PrepareAsync">PrepareAsync()</h4>
-  <div class="markdown level1 summary"><p>Prepares the media player for playback, asynchronously.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L315">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_PrepareAsync" data-uid="Tizen.Multimedia.Player.PrepareAsync">PrepareAsync()</h4>
+    <section>
+    <p>Prepares the media player for playback, asynchronously.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual Task PrepareAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2310,7 +2408,7 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
 and a source must be set.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2335,28 +2433,31 @@ and a source must be set.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_PrepareAsync_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_PrepareAsync_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Preparing">Preparing</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L362">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_PrepareAsync_" data-uid="Tizen.Multimedia.Player.PrepareAsync*"></a>
-  <h4 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.Player.PrepareAsync(System.Threading.CancellationToken)">PrepareAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Prepares the cancelable media player for playback, asynchronously.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L362">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.Player.PrepareAsync(System.Threading.CancellationToken)">PrepareAsync(CancellationToken)</h4>
+    <section>
+    <p>Prepares the cancelable media player for playback, asynchronously.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual Task PrepareAsync(CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2374,7 +2475,7 @@ and a source must be set.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2396,7 +2497,7 @@ The state must be <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_
 When preparing is cancelled, a state will be changed to <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> from <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Preparing">Preparing</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2418,30 +2519,33 @@ The player is not in the valid state.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken__seealso">See Also</h5>
       <div><span class="xref">System.Threading.CancellationToken</span></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Unprepare">Unprepare()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L782">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetPlaybackRate_" data-uid="Tizen.Multimedia.Player.SetPlaybackRate*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetPlaybackRate_System_Single_" data-uid="Tizen.Multimedia.Player.SetPlaybackRate(System.Single)">SetPlaybackRate(float)</h4>
-  <div class="markdown level1 summary"><p>Sets the playback rate of the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L782">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetPlaybackRate_System_Single_" data-uid="Tizen.Multimedia.Player.SetPlaybackRate(System.Single)">SetPlaybackRate(float)</h4>
+    <section>
+    <p>Sets the playback rate of the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetPlaybackRate(float rate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2464,7 +2568,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 <p>The sound will be muted, when the playback rate is under 0.0 or over 2.0.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2500,28 +2604,31 @@ Streaming playback.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_SetPlaybackRate_System_Single__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_SetPlaybackRate_System_Single__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_AudioOffload">AudioOffload</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L696">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetPlayPositionAsync_" data-uid="Tizen.Multimedia.Player.SetPlayPositionAsync*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_" data-uid="Tizen.Multimedia.Player.SetPlayPositionAsync(System.Int32,System.Boolean)">SetPlayPositionAsync(int, bool)</h4>
-  <div class="markdown level1 summary"><p>Sets the playback position in milliseconds of the player, asynchronously.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L696">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_" data-uid="Tizen.Multimedia.Player.SetPlayPositionAsync(System.Int32,System.Boolean)">SetPlayPositionAsync(int, bool)</h4>
+    <section>
+    <p>Sets the playback position in milliseconds of the player, asynchronously.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task SetPlayPositionAsync(int position, bool accurate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2545,7 +2652,7 @@ Streaming playback.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2567,7 +2674,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 but this might be considerably slow. If false, the play position will be a nearest keyframe position.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2594,30 +2701,33 @@ In case of non-seekable content, the player will return error and keep playing w
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean_">SetPlayPositionNanosecondsAsync(long, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPosition">GetPlayPosition()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPositionNanoseconds">GetPlayPositionNanoseconds()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L748">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_" data-uid="Tizen.Multimedia.Player.SetPlayPositionNanosecondsAsync*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean_" data-uid="Tizen.Multimedia.Player.SetPlayPositionNanosecondsAsync(System.Int64,System.Boolean)">SetPlayPositionNanosecondsAsync(long, bool)</h4>
-  <div class="markdown level1 summary"><p>Sets the playback position in nanoseconds of the player, asynchronously.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L748">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean_" data-uid="Tizen.Multimedia.Player.SetPlayPositionNanosecondsAsync(System.Int64,System.Boolean)">SetPlayPositionNanosecondsAsync(long, bool)</h4>
+    <section>
+    <p>Sets the playback position in nanoseconds of the player, asynchronously.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task SetPlayPositionNanosecondsAsync(long position, bool accurate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2641,7 +2751,7 @@ In case of non-seekable content, the player will return error and keep playing w
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2663,7 +2773,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 but this might be considerably slow. If false, the play position will be a nearest keyframe position.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2690,30 +2800,33 @@ In case of non-seekable content, the player will return error and keep playing w
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_">SetPlayPositionAsync(int, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPosition">GetPlayPosition()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPositionNanoseconds">GetPlayPositionNanoseconds()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L555">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetSource_" data-uid="Tizen.Multimedia.Player.SetSource*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_" data-uid="Tizen.Multimedia.Player.SetSource(Tizen.Multimedia.MediaSource)">SetSource(MediaSource)</h4>
-  <div class="markdown level1 summary"><p>Sets a media source for the player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L555">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_" data-uid="Tizen.Multimedia.Player.SetSource(Tizen.Multimedia.MediaSource)">SetSource(MediaSource)</h4>
+    <section>
+    <p>Sets a media source for the player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetSource(MediaSource source)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2734,7 +2847,7 @@ In case of non-seekable content, the player will return error and keep playing w
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2761,29 +2874,32 @@ It is not able to assign the source to the player.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_">PrepareAsync(CancellationToken)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L226">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetSubtitle_" data-uid="Tizen.Multimedia.Player.SetSubtitle*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetSubtitle_System_String_" data-uid="Tizen.Multimedia.Player.SetSubtitle(System.String)">SetSubtitle(string)</h4>
-  <div class="markdown level1 summary"><p>Sets the subtitle file path for playback.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L226">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetSubtitle_System_String_" data-uid="Tizen.Multimedia.Player.SetSubtitle(System.String)">SetSubtitle(string)</h4>
+    <section>
+    <p>Sets the subtitle file path for playback.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetSubtitle(string path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2806,7 +2922,7 @@ It is not able to assign the source to the player.</p>
 The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2838,22 +2954,25 @@ The externalstorage privilege(http://tizen.org/privilege/externalstorage) must b
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L277">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetSubtitleOffset_" data-uid="Tizen.Multimedia.Player.SetSubtitleOffset*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetSubtitleOffset_System_Int32_" data-uid="Tizen.Multimedia.Player.SetSubtitleOffset(System.Int32)">SetSubtitleOffset(int)</h4>
-  <div class="markdown level1 summary"><p>Sets the seek offset for the subtitle.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L277">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetSubtitleOffset_System_Int32_" data-uid="Tizen.Multimedia.Player.SetSubtitleOffset(System.Int32)">SetSubtitleOffset(int)</h4>
+    <section>
+    <p>Sets the seek offset for the subtitle.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetSubtitleOffset(int offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2874,7 +2993,7 @@ The externalstorage privilege(http://tizen.org/privilege/externalstorage) must b
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2896,29 +3015,32 @@ No subtitle is set.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_SetSubtitleOffset_System_Int32__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_SetSubtitleOffset_System_Int32__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSubtitle_System_String_">SetSubtitle(string)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L874">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_SetVideoRoi_" data-uid="Tizen.Multimedia.Player.SetVideoRoi*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle_" data-uid="Tizen.Multimedia.Player.SetVideoRoi(Tizen.Multimedia.ScaleRectangle)">SetVideoRoi(ScaleRectangle)</h4>
-  <div class="markdown level1 summary"><p>Set the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L874">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle_" data-uid="Tizen.Multimedia.Player.SetVideoRoi(Tizen.Multimedia.ScaleRectangle)">SetVideoRoi(ScaleRectangle)</h4>
+    <section>
+    <p>Set the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.
 It can be regarded as zooming operation because the specified video area will be rendered to fit to the display.</p>
-</div>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetVideoRoi(ScaleRectangle scaleRectangle)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2941,7 +3063,7 @@ to guarantee of showing the same area for the dynamic resolution video content.
 This function have to be called after setting <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Display">Display</a></p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -2974,8 +3096,8 @@ The <span class="xref">Tizen.Multimedia.PlayerDisplayType</span> is not set to <
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.ScaleRectangle.html">ScaleRectangle</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Display">Display</a></div>
       <div><a class="xref" href="Tizen.Multimedia.StreamInfo.html#Tizen_Multimedia_StreamInfo_GetVideoProperties">GetVideoProperties()</a></div>
@@ -2983,15 +3105,18 @@ The <span class="xref">Tizen.Multimedia.PlayerDisplayType</span> is not set to <
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L476">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Start_" data-uid="Tizen.Multimedia.Player.Start*"></a>
-  <h4 id="Tizen_Multimedia_Player_Start" data-uid="Tizen.Multimedia.Player.Start">Start()</h4>
-  <div class="markdown level1 summary"><p>Starts or resumes playing the media content.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L476">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Start" data-uid="Tizen.Multimedia.Player.Start">Start()</h4>
+    <section>
+    <p>Starts or resumes playing the media content.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -3009,7 +3134,7 @@ and the buffering message posting by <a class="xref" href="Tizen.Multimedia.Play
 In other cases, the player will keep playing without returning error.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3029,8 +3154,8 @@ In other cases, the player will keep playing without returning error.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_Start_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_Start_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_">PrepareAsync(CancellationToken)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Stop">Stop()</a></div>
@@ -3041,15 +3166,18 @@ In other cases, the player will keep playing without returning error.</p>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L495">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Stop_" data-uid="Tizen.Multimedia.Player.Stop*"></a>
-  <h4 id="Tizen_Multimedia_Player_Stop" data-uid="Tizen.Multimedia.Player.Stop">Stop()</h4>
-  <div class="markdown level1 summary"><p>Stops playing the media content.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L495">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Stop" data-uid="Tizen.Multimedia.Player.Stop">Stop()</h4>
+    <section>
+    <p>Stops playing the media content.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -3060,7 +3188,7 @@ In other cases, the player will keep playing without returning error.</p>
 It has no effect if the player is already in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a> state.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3080,22 +3208,25 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_Stop_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_Stop_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Pause">Pause()</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L427">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Player_Unprepare_" data-uid="Tizen.Multimedia.Player.Unprepare*"></a>
-  <h4 id="Tizen_Multimedia_Player_Unprepare" data-uid="Tizen.Multimedia.Player.Unprepare">Unprepare()</h4>
-  <div class="markdown level1 summary"><p>Unprepares the media player.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L427">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_Unprepare" data-uid="Tizen.Multimedia.Player.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Unprepares the media player.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -3111,7 +3242,7 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
 </p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3133,23 +3264,26 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="events">Events
+</h2>
 
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L199">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_AudioDataDecoded" data-uid="Tizen.Multimedia.Player.AudioDataDecoded">AudioDataDecoded</h4>
-  <div class="markdown level1 summary"><p>Occurs when a audio frame is decoded.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L199">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_AudioDataDecoded" data-uid="Tizen.Multimedia.Player.AudioDataDecoded">AudioDataDecoded</h4>
+    <section>
+    <p>Occurs when a audio frame is decoded.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;AudioDataDecodedEventArgs&gt; AudioDataDecoded</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3167,27 +3301,30 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
   <div class="markdown level1 remarks"><p>The event handler will be executed on an internal thread.</p>
 <p>The <a class="xref" href="Tizen.Multimedia.AudioDataDecodedEventArgs.html#Tizen_Multimedia_AudioDataDecodedEventArgs_Packet">Packet</a> in event args should be disposed after use.</p>
 </div>
-  <h5 id="Tizen_Multimedia_Player_AudioDataDecoded_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_AudioDataDecoded_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AudioDataDecodedEventArgs.html#Tizen_Multimedia_AudioDataDecodedEventArgs_Packet">Packet</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L74">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_BufferingProgressChanged" data-uid="Tizen.Multimedia.Player.BufferingProgressChanged">BufferingProgressChanged</h4>
-  <div class="markdown level1 summary"><p>Occurs when there is a change in the buffering status of streaming.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L74">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_BufferingProgressChanged" data-uid="Tizen.Multimedia.Player.BufferingProgressChanged">BufferingProgressChanged</h4>
+    <section>
+    <p>Occurs when there is a change in the buffering status of streaming.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;BufferingProgressChangedEventArgs&gt; BufferingProgressChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3208,21 +3345,24 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L51">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_ErrorOccurred" data-uid="Tizen.Multimedia.Player.ErrorOccurred">ErrorOccurred</h4>
-  <div class="markdown level1 summary"><p>Occurs when any error occurs.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L51">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_ErrorOccurred" data-uid="Tizen.Multimedia.Player.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>Occurs when any error occurs.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;PlayerErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3241,21 +3381,24 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L30">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_PlaybackCompleted" data-uid="Tizen.Multimedia.Player.PlaybackCompleted">PlaybackCompleted</h4>
-  <div class="markdown level1 summary"><p>Occurs when the playback of a media is finished.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L30">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_PlaybackCompleted" data-uid="Tizen.Multimedia.Player.PlaybackCompleted">PlaybackCompleted</h4>
+    <section>
+    <p>Occurs when the playback of a media is finished.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;EventArgs&gt; PlaybackCompleted</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3276,21 +3419,24 @@ Note that only one video player can be played at one time.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L43">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_PlaybackInterrupted" data-uid="Tizen.Multimedia.Player.PlaybackInterrupted">PlaybackInterrupted</h4>
-  <div class="markdown level1 summary"><p>Occurs when the playback of a media is interrupted.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L43">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_PlaybackInterrupted" data-uid="Tizen.Multimedia.Player.PlaybackInterrupted">PlaybackInterrupted</h4>
+    <section>
+    <p>Occurs when the playback of a media is interrupted.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;PlaybackInterruptedEventArgs&gt; PlaybackInterrupted</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3309,27 +3455,30 @@ Note that only one video player can be played at one time.</p>
 the player state will be one of <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a>, <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a>,
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a>.</p>
 </div>
-  <h5 id="Tizen_Multimedia_Player_PlaybackInterrupted_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_PlaybackInterrupted_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_State">State</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L67">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_SubtitleUpdated" data-uid="Tizen.Multimedia.Player.SubtitleUpdated">SubtitleUpdated</h4>
-  <div class="markdown level1 summary"><p>Occurs when the subtitle is updated.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L67">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_SubtitleUpdated" data-uid="Tizen.Multimedia.Player.SubtitleUpdated">SubtitleUpdated</h4>
+    <section>
+    <p>Occurs when the subtitle is updated.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;SubtitleUpdatedEventArgs&gt; SubtitleUpdated</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3348,21 +3497,24 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L185">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_VideoFrameDecoded" data-uid="Tizen.Multimedia.Player.VideoFrameDecoded">VideoFrameDecoded</h4>
-  <div class="markdown level1 summary"><p>Occurs when a video frame is decoded.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L185">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_VideoFrameDecoded" data-uid="Tizen.Multimedia.Player.VideoFrameDecoded">VideoFrameDecoded</h4>
+    <section>
+    <p>Occurs when a video frame is decoded.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;VideoFrameDecodedEventArgs&gt; VideoFrameDecoded</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3381,7 +3533,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 <p>The <a class="xref" href="Tizen.Multimedia.VideoFrameDecodedEventArgs.html#Tizen_Multimedia_VideoFrameDecodedEventArgs_Packet">Packet</a> in event args should be disposed after use.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3396,27 +3548,30 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_VideoFrameDecoded_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Player_VideoFrameDecoded_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.VideoFrameDecodedEventArgs.html#Tizen_Multimedia_VideoFrameDecodedEventArgs_Packet">Packet</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L59">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Player_VideoStreamChanged" data-uid="Tizen.Multimedia.Player.VideoStreamChanged">VideoStreamChanged</h4>
-  <div class="markdown level1 summary"><p>Occurs when the video stream is changed.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L59">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Player_VideoStreamChanged" data-uid="Tizen.Multimedia.Player.VideoStreamChanged">VideoStreamChanged</h4>
+    <section>
+    <p>Occurs when the video stream is changed.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;VideoStreamChangedEventArgs&gt; VideoStreamChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -3435,44 +3590,15 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Properties.cs/#L72" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

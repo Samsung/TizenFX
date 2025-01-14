@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Uix.Tts.TtsClient">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Uix.Tts.TtsClient">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Uix_Tts_TtsClient" data-uid="Tizen.Uix.Tts.TtsClient" class="text-break">Class TtsClient
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Uix_Tts_TtsClient" data-uid="Tizen.Uix.Tts.TtsClient" class="mt-0 text-break"><span class="entity-type">Class</span>
+TtsClient
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L299" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Uix</span>.<a class="xref" href="Tizen.Uix.Tts.html">Tts</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Uix</span>.<a class="xref" href="Tizen.Uix.Tts.html">Tts</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Uix.Tts.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>You can use Text-To-Speech (TTS) API's to read sound data transformed by the engine from input texts.
@@ -111,29 +83,35 @@ Applications can add input-text to queue for reading continuously and control th
 
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L347">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Uix_Tts_TtsClient__ctor_" data-uid="Tizen.Uix.Tts.TtsClient.#ctor*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient__ctor" data-uid="Tizen.Uix.Tts.TtsClient.#ctor">TtsClient()</h4>
-  <div class="markdown level1 summary"><p>Constructor to create a TTS instance.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L347">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient__ctor" data-uid="Tizen.Uix.Tts.TtsClient.#ctor">TtsClient()</h4>
+    <section>
+    <p>Constructor to create a TTS instance.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TtsClient()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -164,24 +142,27 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L906">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_CurrentMode_" data-uid="Tizen.Uix.Tts.TtsClient.CurrentMode*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_CurrentMode" data-uid="Tizen.Uix.Tts.TtsClient.CurrentMode">CurrentMode</h4>
-  <div class="markdown level1 summary"><p>The TTS Mode can be set using this property.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L906">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_CurrentMode" data-uid="Tizen.Uix.Tts.TtsClient.CurrentMode">CurrentMode</h4>
+    <section>
+    <p>The TTS Mode can be set using this property.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Mode CurrentMode { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -197,7 +178,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -228,22 +209,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L870">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_CurrentServiceState_" data-uid="Tizen.Uix.Tts.TtsClient.CurrentServiceState*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_CurrentServiceState" data-uid="Tizen.Uix.Tts.TtsClient.CurrentServiceState">CurrentServiceState</h4>
-  <div class="markdown level1 summary"><p>Gets the current state of TTS service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L870">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_CurrentServiceState" data-uid="Tizen.Uix.Tts.TtsClient.CurrentServiceState">CurrentServiceState</h4>
+    <section>
+    <p>Gets the current state of TTS service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ServiceState CurrentServiceState { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -260,22 +244,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L846">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_CurrentState_" data-uid="Tizen.Uix.Tts.TtsClient.CurrentState*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_CurrentState" data-uid="Tizen.Uix.Tts.TtsClient.CurrentState">CurrentState</h4>
-  <div class="markdown level1 summary"><p>Gets the current TTS state.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L846">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_CurrentState" data-uid="Tizen.Uix.Tts.TtsClient.CurrentState">CurrentState</h4>
+    <section>
+    <p>Gets the current TTS state.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public State CurrentState { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -292,22 +279,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L789">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_DefaultVoice_" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoice*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_DefaultVoice" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoice">DefaultVoice</h4>
-  <div class="markdown level1 summary"><p>Gets the default voice set by the user.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L789">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_DefaultVoice" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoice">DefaultVoice</h4>
+    <section>
+    <p>Gets the default voice set by the user.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public SupportedVoice DefaultVoice { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -324,22 +314,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L947">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_IsScreenReaderOn_" data-uid="Tizen.Uix.Tts.TtsClient.IsScreenReaderOn*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_IsScreenReaderOn" data-uid="Tizen.Uix.Tts.TtsClient.IsScreenReaderOn">IsScreenReaderOn</h4>
-  <div class="markdown level1 summary"><p>Gets the current status of screen reader.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L947">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_IsScreenReaderOn" data-uid="Tizen.Uix.Tts.TtsClient.IsScreenReaderOn">IsScreenReaderOn</h4>
+    <section>
+    <p>Gets the current status of screen reader.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsScreenReaderOn { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -355,7 +348,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -372,22 +365,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L819">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_MaxTextSize_" data-uid="Tizen.Uix.Tts.TtsClient.MaxTextSize*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_MaxTextSize" data-uid="Tizen.Uix.Tts.TtsClient.MaxTextSize">MaxTextSize</h4>
-  <div class="markdown level1 summary"><p>Gets the maximum byte size for text.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L819">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_MaxTextSize" data-uid="Tizen.Uix.Tts.TtsClient.MaxTextSize">MaxTextSize</h4>
+    <section>
+    <p>Gets the maximum byte size for text.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public uint MaxTextSize { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -404,22 +400,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L978">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_PlayingMode_" data-uid="Tizen.Uix.Tts.TtsClient.PlayingMode*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_PlayingMode" data-uid="Tizen.Uix.Tts.TtsClient.PlayingMode">PlayingMode</h4>
-  <div class="markdown level1 summary"><p>Sets the current playing mode.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L978">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_PlayingMode" data-uid="Tizen.Uix.Tts.TtsClient.PlayingMode">PlayingMode</h4>
+    <section>
+    <p>Sets the current playing mode.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public PlayingMode PlayingMode { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -435,7 +434,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -457,24 +456,27 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1254">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_AddText_" data-uid="Tizen.Uix.Tts.TtsClient.AddText*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_AddText_System_String_System_String_System_Int32_System_Int32_" data-uid="Tizen.Uix.Tts.TtsClient.AddText(System.String,System.String,System.Int32,System.Int32)">AddText(string, string, int, int)</h4>
-  <div class="markdown level1 summary"><p>Adds a text to the queue.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1254">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_AddText_System_String_System_String_System_Int32_System_Int32_" data-uid="Tizen.Uix.Tts.TtsClient.AddText(System.String,System.String,System.Int32,System.Int32)">AddText(string, string, int, int)</h4>
+    <section>
+    <p>Adds a text to the queue.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int AddText(string text, string language, int voiceType, int speed)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -510,7 +512,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -529,7 +531,7 @@ Applications can add input-text to queue for reading continuously and control th
   <div class="markdown level1 remarks"><p>Locale MUST be set for text validation check.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -567,15 +569,18 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1399">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Dispose_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Dispose" data-uid="Tizen.Uix.Tts.TtsClient.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Method to release resources.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1399">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Dispose" data-uid="Tizen.Uix.Tts.TtsClient.Dispose">Dispose()</h4>
+    <section>
+    <p>Method to release resources.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -583,22 +588,25 @@ Applications can add input-text to queue for reading continuously and control th
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1412">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Dispose_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Dispose_System_Boolean_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose(System.Boolean)">Dispose(bool)</h4>
-  <div class="markdown level1 summary"><p>Method to release resources.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1412">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Dispose_System_Boolean_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Method to release resources.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -617,15 +625,18 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L363">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Finalize_" data-uid="Tizen.Uix.Tts.TtsClient.Finalize*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Finalize" data-uid="Tizen.Uix.Tts.TtsClient.Finalize">~TtsClient()</h4>
-  <div class="markdown level1 summary"><p>Destructor to destroy TtsClient handle.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L363">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Finalize" data-uid="Tizen.Uix.Tts.TtsClient.Finalize">~TtsClient()</h4>
+    <section>
+    <p>Destructor to destroy TtsClient handle.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -633,22 +644,25 @@ Applications can add input-text to queue for reading continuously and control th
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1137">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_GetPrivateData_" data-uid="Tizen.Uix.Tts.TtsClient.GetPrivateData*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_GetPrivateData_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.GetPrivateData(System.String)">GetPrivateData(string)</h4>
-  <div class="markdown level1 summary"><p>Gets the private data from TTS engine.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1137">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_GetPrivateData_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.GetPrivateData(System.String)">GetPrivateData(string)</h4>
+    <section>
+    <p>Gets the private data from TTS engine.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string GetPrivateData(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -666,7 +680,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -682,7 +696,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -709,22 +723,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1203">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_GetSpeedRange_" data-uid="Tizen.Uix.Tts.TtsClient.GetSpeedRange*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_GetSpeedRange" data-uid="Tizen.Uix.Tts.TtsClient.GetSpeedRange">GetSpeedRange()</h4>
-  <div class="markdown level1 summary"><p>Gets the speed range.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1203">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_GetSpeedRange" data-uid="Tizen.Uix.Tts.TtsClient.GetSpeedRange">GetSpeedRange()</h4>
+    <section>
+    <p>Gets the speed range.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public SpeedRange GetSpeedRange()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -740,7 +757,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -766,22 +783,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1093">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_GetSupportedVoices_" data-uid="Tizen.Uix.Tts.TtsClient.GetSupportedVoices*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_GetSupportedVoices" data-uid="Tizen.Uix.Tts.TtsClient.GetSupportedVoices">GetSupportedVoices()</h4>
-  <div class="markdown level1 summary"><p>Retrieves all supported voices of the current engine.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1093">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_GetSupportedVoices" data-uid="Tizen.Uix.Tts.TtsClient.GetSupportedVoices">GetSupportedVoices()</h4>
+    <section>
+    <p>Retrieves all supported voices of the current engine.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IEnumerable&lt;SupportedVoice&gt; GetSupportedVoices()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -797,7 +817,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -823,22 +843,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1350">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Pause_" data-uid="Tizen.Uix.Tts.TtsClient.Pause*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Pause" data-uid="Tizen.Uix.Tts.TtsClient.Pause">Pause()</h4>
-  <div class="markdown level1 summary"><p>Pauses the currently playing utterance.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1350">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Pause" data-uid="Tizen.Uix.Tts.TtsClient.Pause">Pause()</h4>
+    <section>
+    <p>Pauses the currently playing utterance.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -865,22 +888,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1289">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Play_" data-uid="Tizen.Uix.Tts.TtsClient.Play*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Play" data-uid="Tizen.Uix.Tts.TtsClient.Play">Play()</h4>
-  <div class="markdown level1 summary"><p>Starts synthesizing voice from the text and plays the synthesized audio data.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1289">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Play" data-uid="Tizen.Uix.Tts.TtsClient.Play">Play()</h4>
+    <section>
+    <p>Starts synthesizing voice from the text and plays the synthesized audio data.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Play()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -913,22 +939,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1042">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Prepare_" data-uid="Tizen.Uix.Tts.TtsClient.Prepare*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Prepare" data-uid="Tizen.Uix.Tts.TtsClient.Prepare">Prepare()</h4>
-  <div class="markdown level1 summary"><p>Connects to the TTS service asynchronously.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1042">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Prepare" data-uid="Tizen.Uix.Tts.TtsClient.Prepare">Prepare()</h4>
+    <section>
+    <p>Connects to the TTS service asynchronously.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -954,22 +983,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1383">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Repeat_" data-uid="Tizen.Uix.Tts.TtsClient.Repeat*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Repeat" data-uid="Tizen.Uix.Tts.TtsClient.Repeat">Repeat()</h4>
-  <div class="markdown level1 summary"><p>Repeats the last added text.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1383">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Repeat" data-uid="Tizen.Uix.Tts.TtsClient.Repeat">Repeat()</h4>
+    <section>
+    <p>Repeats the last added text.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public RepeatedText Repeat()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -985,7 +1017,7 @@ Applications can add input-text to queue for reading continuously and control th
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1012,22 +1044,25 @@ Applications can add input-text to queue for reading continuously and control th
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1012">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_SetCredential_" data-uid="Tizen.Uix.Tts.TtsClient.SetCredential*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_SetCredential_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.SetCredential(System.String)">SetCredential(string)</h4>
-  <div class="markdown level1 summary"><p>Sets the application credential.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1012">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_SetCredential_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.SetCredential(System.String)">SetCredential(string)</h4>
+    <section>
+    <p>Sets the application credential.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetCredential(string credential)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1046,7 +1081,7 @@ The credential string.</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1073,22 +1108,25 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1174">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_SetPrivateData_" data-uid="Tizen.Uix.Tts.TtsClient.SetPrivateData*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_SetPrivateData_System_String_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.SetPrivateData(System.String,System.String)">SetPrivateData(string, string)</h4>
-  <div class="markdown level1 summary"><p>Sets the private data to tts engine.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1174">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_SetPrivateData_System_String_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.SetPrivateData(System.String,System.String)">SetPrivateData(string, string)</h4>
+    <section>
+    <p>Sets the private data to tts engine.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetPrivateData(string key, string data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1112,7 +1150,7 @@ The credential string.</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1144,22 +1182,25 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1320">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Stop_" data-uid="Tizen.Uix.Tts.TtsClient.Stop*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Stop" data-uid="Tizen.Uix.Tts.TtsClient.Stop">Stop()</h4>
-  <div class="markdown level1 summary"><p>Stops playing the utterance and clears the queue.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1320">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Stop" data-uid="Tizen.Uix.Tts.TtsClient.Stop">Stop()</h4>
+    <section>
+    <p>Stops playing the utterance and clears the queue.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1186,22 +1227,25 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1067">View Source</a>
-  </span>
   <a id="Tizen_Uix_Tts_TtsClient_Unprepare_" data-uid="Tizen.Uix.Tts.TtsClient.Unprepare*"></a>
-  <h4 id="Tizen_Uix_Tts_TtsClient_Unprepare" data-uid="Tizen.Uix.Tts.TtsClient.Unprepare">Unprepare()</h4>
-  <div class="markdown level1 summary"><p>Disconnects from the TTS service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1067">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Unprepare" data-uid="Tizen.Uix.Tts.TtsClient.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Disconnects from the TTS service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1223,23 +1267,26 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="events">Events
+</h2>
 
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L554">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_DefaultVoiceChanged" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoiceChanged">DefaultVoiceChanged</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when an error occurs.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L554">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_DefaultVoiceChanged" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoiceChanged">DefaultVoiceChanged</h4>
+    <section>
+    <p>Event to be invoked when an error occurs.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;DefaultVoiceChangedEventArgs&gt; DefaultVoiceChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1255,21 +1302,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L601">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_EngineChanged" data-uid="Tizen.Uix.Tts.TtsClient.EngineChanged">EngineChanged</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked to detect engine change.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L601">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_EngineChanged" data-uid="Tizen.Uix.Tts.TtsClient.EngineChanged">EngineChanged</h4>
+    <section>
+    <p>Event to be invoked to detect engine change.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;EngineChangedEventArgs&gt; EngineChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1285,21 +1335,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L509">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_ErrorOccurred" data-uid="Tizen.Uix.Tts.TtsClient.ErrorOccurred">ErrorOccurred</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when an error occurs.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L509">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_ErrorOccurred" data-uid="Tizen.Uix.Tts.TtsClient.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>Event to be invoked when an error occurs.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;ErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1315,21 +1368,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L647">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_ScreenReaderChanged" data-uid="Tizen.Uix.Tts.TtsClient.ScreenReaderChanged">ScreenReaderChanged</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked to detect screen reader status change.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L647">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_ScreenReaderChanged" data-uid="Tizen.Uix.Tts.TtsClient.ScreenReaderChanged">ScreenReaderChanged</h4>
+    <section>
+    <p>Event to be invoked to detect screen reader status change.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;ScreenReaderChangedEventArgs&gt; ScreenReaderChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1345,21 +1401,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L691">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_ServiceStateChanged" data-uid="Tizen.Uix.Tts.TtsClient.ServiceStateChanged">ServiceStateChanged</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when the state of TTS service changes.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L691">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_ServiceStateChanged" data-uid="Tizen.Uix.Tts.TtsClient.ServiceStateChanged">ServiceStateChanged</h4>
+    <section>
+    <p>Event to be invoked when the state of TTS service changes.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;ServiceStateChangedEventArgs&gt; ServiceStateChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1375,21 +1434,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L372">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_StateChanged" data-uid="Tizen.Uix.Tts.TtsClient.StateChanged">StateChanged</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when TTS state changes.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L372">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_StateChanged" data-uid="Tizen.Uix.Tts.TtsClient.StateChanged">StateChanged</h4>
+    <section>
+    <p>Event to be invoked when TTS state changes.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1405,21 +1467,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L736">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_SynthesizedPcm" data-uid="Tizen.Uix.Tts.TtsClient.SynthesizedPcm">SynthesizedPcm</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when the synthesized pcm data comes from the engine.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L736">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_SynthesizedPcm" data-uid="Tizen.Uix.Tts.TtsClient.SynthesizedPcm">SynthesizedPcm</h4>
+    <section>
+    <p>Event to be invoked when the synthesized pcm data comes from the engine.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;SynthesizedPcmEventArgs&gt; SynthesizedPcm</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1435,21 +1500,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L464">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_UtteranceCompleted" data-uid="Tizen.Uix.Tts.TtsClient.UtteranceCompleted">UtteranceCompleted</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when the utterance completes.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L464">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_UtteranceCompleted" data-uid="Tizen.Uix.Tts.TtsClient.UtteranceCompleted">UtteranceCompleted</h4>
+    <section>
+    <p>Event to be invoked when the utterance completes.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;UtteranceEventArgs&gt; UtteranceCompleted</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1465,21 +1533,24 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L419">View Source</a>
-  </span>
-  <h4 id="Tizen_Uix_Tts_TtsClient_UtteranceStarted" data-uid="Tizen.Uix.Tts.TtsClient.UtteranceStarted">UtteranceStarted</h4>
-  <div class="markdown level1 summary"><p>Event to be invoked when the utterance starts.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L419">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_UtteranceStarted" data-uid="Tizen.Uix.Tts.TtsClient.UtteranceStarted">UtteranceStarted</h4>
+    <section>
+    <p>Event to be invoked when the utterance starts.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;UtteranceEventArgs&gt; UtteranceStarted</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1495,44 +1566,15 @@ The credential string.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L299" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

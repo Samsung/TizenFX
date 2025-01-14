@@ -2,16 +2,20 @@
 <div id="sidetoggle">
   <div>
     <div class="sidefilter">
-      <div class="moniker-picker">
-        <span class="moniker-picker-label">Version</span>
-        <select class="moniker-picker-menu">
-        </select>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="dropdownApiButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TizenFX API</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownApiButton" id="dropdownApiMenu">
+          <a class="dropdown-item" href="#">TizenFX API</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="dropdownApiVersionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" aria-labelledby="dropdownApiVersionButton" id="dropdownApiVersionMenu"></div>
       </div>
       <form class="toc-filter">
-        <span class="glyphicon glyphicon-filter filter-icon"></span>
-        <span class="glyphicon glyphicon-remove clear-icon" id="toc_filter_clear"></span>
-        <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+        <input type="text" id="toc_filter_input" placeholder="add filter" onkeypress="if(event.keyCode==13) {return false;}">
       </form>
+      <div class="sidefilter-separator"></div>
     </div>
     <div class="sidetoc">
       <div class="toc" id="toc">

@@ -2,16 +2,20 @@
 <div id="sidetoggle">
   <div>
     <div class="sidefilter">
-      <div class="moniker-picker">
-        <span class="moniker-picker-label">Version</span>
-        <select class="moniker-picker-menu">
-        </select>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="dropdownApiButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TizenFX API</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownApiButton" id="dropdownApiMenu">
+          <a class="dropdown-item" href="#">TizenFX API</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="dropdownApiVersionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" aria-labelledby="dropdownApiVersionButton" id="dropdownApiVersionMenu"></div>
       </div>
       <form class="toc-filter">
-        <span class="glyphicon glyphicon-filter filter-icon"></span>
-        <span class="glyphicon glyphicon-remove clear-icon" id="toc_filter_clear"></span>
-        <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+        <input type="text" id="toc_filter_input" placeholder="add filter" onkeypress="if(event.keyCode==13) {return false;}">
       </form>
+      <div class="sidefilter-separator"></div>
     </div>
     <div class="sidetoc">
       <div class="toc" id="toc">
@@ -5852,24 +5856,6 @@
                               <a href="Tizen.NUI.BaseComponents.CustomView.html" name="" title="CustomView">CustomView</a>
                           </li>
                           <li>
-                              <a href="Tizen.NUI.BaseComponents.FlexContainer.html" name="" title="FlexContainer">FlexContainer</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.FlexContainer.Alignment.html" name="" title="FlexContainer.Alignment">FlexContainer.Alignment</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.FlexContainer.ContentDirectionType.html" name="" title="FlexContainer.ContentDirectionType">FlexContainer.ContentDirectionType</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.FlexContainer.FlexDirectionType.html" name="" title="FlexContainer.FlexDirectionType">FlexContainer.FlexDirectionType</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.FlexContainer.Justification.html" name="" title="FlexContainer.Justification">FlexContainer.Justification</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.FlexContainer.WrapType.html" name="" title="FlexContainer.WrapType">FlexContainer.WrapType</a>
-                          </li>
-                          <li>
                               <a href="Tizen.NUI.BaseComponents.GLView.html" name="" title="GLView">GLView</a>
                           </li>
                           <li>
@@ -5913,18 +5899,6 @@
                           </li>
                           <li>
                               <a href="Tizen.NUI.BaseComponents.LottieAnimationView.StopBehaviorType.html" name="" title="LottieAnimationView.StopBehaviorType">LottieAnimationView.StopBehaviorType</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.Scrollable.html" name="" title="Scrollable">Scrollable</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs.html" name="" title="Scrollable.CompletedEventArgs">Scrollable.CompletedEventArgs</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs.html" name="" title="Scrollable.StartedEventArgs">Scrollable.StartedEventArgs</a>
-                          </li>
-                          <li>
-                              <a href="Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs.html" name="" title="Scrollable.UpdatedEventArgs">Scrollable.UpdatedEventArgs</a>
                           </li>
                           <li>
                               <a href="Tizen.NUI.BaseComponents.Selector-1.html" name="" title="Selector&lt;T&gt;">Selector&lt;T&gt;</a>

@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.Nsd.DnssdService">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Network.Nsd.DnssdService">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Network_Nsd_DnssdService" data-uid="Tizen.Network.Nsd.DnssdService" class="text-break">Class DnssdService
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Network_Nsd_DnssdService" data-uid="Tizen.Network.Nsd.DnssdService" class="mt-0 text-break"><span class="entity-type">Class</span>
+DnssdService
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L46" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Nsd.html">Nsd</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Nsd.html">Nsd</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Nsd.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>This class is used for managing the local service registration and its properties using DNS-SD.</p>
@@ -110,7 +82,7 @@
 
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a></div>
@@ -118,22 +90,28 @@
     </dd>
   </dl>
 
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L63">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Network_Nsd_DnssdService__ctor_" data-uid="Tizen.Network.Nsd.DnssdService.#ctor*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService__ctor_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.#ctor(System.String)">DnssdService(string)</h4>
-  <div class="markdown level1 summary"><p>The constructor to create the DnssdService instance that sets the serviceType to a given value.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L63">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService__ctor_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.#ctor(System.String)">DnssdService(string)</h4>
+    <section>
+    <p>The constructor to create the DnssdService instance that sets the serviceType to a given value.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public DnssdService(string serviceType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -152,7 +130,7 @@ It must begin with an underscore followed by 1-15 characters, which may be lette
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -174,24 +152,27 @@ It must begin with an underscore followed by 1-15 characters, which may be lette
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L206">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_IP_" data-uid="Tizen.Network.Nsd.DnssdService.IP*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_IP" data-uid="Tizen.Network.Nsd.DnssdService.IP">IP</h4>
-  <div class="markdown level1 summary"><p>IP address of the DNS-SD remote service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L206">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_IP" data-uid="Tizen.Network.Nsd.DnssdService.IP">IP</h4>
+    <section>
+    <p>IP address of the DNS-SD remote service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IPAddressInformation IP { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -211,22 +192,25 @@ In case of an error, null object will be returned.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L99">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_Name_" data-uid="Tizen.Network.Nsd.DnssdService.Name*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_Name" data-uid="Tizen.Network.Nsd.DnssdService.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Name of the DNS-SD service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L99">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Name" data-uid="Tizen.Network.Nsd.DnssdService.Name">Name</h4>
+    <section>
+    <p>Name of the DNS-SD service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -246,7 +230,7 @@ It may be up to 63 bytes.
 In case of an error, null will be returned during get and exception will be thrown during set.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -273,22 +257,25 @@ In case of an error, null will be returned during get and exception will be thro
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L167">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_Port_" data-uid="Tizen.Network.Nsd.DnssdService.Port*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_Port" data-uid="Tizen.Network.Nsd.DnssdService.Port">Port</h4>
-  <div class="markdown level1 summary"><p>Port number of the DNS-SD local or remote service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L167">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Port" data-uid="Tizen.Network.Nsd.DnssdService.Port">Port</h4>
+    <section>
+    <p>Port number of the DNS-SD local or remote service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int Port { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -307,7 +294,7 @@ In case of an error, null will be returned during get and exception will be thro
 In case of an error, -1 will be returned during get and exception will be thrown during set.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -334,22 +321,25 @@ In case of an error, -1 will be returned during get and exception will be thrown
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L139">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_Type_" data-uid="Tizen.Network.Nsd.DnssdService.Type*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_Type" data-uid="Tizen.Network.Nsd.DnssdService.Type">Type</h4>
-  <div class="markdown level1 summary"><p>Type of the DNS-SD local or remote service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L139">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Type" data-uid="Tizen.Network.Nsd.DnssdService.Type">Type</h4>
+    <section>
+    <p>Type of the DNS-SD local or remote service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Type { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -370,24 +360,27 @@ In case of an error, null will be returned.</p>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L262">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_" data-uid="Tizen.Network.Nsd.DnssdService.AddTXTRecord*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_System_String_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.AddTXTRecord(System.String,System.String)">AddTXTRecord(string, string)</h4>
-  <div class="markdown level1 summary"><p>Adds the TXT record.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L262">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_System_String_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.AddTXTRecord(System.String,System.String)">AddTXTRecord(string, string)</h4>
+    <section>
+    <p>Adds the TXT record.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void AddTXTRecord(string key, string value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -414,7 +407,7 @@ In case of an error, null will be returned.</p>
   <div class="markdown level1 remarks"><p>TXT record should be added after registering the local service using RegisterService().</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -441,15 +434,18 @@ In case of an error, null will be returned.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L343">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_DeregisterService_" data-uid="Tizen.Network.Nsd.DnssdService.DeregisterService*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_DeregisterService" data-uid="Tizen.Network.Nsd.DnssdService.DeregisterService">DeregisterService()</h4>
-  <div class="markdown level1 summary"><p>Deregisters the DNS-SD local service.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L343">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_DeregisterService" data-uid="Tizen.Network.Nsd.DnssdService.DeregisterService">DeregisterService()</h4>
+    <section>
+    <p>Deregisters the DNS-SD local service.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -459,7 +455,7 @@ In case of an error, null will be returned.</p>
   <div class="markdown level1 remarks"><p>A local service registered using RegisterService() must be passed.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -481,15 +477,18 @@ In case of an error, null will be returned.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L388">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_Dispose_" data-uid="Tizen.Network.Nsd.DnssdService.Dispose*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_Dispose" data-uid="Tizen.Network.Nsd.DnssdService.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Disposes the memory allocated to unmanaged resources.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L388">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Dispose" data-uid="Tizen.Network.Nsd.DnssdService.Dispose">Dispose()</h4>
+    <section>
+    <p>Disposes the memory allocated to unmanaged resources.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -497,15 +496,18 @@ In case of an error, null will be returned.</p>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L379">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_Finalize_" data-uid="Tizen.Network.Nsd.DnssdService.Finalize*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_Finalize" data-uid="Tizen.Network.Nsd.DnssdService.Finalize">~DnssdService()</h4>
-  <div class="markdown level1 summary"><p>Destroys the DnssdService object.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L379">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Finalize" data-uid="Tizen.Network.Nsd.DnssdService.Finalize">~DnssdService()</h4>
+    <section>
+    <p>Destroys the DnssdService object.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -513,22 +515,25 @@ In case of an error, null will be returned.</p>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L231">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_GetRawTXTRecords_" data-uid="Tizen.Network.Nsd.DnssdService.GetRawTXTRecords*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_GetRawTXTRecords" data-uid="Tizen.Network.Nsd.DnssdService.GetRawTXTRecords">GetRawTXTRecords()</h4>
-  <div class="markdown level1 summary"><p>Returns raw TXT records.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L231">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_GetRawTXTRecords" data-uid="Tizen.Network.Nsd.DnssdService.GetRawTXTRecords">GetRawTXTRecords()</h4>
+    <section>
+    <p>Returns raw TXT records.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public byte[] GetRawTXTRecords()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -544,7 +549,7 @@ In case of an error, null will be returned.</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -566,22 +571,25 @@ In case of an error, null will be returned.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L309">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_RegisterService_" data-uid="Tizen.Network.Nsd.DnssdService.RegisterService*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_RegisterService" data-uid="Tizen.Network.Nsd.DnssdService.RegisterService">RegisterService()</h4>
-  <div class="markdown level1 summary"><p>Registers the DNS-SD local service for publishing.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L309">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_RegisterService" data-uid="Tizen.Network.Nsd.DnssdService.RegisterService">RegisterService()</h4>
+    <section>
+    <p>Registers the DNS-SD local service for publishing.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RegisterService()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -608,22 +616,25 @@ In case of an error, null will be returned.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L289">View Source</a>
-  </span>
   <a id="Tizen_Network_Nsd_DnssdService_RemoveTXTRecord_" data-uid="Tizen.Network.Nsd.DnssdService.RemoveTXTRecord*"></a>
-  <h4 id="Tizen_Network_Nsd_DnssdService_RemoveTXTRecord_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.RemoveTXTRecord(System.String)">RemoveTXTRecord(string)</h4>
-  <div class="markdown level1 summary"><p>Removes the TXT record.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L289">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_RemoveTXTRecord_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.RemoveTXTRecord(System.String)">RemoveTXTRecord(string)</h4>
+    <section>
+    <p>Removes the TXT record.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RemoveTXTRecord(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -641,7 +652,7 @@ In case of an error, null will be returned.</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -668,47 +679,18 @@ In case of an error, null will be returned.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L46" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Notifications.Notification">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Applications.Notifications.Notification">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Applications_Notifications_Notification" data-uid="Tizen.Applications.Notifications.Notification" class="text-break">Class Notification
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_Notifications_Notification" data-uid="Tizen.Applications.Notifications.Notification" class="mt-0 text-break"><span class="entity-type">Class</span>
+Notification
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationStyle.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Notifications.html">Notifications</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Notifications.html">Notifications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Notification.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>This class contains common properties and methods of notifications.</p>
@@ -110,7 +82,7 @@
 
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
@@ -122,15 +94,21 @@
 It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L46">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Applications_Notifications_Notification__ctor_" data-uid="Tizen.Applications.Notifications.Notification.#ctor*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification__ctor" data-uid="Tizen.Applications.Notifications.Notification.#ctor">Notification()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a> class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L46">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification__ctor" data-uid="Tizen.Applications.Notifications.Notification.#ctor">Notification()</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a> class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -143,24 +121,27 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L196">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Accessory_" data-uid="Tizen.Applications.Notifications.Notification.Accessory*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Accessory" data-uid="Tizen.Applications.Notifications.Notification.Accessory">Accessory</h4>
-  <div class="markdown level1 summary"><p>Gets or sets <a class="xref" href="Tizen.Applications.Notifications.Notification.AccessorySet.html">Notification.AccessorySet</a> which is included vibration, LED and sound option to be applied at notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L196">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Accessory" data-uid="Tizen.Applications.Notifications.Notification.Accessory">Accessory</h4>
+    <section>
+    <p>Gets or sets <a class="xref" href="Tizen.Applications.Notifications.Notification.AccessorySet.html">Notification.AccessorySet</a> which is included vibration, LED and sound option to be applied at notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Notification.AccessorySet Accessory { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -203,22 +184,25 @@ NotificationManager.Post(notification);</code></pre>
 
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L111">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Action_" data-uid="Tizen.Applications.Notifications.Notification.Action*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Action" data-uid="Tizen.Applications.Notifications.Notification.Action">Action</h4>
-  <div class="markdown level1 summary"><p>Gets or sets action, which is invoked when the notification is clicked.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L111">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Action" data-uid="Tizen.Applications.Notifications.Notification.Action">Action</h4>
+    <section>
+    <p>Gets or sets action, which is invoked when the notification is clicked.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public AppControl Action { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -235,28 +219,31 @@ NotificationManager.Post(notification);</code></pre>
   <h5 id="Tizen_Applications_Notifications_Notification_Action_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If you set it to null, the already set AppControl will be removed and nothing will happen when you click on notification.</p>
 </div>
-  <h5 id="Tizen_Applications_Notifications_Notification_Action_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Applications_Notifications_Notification_Action_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L83">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Content_" data-uid="Tizen.Applications.Notifications.Notification.Content*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Content" data-uid="Tizen.Applications.Notifications.Notification.Content">Content</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the content of notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L83">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Content" data-uid="Tizen.Applications.Notifications.Notification.Content">Content</h4>
+    <section>
+    <p>Gets or sets the content of notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Content { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -277,22 +264,25 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L122">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Count_" data-uid="Tizen.Applications.Notifications.Notification.Count*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Count" data-uid="Tizen.Applications.Notifications.Notification.Count">Count</h4>
-  <div class="markdown level1 summary"><p>Gets or sets count, which is displayed at the right side of the notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L122">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Count" data-uid="Tizen.Applications.Notifications.Notification.Count">Count</h4>
+    <section>
+    <p>Gets or sets count, which is displayed at the right side of the notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int Count { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -311,7 +301,7 @@ This class helps you to provide method and property for creating notification ob
 If you set count to negative number, this property throws exception.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -328,23 +318,26 @@ If you set count to negative number, this property throws exception.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L69">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Icon_" data-uid="Tizen.Applications.Notifications.Notification.Icon*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Icon" data-uid="Tizen.Applications.Notifications.Notification.Icon">Icon</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the icon of notification.
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L69">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Icon" data-uid="Tizen.Applications.Notifications.Notification.Icon">Icon</h4>
+    <section>
+    <p>Gets or sets the icon of notification.
 You should set an absolute path for an image file.</p>
-</div>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Icon { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -365,23 +358,26 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L90">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_IsTimeStampVisible_" data-uid="Tizen.Applications.Notifications.Notification.IsTimeStampVisible*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_IsTimeStampVisible" data-uid="Tizen.Applications.Notifications.Notification.IsTimeStampVisible">IsTimeStampVisible</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether TimeStamp of the notification is Visible or not.
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L90">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_IsTimeStampVisible" data-uid="Tizen.Applications.Notifications.Notification.IsTimeStampVisible">IsTimeStampVisible</h4>
+    <section>
+    <p>Gets or sets a value indicating whether TimeStamp of the notification is Visible or not.
 Default to true.</p>
-</div>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsTimeStampVisible { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -402,23 +398,26 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L203">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_IsVisible_" data-uid="Tizen.Applications.Notifications.Notification.IsVisible*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_IsVisible" data-uid="Tizen.Applications.Notifications.Notification.IsVisible">IsVisible</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether notification is displayed on the default viewer.
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L203">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_IsVisible" data-uid="Tizen.Applications.Notifications.Notification.IsVisible">IsVisible</h4>
+    <section>
+    <p>Gets or sets a value indicating whether notification is displayed on the default viewer.
 If you set false and add style, you can see only style notification.</p>
-</div>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsVisible { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -439,22 +438,25 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L161">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Progress_" data-uid="Tizen.Applications.Notifications.Notification.Progress*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Progress" data-uid="Tizen.Applications.Notifications.Notification.Progress">Progress</h4>
-  <div class="markdown level1 summary"><p>Gets or sets <a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">Notification.ProgressType</a> object for display at notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L161">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Progress" data-uid="Tizen.Applications.Notifications.Notification.Progress">Progress</h4>
+    <section>
+    <p>Gets or sets <a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">Notification.ProgressType</a> object for display at notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Notification.ProgressType Progress { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -473,28 +475,31 @@ This class helps you to provide method and property for creating notification ob
 It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
-  <h5 id="Tizen_Applications_Notifications_Notification_Progress_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Applications_Notifications_Notification_Progress_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a>.<a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">ProgressType</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L154">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Property_" data-uid="Tizen.Applications.Notifications.Notification.Property*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Property" data-uid="Tizen.Applications.Notifications.Notification.Property">Property</h4>
-  <div class="markdown level1 summary"><p>Gets or sets property.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L154">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Property" data-uid="Tizen.Applications.Notifications.Notification.Property">Property</h4>
+    <section>
+    <p>Gets or sets property.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public NotificationProperty Property { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -513,30 +518,33 @@ This class helps you to provide method and property for creating notification ob
 It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
-  <h5 id="Tizen_Applications_Notifications_Notification_Property_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Applications_Notifications_Notification_Property_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Applications.Notifications.NotificationProperty.html">NotificationProperty</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L77">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_SubIcon_" data-uid="Tizen.Applications.Notifications.Notification.SubIcon*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_SubIcon" data-uid="Tizen.Applications.Notifications.Notification.SubIcon">SubIcon</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the sub icon of notification.
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L77">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_SubIcon" data-uid="Tizen.Applications.Notifications.Notification.SubIcon">SubIcon</h4>
+    <section>
+    <p>Gets or sets the sub icon of notification.
 This SubIcon is displayed in Icon you set.
 You should set an absolute path for an image file.</p>
-</div>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string SubIcon { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -557,22 +565,25 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L56">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Tag_" data-uid="Tizen.Applications.Notifications.Notification.Tag*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Tag" data-uid="Tizen.Applications.Notifications.Notification.Tag">Tag</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the tag of notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L56">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Tag" data-uid="Tizen.Applications.Notifications.Notification.Tag">Tag</h4>
+    <section>
+    <p>Gets or sets the tag of notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Tag { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -593,22 +604,25 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L101">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_TimeStamp_" data-uid="Tizen.Applications.Notifications.Notification.TimeStamp*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_TimeStamp" data-uid="Tizen.Applications.Notifications.Notification.TimeStamp">TimeStamp</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the TimeStamp of notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L101">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_TimeStamp" data-uid="Tizen.Applications.Notifications.Notification.TimeStamp">TimeStamp</h4>
+    <section>
+    <p>Gets or sets the TimeStamp of notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public DateTime TimeStamp { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -629,22 +643,25 @@ If you set IsVisibleTimeStamp property to false, TimeStamp is not visible in not
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L62">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Title_" data-uid="Tizen.Applications.Notifications.Notification.Title*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Title" data-uid="Tizen.Applications.Notifications.Notification.Title">Title</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the title of notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L62">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Title" data-uid="Tizen.Applications.Notifications.Notification.Title">Title</h4>
+    <section>
+    <p>Gets or sets the title of notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -665,24 +682,27 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L276">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_AddStyle_" data-uid="Tizen.Applications.Notifications.Notification.AddStyle*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_AddStyle_Tizen_Applications_Notifications_Notification_StyleBase_" data-uid="Tizen.Applications.Notifications.Notification.AddStyle(Tizen.Applications.Notifications.Notification.StyleBase)">AddStyle(StyleBase)</h4>
-  <div class="markdown level1 summary"><p>Method for adding various styles to be applied to notification.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L276">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_AddStyle_Tizen_Applications_Notifications_Notification_StyleBase_" data-uid="Tizen.Applications.Notifications.Notification.AddStyle(Tizen.Applications.Notifications.Notification.StyleBase)">AddStyle(StyleBase)</h4>
+    <section>
+    <p>Method for adding various styles to be applied to notification.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void AddStyle(Notification.StyleBase style)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -723,7 +743,7 @@ notification.AddStyle(lockStyle);
 NotificationManager.Post(notification);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -740,15 +760,18 @@ NotificationManager.Post(notification);</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L440">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_Dispose_" data-uid="Tizen.Applications.Notifications.Notification.Dispose*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_Dispose" data-uid="Tizen.Applications.Notifications.Notification.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Releases any unmanaged resources used by this object.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L440">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_Dispose" data-uid="Tizen.Applications.Notifications.Notification.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -761,22 +784,25 @@ This class helps you to provide method and property for creating notification ob
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L420">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_GetExtraData_" data-uid="Tizen.Applications.Notifications.Notification.GetExtraData*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_GetExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.GetExtraData(System.String)">GetExtraData(string)</h4>
-  <div class="markdown level1 summary"><p>Method to get extra data you already set.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L420">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_GetExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.GetExtraData(System.String)">GetExtraData(string)</h4>
+    <section>
+    <p>Method to get extra data you already set.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Bundle GetExtraData(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -794,7 +820,7 @@ This class helps you to provide method and property for creating notification ob
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -815,7 +841,7 @@ It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -832,22 +858,25 @@ This class helps you to provide method and property for creating notification ob
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L325">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_GetStyle_" data-uid="Tizen.Applications.Notifications.Notification.GetStyle*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_GetStyle__1" data-uid="Tizen.Applications.Notifications.Notification.GetStyle``1">GetStyle&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Method to get style you already added.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L325">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_GetStyle__1" data-uid="Tizen.Applications.Notifications.Notification.GetStyle``1">GetStyle&lt;T&gt;()</h4>
+    <section>
+    <p>Method to get style you already added.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public T GetStyle&lt;T&gt;() where T : Notification.StyleBase, new()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -863,7 +892,7 @@ This class helps you to provide method and property for creating notification ob
     </tbody>
   </table>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Name</th>
@@ -884,7 +913,7 @@ It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -901,22 +930,25 @@ This class helps you to provide method and property for creating notification ob
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L396">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_RemoveExtraData_" data-uid="Tizen.Applications.Notifications.Notification.RemoveExtraData*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_RemoveExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.RemoveExtraData(System.String)">RemoveExtraData(string)</h4>
-  <div class="markdown level1 summary"><p>Method to remove extra you already added.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L396">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_RemoveExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.RemoveExtraData(System.String)">RemoveExtraData(string)</h4>
+    <section>
+    <p>Method to remove extra you already added.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RemoveExtraData(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -937,7 +969,7 @@ This class helps you to provide method and property for creating notification ob
   <div class="markdown level1 remarks"><p>The type of extra data is bundle.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -954,22 +986,25 @@ This class helps you to provide method and property for creating notification ob
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L301">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_RemoveStyle_" data-uid="Tizen.Applications.Notifications.Notification.RemoveStyle*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_RemoveStyle__1" data-uid="Tizen.Applications.Notifications.Notification.RemoveStyle``1">RemoveStyle&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"><p>Method to remove style you already added.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L301">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_RemoveStyle__1" data-uid="Tizen.Applications.Notifications.Notification.RemoveStyle``1">RemoveStyle&lt;T&gt;()</h4>
+    <section>
+    <p>Method to remove style you already added.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RemoveStyle&lt;T&gt;() where T : Notification.StyleBase, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Name</th>
@@ -990,7 +1025,7 @@ It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1007,22 +1042,25 @@ This class helps you to provide method and property for creating notification ob
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L368">View Source</a>
-  </span>
   <a id="Tizen_Applications_Notifications_Notification_SetExtraData_" data-uid="Tizen.Applications.Notifications.Notification.SetExtraData*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_SetExtraData_System_String_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.Notifications.Notification.SetExtraData(System.String,Tizen.Applications.Bundle)">SetExtraData(string, Bundle)</h4>
-  <div class="markdown level1 summary"><p>Method to set extra data to add extra data.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L368">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Notifications_Notification_SetExtraData_System_String_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.Notifications.Notification.SetExtraData(System.String,Tizen.Applications.Bundle)">SetExtraData(string, Bundle)</h4>
+    <section>
+    <p>Method to set extra data to add extra data.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetExtraData(string key, Bundle value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1062,7 +1100,7 @@ bundle.AddItem(&quot;key&quot;, &quot;value&quot;);
 notification.SetExtraData(&quot;firstKey&quot;, bundle);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1079,44 +1117,15 @@ notification.SetExtraData(&quot;firstKey&quot;, bundle);</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationStyle.cs/#L27" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

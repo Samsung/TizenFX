@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Multimedia_Remoting_ScreenMirroring" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring" class="text-break">Class ScreenMirroring
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_ScreenMirroring" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring" class="mt-0 text-break"><span class="entity-type">Class</span>
+ScreenMirroring
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L31" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>Provides the ability to connect to and disconnect from a screen mirroring source,
@@ -111,29 +83,35 @@ start, pause, and resume the screen mirroring as a sink.</p>
 
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L65">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring__ctor_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring__ctor" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.#ctor">ScreenMirroring()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the ScreenMirroring class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L65">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring__ctor" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.#ctor">ScreenMirroring()</h4>
+    <section>
+    <p>Initializes a new instance of the ScreenMirroring class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ScreenMirroring()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -150,24 +128,27 @@ start, pause, and resume the screen mirroring as a sink.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L147">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_AudioInfo_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.AudioInfo*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_AudioInfo" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.AudioInfo">AudioInfo</h4>
-  <div class="markdown level1 summary"><p>Gets the negotiated audio info.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L147">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_AudioInfo" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.AudioInfo">AudioInfo</h4>
+    <section>
+    <p>Gets the negotiated audio info.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ScreenMirroringAudioInfo AudioInfo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -183,22 +164,25 @@ start, pause, and resume the screen mirroring as a sink.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L153">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_VideoInfo_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.VideoInfo*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_VideoInfo" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.VideoInfo">VideoInfo</h4>
-  <div class="markdown level1 summary"><p>Gets the negotiated video info.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L153">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_VideoInfo" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.VideoInfo">VideoInfo</h4>
+    <section>
+    <p>Gets the negotiated video info.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ScreenMirroringVideoInfo VideoInfo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -214,24 +198,27 @@ start, pause, and resume the screen mirroring as a sink.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L317">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync(System.String,System.UInt32)">ConnectAsync(string, uint)</h4>
-  <div class="markdown level1 summary"><p>Creates the connection and ready for receiving data from a mirroring source with the given <code data-dev-comment-type="paramref" class="paramref">port</code>.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L317">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync(System.String,System.UInt32)">ConnectAsync(string, uint)</h4>
+    <section>
+    <p>Creates the connection and ready for receiving data from a mirroring source with the given <code data-dev-comment-type="paramref" class="paramref">port</code>.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task ConnectAsync(string sourceIp, uint port)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -255,7 +242,7 @@ start, pause, and resume the screen mirroring as a sink.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -275,7 +262,7 @@ start, pause, and resume the screen mirroring as a sink.</p>
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_">Prepare(Display, ScreenMirroringResolutions)</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -319,22 +306,25 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L290">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync(System.String)">ConnectAsync(string)</h4>
-  <div class="markdown level1 summary"><p>Creates the connection and ready for receiving data from a mirroring source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L290">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync(System.String)">ConnectAsync(string)</h4>
+    <section>
+    <p>Creates the connection and ready for receiving data from a mirroring source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task ConnectAsync(string sourceIp)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -352,7 +342,7 @@ An internal error occurs.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -374,7 +364,7 @@ The default port number is 2022.<br>
 If you want to connect using different port number, please use <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_">ConnectAsync(string, uint)</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -411,21 +401,24 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_">ConnectAsync(string, uint)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L427">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Disconnect_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Disconnect*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Disconnect" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Disconnect">Disconnect()</h4>
-  <div class="markdown level1 summary"><p>Disconnects from the source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L427">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Disconnect" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Disconnect">Disconnect()</h4>
+    <section>
+    <p>Disconnects from the source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -436,7 +429,7 @@ An internal error occurs.</p>
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Paused">Paused</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -465,15 +458,18 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L477">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Releases all resource used by the <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> object.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L477">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resource used by the <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> object.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -488,22 +484,25 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L490">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose(System.Boolean)">Dispose(bool)</h4>
-  <div class="markdown level1 summary"><p>Releases the resources used by the ScreenMirroring.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L490">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the resources used by the ScreenMirroring.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -522,15 +521,18 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L86">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Finalize_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Finalize*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Finalize" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Finalize">~ScreenMirroring()</h4>
-  <div class="markdown level1 summary"><p>Finalizes an instance of the ScreenMirroring class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L86">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Finalize" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Finalize">~ScreenMirroring()</h4>
+    <section>
+    <p>Finalizes an instance of the ScreenMirroring class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -538,22 +540,25 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L380">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.PauseAsync*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.PauseAsync">PauseAsync()</h4>
-  <div class="markdown level1 summary"><p>Pauses mirroring from the source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L380">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.PauseAsync">PauseAsync()</h4>
+    <section>
+    <p>Pauses mirroring from the source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task PauseAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -573,7 +578,7 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync">StartAsync()</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -602,22 +607,25 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L220">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare(Tizen.Multimedia.Display,Tizen.Multimedia.Remoting.ScreenMirroringResolutions)">Prepare(Display, ScreenMirroringResolutions)</h4>
-  <div class="markdown level1 summary"><p>Prepares the screen mirroring with the specified display and resolutions.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L220">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare(Tizen.Multimedia.Display,Tizen.Multimedia.Remoting.ScreenMirroringResolutions)">Prepare(Display, ScreenMirroringResolutions)</h4>
+    <section>
+    <p>Prepares the screen mirroring with the specified display and resolutions.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Prepare(Display display, ScreenMirroringResolutions resolutions)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -644,7 +652,7 @@ An internal error occurs.</p>
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Idle">Idle</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -680,22 +688,25 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L194">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare(Tizen.Multimedia.Display)">Prepare(Display)</h4>
-  <div class="markdown level1 summary"><p>Prepares the screen mirroring with the specified display.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L194">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare(Tizen.Multimedia.Display)">Prepare(Display)</h4>
+    <section>
+    <p>Prepares the screen mirroring with the specified display.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Prepare(Display display)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -718,7 +729,7 @@ An internal error occurs.</p>
 All supported resolutions will be candidates.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -752,22 +763,25 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L404">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_ResumeAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ResumeAsync*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ResumeAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ResumeAsync">ResumeAsync()</h4>
-  <div class="markdown level1 summary"><p>Resumes mirroring from the source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L404">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ResumeAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ResumeAsync">ResumeAsync()</h4>
+    <section>
+    <p>Resumes mirroring from the source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task ResumeAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -787,7 +801,7 @@ An internal error occurs.</p>
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync">PauseAsync()</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -816,22 +830,25 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L356">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StartAsync*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StartAsync">StartAsync()</h4>
-  <div class="markdown level1 summary"><p>Starts mirroring from the source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L356">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StartAsync">StartAsync()</h4>
+    <section>
+    <p>Starts mirroring from the source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task StartAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -851,7 +868,7 @@ An internal error occurs.</p>
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_">ConnectAsync(string)</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -880,15 +897,18 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L449">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Unprepare_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Unprepare*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Unprepare" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Unprepare">Unprepare()</h4>
-  <div class="markdown level1 summary"><p>Unprepares the screen mirroring.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L449">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Unprepare" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Unprepares the screen mirroring.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -899,7 +919,7 @@ An internal error occurs.</p>
 or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Disconnected">Disconnected</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -923,23 +943,26 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="events">Events
+</h2>
 
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L101">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ErrorOccurred" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ErrorOccurred">ErrorOccurred</h4>
-  <div class="markdown level1 summary"><p>Occurs when an error occurs.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L101">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ErrorOccurred" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>Occurs when an error occurs.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;ScreenMirroringErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -955,21 +978,24 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L95">View Source</a>
-  </span>
-  <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_StateChanged" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StateChanged">StateChanged</h4>
-  <div class="markdown level1 summary"><p>Occurs when the state is changed.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L95">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_StateChanged" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StateChanged">StateChanged</h4>
+    <section>
+    <p>Occurs when the state is changed.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public event EventHandler&lt;ScreenMirroringStateChangedEventArgs&gt; StateChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -985,44 +1011,15 @@ An internal error occurs.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L31" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

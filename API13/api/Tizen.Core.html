@@ -18,71 +18,39 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
-
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Core">
-
-  <h1 id="Tizen_Core" data-uid="Tizen.Core" class="text-break">Namespace Tizen.Core
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Core">
+  <div class="entity entity-namespace">
+  <h1 id="Tizen_Core" data-uid="Tizen.Core" class="mt-0 text-break"><span class="entity-type">Namespace</span>
+<span id="namespace">Tizen.Core</span>
 </h1>
+
+  <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
   <div class="markdown level0 summary"><p>Tizen Core (TCore) is a new main loop model that provides per thread loops, message and event transmission, uniquely named threads.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -218,70 +186,87 @@ The channel event is passed to the main loop of the ReceivingTask, causing the e
 <p>The generated event is added to an EventTask, and a corresponding EventObject is passed to it.
 The event is then delivered to the main loop of the EventTask where the EventHandler is called.</p>
 </div>
-    <h3 id="classes">Classes
-</h3>
-      <h4><a class="xref" href="Tizen.Core.Channel.html">Channel</a></h4>
-      <section><p>The class for managing communication channels between tasks of Tizen Core.</p>
+    <h2 id="classes">Classes
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.Channel.html">Channel</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The class for managing communication channels between tasks of Tizen Core.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.ChannelObject.html">ChannelObject</a></h4>
-      <section><p>Represents a channel object used for inter-task communication.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.ChannelObject.html">ChannelObject</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents a channel object used for inter-task communication.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.ChannelReceivedEventArgs.html">ChannelReceivedEventArgs</a></h4>
-      <section><p>Represents the arguments for the event raised when an object has been received through a channel.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.ChannelReceivedEventArgs.html">ChannelReceivedEventArgs</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents the arguments for the event raised when an object has been received through a channel.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.ChannelReceiver.html">ChannelReceiver</a></h4>
-      <section><p>Represents the channel receiver used for inter-task communication.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.ChannelReceiver.html">ChannelReceiver</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents the channel receiver used for inter-task communication.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.ChannelSender.html">ChannelSender</a></h4>
-      <section><p>Represents the channel sender used for inter-task communication. It provides methods to send messages between tasks in order to facilitate task coordination.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.ChannelSender.html">ChannelSender</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents the channel sender used for inter-task communication. It provides methods to send messages between tasks in order to facilitate task coordination.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.Event.html">Event</a></h4>
-      <section><p>Represents the event used for broadcasting events.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.Event.html">Event</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents the event used for broadcasting events.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.EventObject.html">EventObject</a></h4>
-      <section><p>Represents an event object used for broadcasting the event.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.EventObject.html">EventObject</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents an event object used for broadcasting the event.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.EventReceivedEventArgs.html">EventReceivedEventArgs</a></h4>
-      <section><p>Represents the arguments passed to the event handler when the event data is received.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.EventReceivedEventArgs.html">EventReceivedEventArgs</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents the arguments passed to the event handler when the event data is received.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.Task.html">Task</a></h4>
-      <section><p>Represents the task used for creating, running and terminating the thread with the main loop.
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.Task.html">Task</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents the task used for creating, running and terminating the thread with the main loop.
 The state of the task can be changed as follows: Constructed -&gt; Running -&gt; Terminated.
 To start the task, use 'Task.Run()' method. Once started, the task enters into 'Running' state. To terminate the task, use 'Task.Quit()' method.
 After termination, the task returns back to 'Constructed' state.</p>
 </section>
-      <h4><a class="xref" href="Tizen.Core.TizenCore.html">TizenCore</a></h4>
-      <section><p>The class which provides functions related to the Tizen Core.</p>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Core.TizenCore.html">TizenCore</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The class which provides functions related to the Tizen Core.</p>
 </section>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+      </div>
+  </div>
+</section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Core.Channel">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Core.Channel">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Core_Channel" data-uid="Tizen.Core.Channel" class="text-break">Class Channel
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Core_Channel" data-uid="Tizen.Core.Channel" class="mt-0 text-break"><span class="entity-type">Class</span>
+Channel
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L32" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Core.html">Core</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Core.html">Core</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Core.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>The class for managing communication channels between tasks of Tizen Core.</p>
@@ -110,7 +82,7 @@
 
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
@@ -124,15 +96,21 @@ Once created, both tasks can send and receive messages through the channel.
 It's important to note that channels have a limited capacity, so make sure to handle message overflows appropriately.
 Additionally, remember to close the channel once it's no longer needed to avoid resource leaks.</p>
 </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L60">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Core_Channel__ctor_" data-uid="Tizen.Core.Channel.#ctor*"></a>
-  <h4 id="Tizen_Core_Channel__ctor" data-uid="Tizen.Core.Channel.#ctor">Channel()</h4>
-  <div class="markdown level1 summary"><p>Creates a new channel with a sender and a receiver.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L60">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_Channel__ctor" data-uid="Tizen.Core.Channel.#ctor">Channel()</h4>
+    <section>
+    <p>Creates a new channel with a sender and a receiver.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -155,7 +133,7 @@ catch (OutOfMemoryException)
 }</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -177,24 +155,27 @@ catch (OutOfMemoryException)
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L95">View Source</a>
-  </span>
   <a id="Tizen_Core_Channel_Receiver_" data-uid="Tizen.Core.Channel.Receiver*"></a>
-  <h4 id="Tizen_Core_Channel_Receiver" data-uid="Tizen.Core.Channel.Receiver">Receiver</h4>
-  <div class="markdown level1 summary"><p>Gets the channel receiver instance.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L95">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_Channel_Receiver" data-uid="Tizen.Core.Channel.Receiver">Receiver</h4>
+    <section>
+    <p>Gets the channel receiver instance.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ChannelReceiver Receiver { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -215,22 +196,25 @@ It is crucial to understand the concept of channels in order to effectively util
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L84">View Source</a>
-  </span>
   <a id="Tizen_Core_Channel_Sender_" data-uid="Tizen.Core.Channel.Sender*"></a>
-  <h4 id="Tizen_Core_Channel_Sender" data-uid="Tizen.Core.Channel.Sender">Sender</h4>
-  <div class="markdown level1 summary"><p>Gets the channel sender instance.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L84">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_Channel_Sender" data-uid="Tizen.Core.Channel.Sender">Sender</h4>
+    <section>
+    <p>Gets the channel sender instance.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ChannelSender Sender { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -250,17 +234,20 @@ It ensures that only one sender instance per channel exists in order to avoid an
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L120">View Source</a>
-  </span>
   <a id="Tizen_Core_Channel_Dispose_" data-uid="Tizen.Core.Channel.Dispose*"></a>
-  <h4 id="Tizen_Core_Channel_Dispose" data-uid="Tizen.Core.Channel.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Release any unmanaged resources used by this object.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L120">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_Channel_Dispose" data-uid="Tizen.Core.Channel.Dispose">Dispose()</h4>
+    <section>
+    <p>Release any unmanaged resources used by this object.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -275,22 +262,25 @@ Additionally, remember to close the channel once it's no longer needed to avoid 
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L102">View Source</a>
-  </span>
   <a id="Tizen_Core_Channel_Dispose_" data-uid="Tizen.Core.Channel.Dispose*"></a>
-  <h4 id="Tizen_Core_Channel_Dispose_System_Boolean_" data-uid="Tizen.Core.Channel.Dispose(System.Boolean)">Dispose(bool)</h4>
-  <div class="markdown level1 summary"><p>Release any unmanaged resources used by this object.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_Channel_Dispose_System_Boolean_" data-uid="Tizen.Core.Channel.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Release any unmanaged resources used by this object.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -316,15 +306,18 @@ Additionally, remember to close the channel once it's no longer needed to avoid 
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L71">View Source</a>
-  </span>
   <a id="Tizen_Core_Channel_Finalize_" data-uid="Tizen.Core.Channel.Finalize*"></a>
-  <h4 id="Tizen_Core_Channel_Finalize" data-uid="Tizen.Core.Channel.Finalize">~Channel()</h4>
-  <div class="markdown level1 summary"><p>Finalizes an instance of the Channel class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L71">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_Channel_Finalize" data-uid="Tizen.Core.Channel.Finalize">~Channel()</h4>
+    <section>
+    <p>Finalizes an instance of the Channel class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -339,44 +332,15 @@ Additionally, remember to close the channel once it's no longer needed to avoid 
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Core/Tizen.Core/Channel.cs/#L32" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

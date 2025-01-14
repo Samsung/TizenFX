@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="ElmSharp.Widget">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="ElmSharp.Widget">
+  <div class="entity">
 
-
-  <h1 id="ElmSharp_Widget" data-uid="ElmSharp.Widget" class="text-break">Class Widget
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="ElmSharp_Widget" data-uid="ElmSharp.Widget" class="mt-0 text-break"><span class="entity-type">Class</span>
+Widget
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L66" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>The Widget is an abstract class and the parent of other widgets.
@@ -112,7 +84,7 @@ public abstract class Widget : AccessibleObject, IAccessibleObject</code></pre>
     </dd>
   </dl>
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Derived</dt>
     <dd>
       <div class="pdl"><a class="xref" href="ElmSharp.Conformant.html">Conformant</a></div>
@@ -128,22 +100,28 @@ public abstract class Widget : AccessibleObject, IAccessibleObject</code></pre>
   </dl>
 
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a></div>
     </dd>
   </dl>
 
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L81">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="ElmSharp_Widget__ctor_" data-uid="ElmSharp.Widget.#ctor*"></a>
-  <h4 id="ElmSharp_Widget__ctor" data-uid="ElmSharp.Widget.#ctor">Widget()</h4>
-  <div class="markdown level1 summary"><p>Creates and initializes a new instance of the Widget class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L81">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget__ctor" data-uid="ElmSharp.Widget.#ctor">Widget()</h4>
+    <section>
+    <p>Creates and initializes a new instance of the Widget class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -152,15 +130,18 @@ protected Widget()</code></pre>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L91">View Source</a>
-  </span>
   <a id="ElmSharp_Widget__ctor_" data-uid="ElmSharp.Widget.#ctor*"></a>
-  <h4 id="ElmSharp_Widget__ctor_ElmSharp_EvasObject_" data-uid="ElmSharp.Widget.#ctor(ElmSharp.EvasObject)">Widget(EvasObject)</h4>
-  <div class="markdown level1 summary"><p>Creates and initializes a new instance of the Widget class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L91">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget__ctor_ElmSharp_EvasObject_" data-uid="ElmSharp.Widget.#ctor(ElmSharp.EvasObject)">Widget(EvasObject)</h4>
+    <section>
+    <p>Creates and initializes a new instance of the Widget class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -168,7 +149,7 @@ protected Widget()</code></pre>
 protected Widget(EvasObject parent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -187,17 +168,20 @@ protected Widget(EvasObject parent)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L258">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_AllowTreeFocus_" data-uid="ElmSharp.Widget.AllowTreeFocus*"></a>
-  <h4 id="ElmSharp_Widget_AllowTreeFocus" data-uid="ElmSharp.Widget.AllowTreeFocus">AllowTreeFocus</h4>
-  <div class="markdown level1 summary"><p>Sets or gets whether a widget and its children are focusable or not.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L258">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_AllowTreeFocus" data-uid="ElmSharp.Widget.AllowTreeFocus">AllowTreeFocus</h4>
+    <section>
+    <p>Sets or gets whether a widget and its children are focusable or not.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -205,7 +189,7 @@ protected Widget(EvasObject parent)</code></pre>
 public bool AllowTreeFocus { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -221,15 +205,18 @@ public bool AllowTreeFocus { get; set; }</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L206">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_BackgroundColor_" data-uid="ElmSharp.Widget.BackgroundColor*"></a>
-  <h4 id="ElmSharp_Widget_BackgroundColor" data-uid="ElmSharp.Widget.BackgroundColor">BackgroundColor</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the background color of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L206">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_BackgroundColor" data-uid="ElmSharp.Widget.BackgroundColor">BackgroundColor</h4>
+    <section>
+    <p>Sets or gets the background color of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -237,7 +224,7 @@ public bool AllowTreeFocus { get; set; }</code></pre>
 public virtual Color BackgroundColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -256,16 +243,19 @@ public virtual Color BackgroundColor { get; set; }</code></pre>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L293">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_IsAutoMirroredMode_" data-uid="ElmSharp.Widget.IsAutoMirroredMode*"></a>
-  <h4 id="ElmSharp_Widget_IsAutoMirroredMode" data-uid="ElmSharp.Widget.IsAutoMirroredMode">IsAutoMirroredMode</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the widget's mirrored mode setting.
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L293">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_IsAutoMirroredMode" data-uid="ElmSharp.Widget.IsAutoMirroredMode">IsAutoMirroredMode</h4>
+    <section>
+    <p>Sets or gets the widget's mirrored mode setting.
 When widget is set to automatic mode(true), it follows the system mirrored mode.</p>
-</div>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -273,7 +263,7 @@ When widget is set to automatic mode(true), it follows the system mirrored mode.
 public bool IsAutoMirroredMode { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -289,15 +279,18 @@ public bool IsAutoMirroredMode { get; set; }</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L126">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_IsEnabled_" data-uid="ElmSharp.Widget.IsEnabled*"></a>
-  <h4 id="ElmSharp_Widget_IsEnabled" data-uid="ElmSharp.Widget.IsEnabled">IsEnabled</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the state of the widget, which might be enabled or disabled.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L126">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_IsEnabled" data-uid="ElmSharp.Widget.IsEnabled">IsEnabled</h4>
+    <section>
+    <p>Sets or gets the state of the widget, which might be enabled or disabled.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -305,7 +298,7 @@ public bool IsAutoMirroredMode { get; set; }</code></pre>
 public virtual bool IsEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -321,15 +314,18 @@ public virtual bool IsEnabled { get; set; }</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L174">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_IsFocusAllowed_" data-uid="ElmSharp.Widget.IsFocusAllowed*"></a>
-  <h4 id="ElmSharp_Widget_IsFocusAllowed" data-uid="ElmSharp.Widget.IsFocusAllowed">IsFocusAllowed</h4>
-  <div class="markdown level1 summary"><p>Gets whether a widget is focusable or not.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L174">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_IsFocusAllowed" data-uid="ElmSharp.Widget.IsFocusAllowed">IsFocusAllowed</h4>
+    <section>
+    <p>Gets whether a widget is focusable or not.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -337,7 +333,7 @@ public virtual bool IsEnabled { get; set; }</code></pre>
 public bool IsFocusAllowed { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -356,15 +352,18 @@ public bool IsFocusAllowed { get; }</code></pre>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L160">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_IsFocused_" data-uid="ElmSharp.Widget.IsFocused*"></a>
-  <h4 id="ElmSharp_Widget_IsFocused" data-uid="ElmSharp.Widget.IsFocused">IsFocused</h4>
-  <div class="markdown level1 summary"><p>Gets whether this widget is focused.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L160">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_IsFocused" data-uid="ElmSharp.Widget.IsFocused">IsFocused</h4>
+    <section>
+    <p>Gets whether this widget is focused.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -372,7 +371,7 @@ public bool IsFocusAllowed { get; }</code></pre>
 public bool IsFocused { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -388,15 +387,18 @@ public bool IsFocused { get; }</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L275">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_IsMirroredMode_" data-uid="ElmSharp.Widget.IsMirroredMode*"></a>
-  <h4 id="ElmSharp_Widget_IsMirroredMode" data-uid="ElmSharp.Widget.IsMirroredMode">IsMirroredMode</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the widget's mirrored mode.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L275">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_IsMirroredMode" data-uid="ElmSharp.Widget.IsMirroredMode">IsMirroredMode</h4>
+    <section>
+    <p>Sets or gets the widget's mirrored mode.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -404,7 +406,7 @@ public bool IsFocused { get; }</code></pre>
 public bool IsMirroredMode { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -420,15 +422,18 @@ public bool IsMirroredMode { get; set; }</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L236">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_Opacity_" data-uid="ElmSharp.Widget.Opacity*"></a>
-  <h4 id="ElmSharp_Widget_Opacity" data-uid="ElmSharp.Widget.Opacity">Opacity</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the opacity of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L236">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_Opacity" data-uid="ElmSharp.Widget.Opacity">Opacity</h4>
+    <section>
+    <p>Sets or gets the opacity of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -436,7 +441,7 @@ public bool IsMirroredMode { get; set; }</code></pre>
 public virtual int Opacity { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -455,15 +460,18 @@ public virtual int Opacity { get; set; }</code></pre>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L143">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_Style_" data-uid="ElmSharp.Widget.Style*"></a>
-  <h4 id="ElmSharp_Widget_Style" data-uid="ElmSharp.Widget.Style">Style</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the style of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L143">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_Style" data-uid="ElmSharp.Widget.Style">Style</h4>
+    <section>
+    <p>Sets or gets the style of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -471,7 +479,7 @@ public virtual int Opacity { get; set; }</code></pre>
 public string Style { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -487,15 +495,18 @@ public string Style { get; set; }</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L188">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_Text_" data-uid="ElmSharp.Widget.Text*"></a>
-  <h4 id="ElmSharp_Widget_Text" data-uid="ElmSharp.Widget.Text">Text</h4>
-  <div class="markdown level1 summary"><p>Sets or gets the text of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L188">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_Text" data-uid="ElmSharp.Widget.Text">Text</h4>
+    <section>
+    <p>Sets or gets the text of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -503,7 +514,7 @@ public string Style { get; set; }</code></pre>
 public virtual string Text { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -522,17 +533,20 @@ public virtual string Text { get; set; }</code></pre>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L329">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_AllowFocus_" data-uid="ElmSharp.Widget.AllowFocus*"></a>
-  <h4 id="ElmSharp_Widget_AllowFocus_System_Boolean_" data-uid="ElmSharp.Widget.AllowFocus(System.Boolean)">AllowFocus(bool)</h4>
-  <div class="markdown level1 summary"><p>Sets the ability for a widget to be focused.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L329">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_AllowFocus_System_Boolean_" data-uid="ElmSharp.Widget.AllowFocus(System.Boolean)">AllowFocus(bool)</h4>
+    <section>
+    <p>Sets the ability for a widget to be focused.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -540,7 +554,7 @@ public virtual string Text { get; set; }</code></pre>
 public void AllowFocus(bool isAllowFocus)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -559,15 +573,18 @@ public void AllowFocus(bool isAllowFocus)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L340">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_FocusNext_" data-uid="ElmSharp.Widget.FocusNext*"></a>
-  <h4 id="ElmSharp_Widget_FocusNext_ElmSharp_FocusDirection_" data-uid="ElmSharp.Widget.FocusNext(ElmSharp.FocusDirection)">FocusNext(FocusDirection)</h4>
-  <div class="markdown level1 summary"><p>Gives focus to the next widget in the widget tree.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L340">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_FocusNext_ElmSharp_FocusDirection_" data-uid="ElmSharp.Widget.FocusNext(ElmSharp.FocusDirection)">FocusNext(FocusDirection)</h4>
+    <section>
+    <p>Gives focus to the next widget in the widget tree.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -575,7 +592,7 @@ public void AllowFocus(bool isAllowFocus)</code></pre>
 public void FocusNext(FocusDirection direction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -594,15 +611,18 @@ public void FocusNext(FocusDirection direction)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L470">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_GetPartColor_" data-uid="ElmSharp.Widget.GetPartColor*"></a>
-  <h4 id="ElmSharp_Widget_GetPartColor_System_String_" data-uid="ElmSharp.Widget.GetPartColor(System.String)">GetPartColor(string)</h4>
-  <div class="markdown level1 summary"><p>Gets color of the particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L470">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_GetPartColor_System_String_" data-uid="ElmSharp.Widget.GetPartColor(System.String)">GetPartColor(string)</h4>
+    <section>
+    <p>Gets color of the particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -610,7 +630,7 @@ public void FocusNext(FocusDirection direction)</code></pre>
 public virtual Color GetPartColor(string part)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -628,7 +648,7 @@ public virtual Color GetPartColor(string part)</code></pre>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -648,15 +668,18 @@ public virtual Color GetPartColor(string part)</code></pre>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L496">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_GetPartOpacity_" data-uid="ElmSharp.Widget.GetPartOpacity*"></a>
-  <h4 id="ElmSharp_Widget_GetPartOpacity_System_String_" data-uid="ElmSharp.Widget.GetPartOpacity(System.String)">GetPartOpacity(string)</h4>
-  <div class="markdown level1 summary"><p>Gets opacity of the particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L496">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_GetPartOpacity_System_String_" data-uid="ElmSharp.Widget.GetPartOpacity(System.String)">GetPartOpacity(string)</h4>
+    <section>
+    <p>Gets opacity of the particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -664,7 +687,7 @@ public virtual Color GetPartColor(string part)</code></pre>
 public int GetPartOpacity(string part)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -682,7 +705,7 @@ public int GetPartOpacity(string part)</code></pre>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -699,15 +722,18 @@ public int GetPartOpacity(string part)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L441">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_GetPartText_" data-uid="ElmSharp.Widget.GetPartText*"></a>
-  <h4 id="ElmSharp_Widget_GetPartText_System_String_" data-uid="ElmSharp.Widget.GetPartText(System.String)">GetPartText(string)</h4>
-  <div class="markdown level1 summary"><p>Gets text of a particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L441">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_GetPartText_System_String_" data-uid="ElmSharp.Widget.GetPartText(System.String)">GetPartText(string)</h4>
+    <section>
+    <p>Gets text of a particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -715,7 +741,7 @@ public int GetPartOpacity(string part)</code></pre>
 public virtual string GetPartText(string part)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -733,7 +759,7 @@ public virtual string GetPartText(string part)</code></pre>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -750,15 +776,18 @@ public virtual string GetPartText(string part)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L520">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_OnRealized_" data-uid="ElmSharp.Widget.OnRealized*"></a>
-  <h4 id="ElmSharp_Widget_OnRealized" data-uid="ElmSharp.Widget.OnRealized">OnRealized()</h4>
-  <div class="markdown level1 summary"><p>The callback of the Realized event.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L520">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_OnRealized" data-uid="ElmSharp.Widget.OnRealized">OnRealized()</h4>
+    <section>
+    <p>The callback of the Realized event.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -769,15 +798,18 @@ protected override void OnRealized()</code></pre>
   <div><a class="xref" href="ElmSharp.EvasObject.html#ElmSharp_EvasObject_OnRealized">EvasObject.OnRealized()</a></div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L410">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetContent_" data-uid="ElmSharp.Widget.SetContent*"></a>
-  <h4 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject_System_Boolean_" data-uid="ElmSharp.Widget.SetContent(ElmSharp.EvasObject,System.Boolean)">SetContent(EvasObject, bool)</h4>
-  <div class="markdown level1 summary"><p>Sets content to the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L410">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject_System_Boolean_" data-uid="ElmSharp.Widget.SetContent(ElmSharp.EvasObject,System.Boolean)">SetContent(EvasObject, bool)</h4>
+    <section>
+    <p>Sets content to the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -785,7 +817,7 @@ protected override void OnRealized()</code></pre>
 public void SetContent(EvasObject content, bool preserveOldContent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -808,21 +840,24 @@ public void SetContent(EvasObject content, bool preserveOldContent)</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject_System_Boolean__seealso">See Also</h5>
       <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_SetContent_ElmSharp_EvasObject_">SetContent(EvasObject)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L397">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetContent_" data-uid="ElmSharp.Widget.SetContent*"></a>
-  <h4 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject_" data-uid="ElmSharp.Widget.SetContent(ElmSharp.EvasObject)">SetContent(EvasObject)</h4>
-  <div class="markdown level1 summary"><p>Sets content to the widget, and the preserve old content will be deleted.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L397">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject_" data-uid="ElmSharp.Widget.SetContent(ElmSharp.EvasObject)">SetContent(EvasObject)</h4>
+    <section>
+    <p>Sets content to the widget, and the preserve old content will be deleted.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -830,7 +865,7 @@ public void SetContent(EvasObject content, bool preserveOldContent)</code></pre>
 public void SetContent(EvasObject content)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -847,21 +882,24 @@ public void SetContent(EvasObject content)</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="ElmSharp_Widget_SetContent_ElmSharp_EvasObject__seealso">See Also</h5>
       <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_SetContent_ElmSharp_EvasObject_System_Boolean_">SetContent(EvasObject, bool)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L311">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetFocus_" data-uid="ElmSharp.Widget.SetFocus*"></a>
-  <h4 id="ElmSharp_Widget_SetFocus_System_Boolean_" data-uid="ElmSharp.Widget.SetFocus(System.Boolean)">SetFocus(bool)</h4>
-  <div class="markdown level1 summary"><p>Sets the widget to be focused or not.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L311">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetFocus_System_Boolean_" data-uid="ElmSharp.Widget.SetFocus(System.Boolean)">SetFocus(bool)</h4>
+    <section>
+    <p>Sets the widget to be focused or not.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -869,7 +907,7 @@ public void SetContent(EvasObject content)</code></pre>
 public void SetFocus(bool isFocus)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -888,15 +926,18 @@ public void SetFocus(bool isFocus)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L352">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetNextFocusObject_" data-uid="ElmSharp.Widget.SetNextFocusObject*"></a>
-  <h4 id="ElmSharp_Widget_SetNextFocusObject_ElmSharp_EvasObject_ElmSharp_FocusDirection_" data-uid="ElmSharp.Widget.SetNextFocusObject(ElmSharp.EvasObject,ElmSharp.FocusDirection)">SetNextFocusObject(EvasObject, FocusDirection)</h4>
-  <div class="markdown level1 summary"><p>Sets the next widget with specific focus direction.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L352">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetNextFocusObject_ElmSharp_EvasObject_ElmSharp_FocusDirection_" data-uid="ElmSharp.Widget.SetNextFocusObject(ElmSharp.EvasObject,ElmSharp.FocusDirection)">SetNextFocusObject(EvasObject, FocusDirection)</h4>
+    <section>
+    <p>Sets the next widget with specific focus direction.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -904,7 +945,7 @@ public void SetFocus(bool isFocus)</code></pre>
 public void SetNextFocusObject(EvasObject next, FocusDirection direction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -929,15 +970,18 @@ public void SetNextFocusObject(EvasObject next, FocusDirection direction)</code>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L454">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetPartColor_" data-uid="ElmSharp.Widget.SetPartColor*"></a>
-  <h4 id="ElmSharp_Widget_SetPartColor_System_String_ElmSharp_Color_" data-uid="ElmSharp.Widget.SetPartColor(System.String,ElmSharp.Color)">SetPartColor(string, Color)</h4>
-  <div class="markdown level1 summary"><p>Sets color of a particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L454">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetPartColor_System_String_ElmSharp_Color_" data-uid="ElmSharp.Widget.SetPartColor(System.String,ElmSharp.Color)">SetPartColor(string, Color)</h4>
+    <section>
+    <p>Sets color of a particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -945,7 +989,7 @@ public void SetNextFocusObject(EvasObject next, FocusDirection direction)</code>
 public virtual void SetPartColor(string part, Color color)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -973,15 +1017,18 @@ public virtual void SetPartColor(string part, Color color)</code></pre>
 </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L379">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetPartContent_" data-uid="ElmSharp.Widget.SetPartContent*"></a>
-  <h4 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_System_Boolean_" data-uid="ElmSharp.Widget.SetPartContent(System.String,ElmSharp.EvasObject,System.Boolean)">SetPartContent(string, EvasObject, bool)</h4>
-  <div class="markdown level1 summary"><p>Sets content to the particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L379">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_System_Boolean_" data-uid="ElmSharp.Widget.SetPartContent(System.String,ElmSharp.EvasObject,System.Boolean)">SetPartContent(string, EvasObject, bool)</h4>
+    <section>
+    <p>Sets content to the particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -989,7 +1036,7 @@ public virtual void SetPartColor(string part, Color color)</code></pre>
 public virtual bool SetPartContent(string part, EvasObject content, bool preserveOldContent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1019,7 +1066,7 @@ public virtual bool SetPartContent(string part, EvasObject content, bool preserv
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1033,21 +1080,24 @@ public virtual bool SetPartContent(string part, EvasObject content, bool preserv
       </tr>
     </tbody>
   </table>
-  <h5 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_System_Boolean__seealso">See Also</h5>
       <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_">SetPartContent(string, EvasObject)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L365">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetPartContent_" data-uid="ElmSharp.Widget.SetPartContent*"></a>
-  <h4 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_" data-uid="ElmSharp.Widget.SetPartContent(System.String,ElmSharp.EvasObject)">SetPartContent(string, EvasObject)</h4>
-  <div class="markdown level1 summary"><p>Sets content to the particular part of the widget, and the preserve old content will be deleted.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L365">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_" data-uid="ElmSharp.Widget.SetPartContent(System.String,ElmSharp.EvasObject)">SetPartContent(string, EvasObject)</h4>
+    <section>
+    <p>Sets content to the particular part of the widget, and the preserve old content will be deleted.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1055,7 +1105,7 @@ public virtual bool SetPartContent(string part, EvasObject content, bool preserv
 public virtual bool SetPartContent(string part, EvasObject content)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1079,7 +1129,7 @@ public virtual bool SetPartContent(string part, EvasObject content)</code></pre>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1093,21 +1143,24 @@ public virtual bool SetPartContent(string part, EvasObject content)</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject__seealso">See Also</h5>
       <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_SetPartContent_System_String_ElmSharp_EvasObject_System_Boolean_">SetPartContent(string, EvasObject, bool)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L484">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetPartOpacity_" data-uid="ElmSharp.Widget.SetPartOpacity*"></a>
-  <h4 id="ElmSharp_Widget_SetPartOpacity_System_String_System_Int32_" data-uid="ElmSharp.Widget.SetPartOpacity(System.String,System.Int32)">SetPartOpacity(string, int)</h4>
-  <div class="markdown level1 summary"><p>Sets opacity of the particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L484">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetPartOpacity_System_String_System_Int32_" data-uid="ElmSharp.Widget.SetPartOpacity(System.String,System.Int32)">SetPartOpacity(string, int)</h4>
+    <section>
+    <p>Sets opacity of the particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1115,7 +1168,7 @@ public virtual bool SetPartContent(string part, EvasObject content)</code></pre>
 public void SetPartOpacity(string part, int opacity)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1140,15 +1193,18 @@ public void SetPartOpacity(string part, int opacity)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L428">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SetPartText_" data-uid="ElmSharp.Widget.SetPartText*"></a>
-  <h4 id="ElmSharp_Widget_SetPartText_System_String_System_String_" data-uid="ElmSharp.Widget.SetPartText(System.String,System.String)">SetPartText(string, string)</h4>
-  <div class="markdown level1 summary"><p>Sets text to the particular part of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L428">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SetPartText_System_String_System_String_" data-uid="ElmSharp.Widget.SetPartText(System.String,System.String)">SetPartText(string, string)</h4>
+    <section>
+    <p>Sets text to the particular part of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1156,7 +1212,7 @@ public void SetPartOpacity(string part, int opacity)</code></pre>
 public virtual bool SetPartText(string part, string text)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1180,7 +1236,7 @@ public virtual bool SetPartText(string part, string text)</code></pre>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1196,15 +1252,18 @@ public virtual bool SetPartText(string part, string text)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L510">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_SignalEmit_" data-uid="ElmSharp.Widget.SignalEmit*"></a>
-  <h4 id="ElmSharp_Widget_SignalEmit_System_String_System_String_" data-uid="ElmSharp.Widget.SignalEmit(System.String,System.String)">SignalEmit(string, string)</h4>
-  <div class="markdown level1 summary"><p>Sends a signal to the edje object of the widget.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L510">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_SignalEmit_System_String_System_String_" data-uid="ElmSharp.Widget.SignalEmit(System.String,System.String)">SignalEmit(string, string)</h4>
+    <section>
+    <p>Sends a signal to the edje object of the widget.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1212,7 +1271,7 @@ public virtual bool SetPartText(string part, string text)</code></pre>
 public void SignalEmit(string emission, string source)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1237,15 +1296,18 @@ public void SignalEmit(string emission, string source)</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L102">View Source</a>
-  </span>
   <a id="ElmSharp_Widget_UpdatePartContents_" data-uid="ElmSharp.Widget.UpdatePartContents*"></a>
-  <h4 id="ElmSharp_Widget_UpdatePartContents_ElmSharp_EvasObject_System_String_" data-uid="ElmSharp.Widget.UpdatePartContents(ElmSharp.EvasObject,System.String)">UpdatePartContents(EvasObject, string)</h4>
-  <div class="markdown level1 summary"><p>Updates the part contents.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L102">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_UpdatePartContents_ElmSharp_EvasObject_System_String_" data-uid="ElmSharp.Widget.UpdatePartContents(ElmSharp.EvasObject,System.String)">UpdatePartContents(EvasObject, string)</h4>
+    <section>
+    <p>Updates the part contents.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1253,7 +1315,7 @@ public void SignalEmit(string emission, string source)</code></pre>
 protected void UpdatePartContents(EvasObject content, string part = &quot;__default__&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1278,16 +1340,19 @@ protected void UpdatePartContents(EvasObject content, string part = &quot;__defa
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="events">Events
+</h2>
 
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L113">View Source</a>
-  </span>
-  <h4 id="ElmSharp_Widget_Focused" data-uid="ElmSharp.Widget.Focused">Focused</h4>
-  <div class="markdown level1 summary"><p>Focused will be triggered when the widget is focused.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L113">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_Focused" data-uid="ElmSharp.Widget.Focused">Focused</h4>
+    <section>
+    <p>Focused will be triggered when the widget is focused.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1295,7 +1360,7 @@ protected void UpdatePartContents(EvasObject content, string part = &quot;__defa
 public event EventHandler Focused</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1311,14 +1376,17 @@ public event EventHandler Focused</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L120">View Source</a>
-  </span>
-  <h4 id="ElmSharp_Widget_Unfocused" data-uid="ElmSharp.Widget.Unfocused">Unfocused</h4>
-  <div class="markdown level1 summary"><p>Unfocused will be triggered when the widget is unfocused.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L120">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Widget_Unfocused" data-uid="ElmSharp.Widget.Unfocused">Unfocused</h4>
+    <section>
+    <p>Unfocused will be triggered when the widget is unfocused.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1326,7 +1394,7 @@ public event EventHandler Focused</code></pre>
 public event EventHandler Unfocused</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1342,9 +1410,7 @@ public event EventHandler Unfocused</code></pre>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="implements">Implements</h3>
+  <h2 id="implements">Implements</h2>
   <div>
       <a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a>
   </div>
@@ -1361,38 +1427,11 @@ public event EventHandler Unfocused</code></pre>
   <div>
       <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_RemoveRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.RemoveRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
   </div>
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Widget.cs/#L66" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>

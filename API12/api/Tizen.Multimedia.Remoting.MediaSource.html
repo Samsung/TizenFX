@@ -18,75 +18,47 @@
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/tizen.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
   
   <meta property="docfx:rel" content="../../">
   
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
-              </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
-                </div>
-              </form>
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
             </div>
           </div>
-        </nav>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
 
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="container body-content">
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
 
-        <div id="search-results">
-          <div class="search-list"> <span></span></div>
-          <div class="sr-items">
-            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
-          </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
-        </div>
-      </div>
-      <div role="main" class="container body-content hide-when-search">
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.MediaSource">
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
-          </div>
-        </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.MediaSource">
+  <div class="entity">
 
-
-  <h1 id="Tizen_Multimedia_Remoting_MediaSource" data-uid="Tizen.Multimedia.Remoting.MediaSource" class="text-break">Class MediaSource
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_MediaSource" data-uid="Tizen.Multimedia.Remoting.MediaSource" class="mt-0 text-break"><span class="entity-type">Class</span>
+MediaSource
 </h1>
-  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L29" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
 
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
 
   <div class="markdown level0 summary"><p>MediaSource is a base class for <a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html">WebRTC</a> sources.</p>
@@ -108,7 +80,7 @@
     </dd>
   </dl>
 
-  <dl class="attribute-list stack">
+  <dl class="attribute-list">
     <dt>Derived</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Multimedia.Remoting.MediaCameraSource.html">MediaCameraSource</a></div>
@@ -130,15 +102,21 @@
 
 
 
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L57">View Source</a>
-  </span>
+
+  <h2 id="constructors">Constructors
+</h2>
+
   <a id="Tizen_Multimedia_Remoting_MediaSource__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaSource.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource__ctor" data-uid="Tizen.Multimedia.Remoting.MediaSource.#ctor">MediaSource()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a> class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L57">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource__ctor" data-uid="Tizen.Multimedia.Remoting.MediaSource.#ctor">MediaSource()</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a> class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -146,22 +124,25 @@
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L48">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaSource.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource__ctor_Tizen_Multimedia_Remoting_MediaType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.#ctor(Tizen.Multimedia.Remoting.MediaType)">MediaSource(MediaType)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a> class.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L48">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource__ctor_Tizen_Multimedia_Remoting_MediaType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.#ctor(Tizen.Multimedia.Remoting.MediaType)">MediaSource(MediaType)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a> class.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected MediaSource(MediaType mediaType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -179,24 +160,27 @@
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="properties">Properties
+</h2>
 
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L517">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EncoderBitrate_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EncoderBitrate*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_EncoderBitrate" data-uid="Tizen.Multimedia.Remoting.MediaSource.EncoderBitrate">EncoderBitrate</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the encoder bitrate of the current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L517">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_EncoderBitrate" data-uid="Tizen.Multimedia.Remoting.MediaSource.EncoderBitrate">EncoderBitrate</h4>
+    <section>
+    <p>Gets or sets the encoder bitrate of the current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int EncoderBitrate { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -215,7 +199,7 @@
   <div class="markdown level1 remarks"><p>This API is not supported in <a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html">MediaFileSource</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html">MediaPacketSource</a>.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -246,22 +230,25 @@ This MediaSource is not supported type of MediaSource.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L40">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_MediaType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.MediaType*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_MediaType" data-uid="Tizen.Multimedia.Remoting.MediaSource.MediaType">MediaType</h4>
-  <div class="markdown level1 summary"><p>Gets the type of MediaSource.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L40">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_MediaType" data-uid="Tizen.Multimedia.Remoting.MediaSource.MediaType">MediaType</h4>
+    <section>
+    <p>Gets the type of MediaSource.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected MediaType MediaType { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -278,22 +265,25 @@ This MediaSource is not supported type of MediaSource.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L347">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_Mute_" data-uid="Tizen.Multimedia.Remoting.MediaSource.Mute*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_Mute" data-uid="Tizen.Multimedia.Remoting.MediaSource.Mute">Mute</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the mute status of the current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L347">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_Mute" data-uid="Tizen.Multimedia.Remoting.MediaSource.Mute">Mute</h4>
+    <section>
+    <p>Gets or sets the mute status of the current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool Mute { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -312,7 +302,7 @@ This MediaSource is not supported type of MediaSource.</p>
   <div class="markdown level1 remarks"><p>This API is not supported in <a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html">MediaFileSource</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html">MediaPacketSource</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html">MediaNullSource</a>. (Since API level 10)</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -336,22 +326,25 @@ This MediaSource is not supported type of MediaSource. (Since API level 10)</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L299">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_Pause_" data-uid="Tizen.Multimedia.Remoting.MediaSource.Pause*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_Pause" data-uid="Tizen.Multimedia.Remoting.MediaSource.Pause">Pause</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the pause status of current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L299">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_Pause" data-uid="Tizen.Multimedia.Remoting.MediaSource.Pause">Pause</h4>
+    <section>
+    <p>Gets or sets the pause status of current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool Pause { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -367,7 +360,7 @@ This MediaSource is not supported type of MediaSource. (Since API level 10)</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -389,29 +382,32 @@ This MediaSource is not supported type of MediaSource. (Since API level 10)</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaSource_Pause_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaSource_Pause_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html#Tizen_Multimedia_Remoting_MediaFileSource_GetPause_Tizen_Multimedia_Remoting_MediaType_">GetPause(MediaType)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html#Tizen_Multimedia_Remoting_MediaFileSource_SetPause_Tizen_Multimedia_Remoting_MediaType_System_Boolean_">SetPause(MediaType, bool)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L219">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs_" data-uid="Tizen.Multimedia.Remoting.MediaSource.SupportedTransceiverCodecs*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs" data-uid="Tizen.Multimedia.Remoting.MediaSource.SupportedTransceiverCodecs">SupportedTransceiverCodecs</h4>
-  <div class="markdown level1 summary"><p>Retrieves the supported transceiver codecs.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L219">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs" data-uid="Tizen.Multimedia.Remoting.MediaSource.SupportedTransceiverCodecs">SupportedTransceiverCodecs</h4>
+    <section>
+    <p>Retrieves the supported transceiver codecs.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;TransceiverCodec&gt; SupportedTransceiverCodecs { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -432,7 +428,7 @@ If user want to get supported codecs for each audio or video in <a class="xref" 
 please use <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html#Tizen_Multimedia_Remoting_MediaNullSource_GetSupportedTransceiverCodecs_Tizen_Multimedia_Remoting_MediaType_">GetSupportedTransceiverCodecs(MediaType)</a> instead.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -452,28 +448,31 @@ please use <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html#
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html#Tizen_Multimedia_Remoting_MediaNullSource_GetSupportedTransceiverCodecs_Tizen_Multimedia_Remoting_MediaType_">GetSupportedTransceiverCodecs(MediaType)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L170">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_TransceiverCodec_" data-uid="Tizen.Multimedia.Remoting.MediaSource.TransceiverCodec*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverCodec" data-uid="Tizen.Multimedia.Remoting.MediaSource.TransceiverCodec">TransceiverCodec</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the transceiver codec of current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L170">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverCodec" data-uid="Tizen.Multimedia.Remoting.MediaSource.TransceiverCodec">TransceiverCodec</h4>
+    <section>
+    <p>Gets or sets the transceiver codec of current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TransceiverCodec TransceiverCodec { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -495,7 +494,7 @@ or <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html#Tizen_Mu
 The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Idle">Idle</a> state when transceiver codec is set.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -519,29 +518,32 @@ The WebRTC is not in the valid state.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverCodec_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverCodec_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html#Tizen_Multimedia_Remoting_MediaNullSource_GetTransceiverCodec_Tizen_Multimedia_Remoting_MediaType_">GetTransceiverCodec(MediaType)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html#Tizen_Multimedia_Remoting_MediaNullSource_SetTransceiverCodec_Tizen_Multimedia_Remoting_MediaType_Tizen_Multimedia_Remoting_TransceiverCodec_">SetTransceiverCodec(MediaType, TransceiverCodec)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L100">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_TransceiverDirection_" data-uid="Tizen.Multimedia.Remoting.MediaSource.TransceiverDirection*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverDirection" data-uid="Tizen.Multimedia.Remoting.MediaSource.TransceiverDirection">TransceiverDirection</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the transceiver direction of current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L100">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverDirection" data-uid="Tizen.Multimedia.Remoting.MediaSource.TransceiverDirection">TransceiverDirection</h4>
+    <section>
+    <p>Gets or sets the transceiver direction of current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TransceiverDirection TransceiverDirection { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -563,7 +565,7 @@ please use <a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html#
 In <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html">MediaNullSource</a>, only <a class="xref" href="Tizen.Multimedia.Remoting.TransceiverDirection.html#Tizen_Multimedia_Remoting_TransceiverDirection_RecvOnly">RecvOnly</a> can be set.(Since API level 10)</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -585,29 +587,32 @@ In <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html">MediaNu
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverDirection_seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaSource_TransceiverDirection_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html#Tizen_Multimedia_Remoting_MediaFileSource_GetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_">GetTransceiverDirection(MediaType)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html#Tizen_Multimedia_Remoting_MediaFileSource_SetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_Tizen_Multimedia_Remoting_TransceiverDirection_">SetTransceiverDirection(MediaType, TransceiverDirection)</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L454">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_VideoFrameRate_" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoFrameRate*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_VideoFrameRate" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoFrameRate">VideoFrameRate</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the video frame rate of the current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L454">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_VideoFrameRate" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoFrameRate">VideoFrameRate</h4>
+    <section>
+    <p>Gets or sets the video frame rate of the current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int VideoFrameRate { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -627,7 +632,7 @@ In <a class="xref" href="Tizen.Multimedia.Remoting.MediaNullSource.html">MediaNu
 <a class="xref" href="Tizen.Multimedia.Remoting.MediaScreenSource.html">MediaScreenSource</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaTestSource.html">MediaTestSource</a>.<br></p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -658,22 +663,25 @@ This MediaSource is not supported type of MediaSource.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L394">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_VideoResolution_" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoResolution*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_VideoResolution" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoResolution">VideoResolution</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the video resolution of the current media source.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L394">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_VideoResolution" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoResolution">VideoResolution</h4>
+    <section>
+    <p>Gets or sets the video resolution of the current media source.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Size VideoResolution { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -689,7 +697,7 @@ This MediaSource is not supported type of MediaSource.</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -715,24 +723,27 @@ This MediaSource is not supported type of MediaSource.</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
+  <h2 id="methods">Methods
+</h2>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L629">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback(Tizen.Multimedia.AudioStreamPolicy)">EnableAudioLoopback(AudioStreamPolicy)</h4>
-  <div class="markdown level1 summary"><p>Enables the audio loopback. The local audio will be played with <code data-dev-comment-type="paramref" class="paramref">policy</code>.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L629">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback(Tizen.Multimedia.AudioStreamPolicy)">EnableAudioLoopback(AudioStreamPolicy)</h4>
+    <section>
+    <p>Enables the audio loopback. The local audio will be played with <code data-dev-comment-type="paramref" class="paramref">policy</code>.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public MediaStreamTrack EnableAudioLoopback(AudioStreamPolicy policy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -750,7 +761,7 @@ This MediaSource is not supported type of MediaSource.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -771,7 +782,7 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
 <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_MediaExternalOnly">MediaExternalOnly</a>.<br></p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -805,22 +816,25 @@ This MediaSource is not Audio</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L681">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback(Tizen.Multimedia.Display)">EnableVideoLoopback(Display)</h4>
-  <div class="markdown level1 summary"><p>Enables the video loopback. The local video will be diaplayed in <code data-dev-comment-type="paramref" class="paramref">display</code>.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L681">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback(Tizen.Multimedia.Display)">EnableVideoLoopback(Display)</h4>
+    <section>
+    <p>Enables the video loopback. The local video will be diaplayed in <code data-dev-comment-type="paramref" class="paramref">display</code>.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public MediaStreamTrack EnableVideoLoopback(Display display)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -838,7 +852,7 @@ This MediaSource is not Audio</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -854,7 +868,7 @@ This MediaSource is not Audio</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -893,22 +907,25 @@ This MediaSource is not Video</p>
   </table>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L594">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.GetPayloadType*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_" data-uid="Tizen.Multimedia.Remoting.MediaSource.GetPayloadType(Tizen.Multimedia.Remoting.TransceiverCodec)">GetPayloadType(TransceiverCodec)</h4>
-  <div class="markdown level1 summary"><p>Gets the RTP payload type of given <code data-dev-comment-type="paramref" class="paramref">codec</code>.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L594">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_" data-uid="Tizen.Multimedia.Remoting.MediaSource.GetPayloadType(Tizen.Multimedia.Remoting.TransceiverCodec)">GetPayloadType(TransceiverCodec)</h4>
+    <section>
+    <p>Gets the RTP payload type of given <code data-dev-comment-type="paramref" class="paramref">codec</code>.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public uint GetPayloadType(TransceiverCodec codec)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -926,7 +943,7 @@ This MediaSource is not Video</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -942,7 +959,7 @@ This MediaSource is not Video</p>
     </tbody>
   </table>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -962,28 +979,31 @@ This MediaSource is not Video</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaSource_GetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html#Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs">SupportedTransceiverCodecs</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L570">View Source</a>
-  </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_" data-uid="Tizen.Multimedia.Remoting.MediaSource.SetPayloadType*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32_" data-uid="Tizen.Multimedia.Remoting.MediaSource.SetPayloadType(Tizen.Multimedia.Remoting.TransceiverCodec,System.UInt32)">SetPayloadType(TransceiverCodec, uint)</h4>
-  <div class="markdown level1 summary"><p>Sets the RTP payload type of given <code data-dev-comment-type="paramref" class="paramref">codec</code>.</p>
-</div>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L570">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32_" data-uid="Tizen.Multimedia.Remoting.MediaSource.SetPayloadType(Tizen.Multimedia.Remoting.TransceiverCodec,System.UInt32)">SetPayloadType(TransceiverCodec, uint)</h4>
+    <section>
+    <p>Sets the RTP payload type of given <code data-dev-comment-type="paramref" class="paramref">codec</code>.</p>
+
+    </section>
+  </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetPayloadType(TransceiverCodec codec, uint payloadType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1010,7 +1030,7 @@ This MediaSource is not Video</p>
   <div class="markdown level1 remarks"><p><code data-dev-comment-type="paramref" class="paramref">payloadType</code> should be greater than or equal to 96 and less than or equal to 127.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table">
     <thead>
       <tr>
         <th>Type</th>
@@ -1035,46 +1055,17 @@ This MediaSource is not Video</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32__seealso">See Also</h5>
   <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaSource_SetPayloadType_Tizen_Multimedia_Remoting_TransceiverCodec_System_UInt32__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html#Tizen_Multimedia_Remoting_MediaSource_SupportedTransceiverCodecs">SupportedTransceiverCodecs</a></div>
   </div>
 
 
-  <div style="margin-bottom: 15px"></div>
-
-</article>
-          </div>
-
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L29" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
-              </nav>
+  </div></section>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
-      
-          </div>
-        </div>
-      </footer>
     </div>
 
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
