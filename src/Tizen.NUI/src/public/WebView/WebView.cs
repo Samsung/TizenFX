@@ -167,6 +167,8 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewUserMediaPermissionRequestEventArgs> userMediaPermissionRequestEventHandler;
         private WebViewUserMediaPermissionRequestCallback userMediaPermissionRequestCallback;
 
+        private WebContext webContext = null;
+        private WebCookieManager webCookieManager = null;
 
         /// <summary>
         /// Default constructor to create a WebView.
@@ -242,6 +244,21 @@ namespace Tizen.NUI.BaseComponents
             if (Disposed)
             {
                 return;
+            }
+
+            if (webContext != null)
+            {
+                webContext.RegisterDownloadStartedCallback(null);
+                webContext.RegisterMimeOverriddenCallback(null);
+                webContext.RegisterHttpRequestInterceptedCallback(null);
+                webContext.Dispose();
+                webContext = null;
+            }
+
+            if (webCookieManager != null)
+            {
+                webCookieManager.Dispose();
+                webCookieManager = null;
             }
 
             if (type == DisposeTypes.Explicit)
@@ -1212,6 +1229,67 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// IME alignment in web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ImeAlignment
+        {
+            /// <summary>
+            /// Top-left corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopLeft = 0,
+
+            /// <summary>
+            /// top-center position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopCenter,
+
+            /// <summary>
+            /// Top-right corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TopRight,
+
+            /// <summary>
+            /// Middle-left position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MiddleLeft,
+
+            /// <summary>
+            /// Middle-center position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MiddleCenter,
+
+            /// <summary>
+            /// Middle-right position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MiddleRight,
+
+            /// <summary>
+            /// Bottom-left corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomLeft,
+
+            /// <summary>
+            /// Bottom-center position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomCenter,
+
+            /// <summary>
+            /// Bottom-right corner.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            BottomRight,
+        }
+
+        /// <summary>
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1219,7 +1297,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new WebContext(Interop.WebView.GetWebContext(), false);
+                webContext ??= new WebContext(Interop.WebView.GetWebContext(), false);
+                return webContext;
             }
         }
 
@@ -1231,7 +1310,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+                webCookieManager ??= new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+                return webCookieManager;
             }
         }
 
@@ -2524,6 +2604,31 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set the style of IME.
+        /// </summary>
+        /// <param name="position">The position of IME</param>
+        /// <param name="alignment">The alignment of IME</param>
+        /// <returns>True if setting successfully, false otherwise</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetImePositionAndAlignment(Vector2 position, ImeAlignment alignment)
+        {
+            bool result = Interop.WebView.SetImePositionAndAlignment(SwigCPtr, Vector2.getCPtr(position), (int)alignment);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Set the theme name of cursor.
+        /// </summary>
+        /// <param name="themeName">The theme name of cursor</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetCursorThemeName(string themeName)
+        {
+            Interop.WebView.SetCursorThemeName(SwigCPtr, themeName);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Scrolls page of web view by deltaX and detlaY.
         /// </summary>
         /// <param name="deltaX">The deltaX of scroll</param>
@@ -2997,6 +3102,10 @@ namespace Tizen.NUI.BaseComponents
             if (backgroundExtraData.CornerRadius != null)
             {
                 Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+            }
+            if (backgroundExtraData.CornerSquareness != null)
+            {
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
             }
             Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
         }

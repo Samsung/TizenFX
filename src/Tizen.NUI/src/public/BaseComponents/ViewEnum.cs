@@ -164,6 +164,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Describes offscreen rendering types.
+        /// View with this property enabled renders at offscreen buffer, with all its children.
+        /// The property expects to reduce many repetitive render calls.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum OffScreenRenderingType
+        {
+          /// <summary>
+          /// No offscreen rendering.
+          /// </summary>
+          [EditorBrowsable(EditorBrowsableState.Never)]
+          None,
+          /// <summary>
+          /// Draw offscreen only once.
+          /// </summary>
+          [EditorBrowsable(EditorBrowsableState.Never)]
+          RefreshOnce,
+          /// <summary>
+          /// Draw offscreen every frame.
+          /// </summary>
+          [EditorBrowsable(EditorBrowsableState.Never)]
+          RefreshAlways,
+        };
+
+
+        /// <summary>
         /// Actions property value to update visual property.
         /// Note : Only few kind of properies can be update. Update with invalid property action is undefined.
         /// </summary>
@@ -266,6 +292,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int UpdateAreaHint = Interop.ActorProperty.UpdateAreaHintGet();
             internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
             internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
+            internal static readonly int OffScreenRendering = Interop.ViewProperty.OffScreenRenderingGet();
         }
     }
 }

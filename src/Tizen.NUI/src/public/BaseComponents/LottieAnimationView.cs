@@ -19,6 +19,7 @@ using global::System;
 using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Globalization;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
@@ -111,11 +112,13 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            CleanCallbackDictionaries();
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
+            if (type == DisposeTypes.Explicit)
+            {
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+                CleanCallbackDictionaries(true);
+            }
 
             //disconnect event signal
             if (finishedEventHandler != null && visualEventSignalCallback != null)
@@ -133,8 +136,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            // Note : We can clean dictionaries even this API called from GC Thread.
-            CleanCallbackDictionaries();
+            if (!disposing)
+            {
+                // Note : We can clean dictionaries even this API called from GC Thread.
+                CleanCallbackDictionaries(true);
+            }
             base.Dispose(disposing);
         }
         #endregion Constructor, Destructor, Dispose
@@ -192,6 +198,9 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                // Invalidate previous dynamic property callbacks.
+                CleanCallbackDictionaries(false);
+
                 // Reset cached infomations.
                 currentStates.contentInfo = null;
                 currentStates.markerInfo = null;
@@ -245,7 +254,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (backgroundExtraData != null)
                 {
-                    if (backgroundExtraData.CornerRadius != null)
+                    if (backgroundExtraData.CornerRadius != null || backgroundExtraData.CornerSquareness != null)
                     {
                         UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius);
                     }
@@ -1108,30 +1117,53 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DoActionExtension(LottieAnimationViewDynamicProperty info)
         {
+            // Called from main thread
             dynamicPropertyCallbackId++;
 
-            weakReferencesOfLottie?.Add(dynamicPropertyCallbackId, new WeakReference<LottieAnimationView>(this));
-            InternalSavedDynamicPropertyCallbacks?.Add(dynamicPropertyCallbackId, info.Callback);
+            lock (InternalPropertyCallbacksLock)
+            {
+                // Add to dictionary only if we can assume that this view is not in disposing state.
+                if (InternalSavedDynamicPropertyCallbacks != null)
+                {
+                    weakReferencesOfLottie?.TryAdd(dynamicPropertyCallbackId, new WeakReference<LottieAnimationView>(this));
+
+                    InternalSavedDynamicPropertyCallbacks.Add(dynamicPropertyCallbackId, info.Callback);
+                    NUILog.Debug($"<[{GetId()}] added extension actions for {dynamicPropertyCallbackId} (total : {weakReferencesOfLottie?.Count} my : {InternalSavedDynamicPropertyCallbacks?.Count})>");
+                }
+            }
 
             Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, ActionSetDynamicProperty, dynamicPropertyCallbackId, info.KeyPath, (int)info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootCallback));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private void CleanCallbackDictionaries()
+        private void CleanCallbackDictionaries(bool disposing)
         {
-            if (weakReferencesOfLottie?.Count > 0 && InternalSavedDynamicPropertyCallbacks != null)
+            // Called from main, or GC threads
+            lock (InternalPropertyCallbacksLock)
             {
-                foreach (var key in InternalSavedDynamicPropertyCallbacks?.Keys)
+                NUILog.Debug($"<[{GetId()}] remove extension actions with disposing:{disposing} (total : {weakReferencesOfLottie?.Count} my : {InternalSavedDynamicPropertyCallbacks?.Count})>");
+                if (weakReferencesOfLottie?.Count > 0 && InternalSavedDynamicPropertyCallbacks != null)
                 {
-                    if (weakReferencesOfLottie.ContainsKey(key))
+                    foreach (var key in InternalSavedDynamicPropertyCallbacks.Keys)
                     {
-                        weakReferencesOfLottie.Remove(key);
+                        // Note : We can assume that key is unique.
+                        if (weakReferencesOfLottie.ContainsKey(key))
+                        {
+                            NUILog.Debug($"<[{GetId()}] remove extension actions for {key}>");
+                            weakReferencesOfLottie.TryRemove(key, out var _);
+                        }
                     }
                 }
+                InternalSavedDynamicPropertyCallbacks?.Clear();
+                NUILog.Debug($"<[{GetId()}] remove extension actions finished (total : {weakReferencesOfLottie?.Count})>");
+
+                if (disposing)
+                {
+                    // Ensure to make it as null if we want to dispose current view now.
+                    InternalSavedDynamicPropertyCallbacks = null;
+                }
             }
-            InternalSavedDynamicPropertyCallbacks?.Clear();
-            InternalSavedDynamicPropertyCallbacks = null;
         }
 
         /// <summary>
@@ -1166,6 +1198,8 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.UpdateImage();
+
+            // TODO : It is necessary to relocate `InternalSavedDynamicPropertyCallbacks` as the visuals have been altered, while the URL remains unchaged.
         }
 
         /// <summary>
@@ -1448,6 +1482,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal object InternalPropertyCallbacksLock = new object();
         internal Dictionary<int, DynamicPropertyCallbackType> InternalSavedDynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -1457,6 +1492,9 @@ namespace Tizen.NUI.BaseComponents
 
         static internal void RootCallback(int id, int returnType, uint frameNumber, ref float val1, ref float val2, ref float val3)
         {
+            // Called from various worker threads.
+            // Be careful about thread safety!
+
             WeakReference<LottieAnimationView> current = null;
             LottieAnimationView currentView = null;
             DynamicPropertyCallbackType currentCallback = null;
@@ -1464,28 +1502,32 @@ namespace Tizen.NUI.BaseComponents
 
             if (weakReferencesOfLottie.TryGetValue(id, out current))
             {
-                if (current.TryGetTarget(out currentView) && (currentView != null) && !currentView.Disposed && !currentView.IsDisposeQueued)
+                if (current.TryGetTarget(out currentView) && (currentView != null) && !currentView.IsDisposedOrQueued)
                 {
-                    if (currentView.InternalSavedDynamicPropertyCallbacks != null &&
-                        currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback))
+                    lock (currentView.InternalPropertyCallbacksLock)
                     {
-                        ret = currentCallback?.Invoke(returnType, frameNumber);
+                        currentView.InternalSavedDynamicPropertyCallbacks?.TryGetValue(id, out currentCallback);
+                    }
+
+                    if (currentCallback != null)
+                    {
+                        ret = currentCallback.Invoke(returnType, frameNumber);
                     }
                     else
                     {
-                        Tizen.Log.Error("NUI", "can't find the callback in LottieAnimationView, just return here!");
+                        Tizen.Log.Debug("NUI", "can't find the callback in LottieAnimationView (Maybe disposed). just return here!");
                         return;
                     }
                 }
                 else
                 {
-                    Tizen.Log.Error("NUI", "can't find the callback in LottieAnimationView, just return here!");
+                    Tizen.Log.Debug("NUI", "LottieAnimationView already disposed. just return here!");
                     return;
                 }
             }
             else
             {
-                Tizen.Log.Error("NUI", "can't find LottieAnimationView by id, just return here!");
+                Tizen.Log.Debug("NUI", "can't find LottieAnimationView by id (Maybe disposed). just return here!");
                 return;
             }
 
@@ -1493,26 +1535,33 @@ namespace Tizen.NUI.BaseComponents
             {
                 case (int)(VectorProperty.FillColor):
                 case (int)(VectorProperty.StrokeColor):
-                    Vector3 tmpVector3 = new Vector3(-1, -1, -1);
-                    if ((ret != null) && ret.Get(tmpVector3))
+                {
+                    float tmpVal1 = -1;
+                    float tmpVal2 = -1;
+                    float tmpVal3 = -1;
+                    if ((ret != null) && ret.GetVector3Component(out tmpVal1, out tmpVal2, out tmpVal3))
                     {
-                        val1 = tmpVector3.X;
-                        val2 = tmpVector3.Y;
-                        val3 = tmpVector3.Z;
+                        val1 = tmpVal1;
+                        val2 = tmpVal2;
+                        val3 = tmpVal3;
                     }
                     break;
+                }
 
                 case (int)(VectorProperty.TransformAnchor):
                 case (int)(VectorProperty.TransformPosition):
                 case (int)(VectorProperty.TransformScale):
                 case (int)(VectorProperty.TrimEnd):
-                    Vector2 tmpVector2 = new Vector2(-1, -1);
-                    if ((ret != null) && ret.Get(tmpVector2))
+                {
+                    float tmpVal1 = -1;
+                    float tmpVal2 = -1;
+                    if ((ret != null) && ret.GetVector2Component(out tmpVal1, out tmpVal2))
                     {
-                        val1 = tmpVector2.X;
-                        val2 = tmpVector2.Y;
+                        val1 = tmpVal1;
+                        val2 = tmpVal2;
                     }
                     break;
+                }
 
                 case (int)(VectorProperty.FillOpacity):
                 case (int)(VectorProperty.StrokeOpacity):
@@ -1520,12 +1569,14 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.TransformRotation):
                 case (int)(VectorProperty.TransformOpacity):
                 case (int)(VectorProperty.TrimStart):
-                    float tmpFloat = -1;
-                    if ((ret != null) && ret.Get(out tmpFloat))
+                {
+                    float tmpVal1 = -1;
+                    if ((ret != null) && ret.Get(out tmpVal1))
                     {
-                        val1 = tmpFloat;
+                        val1 = tmpVal1;
                     }
                     break;
+                }
                 default:
                     //do nothing
                     break;
@@ -1588,6 +1639,11 @@ namespace Tizen.NUI.BaseComponents
 
         private void onVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
         {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
             OnFinished();
 
             if (targetView != IntPtr.Zero)
@@ -1618,7 +1674,7 @@ namespace Tizen.NUI.BaseComponents
 
         static private int dynamicPropertyCallbackId = 0;
         //static private Dictionary<int, DynamicPropertyCallbackType> dynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
-        static private Dictionary<int, WeakReference<LottieAnimationView>> weakReferencesOfLottie = new Dictionary<int, WeakReference<LottieAnimationView>>();
+        static private ConcurrentDictionary<int, WeakReference<LottieAnimationView>> weakReferencesOfLottie = new ConcurrentDictionary<int, WeakReference<LottieAnimationView>>();
 
         private void debugPrint()
         {

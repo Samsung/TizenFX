@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ namespace Tizen.NUI
     public class NUIApplication : CoreApplication
     {
         /// <summary>
-        /// Set to true if XAML is used. 
+        /// Set to true if XAML is used.
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// The default value is true.
         /// </summary>
@@ -548,6 +548,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            ((NUICoreBackend)this.Backend).RemoveIdle(func);
+        }
+
+        /// <summary>
         /// Flush render/update thread messages synchronously.
         /// </summary>
         /// <remarks>
@@ -591,6 +601,30 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Sets the geometry hit-testing enabled or disabled for the application.
+        /// </summary>
+        /// <param name="enable">True to enable geometry hit-testing, false otherwise.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void SetGeometryHittestEnabled(bool enable)
+        {
+            Interop.Application.SetGeometryHittestEnabled(enable);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Checks whether geometry hit-testing is enabled for the application.
+        /// </summary>
+        /// <returns>True if geometry hit-testing is enabled, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public bool IsGeometryHittestEnabled()
+        {
+            bool ret = Interop.Application.IsGeometryHittestEnabled();
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
 
         /// <summary>
         /// The OnLocaleChanged method is called when the system locale settings have changed.
@@ -748,6 +782,7 @@ namespace Tizen.NUI
             BaseComponents.TextEditor.Preload();
             BaseComponents.TextField.Preload();
             Disposable.Preload();
+            Color.Preload();
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();

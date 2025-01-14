@@ -243,10 +243,10 @@ namespace Tizen.NUI
                     {
                         if (info.NUIGadgetAssembly == null || !info.NUIGadgetAssembly.IsLoaded)
                         {
-                            Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                            info.NUIGadgetAssembly = new NUIGadgetAssembly(info.ResourcePath + info.ExecutableFile);
+                            Log.Warn("NUIGadgetAssembly.Load(): " + info.GadgetResourcePath + info.ExecutableFile + " ++");
+                            info.NUIGadgetAssembly = new NUIGadgetAssembly(info.GadgetResourcePath + info.ExecutableFile);
                             info.NUIGadgetAssembly.Load();
-                            Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                            Log.Warn("NUIGadgetAssembly.Load(): " + info.GadgetResourcePath + info.ExecutableFile + " --");
                         }
                     }
                 }

@@ -92,12 +92,13 @@ namespace Tizen.NUI.Visuals
                 extraWidth = 0.0f;
                 extraHeight = 0.0f;
 
+                cachedVisualTransformPropertyMap?.Dispose();
                 cachedVisualTransformPropertyMap = null;
 
                 changed = true;
             }
 
-            internal void ConvertToPropertyMap()
+            internal PropertyMap ConvertToPropertyMap()
             {
                 if (cachedVisualTransformPropertyMap == null)
                 {
@@ -112,6 +113,8 @@ namespace Tizen.NUI.Visuals
                                                 .Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)origin))
                                                 .Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)pivotPoint))
                                                 .Add((int)VisualTransformPropertyType.ExtraSize, new PropertyValue(new Vector2(extraWidth, extraHeight)));
+
+                return cachedVisualTransformPropertyMap;
             }
 
             internal void ConvertFromPropertyMap(PropertyMap inputMap)
@@ -967,6 +970,14 @@ namespace Tizen.NUI.Visuals
                 return;
             }
 
+            if (transformInfo.changed)
+            {
+                using var transformValue = new PropertyValue(transformInfo.ConvertToPropertyMap());
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.Transform, transformValue, false);
+
+                transformInfo.changed = false;
+            }
+
             if (!visualCreationRequiredFlag)
             {
                 if (visualUpdateRequiredFlag && changedPropertyMap != null)
@@ -989,20 +1000,6 @@ namespace Tizen.NUI.Visuals
             if (cachedVisualPropertyMap == null)
             {
                 cachedVisualPropertyMap = new PropertyMap();
-            }
-
-            if (transformInfo.changed)
-            {
-                transformInfo.changed = false;
-                cachedVisualPropertyMap.Remove((int)Tizen.NUI.Visual.Property.Transform);
-
-                transformInfo.ConvertToPropertyMap();
-
-                if (transformInfo.cachedVisualTransformPropertyMap != null)
-                {
-                    using var transformValue = new PropertyValue(transformInfo.cachedVisualTransformPropertyMap);
-                    cachedVisualPropertyMap.Add((int)Tizen.NUI.Visual.Property.Transform, transformValue);
-                }
             }
 
             // Update the sub classes property map.
@@ -1068,13 +1065,7 @@ namespace Tizen.NUI.Visuals
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void TransformPropertyChanged()
         {
-            if (transformInfo.cachedVisualTransformPropertyMap == null)
-            {
-                transformInfo.cachedVisualTransformPropertyMap = new PropertyMap();
-            }
-
             // Mark as transform property map.
-            visualCreationRequiredFlag = true;
             transformInfo.changed = true;
 
             ReqeustProcessorOnceEvent();

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.AIAvatar.Sample", "Ti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.AIAvatar", "..\..\src\Tizen.AIAvatar\Tizen.AIAvatar.csproj", "{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.AIAvatar", "..\..\src\Tizen.NUI.AIAvatar\Tizen.NUI.AIAvatar.csproj", "{0AB42C6A-0F24-49D2-AFF4-6FD8377A5463}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,15 @@ Global
 		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1971AA8-5B1D-467A-9E86-292B01C4DDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB42C6A-0F24-49D2-AFF4-6FD8377A5463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB42C6A-0F24-49D2-AFF4-6FD8377A5463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB42C6A-0F24-49D2-AFF4-6FD8377A5463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB42C6A-0F24-49D2-AFF4-6FD8377A5463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44D51FDA-F40C-4043-815F-8B7341837BA9}
 	EndGlobalSection
 EndGlobal

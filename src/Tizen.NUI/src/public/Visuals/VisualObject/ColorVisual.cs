@@ -133,6 +133,27 @@ namespace Tizen.NUI.Visuals
         }
 
         /// <summary>
+        /// The squareness for the rounded corners of the visual.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        /// Each radius will clamp internally between 0.0 and 1.0.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 CornerSquareness
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness, new PropertyValue(value), false);
+            }
+            get
+            {
+                Vector4 ret = new Vector4();
+                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness);
+                propertyValue?.Get(ret);
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// The width for the borderline of the visual.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

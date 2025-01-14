@@ -57,6 +57,7 @@ namespace Tizen.Network.WiFi
 
         private int _requestId = 0;
         private string _macAddress;
+        private string _tdlsMacAddress;
         private IntPtr _specificScanHandle;
 
         //private string PrivilegeNetworkSet = "http://tizen.org/privilege/network.set";
@@ -722,6 +723,28 @@ namespace Tizen.Network.WiFi
             }, null);
 
             return task.Task;
+        }
+
+        internal string TDLSConnectedPeer
+        {
+            get
+            {
+                IntPtr strPtr;
+                int ret = Interop.WiFi.GetTdlsConnectedPeer(GetSafeHandle(), out strPtr);
+                if (ret != (int)WiFiError.None)
+                {
+                    _tdlsMacAddress = "";
+                    Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
+                }
+                else
+                {
+                    _tdlsMacAddress = Marshal.PtrToStringAnsi(strPtr);
+                    Interop.Libc.Free(strPtr);
+                }
+
+                Log.Info(Globals.LogTag, "Tdls Mac address: " + _tdlsMacAddress);
+                return _tdlsMacAddress;
+            }
         }
 
         private void CheckReturnValue(int ret, string method, string privilege)

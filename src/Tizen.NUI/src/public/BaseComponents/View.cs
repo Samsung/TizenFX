@@ -48,6 +48,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
+        private Dictionary<Type, object> attached;
         private bool isThemeChanged = false;
 
         // Collection of image-sensitive properties, and need to update C# side cache value.
@@ -427,7 +428,6 @@ namespace Tizen.NUI.BaseComponents
 
                 DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false,
                     propertyChanged: SetInternalDispatchHoverMotionProperty, defaultValueCreator: GetInternalDispatchHoverMotionProperty);
-
 
                 RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
                 RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
@@ -944,6 +944,7 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalBackgroundColorProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+                NotifyBackgroundChanged();
             }
         }
 
@@ -975,6 +976,7 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalBackgroundImageProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+                NotifyBackgroundChanged();
             }
         }
 
@@ -1039,6 +1041,7 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalBackgroundProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+                NotifyBackgroundChanged();
             }
         }
 
@@ -1222,6 +1225,49 @@ namespace Tizen.NUI.BaseComponents
         internal VisualTransformPolicyType GetInternalCornerRadiusPolicy()
         {
             return backgroundExtraData == null ? VisualTransformPolicyType.Absolute : backgroundExtraData.CornerRadiusPolicy;
+        }
+
+        /// <summary>
+        /// The squareness for the rounded corners of the View.
+        /// This will make squircle background and shadow edges.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        ///
+        /// Each squareness will clamp internally to the [0.0f to 1.0f].
+        /// If 0.0f, rounded corner applied.
+        /// If 1.0f, View will be rendered like a square.
+        /// </summary>
+        /// <remarks>
+        /// This property only be available when the CornerRadius property used. Otherwise, it will be ignored.
+        /// </remarks>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// <code>
+        /// animation.AnimateTo(view, "CornerSquareness", new Vector4(0.6f, 0.6f, 0.0f, 0.0f));
+        /// </code>
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 CornerSquareness
+        {
+            get
+            {
+                return GetInternalCornerSqurenessProperty();
+            }
+            set
+            {
+                SetInternalCornerSqurenessProperty(value);
+                NotifyPropertyChanged();
+            }
+        }
+        internal void SetInternalCornerSqurenessProperty(Vector4 cornerSquareness)
+        {
+            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
+            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+        }
+        internal Vector4 GetInternalCornerSqurenessProperty()
+        {
+            return backgroundExtraData == null ? Vector4.Zero : backgroundExtraData.CornerSquareness;
         }
 
         /// <summary>
@@ -5944,6 +5990,38 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return AutomationId;
+            }
+        }
+
+        /// <summary>
+        /// Gets of sets the current offscreen rendering type of the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public OffScreenRenderingType OffScreenRendering
+        {
+            get
+            {
+                return GetInternalOffScreenRendering();
+            }
+            set
+            {
+                SetInternalOffScreenRendering(value);
+                NotifyPropertyChanged();
+            }
+        }
+        private void SetInternalOffScreenRendering(OffScreenRenderingType value)
+        {
+            Object.InternalSetPropertyInt(SwigCPtr, Property.OffScreenRendering, (int)value);
+        }
+        private OffScreenRenderingType GetInternalOffScreenRendering()
+        {
+            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.OffScreenRendering);
+            switch (temp)
+            {
+                case 0: return OffScreenRenderingType.None;
+                case 1: return OffScreenRenderingType.RefreshOnce;
+                case 2: return OffScreenRenderingType.RefreshAlways;
+                default: return OffScreenRenderingType.None;
             }
         }
     }

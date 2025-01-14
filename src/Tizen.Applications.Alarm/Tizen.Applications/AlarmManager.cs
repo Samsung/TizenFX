@@ -18,6 +18,7 @@ namespace Tizen.Applications
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Tizen.Applications.Notifications;
 
@@ -102,7 +103,7 @@ namespace Tizen.Applications
     }
 
     /// <summary>
-    /// Mobile devices typically give constant access to information from various sources. Some of this information is best delivered through alarms.
+    /// Devices typically give constant access to information from various sources. Some of this information is best delivered through alarms.
     /// The most obvious case is a calendar scheduling application, which lets you know when a meeting is about to start. Alarms are certainly better than actively waiting in a loop.
     /// They are also better than putting an interface to sleep because they do not block your main UI thread.
     /// Use of alarms helps build smooth user experiences and implements unattended data synchronization tasks.
@@ -149,7 +150,7 @@ namespace Tizen.Applications
         /// Sets an alarm to be triggered after a specific time.
         /// The alarm will first go off delay seconds later and then will go off every certain amount of time defined using period seconds.
         /// </summary>
-        /// <param name="delay">The amount of time before the first execution (in seconds).</param>
+        /// <param name="delay">The amount of time before the first execution (in seconds). Although this is inexact, the alarm will not fire before this time</param>
         /// <param name="period"> The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy.
         /// The actual interval is calculated by the OS. The minimum value is 600sec.</param>
         /// <param name="appControl"> The destination AppControl is used to perform a specific task when the alarm is triggered. </param>
@@ -185,6 +186,7 @@ namespace Tizen.Applications
         /// <param name="delay"> The amount of time before the execution (in seconds). </param>
         /// <param name="appControl"> The destination AppControl to perform a specific task when the alarm is triggered. </param>
         /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <remarks>This operation is permitted with the UI application appcontrol only.</remarks>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
@@ -330,7 +332,7 @@ namespace Tizen.Applications
         /// Sets a notification alarm to be triggered after a specific time.
         /// The alarm will first go off delay seconds later and then will go off every certain amount of time defined using period seconds.
         /// </summary>
-        /// <param name="delay">The amount of time before the first execution (in seconds). </param>
+        /// <param name="delay">The amount of time before the first execution (in seconds). Although this is inexact, the alarm will not fire before this time</param>
         /// <param name="period"> The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy. </param>
         /// <param name="notification"> The notification to be posted when the alarm is triggered. </param>
         /// <returns> An alarm instance is created with the set param values.</returns>
@@ -436,6 +438,119 @@ namespace Tizen.Applications
         public static Alarm CreateAlarm(int delay, AlarmStandardPeriod standardPeriod, Notification notification)
         {
             return CreateAlarm(delay, (int)standardPeriod, notification);
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered after a specific time.
+        /// The alarm will go off delay seconds later.
+        /// </summary>
+        /// <param name="delay"> The amount of time before the execution (in seconds). </param>
+        /// <param name="appControl"> The destination AppControl to perform a specific task when the alarm is triggered. </param>
+        /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <remarks>
+        /// This operation only allows service application which has Background Category to set an exact alarm.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Alarm CreateAlarmForServiceApp(int delay, AppControl appControl)
+        {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
+            Alarm alarm = null;
+            int alarmId;
+            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmOnceAfterDelayForService(appControl.SafeAppControlHandle, delay, out alarmId);
+            alarm = new Alarm(alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            return alarm;
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered at a specific time.
+        /// The date describes the time of the first occurrence.
+        /// </summary>
+        /// <param name="value"> The first active alarm time. </param>
+        /// <param name="appControl"> The destination AppControl to perform specific work when the alarm is triggered. </param>
+        /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <remarks>
+        /// This operation only allows service application which has Background Category to set an exact alarm.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Alarm CreateAlarmForServiceApp(DateTime value, AppControl appControl)
+        {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
+            Alarm alarm = null;
+            int alarmId;
+            Interop.Alarm.DateTime time = ConvertDateTimeToStruct(value);
+            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmOnceAtDateForService(appControl.SafeAppControlHandle, ref time, out alarmId);
+            alarm = new Alarm(alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            return alarm;
+        }
+
+        /// <summary>
+        /// Sets an alarm to be triggered at a specific time.
+        /// The alarm will first go off at a specific time and then will go off every certain amount of time defined using period seconds.
+        /// </summary>
+        /// <param name="value"> The first active alarm time. </param>
+        /// <param name="period"> The amount of time between subsequent alarms (in seconds).</param>
+        /// <param name="appControl"> The destination AppControl is used to perform a specific task when the alarm is triggered. </param>
+        /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <remarks>
+        /// This operation only allows service application which has Background Category to set an exact alarm.
+        /// This API can have a significant impact on power usage when the device is in idle state, so apps that use it may greatly increase battery consumption.
+        /// Therefore, caution should be taken when using this API.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Alarm CreateAlarmForServiceApp(DateTime value, int period, AppControl appControl)
+        {
+            if (appControl == null)
+            {
+                throw AlarmErrorFactory.GetException(AlarmError.InvalidParameter, "AppControl should be not null");
+            }
+
+            Alarm alarm = null;
+            int alarmId;
+            Interop.Alarm.DateTime time = ConvertDateTimeToStruct(value);
+            AlarmError ret = (AlarmError)Interop.Alarm.CreateAlarmRecurForService(appControl.SafeAppControlHandle, ref time, period, out alarmId);
+            alarm = new Alarm(alarmId);
+            if (ret != AlarmError.None)
+            {
+                throw AlarmErrorFactory.GetException(ret, "Failed to create Alarm");
+            }
+
+            return alarm;
         }
 
         /// <summary>

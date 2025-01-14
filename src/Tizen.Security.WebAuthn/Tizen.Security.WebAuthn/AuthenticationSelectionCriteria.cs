@@ -43,20 +43,36 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Authenticator attachment modality.
+        /// Gets the authenticator attachment modality.
         /// </summary>
+        /// <value>
+        /// The attachment modality - the usage of platform or roaming authenticators.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AuthenticatorAttachment Attachment { get; init; }
         /// <summary>
-        /// The extent to which the Relying Party desires to create a client-side discoverable credential.
+        /// Gets the Relying Party's requirement regarding client-side discoverable credentials.
         /// </summary>
+        /// <value>
+        /// The extent to which the Relying Party desires to create a client-side discoverable credential.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public ResidentKeyRequirement ResidentKey { get; init; }
         /// <summary>
-        /// Whether residentKey is required.
+        /// Gets a value indicating whether a ResidentKey is required.
         /// </summary>
+        /// <value>
+        /// A boolean value indicating whether a ResidentKey is required.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public bool RequireResidentKey { get; init; }
         /// <summary>
-        /// The Relying Party's requirements regarding user verification.
+        /// Gets the user verification requirements.
         /// </summary>
+        /// <value>
+        /// The Relying Party's requirements regarding user verification.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public UserVerificationRequirement UserVerification { get; init; }
     }
 }
