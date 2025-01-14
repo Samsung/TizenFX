@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI.L
@@ -91,6 +92,32 @@ namespace Tizen.NUI.L
             G = ((value >> 8) & 0xff) / 255.0f;
             B = (value & 0xff) / 255.0f;
             A = alpha;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Color"/> struct.
+        /// Hex code representation : #RGB #RGBA #RRGGBB #RRGGBBAA
+        /// RGB representation : rgb(0-255,0-255,0-255) rgba(0-255,0-255,0-255,0.0-1.0)
+        /// </summary>
+        /// <param name="textColor">color text representation as hex code, rgb() or rgba()</param>
+        /// <exception cref="ArgumentNullException">This exception is thrown when textColor is null.</exception>
+        /// <exception cref="ArgumentException">This exception is thrown when textColor is invalid representation.</exception>
+        public Color(string textColor)
+        {
+            if (textColor == null)
+            {
+                throw new ArgumentNullException(nameof(textColor));
+            }
+
+            if (!ColorHelper.TryParseString(textColor, out var r, out var g, out var b, out var a))
+            {
+                throw new ArgumentException($"{textColor} is invalid color representation");
+            }
+
+            R = r;
+            G = g;
+            B = b;
+            A = a;
         }
 
         internal Color(NUI.Vector4 vector4) : this(vector4.X, vector4.Y, vector4.Z, vector4.W)

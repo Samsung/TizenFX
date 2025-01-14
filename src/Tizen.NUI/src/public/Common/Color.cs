@@ -968,79 +968,21 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color(string textColor) : this(Interop.Vector4.NewVector4(), true)
         {
-            try
+            if (null == textColor)
             {
-                if (null == textColor)
-                {
-                    throw new ArgumentNullException(nameof(textColor));
-                }
-
-                textColor = textColor.ToUpperInvariant();
-                textColor = textColor.Replace(" ", "");
-
-                if (textColor.Length > 0 && textColor[0] == '#')
-                {
-                    textColor = textColor.Replace("#", "");
-                    int textColorLength = textColor.Length;
-
-                    if (textColorLength == 6 || textColorLength == 8) /* #RRGGBB or #RRGGBBAA */
-                    {
-                        R = ((float)Convert.ToInt32(textColor.Substring(0, 2), 16)) / 255.0f;
-                        G = ((float)Convert.ToInt32(textColor.Substring(2, 2), 16)) / 255.0f;
-                        B = ((float)Convert.ToInt32(textColor.Substring(4, 2), 16)) / 255.0f;
-                        A = textColor.Length > 6 ? ((float)Convert.ToInt32(textColor.Substring(6, 2), 16)) / 255.0f : 1.0f;
-                    }
-                    else if (textColorLength == 3 || textColorLength == 4) /* #RGB */
-                    {
-                        R = ((float)Convert.ToInt32(textColor.Substring(0, 1), 16)) / 15.0f;
-                        G = ((float)Convert.ToInt32(textColor.Substring(1, 1), 16)) / 15.0f;
-                        B = ((float)Convert.ToInt32(textColor.Substring(2, 1), 16)) / 15.0f;
-                        A = textColor.Length > 3 ? ((float)Convert.ToInt32(textColor.Substring(3, 1), 16)) / 15.0f : 1.0f;
-                    }
-                    else
-                    {
-                        throw new global::System.ArgumentException("Please check your color text code");
-                    }
-                }
-                else // example rgb(255,255,255) or rgb(255,255,255,1.0)
-                {
-                    bool isRGBA = textColor.StartsWith("RGBA(");
-                    bool isRGB = textColor.StartsWith("RGB(");
-
-                    if (!isRGBA && !isRGB)
-                    {
-                        throw new global::System.ArgumentException("Please check your color text code");
-                    }
-
-                    if (isRGBA)
-                        textColor = textColor.Substring(4);
-                    if (isRGB)
-                        textColor = textColor.Substring(3);
-
-                    textColor = textColor.Replace(")", "");
-                    textColor = textColor.Replace("(", "");
-
-                    string[] components = textColor.Split(',');
-
-                    if (components.Length == 3 && isRGB)
-                    {
-                        R = Math.Min(1.0f, ((float)Convert.ToInt32(components[0], 10)) / 255.0f);
-                        G = Math.Min(1.0f, ((float)Convert.ToInt32(components[1], 10)) / 255.0f);
-                        B = Math.Min(1.0f, ((float)Convert.ToInt32(components[2], 10)) / 255.0f);
-                        A = 1.0f;
-                    }
-                    else if (components.Length == 4 && isRGBA)
-                    {
-                        R = Math.Min(1.0f, ((float)Convert.ToInt32(components[0], 10)) / 255.0f);
-                        G = Math.Min(1.0f, ((float)Convert.ToInt32(components[1], 10)) / 255.0f);
-                        B = Math.Min(1.0f, ((float)Convert.ToInt32(components[2], 10)) / 255.0f);
-                        A = Math.Min(1.0f, float.Parse(components[3], CultureInfo.InvariantCulture));
-                    }
-                }
+                throw new ArgumentNullException(nameof(textColor));
             }
-            catch
+
+            if (ColorHelper.TryParseString(textColor, out var r, out var g, out var b, out var a))
             {
-                throw new global::System.ArgumentException("Please check your color text code");
+                R = r;
+                G = g;
+                B = b;
+                A = a;
+            }
+            else
+            {
+                throw new ArgumentException("Please check your color text code");
             }
         }
 
