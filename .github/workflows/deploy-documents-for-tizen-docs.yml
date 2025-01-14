@@ -24,7 +24,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ./build2.sh clone
+        ./build_tizen_docs.sh clone
 
     - name: Cache DocFX output
       id: cache-site
@@ -36,8 +36,8 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        ./build2.sh restore
-        ./build2.sh build
+        ./build_tizen_docs.sh restore
+        ./build_tizen_docs.sh build
 
     - name: Archive Artifacts
       run: |
