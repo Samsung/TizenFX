@@ -46,7 +46,7 @@
 /src/Tizen.Content.MimeType/ @sukhyungkang
 
 # CONTEXT
-# /src/Tizen.Context/
+/src/Tizen.Context/ @dh79pyun
 
 # DATA
 # /src/Tizen.Data.Tdbc.Driver.Sqlite/
