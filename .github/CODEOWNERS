@@ -4,17 +4,17 @@
 # TIZEN COMMON
 /src/Tizen/ @rookiejava @myroot @JoonghyunCho
 /src/Tizen.Log/ @chanwoochoi
-/src/Tizen.Tracer/ @najubae @sfoon.kim
+/src/Tizen.Tracer/ @najubae #@sfoon.kim
 
 # ACCOUNT
 /src/Tizen.Account.AccountManager/ @randeepsingh01 @d1-agarwal
-/src/Tizen.Account.FidoClient/ @randeepsingh01 @s01-verma
-/src/Tizen.Account.OAuth2/ @randeepsingh01 @s01-verma
+/src/Tizen.Account.FidoClient/ @randeepsingh01 #@s01-verma
+/src/Tizen.Account.OAuth2/ @randeepsingh01 #@s01-verma
 /src/Tizen.Account.SyncManager/ @randeepsingh01 @d1-agarwal
 
 # APPLICATION FW
-/src/Tizen.Applications.Alarm/ @kilig
-/src/Tizen.Applications.AttachPanel/ @engfaruque
+# /src/Tizen.Applications.Alarm/ @kilig
+# /src/Tizen.Applications.AttachPanel/ @engfaruque
 /src/Tizen.Applications.Badge/ @sukhyungkang
 /src/Tizen.Applications.Cion/ @jusung-son
 /src/Tizen.Applications.Common/ @upple
@@ -53,9 +53,9 @@
 # /src/Tizen.Data.Tdbc/
 
 # LOCATIONS & MAPS
-/src/Tizen.Location.Geofence/ @randeepsingh01 @abhimanyu1dots
-/src/Tizen.Location/ @randeepsingh01 @abhimanyu1dots
-/src/Tizen.Maps/ @randeepsingh01 @abhimanyu1dots
+/src/Tizen.Location.Geofence/ @randeepsingh01 #@abhimanyu1dots
+/src/Tizen.Location/ @randeepsingh01 #@abhimanyu1dots
+/src/Tizen.Maps/ @randeepsingh01 #@abhimanyu1dots
 
 # MACHINE LEARNING
 /src/Tizen.MachineLearning.Inference/ @again4you
@@ -84,10 +84,10 @@
 /src/Tizen.NUI.Design/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /src/Tizen.NUI.Extension/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /src/Tizen.NUI.Gadget/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
-/src/Tizen.NUI.Physics2D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfore
+/src/Tizen.NUI.Physics2D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /src/Tizen.NUI.Scene3D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /src/Tizen.NUI.Wearable/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
-/src/Tizen.NUI.WindowSystem/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfo
+/src/Tizen.NUI.WindowSystem/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /src/Tizen.NUI.XamlBuild/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /src/Tizen.NUI/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 /test/NUITestSample/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
@@ -104,12 +104,12 @@
 /src/Tizen.Network.Bluetooth/ @dh79pyun @wootak-jung
 /src/Tizen.Network.Connection/ @chleun-moon
 /src/Tizen.Network.IoTConnectivity/ @dh79pyun
-/src/Tizen.Network.Nfc/ @dh79pyun @jh8801jung
+/src/Tizen.Network.Nfc/ @dh79pyun #@jh8801jung
 /src/Tizen.Network.Nsd/ @chleun-moon
-/src/Tizen.Network.Smartcard/ @dh79pyun @jh8801jung
-/src/Tizen.Network.Stc/ @jeik01 @hyunuk-tak
+/src/Tizen.Network.Smartcard/ @dh79pyun #@jh8801jung
+/src/Tizen.Network.Stc/ @jeik01 #@hyunuk-tak
 /src/Tizen.Network.WiFi/ @chleun-moon
-/src/Tizen.Network.WiFiDirect/ @jiung-yu
+# /src/Tizen.Network.WiFiDirect/ @jiung-yu
 
 # NLP
 /src/Tizen.Nlp/ @imfine98 @Inhong
@@ -120,13 +120,13 @@
 /src/Tizen.Pims.Contacts/ @randeepsingh01
 
 # SECURITY
-/src/Tizen.Security/ @t-swierczek @terry2000s
-/src/Tizen.Security.PrivacyPrivilegeManager/ @e-borowski @t-swierczek @z-abramowska @terry2000s
+/src/Tizen.Security/ @terry2000s #@t-swierczek
+/src/Tizen.Security.PrivacyPrivilegeManager/ @terry2000s #@t-swierczek @z-abramowska @e-borowski 
 /src/Tizen.Security.SecureRepository/ @terry2000s @dmichaluk
 
 # SECURITY (Deprecated)
 /src/Tizen.Security.DevicePolicyManager/ @y01k
-/src/Tizen.Security.TEEC/  @terry2000s @kjackiewicz
+/src/Tizen.Security.TEEC/  @terry2000s #@kjackiewicz
 
 # SENSOR
 /src/Tizen.Sensor/ @chanwoochoi @SangyounKwak
