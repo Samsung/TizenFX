@@ -127,7 +127,7 @@
 # SECURITY (Deprecated)
 /src/Tizen.Security.DevicePolicyManager/ @y01k
 /src/Tizen.Security.TEEC/  @terry2000s #@kjackiewicz
-/src/Tizen.Security.WebAuthn/ @ds73.lee #@kjackiewicz
+# /src/Tizen.Security.WebAuthn/ @ds73.lee @kjackiewicz
 
 # SENSOR
 /src/Tizen.Sensor/ @chanwoochoi @SangyounKwak
