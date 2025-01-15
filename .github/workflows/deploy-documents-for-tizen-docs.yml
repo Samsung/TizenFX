@@ -23,6 +23,8 @@ jobs:
         repository: TizenAPI/TizenFX-Docs
 
     - name: Checkout TizenFX sources
+      env:
+        DOCFX_FILE: "docfx_tizen_docs.json"
       run: |
         ./build.sh clone
 
