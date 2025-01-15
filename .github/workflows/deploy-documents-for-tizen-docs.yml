@@ -34,6 +34,8 @@ jobs:
         key: ${{ env.CACHE_NAME }}-${{ hashFiles('repos/commits') }}
 
     - name: Build Documents
+      env:
+        DOCFX_FILE: "docfx_tizen_docs.json"
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
         ./build.sh restore
