@@ -38,7 +38,7 @@ jobs:
     - name: Build Documents
       env:
         DOCFX_FILE: "docfx_tizen_docs.json"
-      if: steps.cache-site.outputs.cache-hit != 'true'
+      # if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
         ./build.sh restore
         ./build.sh build
