@@ -4,7 +4,7 @@
 # TIZEN COMMON
 /src/Tizen/ @rookiejava @myroot @JoonghyunCho
 /src/Tizen.Log/ @chanwoochoi
-/src/Tizen.Tracer/ @najubae @sfoon-kim
+/src/Tizen.Tracer/ @najubae @sfoon.kim
 
 # ACCOUNT
 /src/Tizen.Account.AccountManager/ @randeepsingh01 @d1-agarwal
