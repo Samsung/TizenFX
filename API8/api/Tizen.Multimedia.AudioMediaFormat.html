@@ -1,0 +1,927 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AudioMediaFormat
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AudioMediaFormat
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API8">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.AudioMediaFormat">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_AudioMediaFormat" data-uid="Tizen.Multimedia.AudioMediaFormat" class="mt-0 text-break"><span class="entity-type">Class</span>
+AudioMediaFormat
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L30" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents an audio media format. This class cannot be inherited.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class AudioMediaFormat : MediaFormat</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Multimedia.MediaFormat.html">MediaFormat</a></div>
+        <div><span class="xref">AudioMediaFormat</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_AudioMediaFormat__ctor_" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L113">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat__ctor_Tizen_Multimedia_MediaFormatAudioMimeType_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Collections_Generic_IList_Tizen_Multimedia_MediaFormatAudioChannelPosition__" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor(Tizen.Multimedia.MediaFormatAudioMimeType,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IList{Tizen.Multimedia.MediaFormatAudioChannelPosition})">AudioMediaFormat(MediaFormatAudioMimeType, int, int, int, int, int, IList&lt;MediaFormatAudioChannelPosition&gt;)</h4>
+    <section>
+    <p>Initializes a new instance of the AudioMediaFormat class with the specified mime type,
+channel, sample rate, bit, bit rate, bit depth, and audio channel map.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioMediaFormat(MediaFormatAudioMimeType mimeType, int channel, int sampleRate, int bit, int bitRate, int bitDepth, IList&lt;MediaFormatAudioChannelPosition&gt; audioChannelMap)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The mime type of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">channel</span></td>
+        <td><p>The channel value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sampleRate</span></td>
+        <td><p>The sample rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bit</span></td>
+        <td><p>The bit value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitRate</span></td>
+        <td><p>The bit rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitDepth</span></td>
+        <td><p>The bit depth value of the PCM audio format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html">MediaFormatAudioChannelPosition</a>&gt;</td>
+        <td><span class="parametername">audioChannelMap</span></td>
+        <td><p>The loudspeaker position in PCM audio format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioMediaFormat__ctor_Tizen_Multimedia_MediaFormatAudioMimeType_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Collections_Generic_IList_Tizen_Multimedia_MediaFormatAudioChannelPosition___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> contains <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_None">None</a>,
+<code data-dev-comment-type="paramref" class="paramref">channel</code> should be set greater than 0.<br>
+If <code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> contains <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Mono">Mono</a>,
+<code data-dev-comment-type="paramref" class="paramref">channel</code> should be set 1.<br>
+User can not set <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_None">None</a> with another channel positions.<br>
+User can not set <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Mono">Mono</a> with another channel positions.<br>
+If same channel position is added in <code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> more than once, the duplicaiton will be removed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid (i.e. undefined value).<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> is invalid or mismatched with <code data-dev-comment-type="paramref" class="paramref">channel</code> like the following:<br>
+<code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> is not matched correctly with <code data-dev-comment-type="paramref" class="paramref">channel</code>.
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> is set to <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Invaild">Invaild</a>.
+-or-<br>
+<a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Mono">Mono</a> or <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_None">None</a> is set with another channel position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">channel</code>, <code data-dev-comment-type="paramref" class="paramref">sampleRate</code>, <code data-dev-comment-type="paramref" class="paramref">bit</code>, or <code data-dev-comment-type="paramref" class="paramref">bitRate</code>,
+<code data-dev-comment-type="paramref" class="paramref">bitDepth</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat__ctor_" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L158">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat__ctor_Tizen_Multimedia_MediaFormatAudioMimeType_System_Int32_System_Int32_System_Int32_System_Int32_Tizen_Multimedia_MediaFormatAacType_System_Int32_System_Collections_Generic_IList_Tizen_Multimedia_MediaFormatAudioChannelPosition__" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor(Tizen.Multimedia.MediaFormatAudioMimeType,System.Int32,System.Int32,System.Int32,System.Int32,Tizen.Multimedia.MediaFormatAacType,System.Int32,System.Collections.Generic.IList{Tizen.Multimedia.MediaFormatAudioChannelPosition})">AudioMediaFormat(MediaFormatAudioMimeType, int, int, int, int, MediaFormatAacType, int, IList&lt;MediaFormatAudioChannelPosition&gt;)</h4>
+    <section>
+    <p>Initializes a new instance of the AudioMediaFormat class with the specified mime type,
+channel, sample rate, bit, bit rate, bit depth, and audio channel map.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioMediaFormat(MediaFormatAudioMimeType mimeType, int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType, int bitDepth, IList&lt;MediaFormatAudioChannelPosition&gt; audioChannelMap)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The mime type of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">channel</span></td>
+        <td><p>The channel value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sampleRate</span></td>
+        <td><p>The sample rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bit</span></td>
+        <td><p>The bit value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitRate</span></td>
+        <td><p>The bit rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAacType.html">MediaFormatAacType</a></td>
+        <td><span class="parametername">aacType</span></td>
+        <td><p>The AAC bitstream format(ADIF or ADTS).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitDepth</span></td>
+        <td><p>The bit depth value of the PCM audio format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html">MediaFormatAudioChannelPosition</a>&gt;</td>
+        <td><span class="parametername">audioChannelMap</span></td>
+        <td><p>The loudspeaker position in PCM audio format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioMediaFormat__ctor_Tizen_Multimedia_MediaFormatAudioMimeType_System_Int32_System_Int32_System_Int32_System_Int32_Tizen_Multimedia_MediaFormatAacType_System_Int32_System_Collections_Generic_IList_Tizen_Multimedia_MediaFormatAudioChannelPosition___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> contains <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_None">None</a>,
+<code data-dev-comment-type="paramref" class="paramref">channel</code> should be set greater than 0.<br>
+If <code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> contains <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Mono">Mono</a>,
+<code data-dev-comment-type="paramref" class="paramref">channel</code> should be set 1.<br>
+User can not set <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_None">None</a> with another channel positions.<br>
+User can not set <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Mono">Mono</a> with another channel positions.<br>
+If same channel position is added in <code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> more than twice, its duplicaiton will be removed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> or <code data-dev-comment-type="paramref" class="paramref">aacType</code> is invalid (i.e. undefined value).<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">aacType</code> is not <a class="xref" href="Tizen.Multimedia.MediaFormatAacType.html#Tizen_Multimedia_MediaFormatAacType_None">None</a>, but <code data-dev-comment-type="paramref" class="paramref">mimeType</code> is one of the AAC types.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> is invalid or mismatched with <code data-dev-comment-type="paramref" class="paramref">channel</code> like the following:<br>
+<code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> is not matched correctly with <code data-dev-comment-type="paramref" class="paramref">channel</code>.
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">audioChannelMap</code> is set to <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Invaild">Invaild</a>.
+-or-<br>
+<a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_Mono">Mono</a> or <a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html#Tizen_Multimedia_MediaFormatAudioChannelPosition_None">None</a> is set with another channel position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">channel</code>, <code data-dev-comment-type="paramref" class="paramref">sampleRate</code>, <code data-dev-comment-type="paramref" class="paramref">bit</code>, or <code data-dev-comment-type="paramref" class="paramref">bitRate</code>,
+<code data-dev-comment-type="paramref" class="paramref">bitDepth</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat__ctor_" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L71">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat__ctor_Tizen_Multimedia_MediaFormatAudioMimeType_System_Int32_System_Int32_System_Int32_System_Int32_Tizen_Multimedia_MediaFormatAacType_" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor(Tizen.Multimedia.MediaFormatAudioMimeType,System.Int32,System.Int32,System.Int32,System.Int32,Tizen.Multimedia.MediaFormatAacType)">AudioMediaFormat(MediaFormatAudioMimeType, int, int, int, int, MediaFormatAacType)</h4>
+    <section>
+    <p>Initializes a new instance of the AudioMediaFormat class with the specified mime type,
+channel, sample rate, bit, bit rate, and AAC type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioMediaFormat(MediaFormatAudioMimeType mimeType, int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The mime type of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">channel</span></td>
+        <td><p>The channel value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sampleRate</span></td>
+        <td><p>The sample rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bit</span></td>
+        <td><p>The bit value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitRate</span></td>
+        <td><p>The bit rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAacType.html">MediaFormatAacType</a></td>
+        <td><span class="parametername">aacType</span></td>
+        <td><p>The AAC bitstream format(ADIF or ADTS).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> or <code data-dev-comment-type="paramref" class="paramref">aacType</code> is invalid (i.e. undefined value).<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">aacType</code> is not <a class="xref" href="Tizen.Multimedia.MediaFormatAacType.html#Tizen_Multimedia_MediaFormatAacType_None">None</a>, but <code data-dev-comment-type="paramref" class="paramref">mimeType</code> is one of the AAC types.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">channel</code>, <code data-dev-comment-type="paramref" class="paramref">sampleRate</code>, <code data-dev-comment-type="paramref" class="paramref">bit</code>, or <code data-dev-comment-type="paramref" class="paramref">bitRate</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat__ctor_" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L46">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat__ctor_Tizen_Multimedia_MediaFormatAudioMimeType_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.AudioMediaFormat.#ctor(Tizen.Multimedia.MediaFormatAudioMimeType,System.Int32,System.Int32,System.Int32,System.Int32)">AudioMediaFormat(MediaFormatAudioMimeType, int, int, int, int)</h4>
+    <section>
+    <p>Initializes a new instance of the AudioMediaFormat class with the specified mime type,
+channel, sample rate, bit, and bit rate.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioMediaFormat(MediaFormatAudioMimeType mimeType, int channel, int sampleRate, int bit, int bitRate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The mime type of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">channel</span></td>
+        <td><p>The channel value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sampleRate</span></td>
+        <td><p>The sample rate value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bit</span></td>
+        <td><p>The bit value of the format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bitRate</span></td>
+        <td><p>The bit rate value of the format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mimeType</code> is invalid(i.e. undefined value).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">channel</code>, <code data-dev-comment-type="paramref" class="paramref">sampleRate</code>, <code data-dev-comment-type="paramref" class="paramref">bit</code>, or <code data-dev-comment-type="paramref" class="paramref">bitRate</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_AacType_" data-uid="Tizen.Multimedia.AudioMediaFormat.AacType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L420">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_AacType" data-uid="Tizen.Multimedia.AudioMediaFormat.AacType">AacType</h4>
+    <section>
+    <p>Gets the AAC type of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaFormatAacType AacType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAacType.html">MediaFormatAacType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_AudioChannelMap_" data-uid="Tizen.Multimedia.AudioMediaFormat.AudioChannelMap*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L390">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_AudioChannelMap" data-uid="Tizen.Multimedia.AudioMediaFormat.AudioChannelMap">AudioChannelMap</h4>
+    <section>
+    <p>Gets or sets the list of channel position value of PCM audio format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;MediaFormatAudioChannelPosition&gt; AudioChannelMap { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html">MediaFormatAudioChannelPosition</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioMediaFormat_AudioChannelMap_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The channel mask specifies the mapping of channels to speakers.
+default value is 0.</p>
+</div>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioMediaFormat_AudioChannelMap_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html#Tizen_Multimedia_AudioMediaFormat_Channel">Channel</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.MediaFormatAudioChannelPosition.html">MediaFormatAudioChannelPosition</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_Bit_" data-uid="Tizen.Multimedia.AudioMediaFormat.Bit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L402">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_Bit" data-uid="Tizen.Multimedia.AudioMediaFormat.Bit">Bit</h4>
+    <section>
+    <p>Gets the bit value of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Bit { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_BitDepth_" data-uid="Tizen.Multimedia.AudioMediaFormat.BitDepth*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L414">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_BitDepth" data-uid="Tizen.Multimedia.AudioMediaFormat.BitDepth">BitDepth</h4>
+    <section>
+    <p>Gets the bit depth value of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitDepth { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_BitRate_" data-uid="Tizen.Multimedia.AudioMediaFormat.BitRate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L408">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_BitRate" data-uid="Tizen.Multimedia.AudioMediaFormat.BitRate">BitRate</h4>
+    <section>
+    <p>Gets the bit rate value of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitRate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_Channel_" data-uid="Tizen.Multimedia.AudioMediaFormat.Channel*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L378">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_Channel" data-uid="Tizen.Multimedia.AudioMediaFormat.Channel">Channel</h4>
+    <section>
+    <p>Gets the channel value of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Channel { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_MimeType_" data-uid="Tizen.Multimedia.AudioMediaFormat.MimeType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L372">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_MimeType" data-uid="Tizen.Multimedia.AudioMediaFormat.MimeType">MimeType</h4>
+    <section>
+    <p>Gets the mime type of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaFormatAudioMimeType MimeType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_SampleRate_" data-uid="Tizen.Multimedia.AudioMediaFormat.SampleRate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L396">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_SampleRate" data-uid="Tizen.Multimedia.AudioMediaFormat.SampleRate">SampleRate</h4>
+    <section>
+    <p>Gets the sample rate value of the current format.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SampleRate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_Equals_" data-uid="Tizen.Multimedia.AudioMediaFormat.Equals*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L446">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_Equals_System_Object_" data-uid="Tizen.Multimedia.AudioMediaFormat.Equals(System.Object)">Equals(object)</h4>
+    <section>
+    <p>Compares an object to an instance of <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a> for equality.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>A <span class="xref">object</span> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the formats are equal; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.Equals(object)</span></div>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_GetHashCode_" data-uid="Tizen.Multimedia.AudioMediaFormat.GetHashCode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L478">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_GetHashCode" data-uid="Tizen.Multimedia.AudioMediaFormat.GetHashCode">GetHashCode()</h4>
+    <section>
+    <p>Gets the hash code for this instance of <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The hash code for this instance of <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.GetHashCode()</span></div>
+
+
+
+  <a id="Tizen_Multimedia_AudioMediaFormat_ToString_" data-uid="Tizen.Multimedia.AudioMediaFormat.ToString*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/MediaTool/AudioMediaFormat.cs/#L427">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioMediaFormat_ToString" data-uid="Tizen.Multimedia.AudioMediaFormat.ToString">ToString()</h4>
+    <section>
+    <p>Returns a string that represents the current object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>A string that represents the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.ToString()</span></div>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

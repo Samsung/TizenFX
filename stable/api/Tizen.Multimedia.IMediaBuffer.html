@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IMediaBuffer
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IMediaBuffer
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.IMediaBuffer">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_IMediaBuffer" data-uid="Tizen.Multimedia.IMediaBuffer" class="mt-0 text-break"><span class="entity-type">Interface</span>
+IMediaBuffer
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L25" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides functionality to read and write the media buffer.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMediaBuffer</code></pre>
+  </div>
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_IMediaBuffer_IsReadOnly_" data-uid="Tizen.Multimedia.IMediaBuffer.IsReadOnly*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L56">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_IsReadOnly" data-uid="Tizen.Multimedia.IMediaBuffer.IsReadOnly">IsReadOnly</h4>
+    <section>
+    <p>Gets the value indicating whether the <a class="xref" href="Tizen.Multimedia.IMediaBuffer.html">IMediaBuffer</a> is read-only.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsReadOnly { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the <a class="xref" href="Tizen.Multimedia.IMediaBuffer.html">IMediaBuffer</a> is read-only; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_IMediaBuffer_Item_" data-uid="Tizen.Multimedia.IMediaBuffer.Item*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L39">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_Item_System_Int32_" data-uid="Tizen.Multimedia.IMediaBuffer.Item(System.Int32)">this[int]</h4>
+    <section>
+    <p>Gets or sets a value at the specified index.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte this[int index] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the value to get or set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">index</code> is equal to or greater than <a class="xref" href="Tizen.Multimedia.IMediaBuffer.html#Tizen_Multimedia_IMediaBuffer_Length">Length</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The object that owns the current buffer has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The buffer is not available, i.e. not writable state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_IMediaBuffer_Length_" data-uid="Tizen.Multimedia.IMediaBuffer.Length*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L49">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_Length" data-uid="Tizen.Multimedia.IMediaBuffer.Length">Length</h4>
+    <section>
+    <p>Gets the size of the buffer, in bytes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_IMediaBuffer_CopyFrom_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyFrom*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L110">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_CopyFrom_System_Byte___System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyFrom(System.Byte[],System.Int32,System.Int32,System.Int32)">CopyFrom(byte[], int, int, int)</h4>
+    <section>
+    <p>Copies data from a byte array to the buffer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CopyFrom(byte[] source, int startIndex, int length, int offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The array to copy from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The zero-based index in the destination array where copying should start.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The number of elements to copy.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The zero-based index in the buffer where copying should start.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">startIndex</code>, <code data-dev-comment-type="paramref" class="paramref">length</code>,
+or <code data-dev-comment-type="paramref" class="paramref">offset</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The object that owns the current buffer has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The buffer is not available. i.e. not writable state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_IMediaBuffer_CopyFrom_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyFrom*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L95">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_CopyFrom_System_Byte___System_Int32_System_Int32_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyFrom(System.Byte[],System.Int32,System.Int32)">CopyFrom(byte[], int, int)</h4>
+    <section>
+    <p>Copies data from a byte array to the buffer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CopyFrom(byte[] source, int startIndex, int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The array to copy from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The zero-based index in the destination array where copying should start.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The number of elements to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">startIndex</code> or <code data-dev-comment-type="paramref" class="paramref">length</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The object that owns the current buffer has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The buffer is not available. i.e. not writable state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_IMediaBuffer_CopyTo_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyTo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L82">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_CopyTo_System_Byte___System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyTo(System.Byte[],System.Int32,System.Int32,System.Int32)">CopyTo(byte[], int, int, int)</h4>
+    <section>
+    <p>Copies data from the buffer to a byte array.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CopyTo(byte[] dest, int startIndex, int length, int offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">dest</span></td>
+        <td><p>The array to copy to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The zero-based index in the source array where copying should start.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The number of array elements to copy.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The zero-based index in the buffer where copying should start.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">dest</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">startIndex</code>, <code data-dev-comment-type="paramref" class="paramref">length</code>,
+or <code data-dev-comment-type="paramref" class="paramref">offset</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The object that owns the current buffer has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_IMediaBuffer_CopyTo_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyTo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia/Common/IMediaBuffer.cs/#L68">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_IMediaBuffer_CopyTo_System_Byte___System_Int32_System_Int32_" data-uid="Tizen.Multimedia.IMediaBuffer.CopyTo(System.Byte[],System.Int32,System.Int32)">CopyTo(byte[], int, int)</h4>
+    <section>
+    <p>Copies data from the buffer to a byte array.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CopyTo(byte[] dest, int startIndex, int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">dest</span></td>
+        <td><p>The array to copy to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The zero-based index in the source array where copying should start.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The number of array elements to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">dest</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">startIndex</code> or <code data-dev-comment-type="paramref" class="paramref">length</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The object that owns the current buffer has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

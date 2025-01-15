@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Pkcs12
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Pkcs12
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Security.SecureRepository.Pkcs12">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Security_SecureRepository_Pkcs12" data-uid="Tizen.Security.SecureRepository.Pkcs12" class="mt-0 text-break"><span class="entity-type">Class</span>
+Pkcs12
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L29" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.SecureRepository.html">SecureRepository</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.SecureRepository.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The class that represents a PKCS#12 contents.
+It has a private key or its certificate or all the members of a chain of trust.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Pkcs12</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Pkcs12</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Security_SecureRepository_Pkcs12__ctor_" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L90">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor(Tizen.Security.SecureRepository.Key,Tizen.Security.SecureRepository.Certificate,System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})">Pkcs12(Key, Certificate, IEnumerable&lt;Certificate&gt;)</h4>
+    <section>
+    <p>A constructor of Key that takes a private key, its corresponding certicate,
+and CA's certificate chain.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pkcs12(Key privateKey, Certificate certificate, IEnumerable&lt;Certificate&gt; caChain)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
+        <td><span class="parametername">privateKey</span></td>
+        <td><p>A private key.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
+        <td><span class="parametername">certificate</span></td>
+        <td><p>A certificate corresponding the private key.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
+        <td><span class="parametername">caChain</span></td>
+        <td><p>A certificate chain of CA(Certificate Authority) that issued the certificate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Security_SecureRepository_Pkcs12__ctor_" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L73">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor(Tizen.Security.SecureRepository.Key)">Pkcs12(Key)</h4>
+    <section>
+    <p>A constructor of Key that takes a private key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Pkcs12(Key privateKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
+        <td><span class="parametername">privateKey</span></td>
+        <td><p>A private key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Security_SecureRepository_Pkcs12_CaChain_" data-uid="Tizen.Security.SecureRepository.Pkcs12.CaChain*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L174">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12_CaChain" data-uid="Tizen.Security.SecureRepository.Pkcs12.CaChain">CaChain</h4>
+    <section>
+    <p>A certificate chain of CA(Certificate Authority) that issued the certificate.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Certificate&gt; CaChain { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Security_SecureRepository_Pkcs12_Certificate_" data-uid="Tizen.Security.SecureRepository.Pkcs12.Certificate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L165">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12_Certificate" data-uid="Tizen.Security.SecureRepository.Pkcs12.Certificate">Certificate</h4>
+    <section>
+    <p>A certificate corresponding to the private key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Certificate Certificate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Security_SecureRepository_Pkcs12_PrivateKey_" data-uid="Tizen.Security.SecureRepository.Pkcs12.PrivateKey*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L156">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12_PrivateKey" data-uid="Tizen.Security.SecureRepository.Pkcs12.PrivateKey">PrivateKey</h4>
+    <section>
+    <p>A private key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Key PrivateKey { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Security_SecureRepository_Pkcs12_Load_" data-uid="Tizen.Security.SecureRepository.Pkcs12.Load*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L47">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12_Load_System_String_System_String_" data-uid="Tizen.Security.SecureRepository.Pkcs12.Load(System.String,System.String)">Load(string, string)</h4>
+    <section>
+    <p>Loads the Pkcs12 from the given PKCS#12 file path.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Pkcs12 Load(string filePath, string filePassword)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>The path of the PKCS12 file to be loaded.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">filePassword</span></td>
+        <td><p>The passphrase used to decrypt the PCKS12 file.
+If the PKCS12 file is not encrypted, passphrase can be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.SecureRepository.Pkcs12.html">Pkcs12</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>The filePath is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>No file on filePath.
+No permission to access file.
+File is in the invalid PKCS12 format.
+File cannot be extracted with provided filePassword.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MeshVisual
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MeshVisual
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.MeshVisual">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_MeshVisual" data-uid="Tizen.NUI.MeshVisual" class="mt-0 text-break"><span class="entity-type">Class</span>
+MeshVisual
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1668" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A class encapsulating the property map of the mesh visual.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MeshVisual : VisualMap</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.VisualMap.html">VisualMap</a></div>
+        <div><span class="xref">MeshVisual</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_MeshVisual__ctor_" data-uid="Tizen.NUI.MeshVisual.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1674">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual__ctor" data-uid="Tizen.NUI.MeshVisual.#ctor">MeshVisual()</h4>
+    <section>
+    <p>Constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MeshVisual()</code></pre>
+  </div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_MeshVisual_LightPosition_" data-uid="Tizen.NUI.MeshVisual.LightPosition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1807">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_LightPosition" data-uid="Tizen.NUI.MeshVisual.LightPosition">LightPosition</h4>
+    <section>
+    <p>Gets or sets the position, in the stage space, of the point light that applies lighting to the model.<br>
+This is based off the stage's dimensions, so using the width and the height of the stage halved will correspond to the center,
+and using all zeroes will place the light at the top-left corner.<br>
+If not specified, the default is an offset outwards from the center of the screen.<br>
+Optional.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 LightPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_MeshVisual_MaterialtURL_" data-uid="Tizen.NUI.MeshVisual.MaterialtURL*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1710">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_MaterialtURL" data-uid="Tizen.NUI.MeshVisual.MaterialtURL">MaterialtURL</h4>
+    <section>
+    <p>Gets or sets the location of the &quot;.mtl&quot; file.<br>
+If not specified, then a textureless object is assumed.<br>
+Optional.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MaterialtURL { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_MeshVisual_ObjectURL_" data-uid="Tizen.NUI.MeshVisual.ObjectURL*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1691">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_ObjectURL" data-uid="Tizen.NUI.MeshVisual.ObjectURL">ObjectURL</h4>
+    <section>
+    <p>Gets or sets the location of the &quot;.obj&quot; file.<br>
+Mandatory.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ObjectURL { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_MeshVisual_ShadingMode_" data-uid="Tizen.NUI.MeshVisual.ShadingMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1748">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_ShadingMode" data-uid="Tizen.NUI.MeshVisual.ShadingMode">ShadingMode</h4>
+    <section>
+    <p>Gets or sets the type of shading mode that the mesh will use.<br>
+If anything the specified shading mode requires is missing, a simpler mode that can be handled with what has been supplied will be used instead.<br>
+If not specified, it will use the best it can support (will try MeshVisualShadingModeValue.TexturedWithDetailedSpecularLighting first).<br>
+Optional.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MeshVisualShadingModeValue ShadingMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.MeshVisualShadingModeValue.html">MeshVisualShadingModeValue</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_MeshVisual_TexturesPath_" data-uid="Tizen.NUI.MeshVisual.TexturesPath*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1728">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_TexturesPath" data-uid="Tizen.NUI.MeshVisual.TexturesPath">TexturesPath</h4>
+    <section>
+    <p>Gets or sets the path to the directory the textures (including gloss and normal) are stored in.<br>
+Mandatory if using material.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TexturesPath { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_MeshVisual_UseMipmapping_" data-uid="Tizen.NUI.MeshVisual.UseMipmapping*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1767">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_UseMipmapping" data-uid="Tizen.NUI.MeshVisual.UseMipmapping">UseMipmapping</h4>
+    <section>
+    <p>Gets or sets whether to use mipmaps for textures or not.<br>
+If not specified, the default is true.<br>
+Optional.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseMipmapping { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_MeshVisual_UseSoftNormals_" data-uid="Tizen.NUI.MeshVisual.UseSoftNormals*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1786">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_UseSoftNormals" data-uid="Tizen.NUI.MeshVisual.UseSoftNormals">UseSoftNormals</h4>
+    <section>
+    <p>Gets or sets whether to average normals at each point to smooth textures or not.<br>
+If not specified, the default is true.<br>
+Optional.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseSoftNormals { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_MeshVisual_ComposingPropertyMap_" data-uid="Tizen.NUI.MeshVisual.ComposingPropertyMap*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/VisualMaps.cs/#L1824">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_MeshVisual_ComposingPropertyMap" data-uid="Tizen.NUI.MeshVisual.ComposingPropertyMap">ComposingPropertyMap()</h4>
+    <section>
+    <p>Compose the out visual map.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ComposingPropertyMap()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.VisualMap.html#Tizen_NUI_VisualMap_ComposingPropertyMap">VisualMap.ComposingPropertyMap()</a></div>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,544 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MediaControlServer
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MediaControlServer
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.MediaControlServer">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_MediaControlServer" data-uid="Tizen.Multimedia.Remoting.MediaControlServer" class="mt-0 text-break"><span class="entity-type">Class</span>
+MediaControlServer
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L28" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides a means to set playback information and metadata and receive commands from clients.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class MediaControlServer</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">MediaControlServer</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_IsRunning_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.IsRunning*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L40">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_IsRunning" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.IsRunning">IsRunning</h4>
+    <section>
+    <p>Gets a value indicating whether the server is running.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsRunning { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the server has started; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_IsRunning_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlServer.html#Tizen_Multimedia_Remoting_MediaControlServer_Start">Start()</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlServer.html#Tizen_Multimedia_Remoting_MediaControlServer_Stop">Stop()</a></div>
+  </div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetMetadata*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L201">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetMetadata_Tizen_Multimedia_Remoting_MediaControlMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetMetadata(Tizen.Multimedia.Remoting.MediaControlMetadata)">SetMetadata(MediaControlMetadata)</h4>
+    <section>
+    <p>Updates metadata information.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetMetadata(MediaControlMetadata metadata)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a></td>
+        <td><span class="parametername">metadata</span></td>
+        <td><p>The metadata to update.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">metadata</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetMetadata_Tizen_Multimedia_Remoting_MediaControlMetadata__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackState_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L169">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackState_Tizen_Multimedia_Remoting_MediaControlPlaybackState_System_Int64_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackState(Tizen.Multimedia.Remoting.MediaControlPlaybackState,System.Int64)">SetPlaybackState(MediaControlPlaybackState, long)</h4>
+    <section>
+    <p>Updates playback state and playback position.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetPlaybackState(MediaControlPlaybackState state, long position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackState.html">MediaControlPlaybackState</a></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>The playback state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">long</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The playback position in milliseconds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">state</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">position</code> is less than zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackState_Tizen_Multimedia_Remoting_MediaControlPlaybackState_System_Int64__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetRepeatMode_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetRepeatMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L250">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetRepeatMode_Tizen_Multimedia_Remoting_MediaControlRepeatMode_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetRepeatMode(Tizen.Multimedia.Remoting.MediaControlRepeatMode)">SetRepeatMode(MediaControlRepeatMode)</h4>
+    <section>
+    <p>Updates the repeat mode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetRepeatMode(MediaControlRepeatMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlRepeatMode.html">MediaControlRepeatMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>A value indicating the repeat mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetRepeatMode_Tizen_Multimedia_Remoting_MediaControlRepeatMode__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetShuffleModeEnabled_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetShuffleModeEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L233">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetShuffleModeEnabled_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetShuffleModeEnabled(System.Boolean)">SetShuffleModeEnabled(bool)</h4>
+    <section>
+    <p>Updates the shuffle mode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetShuffleModeEnabled(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enabled</span></td>
+        <td><p>A value indicating whether the shuffle mode is enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetShuffleModeEnabled_System_Boolean__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_Start_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Start*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L128">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Start" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Start">Start()</h4>
+    <section>
+    <p>Starts the media control server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Start()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Start_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When the server starts, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStarted">ServerStarted</a> will be raised.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required privilege.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Start_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStarted">ServerStarted</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Stop*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L146">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Stop">Stop()</h4>
+    <section>
+    <p>Stops the media control server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Stop()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When the server stops, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a> will be raised.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a></div>
+  </div>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L261">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_PlaybackCommandReceived" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.PlaybackCommandReceived">PlaybackCommandReceived</h4>
+    <section>
+    <p>Occurs when a client sends playback command.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; PlaybackCommandReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackCommandReceivedEventArgs.html">PlaybackCommandReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_PlaybackCommandReceived_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
+  </div>
+
+
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

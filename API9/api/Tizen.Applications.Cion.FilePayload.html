@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FilePayload
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FilePayload
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API9">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Cion.FilePayload">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_Cion_FilePayload" data-uid="Tizen.Applications.Cion.FilePayload" class="mt-0 text-break"><span class="entity-type">Class</span>
+FilePayload
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L25" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Cion.html">Cion</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Cion.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A class to represent file type payload.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class FilePayload : Payload</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Applications.Cion.Payload.html">Payload</a></div>
+        <div><span class="xref">FilePayload</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_Cion_FilePayload__ctor_" data-uid="Tizen.Applications.Cion.FilePayload.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L45">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_FilePayload__ctor_System_String_" data-uid="Tizen.Applications.Cion.FilePayload.#ctor(System.String)">FilePayload(string)</h4>
+    <section>
+    <p>The constructor of FilePayload class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FilePayload(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path of file for the FilePayload.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Cion_FilePayload__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> is needed if the file path is relevant to media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> is needed if the file path is relevant to external storage.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the input file path is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_Cion_FilePayload_PayloadType_" data-uid="Tizen.Applications.Cion.FilePayload.PayloadType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L109">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_FilePayload_PayloadType" data-uid="Tizen.Applications.Cion.FilePayload.PayloadType">PayloadType</h4>
+    <section>
+    <p>Gets type of the payload.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override PayloadType PayloadType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PayloadType.html">PayloadType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Applications.Cion.Payload.html#Tizen_Applications_Cion_Payload_PayloadType">Payload.PayloadType</a></div>
+
+
+
+  <a id="Tizen_Applications_Cion_FilePayload_ReceivedBytes_" data-uid="Tizen.Applications.Cion.FilePayload.ReceivedBytes*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L73">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_FilePayload_ReceivedBytes" data-uid="Tizen.Applications.Cion.FilePayload.ReceivedBytes">ReceivedBytes</h4>
+    <section>
+    <p>Gets size of received file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong ReceivedBytes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ulong</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_FilePayload_ReceivedFileName_" data-uid="Tizen.Applications.Cion.FilePayload.ReceivedFileName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L55">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_FilePayload_ReceivedFileName" data-uid="Tizen.Applications.Cion.FilePayload.ReceivedFileName">ReceivedFileName</h4>
+    <section>
+    <p>Gets the name of received file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReceivedFileName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_FilePayload_TotalBytes_" data-uid="Tizen.Applications.Cion.FilePayload.TotalBytes*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L91">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_FilePayload_TotalBytes" data-uid="Tizen.Applications.Cion.FilePayload.TotalBytes">TotalBytes</h4>
+    <section>
+    <p>Gets total size of the file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong TotalBytes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ulong</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_Cion_FilePayload_SaveAsFile_" data-uid="Tizen.Applications.Cion.FilePayload.SaveAsFile*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.Cion/Tizen.Applications.Cion/FilePayload.cs/#L128">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_FilePayload_SaveAsFile_System_String_" data-uid="Tizen.Applications.Cion.FilePayload.SaveAsFile(System.String)">SaveAsFile(string)</h4>
+    <section>
+    <p>Saves file of payload to speicific path.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SaveAsFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path of file to save.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Cion_FilePayload_SaveAsFile_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> is needed if the file path is relevant to media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> is needed if the file path is relevant to external storage.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the input file path is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

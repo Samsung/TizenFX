@@ -1,0 +1,949 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MatrixCursor
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MatrixCursor
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.DataControl.MatrixCursor">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_DataControl_MatrixCursor" data-uid="Tizen.Applications.DataControl.MatrixCursor" class="mt-0 text-break"><span class="entity-type">Class</span>
+MatrixCursor
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L30" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.DataControl.html">DataControl</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.DataControl.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents the MatrixCursor class for the DataControl provider's matrix cursor.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MatrixCursor : IDisposable, ICursor</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">MatrixCursor</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.DataControl.ICursor.html">ICursor</a></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor__ctor_" data-uid="Tizen.Applications.DataControl.MatrixCursor.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L415">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor__ctor_System_String___Tizen_Applications_DataControl_ColumnType___" data-uid="Tizen.Applications.DataControl.MatrixCursor.#ctor(System.String[],Tizen.Applications.DataControl.ColumnType[])">MatrixCursor(string[], ColumnType[])</h4>
+    <section>
+    <p>Initializes the MatrixCursor class with columnNames and columnTypes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MatrixCursor(string[] columnNames, ColumnType[] columnTypes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td><span class="parametername">columnNames</span></td>
+        <td><p>The MatrixCursor's column name list.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.DataControl.ColumnType.html">ColumnType</a>[]</td>
+        <td><span class="parametername">columnTypes</span></td>
+        <td><p>The MatrixCursor's column type list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_AddRow_" data-uid="Tizen.Applications.DataControl.MatrixCursor.AddRow*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L504">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_AddRow_System_Object___" data-uid="Tizen.Applications.DataControl.MatrixCursor.AddRow(System.Object[])">AddRow(object[])</h4>
+    <section>
+    <p>Adds a new row to the end with the given column values.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddRow(object[] columnValues)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span>[]</td>
+        <td><span class="parametername">columnValues</span></td>
+        <td><p>New column values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_Dispose_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L607">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_Dispose" data-uid="Tizen.Applications.DataControl.MatrixCursor.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all the resources used by the MatrixCursor class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_Dispose_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L617">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_Dispose_System_Boolean_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the unmanaged resources used by the MatrixCursor class specifying whether to perform a normal dispose operation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true for a normal dispose operation; false to finalize the handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_Finalize_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L648">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_Finalize" data-uid="Tizen.Applications.DataControl.MatrixCursor.Finalize">~MatrixCursor()</h4>
+    <section>
+    <p>Destructor of the MatrixCursor class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~MatrixCursor()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetBlobValue_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetBlobValue*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L364">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetBlobValue_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetBlobValue(System.Int32)">GetBlobValue(int)</h4>
+    <section>
+    <p>Returns the value of the requested column as a BLOB.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] GetBlobValue(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetColumnCount_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetColumnCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L171">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetColumnCount" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetColumnCount">GetColumnCount()</h4>
+    <section>
+    <p>Gets the column count of the MatrixCursor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetColumnCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetColumnName_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetColumnName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L198">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetColumnName_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetColumnName(System.Int32)">GetColumnName(int)</h4>
+    <section>
+    <p>Returns the column name at the given zero-based column index.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetColumnName(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The target column index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetColumnType_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetColumnType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L182">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetColumnType_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetColumnType(System.Int32)">GetColumnType(int)</h4>
+    <section>
+    <p>Returns the column type at the given zero-based column index.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColumnType GetColumnType(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Target column index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.DataControl.ColumnType.html">ColumnType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetDoubleValue_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetDoubleValue*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L312">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetDoubleValue_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetDoubleValue(System.Int32)">GetDoubleValue(int)</h4>
+    <section>
+    <p>Returns the value of the requested column as a double.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double GetDoubleValue(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetInt64Value_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetInt64Value*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L287">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetInt64Value_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetInt64Value(System.Int32)">GetInt64Value(int)</h4>
+    <section>
+    <p>Returns the value of the requested column as int64.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long GetInt64Value(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">long</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetIntValue_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetIntValue*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L262">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetIntValue_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetIntValue(System.Int32)">GetIntValue(int)</h4>
+    <section>
+    <p>Returns the value of the requested column as an integer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetIntValue(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetRowCount_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetRowCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L212">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetRowCount" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetRowCount">GetRowCount()</h4>
+    <section>
+    <p>Gets the MatrixCursor's row count.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long GetRowCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">long</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_GetStringValue_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetStringValue*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L337">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_GetStringValue_System_Int32_" data-uid="Tizen.Applications.DataControl.MatrixCursor.GetStringValue(System.Int32)">GetStringValue(int)</h4>
+    <section>
+    <p>Returns the value of the requested column as a string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetStringValue(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_Next_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Next*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L221">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_Next" data-uid="Tizen.Applications.DataControl.MatrixCursor.Next">Next()</h4>
+    <section>
+    <p>Move the MatrixCursor to the next row.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Next()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_Prev_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Prev*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L236">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_Prev" data-uid="Tizen.Applications.DataControl.MatrixCursor.Prev">Prev()</h4>
+    <section>
+    <p>Move the MatrixCursor to the previous row.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Prev()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_DataControl_MatrixCursor_Reset_" data-uid="Tizen.Applications.DataControl.MatrixCursor.Reset*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.DataControl/Tizen.Applications.DataControl/MatrixCursor.cs/#L251">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_DataControl_MatrixCursor_Reset" data-uid="Tizen.Applications.DataControl.MatrixCursor.Reset">Reset()</h4>
+    <section>
+    <p>Move the MatrixCursor to the first row.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Reset()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.Applications.DataControl.ICursor.html">ICursor</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

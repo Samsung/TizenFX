@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Adaptor
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Adaptor
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Adaptor">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Adaptor" data-uid="Tizen.NUI.Adaptor" class="mt-0 text-break"><span class="entity-type">Class</span>
+Adaptor
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Adaptor.cs/#L40" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>An Adaptor object is used to initialize and control how Dali runs.</p>
+<p>It provides the lifecycle interface that allows the application
+writer to provide their own main loop and other platform related
+features.</p>
+<p>The Adaptor class provides a means for initialising the resources required by the Dali::Core.</p>
+<p>When dealing with platform events, the application writer must ensure that DALi is called in a
+thread-safe manner.</p>
+<p>As soon as the Adaptor class is created and started, the application writer can initialise their
+view objects straight away or as required by the main loop they intend to use (there is no
+need to wait for an initialize signal as per the Tizen.NUI.Application class).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Adaptor : Disposable, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></div>
+        <div><span class="xref">Adaptor</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="fields">Fields
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Adaptor.cs/#L44">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Adaptor_swigCMemOwn" data-uid="Tizen.NUI.Adaptor.swigCMemOwn">swigCMemOwn</h4>
+    <section>
+    <p>swigCMemOwn.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool swigCMemOwn</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_Adaptor_Instance_" data-uid="Tizen.NUI.Adaptor.Instance*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Adaptor.cs/#L122">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Adaptor_Instance" data-uid="Tizen.NUI.Adaptor.Instance">Instance</h4>
+    <section>
+    <p>Returns a reference to the instance of the adaptor used by the current thread.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Adaptor Instance { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Adaptor.html">Adaptor</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Adaptor_Instance_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The adaptor has been initialized. This is only valid in the main thread.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_Adaptor_Dispose_" data-uid="Tizen.NUI.Adaptor.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Adaptor.cs/#L367">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Adaptor_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Adaptor.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+    <section>
+    <p>Dispose.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_Dispose_Tizen_NUI_DisposeTypes_">Disposable.Dispose(DisposeTypes)</a></div>
+
+
+
+  <a id="Tizen_NUI_Adaptor_FeedKeyEvent_" data-uid="Tizen.NUI.Adaptor.FeedKeyEvent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Adaptor.cs/#L146">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Adaptor_FeedKeyEvent_Tizen_NUI_Key_" data-uid="Tizen.NUI.Adaptor.FeedKeyEvent(Tizen.NUI.Key)">FeedKeyEvent(Key)</h4>
+    <section>
+    <p>Feeds a key event to the adaptor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FeedKeyEvent(Key keyEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Key.html">Key</a></td>
+        <td><span class="parametername">keyEvent</span></td>
+        <td><p>The key event holding the key information.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Adaptor_FeedWheelEvent_" data-uid="Tizen.NUI.Adaptor.FeedWheelEvent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Adaptor.cs/#L135">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Adaptor_FeedWheelEvent_Tizen_NUI_Wheel_" data-uid="Tizen.NUI.Adaptor.FeedWheelEvent(Tizen.NUI.Wheel)">FeedWheelEvent(Wheel)</h4>
+    <section>
+    <p>Feeds a wheel event to the adaptor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FeedWheelEvent(Wheel wheelEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a></td>
+        <td><span class="parametername">wheelEvent</span></td>
+        <td><p>The wheel event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

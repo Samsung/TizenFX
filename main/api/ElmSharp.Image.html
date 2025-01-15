@@ -1,0 +1,1584 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Image
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Image
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="ElmSharp.Image">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="ElmSharp_Image" data-uid="ElmSharp.Image" class="mt-0 text-break"><span class="entity-type">Class</span>
+Image
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L30" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The Image is a widget that allows one to load and display an image file on it,
+be it from a disk file or from a memory region.
+Inherits Widget.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public class Image : Widget, IAccessibleObject</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Accessible.AccessibleObject.html">AccessibleObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Widget.html">Widget</a></div>
+        <div><span class="xref">Image</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.Icon.html">Icon</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="ElmSharp_Image__ctor_" data-uid="ElmSharp.Image.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L45">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image__ctor_ElmSharp_EvasObject_" data-uid="ElmSharp.Image.#ctor(ElmSharp.EvasObject)">Image(EvasObject)</h4>
+    <section>
+    <p>Creates and initializes a new instance of the Image class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Image(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent is a given container, which will be attached by the image as a child. It's <a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a> type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="ElmSharp_Image_BackgroundColor_" data-uid="ElmSharp.Image.BackgroundColor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L362">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_BackgroundColor" data-uid="ElmSharp.Image.BackgroundColor">BackgroundColor</h4>
+    <section>
+    <p>Sets the background color.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override Color BackgroundColor { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_BackgroundColor">Widget.BackgroundColor</a></div>
+
+
+
+  <a id="ElmSharp_Image_BorderCenterFillMode_" data-uid="ElmSharp.Image.BorderCenterFillMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L426">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_BorderCenterFillMode" data-uid="ElmSharp.Image.BorderCenterFillMode">BorderCenterFillMode</h4>
+    <section>
+    <p>Sets or gets if the center part of the given image object (not the border) should be drawn.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public ImageBorderFillMode BorderCenterFillMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.ImageBorderFillMode.html">ImageBorderFillMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Image_BorderCenterFillMode_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When rendering, the image may be scaled to fit the size of the image object.
+This function sets if the center part of the scaled image is to be drawn or left completely blank, or forced to be solid.
+Very useful for frames and decorations.</p>
+</div>
+
+
+
+  <a id="ElmSharp_Image_CanFillOutside_" data-uid="ElmSharp.Image.CanFillOutside*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L160">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_CanFillOutside" data-uid="ElmSharp.Image.CanFillOutside">CanFillOutside</h4>
+    <section>
+    <p>Sets or gets whether the image fills the entire object area, when keeping the aspect ratio.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool CanFillOutside { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_CanScaleDown_" data-uid="ElmSharp.Image.CanScaleDown*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L124">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_CanScaleDown" data-uid="ElmSharp.Image.CanScaleDown">CanScaleDown</h4>
+    <section>
+    <p>Sets or gets whether the object is down resizable.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool CanScaleDown { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_CanScaleUp_" data-uid="ElmSharp.Image.CanScaleUp*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L142">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_CanScaleUp" data-uid="ElmSharp.Image.CanScaleUp">CanScaleUp</h4>
+    <section>
+    <p>Sets or gets whether the object is up resizable.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool CanScaleUp { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_Color_" data-uid="ElmSharp.Image.Color*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L334">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Color" data-uid="ElmSharp.Image.Color">Color</h4>
+    <section>
+    <p>Sets or gets the image color.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override Color Color { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.EvasObject.html#ElmSharp_EvasObject_Color">EvasObject.Color</a></div>
+
+
+
+  <a id="ElmSharp_Image_File_" data-uid="ElmSharp.Image.File*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L77">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_File" data-uid="ElmSharp.Image.File">File</h4>
+    <section>
+    <p>Gets the file that is used as an image.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public string File { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_ImageObject_" data-uid="ElmSharp.Image.ImageObject*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L385">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_ImageObject" data-uid="ElmSharp.Image.ImageObject">ImageObject</h4>
+    <section>
+    <p>Gets the inlined image object of the image widget.
+This property allows one to get the underlying EvasObject of type Image from this elementary widget. It can be useful to do things like save the image to a file, etc.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public EvasImage ImageObject { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasImage.html">EvasImage</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Image_ImageObject_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Be careful not to manipulate it, as it is under the control of the widget.</p>
+</div>
+
+
+
+  <a id="ElmSharp_Image_IsAnimated_" data-uid="ElmSharp.Image.IsAnimated*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L211">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsAnimated" data-uid="ElmSharp.Image.IsAnimated">IsAnimated</h4>
+    <section>
+    <p>Sets or gets whether an image object (which supports animation) is to animate itself.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsAnimated { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_IsAnimatedAvailable_" data-uid="ElmSharp.Image.IsAnimatedAvailable*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L228">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsAnimatedAvailable" data-uid="ElmSharp.Image.IsAnimatedAvailable">IsAnimatedAvailable</h4>
+    <section>
+    <p>Gets whether an image object supports animation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsAnimatedAvailable { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_IsAnimationPlaying_" data-uid="ElmSharp.Image.IsAnimationPlaying*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L245">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsAnimationPlaying" data-uid="ElmSharp.Image.IsAnimationPlaying">IsAnimationPlaying</h4>
+    <section>
+    <p>Sets or gets whether an image object is under animation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsAnimationPlaying { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Image_IsAnimationPlaying_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>An image object, even if it supports animation, will be displayed by default without animation.
+To actually start playing any image object's animation, <a class="xref" href="ElmSharp.Image.html#ElmSharp_Image_IsAnimated">IsAnimated</a> should be TRUE before setting this property true.</p>
+</div>
+
+
+
+  <a id="ElmSharp_Image_IsEditable_" data-uid="ElmSharp.Image.IsEditable*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L262">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsEditable" data-uid="ElmSharp.Image.IsEditable">IsEditable</h4>
+    <section>
+    <p>Sets or gets whether the image is 'editable'.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsEditable { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_IsFixedAspect_" data-uid="ElmSharp.Image.IsFixedAspect*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L194">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsFixedAspect" data-uid="ElmSharp.Image.IsFixedAspect">IsFixedAspect</h4>
+    <section>
+    <p>Sets or gets whether the original aspect ratio of the image should be kept on resize.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsFixedAspect { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_IsOpaque_" data-uid="ElmSharp.Image.IsOpaque*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L293">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsOpaque" data-uid="ElmSharp.Image.IsOpaque">IsOpaque</h4>
+    <section>
+    <p>Sets or gets whether the alpha channel data is being used on the given image object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsOpaque { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_IsScaling_" data-uid="ElmSharp.Image.IsScaling*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L107">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsScaling" data-uid="ElmSharp.Image.IsScaling">IsScaling</h4>
+    <section>
+    <p>Sets or gets whether scaling is disabled on the object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsScaling { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_IsSmooth_" data-uid="ElmSharp.Image.IsSmooth*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L90">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_IsSmooth" data-uid="ElmSharp.Image.IsSmooth">IsSmooth</h4>
+    <section>
+    <p>Sets or gets the smooth effect for an image.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool IsSmooth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_ObjectSize_" data-uid="ElmSharp.Image.ObjectSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L279">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_ObjectSize" data-uid="ElmSharp.Image.ObjectSize">ObjectSize</h4>
+    <section>
+    <p>Gets the current size of the image.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Size ObjectSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_Orientation_" data-uid="ElmSharp.Image.Orientation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L317">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Orientation" data-uid="ElmSharp.Image.Orientation">Orientation</h4>
+    <section>
+    <p>Sets or gets the image orientation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public ImageOrientation Orientation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.ImageOrientation.html">ImageOrientation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_PrescaleSize_" data-uid="ElmSharp.Image.PrescaleSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L177">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_PrescaleSize" data-uid="ElmSharp.Image.PrescaleSize">PrescaleSize</h4>
+    <section>
+    <p>Sets or gets the prescale size for the image.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public int PrescaleSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="ElmSharp_Image_CreateHandle_" data-uid="ElmSharp.Image.CreateHandle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L709">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_CreateHandle_ElmSharp_EvasObject_" data-uid="ElmSharp.Image.CreateHandle(ElmSharp.EvasObject)">CreateHandle(EvasObject)</h4>
+    <section>
+    <p>Sets the content at a part of a given container widget.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent is a given container, which will be attached by the image as a child. It's <a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a> type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><p>The new object, otherwise null if it cannot be created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.EvasObject.html#ElmSharp_EvasObject_CreateHandle_ElmSharp_EvasObject_">EvasObject.CreateHandle(EvasObject)</a></div>
+
+
+
+  <a id="ElmSharp_Image_GetPartColor_" data-uid="ElmSharp.Image.GetPartColor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L696">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_GetPartColor_System_String_" data-uid="ElmSharp.Image.GetPartColor(System.String)">GetPartColor(string)</h4>
+    <section>
+    <p>Gets the color of the Color class for a given widget.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override Color GetPartColor(string part)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">part</span></td>
+        <td><p>The name of the Color class.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Color.html">Color</a></td>
+        <td><p>The color object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_GetPartColor_System_String_">Widget.GetPartColor(string)</a></div>
+
+
+
+  <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L494">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Load_System_Byte__System_Int64_" data-uid="ElmSharp.Image.Load(System.Byte*,System.Int64)">Load(byte*, long)</h4>
+    <section>
+    <p>Sets a location in the memory to be used as an image object's source bitmap.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This method will be removed. Use Load(Stream stream) instead.&quot;)]
+public bool Load(byte* img, long size)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>*</td>
+        <td><span class="parametername">img</span></td>
+        <td><p>The binary data that is used as an image source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">long</span></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The size of the binary data blob img.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Image_Load_System_Byte__System_Int64__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is handy when the contents of an image file are mapped into the memory, for example,
+the format string should be something like &quot;png&quot;, &quot;jpg&quot;, &quot;tga&quot;, &quot;tiff&quot;, &quot;bmp&quot; etc, when provided (null, on the contrary).
+This improves the loader performance as it tries the &quot;correct&quot; loader first, before trying a range of other possible loaders until one succeeds.</p>
+</div>
+
+
+
+  <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L511">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Load_System_IO_Stream_" data-uid="ElmSharp.Image.Load(System.IO.Stream)">Load(Stream)</h4>
+    <section>
+    <p>Sets the stream that is used as the image's source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool Load(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream that is used as an image source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L456">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Load_System_String_" data-uid="ElmSharp.Image.Load(System.String)">Load(string)</h4>
+    <section>
+    <p>Sets the file that is used as the image's source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool Load(string file)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The path to the file that is used as an image source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L473">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Load_System_Uri_" data-uid="ElmSharp.Image.Load(System.Uri)">Load(Uri)</h4>
+    <section>
+    <p>Sets the URI that is used as the image's source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public bool Load(Uri uri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Uri</span></td>
+        <td><span class="parametername">uri</span></td>
+        <td><p>The URI to the file that is used as an image source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_LoadAsync_" data-uid="ElmSharp.Image.LoadAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L613">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_LoadAsync_System_IO_Stream_System_Threading_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.IO.Stream,System.Threading.CancellationToken)">LoadAsync(Stream, CancellationToken)</h4>
+    <section>
+    <p>Sets the stream that is used as the image's source with async.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Task&lt;bool&gt; LoadAsync(Stream stream, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream that is used as an image source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_LoadAsync_" data-uid="ElmSharp.Image.LoadAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L538">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_LoadAsync_System_String_System_Threading_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.String,System.Threading.CancellationToken)">LoadAsync(string, CancellationToken)</h4>
+    <section>
+    <p>Sets the file that is used as the image's source with async.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Task&lt;bool&gt; LoadAsync(string file, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The path to the file that is used as an image source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_LoadAsync_" data-uid="ElmSharp.Image.LoadAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L597">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_LoadAsync_System_Uri_System_Threading_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.Uri,System.Threading.CancellationToken)">LoadAsync(Uri, CancellationToken)</h4>
+    <section>
+    <p>Sets the URI that is used as the image's source with async.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Task&lt;bool&gt; LoadAsync(Uri uri, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Uri</span></td>
+        <td><span class="parametername">uri</span></td>
+        <td><p>The URI to the file that is used as an image source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_SetBorder_" data-uid="ElmSharp.Image.SetBorder*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L411">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_SetBorder_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="ElmSharp.Image.SetBorder(System.Int32,System.Int32,System.Int32,System.Int32)">SetBorder(int, int, int, int)</h4>
+    <section>
+    <p>Sets the dimensions for an image object's border, a region which is not scaled together with its center ever.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public void SetBorder(int left, int right, int top, int bottom)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The border's left width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The border's right width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">top</span></td>
+        <td><p>The border's top width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">bottom</span></td>
+        <td><p>The border's bottom width.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_Image_SetPartColor_" data-uid="ElmSharp.Image.SetPartColor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L681">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_SetPartColor_System_String_ElmSharp_Color_" data-uid="ElmSharp.Image.SetPartColor(System.String,ElmSharp.Color)">SetPartColor(string, Color)</h4>
+    <section>
+    <p>Sets the color of the Color class for a given widget.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override void SetPartColor(string part, Color color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">part</span></td>
+        <td><p>The name of the Color class.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Color.html">Color</a></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The struct of the Color class.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_SetPartColor_System_String_ElmSharp_Color_">Widget.SetPartColor(string, Color)</a></div>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L57">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Clicked" data-uid="ElmSharp.Image.Clicked">Clicked</h4>
+    <section>
+    <p>Clicked will be triggered when the image is clicked.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler Clicked</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L64">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_LoadingCompleted" data-uid="ElmSharp.Image.LoadingCompleted">LoadingCompleted</h4>
+    <section>
+    <p>LoadingCompleted will be triggered when the image is loaded completely.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler LoadingCompleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/ElmSharp/ElmSharp/Image.cs/#L71">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_LoadingFailed" data-uid="ElmSharp.Image.LoadingFailed">LoadingFailed</h4>
+    <section>
+    <p>Clicked will be triggered when the image fails to load.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler LoadingFailed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Activate_ElmSharp_EvasObject_">RotaryEventExtensions.Activate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_AddRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.AddRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_EvasObject_">RotaryEventExtensions.Deactivate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_RemoveRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.RemoveRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

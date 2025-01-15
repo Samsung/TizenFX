@@ -1,0 +1,1933 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Camera
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Camera
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Camera">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Camera" data-uid="Tizen.Multimedia.Camera" class="mt-0 text-break"><span class="entity-type">Class</span>
+Camera
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L32" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Camera.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This camera class provides methods to capture photos and supports setting up notifications
+for state changes of capturing, previewing, focusing, and informing about the resolution and the binary format,
+and functions for picture manipulations like sepia, negative, and many more.
+It also notifies you when a significant picture parameter changes, (For example, focus).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Camera : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Camera</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_Camera__ctor_" data-uid="Tizen.Multimedia.Camera.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L85">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera__ctor" data-uid="Tizen.Multimedia.Camera.#ctor">Camera()</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Camera.html">Camera</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Camera()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Camera__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html">CameraDeviceManager</a> is supported, <a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a> will be selected automatically by internal policy.<br>
+(User can check whether CameraDeviceManager is supported or not by using <a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html#Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported">IsCameraDeviceManagerSupported</a>.)<br>
+But, if not, this constructor will try to create Camera instance with <a class="xref" href="Tizen.Multimedia.CameraDevice.html#Tizen_Multimedia_CameraDevice_CameraDevice0">CameraDevice0</a> by default.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>There's no available camera device.
+-or-<br>
+In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The camera feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Camera__ctor_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html#Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported">IsCameraDeviceManagerSupported</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Camera__ctor_" data-uid="Tizen.Multimedia.Camera.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L59">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera__ctor_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.Camera.#ctor(Tizen.Multimedia.CameraDevice)">Camera(CameraDevice)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Camera.html">Camera</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Camera(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td><p>The camera device to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Invalid CameraDevice type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The camera feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Camera_CameraCount_" data-uid="Tizen.Multimedia.Camera.CameraCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L197">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_CameraCount" data-uid="Tizen.Multimedia.Camera.CameraCount">CameraCount</h4>
+    <section>
+    <p>Gets the camera device count.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CameraCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>This returns 2, if the device supports primary and secondary cameras.
+Otherwise 1, if the device only supports primary camera.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Capabilities_" data-uid="Tizen.Multimedia.Camera.Capabilities*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L44">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Capabilities" data-uid="Tizen.Multimedia.Camera.Capabilities">Capabilities</h4>
+    <section>
+    <p>Gets the various camera capabilities.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraCapabilities Capabilities { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraCapabilities.html">CameraCapabilities</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Direction_" data-uid="Tizen.Multimedia.Camera.Direction*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L178">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Direction" data-uid="Tizen.Multimedia.Camera.Direction">Direction</h4>
+    <section>
+    <p>Gets the facing direction of the camera module.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraFacingDirection Direction { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraFacingDirection.html">CameraFacingDirection</a></td>
+        <td><p>A <a class="xref" href="Tizen.Multimedia.CameraFacingDirection.html">CameraFacingDirection</a> that specifies the facing direction of the camera device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Display_" data-uid="Tizen.Multimedia.Camera.Display*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L84">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Display" data-uid="Tizen.Multimedia.Camera.Display">Display</h4>
+    <section>
+    <p>Sets or gets the display type and handle to show preview images.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Display Display { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Display.html">Display</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Camera_Display_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This must be set before the StartPreview() method.
+In custom ROI display mode, DisplayRoiArea property must be set before calling this method.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_DisplayReuseHint_" data-uid="Tizen.Multimedia.Camera.DisplayReuseHint*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L153">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_DisplayReuseHint" data-uid="Tizen.Multimedia.Camera.DisplayReuseHint">DisplayReuseHint</h4>
+    <section>
+    <p>The hint for the display reuse.
+If the hint is set to true, the display will be reused when the camera device is changed with
+the ChangeDevice method.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DisplayReuseHint { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_DisplaySettings_" data-uid="Tizen.Multimedia.Camera.DisplaySettings*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L50">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_DisplaySettings" data-uid="Tizen.Multimedia.Camera.DisplaySettings">DisplaySettings</h4>
+    <section>
+    <p>Get/set various camera display properties.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraDisplaySettings DisplaySettings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDisplaySettings.html">CameraDisplaySettings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Handle_" data-uid="Tizen.Multimedia.Camera.Handle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L162">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Handle" data-uid="Tizen.Multimedia.Camera.Handle">Handle</h4>
+    <section>
+    <p>Gets the native handle of the camera.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntPtr Handle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Settings_" data-uid="Tizen.Multimedia.Camera.Settings*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L38">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Settings" data-uid="Tizen.Multimedia.Camera.Settings">Settings</h4>
+    <section>
+    <p>Gets or sets the various camera settings.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraSettings Settings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraSettings.html">CameraSettings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_State_" data-uid="Tizen.Multimedia.Camera.State*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Properties.cs/#L132">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_State" data-uid="Tizen.Multimedia.Camera.State">State</h4>
+    <section>
+    <p>Gets the state of the camera.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraState.html">CameraState</a></td>
+        <td><p>None, Created, Preview, Capturing, Captured.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Camera_ChangeDevice_" data-uid="Tizen.Multimedia.Camera.ChangeDevice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L253">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_ChangeDevice_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.Camera.ChangeDevice(Tizen.Multimedia.CameraDevice)">ChangeDevice(CameraDevice)</h4>
+    <section>
+    <p>Changes the camera device.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ChangeDevice(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td><p>The hardware camera to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Camera_ChangeDevice_Tizen_Multimedia_CameraDevice__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If display reuse is set using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_DisplayReuseHint">DisplayReuseHint</a>
+before stopping the preview, the display will be reused and last frame on the display
+can be kept even though camera device is changed.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of the ChangeDevice feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Dispose_" data-uid="Tizen.Multimedia.Camera.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L201">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Dispose" data-uid="Tizen.Multimedia.Camera.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the camera.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Dispose_" data-uid="Tizen.Multimedia.Camera.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L176">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Camera.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the unmanaged resources used by the camera.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_Finalize_" data-uid="Tizen.Multimedia.Camera.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L152">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Finalize" data-uid="Tizen.Multimedia.Camera.Finalize">~Camera()</h4>
+    <section>
+    <p>Finalizes an instance of the Camera class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~Camera()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Camera_GetDeviceState_" data-uid="Tizen.Multimedia.Camera.GetDeviceState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L271">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_GetDeviceState_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.Camera.GetDeviceState(Tizen.Multimedia.CameraDevice)">GetDeviceState(CameraDevice)</h4>
+    <section>
+    <p>Gets the device state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CameraDeviceState GetDeviceState(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td><p>The device to get the state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDeviceState.html">CameraDeviceState</a></td>
+        <td><p>Returns the state of the camera device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_GetFlashState_" data-uid="Tizen.Multimedia.Camera.GetFlashState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L290">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_GetFlashState_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.Camera.GetFlashState(Tizen.Multimedia.CameraDevice)">GetFlashState(CameraDevice)</h4>
+    <section>
+    <p>Gets the flash state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CameraFlashState GetFlashState(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td><p>The device to get the state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraFlashState.html">CameraFlashState</a></td>
+        <td><p>Returns the flash state of the camera device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StartCapture_" data-uid="Tizen.Multimedia.Camera.StartCapture*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L362">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StartCapture" data-uid="Tizen.Multimedia.Camera.StartCapture">StartCapture()</h4>
+    <section>
+    <p>Starts capturing of still images.
+EventHandler must be set for capturing using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Capturing">Capturing</a>
+and for completed using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_CaptureCompleted">CaptureCompleted</a> before calling this method.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartCapture()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Camera_StartCapture_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function causes the transition of the camera state from capturing to captured
+automatically and the corresponding EventHandlers will be invoked.
+The preview should be restarted by calling the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_StartPreview">StartPreview()</a> method after capture is completed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StartCapture_" data-uid="Tizen.Multimedia.Camera.StartCapture*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L397">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.Camera.StartCapture(System.Int32,System.Int32,System.Threading.CancellationToken)">StartCapture(int, int, CancellationToken)</h4>
+    <section>
+    <p>Starts continuously capturing still images.
+EventHandler must be set for capturing using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Capturing">Capturing</a>
+and for completed using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_CaptureCompleted">CaptureCompleted</a> before calling this method.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartCapture(int count, int interval, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of still images.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">interval</span></td>
+        <td><p>The interval of the capture(milliseconds).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token to cancel capturing.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_System_Threading_CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If this is not supported, zero shutter lag occurs. The capture resolution could be
+changed to the preview resolution. This function causes the transition of the camera state
+from capturing to captured automatically and the corresponding Eventhandlers will be invoked.
+Each captured image will be delivered through Eventhandler set using the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Capturing">Capturing</a> event.
+The preview should be restarted by calling the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_StartPreview">StartPreview()</a> method after capture is completed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_System_Threading_CancellationToken__seealso">See Also</h5>
+      <div><span class="xref">System.Threading.CancellationToken</span></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StartFaceDetection_" data-uid="Tizen.Multimedia.Camera.StartFaceDetection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L484">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StartFaceDetection" data-uid="Tizen.Multimedia.Camera.StartFaceDetection">StartFaceDetection()</h4>
+    <section>
+    <p>Starts face detection.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartFaceDetection()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Camera_StartFaceDetection_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This should be called after <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_StartPreview">StartPreview()</a> is started.
+The Eventhandler set using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_FaceDetected">FaceDetected</a> is invoked when the face is detected in the preview frame.
+Internally, it starts continuously focus and focusing on the detected face.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StartFocusing_" data-uid="Tizen.Multimedia.Camera.StartFocusing*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L443">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StartFocusing_System_Boolean_" data-uid="Tizen.Multimedia.Camera.StartFocusing(System.Boolean)">StartFocusing(bool)</h4>
+    <section>
+    <p>Starts camera auto-focusing, asynchronously.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> or the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Captured">Captured</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartFocusing(bool continuous)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">continuous</span></td>
+        <td><p>Continuous auto focus.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Camera_StartFocusing_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If continuous status is true, the camera continuously tries to focus.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StartPreview_" data-uid="Tizen.Multimedia.Camera.StartPreview*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L314">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StartPreview" data-uid="Tizen.Multimedia.Camera.StartPreview">StartPreview()</h4>
+    <section>
+    <p>Starts capturing and drawing preview frames on the screen.
+The display property must be set using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Display">Display</a> before using this method.
+If needed set fps <a class="xref" href="Tizen.Multimedia.CameraSettings.html#Tizen_Multimedia_CameraSettings_PreviewFps">PreviewFps</a>, preview resolution
+<a class="xref" href="Tizen.Multimedia.CameraSettings.html#Tizen_Multimedia_CameraSettings_PreviewResolution">PreviewResolution</a>, or preview format <a class="xref" href="Tizen.Multimedia.CameraSettings.html#Tizen_Multimedia_CameraSettings_PreviewPixelFormat">PreviewPixelFormat</a>
+before using this method.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a> or the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Captured">Captured</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartPreview()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StopFaceDetection_" data-uid="Tizen.Multimedia.Camera.StopFaceDetection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L516">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StopFaceDetection" data-uid="Tizen.Multimedia.Camera.StopFaceDetection">StopFaceDetection()</h4>
+    <section>
+    <p>Stops face detection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopFaceDetection()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StopFocusing_" data-uid="Tizen.Multimedia.Camera.StopFocusing*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L461">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StopFocusing" data-uid="Tizen.Multimedia.Camera.StopFocusing">StopFocusing()</h4>
+    <section>
+    <p>Stops camera auto focusing.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> or the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Captured">Captured</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopFocusing()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Camera_StopPreview_" data-uid="Tizen.Multimedia.Camera.StopPreview*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L335">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StopPreview" data-uid="Tizen.Multimedia.Camera.StopPreview">StopPreview()</h4>
+    <section>
+    <p>Stops capturing and drawing preview frames on the screen.
+The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopPreview()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The camera has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case of access to the resources cannot be granted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L79">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_CaptureCompleted" data-uid="Tizen.Multimedia.Camera.CaptureCompleted">CaptureCompleted</h4>
+    <section>
+    <p>An event that occurs after the capture of the image.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EventArgs&gt; CaptureCompleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<span class="xref">System.EventArgs</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L72">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Capturing" data-uid="Tizen.Multimedia.Camera.Capturing">Capturing</h4>
+    <section>
+    <p>An event that occurs during capture of an image.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraCapturingEventArgs&gt; Capturing</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraCapturingEventArgs.html">CameraCapturingEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L140">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_DeviceStateChanged" data-uid="Tizen.Multimedia.Camera.DeviceStateChanged">DeviceStateChanged</h4>
+    <section>
+    <p>An event that occurs after the <a class="xref" href="Tizen.Multimedia.CameraDeviceState.html">CameraDeviceState</a> is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;CameraDeviceStateChangedEventArgs&gt; DeviceStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraDeviceStateChangedEventArgs.html">CameraDeviceStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any invalid operations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of this feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of invalid parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L51">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_ErrorOccurred" data-uid="Tizen.Multimedia.Camera.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>An event that occurs when there is an asynchronous error.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraErrorOccurredEventArgs.html">CameraErrorOccurredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L248">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_ExtraPreview" data-uid="Tizen.Multimedia.Camera.ExtraPreview">ExtraPreview</h4>
+    <section>
+    <p>An event that occurs once per frame when previewing.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ExtraPreviewEventArgs&gt; ExtraPreview</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ExtraPreviewEventArgs.html">ExtraPreviewEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L65">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_FaceDetected" data-uid="Tizen.Multimedia.Camera.FaceDetected">FaceDetected</h4>
+    <section>
+    <p>An event that occurs when a face is detected in the preview frame.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;FaceDetectedEventArgs&gt; FaceDetected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.FaceDetectedEventArgs.html">FaceDetectedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L58">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_FocusStateChanged" data-uid="Tizen.Multimedia.Camera.FocusStateChanged">FocusStateChanged</h4>
+    <section>
+    <p>An event that occurs when the auto focus state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraFocusStateChangedEventArgs&gt; FocusStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraFocusStateChangedEventArgs.html">CameraFocusStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L92">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_HdrCaptureProgress" data-uid="Tizen.Multimedia.Camera.HdrCaptureProgress">HdrCaptureProgress</h4>
+    <section>
+    <p>An event that occurs when there is a change in the HDR capture progress.
+Checks whether the <a class="xref" href="Tizen.Multimedia.CameraCapabilities.html#Tizen_Multimedia_CameraCapabilities_IsHdrCaptureSupported">IsHdrCaptureSupported</a> is supported or not before adding this EventHandler.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;HdrCaptureProgressEventArgs&gt; HdrCaptureProgress</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.HdrCaptureProgressEventArgs.html">HdrCaptureProgressEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case of HDR feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L44">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Interrupted" data-uid="Tizen.Multimedia.Camera.Interrupted">Interrupted</h4>
+    <section>
+    <p>An event that occurs when an camera is interrupted by the policy.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraInterruptedEventArgs&gt; Interrupted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraInterruptedEventArgs.html">CameraInterruptedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L37">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_InterruptStarted" data-uid="Tizen.Multimedia.Camera.InterruptStarted">InterruptStarted</h4>
+    <section>
+    <p>An event that occurs when the camera interrupt is started by the policy.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraInterruptStartedEventArgs&gt; InterruptStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraInterruptStartedEventArgs.html">CameraInterruptStartedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L215">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_MediaPacketPreview" data-uid="Tizen.Multimedia.Camera.MediaPacketPreview">MediaPacketPreview</h4>
+    <section>
+    <p>An event that occurs once per frame when previewing.
+Preview callback is registered when an user adds a callback explicitly to avoid useless P/Invoke.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MediaPacketPreviewEventArgs&gt; MediaPacketPreview</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaPacketPreviewEventArgs.html">MediaPacketPreviewEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L177">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_Preview" data-uid="Tizen.Multimedia.Camera.Preview">Preview</h4>
+    <section>
+    <p>An event that occurs once per frame when previewing.
+Preview callback is registered when an user adds a callback explicitly to avoid useless P/Invoke.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;PreviewEventArgs&gt; Preview</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PreviewEventArgs.html">PreviewEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Camera/Camera/Camera.Events.cs/#L125">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Camera_StateChanged" data-uid="Tizen.Multimedia.Camera.StateChanged">StateChanged</h4>
+    <section>
+    <p>An event that occurs when the camera state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraStateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraStateChangedEventArgs.html">CameraStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1543 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Bundle
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Bundle
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Bundle">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_Bundle" data-uid="Tizen.Applications.Bundle" class="mt-0 text-break"><span class="entity-type">Class</span>
+Bundle
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L34" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A bundle object represents a bundle.
+A bundle holds items (key-value pairs) and can be used with other Tizen APIs.
+Keys can be used to access values.
+This class is accessed by using a constructor to create a new instance of this object.
+A bundle instance is not guaranteed to be thread safe if the instance is modified by multiple threads.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Bundle : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Bundle</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_Bundle__ctor_" data-uid="Tizen.Applications.Bundle.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L50">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle__ctor" data-uid="Tizen.Applications.Bundle.#ctor">Bundle()</h4>
+    <section>
+    <p>The bundle constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Bundle()</code></pre>
+  </div>
+  <h5 id="Tizen_Applications_Bundle__ctor_examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle__ctor_" data-uid="Tizen.Applications.Bundle.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L63">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle__ctor_Tizen_Applications_SafeBundleHandle_" data-uid="Tizen.Applications.Bundle.#ctor(Tizen.Applications.SafeBundleHandle)">Bundle(SafeBundleHandle)</h4>
+    <section>
+    <p>The bundle constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Bundle(SafeBundleHandle handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.SafeBundleHandle.html">SafeBundleHandle</a></td>
+        <td><span class="parametername">handle</span></td>
+        <td><p>The SafeBundleHandle instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the handle is null or invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_Bundle_Count_" data-uid="Tizen.Applications.Bundle.Count*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L117">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Count" data-uid="Tizen.Applications.Bundle.Count">Count</h4>
+    <section>
+    <p>The number of items in a bundle object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_Count_examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);
+Console.WriteLine(&quot;There are {0} items in the bundle&quot;, bundle.Count);</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_Bundle_Keys_" data-uid="Tizen.Applications.Bundle.Keys*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L142">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Keys" data-uid="Tizen.Applications.Bundle.Keys">Keys</h4>
+    <section>
+    <p>The keys in a bundle object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; Keys { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_Keys_examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string1&quot;, &quot;a_string1&quot;);
+bundle.AddItem(&quot;string2&quot;, &quot;a_string2&quot;);
+bundle.AddItem(&quot;string3&quot;, &quot;a_string3&quot;);
+Console.WriteLine(&quot;The bundle contains the following keys:&quot;);
+foreach(string key in bundle.Keys)
+{
+    Console.WriteLine(key);
+}</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_Bundle_SafeBundleHandle_" data-uid="Tizen.Applications.Bundle.SafeBundleHandle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L154">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_SafeBundleHandle" data-uid="Tizen.Applications.Bundle.SafeBundleHandle">SafeBundleHandle</h4>
+    <section>
+    <p>Gets the SafeBundleHandle instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SafeBundleHandle SafeBundleHandle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.SafeBundleHandle.html">SafeBundleHandle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_Bundle_AddItem_" data-uid="Tizen.Applications.Bundle.AddItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L235">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_AddItem_System_String_System_Byte___System_Int32_System_Int32_" data-uid="Tizen.Applications.Bundle.AddItem(System.String,System.Byte[],System.Int32,System.Int32)">AddItem(string, byte[], int, int)</h4>
+    <section>
+    <p>Adds an item into the bundle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddItem(string key, byte[] value, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the item.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The zero-based byte offset in value from which to add to the bundle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The maximum number of bytes to add to the bundle starting with offset.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_AddItem_System_String_System_Byte___System_Int32_System_Int32__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+bundle.AddItem(&quot;byte_array&quot;, byteArray, 2, 3);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Thrown when the offset or count is out of range.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_AddItem_" data-uid="Tizen.Applications.Bundle.AddItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L207">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_AddItem_System_String_System_Byte___" data-uid="Tizen.Applications.Bundle.AddItem(System.String,System.Byte[])">AddItem(string, byte[])</h4>
+    <section>
+    <p>Adds an item into the bundle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddItem(string key, byte[] value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_AddItem_System_String_System_Byte____examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+bundle.AddItem(&quot;byte_array&quot;, byteArray);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_AddItem_" data-uid="Tizen.Applications.Bundle.AddItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L313">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_AddItem_System_String_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Applications.Bundle.AddItem(System.String,System.Collections.Generic.IEnumerable{System.String})">AddItem(string, IEnumerable&lt;string&gt;)</h4>
+    <section>
+    <p>Adds an item into the bundle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddItem(string key, IEnumerable&lt;string&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_AddItem_System_String_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+string[] stringArray = { &quot;a&quot;, &quot;b&quot;, &quot;c&quot; };
+bundle.AddItem(&quot;string_array&quot;, stringArray);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_AddItem_" data-uid="Tizen.Applications.Bundle.AddItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L284">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_AddItem_System_String_System_String_" data-uid="Tizen.Applications.Bundle.AddItem(System.String,System.String)">AddItem(string, string)</h4>
+    <section>
+    <p>Adds an item into the bundle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddItem(string key, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_AddItem_System_String_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_Contains_" data-uid="Tizen.Applications.Bundle.Contains*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L186">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Contains_System_String_" data-uid="Tizen.Applications.Bundle.Contains(System.String)">Contains(string)</h4>
+    <section>
+    <p>Checks whether the bundle contains an item with a specified key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the bundle contains the key, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_Contains_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);
+if (bundle.Contains(&quot;string&quot;))
+{
+    string aValue = bundle.GetItem&lt;string>(&quot;string&quot;);
+    Console.WriteLine(aValue);
+}</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_Bundle_Decode_" data-uid="Tizen.Applications.Bundle.Decode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L656">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Decode_System_String_" data-uid="Tizen.Applications.Bundle.Decode(System.String)">Decode(string)</h4>
+    <section>
+    <p>Decodes an encoded bundle data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Bundle Decode(string bundleRaw)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">bundleRaw</span></td>
+        <td><p>The encoded bundle data. bundleRaw should be the returned value of Tizen.Applications.Bundle.Encode, otherwise this method will not succeed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
+        <td><p>Decoded Bundle object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_Decode_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+string bundleRaw = bundle.Encode();
+Bundle data = bundle.Decode(bundleRaw);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_Dispose_" data-uid="Tizen.Applications.Bundle.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L163">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Dispose" data-uid="Tizen.Applications.Bundle.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_Bundle_Dispose_" data-uid="Tizen.Applications.Bundle.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L700">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Dispose_System_Boolean_" data-uid="Tizen.Applications.Bundle.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_Encode_" data-uid="Tizen.Applications.Bundle.Encode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L681">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Encode" data-uid="Tizen.Applications.Bundle.Encode">Encode()</h4>
+    <section>
+    <p>Encodes bundle to string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Encode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Encoded bundle data in string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_Encode_examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+string bundleRaw = bundle.Encode();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_Finalize_" data-uid="Tizen.Applications.Bundle.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L717">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Finalize" data-uid="Tizen.Applications.Bundle.Finalize">~Bundle()</h4>
+    <section>
+    <p>Destructor of the bundle class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~Bundle()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_Bundle_GetItem_" data-uid="Tizen.Applications.Bundle.GetItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L351">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_GetItem_System_String_" data-uid="Tizen.Applications.Bundle.GetItem(System.String)">GetItem(string)</h4>
+    <section>
+    <p>Gets the value of a bundle item with a specified key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object GetItem(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the bundle item whose value is desired.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><p>The value of the bundle item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_GetItem_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);
+if (bundle.Contains(&quot;string&quot;))
+{
+    object aValue = bundle.GetItem(&quot;string&quot;);
+    if (bundle.Is&lt;string>(&quot;string&quot;);)
+    {
+        string aString = (string)aValue;
+        Console.WriteLine(aString);
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_GetItem_" data-uid="Tizen.Applications.Bundle.GetItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L430">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_GetItem__1_System_String_" data-uid="Tizen.Applications.Bundle.GetItem``1(System.String)">GetItem&lt;T&gt;(string)</h4>
+    <section>
+    <p>Gets the value of a bundle item with a specified key.
+Note that this is a generic method.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetItem&lt;T&gt;(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the bundle item whose value is desired.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value of the bundle item if it is of the specified generic type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The generic type to return.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_GetItem__1_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+string[] stringArray = { &quot;a&quot;, &quot;b&quot;, &quot;c&quot; };
+bundle.AddItem(&quot;string_array&quot;, stringArray);
+if (bundle.Is&lt;string>(&quot;string_array&quot;))
+{
+    Console.WriteLine(&quot;It is a string&quot;);
+    Console.WriteLine(bundle.GetItem&lt;string>(&quot;string_array&quot;));
+}
+else if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
+{
+    Console.WriteLine(&quot;It is a string[]&quot;);
+    string[] anArray = bundle.GetItem&lt;string[]>(&quot;string_array&quot;);
+    foreach (string value in anArray)
+    {
+        Console.WriteLine(value);
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidCastException</span></td>
+        <td><p>Thrown when the value of the bundle item cannot be converted to the specified generic type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_Is_" data-uid="Tizen.Applications.Bundle.Is*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L576">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_Is__1_System_String_" data-uid="Tizen.Applications.Bundle.Is``1(System.String)">Is&lt;T&gt;(string)</h4>
+    <section>
+    <p>Checks whether an item is of a specific type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Is&lt;T&gt;(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key whose type wants to be checked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the item is of the specified type, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The generic type to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_Is__1_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+string[] stringArray = { &quot;a&quot;, &quot;b&quot;, &quot;c&quot; };
+bundle.AddItem(&quot;string_array&quot;, stringArray);
+if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
+{
+    Console.WriteLine(&quot;It is a string[]&quot;);
+    string[] anArray = bundle.GetItem&lt;string[]>(&quot;string_array&quot;);
+    foreach (string value in anArray)
+    {
+        Console.WriteLine(value);
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_RemoveItem_" data-uid="Tizen.Applications.Bundle.RemoveItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L623">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_RemoveItem_System_String_" data-uid="Tizen.Applications.Bundle.RemoveItem(System.String)">RemoveItem(string)</h4>
+    <section>
+    <p>Removes a bundle item with a specific key from a Bundle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveItem(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the item to delete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the item is successfully found and removed, false otherwise (even if the item is not found).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_RemoveItem_System_String__examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);
+if (bundle.Contains(&quot;string&quot;))
+{
+    if (bundle.RemoveItem(&quot;string&quot;))
+    {
+        Console.WriteLine(&quot;Removed&quot;);
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_TryGetItem_" data-uid="Tizen.Applications.Bundle.TryGetItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L455">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_TryGetItem_System_String_System_Byte____" data-uid="Tizen.Applications.Bundle.TryGetItem(System.String,System.Byte[]@)">TryGetItem(string, out byte[])</h4>
+    <section>
+    <p>Gets the value of a bundle item with a specified key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetItem(string key, out byte[] value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the bundle item whose value is desired.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_TryGetItem_System_String_System_Byte_____examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+bundle.AddItem(&quot;byte_array&quot;, byteArray);
+byte[] aByteArray;
+if (bundle.TryGetItem(&quot;byte_array&quot;, out aByteArray))
+{
+    Console.WriteLine(&quot;First item in the byte array: {0}&quot;, aByteArray[0]);
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_TryGetItem_" data-uid="Tizen.Applications.Bundle.TryGetItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L533">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_TryGetItem_System_String_System_Collections_Generic_IEnumerable_System_String___" data-uid="Tizen.Applications.Bundle.TryGetItem(System.String,System.Collections.Generic.IEnumerable{System.String}@)">TryGetItem(string, out IEnumerable&lt;string&gt;)</h4>
+    <section>
+    <p>Gets the value of a bundle item with a specified key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetItem(string key, out IEnumerable&lt;string&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the bundle item whose value is desired.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_TryGetItem_System_String_System_Collections_Generic_IEnumerable_System_String____examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+string[] stringArray = { &quot;a&quot;, &quot;b&quot;, &quot;c&quot; };
+bundle.AddItem(&quot;string_array&quot;, stringArray);
+System.Collections.Generic.IEnumerable&lt;string> aStringEnumerable;
+if (bundle.TryGetItem(&quot;string&quot;, out aStringEnumerable))
+{
+    foreach (string value in aStringEnumerable)
+    {
+        Console.WriteLine(value);
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Bundle_TryGetItem_" data-uid="Tizen.Applications.Bundle.TryGetItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Common/Tizen.Applications/Bundle.cs/#L492">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Bundle_TryGetItem_System_String_System_String__" data-uid="Tizen.Applications.Bundle.TryGetItem(System.String,System.String@)">TryGetItem(string, out string)</h4>
+    <section>
+    <p>Gets the value of a bundle item with a specified key.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetItem(string key, out string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the bundle item whose value is desired.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Bundle_TryGetItem_System_String_System_String___examples">Examples</h5>
+  <pre><code>Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);
+string aString;
+if (bundle.TryGetItem(&quot;string&quot;, out aString))
+{
+    Console.WriteLine(aString);
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the bundle instance has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

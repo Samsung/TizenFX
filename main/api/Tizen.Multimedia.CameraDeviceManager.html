@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CameraDeviceManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CameraDeviceManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.CameraDeviceManager">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_CameraDeviceManager" data-uid="Tizen.Multimedia.CameraDeviceManager" class="mt-0 text-break"><span class="entity-type">Class</span>
+CameraDeviceManager
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L32" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Camera.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This CameraDeviceManager class provides methods to control current camera devices and get its information.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CameraDeviceManager : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">CameraDeviceManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_CameraDeviceManager__ctor_" data-uid="Tizen.Multimedia.CameraDeviceManager.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L44">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager__ctor" data-uid="Tizen.Multimedia.CameraDeviceManager.#ctor">CameraDeviceManager()</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html">CameraDeviceManager</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CameraDeviceManager()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The camera device manager is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported_" data-uid="Tizen.Multimedia.CameraDeviceManager.IsCameraDeviceManagerSupported*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L73">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported" data-uid="Tizen.Multimedia.CameraDeviceManager.IsCameraDeviceManagerSupported">IsCameraDeviceManagerSupported</h4>
+    <section>
+    <p>Gets the state of Camera Device Manager support.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsCameraDeviceManagerSupported { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if camera device manager is supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+
+
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_IsExternalCameraConnected_" data-uid="Tizen.Multimedia.CameraDeviceManager.IsExternalCameraConnected*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L63">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_IsExternalCameraConnected" data-uid="Tizen.Multimedia.CameraDeviceManager.IsExternalCameraConnected">IsExternalCameraConnected</h4>
+    <section>
+    <p>Gets the status whether camera device(usb, network) is connected or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExternalCameraConnected { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if usb or network camera is connected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_IsExternalCameraConnected_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_SupportedDevices_" data-uid="Tizen.Multimedia.CameraDeviceManager.SupportedDevices*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L100">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_SupportedDevices" data-uid="Tizen.Multimedia.CameraDeviceManager.SupportedDevices">SupportedDevices</h4>
+    <section>
+    <p>Retrieves all the supported camera devices and returns its information.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;CameraDeviceInformation&gt; SupportedDevices { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraDeviceInformation.html">CameraDeviceInformation</a>&gt;</td>
+        <td><p>if camera device exist, returns list of <a class="xref" href="Tizen.Multimedia.CameraDeviceInformation.html">CameraDeviceInformation</a>; otherwise returns Enumerable.Empty.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_SupportedDevices_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Invalid enumeration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>name or id is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_Dispose_" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L279">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_Dispose" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the camera.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+
+
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_Dispose_" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L252">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the unmanaged resources used by the camera.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_Dispose_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+
+
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_Finalize_" data-uid="Tizen.Multimedia.CameraDeviceManager.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L52">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_Finalize" data-uid="Tizen.Multimedia.CameraDeviceManager.Finalize">~CameraDeviceManager()</h4>
+    <section>
+    <p>Finalizes an instance of the Camera class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~CameraDeviceManager()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_Finalize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+
+
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_GetProductId_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetProductId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L144">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_GetProductId_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetProductId(Tizen.Multimedia.CameraDevice)">GetProductId(CameraDevice)</h4>
+    <section>
+    <p>Gets the product ID for given <param name="device">.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort GetProductId(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_GetProductId_Tizen_Multimedia_CameraDevice__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Invalid enumeration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_CameraDeviceManager_GetVendorId_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetVendorId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L159">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_GetVendorId_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetVendorId(Tizen.Multimedia.CameraDevice)">GetVendorId(CameraDevice)</h4>
+    <section>
+    <p>Gets the vendor ID for given <param name="device">.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort GetVendorId(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_GetVendorId_Tizen_Multimedia_CameraDevice__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Invalid enumeration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L186">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_DeviceConnectionChanged" data-uid="Tizen.Multimedia.CameraDeviceManager.DeviceConnectionChanged">DeviceConnectionChanged</h4>
+    <section>
+    <p>An event that occurs when camera device is connected or disconnected.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;CameraDeviceConnectionChangedEventArgs&gt; DeviceConnectionChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraDeviceConnectionChangedEventArgs.html">CameraDeviceConnectionChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_CameraDeviceManager_DeviceConnectionChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from 3rd party application code.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

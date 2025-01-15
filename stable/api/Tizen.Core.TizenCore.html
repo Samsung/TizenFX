@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TizenCore
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TizenCore
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Core.TizenCore">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Core_TizenCore" data-uid="Tizen.Core.TizenCore" class="mt-0 text-break"><span class="entity-type">Class</span>
+TizenCore
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/TizenCore.cs/#L24" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Core.html">Core</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Core.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The class which provides functions related to the Tizen Core.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class TizenCore</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">TizenCore</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Core_TizenCore_Find_" data-uid="Tizen.Core.TizenCore.Find*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/TizenCore.cs/#L75">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_TizenCore_Find_System_String_" data-uid="Tizen.Core.TizenCore.Find(System.String)">Find(string)</h4>
+    <section>
+    <p>Finds the task instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task Find(string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The ID of the task.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.Task.html">Task</a></td>
+        <td><p>On success the task instance, othwerwise null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_TizenCore_Find_System_String__examples">Examples</h5>
+  <pre><code>TizenCore.Initialize();
+var task = TizenCore.Find(&quot;Test&quot;) ?? TizenCore.Spawn(&quot;Test&quot;);</code></pre>
+
+
+
+
+  <a id="Tizen_Core_TizenCore_FindFromCurrentThread_" data-uid="Tizen.Core.TizenCore.FindFromCurrentThread*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/TizenCore.cs/#L99">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_TizenCore_FindFromCurrentThread" data-uid="Tizen.Core.TizenCore.FindFromCurrentThread">FindFromCurrentThread()</h4>
+    <section>
+    <p>Finds the task instance running in the thread of the caller or the &quot;main&quot; task.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task FindFromCurrentThread()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.Task.html">Task</a></td>
+        <td><p>On success the task instance, othwerwise null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_TizenCore_FindFromCurrentThread_examples">Examples</h5>
+  <pre><code>TizenCore.Initialize();
+var coreTask = TizenCore.FindFromThisThread();
+if (coreTask != null)
+{
+  coreTask.Post(() => {
+    Console.WriteLine(&quot;Idler invoked&quot;);
+  });
+}</code></pre>
+
+
+
+
+  <a id="Tizen_Core_TizenCore_Initialize_" data-uid="Tizen.Core.TizenCore.Initialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/TizenCore.cs/#L41">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_TizenCore_Initialize" data-uid="Tizen.Core.TizenCore.Initialize">Initialize()</h4>
+    <section>
+    <p>Initializes Tizen Core.
+This method should be called once per application before creating any Tasks.
+Calling this method more than one time will increase internal reference counts which need to be matched by calling Shutdown().
+Failing to call Shutdown() in corresponding number of calls may cause resource leakages.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Initialize()</code></pre>
+  </div>
+  <h5 id="Tizen_Core_TizenCore_Initialize_examples">Examples</h5>
+  <pre><code>TizenCore.Initialize();
+var task = TizenCore.Spawn(&quot;Worker&quot;);</code></pre>
+
+
+
+
+  <a id="Tizen_Core_TizenCore_Shutdown_" data-uid="Tizen.Core.TizenCore.Shutdown*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/TizenCore.cs/#L57">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_TizenCore_Shutdown" data-uid="Tizen.Core.TizenCore.Shutdown">Shutdown()</h4>
+    <section>
+    <p>Shuts down Tizen Core.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Shutdown()</code></pre>
+  </div>
+  <h5 id="Tizen_Core_TizenCore_Shutdown_examples">Examples</h5>
+  <pre><code>TizenCore.Shutdown();</code></pre>
+
+
+
+
+  <a id="Tizen_Core_TizenCore_Spawn_" data-uid="Tizen.Core.TizenCore.Spawn*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/TizenCore.cs/#L131">View Source</a>
+    </span>
+    <h4 id="Tizen_Core_TizenCore_Spawn_System_String_" data-uid="Tizen.Core.TizenCore.Spawn(System.String)">Spawn(string)</h4>
+    <section>
+    <p>Creates and runs the task.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task Spawn(string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The ID of the task.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.Task.html">Task</a></td>
+        <td><p>On succes the created task instance, othwerwise null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_TizenCore_Spawn_System_String__examples">Examples</h5>
+  <pre><code>TizenCore.Initialize();
+var task = TizenCore.Spawn(&quot;Worker&quot;);
+if (task != null)
+{
+  task.AddTimer(5000, () => {
+    Console.WriteLine(&quot;Timer expired&quot;);
+    return true;
+  });
+}</code></pre>
+
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

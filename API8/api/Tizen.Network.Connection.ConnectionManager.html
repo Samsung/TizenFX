@@ -1,0 +1,1447 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ConnectionManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ConnectionManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API8">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.Connection.ConnectionManager">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Network_Connection_ConnectionManager" data-uid="Tizen.Network.Connection.ConnectionManager" class="mt-0 text-break"><span class="entity-type">Class</span>
+ConnectionManager
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L66" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Connection.html">Connection</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Connection.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This is the ConnectionManager class. It provides functions to manage data connections.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ConnectionManager</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ConnectionManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Network_Connection_ConnectionManager_BluetoothState_" data-uid="Tizen.Network.Connection.ConnectionManager.BluetoothState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L444">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_BluetoothState" data-uid="Tizen.Network.Connection.ConnectionManager.BluetoothState">BluetoothState</h4>
+    <section>
+    <p>The state of the Bluetooth connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ConnectionState BluetoothState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionState.html">ConnectionState</a></td>
+        <td><p>Bluetooth connection state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_CellularState_" data-uid="Tizen.Network.Connection.ConnectionManager.CellularState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L410">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_CellularState" data-uid="Tizen.Network.Connection.ConnectionManager.CellularState">CellularState</h4>
+    <section>
+    <p>The state of the cellular connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CellularState CellularState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.CellularState.html">CellularState</a></td>
+        <td><p>Cellular network state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_CurrentConnection_" data-uid="Tizen.Network.Connection.ConnectionManager.CurrentConnection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L358">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_CurrentConnection" data-uid="Tizen.Network.Connection.ConnectionManager.CurrentConnection">CurrentConnection</h4>
+    <section>
+    <p>The type and state of the current profile for data connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ConnectionItem CurrentConnection { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionItem.html">ConnectionItem</a></td>
+        <td><p>Instance of ConnectionItem.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_EthernetCableState_" data-uid="Tizen.Network.Connection.ConnectionManager.EthernetCableState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L478">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_EthernetCableState" data-uid="Tizen.Network.Connection.ConnectionManager.EthernetCableState">EthernetCableState</h4>
+    <section>
+    <p>Checks if the ethernet cable is attached or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EthernetCableState EthernetCableState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.EthernetCableState.html">EthernetCableState</a></td>
+        <td><p>Ethernet cable state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_EthernetState_" data-uid="Tizen.Network.Connection.ConnectionManager.EthernetState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L461">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_EthernetState" data-uid="Tizen.Network.Connection.ConnectionManager.EthernetState">EthernetState</h4>
+    <section>
+    <p>The Ethernet connection state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ConnectionState EthernetState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionState.html">ConnectionState</a></td>
+        <td><p>Ethernet connection state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_WiFiState_" data-uid="Tizen.Network.Connection.ConnectionManager.WiFiState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L427">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_WiFiState" data-uid="Tizen.Network.Connection.ConnectionManager.WiFiState">WiFiState</h4>
+    <section>
+    <p>The state of the Wi-Fi connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ConnectionState WiFiState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionState.html">ConnectionState</a></td>
+        <td><p>WiFi connection state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Network_Connection_ConnectionManager_AddRoute_" data-uid="Tizen.Network.Connection.ConnectionManager.AddRoute*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L323">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_AddRoute_Tizen_Network_Connection_AddressFamily_System_String_System_Net_IPAddress_System_Net_IPAddress_" data-uid="Tizen.Network.Connection.ConnectionManager.AddRoute(Tizen.Network.Connection.AddressFamily,System.String,System.Net.IPAddress,System.Net.IPAddress)">AddRoute(AddressFamily, string, IPAddress, IPAddress)</h4>
+    <section>
+    <p>Adds a route to the routing table.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddRoute(AddressFamily family, string interfaceName, IPAddress hostAddress, IPAddress gateway)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.AddressFamily.html">AddressFamily</a></td>
+        <td><span class="parametername">family</span></td>
+        <td><p>The address family.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">interfaceName</span></td>
+        <td><p>The name of the network interface.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Net.IPAddress</span></td>
+        <td><span class="parametername">hostAddress</span></td>
+        <td><p>The IP address of the host.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Net.IPAddress</span></td>
+        <td><span class="parametername">gateway</span></td>
+        <td><p>The gateway address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when an interfaceName or a hostAddress or a gateway is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_CreateCellularProfile_" data-uid="Tizen.Network.Connection.ConnectionManager.CreateCellularProfile*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L386">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_CreateCellularProfile_Tizen_Network_Connection_ConnectionProfileType_System_String_" data-uid="Tizen.Network.Connection.ConnectionManager.CreateCellularProfile(Tizen.Network.Connection.ConnectionProfileType,System.String)">CreateCellularProfile(ConnectionProfileType, string)</h4>
+    <section>
+    <p>Creates a cellular profile handle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CellularProfile CreateCellularProfile(ConnectionProfileType type, string keyword)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionProfileType.html">ConnectionProfileType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of profile. Cellular profile type is supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">keyword</span></td>
+        <td><p>The keyword included in profile name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.CellularProfile.html">CellularProfile</a></td>
+        <td><p>CellularProfile object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a keyword value is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a method fails due to invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_GetAllIPv6Addresses_" data-uid="Tizen.Network.Connection.ConnectionManager.GetAllIPv6Addresses*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L212">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_GetAllIPv6Addresses_Tizen_Network_Connection_ConnectionType_" data-uid="Tizen.Network.Connection.ConnectionManager.GetAllIPv6Addresses(Tizen.Network.Connection.ConnectionType)">GetAllIPv6Addresses(ConnectionType)</h4>
+    <section>
+    <p>Gets all the IPv6 addresses of the current connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;IPAddress&gt; GetAllIPv6Addresses(ConnectionType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionType.html">ConnectionType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of current network connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">System.Net.IPAddress</span>&gt;</td>
+        <td><p>A list of IPv6 addresses of the connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_GetIPAddress_" data-uid="Tizen.Network.Connection.ConnectionManager.GetIPAddress*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L191">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_GetIPAddress_Tizen_Network_Connection_AddressFamily_" data-uid="Tizen.Network.Connection.ConnectionManager.GetIPAddress(Tizen.Network.Connection.AddressFamily)">GetIPAddress(AddressFamily)</h4>
+    <section>
+    <p>Gets the IP address of the current connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IPAddress GetIPAddress(AddressFamily family)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.AddressFamily.html">AddressFamily</a></td>
+        <td><span class="parametername">family</span></td>
+        <td><p>The address family.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Net.IPAddress</span></td>
+        <td><p>IP address of the connection (global address in case of IPv6).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_GetMacAddress_" data-uid="Tizen.Network.Connection.ConnectionManager.GetMacAddress*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L254">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_GetMacAddress_Tizen_Network_Connection_ConnectionType_" data-uid="Tizen.Network.Connection.ConnectionManager.GetMacAddress(Tizen.Network.Connection.ConnectionType)">GetMacAddress(ConnectionType)</h4>
+    <section>
+    <p>Gets the MAC address of the Wi-Fi or ethernet.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetMacAddress(ConnectionType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionType.html">ConnectionType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of current network connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>MAC address of the Wi-Fi or ethernet.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_GetProxy_" data-uid="Tizen.Network.Connection.ConnectionManager.GetProxy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L233">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_GetProxy_Tizen_Network_Connection_AddressFamily_" data-uid="Tizen.Network.Connection.ConnectionManager.GetProxy(Tizen.Network.Connection.AddressFamily)">GetProxy(AddressFamily)</h4>
+    <section>
+    <p>Gets the proxy address of the current connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetProxy(AddressFamily family)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.AddressFamily.html">AddressFamily</a></td>
+        <td><span class="parametername">family</span></td>
+        <td><p>The address family.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Proxy address of the connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_GetStatistics_" data-uid="Tizen.Network.Connection.ConnectionManager.GetStatistics*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L276">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_GetStatistics_Tizen_Network_Connection_ConnectionType_Tizen_Network_Connection_StatisticsType_" data-uid="Tizen.Network.Connection.ConnectionManager.GetStatistics(Tizen.Network.Connection.ConnectionType,Tizen.Network.Connection.StatisticsType)">GetStatistics(ConnectionType, StatisticsType)</h4>
+    <section>
+    <p>Gets the statistics information.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long GetStatistics(ConnectionType connectionType, StatisticsType statisticsType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionType.html">ConnectionType</a></td>
+        <td><span class="parametername">connectionType</span></td>
+        <td><p>The type of connection (only WiFi and Cellular are supported).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.StatisticsType.html">StatisticsType</a></td>
+        <td><span class="parametername">statisticsType</span></td>
+        <td><p>The type of statistics.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">long</span></td>
+        <td><p>The statistics information associated with statisticsType.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_RemoveRoute_" data-uid="Tizen.Network.Connection.ConnectionManager.RemoveRoute*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L348">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_RemoveRoute_Tizen_Network_Connection_AddressFamily_System_String_System_Net_IPAddress_System_Net_IPAddress_" data-uid="Tizen.Network.Connection.ConnectionManager.RemoveRoute(Tizen.Network.Connection.AddressFamily,System.String,System.Net.IPAddress,System.Net.IPAddress)">RemoveRoute(AddressFamily, string, IPAddress, IPAddress)</h4>
+    <section>
+    <p>Removes a route from the routing table.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemoveRoute(AddressFamily family, string interfaceName, IPAddress hostAddress, IPAddress gateway)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.AddressFamily.html">AddressFamily</a></td>
+        <td><span class="parametername">family</span></td>
+        <td><p>The address family.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">interfaceName</span></td>
+        <td><p>The name of network interface.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Net.IPAddress</span></td>
+        <td><span class="parametername">hostAddress</span></td>
+        <td><p>The IP address of the host.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Net.IPAddress</span></td>
+        <td><span class="parametername">gateway</span></td>
+        <td><p>The gateway address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when an interfaceName or a hostAddress or a gateway is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Connection_ConnectionManager_ResetStatistics_" data-uid="Tizen.Network.Connection.ConnectionManager.ResetStatistics*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L298">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_ResetStatistics_Tizen_Network_Connection_ConnectionType_Tizen_Network_Connection_StatisticsType_" data-uid="Tizen.Network.Connection.ConnectionManager.ResetStatistics(Tizen.Network.Connection.ConnectionType,Tizen.Network.Connection.StatisticsType)">ResetStatistics(ConnectionType, StatisticsType)</h4>
+    <section>
+    <p>Resets the statistics information.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ResetStatistics(ConnectionType connectionType, StatisticsType statisticsType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.ConnectionType.html">ConnectionType</a></td>
+        <td><span class="parametername">connectionType</span></td>
+        <td><p>The type of connection (only WiFi and Cellular are supported).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Connection.StatisticsType.html">StatisticsType</a></td>
+        <td><span class="parametername">statisticsType</span></td>
+        <td><p>The type of statistics.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when a value is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory is not enough to continue execution.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L81">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_ConnectionTypeChanged" data-uid="Tizen.Network.Connection.ConnectionManager.ConnectionTypeChanged">ConnectionTypeChanged</h4>
+    <section>
+    <p>An event is called when the type of the current connection is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ConnectionTypeEventArgs&gt; ConnectionTypeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Connection.ConnectionTypeEventArgs.html">ConnectionTypeEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_EthernetCableStateChanged" data-uid="Tizen.Network.Connection.ConnectionManager.EthernetCableStateChanged">EthernetCableStateChanged</h4>
+    <section>
+    <p>An event for the ethernet cable is plugged [in/out] event.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;EthernetCableStateEventArgs&gt; EthernetCableStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Connection.EthernetCableStateEventArgs.html">EthernetCableStateEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L126">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_IPAddressChanged" data-uid="Tizen.Network.Connection.ConnectionManager.IPAddressChanged">IPAddressChanged</h4>
+    <section>
+    <p>An event is called when the IP address is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;AddressEventArgs&gt; IPAddressChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Connection.AddressEventArgs.html">AddressEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Network.Connection/Tizen.Network.Connection/ConnectionManager.cs/#L150">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Connection_ConnectionManager_ProxyAddressChanged" data-uid="Tizen.Network.Connection.ConnectionManager.ProxyAddressChanged">ProxyAddressChanged</h4>
+    <section>
+    <p>An event is called when the proxy address is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;AddressEventArgs&gt; ProxyAddressChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Connection.AddressEventArgs.html">AddressEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

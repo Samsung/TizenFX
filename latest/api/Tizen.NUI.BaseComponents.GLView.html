@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GLView
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GLView
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.GLView">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_BaseComponents_GLView" data-uid="Tizen.NUI.BaseComponents.GLView" class="mt-0 text-break"><span class="entity-type">Class</span>
+GLView
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L15" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>GLView allows drawing with OpenGL.
+GLView creates a context, a surface, and a render thread.
+The render thread invokes user's callbacks.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GLView : View, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div><span class="xref">GLView</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_GLView__ctor_" data-uid="Tizen.NUI.BaseComponents.GLView.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L60">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_GLView__ctor_Tizen_NUI_BaseComponents_GLView_ColorFormat_" data-uid="Tizen.NUI.BaseComponents.GLView.#ctor(Tizen.NUI.BaseComponents.GLView.ColorFormat)">GLView(ColorFormat)</h4>
+    <section>
+    <p>Creates an initialized GLView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GLView(GLView.ColorFormat colorFormat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.GLView.html">GLView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.GLView.ColorFormat.html">ColorFormat</a></td>
+        <td><span class="parametername">colorFormat</span></td>
+        <td><p>The format of the color buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_GLView_RenderingMode_" data-uid="Tizen.NUI.BaseComponents.GLView.RenderingMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L86">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_GLView_RenderingMode" data-uid="Tizen.NUI.BaseComponents.GLView.RenderingMode">RenderingMode</h4>
+    <section>
+    <p>Gets or sets the rendering mode of the GLView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GLRenderingMode RenderingMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.GLRenderingMode.html">GLRenderingMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_GLView_RegisterGLCallbacks_" data-uid="Tizen.NUI.BaseComponents.GLView.RegisterGLCallbacks*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L108">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_GLView_RegisterGLCallbacks_Tizen_NUI_BaseComponents_GLView_GLInitializeDelegate_Tizen_NUI_BaseComponents_GLView_GLRenderFrameDelegate_Tizen_NUI_BaseComponents_GLView_GLTerminateDelegate_" data-uid="Tizen.NUI.BaseComponents.GLView.RegisterGLCallbacks(Tizen.NUI.BaseComponents.GLView.GLInitializeDelegate,Tizen.NUI.BaseComponents.GLView.GLRenderFrameDelegate,Tizen.NUI.BaseComponents.GLView.GLTerminateDelegate)">RegisterGLCallbacks(GLInitializeDelegate, GLRenderFrameDelegate, GLTerminateDelegate)</h4>
+    <section>
+    <p>Registers GL callback functions to render with OpenGL ES</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterGLCallbacks(GLView.GLInitializeDelegate glInit, GLView.GLRenderFrameDelegate glRenderFrame, GLView.GLTerminateDelegate glTerminate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.GLView.html">GLView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.GLView.GLInitializeDelegate.html">GLInitializeDelegate</a></td>
+        <td><span class="parametername">glInit</span></td>
+        <td><p>The callback function for GL initialization</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.GLView.html">GLView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.GLView.GLRenderFrameDelegate.html">GLRenderFrameDelegate</a></td>
+        <td><span class="parametername">glRenderFrame</span></td>
+        <td><p>The callback function to render the frame</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.GLView.html">GLView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.GLView.GLTerminateDelegate.html">GLTerminateDelegate</a></td>
+        <td><span class="parametername">glTerminate</span></td>
+        <td><p>The callback function to clean up GL resources</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_GLView_RenderOnce_" data-uid="Tizen.NUI.BaseComponents.GLView.RenderOnce*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L167">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_GLView_RenderOnce" data-uid="Tizen.NUI.BaseComponents.GLView.RenderOnce">RenderOnce()</h4>
+    <section>
+    <p>Renders once more, even when paused.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RenderOnce()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_GLView_SetGraphicsConfig_" data-uid="Tizen.NUI.BaseComponents.GLView.SetGraphicsConfig*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L156">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_GLView_SetGraphicsConfig_System_Boolean_System_Boolean_System_Int32_Tizen_NUI_GLESVersion_" data-uid="Tizen.NUI.BaseComponents.GLView.SetGraphicsConfig(System.Boolean,System.Boolean,System.Int32,Tizen.NUI.GLESVersion)">SetGraphicsConfig(bool, bool, int, GLESVersion)</h4>
+    <section>
+    <p>Sets graphics configuration for the GLView</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetGraphicsConfig(bool depth, bool stencil, int msaa, GLESVersion version)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">depth</span></td>
+        <td><p>The flag of depth buffer. When the value is true, 24bit depth buffer is enabled.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">stencil</span></td>
+        <td><p>The flag of stencil. When the value is true, 8bit stencil buffer is enabled.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">msaa</span></td>
+        <td><p>The bit of MSAA</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.GLESVersion.html">GLESVersion</a></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>The GLES version</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the config was successfully set, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_GLView_SetResizeCallback_" data-uid="Tizen.NUI.BaseComponents.GLView.SetResizeCallback*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/BaseComponents/GLView.cs/#L138">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_GLView_SetResizeCallback_Tizen_NUI_BaseComponents_GLView_ViewResizeDelegate_" data-uid="Tizen.NUI.BaseComponents.GLView.SetResizeCallback(Tizen.NUI.BaseComponents.GLView.ViewResizeDelegate)">SetResizeCallback(ViewResizeDelegate)</h4>
+    <section>
+    <p>Sets the resize callback to the GLView.
+When GLView is resized, the callback is invoked and it passes the width and height.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetResizeCallback(GLView.ViewResizeDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.GLView.html">GLView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.GLView.ViewResizeDelegate.html">ViewResizeDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The resize callback function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,472 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MediaPacketSource
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MediaPacketSource
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_MediaPacketSource" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource" class="mt-0 text-break"><span class="entity-type">Class</span>
+MediaPacketSource
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L31" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents a media source that wraps media data into MediaPacket.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class MediaPacketSource : MediaSource</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a></div>
+        <div><span class="xref">MediaPacketSource</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L128">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource__ctor_Tizen_Multimedia_AudioMediaFormat_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.#ctor(Tizen.Multimedia.AudioMediaFormat)">MediaPacketSource(AudioMediaFormat)</h4>
+    <section>
+    <p>Initializes a new instance of the MediaPacketSource class with the specified <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaPacketSource(AudioMediaFormat audioMediaFormat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a></td>
+        <td><span class="parametername">audioMediaFormat</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioMediaFormat.html">AudioMediaFormat</a> for this source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">audioMediaFormat</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">audioMediaFormat</code> is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource__ctor_Tizen_Multimedia_AudioMediaFormat__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html#Tizen_Multimedia_Remoting_MediaPacketSource_SupportedAudioTypes">SupportedAudioTypes</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L142">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource__ctor_Tizen_Multimedia_VideoMediaFormat_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.#ctor(Tizen.Multimedia.VideoMediaFormat)">MediaPacketSource(VideoMediaFormat)</h4>
+    <section>
+    <p>Initializes a new instance of the MediaPacketSource class with the specified <a class="xref" href="Tizen.Multimedia.VideoMediaFormat.html">VideoMediaFormat</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaPacketSource(VideoMediaFormat videoMediaFormat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.VideoMediaFormat.html">VideoMediaFormat</a></td>
+        <td><span class="parametername">videoMediaFormat</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.VideoMediaFormat.html">VideoMediaFormat</a> for this source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">videoMediaFormat</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">videoMediaFormat</code> is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource__ctor_Tizen_Multimedia_VideoMediaFormat__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSource.html#Tizen_Multimedia_Remoting_MediaPacketSource_SupportedVideoTypes">SupportedVideoTypes</a></div>
+  </div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource_AudioConfiguration_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.AudioConfiguration*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L152">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource_AudioConfiguration" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.AudioConfiguration">AudioConfiguration</h4>
+    <section>
+    <p>Gets the audio configuration, or null if no AudioMediaFormat is specified in the constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaPacketSourceConfiguration AudioConfiguration { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSourceConfiguration.html">MediaPacketSourceConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource_AudioConfiguration_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource_SupportedAudioTypes_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.SupportedAudioTypes*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L42">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource_SupportedAudioTypes" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.SupportedAudioTypes">SupportedAudioTypes</h4>
+    <section>
+    <p>Gets all supported audio types.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;MediaFormatAudioMimeType&gt; SupportedAudioTypes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatAudioMimeType.html">MediaFormatAudioMimeType</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource_SupportedAudioTypes_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource_SupportedVideoTypes_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.SupportedVideoTypes*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L55">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource_SupportedVideoTypes" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.SupportedVideoTypes">SupportedVideoTypes</h4>
+    <section>
+    <p>Gets all supported video types.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;MediaFormatVideoMimeType&gt; SupportedVideoTypes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaFormatVideoMimeType.html">MediaFormatVideoMimeType</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource_SupportedVideoTypes_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource_VideoConfiguration_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.VideoConfiguration*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L158">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource_VideoConfiguration" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.VideoConfiguration">VideoConfiguration</h4>
+    <section>
+    <p>Gets the video configuration, or null if no VideoMediaFormat is specified in the constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaPacketSourceConfiguration VideoConfiguration { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaPacketSourceConfiguration.html">MediaPacketSourceConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource_VideoConfiguration_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaPacketSource_Push_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.Push*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaPacketSource.cs/#L184">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaPacketSource_Push_Tizen_Multimedia_MediaPacket_" data-uid="Tizen.Multimedia.Remoting.MediaPacketSource.Push(Tizen.Multimedia.MediaPacket)">Push(MediaPacket)</h4>
+    <section>
+    <p>Pushes elementary stream to decode audio or video.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Push(MediaPacket packet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a></td>
+        <td><span class="parametername">packet</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a> to decode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource_Push_Tizen_Multimedia_MediaPacket__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This source must be set as a source to a WebRTC and the WebRTC must be in the
+<a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Negotiating">Negotiating</a> or <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Playing">Playing</a> state</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This source is not set as a source to a WebRTC.<br>
+-or-<br>
+The WebRTC is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">packet</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">packet</code> has been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">packet</code> is neither video nor audio type.<br>
+-or-<br>
+The format of packet is not matched with the specified format in the constructor.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaPacketSource_Push_Tizen_Multimedia_MediaPacket__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a></div>
+  </div>
+
+
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

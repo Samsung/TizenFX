@@ -1,0 +1,1382 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Engine
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Engine
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Uix.TtsEngine.Engine">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Uix_TtsEngine_Engine" data-uid="Tizen.Uix.TtsEngine.Engine" class="mt-0 text-break"><span class="entity-type">Class</span>
+Engine
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L143" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Uix</span>.<a class="xref" href="Tizen.Uix.TtsEngine.html">TtsEngine</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Uix.TtsEngine.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class represents the TTS engine, which has to be inherited to make the engine.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Engine</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Engine</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Uix_TtsEngine_Engine__ctor_" data-uid="Tizen.Uix.TtsEngine.Engine.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L397">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine__ctor" data-uid="Tizen.Uix.TtsEngine.Engine.#ctor">Engine()</h4>
+    <section>
+    <p>Public constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Engine()</code></pre>
+  </div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Uix_TtsEngine_Engine_CancelSynthesis_" data-uid="Tizen.Uix.TtsEngine.Engine.CancelSynthesis*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L388">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_CancelSynthesis" data-uid="Tizen.Uix.TtsEngine.Engine.CancelSynthesis">CancelSynthesis()</h4>
+    <section>
+    <p>Called when the engine service user cancels to synthesize a voice.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error CancelSynthesis()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_CheckAppAgreed_" data-uid="Tizen.Uix.TtsEngine.Engine.CheckAppAgreed*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L367">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_CheckAppAgreed_System_String_System_Boolean__" data-uid="Tizen.Uix.TtsEngine.Engine.CheckAppAgreed(System.String,System.Boolean@)">CheckAppAgreed(string, out bool)</h4>
+    <section>
+    <p>Called when the engine service user requests for the TTS engine to check whether the application agreed the usage of the TTS engine.
+This callback function is called when the engine service user requests for the TTS engine to check the application's agreement about using the the engine.
+According to the need, the engine developer can provide some user interfaces to check the agreement.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error CheckAppAgreed(string appid, out bool isAgreed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">appid</span></td>
+        <td><p>The application ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isAgreed</span></td>
+        <td><p>A variable for checking whether the application agreed to use the TTS engine or not. true to agree, false to disagree.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+<li>NotSupportedFeature</li>
+<li>InvalidParameter</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_CheckAppAgreed_System_String_System_Boolean___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If the TTS engine developer does not want to check the agreement, the developer needs to return proper values as isAgreed in accordance with the intention.
+true if the developer regards that every application agreed the usage of the engine, false if the developer regards that every application disagreed.
+NOTE that, however, there may be any legal issue unless the developer checks the agreement.
+Therefore, we suggest that the engine developers should provide a function to check the agreement.</p>
+</div>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_Deinitialize_" data-uid="Tizen.Uix.TtsEngine.Engine.Deinitialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L263">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_Deinitialize" data-uid="Tizen.Uix.TtsEngine.Engine.Deinitialize">Deinitialize()</h4>
+    <section>
+    <p>Called when the engine service user deinitializes the TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error Deinitialize()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_Deinitialize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>NOTE that the engine may be terminated automatically. When this callback function is invoked, the release of the resources is necessary.</p>
+</div>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_EngineMain_" data-uid="Tizen.Uix.TtsEngine.Engine.EngineMain*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L417">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_EngineMain_System_Int32_System_String___" data-uid="Tizen.Uix.TtsEngine.Engine.EngineMain(System.Int32,System.String[])">EngineMain(int, string[])</h4>
+    <section>
+    <p>Main function for the Text-To-Speech (TTS) engine.
+This function is the main function for operating the TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EngineMain(int argc, string[] argv)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">argc</span></td>
+        <td><p>The argument count (original).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td><span class="parametername">argv</span></td>
+        <td><p>The argument (original).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_EngineMain_System_Int32_System_String____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>ServiceAppMain should be used for working the engine after this function.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L280">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices(Tizen.Uix.TtsEngine.Engine.SupportedVoice,System.IntPtr)">ForEachSupportedVoices(SupportedVoice, IntPtr)</h4>
+    <section>
+    <p>Called when the engine service user gets the whole supported voice list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error ForEachSupportedVoices(Engine.SupportedVoice callback, IntPtr userData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Engine.html">Engine</a>.<a class="xref" href="Tizen.Uix.TtsEngine.Engine.SupportedVoice.html">SupportedVoice</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback function.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">userData</span></td>
+        <td><p>The user data which must be passed to SupportedVoice().</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>OperationFailed</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_System_IntPtr__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In this function, the engine service user's callback function 'SupportedVoice()' is invoked repeatedly for getting all the supported voices,
+and userData must be transferred to 'SupportedVoice()'. If 'SupportedVoice()' returns false, it should be stopped to call 'SupportedVoice()'.</p>
+</div>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_GetInformation_" data-uid="Tizen.Uix.TtsEngine.Engine.GetInformation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L236">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_GetInformation_System_String__System_String__System_String__System_Boolean__" data-uid="Tizen.Uix.TtsEngine.Engine.GetInformation(System.String@,System.String@,System.String@,System.Boolean@)">GetInformation(out string, out string, out string, out bool)</h4>
+    <section>
+    <p>Called when the engine service user requests the basic information of the TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error GetInformation(out string engineUuid, out string engineName, out string engineSetting, out bool useNetwork)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">engineUuid</span></td>
+        <td><p>UUID of the engine.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">engineName</span></td>
+        <td><p>Name of the engine.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">engineSetting</span></td>
+        <td><p>The engine setting application (UI application)'s ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">useNetwork</span></td>
+        <td><p>The status for using the network.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_GetInformation_System_String__System_String__System_String__System_Boolean___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The allocated engineUuid, engineName, and engineSetting will be released internally.
+In order to upload the engine at Tizen Appstore, both a service application and a UI application are necessary.
+Therefore, engineSetting must be transferred to the engine service user.</p>
+</div>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_GetPitchRange_" data-uid="Tizen.Uix.TtsEngine.Engine.GetPitchRange*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L485">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_GetPitchRange_System_Int32__System_Int32__System_Int32__" data-uid="Tizen.Uix.TtsEngine.Engine.GetPitchRange(System.Int32@,System.Int32@,System.Int32@)">GetPitchRange(out int, out int, out int)</h4>
+    <section>
+    <p>Gets the pitch range from the Tizen platform.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetPitchRange(out int min, out int normal, out int max)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">min</span></td>
+        <td><p>The minimum pitch value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">normal</span></td>
+        <td><p>The normal pitch value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">max</span></td>
+        <td><p>The maximum pitch value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_GetPitchRange_System_Int32__System_Int32__System_Int32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This API is used when the TTS engine wants to get the pitch range from the Tizen platform.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_GetSpeedRange_" data-uid="Tizen.Uix.TtsEngine.Engine.GetSpeedRange*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L459">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_GetSpeedRange_System_Int32__System_Int32__System_Int32__" data-uid="Tizen.Uix.TtsEngine.Engine.GetSpeedRange(System.Int32@,System.Int32@,System.Int32@)">GetSpeedRange(out int, out int, out int)</h4>
+    <section>
+    <p>Gets the speed range from the Tizen platform.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetSpeedRange(out int min, out int normal, out int max)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">min</span></td>
+        <td><p>The minimum speed value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">normal</span></td>
+        <td><p>The normal speed value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">max</span></td>
+        <td><p>The maximum speed value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_GetSpeedRange_System_Int32__System_Int32__System_Int32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This API is used when the TTS engine wants to get the speed range from the Tizen platform.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_Initialize_" data-uid="Tizen.Uix.TtsEngine.Engine.Initialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L249">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_Initialize" data-uid="Tizen.Uix.TtsEngine.Engine.Initialize">Initialize()</h4>
+    <section>
+    <p>Called when the engine service user initializes the TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error Initialize()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+<li>NotSupportedFeature</li>
+<li>PermissionDenied</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_IsValidVoice_" data-uid="Tizen.Uix.TtsEngine.Engine.IsValidVoice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L295">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_IsValidVoice_System_String_System_Int32_System_Boolean__" data-uid="Tizen.Uix.TtsEngine.Engine.IsValidVoice(System.String,System.Int32,System.Boolean@)">IsValidVoice(string, int, out bool)</h4>
+    <section>
+    <p>Called when the engine service user checks whether the voice is valid or not in the TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error IsValidVoice(string language, int type, out bool isValid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language is specified as an ISO 3166 alpha-2 two-letter country code followed by an ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The voice type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isValid</span></td>
+        <td><p>A variable for checking whether the corresponding voice is valid or not. true to be valid, false to be invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidParameter</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_LoadVoice_" data-uid="Tizen.Uix.TtsEngine.Engine.LoadVoice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L327">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_LoadVoice_System_String_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.LoadVoice(System.String,System.Int32)">LoadVoice(string, int)</h4>
+    <section>
+    <p>Called when the engine service user requests to load the corresponding voice type for the first time.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error LoadVoice(string language, int type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language is specified as an ISO 3166 alpha-2 two-letter country code followed by an ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The voice type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+<li>OperationFailed</li>
+<li>InvalidVoice</li>
+<li>InvalidParameter</li>
+<li>OutOfMemory</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_NeedAppCredential_" data-uid="Tizen.Uix.TtsEngine.Engine.NeedAppCredential*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L374">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_NeedAppCredential" data-uid="Tizen.Uix.TtsEngine.Engine.NeedAppCredential">NeedAppCredential()</h4>
+    <section>
+    <p>Called when the engine service user checks whether the TTS engine needs the application's credentials.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool NeedAppCredential()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if TTS engine needs the application's credentials, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_SendError_" data-uid="Tizen.Uix.TtsEngine.Engine.SendError*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L542">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_SendError_Tizen_Uix_TtsEngine_Error_System_String_" data-uid="Tizen.Uix.TtsEngine.Engine.SendError(Tizen.Uix.TtsEngine.Error,System.String)">SendError(Error, string)</h4>
+    <section>
+    <p>Sends the error to the engine service user.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendError(Error error, string msg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><span class="parametername">error</span></td>
+        <td><p>The error reason.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">msg</span></td>
+        <td><p>The error message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_SendResult_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L518">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_System_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult(Tizen.Uix.TtsEngine.ResultEvent,System.IntPtr,System.Int32,Tizen.Uix.TtsEngine.AudioType,System.Int32)">SendResult(ResultEvent, IntPtr, int, AudioType, int)</h4>
+    <section>
+    <p>Sends the synthesized result to the engine service user.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendResult(ResultEvent resultEvent, IntPtr data, int dataSize, AudioType audioType, int rate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.ResultEvent.html">ResultEvent</a></td>
+        <td><span class="parametername">resultEvent</span></td>
+        <td><p>The result event.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The result data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">dataSize</span></td>
+        <td><p>The result data size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.AudioType.html">AudioType</a></td>
+        <td><span class="parametername">audioType</span></td>
+        <td><p>The audio type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">rate</span></td>
+        <td><p>The sample rate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_System_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This API is used in StartSynthesis(), when the TTS engine sends the synthesized result to the engine service user.
+The synthesized result must be transferred to the engine service user through this function.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_SetPitch_" data-uid="Tizen.Uix.TtsEngine.Engine.SetPitch*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L309">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_SetPitch_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.SetPitch(System.Int32)">SetPitch(int)</h4>
+    <section>
+    <p>Called when the engine service user sets the default pitch of the TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error SetPitch(int pitch)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">pitch</span></td>
+        <td><p>The default pitch.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+<li>OperationFailed</li>
+<li>InvalidParameter</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_SetPrivateDataRequestedDelegate_" data-uid="Tizen.Uix.TtsEngine.Engine.SetPrivateDataRequestedDelegate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L624">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_SetPrivateDataRequestedDelegate_Tizen_Uix_TtsEngine_Engine_OutAction_System_String__" data-uid="Tizen.Uix.TtsEngine.Engine.SetPrivateDataRequestedDelegate(Tizen.Uix.TtsEngine.Engine.OutAction{System.String})">SetPrivateDataRequestedDelegate(OutAction&lt;string&gt;)</h4>
+    <section>
+    <p>Sets a callback function for setting the private data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPrivateDataRequestedDelegate(Engine.OutAction&lt;string&gt; callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Engine.html">Engine</a>.<a class="xref" href="Tizen.Uix.TtsEngine.Engine.OutAction-1.html">OutAction</a>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback function.
+Called when the TTS engine receives the private data from the engine service user.
+This callback function is called when the engine service user sends the private data to the TTS engine.
+Out parameters:
+a = Key -- The key field of private data.
+b = data -- The data field of private data.
+The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidParameter</li>
+<li>OperationFailed</li>
+<li>NotSupported</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_SetPrivateDataSetDelegate_" data-uid="Tizen.Uix.TtsEngine.Engine.SetPrivateDataSetDelegate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L577">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_SetPrivateDataSetDelegate_Tizen_Uix_TtsEngine_Engine_Action_System_String__" data-uid="Tizen.Uix.TtsEngine.Engine.SetPrivateDataSetDelegate(Tizen.Uix.TtsEngine.Engine.Action{System.String})">SetPrivateDataSetDelegate(Action&lt;string&gt;)</h4>
+    <section>
+    <p>Sets a callback function for setting the private data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPrivateDataSetDelegate(Engine.Action&lt;string&gt; callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Engine.html">Engine</a>.<a class="xref" href="Tizen.Uix.TtsEngine.Engine.Action-1.html">Action</a>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>Called when the engine service user gets the private data from the TTS engine.
+In parameters:
+a = Key -- The key field of private data.
+b = data -- The data field of private data.
+The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidParameter</li>
+<li>OperationFailed</li>
+<li>NotSupported</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L216">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis(System.String,System.Int32,System.String,System.Int32,System.String,System.String,System.IntPtr)">StartSynthesis(string, int, string, int, string, string, IntPtr)</h4>
+    <section>
+    <p>Called when the engine service user starts to synthesize a voice, asynchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error StartSynthesis(string language, int type, string text, int speed, string appid, string credential, IntPtr userData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language is specified as an ISO 3166 alpha-2 two-letter country code followed by an ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The voice type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>Texts.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">speed</span></td>
+        <td><p>The speed of speaking.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">appid</span></td>
+        <td><p>The application ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">credential</span></td>
+        <td><p>The credential granted to the application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">userData</span></td>
+        <td><p>The user data which must be passed to the SendResult() function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+<li>InvalidParameter</li>
+<li>InvalidVoice</li>
+<li>OperationFailed</li>
+<li>NetworkDown</li>
+<li>PermissionDenied</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_System_IntPtr__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In this callback function, the TTS engine must transfer the synthesized result to the engine service user using SendResult().
+Also, if the TTS engine needs the application's credential, it can set the credential granted to the application.</p>
+</div>
+
+
+
+  <a id="Tizen_Uix_TtsEngine_Engine_UnloadVoice_" data-uid="Tizen.Uix.TtsEngine.Engine.UnloadVoice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L344">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_UnloadVoice_System_String_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.UnloadVoice(System.String,System.Int32)">UnloadVoice(string, int)</h4>
+    <section>
+    <p>Called when the engine service user requests to unload the corresponding voice type or to stop using voice.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Error UnloadVoice(string language, int type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language is specified as an ISO 3166 alpha-2 two-letter country code followed by an ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The voice type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.TtsEngine.Error.html">Error</a></td>
+        <td><p>The following error codes can be returned:</p>
+<ol>
+<li>None</li>
+<li>InvalidState</li>
+<li>OperationFailed</li>
+<li>InvalidVoice</li>
+<li>InvalidParameter</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

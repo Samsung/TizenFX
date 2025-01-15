@@ -1,0 +1,1595 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BluetoothAdapter
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BluetoothAdapter
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Network_Bluetooth_BluetoothAdapter" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter" class="mt-0 text-break"><span class="entity-type">Class</span>
+BluetoothAdapter
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L29" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Bluetooth.html">Bluetooth</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Bluetooth.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class is used to control the Bluetooth adapter and get the list of bonded devices.<br>
+The BluetoothAdapter class is used to discover neighbouring bluetooth devices.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class BluetoothAdapter</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">BluetoothAdapter</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_Address_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.Address*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L61">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_Address" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.Address">Address</h4>
+    <section>
+    <p>The local adapter address.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Address { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_Address_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_IsBluetoothEnabled_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.IsBluetoothEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L37">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_IsBluetoothEnabled" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.IsBluetoothEnabled">IsBluetoothEnabled</h4>
+    <section>
+    <p>A property to check whether the Bluetooth is enabled.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsBluetoothEnabled { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_IsDiscoveryInProgress_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.IsDiscoveryInProgress*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L144">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_IsDiscoveryInProgress" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.IsDiscoveryInProgress">IsDiscoveryInProgress</h4>
+    <section>
+    <p>A property to check whether the device discovery process is in progress.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsDiscoveryInProgress { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_IsDiscoveryInProgress_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_Name_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.Name*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L85">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_Name" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.Name">Name</h4>
+    <section>
+    <p>The name of the local adapter.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_Name_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_RemainingTimeAsVisible_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.RemainingTimeAsVisible*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L168">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_RemainingTimeAsVisible" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.RemainingTimeAsVisible">RemainingTimeAsVisible</h4>
+    <section>
+    <p>The remaining time, in seconds, until the visibility mode is changed from TimeLimitedDiscoverable to NonDiscoverable.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int RemainingTimeAsVisible { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_RemainingTimeAsVisible_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_Visibility_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.Visibility*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L120">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_Visibility" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.Visibility">Visibility</h4>
+    <section>
+    <p>The visibility mode of the Bluetooth adapter.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static VisibilityMode Visibility { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.VisibilityMode.html">VisibilityMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_Visibility_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_CreateServerSocket_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.CreateServerSocket*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L755">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_CreateServerSocket_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.CreateServerSocket(System.String)">CreateServerSocket(string)</h4>
+    <section>
+    <p>Registers a rfcomm server socket with a specific UUID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BluetoothServerSocket CreateServerSocket(string serviceUuid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">serviceUuid</span></td>
+        <td><p>The UUID of service to provide.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothServerSocket.html">BluetoothServerSocket</a></td>
+        <td><p>The BluetoothServerSocket instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_CreateServerSocket_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled before calling this API.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or the socket create error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_DestroyServerSocket_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.DestroyServerSocket*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L778">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_DestroyServerSocket_Tizen_Network_Bluetooth_BluetoothServerSocket_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.DestroyServerSocket(Tizen.Network.Bluetooth.BluetoothServerSocket)">DestroyServerSocket(BluetoothServerSocket)</h4>
+    <section>
+    <p>Removes the rfcomm server socket which was created using CreateServerSocket().</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 6. Please use Dispose() on BluetoothServerSocket.&quot;)]
+public static void DestroyServerSocket(BluetoothServerSocket socket)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothServerSocket.html">BluetoothServerSocket</a></td>
+        <td><span class="parametername">socket</span></td>
+        <td><p>The server socket instance is created using CreateServerSocket().</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_DestroyServerSocket_Tizen_Network_Bluetooth_BluetoothServerSocket__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The socket must be created with CreateServerSocket(). The ConnectionStateChanged event is raised after this API is called.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or the socket destroy error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBluetoothLeAdvertiser_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetBluetoothLeAdvertiser*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L738">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBluetoothLeAdvertiser" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetBluetoothLeAdvertiser">GetBluetoothLeAdvertiser()</h4>
+    <section>
+    <p>Returns the BluetoothLeAdvertiser instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BluetoothLeAdvertiser GetBluetoothLeAdvertiser()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothLeAdvertiser.html">BluetoothLeAdvertiser</a></td>
+        <td><p>The BluetoothLeAdvertiser instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBluetoothLeAdvertiser_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled before calling this API.</p>
+</div>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBondedDevice_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetBondedDevice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L552">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBondedDevice_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetBondedDevice(System.String)">GetBondedDevice(string)</h4>
+    <section>
+    <p>Gets the device information of a bonded device.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BluetoothDevice GetBondedDevice(string address)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">address</span></td>
+        <td><p>The remote device address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothDevice.html">BluetoothDevice</a></td>
+        <td><p>Information of the bonded BluetoothDeviceInfo object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBondedDevice_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or reading the bonded device information fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBondedDevices_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetBondedDevices*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L528">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBondedDevices" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetBondedDevices">GetBondedDevices()</h4>
+    <section>
+    <p>Retrieves the device information of all bonded devices.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;BluetoothDevice&gt; GetBondedDevices()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BluetoothDevice.html">BluetoothDevice</a>&gt;</td>
+        <td><p>The list of the bonded BluetoothDeviceInfo objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetBondedDevices_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or reading the Bonded devices list is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_GetLocalOobData_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetLocalOobData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L595">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetLocalOobData" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.GetLocalOobData">GetLocalOobData()</h4>
+    <section>
+    <p>Gets the hash and the randomizer value of the local OOB data object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BluetoothOobData GetLocalOobData()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothOobData.html">BluetoothOobData</a></td>
+        <td><p>The BluetoothOobData object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_GetLocalOobData_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or the read OObData procedure is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_IsServiceUsed_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.IsServiceUsed*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L572">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_IsServiceUsed_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.IsServiceUsed(System.String)">IsServiceUsed(string)</h4>
+    <section>
+    <p>Checks whether the UUID of service is used or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsServiceUsed(string serviceUuid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">serviceUuid</span></td>
+        <td><p>The UUID of Service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>true</code> if the specified serviceUuid is used, otherwise <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_RemoveRemoteOobData_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.RemoveRemoteOobData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L638">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_RemoveRemoteOobData_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.RemoveRemoteOobData(System.String)">RemoveRemoteOobData(string)</h4>
+    <section>
+    <p>Removes the hash and the randomizer value of the OOB data from the remote device.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemoveRemoteOobData(string address)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">address</span></td>
+        <td><p>The remote device address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_RemoveRemoteOobData_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.
+or if the Remove Oobdata procedure is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_SetRemoteOobData_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.SetRemoteOobData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L619">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_SetRemoteOobData_System_String_Tizen_Network_Bluetooth_BluetoothOobData_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.SetRemoteOobData(System.String,Tizen.Network.Bluetooth.BluetoothOobData)">SetRemoteOobData(string, BluetoothOobData)</h4>
+    <section>
+    <p>Sets the hash and the randmoizer value of the OOB data into the remote device.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetRemoteOobData(string address, BluetoothOobData oobData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">address</span></td>
+        <td><p>The remote device address.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothOobData.html">BluetoothOobData</a></td>
+        <td><span class="parametername">oobData</span></td>
+        <td><p>The BluetoothOobData object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_SetRemoteOobData_System_String_Tizen_Network_Bluetooth_BluetoothOobData__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or the set OobData procedure is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_StartDiscovery_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StartDiscovery*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L490">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_StartDiscovery" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StartDiscovery">StartDiscovery()</h4>
+    <section>
+    <p>Starts the device discovery process.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StartDiscovery()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_StartDiscovery_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled and the device discovery process can be stopped by StopDiscovery().
+If this succeeds, the DiscoveryStateChanged event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled
+or the start discovery fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_StartLeScan_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StartLeScan*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L656">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_StartLeScan" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StartLeScan">StartLeScan()</h4>
+    <section>
+    <p>Starts the Bluetooth LE scan operation to discover BLE devices</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StartLeScan()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_StartLeScan_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth LE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth LE is not enabled
+or the Start LE scan is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_StartLeScan_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StartLeScan*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L685">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_StartLeScan_Tizen_Network_Bluetooth_BluetoothLeScanMode_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StartLeScan(Tizen.Network.Bluetooth.BluetoothLeScanMode)">StartLeScan(BluetoothLeScanMode)</h4>
+    <section>
+    <p>Starts the Bluetooth LE scan operation with scan mode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StartLeScan(BluetoothLeScanMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothLeScanMode.html">BluetoothLeScanMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>The LE scan mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_StartLeScan_Tizen_Network_Bluetooth_BluetoothLeScanMode__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth LE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth LE is not enabled
+or the Start LE scan is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_StopDiscovery_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StopDiscovery*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L509">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_StopDiscovery" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StopDiscovery">StopDiscovery()</h4>
+    <section>
+    <p>Stops the device discovery process.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StopDiscovery()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_StopDiscovery_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The device discovery process must be in progress with StartDiscovery().
+If this succeeds, the DiscoveryStateChanged event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled or
+the discovery process is not is progress.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Bluetooth_BluetoothAdapter_StopLeScan_" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StopLeScan*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L713">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_StopLeScan" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StopLeScan">StopLeScan()</h4>
+    <section>
+    <p>Stops the Bluetooth LE scan operation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StopLeScan()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_Bluetooth_BluetoothAdapter_StopLeScan_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth LE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth LE is not enabled
+or the Stop LE scan is failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L350">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_DiscoveryStateChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.DiscoveryStateChanged">DiscoveryStateChanged</h4>
+    <section>
+    <p>The DiscoveryStateChanged event is raised when the device discovery state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;DiscoveryStateChangedEventArgs&gt; DiscoveryStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.DiscoveryStateChangedEventArgs.html">DiscoveryStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L254">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_NameChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.NameChanged">NameChanged</h4>
+    <section>
+    <p>The NameChanged event is raised when the Bluetooth adapter name is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;NameChangedEventArgs&gt; NameChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.NameChangedEventArgs.html">NameChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L382">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_ScanResultChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.ScanResultChanged">ScanResultChanged</h4>
+    <section>
+    <p>This event is called when the LE scan result is obtained.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;AdapterLeScanResultChangedEventArgs&gt; ScanResultChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.AdapterLeScanResultChangedEventArgs.html">AdapterLeScanResultChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L189">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_StateChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.StateChanged">StateChanged</h4>
+    <section>
+    <p>The StateChanged event is raised when the Bluetooth adapter state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L318">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_VisibilityDurationChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.VisibilityDurationChanged">VisibilityDurationChanged</h4>
+    <section>
+    <p>The VisibilityDurationChanged event is raised very second until the visibility mode is changed to NonDiscoverable.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;VisibilityDurationChangedEventArgs&gt; VisibilityDurationChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.VisibilityDurationChangedEventArgs.html">VisibilityDurationChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothAdapter.cs/#L286">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothAdapter_VisibilityModeChanged" data-uid="Tizen.Network.Bluetooth.BluetoothAdapter.VisibilityModeChanged">VisibilityModeChanged</h4>
+    <section>
+    <p>The VisibilityModeChanged event is raised when the Bluetooth adapter visibility mode is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;VisibilityModeChangedEventArgs&gt; VisibilityModeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.VisibilityModeChangedEventArgs.html">VisibilityModeChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Bluetooth is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the Bluetooth is not enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

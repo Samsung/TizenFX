@@ -1,0 +1,3065 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WiFiDirectManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WiFiDirectManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Network_WiFiDirect_WiFiDirectManager" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager" class="mt-0 text-break"><span class="entity-type">Class</span>
+WiFiDirectManager
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L28" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.WiFiDirect.html">WiFiDirect</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.WiFiDirect.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A class which is used to manage settings of Wi-Fi Direct.<br>
+This class is used to discover peer devices and manage settings of Wi-Fi Direct.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class WiFiDirectManager</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">WiFiDirectManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_AutoConnect_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.AutoConnect*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L589">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_AutoConnect" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.AutoConnect">AutoConnect</h4>
+    <section>
+    <p>Gets and sets the AutoConnect.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool AutoConnect { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Autoconnection mode status.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GatewayAddress_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GatewayAddress*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L260">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GatewayAddress" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GatewayAddress">GatewayAddress</h4>
+    <section>
+    <p>Gets the GatewayAddress.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GatewayAddress { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Gateway address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GatewayAddress_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, null will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GroupOwnerIntent_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GroupOwnerIntent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L747">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GroupOwnerIntent" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GroupOwnerIntent">GroupOwnerIntent</h4>
+    <section>
+    <p>Gets and sets the GroupOwnerIntent.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GroupOwnerIntent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>Intent of the group owner.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_IpAddress_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IpAddress*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L196">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IpAddress" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IpAddress">IpAddress</h4>
+    <section>
+    <p>Gets the IpAddress.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string IpAddress { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>IP address of a local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IpAddress_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, null will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsAutonomousGroup_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsAutonomousGroup*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L101">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsAutonomousGroup" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsAutonomousGroup">IsAutonomousGroup</h4>
+    <section>
+    <p>Gets the IsAutonomousGroup.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsAutonomousGroup { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>A property to check whether the current group is the autonomous group or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsAutonomousGroup_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, false will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsDiscoverable_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsDiscoverable*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L339">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsDiscoverable" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsDiscoverable">IsDiscoverable</h4>
+    <section>
+    <p>A property to check whether the device is discoverable or not by P2P discovery.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsDiscoverable { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsGroupOwner_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsGroupOwner*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L69">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsGroupOwner" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsGroupOwner">IsGroupOwner</h4>
+    <section>
+    <p>Gets the IsGroupOwner.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsGroupOwner { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>A property to check whether the device is group owner or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsGroupOwner_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, false will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsListenOnly_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsListenOnly*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L371">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsListenOnly" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.IsListenOnly">IsListenOnly</h4>
+    <section>
+    <p>Gets the IsListenOnly.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsListenOnly { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>A property to check whether the local device is listening only.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_IsListenOnly_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, false will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_MacAddress_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.MacAddress*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L291">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_MacAddress" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.MacAddress">MacAddress</h4>
+    <section>
+    <p>Gets the MacAddress.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string MacAddress { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Mac address of a local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_MacAddress_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If there is any error, null will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_MaxClients_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.MaxClients*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L784">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_MaxClients" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.MaxClients">MaxClients</h4>
+    <section>
+    <p>Gets and sets the MaxClients.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int MaxClients { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>Max number of clients.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_Name_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Name*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L673">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Name" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Name">Name</h4>
+    <section>
+    <p>Gets and sets the Name.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Name of local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_NetworkInterface_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.NetworkInterface*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L164">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_NetworkInterface" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.NetworkInterface">NetworkInterface</h4>
+    <section>
+    <p>Gets the NetworkInterface.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string NetworkInterface { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Name of network interface.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_NetworkInterface_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, null will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_OperatingChannel_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.OperatingChannel*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L523">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_OperatingChannel" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.OperatingChannel">OperatingChannel</h4>
+    <section>
+    <p>Gets the OperatingChannel.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int OperatingChannel { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>Channel number on which the P2P Device is operating as the P2P Group.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_OperatingChannel_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If there is any error, -1 will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_Passphrase_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Passphrase*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L826">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Passphrase" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Passphrase">Passphrase</h4>
+    <section>
+    <p>Gets and sets the Passphrase.
+It is used during Wi-Fi Direct Group creation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Passphrase { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Wi-Fi Protected Access (WPA) password.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Passphrase_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, null will be returned during get and Not permitted exception message will be returned during set.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_PersistentGroupEnabled_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.PersistentGroupEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L552">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_PersistentGroupEnabled" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.PersistentGroupEnabled">PersistentGroupEnabled</h4>
+    <section>
+    <p>Gets and sets the PersistentGroupEnabled.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool PersistentGroupEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>A property to check whether persistent group is enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_PrimaryType_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.PrimaryType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L402">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_PrimaryType" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.PrimaryType">PrimaryType</h4>
+    <section>
+    <p>Gets the PrimaryType.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WiFiDirectPrimaryDeviceType PrimaryType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPrimaryDeviceType.html">WiFiDirectPrimaryDeviceType</a></td>
+        <td><p>Primary device type of local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_PrimaryType_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If there is any error, 0 will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_RequestedWps_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RequestedWps*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L710">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_RequestedWps" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RequestedWps">RequestedWps</h4>
+    <section>
+    <p>Gets and sets the RequestedWps.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WiFiDirectWpsType RequestedWps { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectWpsType.html">WiFiDirectWpsType</a></td>
+        <td><p>Requested WPS (Wi-Fi Protected Setup) type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_SecondaryType_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SecondaryType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L433">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SecondaryType" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SecondaryType">SecondaryType</h4>
+    <section>
+    <p>Gets the SecondaryType.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WiFiDirectSecondaryDeviceType SecondaryType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectSecondaryDeviceType.html">WiFiDirectSecondaryDeviceType</a></td>
+        <td><p>Secondary device type of local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SecondaryType_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If there is any error, 0 will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_SessionTimer_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SessionTimer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L873">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SessionTimer" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SessionTimer">SessionTimer</h4>
+    <section>
+    <p>Gets and sets the SessionTimer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int SessionTimer { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>Connection session timer value in second.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SessionTimer_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, -1 will be returned during get and Not permitted exception message will be returned during set.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_Ssid_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Ssid*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L132">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Ssid" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Ssid">Ssid</h4>
+    <section>
+    <p>Gets the Ssid.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Ssid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>SSID of local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Ssid_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If there is any error, null will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_State_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.State*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L319">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_State" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.State">State</h4>
+    <section>
+    <p>Gets the State.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WiFiDirectState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectState.html">WiFiDirectState</a></td>
+        <td><p>State of Wi-Fi direct service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_SubnetMask_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SubnetMask*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L228">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SubnetMask" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SubnetMask">SubnetMask</h4>
+    <section>
+    <p>Gets the SubnetMask.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string SubnetMask { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Subnet mask.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SubnetMask_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, null will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_Wps_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Wps*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L492">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Wps" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Wps">Wps</h4>
+    <section>
+    <p>Gets the Wps.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WiFiDirectWpsType Wps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectWpsType.html">WiFiDirectWpsType</a></td>
+        <td><p>WPS (Wi-Fi Protected Setup) type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_WpsMode_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.WpsMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L464">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_WpsMode" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.WpsMode">WpsMode</h4>
+    <section>
+    <p>Gets the WpsMode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int WpsMode { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>Supported WPS (Wi-Fi Protected Setup) types at local device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_WpsMode_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If there is any error, -1 will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_WpsPin_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.WpsPin*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L630">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_WpsPin" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.WpsPin">WpsPin</h4>
+    <section>
+    <p>Gets and sets the WpsPin.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string WpsPin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>WPS PIN number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_WpsPin_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If it is deactivated, null will be returned during get and Not permitted exception message will be returned during set.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_Activate_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Activate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1022">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Activate" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Activate">Activate()</h4>
+    <section>
+    <p>Activates the Wi-Fi Direct service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Activate()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Activate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If this succeeds, DeviceStateChanged event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_ActivatePushButton_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.ActivatePushButton*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1298">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_ActivatePushButton" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.ActivatePushButton">ActivatePushButton()</h4>
+    <section>
+    <p>Set the WPS config PBC as preferred method for connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ActivatePushButton()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_CancelDiscovery_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.CancelDiscovery*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1118">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_CancelDiscovery" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.CancelDiscovery">CancelDiscovery()</h4>
+    <section>
+    <p>Cancels discovery process.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CancelDiscovery()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_CancelDiscovery_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Discovery must be started by StartDiscovery.
+If this succeeds, DiscoveryStateChanged and PeerFound event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_CreateGroup_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.CreateGroup*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1240">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_CreateGroup" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.CreateGroup">CreateGroup()</h4>
+    <section>
+    <p>Creates a Wi-Fi Direct group and sets up device as the group owner.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CreateGroup()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_CreateGroup_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If this succeeds, ConnectionStatusChanged event will be invoked with GroupCreated.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_Deactivate_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Deactivate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1053">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Deactivate" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.Deactivate">Deactivate()</h4>
+    <section>
+    <p>Deactivates the Wi-Fi Direct service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Deactivate()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_Deactivate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If this succeeds, DeviceStateChanged event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeinitDisplay_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DeinitDisplay*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1486">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeinitDisplay" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DeinitDisplay">DeinitDisplay()</h4>
+    <section>
+    <p>Disable Wi-Fi Display(WFD) functionality and disable the support of WFD Information Element(IE).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DeinitDisplay()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeinitDisplay_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated and WFD must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect display feature is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeregisterService_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DeregisterService*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1667">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeregisterService_System_UInt32_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DeregisterService(System.UInt32)">DeregisterService(uint)</h4>
+    <section>
+    <p>Deregisters for a service used for WiFi Direct Service Discovery.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DeregisterService(uint serviceId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">serviceId</span></td>
+        <td><p>Service ID for which service has to be deregistered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeregisterService_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect service discovery is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_DestroyGroup_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DestroyGroup*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1271">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DestroyGroup" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DestroyGroup">DestroyGroup()</h4>
+    <section>
+    <p>Destroys the Wi-Fi Direct group owned by a local device.If creating a group is in progress, this API cancels that process.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DestroyGroup()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DestroyGroup_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If this succeeds, ConnectionStatusChanged event will be invoked with GroupDestroyed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_DisconnectAll_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DisconnectAll*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1209">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DisconnectAll" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DisconnectAll">DisconnectAll()</h4>
+    <section>
+    <p>Disconnects all connected links to peers.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DisconnectAll()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DisconnectAll_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If this succeeds, ConnectionStatusChanged event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetConnectedPeers_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetConnectedPeers*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1179">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetConnectedPeers" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetConnectedPeers">GetConnectedPeers()</h4>
+    <section>
+    <p>Gets the information of connected peers.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;WiFiDirectPeer&gt; GetConnectedPeers()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPeer.html">WiFiDirectPeer</a>&gt;</td>
+        <td><p>List of connected peer objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetConnectedPeers_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetDiscoveredPeers_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetDiscoveredPeers*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1149">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetDiscoveredPeers" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetDiscoveredPeers">GetDiscoveredPeers()</h4>
+    <section>
+    <p>Gets the information of discovered peers.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;WiFiDirectPeer&gt; GetDiscoveredPeers()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPeer.html">WiFiDirectPeer</a>&gt;</td>
+        <td><p>List of discovered peer objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetDiscoveredPeers_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetPersistentGroups_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetPersistentGroups*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1353">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetPersistentGroups" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetPersistentGroups">GetPersistentGroups()</h4>
+    <section>
+    <p>Gets the persistent groups.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;WiFiDirectPersistentGroup&gt; GetPersistentGroups()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup.html">WiFiDirectPersistentGroup</a>&gt;</td>
+        <td><p>List of the persistent group objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetSupportedWpsTypes_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetSupportedWpsTypes*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1326">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetSupportedWpsTypes" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetSupportedWpsTypes">GetSupportedWpsTypes()</h4>
+    <section>
+    <p>Gets the supported WPS types.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;WiFiDirectWpsType&gt; GetSupportedWpsTypes()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectWpsType.html">WiFiDirectWpsType</a>&gt;</td>
+        <td><p>The list of supported wps types.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_InitDisplay_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.InitDisplay*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1451">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_InitDisplay" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.InitDisplay">InitDisplay()</h4>
+    <section>
+    <p>Enables Wi-Fi Display functionality.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void InitDisplay()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_InitDisplay_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect display feature is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_InitMiracast_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.InitMiracast*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1416">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_InitMiracast_System_Boolean_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.InitMiracast(System.Boolean)">InitMiracast(bool)</h4>
+    <section>
+    <p>Initializes or Deintializes the Wi-Fi Direct Display(MIRACAST) service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void InitMiracast(bool enable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enable</span></td>
+        <td><p>Enables/Disables service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_InitMiracast_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect display feature is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_RegisterService_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RegisterService*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1632">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_RegisterService_Tizen_Network_WiFiDirect_WiFiDirectServiceType_System_String_System_String_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RegisterService(Tizen.Network.WiFiDirect.WiFiDirectServiceType,System.String,System.String)">RegisterService(WiFiDirectServiceType, string, string)</h4>
+    <section>
+    <p>Registers the service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint RegisterService(WiFiDirectServiceType type, string info, string serviceInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectServiceType.html">WiFiDirectServiceType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type of Wi-Fi Direct Service.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">info</span></td>
+        <td><p>Service specific information.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">serviceInfo</span></td>
+        <td><p>Service information.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The service Id of service getting registered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_RegisterService_Tizen_Network_WiFiDirect_WiFiDirectServiceType_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If there is any error while registering service, 0 will be returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect service discovery is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_RemovePersistentGroup_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RemovePersistentGroup*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1380">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_RemovePersistentGroup_Tizen_Network_WiFiDirect_WiFiDirectPersistentGroup_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RemovePersistentGroup(Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup)">RemovePersistentGroup(WiFiDirectPersistentGroup)</h4>
+    <section>
+    <p>Removes a persistent group.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemovePersistentGroup(WiFiDirectPersistentGroup group)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPersistentGroup.html">WiFiDirectPersistentGroup</a></td>
+        <td><span class="parametername">group</span></td>
+        <td><p>Persistent group owner.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetAutoGroupRemove_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SetAutoGroupRemove*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1592">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetAutoGroupRemove_System_Boolean_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SetAutoGroupRemove(System.Boolean)">SetAutoGroupRemove(bool)</h4>
+    <section>
+    <p>Sets the automatic group removal feature when all peers are disconnected.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetAutoGroupRemove(bool enable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enable</span></td>
+        <td><p>Enables/Disables group removal feature.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetAutoGroupRemove_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+ConnectionStatusChanged event will be invoked with GroupDestroyed when this feature is enabled and there's no connected group client and if device is group owner.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetDisplay_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SetDisplay*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1524">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetDisplay_Tizen_Network_WiFiDirect_WiFiDirectDisplayType_System_Int32_System_Int32_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SetDisplay(Tizen.Network.WiFiDirect.WiFiDirectDisplayType,System.Int32,System.Int32)">SetDisplay(WiFiDirectDisplayType, int, int)</h4>
+    <section>
+    <p>Sets the Wi-Fi Display parameters for the WFD IE of local device.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetDisplay(WiFiDirectDisplayType type, int port, int hdcp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectDisplayType.html">WiFiDirectDisplayType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>WFD Device Type: define the Role of WFD device like source or sink.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">port</span></td>
+        <td><p>Specifies Session Management Control Port number. It should be 2 bytes(0~65535).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">hdcp</span></td>
+        <td><p>CP support bit: (1 = enable the hdcp support, 0 = disable the hdcp support).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetDisplay_Tizen_Network_WiFiDirect_WiFiDirectDisplayType_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated and WFD must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect display feature is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetDisplayAvailability_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SetDisplayAvailability*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1560">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetDisplayAvailability_System_Boolean_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.SetDisplayAvailability(System.Boolean)">SetDisplayAvailability(bool)</h4>
+    <section>
+    <p>Sets the Wi-Fi Display session availability.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetDisplayAvailability(bool availability)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">availability</span></td>
+        <td><p>Wi-Fi Display session availability.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_SetDisplayAvailability_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated and WFD must be enabled.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown during one of the following cases :</p>
+<ol>
+<li>When the wifidirect is not supported</li>
+<li>When the wifidirect display feature is not supported</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_StartDiscovery_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.StartDiscovery*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1087">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_StartDiscovery_System_Boolean_System_Int32_Tizen_Network_WiFiDirect_WiFiDirectDiscoveryChannel_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.StartDiscovery(System.Boolean,System.Int32,Tizen.Network.WiFiDirect.WiFiDirectDiscoveryChannel)">StartDiscovery(bool, int, WiFiDirectDiscoveryChannel)</h4>
+    <section>
+    <p>Starts discovery to find all P2P capable devices.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StartDiscovery(bool listenOnly, int duration, WiFiDirectDiscoveryChannel channel = WiFiDirectDiscoveryChannel.FullScan)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">listenOnly</span></td>
+        <td><p>Listen status.If False, then cycle between Scan and Listen.If True, then skip the initial 802.11 Scan and enter Listen state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td><p>Duration of discovery period, in seconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectDiscoveryChannel.html">WiFiDirectDiscoveryChannel</a></td>
+        <td><span class="parametername">channel</span></td>
+        <td><p>Discovery channel.It is optional, default enum value FullScan is assigned.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_StartDiscovery_System_Boolean_System_Int32_Tizen_Network_WiFiDirect_WiFiDirectDiscoveryChannel__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+If this succeeds, DiscoveryStateChanged and PeerFound event will be invoked.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L993">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_ConnectionStatusChanged" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.ConnectionStatusChanged">ConnectionStatusChanged</h4>
+    <section>
+    <p>(event) ConnectionStatusChanged is raised when status of connection is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ConnectionStatusChangedEventArgs&gt; ConnectionStatusChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.ConnectionStatusChangedEventArgs.html">ConnectionStatusChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L947">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DeviceStateChanged" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DeviceStateChanged">DeviceStateChanged</h4>
+    <section>
+    <p>(event) DeviceStateChanged is raised when device state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;DeviceStateChangedEventArgs&gt; DeviceStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.DeviceStateChangedEventArgs.html">DeviceStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L924">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_DiscoveryStateChanged" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.DiscoveryStateChanged">DiscoveryStateChanged</h4>
+    <section>
+    <p>(event) DiscoveryStateChanged is raised when Wi-Fi Direct discovery state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;DiscoveryStateChangedEventArgs&gt; DiscoveryStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.DiscoveryStateChangedEventArgs.html">DiscoveryStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L970">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_PeerFound" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.PeerFound">PeerFound</h4>
+    <section>
+    <p>(event) PeerFound is raised when peer is found.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;PeerFoundEventArgs&gt; PeerFound</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.PeerFoundEventArgs.html">PeerFoundEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L907">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_StateChanged" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.StateChanged">StateChanged</h4>
+    <section>
+    <p>(event) StateChanged is raised when Wi-Fi Direct state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFiDirect.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GeofenceManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GeofenceManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Location.Geofence.GeofenceManager">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Location_Geofence_GeofenceManager" data-uid="Tizen.Location.Geofence.GeofenceManager" class="mt-0 text-break"><span class="entity-type">Class</span>
+GeofenceManager
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L39" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Location.html">Location</a>.<a class="xref" href="Tizen.Location.Geofence.html">Geofence</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Location.Geofence.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The Geofence Manager API provides service related to geofence (geo-fence).
+Geofence is a virtual perimeter for a real-world geographic area.
+This API provides functions to set geofence with a geopoint, MAC address of Wi-Fi, and Bluetooth address.
+Also, notifications on events like changing in service status are provided.
+There are two kinds of places and fences:</p>
+<ul><li>Public places and fences are created by the MyPlace application that can be used by all applications.</li><li>Private places and fences are created by the specified application that can be used by the same application.</li></ul>
+Notifications can be received about the following events:
+<ul><li>Zone in when a device enters a specific area.</li><li>Zone out when a device exits a specific area.</li><li>Results and errors for each event requested to the geofence module.</li></ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GeofenceManager : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">GeofenceManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Location_Geofence_GeofenceManager__ctor_" data-uid="Tizen.Location.Geofence.GeofenceManager.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L56">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager__ctor" data-uid="Tizen.Location.Geofence.GeofenceManager.#ctor">GeofenceManager()</h4>
+    <section>
+    <p>Creates a new Geofence manager.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GeofenceManager()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>In case of out of memory condition.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case the geofence is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Location_Geofence_GeofenceManager_IsSupported_" data-uid="Tizen.Location.Geofence.GeofenceManager.IsSupported*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L81">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_IsSupported" data-uid="Tizen.Location.Geofence.GeofenceManager.IsSupported">IsSupported</h4>
+    <section>
+    <p>Checks whether the Geofence manager is available or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsSupported { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Location_Geofence_GeofenceManager_Dispose_" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L282">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_Dispose" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose">Dispose()</h4>
+    <section>
+    <p>The overloaded Dispose API for destroying the GeofenceManager handle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Location_Geofence_GeofenceManager_Dispose_" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L292">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_Dispose_System_Boolean_" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Dispose.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Location_Geofence_GeofenceManager_Finalize_" data-uid="Tizen.Location.Geofence.GeofenceManager.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L72">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_Finalize" data-uid="Tizen.Location.Geofence.GeofenceManager.Finalize">~GeofenceManager()</h4>
+    <section>
+    <p>The destructor of the GeofenceManager class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~GeofenceManager()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Location_Geofence_GeofenceManager_Start_" data-uid="Tizen.Location.Geofence.GeofenceManager.Start*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L109">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_Start_System_Int32_" data-uid="Tizen.Location.Geofence.GeofenceManager.Start(System.Int32)">Start(int)</h4>
+    <section>
+    <p>Starts the geofencing service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Start(int geofenceId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">geofenceId</span></td>
+        <td><p>The specified geofence ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Location_Geofence_GeofenceManager_Start_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When the location service is enabled, the StateChanged event is invoked and the service starts.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case privileges are not defined.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case the geofence is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Location_Geofence_GeofenceManager_Stop_" data-uid="Tizen.Location.Geofence.GeofenceManager.Stop*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L132">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_Stop_System_Int32_" data-uid="Tizen.Location.Geofence.GeofenceManager.Stop(System.Int32)">Stop(int)</h4>
+    <section>
+    <p>Stops the geofenceing service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop(int geofenceId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">geofenceId</span></td>
+        <td><p>The specified geofence ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Location_Geofence_GeofenceManager_Stop_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function initiates the process of stopping the service.
+You can stop and start the Geofence manager as needed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>In case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>In case privileges are not defined.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case the geofence is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L250">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_GeofenceEventChanged" data-uid="Tizen.Location.Geofence.GeofenceManager.GeofenceEventChanged">GeofenceEventChanged</h4>
+    <section>
+    <p>Called when some event occurs in the geofence and the place, such as add, update, etc..
+The events of public geofence is also received if there are public geofences.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GeofenceResponseEventArgs&gt; GeofenceEventChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.Geofence.GeofenceResponseEventArgs.html">GeofenceResponseEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Location_Geofence_GeofenceManager_GeofenceEventChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Call to Start() will invoke this event.
+The value of place_id or geofence_id is -1 when the place ID or geofence ID is not assigned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case the feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L203">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_ProximityChanged" data-uid="Tizen.Location.Geofence.GeofenceManager.ProximityChanged">ProximityChanged</h4>
+    <section>
+    <p>Called when the proximity state of a device is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProximityStateEventArgs&gt; ProximityChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.Geofence.ProximityStateEventArgs.html">ProximityStateEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Location_Geofence_GeofenceManager_ProximityChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Call to Start() will invoke this event.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case the feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L158">View Source</a>
+    </span>
+    <h4 id="Tizen_Location_Geofence_GeofenceManager_StateChanged" data-uid="Tizen.Location.Geofence.GeofenceManager.StateChanged">StateChanged</h4>
+    <section>
+    <p>Invokes when a device enters or exits the given geofence if this event is registered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GeofenceStateEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.Geofence.GeofenceStateEventArgs.html">GeofenceStateEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Location_Geofence_GeofenceManager_StateChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Call to Start() will invoke this event.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>In case the feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

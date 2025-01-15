@@ -1,0 +1,2114 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Position
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Position
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Position">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Position" data-uid="Tizen.NUI.Position" class="mt-0 text-break"><span class="entity-type">Class</span>
+Position
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L29" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Position is a three-dimensional vector.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Position : Disposable, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></div>
+        <div><span class="xref">Position</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_Position__ctor_" data-uid="Tizen.NUI.Position.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L43">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position__ctor" data-uid="Tizen.NUI.Position.#ctor">Position()</h4>
+    <section>
+    <p>The constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position()</code></pre>
+  </div>
+  <h5 id="Tizen_NUI_Position__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Position2D and Position are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br>
+For example, the followings are possible. <br>
+view.Position2D = new Position(10.0f, 10.0f, 10.0f); // be aware that here the z value(10.0f) will be lost. <br>
+view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br></p>
+</div>
+
+
+
+  <a id="Tizen_NUI_Position__ctor_" data-uid="Tizen.NUI.Position.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L61">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position__ctor_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.Position.#ctor(System.Single,System.Single,System.Single)">Position(float, float, float)</h4>
+    <section>
+    <p>The constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position(float x, float y, float z = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x component.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y component.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">z</span></td>
+        <td><p>The z component(optional).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Position__ctor_System_Single_System_Single_System_Single__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Position2D and Position are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br>
+For example, the followings are possible. <br>
+view.Position2D = new Position(10.0f, 10.0f, 10.0f); // be aware that here the z value(10.0f) will be lost. <br>
+view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br></p>
+</div>
+
+
+
+  <a id="Tizen_NUI_Position__ctor_" data-uid="Tizen.NUI.Position.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L71">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position__ctor_Tizen_NUI_Position2D_" data-uid="Tizen.NUI.Position.#ctor(Tizen.NUI.Position2D)">Position(Position2D)</h4>
+    <section>
+    <p>The constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position(Position2D position2d)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><span class="parametername">position2d</span></td>
+        <td><p>Position2D to create this vector from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_Position_Item_" data-uid="Tizen.NUI.Position.Item*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L655">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_Item_System_UInt32_" data-uid="Tizen.NUI.Position.Item(System.UInt32)">this[uint]</h4>
+    <section>
+    <p>The const array subscript operator overload. Should be 0, 1, or 2.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float this[uint index] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The subscript index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float at the given index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_One_" data-uid="Tizen.NUI.Position.One*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L494">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_One" data-uid="Tizen.NUI.Position.One">One</h4>
+    <section>
+    <p>Constant ( 1.0f, 1.0f, 1.0f ).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position One { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginBottom_" data-uid="Tizen.NUI.Position.ParentOriginBottom*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L98">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginBottom" data-uid="Tizen.NUI.Position.ParentOriginBottom">ParentOriginBottom</h4>
+    <section>
+    <p>ParentOrigin constants. It's 1.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ParentOriginBottom { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginBottomCenter_" data-uid="Tizen.NUI.Position.ParentOriginBottomCenter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L259">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginBottomCenter" data-uid="Tizen.NUI.Position.ParentOriginBottomCenter">ParentOriginBottomCenter</h4>
+    <section>
+    <p>ParentOrigin constants: 0.5, 1.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginBottomCenter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginBottomLeft_" data-uid="Tizen.NUI.Position.ParentOriginBottomLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L244">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginBottomLeft" data-uid="Tizen.NUI.Position.ParentOriginBottomLeft">ParentOriginBottomLeft</h4>
+    <section>
+    <p>ParentOrigin constants: 0.0f, 1.0f, 0.5f.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginBottomLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginBottomRight_" data-uid="Tizen.NUI.Position.ParentOriginBottomRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L274">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginBottomRight" data-uid="Tizen.NUI.Position.ParentOriginBottomRight">ParentOriginBottomRight</h4>
+    <section>
+    <p>ParentOrigin constants: 1.0, 1.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginBottomRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginCenter_" data-uid="Tizen.NUI.Position.ParentOriginCenter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L214">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginCenter" data-uid="Tizen.NUI.Position.ParentOriginCenter">ParentOriginCenter</h4>
+    <section>
+    <p>ParentOrigin constants: 0.0, 0.5, 0.5</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginCenter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginCenterLeft_" data-uid="Tizen.NUI.Position.ParentOriginCenterLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L199">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginCenterLeft" data-uid="Tizen.NUI.Position.ParentOriginCenterLeft">ParentOriginCenterLeft</h4>
+    <section>
+    <p>ParentOrigin constants: 0.0, 0.5, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginCenterLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginCenterRight_" data-uid="Tizen.NUI.Position.ParentOriginCenterRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L229">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginCenterRight" data-uid="Tizen.NUI.Position.ParentOriginCenterRight">ParentOriginCenterRight</h4>
+    <section>
+    <p>ParentOrigin constants: 1.0, 0.5, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginCenterRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginLeft_" data-uid="Tizen.NUI.Position.ParentOriginLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L112">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginLeft" data-uid="Tizen.NUI.Position.ParentOriginLeft">ParentOriginLeft</h4>
+    <section>
+    <p>ParentOrigin constants. It's 0.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ParentOriginLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginMiddle_" data-uid="Tizen.NUI.Position.ParentOriginMiddle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L140">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginMiddle" data-uid="Tizen.NUI.Position.ParentOriginMiddle">ParentOriginMiddle</h4>
+    <section>
+    <p>ParentOrigin constants. It's 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ParentOriginMiddle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginRight_" data-uid="Tizen.NUI.Position.ParentOriginRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L126">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginRight" data-uid="Tizen.NUI.Position.ParentOriginRight">ParentOriginRight</h4>
+    <section>
+    <p>ParentOrigin constants. It's 1.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ParentOriginRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginTop_" data-uid="Tizen.NUI.Position.ParentOriginTop*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L84">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginTop" data-uid="Tizen.NUI.Position.ParentOriginTop">ParentOriginTop</h4>
+    <section>
+    <p>ParentOrigin constants. It's 0.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ParentOriginTop { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginTopCenter_" data-uid="Tizen.NUI.Position.ParentOriginTopCenter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L169">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginTopCenter" data-uid="Tizen.NUI.Position.ParentOriginTopCenter">ParentOriginTopCenter</h4>
+    <section>
+    <p>ParentOrigin constants: 0.5, 0.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginTopCenter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginTopLeft_" data-uid="Tizen.NUI.Position.ParentOriginTopLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L154">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginTopLeft" data-uid="Tizen.NUI.Position.ParentOriginTopLeft">ParentOriginTopLeft</h4>
+    <section>
+    <p>ParentOrigin constants: 0.0, 0.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginTopLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_ParentOriginTopRight_" data-uid="Tizen.NUI.Position.ParentOriginTopRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L184">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_ParentOriginTopRight" data-uid="Tizen.NUI.Position.ParentOriginTopRight">ParentOriginTopRight</h4>
+    <section>
+    <p>ParentOrigin constants: 1.0, 0.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position ParentOriginTopRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointBottom_" data-uid="Tizen.NUI.Position.PivotPointBottom*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L303">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointBottom" data-uid="Tizen.NUI.Position.PivotPointBottom">PivotPointBottom</h4>
+    <section>
+    <p>PivotPoint constants: 1.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PivotPointBottom { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointBottomCenter_" data-uid="Tizen.NUI.Position.PivotPointBottomCenter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L464">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointBottomCenter" data-uid="Tizen.NUI.Position.PivotPointBottomCenter">PivotPointBottomCenter</h4>
+    <section>
+    <p>PivotPoint constants: 0.5, 1.0, 0.5</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointBottomCenter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointBottomLeft_" data-uid="Tizen.NUI.Position.PivotPointBottomLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L449">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointBottomLeft" data-uid="Tizen.NUI.Position.PivotPointBottomLeft">PivotPointBottomLeft</h4>
+    <section>
+    <p>PivotPoint constants: 0.0, 1.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointBottomLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointBottomRight_" data-uid="Tizen.NUI.Position.PivotPointBottomRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L479">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointBottomRight" data-uid="Tizen.NUI.Position.PivotPointBottomRight">PivotPointBottomRight</h4>
+    <section>
+    <p>PivotPoint constants: 1.0, 1.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointBottomRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointCenter_" data-uid="Tizen.NUI.Position.PivotPointCenter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L419">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointCenter" data-uid="Tizen.NUI.Position.PivotPointCenter">PivotPointCenter</h4>
+    <section>
+    <p>PivotPoint constants: 0.5, 0.5, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointCenter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointCenterLeft_" data-uid="Tizen.NUI.Position.PivotPointCenterLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L404">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointCenterLeft" data-uid="Tizen.NUI.Position.PivotPointCenterLeft">PivotPointCenterLeft</h4>
+    <section>
+    <p>PivotPoint constants: 0.0, 0.5, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointCenterLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointCenterRight_" data-uid="Tizen.NUI.Position.PivotPointCenterRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L434">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointCenterRight" data-uid="Tizen.NUI.Position.PivotPointCenterRight">PivotPointCenterRight</h4>
+    <section>
+    <p>PivotPoint constants: 1.0, 0.5, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointCenterRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointLeft_" data-uid="Tizen.NUI.Position.PivotPointLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L317">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointLeft" data-uid="Tizen.NUI.Position.PivotPointLeft">PivotPointLeft</h4>
+    <section>
+    <p>PivotPoint constants: 0.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PivotPointLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointMiddle_" data-uid="Tizen.NUI.Position.PivotPointMiddle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L345">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointMiddle" data-uid="Tizen.NUI.Position.PivotPointMiddle">PivotPointMiddle</h4>
+    <section>
+    <p>PivotPoint constants: 0.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PivotPointMiddle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointRight_" data-uid="Tizen.NUI.Position.PivotPointRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L331">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointRight" data-uid="Tizen.NUI.Position.PivotPointRight">PivotPointRight</h4>
+    <section>
+    <p>PivotPoint constants: 1.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PivotPointRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointTop_" data-uid="Tizen.NUI.Position.PivotPointTop*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L289">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointTop" data-uid="Tizen.NUI.Position.PivotPointTop">PivotPointTop</h4>
+    <section>
+    <p>PivotPoint constants: 0.0.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PivotPointTop { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointTopCenter_" data-uid="Tizen.NUI.Position.PivotPointTopCenter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L374">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointTopCenter" data-uid="Tizen.NUI.Position.PivotPointTopCenter">PivotPointTopCenter</h4>
+    <section>
+    <p>PivotPoint constants: 0.5, 0.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointTopCenter { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointTopLeft_" data-uid="Tizen.NUI.Position.PivotPointTopLeft*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L359">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointTopLeft" data-uid="Tizen.NUI.Position.PivotPointTopLeft">PivotPointTopLeft</h4>
+    <section>
+    <p>PivotPoint constants: 0.0, 0.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointTopLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_PivotPointTopRight_" data-uid="Tizen.NUI.Position.PivotPointTopRight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L389">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_PivotPointTopRight" data-uid="Tizen.NUI.Position.PivotPointTopRight">PivotPointTopRight</h4>
+    <section>
+    <p>PivotPoint constants: 1.0, 0.0, 0.5.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PivotPointTopRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_X_" data-uid="Tizen.NUI.Position.X*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L524">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_X" data-uid="Tizen.NUI.Position.X">X</h4>
+    <section>
+    <p>The x component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float X { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_Y_" data-uid="Tizen.NUI.Position.Y*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L545">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_Y" data-uid="Tizen.NUI.Position.Y">Y</h4>
+    <section>
+    <p>The y component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Y { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_Z_" data-uid="Tizen.NUI.Position.Z*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L566">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_Z" data-uid="Tizen.NUI.Position.Z">Z</h4>
+    <section>
+    <p>The z component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Z { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_Zero_" data-uid="Tizen.NUI.Position.Zero*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L509">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_Zero" data-uid="Tizen.NUI.Position.Zero">Zero</h4>
+    <section>
+    <p>Constant ( 0.0f, 0.0f, 0.0f ).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position Zero { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_Position_Equals_" data-uid="Tizen.NUI.Position.Equals*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L782">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_Equals_Tizen_System_Object_" data-uid="Tizen.NUI.Position.Equals(Tizen.System.Object)">Equals(Object)</h4>
+    <section>
+    <p>Determines whether the specified object is equal to the current object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(Object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare with the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the specified object is equal to the current object; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_EqualTo_" data-uid="Tizen.NUI.Position.EqualTo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L809">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_EqualTo_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.EqualTo(Tizen.NUI.Position)">EqualTo(Position)</h4>
+    <section>
+    <p>Compares if rhs is equal to.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EqualTo(Position rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The vector to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Returns true if the two vectors are equal, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_GetHashCode_" data-uid="Tizen.NUI.Position.GetHashCode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L798">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_GetHashCode" data-uid="Tizen.NUI.Position.GetHashCode">GetHashCode()</h4>
+    <section>
+    <p>Gets the the hash code of this Position.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The Hash Code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.GetHashCode()</span></div>
+
+
+
+  <a id="Tizen_NUI_Position_NotEqualTo_" data-uid="Tizen.NUI.Position.NotEqualTo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L822">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_NotEqualTo_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.NotEqualTo(Tizen.NUI.Position)">NotEqualTo(Position)</h4>
+    <section>
+    <p>Compares if rhs is not equal to.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NotEqualTo(Position rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The vector to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Returns true if the two vectors are not equal, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="operators">Operators
+</h2>
+
+  <a id="Tizen_NUI_Position_op_Addition_" data-uid="Tizen.NUI.Position.op_Addition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L671">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Addition_Tizen_NUI_Position_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.op_Addition(Tizen.NUI.Position,Tizen.NUI.Position)">operator +(Position, Position)</h4>
+    <section>
+    <p>An addition operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator +(Position arg1, Position arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The vector to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containing the result of the addition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Division_" data-uid="Tizen.NUI.Position.op_Division*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L742">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Division_Tizen_NUI_Position_System_Single_" data-uid="Tizen.NUI.Position.op_Division(Tizen.NUI.Position,System.Single)">operator /(Position, float)</h4>
+    <section>
+    <p>The division operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator /(Position arg1, float arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to divide.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The float value to scale the vector by.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containing the result of scaling.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Division_" data-uid="Tizen.NUI.Position.op_Division*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L730">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Division_Tizen_NUI_Position_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.op_Division(Tizen.NUI.Position,Tizen.NUI.Position)">operator /(Position, Position)</h4>
+    <section>
+    <p>The division operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator /(Position arg1, Position arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to divide.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The vector to divide.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containing the result of the division.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Implicit_" data-uid="Tizen.NUI.Position.op_Implicit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L751">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Implicit_Tizen_NUI_Position__Tizen_NUI_Vector3" data-uid="Tizen.NUI.Position.op_Implicit(Tizen.NUI.Position)~Tizen.NUI.Vector3">implicit operator Vector3(Position)</h4>
+    <section>
+    <p>Converts a position instance to a Vector3 instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Vector3(Position Position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">Position</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Implicit_" data-uid="Tizen.NUI.Position.op_Implicit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L760">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Implicit_Tizen_NUI_Vector3__Tizen_NUI_Position" data-uid="Tizen.NUI.Position.op_Implicit(Tizen.NUI.Vector3)~Tizen.NUI.Position">implicit operator Position(Vector3)</h4>
+    <section>
+    <p>Converts a Vector3 instance to a position instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Position(Vector3 vec)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">vec</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Multiply_" data-uid="Tizen.NUI.Position.op_Multiply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L718">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Multiply_Tizen_NUI_Position_System_Single_" data-uid="Tizen.NUI.Position.op_Multiply(Tizen.NUI.Position,System.Single)">operator *(Position, float)</h4>
+    <section>
+    <p>The multiplication operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator *(Position arg1, float arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to multiply</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The float value to scale the vector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containing the result of scaling.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Multiply_" data-uid="Tizen.NUI.Position.op_Multiply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L706">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Multiply_Tizen_NUI_Position_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.op_Multiply(Tizen.NUI.Position,Tizen.NUI.Position)">operator *(Position, Position)</h4>
+    <section>
+    <p>The multiplication operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator *(Position arg1, Position arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to multiply.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The vector to multiply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containing the result of the multiplication.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_Subtraction_" data-uid="Tizen.NUI.Position.op_Subtraction*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L683">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_Subtraction_Tizen_NUI_Position_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.op_Subtraction(Tizen.NUI.Position,Tizen.NUI.Position)">operator -(Position, Position)</h4>
+    <section>
+    <p>The subtraction operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator -(Position arg1, Position arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to subtract.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The vector to subtract.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containing the result of the subtraction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Position_op_UnaryNegation_" data-uid="Tizen.NUI.Position.op_UnaryNegation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Position.cs/#L694">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Position_op_UnaryNegation_Tizen_NUI_Position_" data-uid="Tizen.NUI.Position.op_UnaryNegation(Tizen.NUI.Position)">operator -(Position)</h4>
+    <section>
+    <p>The unary negation operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position operator -(Position arg1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>The vector to negate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The vector containg the negation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

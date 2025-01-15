@@ -1,0 +1,721 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EdjeObject
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EdjeObject
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API5">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="ElmSharp.EdjeObject">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="ElmSharp_EdjeObject" data-uid="ElmSharp.EdjeObject" class="mt-0 text-break"><span class="entity-type">Class</span>
+EdjeObject
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The EdjeObject is a class that the evas object exists in.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class EdjeObject</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">EdjeObject</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="ElmSharp_EdjeObject_Item_" data-uid="ElmSharp.EdjeObject.Item*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L45">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_Item_System_String_" data-uid="ElmSharp.EdjeObject.Item(System.String)">this[string]</h4>
+    <section>
+    <p>Checks whether an edje part exists in a given edje object's group definition.
+This function returns if a given part exists in the edje group bound to object obj</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EdjeTextPartObject this[string part] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">part</span></td>
+        <td><p>The part's name to check for existence in object's group.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EdjeTextPartObject.html">EdjeTextPartObject</a></td>
+        <td><p>TRUE, if the edje part exists in the object's group, otherwise FALSE.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_EdjeObject_Item_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This call is useful, for example, when one could expect a given GUI element, depending on the theme applied to object.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="ElmSharp_EdjeObject_AddSignalAction_" data-uid="ElmSharp.EdjeObject.AddSignalAction*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L163">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_AddSignalAction_System_String_System_String_System_Action_System_String_System_String__" data-uid="ElmSharp.EdjeObject.AddSignalAction(System.String,System.String,System.Action{System.String,System.String})">AddSignalAction(string, string, Action&lt;string, string&gt;)</h4>
+    <section>
+    <p>Adds Action for an arriving edje signal, emitted by a given Ejde object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddSignalAction(string emission, string source, Action&lt;string, string&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">emission</span></td>
+        <td><p>The signal's &quot;emission&quot; string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The signal's &quot;source&quot; string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action&lt;T1, T2&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The action to be executed when the signal is emitted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EdjeObject_DeleteColorClass_" data-uid="ElmSharp.EdjeObject.DeleteColorClass*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L75">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_DeleteColorClass_System_String_" data-uid="ElmSharp.EdjeObject.DeleteColorClass(System.String)">DeleteColorClass(string)</h4>
+    <section>
+    <p>Deletes the object Color class.
+This function deletes any values at the object level for the specified object and Color class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteColorClass(string part)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">part</span></td>
+        <td><p>The Color class to be deleted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_EdjeObject_DeleteColorClass_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Deleting the Color class defined in the theme file.</p>
+</div>
+
+
+
+  <a id="ElmSharp_EdjeObject_DeleteSignalAction_" data-uid="ElmSharp.EdjeObject.DeleteSignalAction*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L188">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_DeleteSignalAction_System_String_System_String_System_Action_System_String_System_String__" data-uid="ElmSharp.EdjeObject.DeleteSignalAction(System.String,System.String,System.Action{System.String,System.String})">DeleteSignalAction(string, string, Action&lt;string, string&gt;)</h4>
+    <section>
+    <p>Deletes a signal-triggered action from an object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteSignalAction(string emission, string source, Action&lt;string, string&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">emission</span></td>
+        <td><p>The signal's &quot;emission&quot; string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The signal's &quot;source&quot; string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action&lt;T1, T2&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The action to be executed when the signal is emitted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EdjeObject_EmitSignal_" data-uid="ElmSharp.EdjeObject.EmitSignal*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L63">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_EmitSignal_System_String_System_String_" data-uid="ElmSharp.EdjeObject.EmitSignal(System.String,System.String)">EmitSignal(string, string)</h4>
+    <section>
+    <p>Sends or emits an edje signal to a given edje object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EmitSignal(string emission, string source)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">emission</span></td>
+        <td><p>The signal's &quot;emission&quot; string</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The signal's &quot;source&quot; string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EdjeObject_GetColorClass_" data-uid="ElmSharp.EdjeObject.GetColorClass*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L123">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_GetColorClass_System_String_System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__System_Int32__" data-uid="ElmSharp.EdjeObject.GetColorClass(System.String,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">GetColorClass(string, out int, out int, out int, out int, out int, out int, out int, out int, out int, out int, out int, out int)</h4>
+    <section>
+    <p>Gets the object Color class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue, out int outlineAlpha, out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">colorClass</span></td>
+        <td><p>The Color class name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">red</span></td>
+        <td><p>The object red value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">green</span></td>
+        <td><p>The object green value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">blue</span></td>
+        <td><p>The object blue value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">alpha</span></td>
+        <td><p>The object alpha value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineRed</span></td>
+        <td><p>The outline red value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineGreen</span></td>
+        <td><p>The outline green value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineBlue</span></td>
+        <td><p>The outline blue value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineAlpha</span></td>
+        <td><p>The outline alpha value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowRed</span></td>
+        <td><p>The shadow red value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowGreen</span></td>
+        <td><p>The shadow green value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowBlue</span></td>
+        <td><p>The shadow blue value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowAlpha</span></td>
+        <td><p>The shadow alpha value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if succeeds, otherwise False.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EdjeObject_GetTextClass_" data-uid="ElmSharp.EdjeObject.GetTextClass*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L151">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_GetTextClass_System_String_System_String__System_Int32__" data-uid="ElmSharp.EdjeObject.GetTextClass(System.String,System.String@,System.Int32@)">GetTextClass(string, out string, out int)</h4>
+    <section>
+    <p>Gets the Edje text class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetTextClass(string textClass, out string font, out int fontSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">textClass</span></td>
+        <td><p>The text class name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">font</span></td>
+        <td><p>Font name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">fontSize</span></td>
+        <td><p>Font size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if succeeds, otherwise False.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EdjeObject_SetColorClass_" data-uid="ElmSharp.EdjeObject.SetColorClass*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L98">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_SetColorClass_System_String_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="ElmSharp.EdjeObject.SetColorClass(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">SetColorClass(string, int, int, int, int, int, int, int, int, int, int, int, int)</h4>
+    <section>
+    <p>Sets the object Color class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha, int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">colorClass</span></td>
+        <td><p>The Color class name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">red</span></td>
+        <td><p>The object red value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">green</span></td>
+        <td><p>The object green value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">blue</span></td>
+        <td><p>The object blue value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">alpha</span></td>
+        <td><p>The object alpha value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineRed</span></td>
+        <td><p>The outline red value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineGreen</span></td>
+        <td><p>The outline green value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineBlue</span></td>
+        <td><p>The outline blue value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">outlineAlpha</span></td>
+        <td><p>The outline alpha value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowRed</span></td>
+        <td><p>The shadow red value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowGreen</span></td>
+        <td><p>The shadow green value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowBlue</span></td>
+        <td><p>The shadow blue value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">shadowAlpha</span></td>
+        <td><p>The shadow alpha value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if succeeds, otherwise False.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EdjeObject_SetTextClass_" data-uid="ElmSharp.EdjeObject.SetTextClass*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/ElmSharp/ElmSharp/EdjeObject.cs/#L138">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EdjeObject_SetTextClass_System_String_System_String_System_Int32_" data-uid="ElmSharp.EdjeObject.SetTextClass(System.String,System.String,System.Int32)">SetTextClass(string, string, int)</h4>
+    <section>
+    <p>Sets the Edje text class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetTextClass(string textClass, string font, int fontSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">textClass</span></td>
+        <td><p>The text class name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">font</span></td>
+        <td><p>Font name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">fontSize</span></td>
+        <td><p>Font size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if succeeds, otherwise False.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

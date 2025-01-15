@@ -1,0 +1,1029 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ScreenMirroring
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ScreenMirroring
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_ScreenMirroring" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring" class="mt-0 text-break"><span class="entity-type">Class</span>
+ScreenMirroring
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L31" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides the ability to connect to and disconnect from a screen mirroring source,
+start, pause, and resume the screen mirroring as a sink.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ScreenMirroring : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ScreenMirroring</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring__ctor_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L65">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring__ctor" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.#ctor">ScreenMirroring()</h4>
+    <section>
+    <p>Initializes a new instance of the ScreenMirroring class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScreenMirroring()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_AudioInfo_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.AudioInfo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L147">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_AudioInfo" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.AudioInfo">AudioInfo</h4>
+    <section>
+    <p>Gets the negotiated audio info.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScreenMirroringAudioInfo AudioInfo { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringAudioInfo.html">ScreenMirroringAudioInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_VideoInfo_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.VideoInfo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L153">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_VideoInfo" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.VideoInfo">VideoInfo</h4>
+    <section>
+    <p>Gets the negotiated video info.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScreenMirroringVideoInfo VideoInfo { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringVideoInfo.html">ScreenMirroringVideoInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L317">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync(System.String,System.UInt32)">ConnectAsync(string, uint)</h4>
+    <section>
+    <p>Creates the connection and ready for receiving data from a mirroring source with the given <code data-dev-comment-type="paramref" class="paramref">port</code>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ConnectAsync(string sourceIp, uint port)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">sourceIp</span></td>
+        <td><p>The source ip address to connect.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">port</span></td>
+        <td><p>The port number to connect. The max value is 65535.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Prepared">Prepared</a> state by
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_">Prepare(Display, ScreenMirroringResolutions)</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">port</code> is greater than port max value(65535).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L290">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ConnectAsync(System.String)">ConnectAsync(string)</h4>
+    <section>
+    <p>Creates the connection and ready for receiving data from a mirroring source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ConnectAsync(string sourceIp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">sourceIp</span></td>
+        <td><p>The source ip address to connect.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Prepared">Prepared</a> state by
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_">Prepare(Display, ScreenMirroringResolutions)</a>.<br>
+The default port number is 2022.<br>
+If you want to connect using different port number, please use <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_">ConnectAsync(string, uint)</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_">ConnectAsync(string, uint)</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Disconnect_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Disconnect*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L427">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Disconnect" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Disconnect">Disconnect()</h4>
+    <section>
+    <p>Disconnects from the source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Disconnect()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_Disconnect_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Connected">Connected</a>,
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Paused">Paused</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L477">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resource used by the <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Call <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Dispose">Dispose()</a> when you are finished using the <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a>.
+The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Dispose">Dispose()</a> method leaves the <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> in an unusable
+state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Dispose">Dispose()</a>, you must release all references to the
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> so the garbage collector can reclaim the memory that the
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> was occupying.</p>
+</div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L490">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the resources used by the ScreenMirroring.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Finalize_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L86">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Finalize" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Finalize">~ScreenMirroring()</h4>
+    <section>
+    <p>Finalizes an instance of the ScreenMirroring class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~ScreenMirroring()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.PauseAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L380">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.PauseAsync">PauseAsync()</h4>
+    <section>
+    <p>Pauses mirroring from the source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task PauseAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Playing">Playing</a> state by
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync">StartAsync()</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L220">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare(Tizen.Multimedia.Display,Tizen.Multimedia.Remoting.ScreenMirroringResolutions)">Prepare(Display, ScreenMirroringResolutions)</h4>
+    <section>
+    <p>Prepares the screen mirroring with the specified display and resolutions.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Prepare(Display display, ScreenMirroringResolutions resolutions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Display.html">Display</a></td>
+        <td><span class="parametername">display</span></td>
+        <td><p>The display where the mirroring will be played on.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringResolutions.html">ScreenMirroringResolutions</a></td>
+        <td><span class="parametername">resolutions</span></td>
+        <td><p>The desired resolutions.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Idle">Idle</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">resolutions</code> contain invalid flags.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">display</code> has already been assigned to another.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">display</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L194">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Prepare(Tizen.Multimedia.Display)">Prepare(Display)</h4>
+    <section>
+    <p>Prepares the screen mirroring with the specified display.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Prepare(Display display)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Display.html">Display</a></td>
+        <td><span class="parametername">display</span></td>
+        <td><p>The display where the mirroring will be played on.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Idle">Idle</a>.<br>
+<br>
+All supported resolutions will be candidates.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">display</code> has already been assigned to another.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">display</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_ResumeAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ResumeAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L404">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ResumeAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ResumeAsync">ResumeAsync()</h4>
+    <section>
+    <p>Resumes mirroring from the source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ResumeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ResumeAsync_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Paused">Paused</a> state by
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync">PauseAsync()</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StartAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L356">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StartAsync">StartAsync()</h4>
+    <section>
+    <p>Starts mirroring from the source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task StartAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Connected">Connected</a> state by
+<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_">ConnectAsync(string)</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Unprepare_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Unprepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L449">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Unprepare" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Unprepares the screen mirroring.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_Unprepare_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Prepared">Prepared</a>,
+or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Disconnected">Disconnected</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L101">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_ErrorOccurred" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>Occurs when an error occurs.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ScreenMirroringErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringErrorOccurredEventArgs.html">ScreenMirroringErrorOccurredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L95">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_StateChanged" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.StateChanged">StateChanged</h4>
+    <section>
+    <p>Occurs when the state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ScreenMirroringStateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringStateChangedEventArgs.html">ScreenMirroringStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1126 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MultiButtonEntry
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MultiButtonEntry
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="ElmSharp.MultiButtonEntry">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="ElmSharp_MultiButtonEntry" data-uid="ElmSharp.MultiButtonEntry" class="mt-0 text-break"><span class="entity-type">Class</span>
+MultiButtonEntry
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L30" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>It inherits <a class="xref" href="ElmSharp.Layout.html">Layout</a>.
+The MultiButtonEntry is a widget, that lets a user enter text and each chunk of the text managed as a set of buttons.
+Each text button is inserted by pressing the &quot;return&quot; key. If there is no space in the current row, a new button is added to the next row.
+When a text button is pressed, it will become focused. Backspace removes the focus. When the multi-button entry loses focus, items longer than one line are shrunk to one line.
+The typical use case of multi-button entry is composing emails/messages to a group of addresses, each of which is an item that can be clicked for further actions.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MultiButtonEntry : Layout, IAccessibleObject</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Accessible.AccessibleObject.html">AccessibleObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Widget.html">Widget</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Layout.html">Layout</a></div>
+        <div><span class="xref">MultiButtonEntry</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="ElmSharp_MultiButtonEntry__ctor_" data-uid="ElmSharp.MultiButtonEntry.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L54">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry__ctor_ElmSharp_EvasObject_" data-uid="ElmSharp.MultiButtonEntry.#ctor(ElmSharp.EvasObject)">MultiButtonEntry(EvasObject)</h4>
+    <section>
+    <p>Creates and initializes a new instance of the MultiButtonEntry class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntry(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent is a given container, which will be attached by the MultiButtonEntry as a child. It's <a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a> type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="ElmSharp_MultiButtonEntry_Entry_" data-uid="ElmSharp.MultiButtonEntry.Entry*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L212">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Entry" data-uid="ElmSharp.MultiButtonEntry.Entry">Entry</h4>
+    <section>
+    <p>Gets the entry object int the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Entry Entry { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Entry.html">Entry</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_FirstItem_" data-uid="ElmSharp.MultiButtonEntry.FirstItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L186">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_FirstItem" data-uid="ElmSharp.MultiButtonEntry.FirstItem">FirstItem</h4>
+    <section>
+    <p>Gets the first item in the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem FirstItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_IsEditable_" data-uid="ElmSharp.MultiButtonEntry.IsEditable*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L152">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_IsEditable" data-uid="ElmSharp.MultiButtonEntry.IsEditable">IsEditable</h4>
+    <section>
+    <p>Gets or sets whether the MultiButtonEntry is editable or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEditable { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_IsExpanded_" data-uid="ElmSharp.MultiButtonEntry.IsExpanded*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L170">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_IsExpanded" data-uid="ElmSharp.MultiButtonEntry.IsExpanded">IsExpanded</h4>
+    <section>
+    <p>Gets or sets the MultiButtonEntry to expanded state.
+If true, expanded state.
+If false, single line state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExpanded { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_LastItem_" data-uid="ElmSharp.MultiButtonEntry.LastItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L199">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_LastItem" data-uid="ElmSharp.MultiButtonEntry.LastItem">LastItem</h4>
+    <section>
+    <p>Gets the last item in the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem LastItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_SelectedItem_" data-uid="ElmSharp.MultiButtonEntry.SelectedItem*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L139">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_SelectedItem" data-uid="ElmSharp.MultiButtonEntry.SelectedItem">SelectedItem</h4>
+    <section>
+    <p>Gets the selected item in the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem SelectedItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="ElmSharp_MultiButtonEntry_Append_" data-uid="ElmSharp.MultiButtonEntry.Append*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L242">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Append_System_String_" data-uid="ElmSharp.MultiButtonEntry.Append(System.String)">Append(string)</h4>
+    <section>
+    <p>Appends a new item to the multibuttonentry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem Append(string label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">label</span></td>
+        <td><p>The label of the new item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td><p>A MultiButtonEntryItem to the item added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_AppendFilter_" data-uid="ElmSharp.MultiButtonEntry.AppendFilter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L309">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_AppendFilter_System_Func_System_String_System_Boolean__" data-uid="ElmSharp.MultiButtonEntry.AppendFilter(System.Func{System.String,System.Boolean})">AppendFilter(Func&lt;string, bool&gt;)</h4>
+    <section>
+    <p>Appends an item filter function for the text inserted in the multibuttonentry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendFilter(Func&lt;string, bool&gt; func)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function to use as item filter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_Clear_" data-uid="ElmSharp.MultiButtonEntry.Clear*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L294">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Clear" data-uid="ElmSharp.MultiButtonEntry.Clear">Clear()</h4>
+    <section>
+    <p>Removes all items in the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_CreateHandle_" data-uid="ElmSharp.MultiButtonEntry.CreateHandle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L231">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_CreateHandle_ElmSharp_EvasObject_" data-uid="ElmSharp.MultiButtonEntry.CreateHandle(ElmSharp.EvasObject)">CreateHandle(EvasObject)</h4>
+    <section>
+    <p>Creates a widget handle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>Parent EvasObject.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><p>Handle IntPtr.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Layout.html#ElmSharp_Layout_CreateHandle_ElmSharp_EvasObject_">Layout.CreateHandle(EvasObject)</a></div>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_InsertAfter_" data-uid="ElmSharp.MultiButtonEntry.InsertAfter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L283">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_InsertAfter_ElmSharp_MultiButtonEntryItem_System_String_" data-uid="ElmSharp.MultiButtonEntry.InsertAfter(ElmSharp.MultiButtonEntryItem,System.String)">InsertAfter(MultiButtonEntryItem, string)</h4>
+    <section>
+    <p>Adds a new item to the MultiButtonEntry after the indicated object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem InsertAfter(MultiButtonEntryItem after, string label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td><span class="parametername">after</span></td>
+        <td><p>The item after which to add it.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">label</span></td>
+        <td><p>The label of new item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td><p>A MultiButtonEntryItem to the item added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_InsertBefore_" data-uid="ElmSharp.MultiButtonEntry.InsertBefore*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L269">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_InsertBefore_ElmSharp_MultiButtonEntryItem_System_String_" data-uid="ElmSharp.MultiButtonEntry.InsertBefore(ElmSharp.MultiButtonEntryItem,System.String)">InsertBefore(MultiButtonEntryItem, string)</h4>
+    <section>
+    <p>Adds a new item to the MultiButtonEntry before the indicated object reference.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem InsertBefore(MultiButtonEntryItem before, string label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td><span class="parametername">before</span></td>
+        <td><p>The item before which to add it.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">label</span></td>
+        <td><p>The label of new item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td><p>A MultiButtonEntryItem to the item added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_Prepend_" data-uid="ElmSharp.MultiButtonEntry.Prepend*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L255">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Prepend_System_String_" data-uid="ElmSharp.MultiButtonEntry.Prepend(System.String)">Prepend(string)</h4>
+    <section>
+    <p>Prepends a new item to the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MultiButtonEntryItem Prepend(string label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">label</span></td>
+        <td><p>The label of the new item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.MultiButtonEntryItem.html">MultiButtonEntryItem</a></td>
+        <td><p>A MultiButtonEntryItem to the item added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_PrependFilter_" data-uid="ElmSharp.MultiButtonEntry.PrependFilter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L323">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_PrependFilter_System_Func_System_String_System_Boolean__" data-uid="ElmSharp.MultiButtonEntry.PrependFilter(System.Func{System.String,System.Boolean})">PrependFilter(Func&lt;string, bool&gt;)</h4>
+    <section>
+    <p>Prepends a filter function for the text inserted in the MultiButtonEntry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PrependFilter(Func&lt;string, bool&gt; func)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function to use as text filter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_RemoveFilter_" data-uid="ElmSharp.MultiButtonEntry.RemoveFilter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L337">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_RemoveFilter_System_Func_System_String_System_Boolean__" data-uid="ElmSharp.MultiButtonEntry.RemoveFilter(System.Func{System.String,System.Boolean})">RemoveFilter(Func&lt;string, bool&gt;)</h4>
+    <section>
+    <p>Removes a filter from the list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveFilter(Func&lt;string, bool&gt; func)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The filter function to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_MultiButtonEntry_SetFormatCallback_" data-uid="ElmSharp.MultiButtonEntry.SetFormatCallback*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L352">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_SetFormatCallback_System_Func_System_Int32_System_String__" data-uid="ElmSharp.MultiButtonEntry.SetFormatCallback(System.Func{System.Int32,System.String})">SetFormatCallback(Func&lt;int, string&gt;)</h4>
+    <section>
+    <p>Sets a function to format the string that will be used to display the hidden items counter.
+If func is NULL, the default format will be used, which is &quot;+ 'the hidden items counter'&quot;.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFormatCallback(Func&lt;int, string&gt; func)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;<span class="xref">int</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function to return string to show.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L84">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Clicked" data-uid="ElmSharp.MultiButtonEntry.Clicked">Clicked</h4>
+    <section>
+    <p>Clicked is raised when a MultiButtonEntry is clicked.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Clicked</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L96">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Contracted" data-uid="ElmSharp.MultiButtonEntry.Contracted">Contracted</h4>
+    <section>
+    <p>Contracted is raised when a MultiButtonEntry is contracted.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Contracted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L90">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_Expanded" data-uid="ElmSharp.MultiButtonEntry.Expanded">Expanded</h4>
+    <section>
+    <p>Expanded is raised when a MultiButtonEntry is expanded.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Expanded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L102">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_ExpandedStateChanged" data-uid="ElmSharp.MultiButtonEntry.ExpandedStateChanged">ExpandedStateChanged</h4>
+    <section>
+    <p>ExpandedStateChanged is raised when shrink mode state of MultiButtonEntry is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler ExpandedStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L127">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_ItemAdded" data-uid="ElmSharp.MultiButtonEntry.ItemAdded">ItemAdded</h4>
+    <section>
+    <p>ItemAdded is raised when a new MultiButtonEntry item is added.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MultiButtonEntryItemEventArgs&gt; ItemAdded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.MultiButtonEntryItemEventArgs.html">MultiButtonEntryItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L115">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_ItemClicked" data-uid="ElmSharp.MultiButtonEntry.ItemClicked">ItemClicked</h4>
+    <section>
+    <p>ItemClicked is raised when an item is clicked by user interaction.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MultiButtonEntryItemEventArgs&gt; ItemClicked</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.MultiButtonEntryItemEventArgs.html">MultiButtonEntryItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L133">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_ItemDeleted" data-uid="ElmSharp.MultiButtonEntry.ItemDeleted">ItemDeleted</h4>
+    <section>
+    <p>ItemDeleted is raised when a MultiButtonEntry item is deleted.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MultiButtonEntryItemEventArgs&gt; ItemDeleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.MultiButtonEntryItemEventArgs.html">MultiButtonEntryItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L121">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_ItemLongPressed" data-uid="ElmSharp.MultiButtonEntry.ItemLongPressed">ItemLongPressed</h4>
+    <section>
+    <p>ItemLongPressed is raised when MultiButtonEntry item is pressed for a long time.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MultiButtonEntryItemEventArgs&gt; ItemLongPressed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.MultiButtonEntryItemEventArgs.html">MultiButtonEntryItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/ElmSharp/ElmSharp/MultiButtonEntry.cs/#L109">View Source</a>
+    </span>
+    <h4 id="ElmSharp_MultiButtonEntry_ItemSelected" data-uid="ElmSharp.MultiButtonEntry.ItemSelected">ItemSelected</h4>
+    <section>
+    <p>ItemSelected is raised when an item is selected by API, user interaction, and etc.
+This is also raised when a user presses backspace, while the cursor is on the first field of the entry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MultiButtonEntryItemEventArgs&gt; ItemSelected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.MultiButtonEntryItemEventArgs.html">MultiButtonEntryItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Activate_ElmSharp_EvasObject_">RotaryEventExtensions.Activate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_AddRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.AddRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_EvasObject_">RotaryEventExtensions.Deactivate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_RemoveRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.RemoveRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

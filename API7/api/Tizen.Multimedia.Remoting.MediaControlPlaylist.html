@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MediaControlPlaylist
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MediaControlPlaylist
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_MediaControlPlaylist" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist" class="mt-0 text-break"><span class="entity-type">Class</span>
+MediaControlPlaylist
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents playlist for media control.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MediaControlPlaylist : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">MediaControlPlaylist</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L60">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist__ctor_System_String_System_Collections_Generic_Dictionary_System_String_Tizen_Multimedia_Remoting_MediaControlMetadata__" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,Tizen.Multimedia.Remoting.MediaControlMetadata})">MediaControlPlaylist(string, Dictionary&lt;string, MediaControlMetadata&gt;)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaylist.html">MediaControlPlaylist</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaControlPlaylist(string name, Dictionary&lt;string, MediaControlMetadata&gt; metadata)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of this playlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a>&gt;</td>
+        <td><span class="parametername">metadata</span></td>
+        <td><p>The metadata of this playlist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L38">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist__ctor_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.#ctor(System.String)">MediaControlPlaylist(string)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaylist.html">MediaControlPlaylist</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaControlPlaylist(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of this playlist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Name_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Name*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L112">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Name" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Name">Name</h4>
+    <section>
+    <p>Gets or sets the name of playlist.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_TotalCount_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.TotalCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L117">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_TotalCount" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.TotalCount">TotalCount</h4>
+    <section>
+    <p>Gets the total number of media in this playlist.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_AddMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.AddMetadata*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L182">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_AddMetadata_System_Collections_Generic_Dictionary_System_String_Tizen_Multimedia_Remoting_MediaControlMetadata__" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.AddMetadata(System.Collections.Generic.Dictionary{System.String,Tizen.Multimedia.Remoting.MediaControlMetadata})">AddMetadata(Dictionary&lt;string, MediaControlMetadata&gt;)</h4>
+    <section>
+    <p>Sets the metadata to the playlist.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddMetadata(Dictionary&lt;string, MediaControlMetadata&gt; metadata)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a>&gt;</td>
+        <td><span class="parametername">metadata</span></td>
+        <td><p>The metadata of media.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">metadata</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_AddMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.AddMetadata*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L204">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_AddMetadata_System_String_Tizen_Multimedia_Remoting_MediaControlMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.AddMetadata(System.String,Tizen.Multimedia.Remoting.MediaControlMetadata)">AddMetadata(string, MediaControlMetadata)</h4>
+    <section>
+    <p>Sets the metadata to the playlist.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddMetadata(string index, MediaControlMetadata metadata)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of media in the playlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a></td>
+        <td><span class="parametername">metadata</span></td>
+        <td><p>The metadata of media.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> or <code data-dev-comment-type="paramref" class="paramref">metadata</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Dispose_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L272">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Dispose" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases the unmanaged resources used by the MediaControlPlaylist.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Dispose_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L285">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the resources used by the Recorder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Finalize_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L87">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Finalize" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Finalize">~MediaControlPlaylist()</h4>
+    <section>
+    <p>Finalizes an instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaylist.html">MediaControlPlaylist</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~MediaControlPlaylist()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_GetMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.GetMetadata*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L140">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_GetMetadata" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.GetMetadata">GetMetadata()</h4>
+    <section>
+    <p>Gets the playlist index and metadata pair.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, MediaControlMetadata&gt; GetMetadata()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a>&gt;</td>
+        <td><p>The dictionary set of index and <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a> pair.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_GetMetadata_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.GetMetadata*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L156">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_GetMetadata_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.GetMetadata(System.String)">GetMetadata(string)</h4>
+    <section>
+    <p>Gets the metadata by index.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaControlMetadata GetMetadata(string index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of media in the playlist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a></td>
+        <td><p>A <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a> instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Update_" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Update*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.Remoting/MediaController/MediaControlPlaylist.cs/#L251">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlPlaylist_Update" data-uid="Tizen.Multimedia.Remoting.MediaControlPlaylist.Update">Update()</h4>
+    <section>
+    <p>Update the playlist by latest info.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

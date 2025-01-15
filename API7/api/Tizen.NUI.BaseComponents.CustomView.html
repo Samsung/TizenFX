@@ -1,0 +1,2238 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CustomView
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CustomView
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.CustomView">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_BaseComponents_CustomView" data-uid="Tizen.NUI.BaseComponents.CustomView" class="mt-0 text-break"><span class="entity-type">Class</span>
+CustomView
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L26" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>CustomView provides some common functionality required by all views.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CustomView : ViewWrapper, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
+        <div><span class="xref">CustomView</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_CustomView__ctor_" data-uid="Tizen.NUI.BaseComponents.CustomView.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L79">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView__ctor_System_String_Tizen_NUI_CustomViewBehaviour_" data-uid="Tizen.NUI.BaseComponents.CustomView.#ctor(System.String,Tizen.NUI.CustomViewBehaviour)">CustomView(string, CustomViewBehaviour)</h4>
+    <section>
+    <p>Create an instance of customView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CustomView(string typeName, CustomViewBehaviour behaviour)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">typeName</span></td>
+        <td><p>typename</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.CustomViewBehaviour.html">CustomViewBehaviour</a></td>
+        <td><span class="parametername">behaviour</span></td>
+        <td><p>CustomView Behaviour</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_FocusGroup_" data-uid="Tizen.NUI.BaseComponents.CustomView.FocusGroup*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L107">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_FocusGroup" data-uid="Tizen.NUI.BaseComponents.CustomView.FocusGroup">FocusGroup</h4>
+    <section>
+    <p>Sets or gets whether this control is a focus group for keyboard navigation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FocusGroup { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if this control is set as a focus group for keyboard navigation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_FocusNavigationSupport_" data-uid="Tizen.NUI.BaseComponents.CustomView.FocusNavigationSupport*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L90">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_FocusNavigationSupport" data-uid="Tizen.NUI.BaseComponents.CustomView.FocusNavigationSupport">FocusNavigationSupport</h4>
+    <section>
+    <p>Sets whether this control supports two dimensional keyboard navigation
+(i.e., whether it knows how to handle the keyboard focus movement between its child views).<br>
+The control doesn't support it by default.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FocusNavigationSupport { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_CalculateChildSize_" data-uid="Tizen.NUI.BaseComponents.CustomView.CalculateChildSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L305">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_CalculateChildSize_Tizen_NUI_BaseComponents_View_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.CalculateChildSize(Tizen.NUI.BaseComponents.View,Tizen.NUI.DimensionType)">CalculateChildSize(View, DimensionType)</h4>
+    <section>
+    <p>Calculates the size for a child.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float CalculateChildSize(View child, DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>The child view to calculate the size for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The dimension to calculate the size, for example, the width or the height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_CalculateChildSizeBase_" data-uid="Tizen.NUI.BaseComponents.CustomView.CalculateChildSizeBase*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L614">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_CalculateChildSizeBase_Tizen_NUI_BaseComponents_View_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.CalculateChildSizeBase(Tizen.NUI.BaseComponents.View,Tizen.NUI.DimensionType)">CalculateChildSizeBase(View, DimensionType)</h4>
+    <section>
+    <p>Calculates the size for a child using the base view object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float CalculateChildSizeBase(View child, DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>The child view to calculate the size for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The dimension to calculate the size, for example, the width or the height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_CreateTransition_" data-uid="Tizen.NUI.BaseComponents.CustomView.CreateTransition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L719">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_CreateTransition_Tizen_NUI_TransitionData_" data-uid="Tizen.NUI.BaseComponents.CustomView.CreateTransition(Tizen.NUI.TransitionData)">CreateTransition(TransitionData)</h4>
+    <section>
+    <p>Creates a transition effect on the control.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Animation CreateTransition(TransitionData transitionData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.TransitionData.html">TransitionData</a></td>
+        <td><span class="parametername">transitionData</span></td>
+        <td><p>The transition data describing the effect to create.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>A handle to an animation defined with the given effect, or an empty handle if no properties match.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_EmitFocusSignal_" data-uid="Tizen.NUI.BaseComponents.CustomView.EmitFocusSignal*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L730">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_EmitFocusSignal_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.CustomView.EmitFocusSignal(System.Boolean)">EmitFocusSignal(bool)</h4>
+    <section>
+    <p>Emits the KeyInputFocusGained signal if true, else, emits the KeyInputFocusLost signal.<br>
+Should be called last by the control after it acts on the input focus change.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void EmitFocusSignal(bool focusGained)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">focusGained</span></td>
+        <td><p>True if gained, false if lost.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_EnableGestureDetection_" data-uid="Tizen.NUI.BaseComponents.CustomView.EnableGestureDetection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L135">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_EnableGestureDetection_Tizen_NUI_Gesture_GestureType_" data-uid="Tizen.NUI.BaseComponents.CustomView.EnableGestureDetection(Tizen.NUI.Gesture.GestureType)">EnableGestureDetection(GestureType)</h4>
+    <section>
+    <p>Allows deriving classes to enable any of the gesture detectors that are available.<br>
+Gesture detection can be enabled one at a time or in a bitwise format.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnableGestureDetection(Gesture.GestureType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Gesture.html">Gesture</a>.<a class="xref" href="Tizen.NUI.Gesture.GestureType.html">GestureType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The gesture type(s) to enable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_EnableVisual_" data-uid="Tizen.NUI.BaseComponents.CustomView.EnableVisual*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L696">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_EnableVisual_System_Int32_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.CustomView.EnableVisual(System.Int32,System.Boolean)">EnableVisual(int, bool)</h4>
+    <section>
+    <p>Sets the given visual to be displayed or not when parent staged.<br>
+For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void EnableVisual(int index, bool enable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index of the visual, used to reference visual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enable</span></td>
+        <td><p>Flag set to enabled or disabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidth_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetHeightForWidth*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L317">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidth_System_Single_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetHeightForWidth(System.Single)">GetHeightForWidth(float)</h4>
+    <section>
+    <p>This method is called during size negotiation when a height is required for a given width.<br>
+Derived classes should override this if they wish to customize the height returned.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float GetHeightForWidth(float width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>Width to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The height based on the width</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidthBase_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetHeightForWidthBase*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L591">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidthBase_System_Single_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetHeightForWidthBase(System.Single)">GetHeightForWidthBase(float)</h4>
+    <section>
+    <p>Provides the view implementation of GetHeightForWidth.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float GetHeightForWidthBase(float width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The height based on the width.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetNaturalSize_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetNaturalSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L293">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetNaturalSize" data-uid="Tizen.NUI.BaseComponents.CustomView.GetNaturalSize">GetNaturalSize()</h4>
+    <section>
+    <p>Returns the natural size of the view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Size2D GetNaturalSize()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>The view's natural size</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetNextFocusableView_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetNextFocusableView*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L410">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetNextFocusableView_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_View_FocusDirection_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetNextFocusableView(Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.View.FocusDirection,System.Boolean)">GetNextFocusableView(View, FocusDirection, bool)</h4>
+    <section>
+    <p>Gets the next keyboard focusable view in this control towards the given direction.<br>
+A control needs to override this function in order to support two dimensional keyboard navigation.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">currentFocusedView</span></td>
+        <td><p>The current focused view.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>.<a class="xref" href="Tizen.NUI.BaseComponents.View.FocusDirection.html">FocusDirection</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction to move the focus towards.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">loopEnabled</span></td>
+        <td><p>Whether the focus movement should be looped within the control.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>The next keyboard focusable view in this control or an empty handle if no view can be focused.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetVisual_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetVisual*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L684">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetVisual_System_Int32_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetVisual(System.Int32)">GetVisual(int)</h4>
+    <section>
+    <p>Retrieves the visual associated with the given property index.<br>
+For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected VisualBase GetVisual(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index of the visual used to reference visual.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualBase.html">VisualBase</a></td>
+        <td><p>The registered visual if exists, otherwise an empty handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeight_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetWidthForHeight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L329">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeight_System_Single_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetWidthForHeight(System.Single)">GetWidthForHeight(float)</h4>
+    <section>
+    <p>This method is called during size negotiation when a width is required for a given height.<br>
+Derived classes should override this if they wish to customize the width returned.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float GetWidthForHeight(float height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>Height to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The width based on the width</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeightBase_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetWidthForHeightBase*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L602">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeightBase_System_Single_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetWidthForHeightBase(System.Single)">GetWidthForHeightBase(float)</h4>
+    <section>
+    <p>Provides the view implementation of GetWidthForHeight.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float GetWidthForHeightBase(float height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The width based on the height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_IsVisualEnabled_" data-uid="Tizen.NUI.BaseComponents.CustomView.IsVisualEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L708">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_IsVisualEnabled_System_Int32_" data-uid="Tizen.NUI.BaseComponents.CustomView.IsVisualEnabled(System.Int32)">IsVisualEnabled(int)</h4>
+    <section>
+    <p>Queries if the given visual is to be displayed when parent staged.<br>
+For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsVisualEnabled(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index of the visual.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether visual is enabled or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnCalculateRelayoutSize_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnCalculateRelayoutSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L361">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnCalculateRelayoutSize_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnCalculateRelayoutSize(Tizen.NUI.DimensionType)">OnCalculateRelayoutSize(DimensionType)</h4>
+    <section>
+    <p>The virtual method to notify deriving classes that relayout dependencies have been
+met and the size for this object is about to be calculated for the given dimension.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnCalculateRelayoutSize(DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The dimension that is about to be calculated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnChildAdd_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnChildAdd*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L176">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnChildAdd_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnChildAdd(Tizen.NUI.BaseComponents.View)">OnChildAdd(View)</h4>
+    <section>
+    <p>Called after a child has been added to the owning view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnChildAdd(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The child which has been added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnChildRemove_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnChildRemove*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L185">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnChildRemove_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnChildRemove(Tizen.NUI.BaseComponents.View)">OnChildRemove(View)</h4>
+    <section>
+    <p>Called after the owning view has attempted to remove a child( regardless of whether it succeeded or not ).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnChildRemove(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The child being removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnFocusChangeCommitted_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnFocusChangeCommitted*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L421">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnFocusChangeCommitted_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnFocusChangeCommitted(Tizen.NUI.BaseComponents.View)">OnFocusChangeCommitted(View)</h4>
+    <section>
+    <p>Informs this control that its chosen focusable view will be focused.<br>
+This allows the application to preform any actions it wishes before the focus is actually moved to the chosen view.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnFocusChangeCommitted(View commitedFocusableView)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">commitedFocusableView</span></td>
+        <td><p>The commited focused view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnFocusGained_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnFocusGained*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L389">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnFocusGained" data-uid="Tizen.NUI.BaseComponents.CustomView.OnFocusGained">OnFocusGained()</h4>
+    <section>
+    <p>Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnFocusGained()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnFocusLost_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnFocusLost*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L397">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnFocusLost" data-uid="Tizen.NUI.BaseComponents.CustomView.OnFocusLost">OnFocusLost()</h4>
+    <section>
+    <p>Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is lost.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnFocusLost()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnHover_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnHover*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L237">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnHover_Tizen_NUI_Hover_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnHover(Tizen.NUI.Hover)">OnHover(Hover)</h4>
+    <section>
+    <p>Called after a hover event is received by the owning view.<br>
+CustomViewBehaviour.REQUIRES_HOVER_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool OnHover(Hover hover)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Hover.html">Hover</a></td>
+        <td><span class="parametername">hover</span></td>
+        <td><p>The hover event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the hover event should be consumed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnInitialize_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnInitialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L145">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnInitialize" data-uid="Tizen.NUI.BaseComponents.CustomView.OnInitialize">OnInitialize()</h4>
+    <section>
+    <p>This method is called after the control has been initialized.<br>
+Derived classes should do any second phase initialization by overriding this method.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnInitialize()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnKey_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnKey*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L248">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnKey_Tizen_NUI_Key_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnKey(Tizen.NUI.Key)">OnKey(Key)</h4>
+    <section>
+    <p>Called after a key event is received by the view that has had its focus set.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool OnKey(Key key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Key.html">Key</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the key event should be consumed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnKeyboardEnter_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnKeyboardEnter*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L431">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnKeyboardEnter" data-uid="Tizen.NUI.BaseComponents.CustomView.OnKeyboardEnter">OnKeyboardEnter()</h4>
+    <section>
+    <p>This method is called when the control has enter pressed on it.<br>
+Derived classes should override this to perform custom actions.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool OnKeyboardEnter()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if this control supported this action.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnLayoutNegotiated_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnLayoutNegotiated*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L371">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnLayoutNegotiated_System_Single_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnLayoutNegotiated(System.Single,Tizen.NUI.DimensionType)">OnLayoutNegotiated(float, DimensionType)</h4>
+    <section>
+    <p>The virtual method to notify deriving classes that the size for a dimension has just been negotiated.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnLayoutNegotiated(float size, DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The new size for the given dimension.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The dimension that was just negotiated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnPan_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnPan*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L444">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnPan_Tizen_NUI_PanGesture_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnPan(Tizen.NUI.PanGesture)">OnPan(PanGesture)</h4>
+    <section>
+    <p>Called whenever a pan gesture is detected on this control.<br>
+This should be overridden by deriving classes when pan detection is enabled.<br>
+There is no default behavior with panning.<br>
+Pan detection should be enabled via EnableGestureDetection().<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnPan(PanGesture pan)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PanGesture.html">PanGesture</a></td>
+        <td><span class="parametername">pan</span></td>
+        <td><p>The pan gesture.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnPropertySet_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnPropertySet*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L195">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnPropertySet_System_Int32_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnPropertySet(System.Int32,Tizen.NUI.PropertyValue)">OnPropertySet(int, PropertyValue)</h4>
+    <section>
+    <p>Called when the owning view property is set.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnPropertySet(int index, PropertyValue propertyValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index that was set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
+        <td><span class="parametername">propertyValue</span></td>
+        <td><p>The value to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnRelayout_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnRelayout*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L274">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnRelayout(Tizen.NUI.Vector2,Tizen.NUI.RelayoutContainer)">OnRelayout(Vector2, RelayoutContainer)</h4>
+    <section>
+    <p>Called after the size negotiation has been finished for this control.<br>
+The control is expected to assign this given size to itself or its children.<br>
+Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br>
+As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnRelayout(Vector2 size, RelayoutContainer container)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The allocated size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></td>
+        <td><span class="parametername">container</span></td>
+        <td><p>The control should add views to this container that it is not able to allocate a size for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnSetResizePolicy_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnSetResizePolicy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L284">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnSetResizePolicy_Tizen_NUI_ResizePolicyType_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnSetResizePolicy(Tizen.NUI.ResizePolicyType,Tizen.NUI.DimensionType)">OnSetResizePolicy(ResizePolicyType, DimensionType)</h4>
+    <section>
+    <p>Notification for deriving classes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ResizePolicyType.html">ResizePolicyType</a></td>
+        <td><span class="parametername">policy</span></td>
+        <td><p>The policy being set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The policy is being set for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnSizeAnimation_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnSizeAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L214">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnSizeAnimation_Tizen_NUI_Animation_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnSizeAnimation(Tizen.NUI.Animation,Tizen.NUI.Vector3)">OnSizeAnimation(Animation, Vector3)</h4>
+    <section>
+    <p>Called when the owning view's size is animated, for example, using Animation::AnimateTo( Property ( view, View::Property::SIZE ), ... ).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><span class="parametername">animation</span></td>
+        <td><p>The object which is animating the owning view.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">targetSize</span></td>
+        <td><p>The target size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnSizeSet_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnSizeSet*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L204">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnSizeSet_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnSizeSet(Tizen.NUI.Vector3)">OnSizeSet(Vector3)</h4>
+    <section>
+    <p>Called when the owning view's size is set, for example, using View.SetSize().</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnSizeSet(Vector3 targetSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">targetSize</span></td>
+        <td><p>The target size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnStageConnection_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageConnection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L157">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnStageConnection_System_Int32_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageConnection(System.Int32)">OnStageConnection(int)</h4>
+    <section>
+    <p>Called after the view has been connected to the stage.<br>
+When a view is connected, it will be directly or indirectly parented to the root view.<br>
+The root view is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br>
+When the parent of a set of views is connected to the stage, then all of the children will receive this callback.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnStageConnection(int depth)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">depth</span></td>
+        <td><p>The depth in the hierarchy for the view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnStageDisconnection_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageDisconnection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L167">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnStageDisconnection" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageDisconnection">OnStageDisconnection()</h4>
+    <section>
+    <p>Called after the view has been disconnected from the stage.<br>
+If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br>
+When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnStageDisconnection()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnStyleChange_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStyleChange*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L381">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnStyleChange_Tizen_NUI_StyleManager_Tizen_NUI_StyleChangeType_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStyleChange(Tizen.NUI.StyleManager,Tizen.NUI.StyleChangeType)">OnStyleChange(StyleManager, StyleChangeType)</h4>
+    <section>
+    <p>This method should be overridden by deriving classes requiring notifications when the style changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.StyleManager.html">StyleManager</a></td>
+        <td><span class="parametername">styleManager</span></td>
+        <td><p>The StyleManager object.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.StyleChangeType.html">StyleChangeType</a></td>
+        <td><span class="parametername">change</span></td>
+        <td><p>Information denoting what has changed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnTap_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnTap*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L456">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnTap_Tizen_NUI_TapGesture_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnTap(Tizen.NUI.TapGesture)">OnTap(TapGesture)</h4>
+    <section>
+    <p>Called whenever a tap gesture is detected on this control.<br>
+This should be overridden by deriving classes when tap detection is enabled.<br>
+There is no default behavior with a tap.<br>
+Tap detection should be enabled via EnableGestureDetection().<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnTap(TapGesture tap)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.TapGesture.html">TapGesture</a></td>
+        <td><span class="parametername">tap</span></td>
+        <td><p>The tap gesture.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnTouch_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnTouch*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L225">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnTouch_Tizen_NUI_Touch_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnTouch(Tizen.NUI.Touch)">OnTouch(Touch)</h4>
+    <section>
+    <p>Called after a touch event is received by the owning view.<br>
+CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool OnTouch(Touch touch)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Touch.html">Touch</a></td>
+        <td><span class="parametername">touch</span></td>
+        <td><p>The touch event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the event should be consumed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnWheel_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnWheel*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L260">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_OnWheel_Tizen_NUI_Wheel_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnWheel(Tizen.NUI.Wheel)">OnWheel(Wheel)</h4>
+    <section>
+    <p>Called after a wheel event is received by the owning view.<br>
+CustomViewBehaviour.REQUIRES_WHEEL_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool OnWheel(Wheel wheel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a></td>
+        <td><span class="parametername">wheel</span></td>
+        <td><p>The wheel event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the wheel event should be consumed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RegisterVisual_" data-uid="Tizen.NUI.BaseComponents.CustomView.RegisterVisual*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L662">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RegisterVisual_System_Int32_Tizen_NUI_VisualBase_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.CustomView.RegisterVisual(System.Int32,Tizen.NUI.VisualBase,System.Boolean)">RegisterVisual(int, VisualBase, bool)</h4>
+    <section>
+    <p>Registers a visual by the property index, linking a view to visual when required.<br>
+In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br>
+If enabled is false, then the visual is not set on the stage until enabled by the derived class.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RegisterVisual(int index, VisualBase visual, bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index of the visual used to reference visual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualBase.html">VisualBase</a></td>
+        <td><span class="parametername">visual</span></td>
+        <td><p>The visual to register.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enabled</span></td>
+        <td><p>False if derived class wants to control when the visual is set on the stage.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RegisterVisual_" data-uid="Tizen.NUI.BaseComponents.CustomView.RegisterVisual*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L648">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RegisterVisual_System_Int32_Tizen_NUI_VisualBase_" data-uid="Tizen.NUI.BaseComponents.CustomView.RegisterVisual(System.Int32,Tizen.NUI.VisualBase)">RegisterVisual(int, VisualBase)</h4>
+    <section>
+    <p>Registers a visual by property index, linking a view to visual when required.<br>
+In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br>
+No parenting is done during registration, this should be done by a derived class.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RegisterVisual(int index, VisualBase visual)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index of the visual used to reference visual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualBase.html">VisualBase</a></td>
+        <td><span class="parametername">visual</span></td>
+        <td><p>The visual to register.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildren_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildren*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L350">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildren" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildren">RelayoutDependentOnChildren()</h4>
+    <section>
+    <p>Determines if this view is dependent on it's children for relayout from the base class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool RelayoutDependentOnChildren()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Return true if the view is dependent on it's children.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildren_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildren*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L340">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildren_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildren(Tizen.NUI.DimensionType)">RelayoutDependentOnChildren(DimensionType)</h4>
+    <section>
+    <p>Determines if this view is dependent on it's children for relayout.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool RelayoutDependentOnChildren(DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The dimension(s) to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Return if the view is dependent on it's children.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildrenBase_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildrenBase*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L635">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildrenBase" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildrenBase">RelayoutDependentOnChildrenBase()</h4>
+    <section>
+    <p>Determines if this view is dependent on it's children for relayout from the base class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool RelayoutDependentOnChildrenBase()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Return if the view is dependent on it's children.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildrenBase_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildrenBase*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L625">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RelayoutDependentOnChildrenBase_Tizen_NUI_DimensionType_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutDependentOnChildrenBase(Tizen.NUI.DimensionType)">RelayoutDependentOnChildrenBase(DimensionType)</h4>
+    <section>
+    <p>Determines if this view is dependent on it's children for relayout from the base class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DimensionType.html">DimensionType</a></td>
+        <td><span class="parametername">dimension</span></td>
+        <td><p>The dimension(s) to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Return if the view is dependent on it's children.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_RelayoutRequest_" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L580">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_RelayoutRequest" data-uid="Tizen.NUI.BaseComponents.CustomView.RelayoutRequest">RelayoutRequest()</h4>
+    <section>
+    <p>Requests a relayout, which means performing a size negotiation on this view, its parent, and children (and potentially whole scene).<br>
+This method can also be called from a derived class every time it needs a different size.<br>
+At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br>
+It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RelayoutRequest()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_SetBackground_" data-uid="Tizen.NUI.BaseComponents.CustomView.SetBackground*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L124">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_SetBackground_Tizen_NUI_PropertyMap_" data-uid="Tizen.NUI.BaseComponents.CustomView.SetBackground(Tizen.NUI.PropertyMap)">SetBackground(PropertyMap)</h4>
+    <section>
+    <p>Sets the background with a property map.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBackground(PropertyMap map)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td><span class="parametername">map</span></td>
+        <td><p>The background property map.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_CustomView_UnregisterVisual_" data-uid="Tizen.NUI.BaseComponents.CustomView.UnregisterVisual*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L672">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_CustomView_UnregisterVisual_System_Int32_" data-uid="Tizen.NUI.BaseComponents.CustomView.UnregisterVisual(System.Int32)">UnregisterVisual(int)</h4>
+    <section>
+    <p>Erases the entry matching the given index from the list of registered visuals.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UnregisterVisual(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The property index of the visual used to reference visual.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

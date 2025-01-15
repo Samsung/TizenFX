@@ -1,0 +1,644 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DnssdService
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DnssdService
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.Nsd.DnssdService">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Network_Nsd_DnssdService" data-uid="Tizen.Network.Nsd.DnssdService" class="mt-0 text-break"><span class="entity-type">Class</span>
+DnssdService
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L44" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Nsd.html">Nsd</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Nsd.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class is used for managing the local service registration and its properties using DNS-SD.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DnssdService : INsdService, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">DnssdService</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Network_Nsd_DnssdService__ctor_" data-uid="Tizen.Network.Nsd.DnssdService.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L61">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService__ctor_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.#ctor(System.String)">DnssdService(string)</h4>
+    <section>
+    <p>The constructor to create the DnssdService instance that sets the serviceType to a given value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DnssdService(string serviceType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">serviceType</span></td>
+        <td><p>The DNS-SD service type. It is expressed as a type followed by the protocol, separated by a dot (For example, &quot;_ftp._tcp&quot;).
+It must begin with an underscore followed by 1-15 characters, which may be letters, digits, or hyphens.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown while setting this property when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the serviceType is set to null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Network_Nsd_DnssdService_IP_" data-uid="Tizen.Network.Nsd.DnssdService.IP*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L204">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_IP" data-uid="Tizen.Network.Nsd.DnssdService.IP">IP</h4>
+    <section>
+    <p>IP address of the DNS-SD remote service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IPAddressInformation IP { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Nsd.IPAddressInformation.html">IPAddressInformation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Nsd_DnssdService_IP_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If the remote service has no IPv4 Address, then IPv4Address would contain null and if it has no IPv6 Address, then IPv6Address would contain null.
+In case of an error, null object will be returned.</p>
+</div>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_Name_" data-uid="Tizen.Network.Nsd.DnssdService.Name*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L97">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Name" data-uid="Tizen.Network.Nsd.DnssdService.Name">Name</h4>
+    <section>
+    <p>Name of the DNS-SD service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Nsd_DnssdService_Name_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Set the name for only an unregistered service created locally.
+It may be up to 63 bytes.
+In case of an error, null will be returned during get and exception will be thrown during set.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown while setting this property when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the name value is set to null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown while setting this property when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_Port_" data-uid="Tizen.Network.Nsd.DnssdService.Port*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L165">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Port" data-uid="Tizen.Network.Nsd.DnssdService.Port">Port</h4>
+    <section>
+    <p>Port number of the DNS-SD local or remote service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Port { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Nsd_DnssdService_Port_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Set the port for only an unregistered service created locally. The default value of the port is 0.
+In case of an error, -1 will be returned during get and exception will be thrown during set.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown while setting this property when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the value of port is set to less than 0 or more than 65535.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown while setting this property when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_Type_" data-uid="Tizen.Network.Nsd.DnssdService.Type*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L137">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Type" data-uid="Tizen.Network.Nsd.DnssdService.Type">Type</h4>
+    <section>
+    <p>Type of the DNS-SD local or remote service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Type { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Nsd_DnssdService_Type_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is expressed as a type followed by the protocol, separated by a dot (For example, &quot;_ftp._tcp&quot;).
+It must begin with an underscore followed by 1-15 characters, which may be letters, digits, or hyphens.
+In case of an error, null will be returned.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_" data-uid="Tizen.Network.Nsd.DnssdService.AddTXTRecord*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L244">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_System_String_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.AddTXTRecord(System.String,System.String)">AddTXTRecord(string, string)</h4>
+    <section>
+    <p>Adds the TXT record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddTXTRecord(string key, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the TXT record. It must be a null-terminated string with 9 characters or fewer excluding null. It is case insensitive.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of the TXT record. If null, then &quot;key&quot; will be added with no value. If non-null but the value_length is zero, then &quot;key=&quot; will be added with an empty value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_Nsd_DnssdService_AddTXTRecord_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>TXT record should be added after registering the local service using RegisterService().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the value of the key is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_DeregisterService_" data-uid="Tizen.Network.Nsd.DnssdService.DeregisterService*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L343">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_DeregisterService" data-uid="Tizen.Network.Nsd.DnssdService.DeregisterService">DeregisterService()</h4>
+    <section>
+    <p>Deregisters the DNS-SD local service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeregisterService()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_Nsd_DnssdService_DeregisterService_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A local service registered using RegisterService() must be passed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_Dispose_" data-uid="Tizen.Network.Nsd.DnssdService.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L388">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Dispose" data-uid="Tizen.Network.Nsd.DnssdService.Dispose">Dispose()</h4>
+    <section>
+    <p>Disposes the memory allocated to unmanaged resources.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_Finalize_" data-uid="Tizen.Network.Nsd.DnssdService.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L379">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_Finalize" data-uid="Tizen.Network.Nsd.DnssdService.Finalize">~DnssdService()</h4>
+    <section>
+    <p>Destroys the DnssdService object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~DnssdService()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_RegisterService_" data-uid="Tizen.Network.Nsd.DnssdService.RegisterService*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L309">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_RegisterService" data-uid="Tizen.Network.Nsd.DnssdService.RegisterService">RegisterService()</h4>
+    <section>
+    <p>Registers the DNS-SD local service for publishing.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterService()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_Nsd_DnssdService_RemoveTXTRecord_" data-uid="Tizen.Network.Nsd.DnssdService.RemoveTXTRecord*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.Nsd/Tizen.Network.Nsd/DnssdService.cs/#L276">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Nsd_DnssdService_RemoveTXTRecord_System_String_" data-uid="Tizen.Network.Nsd.DnssdService.RemoveTXTRecord(System.String)">RemoveTXTRecord(string)</h4>
+    <section>
+    <p>Removes the TXT record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveTXTRecord(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key of the TXT record to be removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when DNS-SD is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the value of the key is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when any other error occurred.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1037 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Size2D
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Size2D
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API9">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Size2D">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Size2D" data-uid="Tizen.NUI.Size2D" class="mt-0 text-break"><span class="entity-type">Class</span>
+Size2D
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A two-dimensional size.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Size2D : Disposable, IDisposable, ICloneable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></div>
+        <div><span class="xref">Size2D</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.ICloneable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_Size2D__ctor_" data-uid="Tizen.NUI.Size2D.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L45">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D__ctor" data-uid="Tizen.NUI.Size2D.#ctor">Size2D()</h4>
+    <section>
+    <p>The constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size2D()</code></pre>
+  </div>
+  <h5 id="Tizen_NUI_Size2D__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br>
+For example, the followings are possible. <br>
+view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br>
+view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br>
+view.MinimumSize = new Size(10, 10, 0); <br>
+Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
+</div>
+
+
+
+  <a id="Tizen_NUI_Size2D__ctor_" data-uid="Tizen.NUI.Size2D.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L64">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D__ctor_System_Int32_System_Int32_" data-uid="Tizen.NUI.Size2D.#ctor(System.Int32,System.Int32)">Size2D(int, int)</h4>
+    <section>
+    <p>The constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size2D(int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width component.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height component.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Size2D__ctor_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br>
+For example, the followings are possible. <br>
+view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br>
+view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br>
+view.MinimumSize = new Size(10, 10, 0); <br>
+Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
+</div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_Size2D_Height_" data-uid="Tizen.NUI.Size2D.Height*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L119">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_Height" data-uid="Tizen.NUI.Size2D.Height">Height</h4>
+    <section>
+    <p>The property for the height component of a size.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Height { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Size2D_Height_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The setter is deprecated in API8 and will be removed in API10. Use new Size2D(...) constructor.</p>
+</div>
+
+
+
+  <a id="Tizen_NUI_Size2D_Item_" data-uid="Tizen.NUI.Size2D.Item*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L274">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_Item_System_UInt32_" data-uid="Tizen.NUI.Size2D.Item(System.UInt32)">this[uint]</h4>
+    <section>
+    <p>The array subscript operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float this[uint index] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The subscript index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float at the given index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_Width_" data-uid="Tizen.NUI.Size2D.Width*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L86">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_Width" data-uid="Tizen.NUI.Size2D.Width">Width</h4>
+    <section>
+    <p>The property for the width component of a size.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Width { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Size2D_Width_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The setter is deprecated in API8 and will be removed in API10. Use new Size2D(...) constructor.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_Size2D_Equals_" data-uid="Tizen.NUI.Size2D.Equals*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L287">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_Equals_Tizen_System_Object_" data-uid="Tizen.NUI.Size2D.Equals(Tizen.System.Object)">Equals(Object)</h4>
+    <section>
+    <p>Determines whether the specified object is equal to the current object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(Object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare with the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the specified object is equal to the current object; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_EqualTo_" data-uid="Tizen.NUI.Size2D.EqualTo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L315">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_EqualTo_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.EqualTo(Tizen.NUI.Size2D)">EqualTo(Size2D)</h4>
+    <section>
+    <p>Checks equality.<br>
+Utilizes appropriate machine epsilon values.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EqualTo(Size2D rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The size to test against.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the sizes are equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_GetHashCode_" data-uid="Tizen.NUI.Size2D.GetHashCode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L303">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_GetHashCode" data-uid="Tizen.NUI.Size2D.GetHashCode">GetHashCode()</h4>
+    <section>
+    <p>Gets the hash code of this Size2D.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The Hash Code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.GetHashCode()</span></div>
+
+
+
+  <a id="Tizen_NUI_Size2D_NotEqualTo_" data-uid="Tizen.NUI.Size2D.NotEqualTo*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L329">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_NotEqualTo_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.NotEqualTo(Tizen.NUI.Size2D)">NotEqualTo(Size2D)</h4>
+    <section>
+    <p>Checks inequality.<br>
+Utilizes appropriate machine epsilon values.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NotEqualTo(Size2D rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The size to test against.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the sizes are not equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="operators">Operators
+</h2>
+
+  <a id="Tizen_NUI_Size2D_op_Addition_" data-uid="Tizen.NUI.Size2D.op_Addition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L144">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Addition_Tizen_NUI_Size2D_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.op_Addition(Tizen.NUI.Size2D,Tizen.NUI.Size2D)">operator +(Size2D, Size2D)</h4>
+    <section>
+    <p>The addition operator for A+B.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator +(Size2D arg1, Size2D arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size A.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>Size to assign B.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the result of the addition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Division_" data-uid="Tizen.NUI.Size2D.op_Division*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L216">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Division_Tizen_NUI_Size2D_System_Int32_" data-uid="Tizen.NUI.Size2D.op_Division(Tizen.NUI.Size2D,System.Int32)">operator /(Size2D, int)</h4>
+    <section>
+    <p>The division operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator /(Size2D arg1, int arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size for division.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The integer value to scale the size by.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the result of the scaling.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Division_" data-uid="Tizen.NUI.Size2D.op_Division*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L204">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Division_Tizen_NUI_Size2D_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.op_Division(Tizen.NUI.Size2D,Tizen.NUI.Size2D)">operator /(Size2D, Size2D)</h4>
+    <section>
+    <p>The division operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator /(Size2D arg1, Size2D arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size for division.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>Size to divide.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the result of the division.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Implicit_" data-uid="Tizen.NUI.Size2D.op_Implicit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L227">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Implicit_Tizen_NUI_Size2D__Tizen_NUI_Vector2" data-uid="Tizen.NUI.Size2D.op_Implicit(Tizen.NUI.Size2D)~Tizen.NUI.Vector2">implicit operator Vector2(Size2D)</h4>
+    <section>
+    <p>The type cast operator, Size2D to Vector2.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Vector2(Size2D size)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>An object of the Size2D type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><p>return a Vector2 instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Implicit_" data-uid="Tizen.NUI.Size2D.op_Implicit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L242">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Implicit_Tizen_NUI_Vector2__Tizen_NUI_Size2D" data-uid="Tizen.NUI.Size2D.op_Implicit(Tizen.NUI.Vector2)~Tizen.NUI.Size2D">implicit operator Size2D(Vector2)</h4>
+    <section>
+    <p>The type cast operator, Vector2 to Size2D type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Size2D(Vector2 vector2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">vector2</span></td>
+        <td><p>An object of the Vector2 type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>return a Size2D instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Multiply_" data-uid="Tizen.NUI.Size2D.op_Multiply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L192">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Multiply_Tizen_NUI_Size2D_System_Int32_" data-uid="Tizen.NUI.Size2D.op_Multiply(Tizen.NUI.Size2D,System.Int32)">operator *(Size2D, int)</h4>
+    <section>
+    <p>The multiplication operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator *(Size2D arg1, int arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size for multiplication</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>The integer value to scale the size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the result of the scaling.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Multiply_" data-uid="Tizen.NUI.Size2D.op_Multiply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L179">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Multiply_Tizen_NUI_Size2D_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.op_Multiply(Tizen.NUI.Size2D,Tizen.NUI.Size2D)">operator *(Size2D, Size2D)</h4>
+    <section>
+    <p>The multiplication operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator *(Size2D arg1, Size2D arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size for multiplication.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>Size to multiply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the result of the multiplication.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_Subtraction_" data-uid="Tizen.NUI.Size2D.op_Subtraction*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L156">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_Subtraction_Tizen_NUI_Size2D_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.op_Subtraction(Tizen.NUI.Size2D,Tizen.NUI.Size2D)">operator -(Size2D, Size2D)</h4>
+    <section>
+    <p>The subtraction operator for A-B.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator -(Size2D arg1, Size2D arg2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size A.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg2</span></td>
+        <td><p>Size to subtract B.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the result of the subtraction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_Size2D_op_UnaryNegation_" data-uid="Tizen.NUI.Size2D.op_UnaryNegation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Size2D.cs/#L167">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Size2D_op_UnaryNegation_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.Size2D.op_UnaryNegation(Tizen.NUI.Size2D)">operator -(Size2D)</h4>
+    <section>
+    <p>The unary negation operator.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D operator -(Size2D arg1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">arg1</span></td>
+        <td><p>Size for unary negation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>A size containing the negation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">System.ICloneable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

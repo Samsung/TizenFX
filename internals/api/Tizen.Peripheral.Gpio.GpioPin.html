@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GpioPin
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GpioPin
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="internals">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Peripheral.Gpio.GpioPin">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Peripheral_Gpio_GpioPin" data-uid="Tizen.Peripheral.Gpio.GpioPin" class="mt-0 text-break"><span class="entity-type">Class</span>
+GpioPin
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L90" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><span class="xref">Tizen</span>.<span class="xref">Peripheral</span>.<a class="xref" href="Tizen.Peripheral.Gpio.html">Gpio</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Peripheral.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The class allows applications to use the platform Digital Pins as Input/Output.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GpioPin : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">GpioPin</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin__ctor_" data-uid="Tizen.Peripheral.Gpio.GpioPin.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L112">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin__ctor_System_Int32_Tizen_Peripheral_Gpio_GpioPinDriveMode_" data-uid="Tizen.Peripheral.Gpio.GpioPin.#ctor(System.Int32,Tizen.Peripheral.Gpio.GpioPinDriveMode)">GpioPin(int, GpioPinDriveMode)</h4>
+    <section>
+    <p>Opens a GPIO pin.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GpioPin(int pinNumber, GpioPinDriveMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">pinNumber</span></td>
+        <td><p>The GPIO pin number.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Peripheral.Gpio.GpioPinDriveMode.html">GpioPinDriveMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>GPIO direction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_PinNumber_" data-uid="Tizen.Peripheral.Gpio.GpioPin.PinNumber*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L216">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_PinNumber" data-uid="Tizen.Peripheral.Gpio.GpioPin.PinNumber">PinNumber</h4>
+    <section>
+    <p>GPIO pin number.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PinNumber { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Polarity_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Polarity*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L245">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Polarity" data-uid="Tizen.Peripheral.Gpio.GpioPin.Polarity">Polarity</h4>
+    <section>
+    <p>Sets or gets the GPIO edge mode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GpioChangePolarity Polarity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Peripheral.Gpio.GpioChangePolarity.html">GpioChangePolarity</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Peripheral_Gpio_GpioPin_Polarity_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Get value is initialized after successful Set call.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Close_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Close*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L187">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Close" data-uid="Tizen.Peripheral.Gpio.GpioPin.Close">Close()</h4>
+    <section>
+    <p>Closes a GPIO pin.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Close()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Dispose_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L192">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Dispose" data-uid="Tizen.Peripheral.Gpio.GpioPin.Dispose">Dispose()</h4>
+    <section>
+    <p>Disposes GPIO.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Dispose_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L201">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Dispose_System_Boolean_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Disposes GPIO.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Finalize_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L155">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Finalize" data-uid="Tizen.Peripheral.Gpio.GpioPin.Finalize">~GpioPin()</h4>
+    <section>
+    <p>Closes the GPIO pin.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~GpioPin()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Read_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Read*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L222">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Read" data-uid="Tizen.Peripheral.Gpio.GpioPin.Read">Read()</h4>
+    <section>
+    <p>Gets pin value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GpioPinValue Read()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Peripheral.Gpio.GpioPinValue.html">GpioPinValue</a></td>
+        <td><p>Pin value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Peripheral_Gpio_GpioPin_Write_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Write*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L234">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_Write_Tizen_Peripheral_Gpio_GpioPinValue_" data-uid="Tizen.Peripheral.Gpio.GpioPin.Write(Tizen.Peripheral.Gpio.GpioPinValue)">Write(GpioPinValue)</h4>
+    <section>
+    <p>Sets pin value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(GpioPinValue value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Peripheral.Gpio.GpioPinValue.html">GpioPinValue</a></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Peripheral/Tizen.Peripheral/Gpio.cs/#L105">View Source</a>
+    </span>
+    <h4 id="Tizen_Peripheral_Gpio_GpioPin_ValueChanged" data-uid="Tizen.Peripheral.Gpio.GpioPin.ValueChanged">ValueChanged</h4>
+    <section>
+    <p>Invoked when Gpio pin was interrupted.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;PinUpdatedEventArgs&gt; ValueChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Peripheral.Gpio.PinUpdatedEventArgs.html">PinUpdatedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

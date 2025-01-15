@@ -1,0 +1,984 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CoreApplication
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CoreApplication
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.CoreApplication">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_CoreApplication" data-uid="Tizen.Applications.CoreApplication" class="mt-0 text-break"><span class="entity-type">Class</span>
+CoreApplication
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L37" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The CoreApplication class provides functionality to manage application lifecycle events that are controlled by the backend system.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CoreApplication : Application, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Applications.Application.html">Application</a></div>
+        <div><span class="xref">CoreApplication</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.CoreUIApplication.html">CoreUIApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.CoreUIApplication.html">CoreUIApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.ServiceApplication.html">ServiceApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.ServiceApplication.html">ServiceApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.WatchApplication.html">WatchApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.WatchApplication.html">WatchApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.WidgetApplication.html">WidgetApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.WidgetApplication.html">WidgetApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIWatchApplication.html">NUIWatchApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIWatchApplication.html">NUIWatchApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIWidgetApplication.html">NUIWidgetApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIWidgetApplication.html">NUIWidgetApplication</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_Applications_CoreApplication_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_CoreApplication__ctor_" data-uid="Tizen.Applications.CoreApplication.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L53">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend_" data-uid="Tizen.Applications.CoreApplication.#ctor(Tizen.Applications.CoreBackend.ICoreBackend)">CoreApplication(ICoreBackend)</h4>
+    <section>
+    <p>Initializes the CoreApplication class by providing a specific implementation of the ICoreBackend interface.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CoreApplication(ICoreBackend backend)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.CoreBackend.ICoreBackend.html">ICoreBackend</a></td>
+        <td><span class="parametername">backend</span></td>
+        <td><p>An instance of the desired implementation of the ICoreBackend interface.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The CoreApplication class provides access to various features and functionalities related to application management.
+By initializing the CoreApplication class with a specific implementation of the ICoreBackend interface, developers can customize the behavior and functionality of their applications based on their requirements.
+It enables them to extend the capabilities of the default CoreApplication class and tailor it according to their needs.</p>
+</div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_CoreApplication_Backend_" data-uid="Tizen.Applications.CoreApplication.Backend*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L130">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Backend" data-uid="Tizen.Applications.CoreApplication.Backend">Backend</h4>
+    <section>
+    <p>The backend instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ICoreBackend Backend { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.CoreBackend.ICoreBackend.html">ICoreBackend</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_Backend_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_CoreApplication_Dispose_" data-uid="Tizen.Applications.CoreApplication.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L388">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Dispose_System_Boolean_" data-uid="Tizen.Applications.CoreApplication.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Applications.Application.html#Tizen_Applications_Application_Dispose_System_Boolean_">Application.Dispose(bool)</a></div>
+  <h5 id="Tizen_Applications_CoreApplication_Dispose_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_Exit_" data-uid="Tizen.Applications.CoreApplication.Exit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L174">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Exit" data-uid="Tizen.Applications.CoreApplication.Exit">Exit()</h4>
+    <section>
+    <p>Exits the main loop of the application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Exit()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Applications.Application.html#Tizen_Applications_Application_Exit">Application.Exit()</a></div>
+  <h5 id="Tizen_Applications_CoreApplication_Exit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnAppControlReceived_" data-uid="Tizen.Applications.CoreApplication.OnAppControlReceived*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L222">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnAppControlReceived_Tizen_Applications_AppControlReceivedEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnAppControlReceived(Tizen.Applications.AppControlReceivedEventArgs)">OnAppControlReceived(AppControlReceivedEventArgs)</h4>
+    <section>
+    <p>Override this method to customize the behavior when the application receives the appcontrol message.
+If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be triggered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControlReceivedEventArgs.html">AppControlReceivedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The arguments passed in the appcontrol message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnAppControlReceived_Tizen_Applications_AppControlReceivedEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnCreate_" data-uid="Tizen.Applications.CoreApplication.OnCreate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L185">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnCreate" data-uid="Tizen.Applications.CoreApplication.OnCreate">OnCreate()</h4>
+    <section>
+    <p>Overrides this method if you want to handle specific behavior when the application is created.
+Calling base.OnCreate() ensures that the default implementation is executed before any custom code in this method.
+If base.OnCreate() is not called, the event 'Created' will not be emitted.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnCreate()</code></pre>
+  </div>
+  <h5 id="Tizen_Applications_CoreApplication_OnCreate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnDeviceOrientationChanged_" data-uid="Tizen.Applications.CoreApplication.OnDeviceOrientationChanged*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L321">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnDeviceOrientationChanged_Tizen_Applications_DeviceOrientationEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnDeviceOrientationChanged(Tizen.Applications.DeviceOrientationEventArgs)">OnDeviceOrientationChanged(DeviceOrientationEventArgs)</h4>
+    <section>
+    <p>Override this method to define specific behavior when the device orientation changes.
+If base.OnDeviceOrientationChanged() is not called, the 'DeviceOrientationChanged' event will not be raised.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.DeviceOrientationEventArgs.html">DeviceOrientationEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The arguments for the device orientation change event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnDeviceOrientationChanged_Tizen_Applications_DeviceOrientationEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnLocaleChanged_" data-uid="Tizen.Applications.CoreApplication.OnLocaleChanged*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L277">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnLocaleChanged_Tizen_Applications_LocaleChangedEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnLocaleChanged(Tizen.Applications.LocaleChangedEventArgs)">OnLocaleChanged(LocaleChangedEventArgs)</h4>
+    <section>
+    <p>Override this method to handle changes in the system language.
+If base.OnLocaleChanged() is not called, the LocaleChanged event will not be triggered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The arguments passed with the LocaleChanged event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnLocaleChanged_Tizen_Applications_LocaleChangedEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnLowBattery_" data-uid="Tizen.Applications.CoreApplication.OnLowBattery*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L260">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnLowBattery_Tizen_Applications_LowBatteryEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnLowBattery(Tizen.Applications.LowBatteryEventArgs)">OnLowBattery(LowBatteryEventArgs)</h4>
+    <section>
+    <p>Override this method to handle the behavior when the system battery level drops.
+If base.OnLowBattery() is not called, the LowBattery event will not be raised.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLowBattery(LowBatteryEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The arguments for the low battery event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnLowBattery_Tizen_Applications_LowBatteryEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnLowMemory_" data-uid="Tizen.Applications.CoreApplication.OnLowMemory*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L239">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnLowMemory_Tizen_Applications_LowMemoryEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnLowMemory(Tizen.Applications.LowMemoryEventArgs)">OnLowMemory(LowMemoryEventArgs)</h4>
+    <section>
+    <p>Override this method to handle behavior when the system memory is low.
+Calling base.OnLowMemory() ensures that the 'LowMemory' event is emitted.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLowMemory(LowMemoryEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The low memory event argument</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnLowMemory_Tizen_Applications_LowMemoryEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnRegionFormatChanged_" data-uid="Tizen.Applications.CoreApplication.OnRegionFormatChanged*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L299">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnRegionFormatChanged_Tizen_Applications_RegionFormatChangedEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnRegionFormatChanged(Tizen.Applications.RegionFormatChangedEventArgs)">OnRegionFormatChanged(RegionFormatChangedEventArgs)</h4>
+    <section>
+    <p>Override this method to handle changes in the region format.
+Make sure to call base.OnRegionFormatChanged() to ensure that the RegionFormatChanged event is raised.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The region format changed event arguments</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnRegionFormatChanged_Tizen_Applications_RegionFormatChangedEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnTerminate_" data-uid="Tizen.Applications.CoreApplication.OnTerminate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L211">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnTerminate" data-uid="Tizen.Applications.CoreApplication.OnTerminate">OnTerminate()</h4>
+    <section>
+    <p>Override this method to define specific actions that occur when the application terminates.
+Calling base.OnTerminate() ensures that the default termination process takes place and the 'Terminated' event is emitted.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnTerminate()</code></pre>
+  </div>
+  <h5 id="Tizen_Applications_CoreApplication_OnTerminate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_OnTimeZoneChanged_" data-uid="Tizen.Applications.CoreApplication.OnTimeZoneChanged*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L332">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_OnTimeZoneChanged_Tizen_Applications_TimeZoneChangedEventArgs_" data-uid="Tizen.Applications.CoreApplication.OnTimeZoneChanged(Tizen.Applications.TimeZoneChangedEventArgs)">OnTimeZoneChanged(TimeZoneChangedEventArgs)</h4>
+    <section>
+    <p>Override this method to handle changes in the current time zone.
+Calling base.OnTimeZoneChanged() ensures that the TimeZoneChanged event is triggered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.TimeZoneChangedEventArgs.html">TimeZoneChangedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The arguments containing details about the time zone change</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_OnTimeZoneChanged_Tizen_Applications_TimeZoneChangedEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_CoreApplication_Run_" data-uid="Tizen.Applications.CoreApplication.Run*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L137">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Run_System_String___" data-uid="Tizen.Applications.CoreApplication.Run(System.String[])">Run(string[])</h4>
+    <section>
+    <p>Runs the application's main loop.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Run(string[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>Arguments from commandline.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Applications.Application.html#Tizen_Applications_Application_Run_System_String___">Application.Run(string[])</a></div>
+  <h5 id="Tizen_Applications_CoreApplication_Run_System_String____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L88">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_AppControlReceived" data-uid="Tizen.Applications.CoreApplication.AppControlReceived">AppControlReceived</h4>
+    <section>
+    <p>Occurs whenever the application receives the appcontrol message.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AppControlReceivedEventArgs&gt; AppControlReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.AppControlReceivedEventArgs.html">AppControlReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_AppControlReceived_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L76">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Created" data-uid="Tizen.Applications.CoreApplication.Created">Created</h4>
+    <section>
+    <p>Occurs when the application is launched.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Created</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_Created_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L118">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_DeviceOrientationChanged" data-uid="Tizen.Applications.CoreApplication.DeviceOrientationChanged">DeviceOrientationChanged</h4>
+    <section>
+    <p>Occurs when the device orientation is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DeviceOrientationEventArgs&gt; DeviceOrientationChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.DeviceOrientationEventArgs.html">DeviceOrientationEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_DeviceOrientationChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L106">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_LocaleChanged" data-uid="Tizen.Applications.CoreApplication.LocaleChanged">LocaleChanged</h4>
+    <section>
+    <p>Occurs when the system language is chagned.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;LocaleChangedEventArgs&gt; LocaleChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_LocaleChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L100">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_LowBattery" data-uid="Tizen.Applications.CoreApplication.LowBattery">LowBattery</h4>
+    <section>
+    <p>Occurs when the system battery is low.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;LowBatteryEventArgs&gt; LowBattery</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_LowBattery_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L94">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_LowMemory" data-uid="Tizen.Applications.CoreApplication.LowMemory">LowMemory</h4>
+    <section>
+    <p>Occurs when the system memory is low.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;LowMemoryEventArgs&gt; LowMemory</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_LowMemory_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L112">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_RegionFormatChanged" data-uid="Tizen.Applications.CoreApplication.RegionFormatChanged">RegionFormatChanged</h4>
+    <section>
+    <p>Occurs when the region format is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RegionFormatChangedEventArgs&gt; RegionFormatChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_RegionFormatChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L82">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Terminated" data-uid="Tizen.Applications.CoreApplication.Terminated">Terminated</h4>
+    <section>
+    <p>Occurs when the application is about to shutdown.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Terminated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_Terminated_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L124">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_TimeZoneChanged" data-uid="Tizen.Applications.CoreApplication.TimeZoneChanged">TimeZoneChanged</h4>
+    <section>
+    <p>Occurs when the time zone is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TimeZoneChangedEventArgs&gt; TimeZoneChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.TimeZoneChangedEventArgs.html">TimeZoneChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_TimeZoneChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.</p>
+</div>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

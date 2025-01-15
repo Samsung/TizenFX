@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class HybridLinkedData
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class HybridLinkedData
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Security.WebAuthn.HybridLinkedData">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Security_WebAuthn_HybridLinkedData" data-uid="Tizen.Security.WebAuthn.HybridLinkedData" class="mt-0 text-break"><span class="entity-type">Class</span>
+HybridLinkedData
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L42" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a>.<a class="xref" href="Tizen.Security.WebAuthn.html">WebAuthn</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.WebAuthn.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Linked device data.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class HybridLinkedData</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">HybridLinkedData</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData__ctor_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L59">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData__ctor_System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.#ctor(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">HybridLinkedData(byte[], byte[], byte[], byte[], byte[], byte[], byte[], byte[])</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Security.WebAuthn.HybridLinkedData.html">HybridLinkedData</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HybridLinkedData(byte[] contactId, byte[] linkId, byte[] linkSecret, byte[] authenticatorPubkey, byte[] authenticatorName, byte[] signature, byte[] tunnelServerDomain, byte[] identityKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">contactId</span></td>
+        <td><p>CBOR:&quot;1&quot;.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">linkId</span></td>
+        <td><p>CBOR:&quot;2&quot;.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">linkSecret</span></td>
+        <td><p>CBOR:&quot;3&quot;.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">authenticatorPubkey</span></td>
+        <td><p>CBOR:&quot;4&quot;.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">authenticatorName</span></td>
+        <td><p>CBOR:&quot;5&quot;.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">signature</span></td>
+        <td><p>CBOR:&quot;6&quot;.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">tunnelServerDomain</span></td>
+        <td><p>Domain String of tunnel server.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">identityKey</span></td>
+        <td><p>Identity Key created during QR initiated transaction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData__ctor_System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___System_Byte___System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>More information on the CBOR format can be found in the following specification:
+<a href="https://www.rfc-editor.org/rfc/rfc8949.html">https://www.rfc-editor.org/rfc/rfc8949.html</a></p>
+</div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_AuthenticatorName_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.AuthenticatorName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L110">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_AuthenticatorName" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.AuthenticatorName">AuthenticatorName</h4>
+    <section>
+    <p>Gets the authenticator name (CBOR:&quot;5&quot;).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] AuthenticatorName { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_AuthenticatorName_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_AuthenticatorPubkey_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.AuthenticatorPubkey*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L106">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_AuthenticatorPubkey" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.AuthenticatorPubkey">AuthenticatorPubkey</h4>
+    <section>
+    <p>Gets the authenticator public key (CBOR:&quot;4&quot;).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] AuthenticatorPubkey { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_AuthenticatorPubkey_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_ContactId_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.ContactId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L94">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_ContactId" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.ContactId">ContactId</h4>
+    <section>
+    <p>Gets the contact id (CBOR:&quot;1&quot;).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] ContactId { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_ContactId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_IdentityKey_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.IdentityKey*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L122">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_IdentityKey" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.IdentityKey">IdentityKey</h4>
+    <section>
+    <p>Gets the identity Key created during QR initiated transaction.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] IdentityKey { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_IdentityKey_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_LinkId_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.LinkId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L98">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_LinkId" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.LinkId">LinkId</h4>
+    <section>
+    <p>Gets the link id (CBOR:&quot;3&quot;).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] LinkId { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_LinkId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_LinkSecret_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.LinkSecret*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_LinkSecret" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.LinkSecret">LinkSecret</h4>
+    <section>
+    <p>Gets the link secret (CBOR:&quot;3&quot;).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] LinkSecret { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_LinkSecret_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_Signature_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.Signature*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L114">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_Signature" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.Signature">Signature</h4>
+    <section>
+    <p>Gets the signature (CBOR:&quot;6&quot;).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] Signature { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_Signature_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+
+  <a id="Tizen_Security_WebAuthn_HybridLinkedData_TunnelServerDomain_" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.TunnelServerDomain*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/HybridLinkedData.cs/#L118">View Source</a>
+    </span>
+    <h4 id="Tizen_Security_WebAuthn_HybridLinkedData_TunnelServerDomain" data-uid="Tizen.Security.WebAuthn.HybridLinkedData.TunnelServerDomain">TunnelServerDomain</h4>
+    <section>
+    <p>Gets the Domain String of tunnel server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] TunnelServerDomain { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_WebAuthn_HybridLinkedData_TunnelServerDomain_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The linked device data is used for state assisted transaction.
+From the successful QR initiated transaction, the linked device data
+might be returned from an authenticator to a webauthn client
+via <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAttestation.html">PubkeyCredAttestation</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredAssertion.html">PubkeyCredAssertion</a>.
+Then the client can store the linked device data and use it in the next call
+for <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> or <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredRequestOptions.html">PubkeyCredRequestOptions</a>.
+Then the stated assisted transaction will start instead of QR initiated transaction.</p>
+<p>For more information, find a section with the keyword, &quot;linking map&quot;,
+from the following specification.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html</a></p>
+<p>For more information about state assisted transaction, refer to the following.
+<a href="https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted">https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#hybrid-state-assisted</a></p>
+</div>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

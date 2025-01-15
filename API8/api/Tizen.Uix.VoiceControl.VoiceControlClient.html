@@ -1,0 +1,1083 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class VoiceControlClient
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class VoiceControlClient
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API8">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Uix_VoiceControl_VoiceControlClient" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient" class="mt-0 text-break"><span class="entity-type">Class</span>
+VoiceControlClient
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L202" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Uix</span>.<a class="xref" href="Tizen.Uix.VoiceControl.html">VoiceControl</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Uix.VoiceControl.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A main function of the voice control API registers the command and gets a notification for the recognition result.
+Applications can add their own commands and provide results when their command is recognized by the user voice input.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class VoiceControlClient</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">VoiceControlClient</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_CurrentLanguage_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.CurrentLanguage*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L236">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_CurrentLanguage" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.CurrentLanguage">CurrentLanguage</h4>
+    <section>
+    <p>Gets the current language.
+A language is specified as an ISO 3166 alpha-2 two letter country-code
+followed by ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.
+An empty string is returned in case of some internal error.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CurrentLanguage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The current language in voice control.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_ServiceState_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.ServiceState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L296">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_ServiceState" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.ServiceState">ServiceState</h4>
+    <section>
+    <p>Gets the current state of the voice control service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ServiceState ServiceState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.ServiceState.html">ServiceState</a></td>
+        <td><p>The current state of the voice control service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_State_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.State*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L266">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_State" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.State">State</h4>
+    <section>
+    <p>Gets the current state of the voice control client.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static State State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.State.html">State</a></td>
+        <td><p>The current state of the voice control client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_Deinitialize_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Deinitialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L402">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_Deinitialize" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Deinitialize">Deinitialize()</h4>
+    <section>
+    <p>Deinitializes the voice control.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Deinitialize()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_GetResult_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.GetResult*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L721">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_GetResult" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.GetResult">GetResult()</h4>
+    <section>
+    <p>Gets the recognition result.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RecognitionResult GetResult()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.RecognitionResult.html">RecognitionResult</a></td>
+        <td><p>The recognition result if possible, else a null object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_GetSupportedLanguages_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.GetSupportedLanguages*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L503">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_GetSupportedLanguages" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.GetSupportedLanguages">GetSupportedLanguages()</h4>
+    <section>
+    <p>Retrieves all the supported languages.
+A language is specified as an ISO 3166 alpha-2 two letter country-code
+followed by ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; GetSupportedLanguages()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_GetSystemCommandList_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.GetSystemCommandList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L550">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_GetSystemCommandList" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.GetSystemCommandList">GetSystemCommandList()</h4>
+    <section>
+    <p>Gets the system command list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static VoiceCommandList GetSystemCommandList()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.VoiceCommandList.html">VoiceCommandList</a></td>
+        <td><p>The command list, else null in case of no system commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_VoiceControl_VoiceControlClient_GetSystemCommandList_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In the system command list, there are system commands predefined by product manufacturers.
+Those commands have the highest priority. Therefore, the user cannot set any commands similar to system commands.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_Initialize_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Initialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L374">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_Initialize" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Initialize">Initialize()</h4>
+    <section>
+    <p>Initializes the voice control.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Initialize()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out Of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_Prepare_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Prepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L436">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_Prepare" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Prepare">Prepare()</h4>
+    <section>
+    <p>Connects the voice control service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Prepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_RequestDialog_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.RequestDialog*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L602">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_RequestDialog_System_String_System_String_System_Boolean_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.RequestDialog(System.String,System.String,System.Boolean)">RequestDialog(string, string, bool)</h4>
+    <section>
+    <p>Requests to start the dialogue.
+By using this function, the developer can start requesting the dialogue to the framework.
+When the developer requests the dialogue, two types of texts, dispText and uttText can be sent by this function. dispText is a text for displaying and uttText is that for uttering.
+For example, if dispText is &quot;October 10th&quot; and uttText is &quot;Today is October 10th.&quot;, &quot;October 10th&quot; will be displayed on the screen and &quot;Today is October 10th.&quot; will be spoken.
+Also, the developer can set whether the dialogue starts automatically or not, using autoStart.
+If the developer sets autoStart as True, the framework will start to record the next speech and continue the dialogue.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RequestDialog(string dispText, string uttText, bool autoStart)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">dispText</span></td>
+        <td><p>Text to be displayed on the screen.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">uttText</span></td>
+        <td><p>Text to be spoken.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">autoStart</span></td>
+        <td><p>A variable for setting whether the dialog session will be restarted automatically or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_VoiceControl_VoiceControlClient_RequestDialog_System_String_System_String_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If autoStart is True, the recognition will start again. In this case, it can be restarted up to 4 times.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_SetCommandList_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.SetCommandList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L639">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_SetCommandList_Tizen_Uix_VoiceControl_VoiceCommandList_Tizen_Uix_VoiceControl_CommandType_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.SetCommandList(Tizen.Uix.VoiceControl.VoiceCommandList,Tizen.Uix.VoiceControl.CommandType)">SetCommandList(VoiceCommandList, CommandType)</h4>
+    <section>
+    <p>Sets the command list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetCommandList(VoiceCommandList list, CommandType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.VoiceCommandList.html">VoiceCommandList</a></td>
+        <td><span class="parametername">list</span></td>
+        <td><p>Command list</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.CommandType.html">CommandType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Command type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_VoiceControl_VoiceControlClient_SetCommandList_Tizen_Uix_VoiceControl_VoiceCommandList_Tizen_Uix_VoiceControl_CommandType__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The command type is valid for CommandType 'Foreground' or 'Background'.
+The matched commands of the command list should be set and they should include type and command text at least.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_SetInvocationName_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.SetInvocationName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L343">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_SetInvocationName_System_String_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.SetInvocationName(System.String)">SetInvocationName(string)</h4>
+    <section>
+    <p>Sets the invocation name.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetInvocationName(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>Invocation name to be invoked by an application.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_VoiceControl_VoiceControlClient_SetInvocationName_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The invocation name is used to activate background commands. The invocation name can be same as the application name or any other phrase.
+For example, an application &quot;Tizen Sample&quot; has a background command, &quot;Play music&quot;, and the invocation name of the application is set to &quot;Tizen Sample&quot;.
+In order to activate the background command, users can say &quot;Tizen Sample, Play music&quot;. The invocation name is dependent on the current language.
+For example, if the current language is &quot;en_US&quot;(English), the invocation name is also &quot;en_US&quot;.
+If the current language is &quot;ja_JP&quot;(Japanese) and the invocation name is &quot;en_US&quot;, the invocation name will not be recognized.
+This function should be called before the SetCommandList().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_Unprepare_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Unprepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L469">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_Unprepare" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Disconnects the voice control service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Unprepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_VoiceControl_VoiceControlClient_UnsetCommandList_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.UnsetCommandList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L679">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_UnsetCommandList_Tizen_Uix_VoiceControl_CommandType_" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.UnsetCommandList(Tizen.Uix.VoiceControl.CommandType)">UnsetCommandList(CommandType)</h4>
+    <section>
+    <p>Unsets the command list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UnsetCommandList(CommandType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.VoiceControl.CommandType.html">CommandType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Command type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L911">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_CurrentLanguageChanged" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.CurrentLanguageChanged">CurrentLanguageChanged</h4>
+    <section>
+    <p>Event to be invoked when the default language changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;CurrentLanguageChangedEventArgs&gt; CurrentLanguageChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.VoiceControl.CurrentLanguageChangedEventArgs.html">CurrentLanguageChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L870">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_ErrorOccured" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.ErrorOccured">ErrorOccured</h4>
+    <section>
+    <p>Event to be invoked when an error occurs.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ErrorOccuredEventArgs&gt; ErrorOccured</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.VoiceControl.ErrorOccuredEventArgs.html">ErrorOccuredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L745">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_RecognitionResult" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.RecognitionResult">RecognitionResult</h4>
+    <section>
+    <p>Event to be invoked when the recognition is done.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;RecognitionResultEventArgs&gt; RecognitionResult</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.VoiceControl.RecognitionResultEventArgs.html">RecognitionResultEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L792">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_ServiceStateChanged" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.ServiceStateChanged">ServiceStateChanged</h4>
+    <section>
+    <p>Event to be invoked when the VoiceControl service state changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ServiceStateChangedEventArgs&gt; ServiceStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.VoiceControl.ServiceStateChangedEventArgs.html">ServiceStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Uix.VoiceControl/Tizen.Uix.VoiceControl/VoiceControlClient.cs/#L831">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_VoiceControl_VoiceControlClient_StateChanged" data-uid="Tizen.Uix.VoiceControl.VoiceControlClient.StateChanged">StateChanged</h4>
+    <section>
+    <p>Event to be invoked when the VoiceControl client state changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.VoiceControl.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ApplicationRunningContext
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ApplicationRunningContext
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.ApplicationRunningContext">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_ApplicationRunningContext" data-uid="Tizen.Applications.ApplicationRunningContext" class="mt-0 text-break"><span class="entity-type">Class</span>
+ApplicationRunningContext
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L31" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class provides methods and properties to retrieve information about the currently running application context.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ApplicationRunningContext : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ApplicationRunningContext</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_Applications_ApplicationRunningContext_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_ApplicationRunningContext__ctor_" data-uid="Tizen.Applications.ApplicationRunningContext.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L63">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext__ctor_System_String_" data-uid="Tizen.Applications.ApplicationRunningContext.#ctor(System.String)">ApplicationRunningContext(string)</h4>
+    <section>
+    <p>Constructs an ApplicationRunningContext object from the specified application ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ApplicationRunningContext(string applicationId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">applicationId</span></td>
+        <td><p>The ID of the application.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The constructor creates a new instance of the ApplicationRunningContext class by passing in the application ID.
+It throws exceptions if any errors occur during initialization, such as invalid arguments, non-existent applications, system errors, or out of memory conditions.</p>
+</div>
+  <h5 id="Tizen_Applications_ApplicationRunningContext__ctor_System_String__examples">Examples</h5>
+  <p>Here's an example demonstrating how to construct an ApplicationRunningContext object using the constructor:</p>
+<pre><code>// Define the application ID
+const string APP_ID = &quot;org.example.app&quot;;
+
+// Instantiate the ApplicationRunningContext class with the application ID
+var context = new ApplicationRunningContext(APP_ID);</code></pre>
+
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_ApplicationRunningContext_ApplicationId_" data-uid="Tizen.Applications.ApplicationRunningContext.ApplicationId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L161">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_ApplicationId" data-uid="Tizen.Applications.ApplicationRunningContext.ApplicationId">ApplicationId</h4>
+    <section>
+    <p>Gets the application ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ApplicationId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_ApplicationId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_IsSubApp_" data-uid="Tizen.Applications.ApplicationRunningContext.IsSubApp*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L265">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_IsSubApp" data-uid="Tizen.Applications.ApplicationRunningContext.IsSubApp">IsSubApp</h4>
+    <section>
+    <p>Gets whether the application is sub application of the application group.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSubApp { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_IsSubApp_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_IsTerminated_" data-uid="Tizen.Applications.ApplicationRunningContext.IsTerminated*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L179">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_IsTerminated" data-uid="Tizen.Applications.ApplicationRunningContext.IsTerminated">IsTerminated</h4>
+    <section>
+    <p>Gets whether the application is terminated.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTerminated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_IsTerminated_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_PackageId_" data-uid="Tizen.Applications.ApplicationRunningContext.PackageId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L207">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_PackageId" data-uid="Tizen.Applications.ApplicationRunningContext.PackageId">PackageId</h4>
+    <section>
+    <p>Gets the package ID of the application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PackageId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_PackageId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_ProcessId_" data-uid="Tizen.Applications.ApplicationRunningContext.ProcessId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L225">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_ProcessId" data-uid="Tizen.Applications.ApplicationRunningContext.ProcessId">ProcessId</h4>
+    <section>
+    <p>Gets the application's process ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ProcessId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_ProcessId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_State_" data-uid="Tizen.Applications.ApplicationRunningContext.State*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L246">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_State" data-uid="Tizen.Applications.ApplicationRunningContext.State">State</h4>
+    <section>
+    <p>Gets the state of the application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ApplicationRunningContext.AppState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.ApplicationRunningContext.html">ApplicationRunningContext</a>.<a class="xref" href="Tizen.Applications.ApplicationRunningContext.AppState.html">AppState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_State_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Note that application's state might be changed after you get app_context. This API just returns the state of application when you get the app_context.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_ApplicationRunningContext_Dispose_" data-uid="Tizen.Applications.ApplicationRunningContext.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L360">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_Dispose" data-uid="Tizen.Applications.ApplicationRunningContext.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the ApplicationRunningContext class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_Finalize_" data-uid="Tizen.Applications.ApplicationRunningContext.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L120">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_Finalize" data-uid="Tizen.Applications.ApplicationRunningContext.Finalize">~ApplicationRunningContext()</h4>
+    <section>
+    <p>Destroys the current application running context.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~ApplicationRunningContext()</code></pre>
+  </div>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_Finalize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+
+
+
+  <a id="Tizen_Applications_ApplicationRunningContext_Resume_" data-uid="Tizen.Applications.ApplicationRunningContext.Resume*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Common/Tizen.Applications/ApplicationRunningContext.cs/#L339">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ApplicationRunningContext_Resume" data-uid="Tizen.Applications.ApplicationRunningContext.Resume">Resume()</h4>
+    <section>
+    <p>Resumes the running application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+  <h5 id="Tizen_Applications_ApplicationRunningContext_Resume_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ApplicationRunningContext class enables you to obtain various details related to the current execution environment such as the application ID, process id, and user data directory.
+It also offers functionality to check if the current application is in foreground or background mode.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed of invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when failed because of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

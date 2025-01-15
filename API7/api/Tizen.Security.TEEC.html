@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Security.TEEC
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Security.TEEC
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Security.TEEC">
+  <div class="entity entity-namespace">
+  <h1 id="Tizen_Security_TEEC" data-uid="Tizen.Security.TEEC" class="mt-0 text-break"><span class="entity-type">Namespace</span>
+<span id="namespace">Tizen.Security.TEEC</span>
+</h1>
+
+  <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
+  <div class="markdown level0 summary"><p>The communication API for connecting Client Applications running in a rich operating environment with security related Trusted Applications running inside a Trusted Execution Environment (TEE).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
+<p>A TEE provides an execution environment with security capabilities, which are either available to Trusted Applications
+running inside the TEE or exposed externally to Client Applications.
+The TEE Client API concentrates on the interface to enable efficient communications between
+a Client Application and a Trusted Application running inside the TEE.
+Higher level standards and protocol layers may be built on top of the foundation
+provided by the TEE Client API – for example, to cover common tasks, such as secure storage,
+cryptography, and run-time installation of new Trusted Applications.
+The separation between the rich environment and the TEE is guaranted.</p>
+<p>The key design principles of the TEE Client API are:</p>
+<ul>
+<li><p>Client-side memory allocations
+Where possible the design of the TEE Client API has placed the responsibility for memory
+allocation on the calling Client Application code. This gives the Client developer choice of
+memory allocation locations, enabling simple optimizations, such as stack-based allocation
+or enhanced flexibility using placements in static global memory or thread-local storage.</p>
+<p>This design choice is evident in the API by the use of pointers to structures rather than
+opaque handles to represent any manipulated objects.</p>
+</li>
+<li><p>Aim for zero-copy data transfer
+The features of the TEE Client API are chosen to maximize the possibility of zero-copy
+data transfer between the Client Application and the Trusted Application.
+However, short messages can also be passed by copy, which avoids the overhead of
+sharing memory.</p>
+</li>
+<li><p>Support memory sharing by pointers
+The TEE Client API will be used to implement higher-level APIs, such as cryptography or
+secure storage, where the caller will often provide memory buffers for input or output data
+using simple C pointers. The TEE Client API must allow efficient sharing of this type of
+memory, and as such does not rely on the Client Application being able to use bulk
+memory buffers allocated by the TEE Client API.</p>
+</li>
+<li><p>Specify only communication mechanisms
+This API focuses on defining the underlying communications channel. It does not define
+the format of the messages which pass over the channel, or the protocols used by specific
+Trusted Applications.</p>
+</li>
+</ul>
+<p>For security reasons, each device vendor usually uses their own TEE solution.
+If you intend your LibTeec application to be used on a real device,
+you must test your application on the TEE solution provided by the specific vendor.
+When developing and installing your trusted application, refer to the documentation provided by the vendor.</p>
+<h2 id="example">Example</h2>
+<p>The following example demonstrates how to invoke command on Trused Application.</p>
+<pre><code class="lang-cs">Guid ta_uuid = new Guid(&quot;TA-guid-put-here&quot;);
+Context ctx = new Context(null);
+Session ses = ctx.OpenSession(ta_uuid);
+Parameter[] p = { new Value(1,2,TEFValueType.In) };
+ses.InvokeCommand(1, p);
+ses.Close();
+ctx.Dispose();
+</code></pre>
+</div>
+    <h2 id="classes">Classes
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.BaseParameter-1.html">BaseParameter&lt;TEnum&gt;</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type defines a template for the parameter types.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.Context.html">Context</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes a TEE Context, the main logical container linking a Client Application with a particular TEE.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.LoginMethod.html">LoginMethod</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes the Session Login Method used in OpenSession.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.Parameter.html">Parameter</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type defines the payload of either an open session operation or an invoke command operation. It is
+also used for cancelation of operations, which may be desirable even if no payload is passed.
+Parameters are used to exchange data between CA and TA.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.RegisteredMemoryReference.html">RegisteredMemoryReference</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type defines a memory reference that uses a pre-registered or pre-allocated shared memory block.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.Session.html">Session</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes a TEE Session, the logical container linking a client application with a particular trusted application.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.SharedMemory.html">SharedMemory</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes a shared memory block which has been either registered
+with the implementation or allocated by it.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.TempMemoryReference.html">TempMemoryReference</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type defines a temporary memory reference.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.Value.html">Value</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type defines a parameter that is not referencing the shared memory, but carries instead small raw data
+passed by a value.</p>
+</section>
+      </div>
+    <h2 id="enums">Enums
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.SharedMemoryFlags.html">SharedMemoryFlags</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes the SharedMemory access direction.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.TEFRegisteredMemoryType.html">TEFRegisteredMemoryType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes the SharedMemoryReference parameter.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.TEFTempMemoryType.html">TEFTempMemoryType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes the TempMemoryReference parameter
+describing a region of memory which needs to be temporarily registered for the duration of the operation.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.TEEC.TEFValueType.html">TEFValueType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This type denotes the Value parameter.</p>
+</section>
+      </div>
+  </div>
+</section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

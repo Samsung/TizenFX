@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DesignElement
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DesignElement
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_WatchfaceComplication_DesignElement" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement" class="mt-0 text-break"><span class="entity-type">Class</span>
+DesignElement
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.WatchfaceComplication.html">WatchfaceComplication</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.WatchfaceComplication.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents the design element for a watch application.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class DesignElement : IEditable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">DesignElement</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.WatchfaceComplication.IEditable.html">IEditable</a></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L85">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_System_Collections_Generic_IEnumerable_Tizen_Applications_Bundle__System_Int32_System_String_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.#ctor(System.Collections.Generic.IEnumerable{Tizen.Applications.Bundle},System.Int32,System.String)">DesignElement(IEnumerable&lt;Bundle&gt;, int, string)</h4>
+    <section>
+    <p>Initializes a new instance of the DesignElement class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected DesignElement(IEnumerable&lt;Bundle&gt; candidates, int currentDataIndex, string editableName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
+        <td><span class="parametername">candidates</span></td>
+        <td><p>The candidates list.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">currentDataIndex</span></td>
+        <td><p>The index of selected data among candidate list.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">editableName</span></td>
+        <td><p>The design element name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_System_Collections_Generic_IEnumerable_Tizen_Applications_Bundle__System_Int32_System_String__examples">Examples</h5>
+  <pre><code>public class ColorDesign : DesignElement
+{
+    private Button _layout;
+    private static string _colorKey = &quot;TEST_COLOR&quot;;
+    public ColorDesign(IEnumerable candidates, int curDataIdx, string editableName, Button layout)
+        : base(candidates, curDataIdx, editableName)
+    {
+        _layout = layout;
+    }
+    protected override void OnDesignUpdated(int selectedIdx, State state)
+    {
+        int idx = 0;
+        string color = &quot;&quot;;
+        foreach (Bundle candidate in this.Candidates)
+        {
+            if (idx++ != selectedIdx)
+                continue;
+            color = candidate.GetItem(_colorKey);
+            break;
+        }
+        Log.Warn(_logTag, &quot;Color : &quot; + color);
+        if (color.Equals(&quot;YELLOW&quot;))
+        {
+            _layout.BackgroundColor = Color.Yellow;
+        }
+   }
+}
+
+List&lt;Bundle> candidatesList = new List&lt;Bundle>();
+data = new Bundle();
+data.AddItem(_colorKey, &quot;RED&quot;);
+candidatesList.Add(data);
+data.AddItem(_colorKey, &quot;BLUE&quot;);
+candidatesList.Add(data);
+ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, &quot;COLOR&quot;, _complicationBtn);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when e is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the watchface complication is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Candidates_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Candidates*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L118">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Candidates" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Candidates">Candidates</h4>
+    <section>
+    <p>The information of Editable candidates.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Bundle&gt; Candidates { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Highlight_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Highlight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L162">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Highlight" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Highlight">Highlight</h4>
+    <section>
+    <p>The information of design element's highlight.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Highlight Highlight { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WatchfaceComplication.Highlight.html">Highlight</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_OnDesignUpdated_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.OnDesignUpdated*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L217">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_OnDesignUpdated_System_Int32_Tizen_Applications_WatchfaceComplication_State_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.OnDesignUpdated(System.Int32,Tizen.Applications.WatchfaceComplication.State)">OnDesignUpdated(int, State)</h4>
+    <section>
+    <p>Overrides this method to handle the behavior when the design element is updated.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void OnDesignUpdated(int selectedIdx, State state)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">selectedIdx</span></td>
+        <td><p>The selected candidate index.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WatchfaceComplication.State.html">State</a></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>The update state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="eii">Explicit Interface Implementations
+</h2>
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_EditableId_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#EditableId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_EditableId" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#EditableId">IEditable.EditableId</h4>
+    <section>
+    <p>The information of Editable ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int IEditable.EditableId { get; set; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentData_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L194">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentData" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentData">IEditable.GetCurrentData()</h4>
+    <section>
+    <p>Gets the editable's currently selected data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Bundle IEditable.GetCurrentData()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
+        <td><p>The currently selected data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentDataIndex_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentDataIndex*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L179">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_GetCurrentDataIndex" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#GetCurrentDataIndex">IEditable.GetCurrentDataIndex()</h4>
+    <section>
+    <p>Gets the editable's currently selected data index of candidate list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int IEditable.GetCurrentDataIndex()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The index of selected data among candidate list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_Highlight_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#Highlight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L146">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_Highlight" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#Highlight">IEditable.Highlight</h4>
+    <section>
+    <p>The information of editable's highlight.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Highlight IEditable.Highlight { get; set; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WatchfaceComplication.Highlight.html">Highlight</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_Name_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#Name*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L130">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement_Tizen_Applications_WatchfaceComplication_IEditable_Name" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.Tizen#Applications#WatchfaceComplication#IEditable#Name">IEditable.Name</h4>
+    <section>
+    <p>The information of Editable name.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string IEditable.Name { get; set; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="Tizen.Applications.WatchfaceComplication.IEditable.html">IEditable</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

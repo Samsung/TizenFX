@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Security.DevicePolicyManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Security.DevicePolicyManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Security.DevicePolicyManager">
+  <div class="entity entity-namespace">
+  <h1 id="Tizen_Security_DevicePolicyManager" data-uid="Tizen.Security.DevicePolicyManager" class="mt-0 text-break"><span class="entity-type">Namespace</span>
+<span id="namespace">Tizen.Security.DevicePolicyManager</span>
+</h1>
+
+  <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
+  <div class="markdown level0 summary"><p>The Tizen.Security.DevicePolicyManager namespace provides classes to manage the device policy management framework. The device policy management framework provides APIs to create security-aware applications that are useful in enterprise settings.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
+<p>The primary purpose of the DPM(Device Policy Management) framework is to support enterprise applications.
+The device policy API supports the policies listed in the below, and application can subscribe to those policies from events.</p>
+<h3 id="policy-list">Policy List</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><center>Policy Name</center></th>
+<th style="text-align: left;"><center>Event</center></th>
+<th style="text-align: left;"><center>Description</center></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Wifi</td>
+<td style="text-align: left;">WifiPolicyChanged</td>
+<td style="text-align: left;">Specifies wether the use of Wi-Fi is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">WifiHotspot</td>
+<td style="text-align: left;">WifiHotspotChanged</td>
+<td style="text-align: left;">Specifies whether the use of Wi-Fi hotspot is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bluetooth</td>
+<td style="text-align: left;">BluetoothPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of bluetooth is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">Camera</td>
+<td style="text-align: left;">CameraPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of camera is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">Microphone</td>
+<td style="text-align: left;">MicrophonePolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of microphone is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">Location</td>
+<td style="text-align: left;">LocationPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of GPS is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">ExternalStorage</td>
+<td style="text-align: left;">ExternalStoragePolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of external storage is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">Messaging</td>
+<td style="text-align: left;">MessagingPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of text messaging is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">PopImapEmail</td>
+<td style="text-align: left;">PopImapPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of POP/IMAP Email is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">Browser</td>
+<td style="text-align: left;">BrowserPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of browser is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">BluetoothTethering</td>
+<td style="text-align: left;">BluetoothTetheringPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of bluetooth tethering is allowed or not</td>
+</tr>
+<tr>
+<td style="text-align: left;">UsbTethering</td>
+<td style="text-align: left;">UsbTetheringPolicyChanged</td>
+<td style="text-align: left;">Specifies whether the use of usb tethering is allowed or not</td>
+</tr>
+</tbody>
+</table>
+</div>
+    <h2 id="classes">Classes
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.BluetoothPolicy.html">BluetoothPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The BluetoothPolicy provides methods to manage Bluetooth policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.BrowserPolicy.html">BrowserPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The BrowserPolicy provides methods to manage browser policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.DevicePolicy.html">DevicePolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The abstract class for Policy instances.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.DevicePolicyManager.html">DevicePolicyManager</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The DevicePolicyManager provides the methods to create handle for device policy.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.EmailPolicy.html">EmailPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The EmailPolicy provides methods to manage email policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.LocationPolicy.html">LocationPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The LocationPolicy provides methods to manage location policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.MediaPolicy.html">MediaPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The MediaPolicy provides methods to manage media policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.PasswordPolicy.html">PasswordPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The PasswordPolicy provides methods to manage password policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.PolicyChangedEventArgs.html">PolicyChangedEventArgs</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>An extended EventArgs class contains the changed dpm policy state.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.StoragePolicy.html">StoragePolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The StoragePolicy provides methods to manage storage policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.TelephonyPolicy.html">TelephonyPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The TelephonyPolicy provides methods to manage telephony policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.UsbPolicy.html">UsbPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The UsbPolicy provides methods to manage usb policies.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.WifiPolicy.html">WifiPolicy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The WifiPolicy provides methods to manage wifi policies.</p>
+</section>
+      </div>
+    <h2 id="enums">Enums
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.DevicePolicyManager.PasswordQuality.html">PasswordQuality</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for dpm password quality type</p>
+</section>
+      </div>
+  </div>
+</section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

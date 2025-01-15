@@ -1,0 +1,1723 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Recorder
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Recorder
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Recorder">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Recorder" data-uid="Tizen.Multimedia.Recorder" class="mt-0 text-break"><span class="entity-type">Class</span>
+Recorder
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L23" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Recorder.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Recorder is a base class for audio and video recorders that
+provides the ability to control the recording of a multimedia content.<br>
+<br>
+Simple audio and audio/video are supported.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Recorder : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Recorder</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioRecorder.html">AudioRecorder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioRecorder.html">AudioRecorder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.VideoRecorder.html">VideoRecorder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.VideoRecorder.html">VideoRecorder</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Recorder_AudioBitRate_" data-uid="Tizen.Multimedia.Recorder.AudioBitRate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L184">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_AudioBitRate" data-uid="Tizen.Multimedia.Recorder.AudioBitRate">AudioBitRate</h4>
+    <section>
+    <p>Gets or sets the bitrate of an audio encoder in bits per second.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AudioBitRate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_AudioBitRate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_AudioChannels_" data-uid="Tizen.Multimedia.Recorder.AudioChannels*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L86">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_AudioChannels" data-uid="Tizen.Multimedia.Recorder.AudioChannels">AudioChannels</h4>
+    <section>
+    <p>Gets or sets the number of the audio channel.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AudioChannels { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>For mono recording, set the channel to 1.
+For stereo recording, set the channel to 2.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_AudioChannels_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_AudioCodec_" data-uid="Tizen.Multimedia.Recorder.AudioCodec*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L32">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_AudioCodec" data-uid="Tizen.Multimedia.Recorder.AudioCodec">AudioCodec</h4>
+    <section>
+    <p>Gets the audio codec for encoding an audio stream.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RecorderAudioCodec AudioCodec { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.RecorderAudioCodec.html">RecorderAudioCodec</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Recorder_AudioCodec_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_GetSupportedAudioCodecs">GetSupportedAudioCodecs()</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_AudioDevice_" data-uid="Tizen.Multimedia.Recorder.AudioDevice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L120">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_AudioDevice" data-uid="Tizen.Multimedia.Recorder.AudioDevice">AudioDevice</h4>
+    <section>
+    <p>Gets or sets the audio device for recording.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RecorderAudioDevice AudioDevice { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.RecorderAudioDevice.html">RecorderAudioDevice</a></td>
+        <td><p>A <a class="xref" href="Tizen.Multimedia.RecorderAudioDevice.html">RecorderAudioDevice</a> that specifies the type of the audio device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_AudioDevice_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_AudioSampleRate_" data-uid="Tizen.Multimedia.Recorder.AudioSampleRate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L149">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_AudioSampleRate" data-uid="Tizen.Multimedia.Recorder.AudioSampleRate">AudioSampleRate</h4>
+    <section>
+    <p>Gets or sets the sampling rate of an audio stream in hertz.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AudioSampleRate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_AudioSampleRate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_FileFormat_" data-uid="Tizen.Multimedia.Recorder.FileFormat*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L57">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_FileFormat" data-uid="Tizen.Multimedia.Recorder.FileFormat">FileFormat</h4>
+    <section>
+    <p>Gets the file format of the recording result.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RecorderFileFormat FileFormat { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.RecorderFileFormat.html">RecorderFileFormat</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Recorder_FileFormat_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_GetSupportedFileFormats">GetSupportedFileFormats()</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Muted_" data-uid="Tizen.Multimedia.Recorder.Muted*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L295">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Muted" data-uid="Tizen.Multimedia.Recorder.Muted">Muted</h4>
+    <section>
+    <p>Gets or sets the mute state of a recorder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Muted { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_SizeLimit_" data-uid="Tizen.Multimedia.Recorder.SizeLimit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L224">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_SizeLimit" data-uid="Tizen.Multimedia.Recorder.SizeLimit">SizeLimit</h4>
+    <section>
+    <p>Gets or sets the maximum size of a recording file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SizeLimit { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The maximum size of a recording file in kilobytes, or 0 for unlimited size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_SizeLimit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>After reaching the limitation, the data which is being recorded will
+be discarded and will not be written to the file.<br>
+<br>
+To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_State_" data-uid="Tizen.Multimedia.Recorder.State*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L128">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_State" data-uid="Tizen.Multimedia.Recorder.State">State</h4>
+    <section>
+    <p>Gets the current state of the recorder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RecorderState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.RecorderState.html">RecorderState</a></td>
+        <td><p>A <a class="xref" href="Tizen.Multimedia.RecorderState.html">RecorderState</a> that specifies the state of the recorder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_TimeLimit_" data-uid="Tizen.Multimedia.Recorder.TimeLimit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Settings.cs/#L266">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_TimeLimit" data-uid="Tizen.Multimedia.Recorder.TimeLimit">TimeLimit</h4>
+    <section>
+    <p>Gets or sets the time limit of recording.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TimeLimit { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The time of recording in seconds, or 0 for unlimited time.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_TimeLimit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>After reaching the limitation, the data which is being recorded will
+be discarded and will not be written to the file.<br>
+<br>
+To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Recorder_ApplyAudioStreamPolicy_" data-uid="Tizen.Multimedia.Recorder.ApplyAudioStreamPolicy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L393">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Recorder.ApplyAudioStreamPolicy(Tizen.Multimedia.AudioStreamPolicy)">ApplyAudioStreamPolicy(AudioStreamPolicy)</h4>
+    <section>
+    <p>Apply the audio stream policy.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></td>
+        <td><span class="parametername">policy</span></td>
+        <td><p>The policy to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">policy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">policy</code> is not supported for the recorder.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">policy</code> already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Cancel_" data-uid="Tizen.Multimedia.Recorder.Cancel*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L361">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Cancel" data-uid="Tizen.Multimedia.Recorder.Cancel">Cancel()</h4>
+    <section>
+    <p>Cancels the recording.<br>
+The recording data is discarded and not written in the recording file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cancel()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Recorder_Cancel_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> state.
+The state of the recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> after the operation.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+The method is called in <a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_AudioStreamStoring">AudioStreamStoring</a> event.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Commit_" data-uid="Tizen.Multimedia.Recorder.Commit*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L333">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Commit" data-uid="Tizen.Multimedia.Recorder.Commit">Commit()</h4>
+    <section>
+    <p>Stops recording and saves the result.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Recorder_Commit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> state.
+The state of the recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> after the operation.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+The method is called in <a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_AudioStreamStoring">AudioStreamStoring</a> event.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Dispose_" data-uid="Tizen.Multimedia.Recorder.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L75">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Dispose" data-uid="Tizen.Multimedia.Recorder.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases the unmanaged resources used by the Recorder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Dispose_" data-uid="Tizen.Multimedia.Recorder.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L87">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Recorder.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the resources used by the Recorder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_GetDeviceState_" data-uid="Tizen.Multimedia.Recorder.GetDeviceState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L429">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_GetDeviceState_Tizen_Multimedia_RecorderType_" data-uid="Tizen.Multimedia.Recorder.GetDeviceState(Tizen.Multimedia.RecorderType)">GetDeviceState(RecorderType)</h4>
+    <section>
+    <p>Returns the state of recorder device.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RecorderDeviceState GetDeviceState(RecorderType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.RecorderType.html">RecorderType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.RecorderDeviceState.html">RecorderDeviceState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_GetPeakAudioLevel_" data-uid="Tizen.Multimedia.Recorder.GetPeakAudioLevel*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L415">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_GetPeakAudioLevel" data-uid="Tizen.Multimedia.Recorder.GetPeakAudioLevel">GetPeakAudioLevel()</h4>
+    <section>
+    <p>Returns the peak audio input level in dB since the last call to this method.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double GetPeakAudioLevel()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_GetPeakAudioLevel_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>0dB indicates the maximum input level, -300dB indicates the minimum input level.<br>
+<br>
+The recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_GetSupportedAudioCodecs_" data-uid="Tizen.Multimedia.Recorder.GetSupportedAudioCodecs*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Capabilities.cs/#L106">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_GetSupportedAudioCodecs" data-uid="Tizen.Multimedia.Recorder.GetSupportedAudioCodecs">GetSupportedAudioCodecs()</h4>
+    <section>
+    <p>Gets the audio encoders that the current device supports.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;RecorderAudioCodec&gt; GetSupportedAudioCodecs()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderAudioCodec.html">RecorderAudioCodec</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>A required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_GetSupportedFileFormats_" data-uid="Tizen.Multimedia.Recorder.GetSupportedFileFormats*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Capabilities.cs/#L98">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_GetSupportedFileFormats" data-uid="Tizen.Multimedia.Recorder.GetSupportedFileFormats">GetSupportedFileFormats()</h4>
+    <section>
+    <p>Gets the file formats that the current device supports.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;RecorderFileFormat&gt; GetSupportedFileFormats()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderFileFormat.html">RecorderFileFormat</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>A required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Pause_" data-uid="Tizen.Multimedia.Recorder.Pause*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L303">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Pause" data-uid="Tizen.Multimedia.Recorder.Pause">Pause()</h4>
+    <section>
+    <p>Pauses the recording.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Recorder_Pause_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder should be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> state.
+The state of the recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> after this.
+It has no effect if the current state is the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Prepare_" data-uid="Tizen.Multimedia.Recorder.Prepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L155">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Prepare" data-uid="Tizen.Multimedia.Recorder.Prepare">Prepare()</h4>
+    <section>
+    <p>Prepares the media recorder for recording.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Recorder_Prepare_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder should be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> state.
+The state of the recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> after this.
+It has no effect if the current state is the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Resume_" data-uid="Tizen.Multimedia.Recorder.Resume*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L274">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Resume" data-uid="Tizen.Multimedia.Recorder.Resume">Resume()</h4>
+    <section>
+    <p>Resumes the recording.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Recorder_Resume_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder should be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> state.
+The state of recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> after this.
+It has no effect if the current state is the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Start_" data-uid="Tizen.Multimedia.Recorder.Start*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L238">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Start_System_String_" data-uid="Tizen.Multimedia.Recorder.Start(System.String)">Start(string)</h4>
+    <section>
+    <p>Starts the recording.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Start(string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td><p>The file path for recording result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_Start_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.
+The state of the recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> after this. <br>
+<br>
+If the specified path exists, the file is removed automatically and updated by new one.<br>
+The mediastorage privilege(<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is required if the path is relevant to media storage.<br>
+The externalstorage privilege(<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is required if the path is relevant to external storage.<br>
+<br>
+In the video recorder, some preview format does not support record mode.
+You should use the default preview format or the <a class="xref" href="Tizen.Multimedia.CameraPixelFormat.html#Tizen_Multimedia_CameraPixelFormat_Nv12">Nv12</a> in the record mode.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+The preview format of the camera is not supported.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">savePath</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">savePath</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required privilege.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Recorder_Start_System_String__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_Commit">Commit()</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_Cancel">Cancel()</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Recorder_Unprepare_" data-uid="Tizen.Multimedia.Recorder.Unprepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.cs/#L192">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Unprepare" data-uid="Tizen.Multimedia.Recorder.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Resets the media recorder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_Recorder_Unprepare_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The recorder should be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.
+The state of recorder will be the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> after this.
+It has no effect if the current state is the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The recorder is not in the valid state.<br>
+-or-<br>
+An internal error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The recorder already has been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L61">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_AudioStreamStoring" data-uid="Tizen.Multimedia.Recorder.AudioStreamStoring">AudioStreamStoring</h4>
+    <section>
+    <p>Occurs when the audio stream data is being delivered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AudioStreamStoringEventArgs&gt; AudioStreamStoring</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioStreamStoringEventArgs.html">AudioStreamStoringEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_AudioStreamStoring_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Do not call <a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_Commit">Commit()</a> and <a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_Cancel">Cancel()</a> in this event.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L212">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_DeviceStateChanged" data-uid="Tizen.Multimedia.Recorder.DeviceStateChanged">DeviceStateChanged</h4>
+    <section>
+    <p>Occurs when a recorder device state changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;RecorderDeviceStateChangedEventArgs&gt; DeviceStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderDeviceStateChangedEventArgs.html">RecorderDeviceStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L29">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_ErrorOccurred" data-uid="Tizen.Multimedia.Recorder.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>Occurs when an error occurs during the recorder operation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecordingErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingErrorOccurredEventArgs.html">RecordingErrorOccurredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L36">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Interrupted" data-uid="Tizen.Multimedia.Recorder.Interrupted">Interrupted</h4>
+    <section>
+    <p>Occurs after interrupt handling is completed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecorderInterruptedEventArgs&gt; Interrupted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderInterruptedEventArgs.html">RecorderInterruptedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L187">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_Interrupting" data-uid="Tizen.Multimedia.Recorder.Interrupting">Interrupting</h4>
+    <section>
+    <p>Occurs before interrupt handling is started.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecorderInterruptingEventArgs&gt; Interrupting</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderInterruptingEventArgs.html">RecorderInterruptingEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L78">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_MuxedStreamDelivered" data-uid="Tizen.Multimedia.Recorder.MuxedStreamDelivered">MuxedStreamDelivered</h4>
+    <section>
+    <p>Occurs when the muxed stream data is being delivered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MuxedStreamDeliveredEventArgs&gt; MuxedStreamDelivered</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MuxedStreamDeliveredEventArgs.html">MuxedStreamDeliveredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L71">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_RecordingLimitReached" data-uid="Tizen.Multimedia.Recorder.RecordingLimitReached">RecordingLimitReached</h4>
+    <section>
+    <p>Occurs when recording limit is reached.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecordingLimitReachedEventArgs&gt; RecordingLimitReached</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingLimitReachedEventArgs.html">RecordingLimitReachedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Recorder_RecordingLimitReached_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>After this event is raised, the recording data is discarded and not written in the recording file.</p>
+</div>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L50">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_RecordingStatusChanged" data-uid="Tizen.Multimedia.Recorder.RecordingStatusChanged">RecordingStatusChanged</h4>
+    <section>
+    <p>Occurs when the recording information changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecordingStatusChangedEventArgs&gt; RecordingStatusChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingStatusChangedEventArgs.html">RecordingStatusChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Recorder/Recorder/Recorder.Events.cs/#L43">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Recorder_StateChanged" data-uid="Tizen.Multimedia.Recorder.StateChanged">StateChanged</h4>
+    <section>
+    <p>This event occurs when the recorder state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecorderStateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderStateChangedEventArgs.html">RecorderStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Maps
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Maps
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Maps">
+  <div class="entity entity-namespace">
+  <h1 id="Tizen_Maps" data-uid="Tizen.Maps" class="mt-0 text-break"><span class="entity-type">Namespace</span>
+<span id="namespace">Tizen.Maps</span>
+</h1>
+
+  <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
+<p>[!NOTE]
+All maps-service APIs have been deprecated since Tizen 8.0 and will be removed after two releases without any alternatives.</p>
+<p>Maps API provides a developer with a set of functions, helping to create Maps aware applications.</p>
+<p>Maps API comprises of following features:</p>
+<ul>
+<li><a href="#geocoding">Geocoding</a> and <a href="#reverse-geocoding">reverse Geocoding</a></li>
+<li>Discoverying <a href="#places">place</a> information</li>
+<li>Calculating <a href="#route">route</a></li>
+<li><a href="#view">View</a></li>
+</ul>
+<p>Maps API allows a Developer to choose one of Map Providers which are being included as plugins.</p>
+<h3 id="geocoding">Geocoding</h3>
+<p>The <a class="xref" href="Tizen.Maps.GeocodeRequest.html">Maps Geocoding</a> API allows translating an address to its geographical
+location defined in terms of latitude and longitude; the input can be a
+qualified and structured address or a free-formed search text with full or
+partial address information.</p>
+<p>The example below shows a structured address:</p>
+<ul>
+<li>housenumber=117,</li>
+<li>street=Invaliden street</li>
+<li>city=Berlin,</li>
+<li>postalcode=10115,</li>
+<li>country=Germany,</li>
+<li>state=Berlin</li>
+</ul>
+<h3 id="reverse-geocoding">Reverse Geocoding</h3>
+<p>The <a class="xref" href="Tizen.Maps.ReverseGeocodeRequest.html">Maps Reverse Geocoding</a> API allows to inverse translating a geographical
+location (longitude, latitude) to an address; it can be used to answer the
+question &quot;Where am I?&quot;.</p>
+<h3 id="route">Route</h3>
+<p>The <a class="xref" href="Tizen.Maps.Route.html">Maps Route</a> API provides ways to calculate a route that defines a path
+between a start and a destination and may, optionally, pass through specific
+intermediate locations.</p>
+<p>Route Preferences:</p>
+<ul>
+<li>Travel Mode (car, pedestrian, public transit, truck),</li>
+<li>Optimization (fastest, shortest),</li>
+<li>Avoid/Prefer Preferences (toll road, motorway, ferry, public transit,
+tunnel, dirt road, parks, car-pool lane).</li>
+<li>Route Calculations</li>
+<li>Way points and preferences as input values,</li>
+<li>Route geometry and maneuver (instructions for guidance) as result values:
+Geometry consists of points that visually represent the determined route,
+Maneuver contains turn-by-turn instruction and position.</li>
+</ul>
+<h3 id="places">Places</h3>
+<p>The <a class="xref" href="Tizen.Maps.Place.html">Maps Place</a> API allows you to find place information.</p>
+<p>Place search</p>
+<ul>
+<li>Depending on the location context, the number of relevant places might
+be large. Therefore this query may not only return places, but also
+suggestions for additional filter criteria that allow users to interactively
+refine the classes of places they are interested in.</li>
+<li>Nearby Search: search for places within a specified area.
+You can refine your search request by supplying keywords, Name of Points
+of Interests, or Proximity.</li>
+<li>Category Search: search for popular places for the given location context and matching the category filter criteria.
+You can refine your search request by specifying the categories of place you are searching for.
+Result item type of searching</li>
+<li>ID, name, location, distance, URI, rating, category.
+Place information allows to fetch details about a place. The following place content is supported:</li>
+<li>Base Attribute includes name, location, categories, contacts, ID, ratings, icon path,
+image content, review content, and editorial content.</li>
+<li>Extended Attribute refers to opening hours, payment methods, annual closings, disabled access.</li>
+</ul>
+<h3 id="view">View</h3>
+<p>The <a class="xref" href="Tizen.Maps.MapView.html">Maps View</a> API provides a developer with a set of functions, bringing
+basic interactive visual user interface in maps applications.</p>
+<p>View widget: Drawing a map image on the map port, the specified rectangular
+area of the maps application GUI.</p>
+<p>Zoom and rotation: Changing zoom and orientation of the view in response
+to user gestures, such as scrolling, tapping, zooming, rotating, etc.</p>
+<p>Conversion of screen coordinates to geographical and vice versa.</p>
+<p>User's gesture support:</p>
+<ul>
+<li>Receive the event of the user gesture.</li>
+<li>Enable or disable the specified gesture.</li>
+<li>Re-assign the action, which should be taken in response to the user's gesture.</li>
+</ul>
+<p>Various Properties:</p>
+<ul>
+<li>Visibility and size on the screen.</li>
+<li>Theme: Day, satellite, or terrain.</li>
+<li>Language: English, Russian, Chinese, Italian, German, Spanish, etc.</li>
+</ul>
+<h3 id="related-features">Related Features</h3>
+<p>To guarantee that the Maps application runs on a device with Maps profile feature,
+declare the following feature requirements in the config file:</p>
+<ul>
+<li><a href="http://tizen.org/feature/maps">http://tizen.org/feature/maps</a></li>
+<li><a href="http://tizen.org/feature/internet">http://tizen.org/feature/internet</a></li>
+</ul>
+</div>
+    <h2 id="classes">Classes
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Area.html">Area</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The class representing a geographical area.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.BoxOverlay.html">BoxOverlay</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The box overlay map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.BubbleOverlay.html">BubbleOverlay</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The bubble overlay map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.GeocodeRequest.html">GeocodeRequest</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Geocode request for the map service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Geocoordinates.html">Geocoordinates</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>A class representing geographical coordinates.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Event arguments for gesture type map events.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MapObject.html">MapObject</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MapService.html">MapService</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Map service class for service request.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MapServiceRequest-1.html">MapServiceRequest&lt;T&gt;</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Base class for a map service request.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MapView.html">MapView</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Map View class to show a map on the screen.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Marker.html">Marker</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The marker map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MultiReverseGeocodeRequest.html">MultiReverseGeocodeRequest</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Multiple reverse geocode request for Tizen map service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Overlay.html">Overlay</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Overlay map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Pin.html">Pin</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Pin type the marker map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Place.html">Place</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceAddress.html">PlaceAddress</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Address information for the map point used in geocode and reverse geocode requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceAttribute.html">PlaceAttribute</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place attributes information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceCategory.html">PlaceCategory</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place category information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceContact.html">PlaceContact</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place contact information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceEditorial.html">PlaceEditorial</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place editorial information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceFilter.html">PlaceFilter</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place filter information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceImage.html">PlaceImage</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place image information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceLink.html">PlaceLink</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place link object information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceMedia.html">PlaceMedia</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place media information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceRating.html">PlaceRating</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place rating information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceReview.html">PlaceReview</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place review information, used in place discovery and search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.PlaceSearchRequest.html">PlaceSearchRequest</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place search request for Tizen map service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Polygon.html">Polygon</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The polygon map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Polyline.html">Polyline</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The polyline map object.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.ReverseGeocodeRequest.html">ReverseGeocodeRequest</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Reverses the geocode request for a map service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Route.html">Route</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Route information, used in Route Search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.RouteManeuver.html">RouteManeuver</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Route maneuver information used in route search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.RouteSearchRequest.html">RouteSearchRequest</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Routes the search request for Tizen map service requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.RouteSegment.html">RouteSegment</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Place Segment information used in Route Search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.SearchPreference.html">SearchPreference</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Preferences for route search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.Sticker.html">Sticker</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Sticker type marker map object.</p>
+</section>
+      </div>
+    <h2 id="interfaces">Interfaces
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.IGeocodePreference.html">IGeocodePreference</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The preference for geocode searches.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.IPlaceSearchPreference.html">IPlaceSearchPreference</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The preferences for a place search.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.IRouteSearchPreference.html">IRouteSearchPreference</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The preferences for route search.</p>
+</section>
+      </div>
+    <h2 id="enums">Enums
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.DirectionType.html">DirectionType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The direction types for route maneuver.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.DistanceUnit.html">DistanceUnit</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The allowed distance units.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.GestureType.html">GestureType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for the user gesture over a map view.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.MapTypes.html">MapTypes</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>The map view type (theme).</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.RouteFeature.html">RouteFeature</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Route features used for route search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.RouteFeatureWeight.html">RouteFeatureWeight</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Route feature weights used in route search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.RouteOptimization.html">RouteOptimization</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Allowed route optimization option used in route search requests.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.ServiceData.html">ServiceData</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Features available in the map service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.ServiceRequestType.html">ServiceRequestType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Service requests available in the maps service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.SnapshotType.html">SnapshotType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for the snapshot file formats.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.TransportMode.html">TransportMode</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Route types.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Maps.TurnInstruction.html">TurnInstruction</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Turns the Instruction type for route maneuver.</p>
+</section>
+      </div>
+  </div>
+</section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

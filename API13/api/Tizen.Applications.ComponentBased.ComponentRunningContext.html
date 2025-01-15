@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ComponentRunningContext
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ComponentRunningContext
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_ComponentBased_ComponentRunningContext" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext" class="mt-0 text-break"><span class="entity-type">Class</span>
+ComponentRunningContext
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L30" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.ComponentBased.html">ComponentBased</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.ComponentBased.ComponentManager.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents the context of a running component, providing methods and properties
+to retrieve information about the component's state and behavior.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ComponentRunningContext : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ComponentRunningContext</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext__ctor_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L53">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext__ctor_System_String_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.#ctor(System.String)">ComponentRunningContext(string)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a> class
+with a specified component ID, retrieving the context handle associated with it.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ComponentRunningContext(string componentId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">componentId</span></td>
+        <td><p>The ID of the component.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the component ID is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the component does not exist or a system error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory allocation fails.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied to access the component.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_ApplicationId_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.ApplicationId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L138">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_ApplicationId" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.ApplicationId">ApplicationId</h4>
+    <section>
+    <p>Gets the application ID associated with the component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ApplicationId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_ComponentId_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.ComponentId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L115">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_ComponentId" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.ComponentId">ComponentId</h4>
+    <section>
+    <p>Gets the ID of the component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ComponentId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The component ID as a string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_InstanceId_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.InstanceId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L157">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_InstanceId" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.InstanceId">InstanceId</h4>
+    <section>
+    <p>Gets the instance ID of the component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string InstanceId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_IsSubComponent_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.IsSubComponent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L216">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_IsSubComponent" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.IsSubComponent">IsSubComponent</h4>
+    <section>
+    <p>Checks whether the component is running as a sub-component of a group.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSubComponent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>true</code> if the component is a sub-component; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_IsTerminated_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.IsTerminated*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L196">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_IsTerminated" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.IsTerminated">IsTerminated</h4>
+    <section>
+    <p>Checks whether the component has been terminated.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTerminated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>true</code> if the component is terminated; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_State_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.State*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L176">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_State" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.State">State</h4>
+    <section>
+    <p>Gets the current state of the component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ComponentRunningContext.ComponentState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a>.<a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.ComponentState.html">ComponentState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_Dispose_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L291">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_Dispose" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the <a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_Finalize_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L68">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_Finalize" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Finalize">~ComponentRunningContext()</h4>
+    <section>
+    <p>Finalizes an instance of the <a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~ComponentRunningContext()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_Resume_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Resume*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L240">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_Resume" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Resume">Resume()</h4>
+    <section>
+    <p>Resumes the execution of the running component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when a system error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when memory allocation fails.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when permission is denied to resume the component.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

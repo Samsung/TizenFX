@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Log
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Log
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Log">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Log" data-uid="Tizen.Log" class="mt-0 text-break"><span class="entity-type">Class</span>
+Log
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L28" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Log.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides methods to print log messages to the Tizen logging system.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Log</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Log</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Log_Debug_" data-uid="Tizen.Log.Debug*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L53">View Source</a>
+    </span>
+    <h4 id="Tizen_Log_Debug_System_String_System_String_System_String_System_String_System_Int32_" data-uid="Tizen.Log.Debug(System.String,System.String,System.String,System.String,System.Int32)">Debug(string, string, string, string, int)</h4>
+    <section>
+    <p>Prints a log message with the DEBUG priority.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Debug(string tag, string message, string file = &quot;&quot;, string func = &quot;&quot;, int line = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>The tag name of the log message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The log message to print.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The source file path of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function name of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line number of the calling position. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Log_Error_" data-uid="Tizen.Log.Error*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L95">View Source</a>
+    </span>
+    <h4 id="Tizen_Log_Error_System_String_System_String_System_String_System_String_System_Int32_" data-uid="Tizen.Log.Error(System.String,System.String,System.String,System.String,System.Int32)">Error(string, string, string, string, int)</h4>
+    <section>
+    <p>Prints a log message with the ERROR priority.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Error(string tag, string message, string file = &quot;&quot;, string func = &quot;&quot;, int line = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>The tag name of the log message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The log message to print.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The source file path of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function name of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line number of the calling position. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Log_Fatal_" data-uid="Tizen.Log.Fatal*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L109">View Source</a>
+    </span>
+    <h4 id="Tizen_Log_Fatal_System_String_System_String_System_String_System_String_System_Int32_" data-uid="Tizen.Log.Fatal(System.String,System.String,System.String,System.String,System.Int32)">Fatal(string, string, string, string, int)</h4>
+    <section>
+    <p>Prints a log message with the FATAL priority.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Fatal(string tag, string message, string file = &quot;&quot;, string func = &quot;&quot;, int line = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>The tag name of the log message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The log message to print.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The source file path of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function name of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line number of the calling position. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Log_Info_" data-uid="Tizen.Log.Info*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L67">View Source</a>
+    </span>
+    <h4 id="Tizen_Log_Info_System_String_System_String_System_String_System_String_System_Int32_" data-uid="Tizen.Log.Info(System.String,System.String,System.String,System.String,System.Int32)">Info(string, string, string, string, int)</h4>
+    <section>
+    <p>Prints a log message with the INFO priority.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Info(string tag, string message, string file = &quot;&quot;, string func = &quot;&quot;, int line = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>The tag name of the log message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The log message to print.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The source file path of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function name of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line number of the calling position. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Log_Verbose_" data-uid="Tizen.Log.Verbose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L39">View Source</a>
+    </span>
+    <h4 id="Tizen_Log_Verbose_System_String_System_String_System_String_System_String_System_Int32_" data-uid="Tizen.Log.Verbose(System.String,System.String,System.String,System.String,System.Int32)">Verbose(string, string, string, string, int)</h4>
+    <section>
+    <p>Prints a log message with the VERBOSE priority.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Verbose(string tag, string message, string file = &quot;&quot;, string func = &quot;&quot;, int line = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>The tag name of the log message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The log message to print.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The source file path of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function name of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line number of the calling position. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Log_Warn_" data-uid="Tizen.Log.Warn*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Log/Tizen/Log.cs/#L81">View Source</a>
+    </span>
+    <h4 id="Tizen_Log_Warn_System_String_System_String_System_String_System_String_System_Int32_" data-uid="Tizen.Log.Warn(System.String,System.String,System.String,System.String,System.Int32)">Warn(string, string, string, string, int)</h4>
+    <section>
+    <p>Prints a log message with the WARNING priority.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Warn(string tag, string message, string file = &quot;&quot;, string func = &quot;&quot;, int line = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>The tag name of the log message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The log message to print.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>The source file path of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>The function name of the caller function. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">line</span></td>
+        <td><p>The line number of the calling position. This argument will be set automatically by the compiler.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Security.SecureRepository
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Security.SecureRepository
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Security.SecureRepository">
+  <div class="entity entity-namespace">
+  <h1 id="Tizen_Security_SecureRepository" data-uid="Tizen.Security.SecureRepository" class="mt-0 text-break"><span class="entity-type">Namespace</span>
+<span id="namespace">Tizen.Security.SecureRepository</span>
+</h1>
+
+  <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
+  <div class="markdown level0 summary"><p>Secure Repository function is provided by key-manager module in Tizen. The key manager provides a secure repository for keys, certificates, and sensitive data related to users and their password-protected APPs. Additionally, it provides secure cryptographic operations for non-exportable keys without revealing the key values to clients.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
+<p>Secure Repository stores keys, certificates, and sensitive user data in a central secure repository. The central secure repository is protected by a password.</p>
+<h3 id="data-store-policy">Data Store Policy</h3>
+<p>A client can specify simple access rules when storing data in the key manager:</p>
+<ul>
+<li>Extractable or non-extractable
+<ul>
+<li>Only for data tagged as extractable, the key manager returns the raw value of the data.</li>
+<li>If data is tagged as non-extractable, the key manager does not return its raw value. In that case, the key manager provides secure cryptographic operations for non-exportable keys without revealing the key values to the clients.</li>
+</ul>
+</li>
+<li>Per key password
+<ul>
+<li>All data in the key manager is protected by a user password.</li>
+<li>A client can encrypt its data using their own password additionally.</li>
+<li>If a client provides a password when storing data, the data is encrypted with the password. This password must be provided when getting the data from the key manager.</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-access-control">Data Access Control</h3>
+<ul>
+<li>By default, only the owner of a data can access to the data.</li>
+<li>If the owner grants the access to other applications, those applications can read or delete the data from key-manager DB.</li>
+<li>When an application is deleted, the data and access control information granted by the application are also removed.</li>
+</ul>
+<h3 id="alias-format">Alias Format</h3>
+<ul>
+<li>The format of alias is &quot;package_id name&quot; and the name should not contain any white space characters.</li>
+<li>If package_id is not provided by a client, the key-manager will add the package_id of the client to the name internally.</li>
+<li>The client can specify only its own pacakge id in the alias when storing a key, certificate, or data.</li>
+<li>A client should specify the pacakge id of the owner in the alias to retrieve a a key, certificate, or data shared by other applications.</li>
+<li>Aliases are returned from the key-manager as the format of package_id name.</li>
+</ul>
+</div>
+    <h2 id="classes">Classes
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents a certificate.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.CertificateManager.html">CertificateManager</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Provides methods that handle certificates.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.DataManager.html">DataManager</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Provides methods for storing and retrieving data.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Key.html">Key</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents a key.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.KeyManager.html">KeyManager</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Provides methods for storing, retrieving, and creating keys.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Manager.html">Manager</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This class is a base class of the XxxManager classes. It provides the common methods
+for all sub classes.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Pkcs12.html">Pkcs12</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Represents PKCS#12 contents.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Pkcs12Manager.html">Pkcs12Manager</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Provides methods for storing and retrieving Pkcs12 contents.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Policy.html">Policy</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Stores policy for key, certificate, and binary data.</p>
+</section>
+      </div>
+    <h2 id="enums">Enums
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.DataFormat.html">DataFormat</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for data format.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.EllipticCurveType.html">EllipticCurveType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for the elliptic curve.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.KeyType.html">KeyType</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for key types of key manager.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.OcspStatus.html">OcspStatus</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>[Obsolete(&quot;Please do not use! This will be deprecated!&quot;)]</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Security.SecureRepository.Permission.html">Permission</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for permissions to access/modify alias.</p>
+</section>
+      </div>
+  </div>
+</section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

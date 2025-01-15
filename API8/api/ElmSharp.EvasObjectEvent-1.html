@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EvasObjectEvent&lt;TEventArgs&gt;
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EvasObjectEvent&lt;TEventArgs&gt;
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API8">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="ElmSharp.EvasObjectEvent`1">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="ElmSharp_EvasObjectEvent_1" data-uid="ElmSharp.EvasObjectEvent`1" class="mt-0 text-break"><span class="entity-type">Class</span>
+EvasObjectEvent&lt;TEventArgs&gt;
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L230" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Event class for EvasObject.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class EvasObjectEvent&lt;TEventArgs&gt; : IInvalidatable, IDisposable where TEventArgs : EventArgs</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">EvasObjectEvent&lt;TEventArgs&gt;</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.IInvalidatable.html">IInvalidatable</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="ElmSharp_EvasObjectEvent_1__ctor_" data-uid="ElmSharp.EvasObjectEvent`1.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L256">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1__ctor_ElmSharp_EvasObject_ElmSharp_EvasObjectCallbackType_ElmSharp_EvasObjectEvent__0__SmartEventInfoParser_" data-uid="ElmSharp.EvasObjectEvent`1.#ctor(ElmSharp.EvasObject,ElmSharp.EvasObjectCallbackType,ElmSharp.EvasObjectEvent{`0}.SmartEventInfoParser)">EvasObjectEvent(EvasObject, EvasObjectCallbackType, SmartEventInfoParser)</h4>
+    <section>
+    <p>Creates and initializes a new instance of the EvasObjectEvent.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, EvasObjectEvent&lt;TEventArgs&gt;.SmartEventInfoParser parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>EvasObject class belongs to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObjectCallbackType.html">EvasObjectCallbackType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>EvasObjectCallbackType</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObjectEvent-1.html">EvasObjectEvent</a>&lt;TEventArgs&gt;.<a class="xref" href="ElmSharp.EvasObjectEvent-1.SmartEventInfoParser.html">SmartEventInfoParser</a></td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>SmartEventInfoParser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EvasObjectEvent_1__ctor_" data-uid="ElmSharp.EvasObjectEvent`1.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L284">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1__ctor_ElmSharp_EvasObject_ElmSharp_EvasObjectCallbackType_" data-uid="ElmSharp.EvasObjectEvent`1.#ctor(ElmSharp.EvasObject,ElmSharp.EvasObjectCallbackType)">EvasObjectEvent(EvasObject, EvasObjectCallbackType)</h4>
+    <section>
+    <p>Creates and initializes a new instance of the EvasObjectEvent.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>EvasObject class belongs to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObjectCallbackType.html">EvasObjectCallbackType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>SmartEventInfoParser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="ElmSharp_EvasObjectEvent_1_Dispose_" data-uid="ElmSharp.EvasObjectEvent`1.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L372">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1_Dispose" data-uid="ElmSharp.EvasObjectEvent`1.Dispose">Dispose()</h4>
+    <section>
+    <p>Destroys the current object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="ElmSharp_EvasObjectEvent_1_Dispose_" data-uid="ElmSharp.EvasObjectEvent`1.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L348">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1_Dispose_System_Boolean_" data-uid="ElmSharp.EvasObjectEvent`1.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases all the resources currently used by this instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true if the managed resources should be disposed
+otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="ElmSharp_EvasObjectEvent_1_Finalize_" data-uid="ElmSharp.EvasObjectEvent`1.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L291">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1_Finalize" data-uid="ElmSharp.EvasObjectEvent`1.Finalize">~EvasObjectEvent()</h4>
+    <section>
+    <p>Destroys the EvasObjectEvent object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~EvasObjectEvent()</code></pre>
+  </div>
+
+
+
+  <a id="ElmSharp_EvasObjectEvent_1_MakeInvalidate_" data-uid="ElmSharp.EvasObjectEvent`1.MakeInvalidate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L382">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1_MakeInvalidate" data-uid="ElmSharp.EvasObjectEvent`1.MakeInvalidate">MakeInvalidate()</h4>
+    <section>
+    <p>Makes the current instance invalidate.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeInvalidate()</code></pre>
+  </div>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/EvasObjectEvent.cs/#L306">View Source</a>
+    </span>
+    <h4 id="ElmSharp_EvasObjectEvent_1_On" data-uid="ElmSharp.EvasObjectEvent`1.On">On</h4>
+    <section>
+    <p>On Event Handler of the EvasObjectEvent.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TEventArgs&gt; On</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;TEventArgs&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="ElmSharp.IInvalidatable.html">IInvalidatable</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

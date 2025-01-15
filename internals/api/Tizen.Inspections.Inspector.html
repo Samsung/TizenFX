@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Inspector
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Inspector
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="internals">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Inspections.Inspector">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Inspections_Inspector" data-uid="Tizen.Inspections.Inspector" class="mt-0 text-break"><span class="entity-type">Class</span>
+Inspector
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L28" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><span class="xref">Tizen</span>.<a class="xref" href="Tizen.Inspections.html">Inspections</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Inspections.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The Inspector class is used for requesting client data and receiving inspection events.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Inspector</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Inspector</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Inspections_Inspector_RequestBugreport_" data-uid="Tizen.Inspections.Inspector.RequestBugreport*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L132">View Source</a>
+    </span>
+    <h4 id="Tizen_Inspections_Inspector_RequestBugreport_System_Int32_" data-uid="Tizen.Inspections.Inspector.RequestBugreport(System.Int32)">RequestBugreport(int)</h4>
+    <section>
+    <p>Requests bugreport creation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RequestBugreport(int pid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">pid</span></td>
+        <td><p>An ID of a process that should be livedumped. When pid is 0, system-wide bugreport is created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Inspections_Inspector_RequestInspectableData_" data-uid="Tizen.Inspections.Inspector.RequestInspectableData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L114">View Source</a>
+    </span>
+    <h4 id="Tizen_Inspections_Inspector_RequestInspectableData_System_String_System_String___" data-uid="Tizen.Inspections.Inspector.RequestInspectableData(System.String,System.String[])">RequestInspectableData(string, string[])</h4>
+    <section>
+    <p>Requests other module (app or service) to provide inspection data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InspectionData RequestInspectableData(string moduleID, string[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">moduleID</span></td>
+        <td><p>An ID of module to request.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>Array of request parameters passed to the module.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Inspections.InspectionData.html">InspectionData</a></td>
+        <td><p>The instance of InspectionData.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Inspections_Inspector_RequestInspectableData_System_String_System_String____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is permitted only to an app signed by platform level certificates.</p>
+</div>
+
+
+
+  <a id="Tizen_Inspections_Inspector_SendEvent_" data-uid="Tizen.Inspections.Inspector.SendEvent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L96">View Source</a>
+    </span>
+    <h4 id="Tizen_Inspections_Inspector_SendEvent_System_String_Tizen_Applications_Bundle_" data-uid="Tizen.Inspections.Inspector.SendEvent(System.String,Tizen.Applications.Bundle)">SendEvent(string, Bundle)</h4>
+    <section>
+    <p>Sends inspection event.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SendEvent(string eventName, Bundle eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">eventName</span></td>
+        <td><p>Event name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Tizen.Applications.Bundle</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td><p>Event data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Inspections_Inspector_SendEvent_System_String_Tizen_Applications_Bundle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is permitted only to an app signed by platform level certificates.</p>
+</div>
+
+
+
+  <a id="Tizen_Inspections_Inspector_SubscribeEvent_" data-uid="Tizen.Inspections.Inspector.SubscribeEvent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L81">View Source</a>
+    </span>
+    <h4 id="Tizen_Inspections_Inspector_SubscribeEvent_System_String_System_String_" data-uid="Tizen.Inspections.Inspector.SubscribeEvent(System.String,System.String)">SubscribeEvent(string, string)</h4>
+    <section>
+    <p>Subscribes to inspection event sent by other module.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SubscribeEvent(string eventName, string moduleID)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">eventName</span></td>
+        <td><p>Event name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">moduleID</span></td>
+        <td><p>An ID of the event sender module.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Inspections_Inspector_SubscribeEvent_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is permitted only to an app signed by platform level certificates.</p>
+</div>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L57">View Source</a>
+    </span>
+    <h4 id="Tizen_Inspections_Inspector_DataRequestReceived" data-uid="Tizen.Inspections.Inspector.DataRequestReceived">DataRequestReceived</h4>
+    <section>
+    <p>Event to be invoked when new inspection data request arrives.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;DataRequestReceivedEventArgs&gt; DataRequestReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Inspections.DataRequestReceivedEventArgs.html">DataRequestReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/internals/src/Tizen.Inspections/Tizen.Inspections/Inspections.cs/#L38">View Source</a>
+    </span>
+    <h4 id="Tizen_Inspections_Inspector_EventReceived" data-uid="Tizen.Inspections.Inspector.EventReceived">EventReceived</h4>
+    <section>
+    <p>Event to be invoked when new inspection context arrives.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;EventReceivedEventArgs&gt; EventReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Inspections.EventReceivedEventArgs.html">EventReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

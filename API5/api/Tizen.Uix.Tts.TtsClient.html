@@ -1,0 +1,1274 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TtsClient
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TtsClient
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API5">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Uix.Tts.TtsClient">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Uix_Tts_TtsClient" data-uid="Tizen.Uix.Tts.TtsClient" class="mt-0 text-break"><span class="entity-type">Class</span>
+TtsClient
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L196" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Uix</span>.<a class="xref" href="Tizen.Uix.Tts.html">Tts</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Uix.Tts.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>You can use Text-To-Speech (TTS) API's to read sound data transformed by the engine from input texts.
+Applications can add input-text to queue for reading continuously and control the player that can play, pause, and stop sound data synthesized from text.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TtsClient : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">TtsClient</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Uix_Tts_TtsClient__ctor_" data-uid="Tizen.Uix.Tts.TtsClient.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L229">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient__ctor" data-uid="Tizen.Uix.Tts.TtsClient.#ctor">TtsClient()</h4>
+    <section>
+    <p>Constructor to create a TTS instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TtsClient()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Operation Failed</li>
+<li>Engine Not Found</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out Of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Uix_Tts_TtsClient_CurrentMode_" data-uid="Tizen.Uix.Tts.TtsClient.CurrentMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L624">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_CurrentMode" data-uid="Tizen.Uix.Tts.TtsClient.CurrentMode">CurrentMode</h4>
+    <section>
+    <p>The TTS Mode can be set using this property.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Mode CurrentMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Tts.Mode.html">Mode</a></td>
+        <td><p>The current TTS mode (default, screen-reader, notification).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons while setting the value:</p>
+<ol>
+<li>Operation Failed</li>
+<li>Engine Not Found</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out Of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_CurrentState_" data-uid="Tizen.Uix.Tts.TtsClient.CurrentState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L584">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_CurrentState" data-uid="Tizen.Uix.Tts.TtsClient.CurrentState">CurrentState</h4>
+    <section>
+    <p>Gets the current TTS state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public State CurrentState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Tts.State.html">State</a></td>
+        <td><p>The current state of TTS.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_DefaultVoice_" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoice*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L521">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_DefaultVoice" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoice">DefaultVoice</h4>
+    <section>
+    <p>Gets the default voice set by the user.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SupportedVoice DefaultVoice { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Tts.SupportedVoice.html">SupportedVoice</a></td>
+        <td><p>The default voice in TTS.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_MaxTextSize_" data-uid="Tizen.Uix.Tts.TtsClient.MaxTextSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L554">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_MaxTextSize" data-uid="Tizen.Uix.Tts.TtsClient.MaxTextSize">MaxTextSize</h4>
+    <section>
+    <p>Gets the maximum byte size for text.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint MaxTextSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The Maximum byte size for text.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Uix_Tts_TtsClient_AddText_" data-uid="Tizen.Uix.Tts.TtsClient.AddText*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L930">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_AddText_System_String_System_String_System_Int32_System_Int32_" data-uid="Tizen.Uix.Tts.TtsClient.AddText(System.String,System.String,System.Int32,System.Int32)">AddText(string, string, int, int)</h4>
+    <section>
+    <p>Adds a text to the queue.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AddText(string text, string language, int voiceType, int speed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>An input text based UTF-8.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language selected from the SupportedVoice.Language Property obtained from GetSupportedVoices()(e.g. 'NULL'(Automatic),'en_US').</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">voiceType</span></td>
+        <td><p>The voice type selected from the SupportedVoice.VoiceType Property obtained from GetSupportedVoices().</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">speed</span></td>
+        <td><p>A speaking speed (e.g.0 for Auto or the value from SpeedRange Property).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The utterance ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_Tts_TtsClient_AddText_System_String_System_String_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Locale MUST be set for UTF-8 text validation check.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failure</li>
+<li>Invalid Voice</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to improper value provided while setting the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Dispose_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1049">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Dispose" data-uid="Tizen.Uix.Tts.TtsClient.Dispose">Dispose()</h4>
+    <section>
+    <p>Method to release resources.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Dispose_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1062">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Dispose_System_Boolean_" data-uid="Tizen.Uix.Tts.TtsClient.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Method to release resources.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>The boolean value for destoying tts handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Finalize_" data-uid="Tizen.Uix.Tts.TtsClient.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L245">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Finalize" data-uid="Tizen.Uix.Tts.TtsClient.Finalize">~TtsClient()</h4>
+    <section>
+    <p>Destructor to destroy TtsClient handle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~TtsClient()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_GetPrivateData_" data-uid="Tizen.Uix.Tts.TtsClient.GetPrivateData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L805">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_GetPrivateData_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.GetPrivateData(System.String)">GetPrivateData(string)</h4>
+    <section>
+    <p>Gets the private data from TTS engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetPrivateData(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The data corresponding to the provided key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Engine Not found</li>
+<li>Operation Failure</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_GetSpeedRange_" data-uid="Tizen.Uix.Tts.TtsClient.GetSpeedRange*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L877">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_GetSpeedRange" data-uid="Tizen.Uix.Tts.TtsClient.GetSpeedRange">GetSpeedRange()</h4>
+    <section>
+    <p>Gets the speed range.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpeedRange GetSpeedRange()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Tts.SpeedRange.html">SpeedRange</a></td>
+        <td><p>The SpeedRange value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failure</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_GetSupportedVoices_" data-uid="Tizen.Uix.Tts.TtsClient.GetSupportedVoices*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L759">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_GetSupportedVoices" data-uid="Tizen.Uix.Tts.TtsClient.GetSupportedVoices">GetSupportedVoices()</h4>
+    <section>
+    <p>Retrieves all supported voices of the current engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;SupportedVoice&gt; GetSupportedVoices()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.SupportedVoice.html">SupportedVoice</a>&gt;</td>
+        <td><p>The list of SupportedVoice.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Engine Not Found</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Pause_" data-uid="Tizen.Uix.Tts.TtsClient.Pause*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1032">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Pause" data-uid="Tizen.Uix.Tts.TtsClient.Pause">Pause()</h4>
+    <section>
+    <p>Pauses the currently playing utterance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failure</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Play_" data-uid="Tizen.Uix.Tts.TtsClient.Play*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L967">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Play" data-uid="Tizen.Uix.Tts.TtsClient.Play">Play()</h4>
+    <section>
+    <p>Starts synthesizing voice from the text and plays the synthesized audio data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Play()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failure</li>
+<li>Out of Network</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Prepare_" data-uid="Tizen.Uix.Tts.TtsClient.Prepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L702">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Prepare" data-uid="Tizen.Uix.Tts.TtsClient.Prepare">Prepare()</h4>
+    <section>
+    <p>Connects to the TTS service asynchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_SetCredential_" data-uid="Tizen.Uix.Tts.TtsClient.SetCredential*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L673">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_SetCredential_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.SetCredential(System.String)">SetCredential(string)</h4>
+    <section>
+    <p>Sets the application credential.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCredential(string credential)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">credential</span></td>
+        <td><p>.
+The credential string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to improper value provided while setting the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_SetPrivateData_" data-uid="Tizen.Uix.Tts.TtsClient.SetPrivateData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L845">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_SetPrivateData_System_String_System_String_" data-uid="Tizen.Uix.Tts.TtsClient.SetPrivateData(System.String,System.String)">SetPrivateData(string, string)</h4>
+    <section>
+    <p>Sets the private data to tts engine.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPrivateData(string key, string data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The data string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Engine Not found</li>
+<li>Operation Failure</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to improper value provided while setting the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Stop_" data-uid="Tizen.Uix.Tts.TtsClient.Stop*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L1000">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Stop" data-uid="Tizen.Uix.Tts.TtsClient.Stop">Stop()</h4>
+    <section>
+    <p>Stops playing the utterance and clears the queue.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid Stat</li>
+<li>Operation Failure</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Uix_Tts_TtsClient_Unprepare_" data-uid="Tizen.Uix.Tts.TtsClient.Unprepare*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L730">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_Unprepare" data-uid="Tizen.Uix.Tts.TtsClient.Unprepare">Unprepare()</h4>
+    <section>
+    <p>Disconnects from the STT service.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to an invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to TTS not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L425">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_DefaultVoiceChanged" data-uid="Tizen.Uix.Tts.TtsClient.DefaultVoiceChanged">DefaultVoiceChanged</h4>
+    <section>
+    <p>Event to be invoked when an error occurs.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DefaultVoiceChangedEventArgs&gt; DefaultVoiceChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.DefaultVoiceChangedEventArgs.html">DefaultVoiceChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L471">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_EngineChanged" data-uid="Tizen.Uix.Tts.TtsClient.EngineChanged">EngineChanged</h4>
+    <section>
+    <p>Event to be invoked to detect engine change.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EngineChangedEventArgs&gt; EngineChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.EngineChangedEventArgs.html">EngineChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L382">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_ErrorOccurred" data-uid="Tizen.Uix.Tts.TtsClient.ErrorOccurred">ErrorOccurred</h4>
+    <section>
+    <p>Event to be invoked when an error occurs.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ErrorOccurredEventArgs.html">ErrorOccurredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L254">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_StateChanged" data-uid="Tizen.Uix.Tts.TtsClient.StateChanged">StateChanged</h4>
+    <section>
+    <p>Event to be invoked when TTS state changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L340">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_UtteranceCompleted" data-uid="Tizen.Uix.Tts.TtsClient.UtteranceCompleted">UtteranceCompleted</h4>
+    <section>
+    <p>Event to be invoked when the utterance completes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;UtteranceEventArgs&gt; UtteranceCompleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.UtteranceEventArgs.html">UtteranceEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Uix.Tts/Tizen.Uix.Tts/TtsClient.cs/#L298">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_Tts_TtsClient_UtteranceStarted" data-uid="Tizen.Uix.Tts.TtsClient.UtteranceStarted">UtteranceStarted</h4>
+    <section>
+    <p>Event to be invoked when the utterance starts.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;UtteranceEventArgs&gt; UtteranceStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.UtteranceEventArgs.html">UtteranceEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

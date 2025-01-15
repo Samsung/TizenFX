@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tizen Peripheral I/O Native API </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Tizen Peripheral I/O Native API ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="internals">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="">
+<h1 id="tizen-peripheral-io-native-api">Tizen Peripheral I/O Native API</h1>
+
+<p>Tizen IoT provides the Peripheral I/O APIs for IoT devices to control peripherals, such as sensors and actuators, using industry-standard protocols and interfaces:</p>
+<ul>
+<li><a href="peripheral-gpio.html">GPIO</a> (General-Purpose Input/Output)</li>
+<li><a href="peripheral-pwm.html">PWM</a> (Pulse-Width Modulation)</li>
+<li><a href="peripheral-spi.html">SPI</a> (Serial Peripheral Interface)</li>
+<li><a href="peripheral-i2c.html">I<sup>2</sup>C</a> (Inter-Integrated Circuit)</li>
+<li><a href="peripheral-uart.html">UART</a> (Universal Asynchronous Receiver-Transmitter)</li>
+</ul>
+<p>Since each peripheral supports different interfaces and protocols, you must check from the peripheral's specifications whether a specific protocol is supported. Peripheral I/O APIs are categorized based on the protocol.</p>
+<p><strong>Figure: Peripherals connected to an IoT device</strong></p>
+<p><img src="media/peri_api_devices.png" alt="Peripherals connected to an IoT device"></p>
+<p><a name="protocol"></a></p>
+<h2 id="supported-protocols">Supported Protocols</h2>
+<p>The following table lists the supported protocols for the Tizen IoT hardware targets.</p>
+<p><strong>Table: Protocols supported by the Tizen IoT hardware targets</strong></p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Raspberry Pi 3 and Raspberry Pi 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPIO</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>PWM</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SPI</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>I<sup>2</sup>C</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>UART</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>The following figures illustrate the pinout information for the Tizen IoT hardware targets.</p>
+<p><strong>Figure: Raspberry Pi 3 and Raspberry Pi 4 pinout</strong></p>
+<p><img src="media/peri_api_raspberry4.png" alt="Raspberry Pi 4 pinout"></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li><p>To use the Peripheral I/O API, the application has to request permission by adding the following platform privilege to the <code>tizen-manifest.xml</code> file:</p>
+<pre><code class="lang-xml">&lt;privileges&gt;
+   &lt;privilege&gt;http://tizen.org/privilege/peripheralio&lt;/privilege&gt;
+&lt;/privileges&gt;
+</code></pre>
+<p>To obtain authorization to use platform-level privileges, the application must be signed with a <strong>platform-level distributor</strong> certificate. Please follow <a href="https://docs.tizen.org/application/vstools/tools/certificate-manager/">this guide</a> on how to create a certificate profile for signing the application. In third section of creating certificate &quot;Distributor Certificate&quot; please select &quot;Select a distributor certificate for an another app store&quot; and provide <strong>platform-level distributor</strong> certificate obtained from Samsung.</p>
+</li>
+<li><p>To use the classes and data types of the Peripheral I/O API please use <code>Tizen.Peripheral</code> namespace.</p>
+</li>
+</ol>
+</section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

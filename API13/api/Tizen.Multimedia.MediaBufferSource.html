@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MediaBufferSource
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MediaBufferSource
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.MediaBufferSource">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_MediaBufferSource" data-uid="Tizen.Multimedia.MediaBufferSource" class="mt-0 text-break"><span class="entity-type">Class</span>
+MediaBufferSource
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.MediaPlayer/Player/MediaBufferSource.cs/#L31" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.MediaPlayer.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents a media source using memory.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class MediaBufferSource : MediaSource</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Multimedia.MediaSource.html">MediaSource</a></div>
+        <div><span class="xref">MediaBufferSource</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Multimedia_MediaBufferSource_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
+If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_MediaBufferSource__ctor_" data-uid="Tizen.Multimedia.MediaBufferSource.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.MediaPlayer/Player/MediaBufferSource.cs/#L83">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte___System_Int32_System_Int32_" data-uid="Tizen.Multimedia.MediaBufferSource.#ctor(System.Byte[],System.Int32,System.Int32)">MediaBufferSource(byte[], int, int)</h4>
+    <section>
+    <p>Initializes a new instance of the MediaBufferSource class with buffer, length, and optional offset.
+with the specified length and the specified offset.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaBufferSource(byte[] buffer, int length, int offset = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The source array to be copied into the buffer.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The value indicating the number of bytes to copy from the buffer.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The value indicating the offset in the buffer of the first byte to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte___System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
+If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">offset</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">length</code> is equal to or less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">offset</code>+<code data-dev-comment-type="paramref" class="paramref">length</code> is greater than buffer.Length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte___System_Int32_System_Int32__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_MediaBufferSource__ctor_" data-uid="Tizen.Multimedia.MediaBufferSource.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.MediaPlayer/Player/MediaBufferSource.cs/#L62">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte___" data-uid="Tizen.Multimedia.MediaBufferSource.#ctor(System.Byte[])">MediaBufferSource(byte[])</h4>
+    <section>
+    <p>Initializes a new instance of the MediaBufferSource class with the specified buffer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaBufferSource(byte[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The source array to be copied into the buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
+If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Byte____seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_MediaBufferSource__ctor_" data-uid="Tizen.Multimedia.MediaBufferSource.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.MediaPlayer/Player/MediaBufferSource.cs/#L45">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Int32_" data-uid="Tizen.Multimedia.MediaBufferSource.#ctor(System.Int32)">MediaBufferSource(int)</h4>
+    <section>
+    <p>Initializes a new instance of the MediaBufferSource class with the specified buffer length.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaBufferSource(int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The value indicating the size of the buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
+If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">length</code> is zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">length</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_MediaBufferSource__ctor_System_Int32__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
+  </div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_MediaBufferSource_Buffer_" data-uid="Tizen.Multimedia.MediaBufferSource.Buffer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.MediaPlayer/Player/MediaBufferSource.cs/#L135">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_MediaBufferSource_Buffer" data-uid="Tizen.Multimedia.MediaBufferSource.Buffer">Buffer</h4>
+    <section>
+    <p>Gets the byte array of this buffer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] Buffer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MediaBufferSource_Buffer_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
+If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
+</div>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_MediaBufferSource_Buffer_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
+  </div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_MediaBufferSource_Wrap_" data-uid="Tizen.Multimedia.MediaBufferSource.Wrap*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.MediaPlayer/Player/MediaBufferSource.cs/#L118">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_MediaBufferSource_Wrap_System_Byte___" data-uid="Tizen.Multimedia.MediaBufferSource.Wrap(System.Byte[])">Wrap(byte[])</h4>
+    <section>
+    <p>Creates a MediaBufferSource that wraps a byte array.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MediaBufferSource Wrap(byte[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The array to be wrapped.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.MediaBufferSource.html">MediaBufferSource</a></td>
+        <td><p>A MediaBufferSource wrapping the byte array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_MediaBufferSource_Wrap_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The buffer has to be filled with appropriate data which means it must be well-formatted.
+If you provide invalid data, you won't receive an error until <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a> is called.</p>
+</div>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_MediaBufferSource_Wrap_System_Byte____seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
+  </div>
+
+
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource_">SetSource(MediaSource)</a></div>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

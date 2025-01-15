@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AudioDucking
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AudioDucking
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.AudioDucking">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_AudioDucking" data-uid="Tizen.Multimedia.AudioDucking" class="mt-0 text-break"><span class="entity-type">Class</span>
+AudioDucking
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides the functionalities to control audio ducking.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class AudioDucking : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AudioDucking</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_AudioDucking__ctor_" data-uid="Tizen.Multimedia.AudioDucking.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L40">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioDucking__ctor_Tizen_Multimedia_AudioStreamType_" data-uid="Tizen.Multimedia.AudioDucking.#ctor(Tizen.Multimedia.AudioStreamType)">AudioDucking(AudioStreamType)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> class with <a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioDucking(AudioStreamType targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>The type of sound stream affected by this new instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">targetType</code> is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioDucking__ctor_Tizen_Multimedia_AudioStreamType__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_AudioDucking_IsDucked_" data-uid="Tizen.Multimedia.AudioDucking.IsDucked*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L69">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioDucking_IsDucked" data-uid="Tizen.Multimedia.AudioDucking.IsDucked">IsDucked</h4>
+    <section>
+    <p>Gets the ducking state of the stream.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDucked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the audio stream is ducked; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioDucking_IsDucked_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_AudioDucking_Activate_" data-uid="Tizen.Multimedia.AudioDucking.Activate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L105">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioDucking_Activate_System_UInt32_System_Double_" data-uid="Tizen.Multimedia.AudioDucking.Activate(System.UInt32,System.Double)">Activate(uint, double)</h4>
+    <section>
+    <p>Activate audio ducking</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Activate(uint duration, double ratio)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td><p>The duration for ducking in milliseconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">ratio</span></td>
+        <td><p>The volume ratio when ducked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioDucking_Activate_System_UInt32_System_Double__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To activate ducking, the specified privilege is required.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">duration</code> is less than 0 or greater than 3000.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">ratio</code> is less than 0.0 or greater than or equal to 1.0.<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.<br>
+-or-<br>
+The target stream is already ducked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required privilege to set volume.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioDucking_Activate_System_UInt32_System_Double__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_AudioDucking_Deactivate_" data-uid="Tizen.Multimedia.AudioDucking.Deactivate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L139">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioDucking_Deactivate" data-uid="Tizen.Multimedia.AudioDucking.Deactivate">Deactivate()</h4>
+    <section>
+    <p>Deactivate audio ducking</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deactivate()</code></pre>
+  </div>
+  <h5 id="Tizen_Multimedia_AudioDucking_Deactivate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To deactivate ducking, the specified privilege is required.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.<br>
+-or-<br>
+The target stream is already unducked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required privilege to set volume.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioDucking_Deactivate_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_AudioDucking_Dispose_" data-uid="Tizen.Multimedia.AudioDucking.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L154">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioDucking_Dispose" data-uid="Tizen.Multimedia.AudioDucking.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the <a class="xref" href="Tizen.Multimedia.AudioDucking.html">AudioDucking</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioDucking_Dispose_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+
+
+  <h2 id="events">Events
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Multimedia/AudioManager/AudioDucking.cs/#L60">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_AudioDucking_DuckingStateChanged" data-uid="Tizen.Multimedia.AudioDucking.DuckingStateChanged">DuckingStateChanged</h4>
+    <section>
+    <p>Occurs when the ducking state is changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AudioDuckingStateChangedEventArgs&gt; DuckingStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDuckingStateChangedEventArgs.html">AudioDuckingStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_AudioDucking_DuckingStateChanged_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioManager.html">AudioManager</a></div>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

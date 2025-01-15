@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Network.Nsd
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Network.Nsd
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.Nsd">
+  <div class="entity entity-namespace">
+  <h1 id="Tizen_Network_Nsd" data-uid="Tizen.Network.Nsd" class="mt-0 text-break"><span class="entity-type">Namespace</span>
+<span id="namespace">Tizen.Network.Nsd</span>
+</h1>
+
+  <h3 class="hidden-anchor m-0 d-none" id="description"><a href="#description"></a>Description</h3>
+  <div class="markdown level0 summary"><p>The Tizen.Network.Nsd namespace provides classes to manage the network service discovery protocols.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
+<p>The Nsd API handles two network service discovery protocols: DNS-SD (DNS Service Discovery) and SSDP (Simple Service Discovery Protocol). They allows application to announce local services and search for remote services on a network.</p>
+<h2 id="example">Example</h2>
+<p>The following example demonstrates how to register a DNS-SD local service.</p>
+<pre><code class="lang-cs">DnssdService service = new DnssdService(&quot;_http._tcp&quot;);
+service.Name = &quot;TestService&quot;;
+service.Port = &quot;1234&quot;;
+service.RegisterService();
+</code></pre>
+<h2 id="related-features">Related Features</h2>
+<p>To use DNS-SD, declare the following feature requirements in the config file:
+<a href="http://tizen.org/feature/network.service_discovery.dnssd">http://tizen.org/feature/network.service_discovery.dnssd</a></p>
+<p>To use SSDP, declare the following feature requirements in the config file:
+<a href="http://tizen.org/feature/network.service_discovery.ssdp">http://tizen.org/feature/network.service_discovery.ssdp</a></p>
+</div>
+    <h2 id="classes">Classes
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.DnssdBrowser.html">DnssdBrowser</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This class is used for managing the network service discovery using DNS-SD.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.DnssdService.html">DnssdService</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This class is used for managing the local service registration and its properties using DNS-SD.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.DnssdServiceFoundEventArgs.html">DnssdServiceFoundEventArgs</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>An extended EventArgs class, which contains the changed service state during a service discovery using DNS-SD.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.IPAddressInformation.html">IPAddressInformation</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This class manages the IP address properties of the DNS-SD service.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.SsdpBrowser.html">SsdpBrowser</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This class is used for managing the network service discovery using SSDP.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.SsdpService.html">SsdpService</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This class is used for managing the local service registration and its properties using SSDP.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.SsdpServiceFoundEventArgs.html">SsdpServiceFoundEventArgs</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>An extended EventArgs class, which contains the changed service state during a service discovery using SSDP.</p>
+</section>
+      </div>
+    <h2 id="interfaces">Interfaces
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.INsdBrowser.html">INsdBrowser</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This interface is used for managing the network service discovery using DNS-SD/SSDP.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.INsdService.html">INsdService</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>This interface is used for managing the local service registration using DNS-SD/SSDP.</p>
+</section>
+      </div>
+    <h2 id="enums">Enums
+</h2>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.DnssdServiceState.html">DnssdServiceState</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for the DNS-SD service states.</p>
+</section>
+      </div>
+      <div class="described-list-item row ml-0 mr-0">
+        <h4 class="col col-12 col-md-4">
+          <a class="xref" href="Tizen.Network.Nsd.SsdpServiceState.html">SsdpServiceState</a>
+        </h4>
+        <section class="col col-12 col-md-8"><p>Enumeration for the SSDP service states.</p>
+</section>
+      </div>
+  </div>
+</section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

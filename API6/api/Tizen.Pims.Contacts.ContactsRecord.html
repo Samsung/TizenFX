@@ -1,0 +1,938 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ContactsRecord
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ContactsRecord
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Pims.Contacts.ContactsRecord">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Pims_Contacts_ContactsRecord" data-uid="Tizen.Pims.Contacts.ContactsRecord" class="mt-0 text-break"><span class="entity-type">Class</span>
+ContactsRecord
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L32" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Pims</span>.<a class="xref" href="Tizen.Pims.Contacts.html">Contacts</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Pims.Contacts.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A record represents an actual record in the database.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ContactsRecord : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ContactsRecord</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord__ctor_" data-uid="Tizen.Pims.Contacts.ContactsRecord.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L94">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord__ctor_System_String_" data-uid="Tizen.Pims.Contacts.ContactsRecord.#ctor(System.String)">ContactsRecord(string)</h4>
+    <section>
+    <p>Creates a record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContactsRecord(string viewUri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">viewUri</span></td>
+        <td><p>The view URI.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Uri_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Uri*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L121">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Uri" data-uid="Tizen.Pims.Contacts.ContactsRecord.Uri">Uri</h4>
+    <section>
+    <p>The URI of the record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Uri { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The URI of the record.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Uri_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_AddChildRecord_" data-uid="Tizen.Pims.Contacts.ContactsRecord.AddChildRecord*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L345">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_AddChildRecord_System_UInt32_Tizen_Pims_Contacts_ContactsRecord_" data-uid="Tizen.Pims.Contacts.ContactsRecord.AddChildRecord(System.UInt32,Tizen.Pims.Contacts.ContactsRecord)">AddChildRecord(uint, ContactsRecord)</h4>
+    <section>
+    <p>Adds a child record to the parent record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddChildRecord(uint propertyId, ContactsRecord childRecord)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Pims.Contacts.ContactsRecord.html">ContactsRecord</a></td>
+        <td><span class="parametername">childRecord</span></td>
+        <td><p>The child record to add to the parent record.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_AddChildRecord_System_UInt32_Tizen_Pims_Contacts_ContactsRecord__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Clone_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Clone*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L179">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Clone" data-uid="Tizen.Pims.Contacts.ContactsRecord.Clone">Clone()</h4>
+    <section>
+    <p>Makes a clone of a record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContactsRecord Clone()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Pims.Contacts.ContactsRecord.html">ContactsRecord</a></td>
+        <td><p>A cloned record.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Clone_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when failed due to out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_CloneChildRecordList_" data-uid="Tizen.Pims.Contacts.ContactsRecord.CloneChildRecordList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L431">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_CloneChildRecordList_System_UInt32_" data-uid="Tizen.Pims.Contacts.ContactsRecord.CloneChildRecordList(System.UInt32)">CloneChildRecordList(uint)</h4>
+    <section>
+    <p>Clones a child record list corresponding to the property ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContactsList CloneChildRecordList(uint propertyId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Pims.Contacts.ContactsList.html">ContactsList</a></td>
+        <td><p>The record list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_CloneChildRecordList_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Dispose_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L164">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Dispose" data-uid="Tizen.Pims.Contacts.ContactsRecord.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all the resources used by the ContactsRecord.
+It should be called after it has finished using the object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Dispose_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L138">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Dispose_System_Boolean_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases all the resources used by the ContactsRecord.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Disposing by the user.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Dispose_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Finalize_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L111">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Finalize" data-uid="Tizen.Pims.Contacts.ContactsRecord.Finalize">~ContactsRecord()</h4>
+    <section>
+    <p>The destructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~ContactsRecord()</code></pre>
+  </div>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Finalize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Get_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Get*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L202">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Get__1_System_UInt32_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Get``1(System.UInt32)">Get&lt;T&gt;(uint)</h4>
+    <section>
+    <p>Gets a value of the property from a record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Get&lt;T&gt;(uint propertyId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value of the property corresponding to a property ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Get__1_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_GetChildRecord_" data-uid="Tizen.Pims.Contacts.ContactsRecord.GetChildRecord*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L407">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_GetChildRecord_System_UInt32_System_Int32_" data-uid="Tizen.Pims.Contacts.ContactsRecord.GetChildRecord(System.UInt32,System.Int32)">GetChildRecord(uint, int)</h4>
+    <section>
+    <p>Gets a child record from the parent record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContactsRecord GetChildRecord(uint propertyId, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the child record.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Pims.Contacts.ContactsRecord.html">ContactsRecord</a></td>
+        <td><p>The record</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_GetChildRecord_System_UInt32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_GetChildRecordCount_" data-uid="Tizen.Pims.Contacts.ContactsRecord.GetChildRecordCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L385">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_GetChildRecordCount_System_UInt32_" data-uid="Tizen.Pims.Contacts.ContactsRecord.GetChildRecordCount(System.UInt32)">GetChildRecordCount(uint)</h4>
+    <section>
+    <p>Gets the number of child records of a parent record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetChildRecordCount(uint propertyId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The number of child records corresponding to the property ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_GetChildRecordCount_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_RemoveChildRecord_" data-uid="Tizen.Pims.Contacts.ContactsRecord.RemoveChildRecord*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L365">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_RemoveChildRecord_System_UInt32_Tizen_Pims_Contacts_ContactsRecord_" data-uid="Tizen.Pims.Contacts.ContactsRecord.RemoveChildRecord(System.UInt32,Tizen.Pims.Contacts.ContactsRecord)">RemoveChildRecord(uint, ContactsRecord)</h4>
+    <section>
+    <p>Removes a child record from the parent record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveChildRecord(uint propertyId, ContactsRecord childRecord)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Pims.Contacts.ContactsRecord.html">ContactsRecord</a></td>
+        <td><span class="parametername">childRecord</span></td>
+        <td><p>The child record to remove from the parent record.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_RemoveChildRecord_System_UInt32_Tizen_Pims_Contacts_ContactsRecord__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Pims_Contacts_ContactsRecord_Set_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Set*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Pims.Contacts/Tizen.Pims.Contacts/ContactsRecord.cs/#L277">View Source</a>
+    </span>
+    <h4 id="Tizen_Pims_Contacts_ContactsRecord_Set__1_System_UInt32___0_" data-uid="Tizen.Pims.Contacts.ContactsRecord.Set``1(System.UInt32,``0)">Set&lt;T&gt;(uint, T)</h4>
+    <section>
+    <p>Sets a value of the property to a record.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Set&lt;T&gt;(uint propertyId, T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">propertyId</span></td>
+        <td><p>The property ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Pims_Contacts_ContactsRecord_Set__1_System_UInt32___0__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts.
+A record can be a complex set of data, containing other data. For example, a contact record contains the address property, which is a reference to an address record.
+An address record belongs to a contact record, and its ContactId property is set to the identifier of the corresponding contact. In this case, the address is the child record of the contact and the contact is the parent record.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when one of the arguments provided to a method is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

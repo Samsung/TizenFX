@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ShortcutEventManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ShortcutEventManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_Shortcut_ShortcutEventManager" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager" class="mt-0 text-break"><span class="entity-type">Class</span>
+ShortcutEventManager
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L43" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Shortcut.html">Shortcut</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Shortcut.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class provides a way to register the callback function for the shortcut add and delete events.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ShortcutEventManager</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ShortcutEventManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_Shortcut_ShortcutEventManager_GetTemplateList_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.GetTemplateList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L208">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_GetTemplateList_System_String_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.GetTemplateList(System.String)">GetTemplateList(string)</h4>
+    <section>
+    <p>Gets the preset list of the shortcut template from the installed package.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;ShortcutTemplate&gt; GetTemplateList(string appId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">appId</span></td>
+        <td><p>The application ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Shortcut.ShortcutTemplate.html">ShortcutTemplate</a>&gt;</td>
+        <td><p>The List of ShortcutTemplate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown in case of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L70">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler(Tizen.Applications.Shortcut.ShortcutAdded)">RegisterEventHandler(ShortcutAdded)</h4>
+    <section>
+    <p>Registers a callback function to listen requests from the applications.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterEventHandler(ShortcutAdded addedEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Shortcut.ShortcutAdded.html">ShortcutAdded</a></td>
+        <td><span class="parametername">addedEvent</span></td>
+        <td><p>The callback function pointer that is invoked when Add() is requested.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Previous registered delegate function should be unregistered.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown in case of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L106">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.RegisterEventHandler(Tizen.Applications.Shortcut.ShortcutDeleted)">RegisterEventHandler(ShortcutDeleted)</h4>
+    <section>
+    <p>Registers a callback function to listen requests from the applications.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterEventHandler(ShortcutDeleted deletedEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Shortcut.ShortcutDeleted.html">ShortcutDeleted</a></td>
+        <td><span class="parametername">deletedEvent</span></td>
+        <td><p>The callback function pointer that is invoked when Delete() is requested.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Previous registered delegate function should be unregistered.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown in case of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L137">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler(Tizen.Applications.Shortcut.ShortcutAdded)">UnregisterEventHandler(ShortcutAdded)</h4>
+    <section>
+    <p>Unregisters a callback for the shortcut request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UnregisterEventHandler(ShortcutAdded addedEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Shortcut.ShortcutAdded.html">ShortcutAdded</a></td>
+        <td><span class="parametername">addedEvent</span></td>
+        <td><p>The callback function pointer that is used for RegisterCallback.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Shortcut/Tizen.Applications.ShortcutEvent/ShortcutEventManager.cs/#L171">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Shortcut_ShortcutEventManager_UnregisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted_" data-uid="Tizen.Applications.Shortcut.ShortcutEventManager.UnregisterEventHandler(Tizen.Applications.Shortcut.ShortcutDeleted)">UnregisterEventHandler(ShortcutDeleted)</h4>
+    <section>
+    <p>Unregisters a callback for the shortcut request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Shortcut.ShortcutDeleted.html">ShortcutDeleted</a></td>
+        <td><span class="parametername">deletedEvent</span></td>
+        <td><p>The callback function pointer that is used for RegisterCallback.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the shortcut is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

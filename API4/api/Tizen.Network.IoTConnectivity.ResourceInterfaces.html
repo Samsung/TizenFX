@@ -1,0 +1,753 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ResourceInterfaces
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ResourceInterfaces
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Network_IoTConnectivity_ResourceInterfaces" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces" class="mt-0 text-break"><span class="entity-type">Class</span>
+ResourceInterfaces
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L30" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.IoTConnectivity.html">IoTConnectivity</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.IoTConnectivity.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class contains resource interfaces and provides APIs to manage, add, or remove those interfaces.
+A resource interface indicates a class or category of resources.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ResourceInterfaces : IEnumerable&lt;string&gt;, IEnumerable, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ResourceInterfaces</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.IEnumerable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L79">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.#ctor">ResourceInterfaces()</h4>
+    <section>
+    <p>Constructor of ResourceInterfaces.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResourceInterfaces()</code></pre>
+  </div>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor_examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceInterfaces.html#Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_System_String_">Add(string)</a></div>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceInterfaces.html#Tizen_Network_IoTConnectivity_ResourceInterfaces_Remove_System_String_">Remove(string)</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.#ctor(System.Collections.Generic.IEnumerable{System.String})">ResourceInterfaces(IEnumerable&lt;string&gt;)</h4>
+    <section>
+    <p>Constructor of ResourceInterfaces using list of interfaces.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResourceInterfaces(IEnumerable&lt;string&gt; ifaces)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">ifaces</span></td>
+        <td><p>List of resource interfaces.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces__ctor_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List&lt;string>()
+        { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="fields">Fields
+</h2>
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L48">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_BatchInterface" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.BatchInterface">BatchInterface</h4>
+    <section>
+    <p>Batch Interface, which is used to manipulate (GET, PUT, POST, DELETE) on other resource contained in a resource.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string BatchInterface = &quot;oic.if.b&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L36">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_DefaultInterface" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.DefaultInterface">DefaultInterface</h4>
+    <section>
+    <p>Default Interface.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string DefaultInterface = &quot;oic.if.baseline&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L54">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_GroupInterface" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.GroupInterface">GroupInterface</h4>
+    <section>
+    <p>Group Interface, which is used to manipulate (GET, PUT, POST) a group of remote resources.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string GroupInterface = &quot;oic.mi.grp&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L42">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_LinkInterface" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.LinkInterface">LinkInterface</h4>
+    <section>
+    <p>List Links Interface, which is used to list the references to other resources contained in a resource.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string LinkInterface = &quot;oic.if.ll&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L60">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_ReadonlyInterface" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.ReadonlyInterface">ReadonlyInterface</h4>
+    <section>
+    <p>Read-Only Interface, which is used to limit the methods that can be applied to a resource to GET only.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string ReadonlyInterface = &quot;oic.if.r&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Count_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Count*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L165">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Count" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Count">Count</h4>
+    <section>
+    <p>Indicates count of interfaces in the list</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>Count of interfaces in the list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Count_examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List&lt;string>()
+        { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+    Console.WriteLine(&quot;There are {0} interfaces&quot;, resourceInterfaces.Count);</code></pre>
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Add*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L190">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_System_String_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Add(System.String)">Add(string)</h4>
+    <section>
+    <p>Adds a resource interface into the list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The string data to insert into the resource interfaces.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><code data-dev-comment-type="paramref" class="paramref">item</code> could be a value, such as <a class="xref" href="Tizen.Network.IoTConnectivity.ResourceInterfaces.html#Tizen_Network_IoTConnectivity_ResourceInterfaces_DefaultInterface">DefaultInterface</a>.</p>
+</div>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_System_String__examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
+    resourceInterfaces.Add(ResourceInterfaces.BatchInterface);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_System_String__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceInterfaces.html#Tizen_Network_IoTConnectivity_ResourceInterfaces_Remove_System_String_">Remove(string)</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Dispose_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L280">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Dispose" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Dispose_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L298">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Dispose_System_Boolean_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Finalize_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Finalize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L142">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Finalize" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Finalize">~ResourceInterfaces()</h4>
+    <section>
+    <p>Destructor of the ResourceInterfaces class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~ResourceInterfaces()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.GetEnumerator*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L252">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.GetEnumerator">GetEnumerator()</h4>
+    <section>
+    <p>Returns enumerator for the list of interfaces.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;string&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><p>The enumerator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_GetEnumerator_examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List&lt;string>()
+        { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+    foreach(string item in resourceInterfaces)
+    {
+        Console.WriteLine(&quot;Interface : {0}&quot;, item);
+    }</code></pre>
+
+
+
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Remove_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Remove*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L223">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Remove_System_String_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.Remove(System.String)">Remove(string)</h4>
+    <section>
+    <p>Removes a resource interface from the list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(string item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The string data to delete from the resource ifaces.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Remove_System_String__examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List&lt;string>(){ ResourceInterfaces.BatchInterface });
+    resourceInterfaces.Add(ResourceInterfaces.BatchInterface);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_Remove_System_String__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceInterfaces.html#Tizen_Network_IoTConnectivity_ResourceInterfaces_Add_System_String_">Add(string)</a></div>
+  </div>
+
+
+  <h2 id="eii">Explicit Interface Implementations
+</h2>
+
+  <a id="Tizen_Network_IoTConnectivity_ResourceInterfaces_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceInterfaces.cs/#L270">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.ResourceInterfaces.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+    <section>
+    <p>Returns enumerator for the list of interfaces.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><p>The enumerator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceInterfaces_System_Collections_IEnumerable_GetEnumerator_examples">Examples</h5>
+  <pre><code>    ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List&lt;string>()
+        { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
+    foreach(string item in resourceInterfaces)
+    {
+        Console.WriteLine(&quot;Interface : {0}&quot;, item);
+    }</code></pre>
+
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

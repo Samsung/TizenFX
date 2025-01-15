@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MotionIndex
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MotionIndex
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D.MotionIndex">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Scene3D_MotionIndex" data-uid="Tizen.NUI.Scene3D.MotionIndex" class="mt-0 text-break"><span class="entity-type">Class</span>
+MotionIndex
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionIndex.cs/#L45" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Scene3D.html">Scene3D</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Index of motion value. It will be used to specify the target of motion applied.
+There are three kinds of MotionIndex : <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>, <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a>.
+MotionPropertyIndex will be used for control all kind of properties.
+The <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a> loaded from files / buffer will have this kind of MotionIndex.
+MotionTransformIndex will be used for control the <span class="xref">Tizen.NUI.Scene3D.ModelNode</span>'s Position / Orientation / Scale, or each components.
+BlendShapeIndex will be used for control some blend shape animation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MotionIndex : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div><span class="xref">MotionIndex</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_NUI_Scene3D_MotionIndex_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>We can use below cases.</p>
+<table>
+<tr><td>ModelNodeId KeyType</td><td>MotionIndex class                                 </td><td>Description                             </td></tr>
+<tr><td>KeyType.String     </td><td>MotionTransformIndex                              </td><td>Target is ModelNode&apos;s transform property</td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.Index) </td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>(null)             </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is all ModelNode&apos;s BlendShape    </td></tr>
+</table>
+All other cases are invalid.
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_Scene3D_MotionIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionIndex.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionIndex.cs/#L52">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_MotionIndex__ctor_Tizen_NUI_Scene3D_MotionIndex_" data-uid="Tizen.NUI.Scene3D.MotionIndex.#ctor(Tizen.NUI.Scene3D.MotionIndex)">MotionIndex(MotionIndex)</h4>
+    <section>
+    <p>Copy constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MotionIndex(MotionIndex motionIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></td>
+        <td><span class="parametername">motionIndex</span></td>
+        <td><p>Source object to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_MotionIndex__ctor_Tizen_NUI_Scene3D_MotionIndex__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>We can use below cases.</p>
+<table>
+<tr><td>ModelNodeId KeyType</td><td>MotionIndex class                                 </td><td>Description                             </td></tr>
+<tr><td>KeyType.String     </td><td>MotionTransformIndex                              </td><td>Target is ModelNode&apos;s transform property</td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.Index) </td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>(null)             </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is all ModelNode&apos;s BlendShape    </td></tr>
+</table>
+All other cases are invalid.
+</div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_Scene3D_MotionIndex_ModelNodeId_" data-uid="Tizen.NUI.Scene3D.MotionIndex.ModelNodeId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionIndex.cs/#L81">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_MotionIndex_ModelNodeId" data-uid="Tizen.NUI.Scene3D.MotionIndex.ModelNodeId">ModelNodeId</h4>
+    <section>
+    <p>The ID of ModelNode. If you want to apply to all ModelNodes who has BlendShape string, assign null.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyKey ModelNodeId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyKey.html">PropertyKey</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_MotionIndex_ModelNodeId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>We can use below cases.</p>
+<table>
+<tr><td>ModelNodeId KeyType</td><td>MotionIndex class                                 </td><td>Description                             </td></tr>
+<tr><td>KeyType.String     </td><td>MotionTransformIndex                              </td><td>Target is ModelNode&apos;s transform property</td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.Index) </td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>(null)             </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is all ModelNode&apos;s BlendShape    </td></tr>
+</table>
+All other cases are invalid.
+</div>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

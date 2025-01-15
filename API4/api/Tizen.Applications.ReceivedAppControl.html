@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ReceivedAppControl
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ReceivedAppControl
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API4">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.ReceivedAppControl">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_ReceivedAppControl" data-uid="Tizen.Applications.ReceivedAppControl" class="mt-0 text-break"><span class="entity-type">Class</span>
+ReceivedAppControl
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs/#L47" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents the received AppControl.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ReceivedAppControl : AppControl</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></div>
+        <div><span class="xref">ReceivedAppControl</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Applications_ReceivedAppControl_examples"><strong>Examples</strong></h5>
+  <pre><code>public class ReceivedAppControlExample : UIApplication
+{
+    // ...
+    protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    {
+        ReceivedAppControl control = e.ReceivedAppControl;
+        if (control.Operation == AppControlOperations.Pick)
+        {
+            Log.Debug(LogTag, &quot;Received AppControl is Pick&quot;);
+        }
+        if (control.IsReplyRequest)
+        {
+            AppControl replyRequest = new AppControl();
+            replyRequest.ExtraData.Add(&quot;myKey&quot;, &quot;I&apos;m replying&quot;);
+            control.ReplyToLaunchRequest(replyRequest, AppControlReplyResult.Succeeded);
+        }
+    }
+}</code></pre>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_ReceivedAppControl__ctor_" data-uid="Tizen.Applications.ReceivedAppControl.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs/#L55">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ReceivedAppControl__ctor_Tizen_Applications_SafeAppControlHandle_" data-uid="Tizen.Applications.ReceivedAppControl.#ctor(Tizen.Applications.SafeAppControlHandle)">ReceivedAppControl(SafeAppControlHandle)</h4>
+    <section>
+    <p>Initializes a ReceivedAppControl class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReceivedAppControl(SafeAppControlHandle handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.SafeAppControlHandle.html">SafeAppControlHandle</a></td>
+        <td><span class="parametername">handle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_ReceivedAppControl_CallerApplicationId_" data-uid="Tizen.Applications.ReceivedAppControl.CallerApplicationId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs/#L75">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ReceivedAppControl_CallerApplicationId" data-uid="Tizen.Applications.ReceivedAppControl.CallerApplicationId">CallerApplicationId</h4>
+    <section>
+    <p>Gets the application ID of the caller from the launch request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CallerApplicationId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The application ID of the caller.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ReceivedAppControl_CallerApplicationId_examples">Examples</h5>
+  <pre><code>    protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    {
+        ReceivedAppControl control = e.ReceivedAppControl;
+        string caller = control.CallerApplicationId;
+    }</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_ReceivedAppControl_IsReplyRequest_" data-uid="Tizen.Applications.ReceivedAppControl.IsReplyRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs/#L105">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ReceivedAppControl_IsReplyRequest" data-uid="Tizen.Applications.ReceivedAppControl.IsReplyRequest">IsReplyRequest</h4>
+    <section>
+    <p>Checks whether the caller is requesting a reply from the launch request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReplyRequest { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>If true, this ReceivedAppControl is requested by the caller, otherwise false</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ReceivedAppControl_IsReplyRequest_examples">Examples</h5>
+  <pre><code>    protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    {
+        ReceivedAppControl control = e.ReceivedAppControl;
+        bool isReply = control.IsReplyRequest;
+    }</code></pre>
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_ReceivedAppControl_ReplyToLaunchRequest_" data-uid="Tizen.Applications.ReceivedAppControl.ReplyToLaunchRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.Applications.Common/Tizen.Applications/ReceivedAppControl.cs/#L140">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ReceivedAppControl_ReplyToLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyResult_" data-uid="Tizen.Applications.ReceivedAppControl.ReplyToLaunchRequest(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyResult)">ReplyToLaunchRequest(AppControl, AppControlReplyResult)</h4>
+    <section>
+    <p>Replies to the launch request sent by the caller.
+If the caller application sends the launch request to receive the result, the callee application can return the result back to the caller.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplyToLaunchRequest(AppControl replyRequest, AppControlReplyResult result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">replyRequest</span></td>
+        <td><p>The AppControl in which the results of the callee are contained.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControlReplyResult.html">AppControlReplyResult</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>The result code of the launch request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_ReceivedAppControl_ReplyToLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyResult__examples">Examples</h5>
+  <pre><code>    protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    {
+        ReceivedAppControl control = e.ReceivedAppControl;
+        if (control.IsReplyRequest)
+        {
+            AppControl replyRequest = new AppControl();
+            replyRequest.ExtraData.Add(&quot;myKey&quot;, &quot;I&apos;m replying&quot;);
+            control.ReplyToLaunchRequest(replyRequest, AppControlReplyResult.Succeeded);
+        }
+    }</code></pre>
+
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

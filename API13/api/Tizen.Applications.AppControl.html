@@ -1,0 +1,1189 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AppControl
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AppControl
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.AppControl">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_AppControl" data-uid="Tizen.Applications.AppControl" class="mt-0 text-break"><span class="entity-type">Class</span>
+AppControl
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L46" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents the control message to exchange between applications.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AppControl</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AppControl</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Applications.ReceivedAppControl.html">ReceivedAppControl</a></div>
+    </dd>
+  </dl>
+
+
+
+  <h5 id="Tizen_Applications_AppControl_examples"><strong>Examples</strong></h5>
+  <pre><code>public class AppControlExample : UIApplication
+{
+    /// ...
+    protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    {
+        AppControl appControl = new AppControl();
+        appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
+        AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) => {
+            // ...
+        });
+    }
+}</code></pre>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_AppControl__ctor_" data-uid="Tizen.Applications.AppControl.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L69">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl__ctor" data-uid="Tizen.Applications.AppControl.#ctor">AppControl()</h4>
+    <section>
+    <p>Initializes the instance of the AppControl class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppControl()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to create the AppControl handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl__ctor_" data-uid="Tizen.Applications.AppControl.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L84">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl__ctor_System_Boolean_" data-uid="Tizen.Applications.AppControl.#ctor(System.Boolean)">AppControl(bool)</h4>
+    <section>
+    <p>Initializes the instance of the AppControl class with a parameter.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppControl(bool enableAppStartedResultEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enableAppStartedResultEvent</span></td>
+        <td><p>The flag value to receive an additional launch result event on the launch request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to create the AppControl handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl__ctor_" data-uid="Tizen.Applications.AppControl.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L107">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl__ctor_Tizen_Applications_SafeAppControlHandle_" data-uid="Tizen.Applications.AppControl.#ctor(Tizen.Applications.SafeAppControlHandle)">AppControl(SafeAppControlHandle)</h4>
+    <section>
+    <p>Initializes the instance of the AppControl class with the SafeAppControlHandle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppControl(SafeAppControlHandle handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.SafeAppControlHandle.html">SafeAppControlHandle</a></td>
+        <td><span class="parametername">handle</span></td>
+        <td><p>A reference to the SafeAppControlHandle object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_AppControl_ApplicationId_" data-uid="Tizen.Applications.AppControl.ApplicationId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L382">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ApplicationId" data-uid="Tizen.Applications.AppControl.ApplicationId">ApplicationId</h4>
+    <section>
+    <p>Gets and sets the application ID to explicitly launch.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ApplicationId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>This property returns the explicitly set application ID. If no explicit application ID is set, it will return null.
+(Setting this property to null will clear any previously set explicit application IDs.)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ApplicationId_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
+Log.Debug(LogTag, &quot;ApplicationId: &quot; + appControl.ApplicationId);</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_AppControl_Category_" data-uid="Tizen.Applications.AppControl.Category*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L339">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_Category" data-uid="Tizen.Applications.AppControl.Category">Category</h4>
+    <section>
+    <p>Gets and sets the explicit category.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Category { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>This property returns the explicitly set category. If no explicit category is set, it will return null.
+(Setting this property to null will clear any previously set explicit categories.)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ComponentId_" data-uid="Tizen.Applications.AppControl.ComponentId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L493">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ComponentId" data-uid="Tizen.Applications.AppControl.ComponentId">ComponentId</h4>
+    <section>
+    <p>Gets and sets the component ID to explicitly launch a component.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ComponentId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>(if the component ID is null for setter, it clears the previous value.)
+From Tizen 5.5, a new application model is supported that is component-based application.
+This property is for launching component-based application. If it's not set, the main component of component-based application will be launched.
+If the target app is not component-based application, setting property is meaningless.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ComponentId_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ApplicationId = &quot;org.tizen.component-based-app&quot;; // component-based application
+appControl.ComponentId = &quot;org.tizen.frame-component&quot;;
+AppControl.SendLaunchRequest(appControl);</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraData_" data-uid="Tizen.Applications.AppControl.ExtraData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L465">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraData" data-uid="Tizen.Applications.AppControl.ExtraData">ExtraData</h4>
+    <section>
+    <p>Gets the collection of the extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppControl.ExtraDataCollection ExtraData { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a>.<a class="xref" href="Tizen.Applications.AppControl.ExtraDataCollection.html">ExtraDataCollection</a></td>
+        <td><p>The ExtraData property provides access to a collection of key-value pairs representing additional data associated with the application control.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraData_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ExtraData.Add(&quot;key&quot;, &quot;value&quot;);
+...</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_AppControl_LaunchMode_" data-uid="Tizen.Applications.AppControl.LaunchMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L429">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_LaunchMode" data-uid="Tizen.Applications.AppControl.LaunchMode">LaunchMode</h4>
+    <section>
+    <p>Gets and sets the launch mode of the application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppControlLaunchMode LaunchMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControlLaunchMode.html">AppControlLaunchMode</a></td>
+        <td><p>Although, LaunchMode were set as AppControlLaunchMode.Group, the
+callee application would be launched as a single mode
+if the manifest file of callee application defined the launch mode as &quot;single&quot;.
+This property can just set the preference of the caller application to launch an application.
+Sub-applications, which were launched as a group mode always have own process.
+Since Tizen 3.0, if launch mode is not set in the caller application control,
+this property returns the AppControlLaunchMode.Single launch mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_LaunchMode_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.LaunchMode = AppControlLaunchMode.Group;</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_AppControl_Mime_" data-uid="Tizen.Applications.AppControl.Mime*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L244">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_Mime" data-uid="Tizen.Applications.AppControl.Mime">Mime</h4>
+    <section>
+    <p>Gets and sets the explicit MIME type of the data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Mime { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>This property returns the explicitly set MIME type of the data. If no explicit MIME type is set, it will return null.
+(Setting this property to null will clear any previously set explicit MIME types.)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_Mime_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.Mime = &quot;image/jpg&quot;;
+Log.Debug(LogTag, &quot;Mime: &quot; + appControl.Mime);</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_AppControl_Operation_" data-uid="Tizen.Applications.AppControl.Operation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L201">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_Operation" data-uid="Tizen.Applications.AppControl.Operation">Operation</h4>
+    <section>
+    <p>Gets and sets the operation to be performed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Operation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The operation is the mandatory information for the launch request. If the operation is not specified,
+AppControlOperations.Default is used for the launch request. If the operation is AppControlOperations.Default,
+the package information is mandatory to explicitly launch the application.
+(if the operation is null for setter, it clears the previous value.)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_Operation_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.Operation = AppControlOperations.Default;
+Log.Debug(LogTag, &quot;Operation: &quot; + appControl.Operation);</code></pre>
+
+
+
+
+  <a id="Tizen_Applications_AppControl_SafeAppControlHandle_" data-uid="Tizen.Applications.AppControl.SafeAppControlHandle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L176">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_SafeAppControlHandle" data-uid="Tizen.Applications.AppControl.SafeAppControlHandle">SafeAppControlHandle</h4>
+    <section>
+    <p>Gets the SafeAppControlHandle instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SafeAppControlHandle SafeAppControlHandle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.SafeAppControlHandle.html">SafeAppControlHandle</a></td>
+        <td><p>This property returns a reference to the underlying SafeAppControlHandle object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_Uri_" data-uid="Tizen.Applications.AppControl.Uri*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L302">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_Uri" data-uid="Tizen.Applications.AppControl.Uri">Uri</h4>
+    <section>
+    <p>Gets and sets the URI of the data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Uri { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and
+it is a regular file in this application's data path, which can be obtained
+by property DataPath in ApplicationInfo class,
+it will be shared to the callee application.
+Framework will grant a temporary permission to the callee application for this file and
+revoke it when the callee application is terminated.
+The callee application can just read it.
+(if the uri is null for setter, it clears the previous value.)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_Uri_examples">Examples</h5>
+  <pre><code>public class AppControlExample : UIApplication
+{
+    ...
+    protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+    {
+        ...
+        AppControl appControl = new AppControl();
+        appContrl.Uri = this.ApplicationInfo.DataPath + &quot;image.jpg&quot;;
+        Log.Debug(LogTag, &quot;Set Uri: &quot; + appControl.Uri);
+    }
+}</code></pre>
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_AppControl_GetMatchedApplicationIds_" data-uid="Tizen.Applications.AppControl.GetMatchedApplicationIds*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L542">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_GetMatchedApplicationIds_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.GetMatchedApplicationIds(Tizen.Applications.AppControl)">GetMatchedApplicationIds(AppControl)</h4>
+    <section>
+    <p>Retrieves all applications that can be launched to handle the given app_control request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; GetMatchedApplicationIds(AppControl control)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">control</span></td>
+        <td><p>The AppControl.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><p>ApplicationIds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_GetMatchedApplicationIds_Tizen_Applications_AppControl__examples">Examples</h5>
+  <pre><code>IEnumerable&lt;string> applicationIds = AppControl.GetMatchedApplicationIds(control);
+if (applicationIds != null)
+{
+    foreach (string id in applicationIds)
+    {
+        // ...
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_GetWindowPosition_" data-uid="Tizen.Applications.AppControl.GetWindowPosition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1066">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_GetWindowPosition" data-uid="Tizen.Applications.AppControl.GetWindowPosition">GetWindowPosition()</h4>
+    <section>
+    <p>Gets the window position.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WindowPosition GetWindowPosition()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
+        <td><p>A structure containing the coordinates and dimensions of the window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the invalid operation error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L669">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequest(AppControl, AppControlReplyCallback)</h4>
+    <section>
+    <p>Sends the launch request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">launchRequest</span></td>
+        <td><p>The AppControl.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControlReplyCallback.html">AppControlReplyCallback</a></td>
+        <td><span class="parametername">replyAfterLaunching</span></td>
+        <td><p>The callback function to be called when the reply is delivered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The operation is mandatory information for the launch request.
+If the operation is not specified, AppControlOperations.Default is used by default.
+If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br>
+Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+Also, implicit launch requests are NOT delivered to service applications since 2.4.
+To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.</p>
+</div>
+  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
+AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) => {
+    // ...
+});</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed because of the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
+        <td><p>Thrown when the application to run is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchFailedException.html">LaunchFailedException</a></td>
+        <td><p>Thrown when the request failed to launch the application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
+        <td><p>Thrown when the launch request is rejected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
+        <td><p>Thrown when the memory is insufficient.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>Thrown when failed because of timeout.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L598">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl)">SendLaunchRequest(AppControl)</h4>
+    <section>
+    <p>Sends the launch request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SendLaunchRequest(AppControl launchRequest)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">launchRequest</span></td>
+        <td><p>The AppControl.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The operation is mandatory information for the launch request.
+If the operation is not specified, AppControlOperations.Default is used by default.
+If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br>
+Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+Also, implicit launch requests are NOT delivered to service applications since 2.4.
+To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.</p>
+</div>
+  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
+AppControl.SendLaunchRequest(appControl);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when failed because of a null argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
+        <td><p>Thrown when the application to run is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchFailedException.html">LaunchFailedException</a></td>
+        <td><p>Thrown when the request failed to launch the application.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
+        <td><p>Thrown when the launch request is rejected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
+        <td><p>Thrown when the memory is insufficient.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>Thrown when failed because of timeout.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_SendLaunchRequestAsync_" data-uid="Tizen.Applications.AppControl.SendLaunchRequestAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L864">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_SendLaunchRequestAsync_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequestAsync(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequestAsync(AppControl, AppControlReplyCallback)</h4>
+    <section>
+    <p>Sends the launch request asynchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;AppControlResult&gt; SendLaunchRequestAsync(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">launchRequest</span></td>
+        <td><p>The AppControl.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControlReplyCallback.html">AppControlReplyCallback</a></td>
+        <td><span class="parametername">replyAfterLaunching</span></td>
+        <td><p>The callback function to be called when the reply is delivered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Applications.AppControlResult.html">AppControlResult</a>&gt;</td>
+        <td><p>A task with the result of the launch request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_SendLaunchRequestAsync_Tizen_Applications_AppControl_Tizen_Applications_AppControlReplyCallback__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The operation is mandatory information for the launch request.
+If the operation is not specified, AppControlOperations.Default is used by default.
+If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br>
+Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+Also, implicit launch requests are NOT delivered to service applications since 2.4.
+To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed because of the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
+        <td><p>Thrown when the application to run is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
+        <td><p>Thrown when the launch request is rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_SendTerminateRequest_" data-uid="Tizen.Applications.AppControl.SendTerminateRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L821">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_SendTerminateRequest_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SendTerminateRequest(Tizen.Applications.AppControl)">SendTerminateRequest(AppControl)</h4>
+    <section>
+    <p>Sends the terminate request to the application that is launched by AppControl.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SendTerminateRequest(AppControl terminateRequest)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">terminateRequest</span></td>
+        <td><p>The AppControl.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_SendTerminateRequest_Tizen_Applications_AppControl__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>You are not allowed to terminate other general applications using this API.
+This API can be used to terminate sub-applications, which were launched as a group mode by the caller application.
+Once the callee application is being terminated by this API,
+other applications, which were launched by the callee application as a group mode will be terminated as well.</p>
+</div>
+  <h5 id="Tizen_Applications_AppControl_SendTerminateRequest_Tizen_Applications_AppControl__examples">Examples</h5>
+  <pre><code>AppControl terminateRequest = new AppControl();
+terminateRequest.ApplicationId = &quot;org.tizen.calculator&quot;;
+AppControl.SendTerminateRequest(terminateRequest);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed because of the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>Thrown when failed because of timeout.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_SetWindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1039">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_SetWindowPosition_Tizen_Applications_WindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition(Tizen.Applications.WindowPosition)">SetWindowPosition(WindowPosition)</h4>
+    <section>
+    <p>Sets the position and size of the window.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetWindowPosition(WindowPosition windowPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
+        <td><span class="parametername">windowPosition</span></td>
+        <td><p>A structure containing the coordinates and dimensions of the window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the invalid operation error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

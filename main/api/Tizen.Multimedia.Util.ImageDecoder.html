@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ImageDecoder
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ImageDecoder
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Util.ImageDecoder">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Util_ImageDecoder" data-uid="Tizen.Multimedia.Util.ImageDecoder" class="mt-0 text-break"><span class="entity-type">Class</span>
+ImageDecoder
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L35" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Util.html">Util</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Util.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This is a base class for image decoders.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ImageDecoder : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ImageDecoder</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.BmpDecoder.html">BmpDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.GifDecoder.html">GifDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.HeifDecoder.html">HeifDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.JpegDecoder.html">JpegDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.JpegXlDecoder.html">JpegXlDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.PngDecoder.html">PngDecoder</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.Util.WebPDecoder.html">WebPDecoder</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Util_ImageDecoder_InputFormat_" data-uid="Tizen.Multimedia.Util.ImageDecoder.InputFormat*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L54">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Util_ImageDecoder_InputFormat" data-uid="Tizen.Multimedia.Util.ImageDecoder.InputFormat">InputFormat</h4>
+    <section>
+    <p>Gets the image format of this decoder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImageFormat InputFormat { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Util.ImageFormat.html">ImageFormat</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L151">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_System_Byte___" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync(System.Byte[])">DecodeAsync(byte[])</h4>
+    <section>
+    <p>Decodes an image from the buffer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;BitmapFrame&gt;&gt; DecodeAsync(byte[] inputBuffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">inputBuffer</span></td>
+        <td><p>The image buffer from which to decode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.BitmapFrame.html">BitmapFrame</a>&gt;&gt;</td>
+        <td><p>A task that represents the asynchronous decoding operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Only Graphics Interchange Format(GIF) codec returns more than one frame.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">inputBuffer</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">inputBuffer</code> is an empty array.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
+        <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">inputBuffer</code> is not <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html#Tizen_Multimedia_Util_ImageDecoder_InputFormat">InputFormat</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html">ImageDecoder</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L110">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_System_String_" data-uid="Tizen.Multimedia.Util.ImageDecoder.DecodeAsync(System.String)">DecodeAsync(string)</h4>
+    <section>
+    <p>Decodes an image from the specified file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;BitmapFrame&gt;&gt; DecodeAsync(string inputFilePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>The input file path from which to decode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.BitmapFrame.html">BitmapFrame</a>&gt;&gt;</td>
+        <td><p>A task that represents the asynchronous decoding operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Util_ImageDecoder_DecodeAsync_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Only Graphics Interchange Format(GIF) codec returns more than one frame.<br>
+<br>
+<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> is needed if <code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is relevant to the media storage.<br>
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> is needed if <code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is relevant to the external storage.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is an empty string.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is not a image file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> does not exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required permission to access the path.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
+        <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">inputFilePath</code> is not <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html#Tizen_Multimedia_Util_ImageDecoder_InputFormat">InputFormat</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Util.ImageDecoder.html">ImageDecoder</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Util_ImageDecoder_Dispose_" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L306">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Util_ImageDecoder_Dispose" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the ImageDecoder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Util_ImageDecoder_Dispose_" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L290">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Util_ImageDecoder_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Util.ImageDecoder.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases the unmanaged resources used by the ImageDecoder.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Util_ImageDecoder_SetColorSpace_" data-uid="Tizen.Multimedia.Util.ImageDecoder.SetColorSpace*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Util/ImageUtil/ImageDecoder.cs/#L76">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Util_ImageDecoder_SetColorSpace_Tizen_Multimedia_ColorSpace_" data-uid="Tizen.Multimedia.Util.ImageDecoder.SetColorSpace(Tizen.Multimedia.ColorSpace)">SetColorSpace(ColorSpace)</h4>
+    <section>
+    <p>Sets the color-space to decode into. The default is <a class="xref" href="Tizen.Multimedia.ColorSpace.html#Tizen_Multimedia_ColorSpace_Rgba8888">Rgba8888</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetColorSpace(ColorSpace colorSpace)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a></td>
+        <td><span class="parametername">colorSpace</span></td>
+        <td><p>The value indicating color-space to decode into.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is not supported by the decoder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Util_ImageDecoder_SetColorSpace_Tizen_Multimedia_ColorSpace__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Util.ImageUtil.html#Tizen_Multimedia_Util_ImageUtil_GetSupportedColorSpaces_Tizen_Multimedia_Util_ImageFormat_">GetSupportedColorSpaces(ImageFormat)</a></div>
+  </div>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

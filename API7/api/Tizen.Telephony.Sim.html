@@ -1,0 +1,599 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Sim
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Sim
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Telephony.Sim">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Telephony_Sim" data-uid="Tizen.Telephony.Sim" class="mt-0 text-break"><span class="entity-type">Class</span>
+Sim
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L26" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Telephony.html">Telephony</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Telephony.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>This class provides APIs that allow you to extract the information stored on a SIM card.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Sim</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Sim</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Telephony_Sim__ctor_" data-uid="Tizen.Telephony.Sim.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L42">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim__ctor_Tizen_Telephony_SlotHandle_" data-uid="Tizen.Telephony.Sim.#ctor(Tizen.Telephony.SlotHandle)">Sim(SlotHandle)</h4>
+    <section>
+    <p>The SIM class constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sim(SlotHandle handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Telephony.SlotHandle.html">SlotHandle</a></td>
+        <td><span class="parametername">handle</span></td>
+        <td><p>SlotHandle received in the Manager.Init API.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>This exception occurs if the handle provided is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Telephony_Sim_ApplicationList_" data-uid="Tizen.Telephony.Sim.ApplicationList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L318">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_ApplicationList" data-uid="Tizen.Telephony.Sim.ApplicationList">ApplicationList</h4>
+    <section>
+    <p>Gets the count of an application on the UICC.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ApplicationList { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The masking value for below values are provided by the enumeration ApplicationType.
+0 if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_CallForwardingIndicatorState_" data-uid="Tizen.Telephony.Sim.CallForwardingIndicatorState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L459">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_CallForwardingIndicatorState" data-uid="Tizen.Telephony.Sim.CallForwardingIndicatorState">CallForwardingIndicatorState</h4>
+    <section>
+    <p>Gets the call forwarding indicator state of the SIM.
+If the state is true, the incoming call will be forwarded to the selected number. State indicates the CFU (Call Forwarding Unconditional) indicator status - Voice (3GPP TS 31.102 4.2.64 EF CFIS).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CallForwardingIndicatorState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>The value whether the incoming call will be forwarded or not (true: forwarded, false: not forwarded).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_CurrentLockState_" data-uid="Tizen.Telephony.Sim.CurrentLockState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L402">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_CurrentLockState" data-uid="Tizen.Telephony.Sim.CurrentLockState">CurrentLockState</h4>
+    <section>
+    <p>Gets the lock state of the SIM.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sim.LockState CurrentLockState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Telephony.Sim.html">Sim</a>.<a class="xref" href="Tizen.Telephony.Sim.LockState.html">LockState</a></td>
+        <td><p>The current lock state of the SIM.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_CurrentState_" data-uid="Tizen.Telephony.Sim.CurrentState*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L290">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_CurrentState" data-uid="Tizen.Telephony.Sim.CurrentState">CurrentState</h4>
+    <section>
+    <p>Gets the state of the SIM.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sim.State CurrentState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Telephony.Sim.html">Sim</a>.<a class="xref" href="Tizen.Telephony.Sim.State.html">State</a></td>
+        <td><p>The current state of the SIM.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_GroupId1_" data-uid="Tizen.Telephony.Sim.GroupId1*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L431">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_GroupId1" data-uid="Tizen.Telephony.Sim.GroupId1">GroupId1</h4>
+    <section>
+    <p>Gets the GID1 (Group Identifier Level 1).
+Gets Group Identifier Level 1 (GID1) embedded in the SIM card. If this value is not stored in SIM card, an empty string will be returned.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GroupId1 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The GID1 (Group Identifier Level 1).
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_IccId_" data-uid="Tizen.Telephony.Sim.IccId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L147">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_IccId" data-uid="Tizen.Telephony.Sim.IccId">IccId</h4>
+    <section>
+    <p>Gets the Integrated Circuit Card IDentification (ICC-ID).
+The Integrated Circuit Card Identification number internationally identifies SIM cards.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string IccId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The Integrated Circuit Card Identification.
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Telephony_Sim_IccId_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To avoid the unexpected behavior of old version applications that have <a href="http://tizen.org/privilege/telephony">http://tizen.org/privilege/telephony</a> privilege. There is an exceptional handling in case of permission denied.
+For an application with API version 6 or higher, if an application doesn't have <a href="http://tizen.org/privilege/securesysteminfo">http://tizen.org/privilege/securesysteminfo</a> privilege, it sets with empty string.
+For an application with API version lower than 6. if an application has <a href="http://tizen.org/privilege/telephony">http://tizen.org/privilege/telephony</a> privilege, it sets with a pseudo value.</p>
+</div>
+
+
+
+  <a id="Tizen_Telephony_Sim_IsChanged_" data-uid="Tizen.Telephony.Sim.IsChanged*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L260">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_IsChanged" data-uid="Tizen.Telephony.Sim.IsChanged">IsChanged</h4>
+    <section>
+    <p>Checks whether the current SIM card is different from the previous SIM card.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsChanged { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the current SIM card is different from the previous SIM card, otherwise false if the SIM card is not changed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_Msin_" data-uid="Tizen.Telephony.Sim.Msin*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L204">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_Msin" data-uid="Tizen.Telephony.Sim.Msin">Msin</h4>
+    <section>
+    <p>Gets the Mobile Subscription Identification Number (MSIN [9~10 digits]) of the SIM provider.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Msin { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The Mobile Subscription Identification Number.
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_Operator_" data-uid="Tizen.Telephony.Sim.Operator*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L176">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_Operator" data-uid="Tizen.Telephony.Sim.Operator">Operator</h4>
+    <section>
+    <p>Gets the SIM Operator (MCC [3 digits] + MNC [2~3 digits]).
+The Operator is embedded in the SIM card.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Operator { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The SIM Operator.
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_Spn_" data-uid="Tizen.Telephony.Sim.Spn*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L233">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_Spn" data-uid="Tizen.Telephony.Sim.Spn">Spn</h4>
+    <section>
+    <p>Gets the Service Provider Name (SPN) of the SIM card.
+Gets Service Provider Name embedded in the SIM card. If this value is not stored in the SIM card, an empty string will be returned.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Spn { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The Service Provider Name.
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_SubscriberId_" data-uid="Tizen.Telephony.Sim.SubscriberId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L375">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_SubscriberId" data-uid="Tizen.Telephony.Sim.SubscriberId">SubscriberId</h4>
+    <section>
+    <p>Gets the subscriber ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SubscriberId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The subscriber ID.
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Telephony_Sim_SubscriberNumber_" data-uid="Tizen.Telephony.Sim.SubscriberNumber*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Telephony/Tizen.Telephony/Sim.cs/#L347">View Source</a>
+    </span>
+    <h4 id="Tizen_Telephony_Sim_SubscriberNumber" data-uid="Tizen.Telephony.Sim.SubscriberNumber">SubscriberNumber</h4>
+    <section>
+    <p>Gets the subscriber number embedded in the SIM card. This value contains the MSISDN related to the subscriber.
+If this value is not stored in SIM card, an empty string will be returned.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SubscriberNumber { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The subscriber number in the SIM.
+Empty string if unable to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

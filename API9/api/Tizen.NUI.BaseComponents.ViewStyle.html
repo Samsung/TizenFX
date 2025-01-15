@@ -1,0 +1,995 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ViewStyle
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ViewStyle
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API9">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.ViewStyle">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_BaseComponents_ViewStyle" data-uid="Tizen.NUI.BaseComponents.ViewStyle" class="mt-0 text-break"><span class="entity-type">Class</span>
+ViewStyle
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyleBindableProperty.cs/#L22" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The base class of style attributes for a view.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ViewStyle : BindableObject, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div><span class="xref">ViewStyle</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle__ctor_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L72">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle__ctor" data-uid="Tizen.NUI.BaseComponents.ViewStyle.#ctor">ViewStyle()</h4>
+    <section>
+    <p>Create an empty style instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ViewStyle()</code></pre>
+  </div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_BackgroundColor_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BackgroundColor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L376">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_BackgroundColor" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BackgroundColor">BackgroundColor</h4>
+    <section>
+    <p>Gets or sets the color of the background of view.
+The mutually exclusive with &quot;BackgroundImage&quot;. Setting it overwrites existing &quot;BackgroundImage&quot;.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;Color&gt; BackgroundColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;<a class="xref" href="Tizen.NUI.Color.html">Color</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_BackgroundImage_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BackgroundImage*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L93">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_BackgroundImage" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BackgroundImage">BackgroundImage</h4>
+    <section>
+    <p>Gets or sets the image resource url of the background of view.
+The mutually exclusive with &quot;BackgroundColor&quot;. Setting it overwrites existing &quot;BackgroundColor&quot;.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;string&gt; BackgroundImage { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_BorderlineColor_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BorderlineColor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L471">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_BorderlineColor" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BorderlineColor">BorderlineColor</h4>
+    <section>
+    <p>The color for the borderline of the View.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color BorderlineColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_BorderlineOffset_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BorderlineOffset*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L485">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_BorderlineOffset" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BorderlineOffset">BorderlineOffset</h4>
+    <section>
+    <p>The Relative offset for the borderline of the View.
+Recommended range : [-1.0f to 1.0f].
+If -1.0f, draw borderline inside of the View.
+If 1.0f, draw borderline outside of the View.
+If 0.0f, draw borderline half inside and half outside.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? BorderlineOffset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_BorderlineWidth_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BorderlineWidth*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L461">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_BorderlineWidth" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BorderlineWidth">BorderlineWidth</h4>
+    <section>
+    <p>The width for the borderline of the View.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? BorderlineWidth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_BoxShadow_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BoxShadow*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L427">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_BoxShadow" data-uid="Tizen.NUI.BaseComponents.ViewStyle.BoxShadow">BoxShadow</h4>
+    <section>
+    <p>Describes a box shaped shadow drawing for a View.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;Shadow&gt; BoxShadow { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;<a class="xref" href="Tizen.NUI.Shadow.html">Shadow</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadius_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadius*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L439">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadius" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadius">CornerRadius</h4>
+    <section>
+    <p>The radius for the rounded corners of the View.
+The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+Each radius will clamp internally to the half of smaller of the view's width or height.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector4 CornerRadius { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadiusPolicy_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadiusPolicy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L451">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_CornerRadiusPolicy" data-uid="Tizen.NUI.BaseComponents.ViewStyle.CornerRadiusPolicy">CornerRadiusPolicy</h4>
+    <section>
+    <p>Whether the CornerRadius property value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
+It is absolute by default.
+When the policy is relative, the corner radius is relative to the smaller of the view's width and height.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VisualTransformPolicyType? CornerRadiusPolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VisualTransformPolicyType.html">VisualTransformPolicyType</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_HeightResizePolicy_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.HeightResizePolicy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L291">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_HeightResizePolicy" data-uid="Tizen.NUI.BaseComponents.ViewStyle.HeightResizePolicy">HeightResizePolicy</h4>
+    <section>
+    <p>Gets or sets the height resize policy to be used.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResizePolicyType? HeightResizePolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ResizePolicyType.html">ResizePolicyType</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Margin_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Margin*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L365">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Margin" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Margin">Margin</h4>
+    <section>
+    <p>Gets or sets the Margin for use in layout.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Extents Margin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_MaximumSize_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.MaximumSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L337">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_MaximumSize" data-uid="Tizen.NUI.BaseComponents.ViewStyle.MaximumSize">MaximumSize</h4>
+    <section>
+    <p>Gets or sets the maximum size the view can be assigned in size negotiation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size2D MaximumSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_MinimumSize_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.MinimumSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L327">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_MinimumSize" data-uid="Tizen.NUI.BaseComponents.ViewStyle.MinimumSize">MinimumSize</h4>
+    <section>
+    <p>Gets or sets the minimum size the view can be assigned in size negotiation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size2D MinimumSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Opacity_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Opacity*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L147">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Opacity" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Opacity">Opacity</h4>
+    <section>
+    <p>Defines view's opacity value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;float?&gt; Opacity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;<span class="xref">float</span>?&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Padding_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Padding*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L317">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Padding" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Padding">Padding</h4>
+    <section>
+    <p>Gets or sets the padding for use in layout.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Extents Padding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_ParentOrigin_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.ParentOrigin*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L183">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_ParentOrigin" data-uid="Tizen.NUI.BaseComponents.ViewStyle.ParentOrigin">ParentOrigin</h4>
+    <section>
+    <p>Gets or sets the origin of a view within its parent's area.<br>
+This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the parent, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
+The default parent-origin is ParentOrigin.TopLeft (0.0, 0.0, 0.5).<br>
+A view's position is the distance between this origin and the view's anchor-point.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position ParentOrigin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_PivotPoint_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.PivotPoint*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L197">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_PivotPoint" data-uid="Tizen.NUI.BaseComponents.ViewStyle.PivotPoint">PivotPoint</h4>
+    <section>
+    <p>Gets or sets the pivot point of a view.<br>
+This is expressed in unit coordinates, such that (0.0, 0.0, 0.5) is the top-left corner of the view, and (1.0, 1.0, 0.5) is the bottom-right corner.<br>
+The default pivot point is PivotPoint.Center (0.5, 0.5, 0.5).<br>
+A view position is the distance between its parent origin and this pivot point.<br>
+A view's orientation is the rotation from its default orientation, the rotation is centered around its pivot point.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position PivotPoint { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Position_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Position*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L227">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Position" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Position">Position</h4>
+    <section>
+    <p>Gets or sets the position of the view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_PositionUsesPivotPoint_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.PositionUsesPivotPoint*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L170">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_PositionUsesPivotPoint" data-uid="Tizen.NUI.BaseComponents.ViewStyle.PositionUsesPivotPoint">PositionUsesPivotPoint</h4>
+    <section>
+    <p>Determines whether the pivot point should be used to determine the position of the view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool? PositionUsesPivotPoint { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Size_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Size*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L355">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Size" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Size">Size</h4>
+    <section>
+    <p>Sets the size of a view for the width, the height, and the depth.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size Size { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_SizeHeight_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.SizeHeight*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L217">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_SizeHeight" data-uid="Tizen.NUI.BaseComponents.ViewStyle.SizeHeight">SizeHeight</h4>
+    <section>
+    <p>Gets or sets the height of the view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? SizeHeight { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_SizeModeFactor_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.SizeModeFactor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L271">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_SizeModeFactor" data-uid="Tizen.NUI.BaseComponents.ViewStyle.SizeModeFactor">SizeModeFactor</h4>
+    <section>
+    <p>Gets or sets the relative to parent size factor of the view.<br>
+This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br>
+This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 SizeModeFactor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_SizeWidth_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.SizeWidth*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L207">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_SizeWidth" data-uid="Tizen.NUI.BaseComponents.ViewStyle.SizeWidth">SizeWidth</h4>
+    <section>
+    <p>Gets or sets the width of the view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? SizeWidth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_WidthResizePolicy_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.WidthResizePolicy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L281">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_WidthResizePolicy" data-uid="Tizen.NUI.BaseComponents.ViewStyle.WidthResizePolicy">WidthResizePolicy</h4>
+    <section>
+    <p>Gets or sets the width resize policy to be used.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResizePolicyType? WidthResizePolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ResizePolicyType.html">ResizePolicyType</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Dispose_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L531">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Dispose" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose">Dispose()</h4>
+    <section>
+    <p>Release instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_NUI_BaseComponents_ViewStyle_Dispose_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/Style/ViewStyle.cs/#L581">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_ViewStyle_Dispose_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.ViewStyle.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Release instance.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If it true, the method has been called by a user's code. Otherwise the method has been called by the finalizer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

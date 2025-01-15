@@ -1,0 +1,551 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MediaFileSource
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MediaFileSource
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Multimedia.Remoting.MediaFileSource">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Multimedia_Remoting_MediaFileSource" data-uid="Tizen.Multimedia.Remoting.MediaFileSource" class="mt-0 text-break"><span class="entity-type">Class</span>
+MediaFileSource
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L33" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Remoting.html">Remoting</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Remoting.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents a media source that reads media data from a file.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class MediaFileSource : MediaSource</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Multimedia.Remoting.MediaSource.html">MediaSource</a></div>
+        <div><span class="xref">MediaFileSource</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Depending on where the source file is located either the media storage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is required or<br>
+the external storage privilege(<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is required.</p>
+</div>
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaFileSource__ctor_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L43">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaFileSource__ctor_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.#ctor(System.String)">MediaFileSource(string)</h4>
+    <section>
+    <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.MediaFileSource.html">MediaFileSource</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaFileSource(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Depending on where the source file is located either the media storage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is required or<br>
+the external storage privilege(<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is required.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaFileSource__ctor_System_String__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaFileSource_IsLooping_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.IsLooping*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L58">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaFileSource_IsLooping" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.IsLooping">IsLooping</h4>
+    <section>
+    <p>Gets or sets the looping mode of the file source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLooping { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>true if the transfer starts again from the beginning of the file source after reaching the end of the file; otherwise, false\n
+The default value is false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_IsLooping_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Depending on where the source file is located either the media storage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is required or<br>
+the external storage privilege(<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is required.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_IsLooping_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Multimedia_Remoting_MediaFileSource_GetPause_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.GetPause*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L139">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaFileSource_GetPause_Tizen_Multimedia_Remoting_MediaType_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.GetPause(Tizen.Multimedia.Remoting.MediaType)">GetPause(MediaType)</h4>
+    <section>
+    <p>Gets the pause status of media file source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetPause(MediaType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaType.html">MediaType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The media type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>The pause status.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_GetPause_Tizen_Multimedia_Remoting_MediaType__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The default value is false.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_GetPause_Tizen_Multimedia_Remoting_MediaType__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaFileSource_GetTransceiverDirection_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.GetTransceiverDirection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L93">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaFileSource_GetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.GetTransceiverDirection(Tizen.Multimedia.Remoting.MediaType)">GetTransceiverDirection(MediaType)</h4>
+    <section>
+    <p>Gets the transceiver direction for receiving media stream.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TransceiverDirection GetTransceiverDirection(MediaType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaType.html">MediaType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The media type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.TransceiverDirection.html">TransceiverDirection</a></td>
+        <td><p>The transceiver direction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_GetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The default value is <a class="xref" href="Tizen.Multimedia.Remoting.TransceiverDirection.html#Tizen_Multimedia_Remoting_TransceiverDirection_SendRecv">SendRecv</a></p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_GetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaFileSource_SetPause_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.SetPause*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L162">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaFileSource_SetPause_Tizen_Multimedia_Remoting_MediaType_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.SetPause(Tizen.Multimedia.Remoting.MediaType,System.Boolean)">SetPause(MediaType, bool)</h4>
+    <section>
+    <p>Sets the pause status of media file source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPause(MediaType type, bool isPaused)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaType.html">MediaType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The media type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isPaused</span></td>
+        <td><p>The pause status.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_SetPause_Tizen_Multimedia_Remoting_MediaType_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Depending on where the source file is located either the media storage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is required or<br>
+the external storage privilege(<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is required.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_SetPause_Tizen_Multimedia_Remoting_MediaType_System_Boolean__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_MediaFileSource_SetTransceiverDirection_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.SetTransceiverDirection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/WebRTC/MediaFileSource.cs/#L117">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_MediaFileSource_SetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_Tizen_Multimedia_Remoting_TransceiverDirection_" data-uid="Tizen.Multimedia.Remoting.MediaFileSource.SetTransceiverDirection(Tizen.Multimedia.Remoting.MediaType,Tizen.Multimedia.Remoting.TransceiverDirection)">SetTransceiverDirection(MediaType, TransceiverDirection)</h4>
+    <section>
+    <p>Sets the transceiver direction for receiving media stream.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTransceiverDirection(MediaType type, TransceiverDirection direction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaType.html">MediaType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The media type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.TransceiverDirection.html">TransceiverDirection</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The transceiver direction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_SetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_Tizen_Multimedia_Remoting_TransceiverDirection__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method does not throw state exception anymore(Since API Leve 12). It can be called in any state.<br></p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>MediaSource is not attached yet.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_SetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_Tizen_Multimedia_Remoting_TransceiverDirection__seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+
+
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSources_Tizen_Multimedia_Remoting_MediaSource___">AddSources(params MediaSource[])</a></div>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

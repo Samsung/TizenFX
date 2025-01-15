@@ -1,0 +1,1050 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ServerBase
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ServerBase
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.Cion.ServerBase">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_Cion_ServerBase" data-uid="Tizen.Applications.Cion.ServerBase" class="mt-0 text-break"><span class="entity-type">Class</span>
+ServerBase
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L28" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Cion.html">Cion</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Cion.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>An abstract class to represent cion server.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ServerBase : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ServerBase</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+
+  <h2 id="constructors">Constructors
+</h2>
+
+  <a id="Tizen_Applications_Cion_ServerBase__ctor_" data-uid="Tizen.Applications.Cion.ServerBase.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L94">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase__ctor_System_String_System_String_Tizen_Applications_Cion_SecurityInfo_" data-uid="Tizen.Applications.Cion.ServerBase.#ctor(System.String,System.String,Tizen.Applications.Cion.SecurityInfo)">ServerBase(string, string, SecurityInfo)</h4>
+    <section>
+    <p>The constructor of ServerBase class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServerBase(string serviceName, string displayName, SecurityInfo security)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">serviceName</span></td>
+        <td><p>The name of service.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The display name of service.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.SecurityInfo.html">SecurityInfo</a></td>
+        <td><span class="parametername">security</span></td>
+        <td><p>The security configuration.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Cion_ServerBase__ctor_System_String_System_String_Tizen_Applications_Cion_SecurityInfo__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The maximum length of service name is 512.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the given service name is too long.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase__ctor_" data-uid="Tizen.Applications.Cion.ServerBase.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L82">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase__ctor_System_String_System_String_" data-uid="Tizen.Applications.Cion.ServerBase.#ctor(System.String,System.String)">ServerBase(string, string)</h4>
+    <section>
+    <p>The constructor of ServerBase class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServerBase(string serviceName, string displayName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">serviceName</span></td>
+        <td><p>The name of service.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The display name of service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Cion_ServerBase__ctor_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The maximum length of service name is 512.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the given service name is too long.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Applications_Cion_ServerBase_DisplayName_" data-uid="Tizen.Applications.Cion.ServerBase.DisplayName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L52">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_DisplayName" data-uid="Tizen.Applications.Cion.ServerBase.DisplayName">DisplayName</h4>
+    <section>
+    <p>Gets or sets the display name of current cion server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DisplayName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_ServiceName_" data-uid="Tizen.Applications.Cion.ServerBase.ServiceName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L46">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_ServiceName" data-uid="Tizen.Applications.Cion.ServerBase.ServiceName">ServiceName</h4>
+    <section>
+    <p>Gets the service name of current cion server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ServiceName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_Cion_ServerBase_Accept_" data-uid="Tizen.Applications.Cion.ServerBase.Accept*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L332">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Accept_Tizen_Applications_Cion_PeerInfo_" data-uid="Tizen.Applications.Cion.ServerBase.Accept(Tizen.Applications.Cion.PeerInfo)">Accept(PeerInfo)</h4>
+    <section>
+    <p>Accepts the connection request from the peer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Accept(PeerInfo peerInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer to accept the connection request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_Disconnect_" data-uid="Tizen.Applications.Cion.ServerBase.Disconnect*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L253">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Disconnect_Tizen_Applications_Cion_PeerInfo_" data-uid="Tizen.Applications.Cion.ServerBase.Disconnect(Tizen.Applications.Cion.PeerInfo)">Disconnect(PeerInfo)</h4>
+    <section>
+    <p>Disconnects with the peer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Disconnect(PeerInfo peerInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer to disconnect.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the given peer info is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_Dispose_" data-uid="Tizen.Applications.Cion.ServerBase.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L450">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Dispose" data-uid="Tizen.Applications.Cion.ServerBase.Dispose">Dispose()</h4>
+    <section>
+    <p>Releases all resources used by the ServerBase class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_Dispose_" data-uid="Tizen.Applications.Cion.ServerBase.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L434">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Dispose_System_Boolean_" data-uid="Tizen.Applications.Cion.ServerBase.Dispose(System.Boolean)">Dispose(bool)</h4>
+    <section>
+    <p>Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_GetConnectedPeerList_" data-uid="Tizen.Applications.Cion.ServerBase.GetConnectedPeerList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L353">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_GetConnectedPeerList" data-uid="Tizen.Applications.Cion.ServerBase.GetConnectedPeerList">GetConnectedPeerList()</h4>
+    <section>
+    <p>Gets connected peers.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;PeerInfo&gt; GetConnectedPeerList()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_Listen_" data-uid="Tizen.Applications.Cion.ServerBase.Listen*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L208">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Listen" data-uid="Tizen.Applications.Cion.ServerBase.Listen">Listen()</h4>
+    <section>
+    <p>Starts server and listens for requests from cion clients.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Listen()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the listen operation is already in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_OnConnectionRequest_" data-uid="Tizen.Applications.Cion.ServerBase.OnConnectionRequest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L417">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_OnConnectionRequest_Tizen_Applications_Cion_PeerInfo_" data-uid="Tizen.Applications.Cion.ServerBase.OnConnectionRequest(Tizen.Applications.Cion.PeerInfo)">OnConnectionRequest(PeerInfo)</h4>
+    <section>
+    <p>The callback invoked when connection requested from the cion client.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void OnConnectionRequest(PeerInfo peerInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer info of the cion client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_OnConnectionResult_" data-uid="Tizen.Applications.Cion.ServerBase.OnConnectionResult*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L393">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_OnConnectionResult_Tizen_Applications_Cion_PeerInfo_Tizen_Applications_Cion_ConnectionResult_" data-uid="Tizen.Applications.Cion.ServerBase.OnConnectionResult(Tizen.Applications.Cion.PeerInfo,Tizen.Applications.Cion.ConnectionResult)">OnConnectionResult(PeerInfo, ConnectionResult)</h4>
+    <section>
+    <p>The result callback of connection request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void OnConnectionResult(PeerInfo peerInfo, ConnectionResult result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer info of the cion client.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.ConnectionResult.html">ConnectionResult</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>The result of the connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_OnDataReceived_" data-uid="Tizen.Applications.Cion.ServerBase.OnDataReceived*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L401">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_OnDataReceived_System_Byte___Tizen_Applications_Cion_PeerInfo_" data-uid="Tizen.Applications.Cion.ServerBase.OnDataReceived(System.Byte[],Tizen.Applications.Cion.PeerInfo)">OnDataReceived(byte[], PeerInfo)</h4>
+    <section>
+    <p>The callback invoked when received data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract byte[] OnDataReceived(byte[] data, PeerInfo peerInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The received data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer info of the cion client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_OnDisconnected_" data-uid="Tizen.Applications.Cion.ServerBase.OnDisconnected*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L424">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_OnDisconnected_Tizen_Applications_Cion_PeerInfo_" data-uid="Tizen.Applications.Cion.ServerBase.OnDisconnected(Tizen.Applications.Cion.PeerInfo)">OnDisconnected(PeerInfo)</h4>
+    <section>
+    <p>The callback invoked when disconnected with cion client.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void OnDisconnected(PeerInfo peerInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer info of the cion client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_OnPayloadReceived_" data-uid="Tizen.Applications.Cion.ServerBase.OnPayloadReceived*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L410">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_OnPayloadReceived_Tizen_Applications_Cion_Payload_Tizen_Applications_Cion_PeerInfo_Tizen_Applications_Cion_PayloadTransferStatus_" data-uid="Tizen.Applications.Cion.ServerBase.OnPayloadReceived(Tizen.Applications.Cion.Payload,Tizen.Applications.Cion.PeerInfo,Tizen.Applications.Cion.PayloadTransferStatus)">OnPayloadReceived(Payload, PeerInfo, PayloadTransferStatus)</h4>
+    <section>
+    <p>The callback invoked when received payload.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void OnPayloadReceived(Payload data, PeerInfo peerInfo, PayloadTransferStatus status)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.Payload.html">Payload</a></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The received data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer info of the cion client.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PayloadTransferStatus.html">PayloadTransferStatus</a></td>
+        <td><span class="parametername">status</span></td>
+        <td><p>The status of payload transfer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_Reject_" data-uid="Tizen.Applications.Cion.ServerBase.Reject*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L343">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Reject_Tizen_Applications_Cion_PeerInfo_System_String_" data-uid="Tizen.Applications.Cion.ServerBase.Reject(Tizen.Applications.Cion.PeerInfo,System.String)">Reject(PeerInfo, string)</h4>
+    <section>
+    <p>Rejects the connection request from the peer.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reject(PeerInfo peerInfo, string reason)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer to reject the connection request.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td><p>The reason why reject the connection request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_SendPayloadAsync_" data-uid="Tizen.Applications.Cion.ServerBase.SendPayloadAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L270">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_SendPayloadAsync_Tizen_Applications_Cion_Payload_Tizen_Applications_Cion_PeerInfo_" data-uid="Tizen.Applications.Cion.ServerBase.SendPayloadAsync(Tizen.Applications.Cion.Payload,Tizen.Applications.Cion.PeerInfo)">SendPayloadAsync(Payload, PeerInfo)</h4>
+    <section>
+    <p>Sends the payload to a peer asynchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;PayloadAsyncResult&gt; SendPayloadAsync(Payload payload, PeerInfo peerInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.Payload.html">Payload</a></td>
+        <td><span class="parametername">payload</span></td>
+        <td><p>The payload to send.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.PeerInfo.html">PeerInfo</a></td>
+        <td><span class="parametername">peerInfo</span></td>
+        <td><p>The peer to send payload.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Cion.PayloadAsyncResult.html">PayloadAsyncResult</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the payload is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when there is no such connected cion client or failed to send payload.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_SendPayloadAsync_" data-uid="Tizen.Applications.Cion.ServerBase.SendPayloadAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L318">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_SendPayloadAsync_Tizen_Applications_Cion_Payload_" data-uid="Tizen.Applications.Cion.ServerBase.SendPayloadAsync(Tizen.Applications.Cion.Payload)">SendPayloadAsync(Payload)</h4>
+    <section>
+    <p>Sends the payload to all of connected peer asynchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendPayloadAsync(Payload payload)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Cion.Payload.html">Payload</a></td>
+        <td><span class="parametername">payload</span></td>
+        <td><p>The payload to send.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the payload is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to send payload.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_SetOndemandLaunchEnabled_" data-uid="Tizen.Applications.Cion.ServerBase.SetOndemandLaunchEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L378">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_SetOndemandLaunchEnabled_System_Boolean_" data-uid="Tizen.Applications.Cion.ServerBase.SetOndemandLaunchEnabled(System.Boolean)">SetOndemandLaunchEnabled(bool)</h4>
+    <section>
+    <p>Sets ondemand launch enabled flag.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetOndemandLaunchEnabled(bool enable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enable</span></td>
+        <td><p>Whether ondemand launch is enabled or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_Cion_ServerBase_Stop_" data-uid="Tizen.Applications.Cion.ServerBase.Stop*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Cion/Tizen.Applications.Cion/ServerBase.cs/#L238">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_Cion_ServerBase_Stop" data-uid="Tizen.Applications.Cion.ServerBase.Stop">Stop()</h4>
+    <section>
+    <p>Stops the listen operation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the server is not listening.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

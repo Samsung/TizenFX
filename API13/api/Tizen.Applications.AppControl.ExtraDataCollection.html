@@ -1,0 +1,886 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AppControl.ExtraDataCollection
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AppControl.ExtraDataCollection
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Applications.AppControl.ExtraDataCollection">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Applications_AppControl_ExtraDataCollection" data-uid="Tizen.Applications.AppControl.ExtraDataCollection" class="mt-0 text-break"><span class="entity-type">Class</span>
+AppControl.ExtraDataCollection
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1082" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Common.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Class for extra data.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AppControl.ExtraDataCollection</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AppControl.ExtraDataCollection</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+
+  <h2 id="methods">Methods
+</h2>
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_Add_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Add*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1152">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_Add_System_String_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Add(System.String,System.Collections.Generic.IEnumerable{System.String})">Add(string, IEnumerable&lt;string&gt;)</h4>
+    <section>
+    <p>Adds extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, IEnumerable&lt;string&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of the extra data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value associated with the given key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Add_System_String_System_Collections_Generic_IEnumerable_System_String___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The function replaces any existing value for the given key.</p>
+</div>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Add_System_String_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+string[] myValues = new string[] { &quot;first&quot;, &quot;second&quot;, &quot;third&quot; };
+appControl.ExtraData.Add(&quot;myKey&quot;, myValues);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when key or value is a zero-length string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the application tries to use the same key with the system-defined key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_Add_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Add*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1109">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_Add_System_String_System_String_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Add(System.String,System.String)">Add(string, string)</h4>
+    <section>
+    <p>Adds extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(string key, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of the extra data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value associated with the given key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Add_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The function replaces any existing value for the given key.</p>
+</div>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Add_System_String_System_String__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ExtraData.Add(&quot;myKey&quot;, &quot;myValue&quot;);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when a key or a value is a zero-length string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the application tries to use the same key with the system-defined key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_Count_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Count*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1418">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_Count" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Count">Count()</h4>
+    <section>
+    <p>Counts keys in the extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The number of counting keys.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Count_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+int numberOfKeys = appControl.ExtraData.Count();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the key is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_Get_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Get*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1219">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_Get_System_String_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Get(System.String)">Get(string)</h4>
+    <section>
+    <p>Gets the extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Get(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of extra data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><p>The value associated with the given key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Get_System_String__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+string myValue = appControl.ExtraData.Get(&quot;myKey&quot;) as string;
+if (myValue != null)
+{
+    // ...
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown when the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key is rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_Get_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Get*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1194">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_Get__1_System_String_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Get``1(System.String)">Get&lt;T&gt;(string)</h4>
+    <section>
+    <p>Gets the extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Get&lt;T&gt;(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of extra data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value associated with the given key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Only string and IEnumerable&lt;string&gt;</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Get__1_System_String__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+string myValue = appControl.ExtraData.Get&lt;string>(&quot;myKey&quot;);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown when the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key is rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_GetKeys_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.GetKeys*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1250">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_GetKeys" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.GetKeys">GetKeys()</h4>
+    <section>
+    <p>Gets all keys in extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; GetKeys()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><p>The keys in the AppControl.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_GetKeys_examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+IEnumerable&lt;string> keys = appControl.GetKeys();
+if (keys != null)
+{
+    foreach (string key in keys)
+    {
+        // ...
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the key is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_IsCollection_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.IsCollection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1437">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_IsCollection_System_String_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.IsCollection(System.String)">IsCollection(string)</h4>
+    <section>
+    <p>Checks whether the extra data associated with the given key is of the collection data type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCollection(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of the extra data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>If true, the extra data is of the array data type, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_IsCollection_System_String__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+bool result = appControl.ExtraData.IsCollection(&quot;myKey&quot;);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the key is a zero-length string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed to check the key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_Remove_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Remove*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1383">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_Remove_System_String_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.Remove(System.String)">Remove(string)</h4>
+    <section>
+    <p>Deletes a particular piece of extra data from the collection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Identifier of the data to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Remove_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method enables removal of individual items from the ExtraData collection.
+It accepts only non-empty strings as valid input parameters.</p>
+</div>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_Remove_System_String__examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+appControl.ExtraData.Remove(&quot;myKey&quot;);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the key is a zero-length string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown when the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key is rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_TryGet_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.TryGet*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1336">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_TryGet_System_String_System_Collections_Generic_IEnumerable_System_String___" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.TryGet(System.String,System.Collections.Generic.IEnumerable{System.String}@)">TryGet(string, out IEnumerable&lt;string&gt;)</h4>
+    <section>
+    <p>Tries getting the extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGet(string key, out IEnumerable&lt;string&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of extra data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value associated with the given key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>The result whether getting the value is done.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_TryGet_System_String_System_Collections_Generic_IEnumerable_System_String____examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+IEnumerable&lt;string> myValue = null;
+bool result = appControl.ExtraData.TryGet(&quot;myKey&quot;, out myValue);
+if (result)
+{
+    foreach (string value in myValue)
+    {
+        // ...
+    }
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown when the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key is rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Applications_AppControl_ExtraDataCollection_TryGet_" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.TryGet*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1294">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_AppControl_ExtraDataCollection_TryGet_System_String_System_String__" data-uid="Tizen.Applications.AppControl.ExtraDataCollection.TryGet(System.String,System.String@)">TryGet(string, out string)</h4>
+    <section>
+    <p>Tries getting the extra data.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGet(string key, out string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The name of extra data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value associated with the given key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>The result whether getting the value is done.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AppControl_ExtraDataCollection_TryGet_System_String_System_String___examples">Examples</h5>
+  <pre><code>AppControl appControl = new AppControl();
+string myValue = string.Empty;
+bool result = appControl.ExtraData.TryGet(&quot;myKey&quot;, out myValue);
+if (result != null)
+{
+    // ...
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the key is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.KeyNotFoundException</span></td>
+        <td><p>Thrown when the key is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the key is rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

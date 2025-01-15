@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SelectArguments
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SelectArguments
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API5">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.Content.MediaContent.SelectArguments">
+
+  <div class="entity">
+
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_Content_MediaContent_SelectArguments" data-uid="Tizen.Content.MediaContent.SelectArguments" class="mt-0 text-break"><span class="entity-type">Class</span>
+SelectArguments
+</h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/QueryArguments.cs/#L175" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Content</span>.<a class="xref" href="Tizen.Content.MediaContent.html">MediaContent</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Content.MediaContent.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides the ability to filter the result of a Select command.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SelectArguments : QueryArguments</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Content.MediaContent.QueryArguments.html">QueryArguments</a></div>
+        <div><span class="xref">SelectArguments</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Content_MediaContent_SelectArguments_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
+and MediaInfo.</p>
+</div>
+
+  <h2 id="properties">Properties
+</h2>
+
+  <a id="Tizen_Content_MediaContent_SelectArguments_SortOrder_" data-uid="Tizen.Content.MediaContent.SelectArguments.SortOrder*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/QueryArguments.cs/#L240">View Source</a>
+    </span>
+    <h4 id="Tizen_Content_MediaContent_SelectArguments_SortOrder" data-uid="Tizen.Content.MediaContent.SelectArguments.SortOrder">SortOrder</h4>
+    <section>
+    <p>Gets or sets the sort order of the results.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SortOrder { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The expression for the sort order.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_MediaContent_SelectArguments_SortOrder_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Expressions for the sort order can be:<br>
+column [COLLATE NOCASE/RTRIM/LOCALIZED] [ASC/DESC], column2 ...</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Content_MediaContent_SelectArguments_SortOrder_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Content.MediaContent.MediaInfoColumns.html">MediaInfoColumns</a></div>
+      <div><a class="xref" href="Tizen.Content.MediaContent.AlbumColumns.html">AlbumColumns</a></div>
+      <div><a class="xref" href="Tizen.Content.MediaContent.FolderColumns.html">FolderColumns</a></div>
+      <div><a class="xref" href="Tizen.Content.MediaContent.PlaylistColumns.html">PlaylistColumns</a></div>
+      <div><a class="xref" href="Tizen.Content.MediaContent.TagColumns.html">TagColumns</a></div>
+      <div><a class="xref" href="Tizen.Content.MediaContent.BookmarkColumns.html">BookmarkColumns</a></div>
+      <div><a class="xref" href="Tizen.Content.MediaContent.FaceInfoColumns.html">FaceInfoColumns</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Content_MediaContent_SelectArguments_StartRowIndex_" data-uid="Tizen.Content.MediaContent.SelectArguments.StartRowIndex*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/QueryArguments.cs/#L185">View Source</a>
+    </span>
+    <h4 id="Tizen_Content_MediaContent_SelectArguments_StartRowIndex" data-uid="Tizen.Content.MediaContent.SelectArguments.StartRowIndex">StartRowIndex</h4>
+    <section>
+    <p>Gets or sets the starting row position of a query (starting from zero).</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int StartRowIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>An integer value that indicates the starting row position of a query.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_MediaContent_SelectArguments_StartRowIndex_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
+and MediaInfo.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.<br></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Content_MediaContent_SelectArguments_TotalRowCount_" data-uid="Tizen.Content.MediaContent.SelectArguments.TotalRowCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/QueryArguments.cs/#L207">View Source</a>
+    </span>
+    <h4 id="Tizen_Content_MediaContent_SelectArguments_TotalRowCount" data-uid="Tizen.Content.MediaContent.SelectArguments.TotalRowCount">TotalRowCount</h4>
+    <section>
+    <p>Gets or sets the number of rows to be retrieved.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalRowCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>An integer value that indicates the limit of rows of the result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_MediaContent_SelectArguments_TotalRowCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
+and MediaInfo.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
