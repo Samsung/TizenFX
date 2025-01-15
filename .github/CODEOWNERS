@@ -79,26 +79,26 @@
 /src/Tizen.Multimedia.Vision/ @hsgwon @tyoungroy
 
 # UI FW (NUI)
-/src/Tizen.NUI.Components.Design/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Components/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Design/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Extension/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Gadget/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Physics2D/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Scene3D/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Wearable/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.WindowSystem/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.XamlBuild/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/  @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/NUITestSample/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/NUITizenGallery/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.ComponentApplication/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.SeamlessSamples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.StyleGuide/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.Tests/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.WebViewTest/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.WindowSystem.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI.Components.Design/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Components/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Design/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Extension/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Gadget/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Physics2D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfore
+/src/Tizen.NUI.Scene3D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Wearable/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.WindowSystem/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfo
+/src/Tizen.NUI.XamlBuild/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/NUITestSample/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/NUITizenGallery/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.ComponentApplication/  @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.Samples/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.SeamlessSamples /@dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.StyleGuide/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.Tests/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.WebViewTest/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.WindowSystem.Samples/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
 
 # NETWORK
 /src/Tizen.Network.Bluetooth/ @dh79pyun @wootak-jung
