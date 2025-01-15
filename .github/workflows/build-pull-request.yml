@@ -56,12 +56,13 @@ jobs:
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: reports
         if-no-files-found: ignore
         path: Artifacts/*.json
+        overwrite : true
 
   check-api:
     needs: [build]
@@ -73,10 +74,11 @@ jobs:
         dotnet-version: 3.1.x
 
     - name: Download Artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: reports
         path: Artifacts
+        overwrite: true
 
     - name: Checkout to base spec
       uses: actions/checkout@v3
@@ -109,7 +111,8 @@ jobs:
         base-file: Artifacts/base-api.json
         output: Artifacts/api-comp.json
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: reports
         path: Artifacts/api-comp.json
+        overwrite: true
