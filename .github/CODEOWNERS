@@ -123,11 +123,11 @@
 /src/Tizen.Security/ @terry2000s #@t-swierczek
 /src/Tizen.Security.PrivacyPrivilegeManager/ @terry2000s #@t-swierczek @z-abramowska @e-borowski 
 /src/Tizen.Security.SecureRepository/ @terry2000s @dmichaluk
+# /src/Tizen.Security.WebAuthn/ @ds73.lee @kjackiewicz
 
 # SECURITY (Deprecated)
 /src/Tizen.Security.DevicePolicyManager/ @y01k
 /src/Tizen.Security.TEEC/  @terry2000s #@kjackiewicz
-# /src/Tizen.Security.WebAuthn/ @ds73.lee @kjackiewicz
 
 # SENSOR
 /src/Tizen.Sensor/ @chanwoochoi @SangyounKwak
