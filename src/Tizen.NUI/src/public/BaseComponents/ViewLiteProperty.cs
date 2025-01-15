@@ -47,6 +47,9 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyMap(SwigCPtr, Property.BACKGROUND, map.SwigCPtr);
             }
+
+            NotifyPropertyChanged(nameof(BackgroundColor));
+            NotifyBackgroundChanged();
         }
 
         /// NOTE This can replace SetInternalBoxShadowProperty() after sufficient verification
@@ -59,6 +62,7 @@ namespace Tizen.NUI.BaseComponents
             using var map = shadow.BuildMap(this);
 
             Object.InternalSetPropertyMap(SwigCPtr, Property.SHADOW, map.SwigCPtr);
+            NotifyPropertyChanged(nameof(BoxShadow));
         }
     }
 }
