@@ -29,6 +29,13 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
     public class Position : Disposable, ICloneable
     {
+        private static readonly Position one = new Position(1.0f, 1.0f, 1.0f);
+        private static readonly Position zero = new Position(0.0f, 0.0f, 0.0f);
+
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// The constructor.
@@ -81,441 +88,181 @@ namespace Tizen.NUI
         /// ParentOrigin constants. It's 0.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float ParentOriginTop
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginTopGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float ParentOriginTop => ParentOrigin.Top;
 
         /// <summary>
         /// ParentOrigin constants. It's 1.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float ParentOriginBottom
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginBottomGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float ParentOriginBottom => ParentOrigin.Bottom;
 
         /// <summary>
         /// ParentOrigin constants. It's 0.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float ParentOriginLeft
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginLeftGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float ParentOriginLeft => ParentOrigin.Left;
 
         /// <summary>
         /// ParentOrigin constants. It's 1.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float ParentOriginRight
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginRightGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float ParentOriginRight => ParentOrigin.Right;
 
         /// <summary>
         /// ParentOrigin constants. It's 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float ParentOriginMiddle
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginMiddleGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float ParentOriginMiddle => ParentOrigin.Middle;
 
         /// <summary>
         /// ParentOrigin constants: 0.0, 0.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginTopLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginTopLeft => ParentOrigin.TopLeft;
 
         /// <summary>
         /// ParentOrigin constants: 0.5, 0.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginTopCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginTopCenter => ParentOrigin.TopCenter;
 
         /// <summary>
         /// ParentOrigin constants: 1.0, 0.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginTopRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginTopRight => ParentOrigin.TopRight;
 
         /// <summary>
         /// ParentOrigin constants: 0.0, 0.5, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginCenterLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginCenterLeft => ParentOrigin.CenterLeft;
 
         /// <summary>
         /// ParentOrigin constants: 0.0, 0.5, 0.5
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginCenter => ParentOrigin.Center;
 
         /// <summary>
         /// ParentOrigin constants: 1.0, 0.5, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginCenterRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginCenterRight => ParentOrigin.CenterRight;
 
         /// <summary>
         /// ParentOrigin constants: 0.0f, 1.0f, 0.5f.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginBottomLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginBottomLeft => ParentOrigin.BottomLeft;
 
         /// <summary>
         /// ParentOrigin constants: 0.5, 1.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginBottomCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginBottomCenter => ParentOrigin.BottomCenter;
 
         /// <summary>
         /// ParentOrigin constants: 1.0, 1.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position ParentOriginBottomRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position ParentOriginBottomRight => ParentOrigin.BottomRight;
 
         /// <summary>
         /// PivotPoint constants: 0.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float PivotPointTop
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointTopGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float PivotPointTop => ParentOrigin.Top;
 
         /// <summary>
         /// PivotPoint constants: 1.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float PivotPointBottom
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointBottomGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float PivotPointBottom => ParentOrigin.Bottom;
 
         /// <summary>
         /// PivotPoint constants: 0.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float PivotPointLeft
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointLeftGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float PivotPointLeft => ParentOrigin.Left;
 
         /// <summary>
         /// PivotPoint constants: 1.0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float PivotPointRight
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointRightGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float PivotPointRight => ParentOrigin.Right;
 
         /// <summary>
         /// PivotPoint constants: 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float PivotPointMiddle
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointMiddleGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float PivotPointMiddle => ParentOrigin.Middle;
 
         /// <summary>
         /// PivotPoint constants: 0.0, 0.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointTopLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointTopLeft => ParentOrigin.TopLeft;
 
         /// <summary>
         /// PivotPoint constants: 0.5, 0.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointTopCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointTopCenter => ParentOrigin.TopCenter;
 
         /// <summary>
         /// PivotPoint constants: 1.0, 0.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointTopRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointTopRight => ParentOrigin.TopRight;
 
         /// <summary>
         /// PivotPoint constants: 0.0, 0.5, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointCenterLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointCenterLeft => ParentOrigin.CenterLeft;
 
         /// <summary>
         /// PivotPoint constants: 0.5, 0.5, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointCenter => ParentOrigin.Center;
 
         /// <summary>
         /// PivotPoint constants: 1.0, 0.5, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointCenterRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointCenterRight => ParentOrigin.CenterRight;
 
         /// <summary>
         /// PivotPoint constants: 0.0, 1.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointBottomLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointBottomLeft => ParentOrigin.BottomLeft;
 
         /// <summary>
         /// PivotPoint constants: 0.5, 1.0, 0.5
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointBottomCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointBottomCenter => ParentOrigin.BottomCenter;
 
         /// <summary>
         /// PivotPoint constants: 1.0, 1.0, 0.5.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position PivotPointBottomRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position PivotPointBottomRight => ParentOrigin.BottomRight;
 
         /// <summary>
         /// Constant ( 1.0f, 1.0f, 1.0f ).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.OneGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position One => one;
 
         /// <summary>
         /// Constant ( 0.0f, 0.0f, 0.0f ).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZeroGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Zero => zero;
 
         /// <summary>
         /// The x component.
@@ -616,71 +363,17 @@ namespace Tizen.NUI
             }
         }
 
-        internal static Position XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.XaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position XAxis => PositionAxis.X;
 
-        internal static Position YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.YaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position YAxis => PositionAxis.Y;
 
-        internal static Position ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position ZAxis => PositionAxis.Z;
 
-        internal static Position NegativeXAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeXaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position NegativeXAxis => PositionAxis.NegativeX;
 
-        internal static Position NegativeYAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeYaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position NegativeYAxis => PositionAxis.NegativeY;
 
-        internal static Position NegativeZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        internal static Position NegativeZAxis => PositionAxis.NegativeZ;
 
         /// <summary>
         /// The const array subscript operator overload. Should be 0, 1, or 2.

@@ -783,6 +783,7 @@ namespace Tizen.NUI
             BaseComponents.TextField.Preload();
             Disposable.Preload();
             Color.Preload();
+            NUIConstants.Preload();
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();

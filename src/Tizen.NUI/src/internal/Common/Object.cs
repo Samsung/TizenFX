@@ -299,5 +299,80 @@ namespace Tizen.NUI
             }
             return ret;
         }
+
+        internal static int InternalRetrievingVisualPropertyInt(HandleRef actor, int visualIndex, int visualPropertyIndex, out int retrievingInt)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.View.InternalRetrievingVisualPropertyInt(actor, visualIndex, visualPropertyIndex, out retrievingInt);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        internal static int InternalRetrievingVisualPropertyVector4(HandleRef actor, int visualIndex, int visualPropertyIndex, HandleRef retrievingVector4)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, retrievingVector4);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets color value (vector4) to actor.
+        /// </summary>
+        /// <remark>
+        /// This is not thread safe.
+        /// </remark>
+        internal static void InternalSetPropertyColor(HandleRef actor, int propertyType, L.Color color)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            ReusablePool<Vector4>.GetOne((vector4, actor, propertyType, color) =>
+            {
+                vector4.Reset(color);
+                _ = Interop.Actor.InternalSetPropertyVector4(actor, propertyType, vector4.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }, actor, propertyType, color);
+        }
+
+        /// <summary>
+        /// GEts color value (vector4) from actor.
+        /// </summary>
+        /// <remark>
+        /// This is not thread safe.
+        /// </remark>
+        internal static L.Color InternalRetrievingVisualPropertyColor(HandleRef actor, int visualIndex, int visualPropertyIndex)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            return ReusablePool<Vector4>.GetOne((vector4, actor, visualIndex, visualPropertyIndex) =>
+            {
+                vector4.Reset();
+                _ = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, vector4.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return new L.Color(vector4);
+            }, actor, visualIndex, visualPropertyIndex);
+        }
+
+        internal static void InternalSetPropertyMap(HandleRef actor, int propertyType, HandleRef map)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            _ = Interop.Actor.InternalSetPropertyMap(actor, propertyType, map);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
     }
 }

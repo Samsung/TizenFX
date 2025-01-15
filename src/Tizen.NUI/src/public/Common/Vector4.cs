@@ -28,6 +28,16 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector4TypeConverter))]
     public class Vector4 : Disposable, ICloneable
     {
+        private static readonly Vector4 one = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        private static readonly Vector4 zero = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 xaxis = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 yaxis = new Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+        private static readonly Vector4 zaxis = new Vector4(0.0f, 0.0f, 1.0f, 0.0f);
+
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
@@ -98,80 +108,34 @@ namespace Tizen.NUI
         /// Actual value is (1.0f,1.0f,1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.OneGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 One => one;
 
         /// <summary>
         /// The vector representing the x-axis.
         /// Actual value is (1.0f,0.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.XaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 XAxis => xaxis;
 
         /// <summary>
         /// The vector representing the y-axis.
         /// Actual value is (0.0f,1.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.YaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 YAxis => yaxis;
 
         /// <summary>
         /// The vector representing the z-axis.
         /// Actual value is (0.0f,0.0f,1.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.ZaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
-
+        public static Vector4 ZAxis => zaxis;
         /// <summary>
         /// A Vector2 object representing the zero vector.
         /// Actual value is (0.0f, 0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.ZeroGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 Zero => zero;
 
         /// <summary>
         /// The x component.
@@ -182,7 +146,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.X = 0.1f; 
+        /// vector4.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -215,7 +179,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.R = 0.1f; 
+        /// vector4.R = 0.1f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -248,7 +212,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.S = 0.1f; 
+        /// vector4.S = 0.1f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -281,7 +245,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Y = 0.5f; 
+        /// vector4.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -314,7 +278,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.G = 0.5f; 
+        /// vector4.G = 0.5f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -347,7 +311,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.T = 0.5f; 
+        /// vector4.T = 0.5f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -380,7 +344,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Z = 0.9f; 
+        /// vector4.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -413,7 +377,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.B = 0.9f; 
+        /// vector4.B = 0.9f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -446,7 +410,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.P = 0.9f; 
+        /// vector4.P = 0.9f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -479,7 +443,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.W = 1.0f; 
+        /// vector4.W = 1.0f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -512,7 +476,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.A = 1.0f; 
+        /// vector4.A = 1.0f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -545,7 +509,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Q = 1.0f; 
+        /// vector4.Q = 1.0f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -755,6 +719,18 @@ namespace Tizen.NUI
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector4(X, Y, Z, W);
+
+        internal void Reset() => Reset(0, 0, 0, 0);
+
+        internal void Reset(L.Color color) => Reset(color.R, color.G, color.B, color.A);
+
+        internal void Reset(L.Corner corner) => Reset(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+
+        internal void Reset(float x, float y, float z, float w)
+        {
+            Interop.Vector4.SetAll(SwigCPtr, x, y, z, w);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
 
         internal static Vector4 GetVector4FromPtr(global::System.IntPtr cPtr)
         {
