@@ -127,6 +127,7 @@
 # SECURITY (Deprecated)
 /src/Tizen.Security.DevicePolicyManager/ @y01k
 /src/Tizen.Security.TEEC/  @terry2000s #@kjackiewicz
+/src/Tizen.Security.WebAuthn/ @ds73.lee #@kjackiewicz
 
 # SENSOR
 /src/Tizen.Sensor/ @chanwoochoi @SangyounKwak
@@ -161,5 +162,11 @@
 # ELMSHARP (Deprecated)
 /src/ElmSharp.Wearable/ @rookiejava @myroot @JoonghyunCho
 /src/ElmSharp/ @rookiejava @myroot @JoonghyunCho
+
+# Internals
+# /src/Tizen.AIAvatar
+# /src/Tizen.Data.Tdbc.Driver.Sqlite
+# /src/Tizen.Data.Tdbc 
+# /src/Tizen.NUI.AIAvatar
 
 # Please Add more Code Owners below.
