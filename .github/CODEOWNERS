@@ -104,15 +104,15 @@
 /src/Tizen.Network.Bluetooth/ @dh79pyun @wootak-jung
 /src/Tizen.Network.Connection/ @chleun-moon
 /src/Tizen.Network.IoTConnectivity/ @dh79pyun
-/src/Tizen.Network.Nfc/ @dh79pyun @jh8801.jung
+/src/Tizen.Network.Nfc/ @dh79pyun @jh8801jung
 /src/Tizen.Network.Nsd/ @chleun-moon
-/src/Tizen.Network.Smartcard/ @dh79pyun @jh8801.jung
-/src/Tizen.Network.Stc/ @jeik01-kim @hyunuk-tak
+/src/Tizen.Network.Smartcard/ @dh79pyun @jh8801jung
+/src/Tizen.Network.Stc/ @jeik01 @hyunuk-tak
 /src/Tizen.Network.WiFi/ @chleun-moon
 /src/Tizen.Network.WiFiDirect/ @jiung-yu
 
 # NLP
-/src/Tizen.Nlp/ @jihoon48.kim @Inhong
+/src/Tizen.Nlp/ @imfine98 @Inhong
 
 # PIMS
 /src/Tizen.PhonenumberUtils/ @randeepsingh01
@@ -150,7 +150,7 @@
 # UIX
 /src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
 /src/Tizen.Uix.InputMethodManager/ @imfine98 @Inhong
-# /src/Tizen.Uix.Sticker/ 
+/src/Tizen.Uix.Sticker/ @imfine98 @Inhong
 /src/Tizen.Uix.Stt/ @urmain @syeonholic
 /src/Tizen.Uix.SttEngine/ @urmain @syeonholic
 /src/Tizen.Uix.Tts/ @urmain @syeonholic
