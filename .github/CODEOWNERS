@@ -1,23 +1,172 @@
 # TizenFX Code Owners.
 # Add members who own directories and files for automatic Pull Request Reviewers.
 
-# NUI Code Owners List
-/src/Tizen.NUI/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI.Components/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/src/public/Xaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/src/internal/Xaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/src/internal/XamlBinding/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/src/Tizen.NUI/src/internal/EXaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/NUITestSample/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/NUITizenGallery/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.ComponentApplication/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.SeamlessSamples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.StyleGuide/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.Tests/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.WebViewTest/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
-/test/Tizen.NUI.WindowSystem.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+# TIZEN COMMON
+/src/Tizen/ @rookiejava @myroot @JoonghyunCho
+/src/Tizen.Log/ @chanwoochoi
+/src/Tizen.Tracer/ @najubae #@sfoon.kim
+
+# ACCOUNT
+/src/Tizen.Account.AccountManager/ @randeepsingh01 @d1-agarwal
+/src/Tizen.Account.FidoClient/ @randeepsingh01 #@s01-verma
+/src/Tizen.Account.OAuth2/ @randeepsingh01 #@s01-verma
+/src/Tizen.Account.SyncManager/ @randeepsingh01 @d1-agarwal
+
+# APPLICATION FW
+# /src/Tizen.Applications.Alarm/ @kilig
+# /src/Tizen.Applications.AttachPanel/ @engfaruque
+/src/Tizen.Applications.Badge/ @sukhyungkang
+/src/Tizen.Applications.Cion/ @jusung-son
+/src/Tizen.Applications.Common/ @upple
+/src/Tizen.Applications.ComponentBased.ComponentManager/ @upple
+/src/Tizen.Applications.ComponentBased.Default/ @upple
+/src/Tizen.Applications.ComponentBased.Port/ @upple
+/src/Tizen.Applications.ComponentBased/ @upple
+/src/Tizen.Applications.DataControl/ @jusung-son
+/src/Tizen.Applications.EventManager/ @jusung-son
+/src/Tizen.Applications.MessagePort/ @jusung-son
+/src/Tizen.Applications.Notification/ @sukhyungkang
+/src/Tizen.Applications.NotificationEventListener/ @sukhyungkang
+/src/Tizen.Applications.PackageManager/ @jeremy-jang
+/src/Tizen.Applications.Preference/ @sukhyungkang
+/src/Tizen.Applications.RemoteView/ @sukhyungkang
+/src/Tizen.Applications.Service/ @upple
+/src/Tizen.Applications.Shortcut/ @sukhyungkang
+/src/Tizen.Applications.ThemeManager/ @jeremy-jang
+/src/Tizen.Applications.ToastMessage/ @sukhyungkang
+/src/Tizen.Applications.UI/ @upple
+/src/Tizen.Applications.WatchApplication/ @sukhyungkang
+/src/Tizen.Applications.WatchfaceComplication/ @sukhyungkang
+/src/Tizen.Applications.WidgetApplication/ @sukhyungkang
+/src/Tizen.Applications.WidgetControl/ @sukhyungkang
+
+# CONTENT
+/src/Tizen.Content.Download/ @chleun-moon @SeonahMoon
+/src/Tizen.Content.MediaContent/ @hsgwon @eunhaechoi
+/src/Tizen.Content.MimeType/ @sukhyungkang
+
+# CONTEXT
+/src/Tizen.Context/ @dh79pyun
+
+# DATA
+# /src/Tizen.Data.Tdbc.Driver.Sqlite/
+# /src/Tizen.Data.Tdbc/
+
+# LOCATIONS & MAPS
+/src/Tizen.Location.Geofence/ @randeepsingh01 #@abhimanyu1dots
+/src/Tizen.Location/ @randeepsingh01 #@abhimanyu1dots
+/src/Tizen.Maps/ @randeepsingh01 #@abhimanyu1dots
+
+# MACHINE LEARNING
+/src/Tizen.MachineLearning.Inference/ @again4you
+/src/Tizen.MachineLearning.Train/ @again4you
+
+# MESSAGING
+/src/Tizen.Messaging.Push/ @randeepsingh01
+/src/Tizen.Messaging/ @randeepsingh01
+
+# MULTIMEDIA FW
+/src/Tizen.Multimedia/ @hsgwon @sangchul1011 @eunhaechoi
+/src/Tizen.Multimedia.AudioIO/ @hsgwon @sangchul1011 @eunhaechoi
+/src/Tizen.Multimedia.Camera/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.MediaCodec/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.MediaPlayer/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.Metadata/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.Radio/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.Recorder/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.Remoting/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.Util/ @hsgwon @eunhaechoi
+/src/Tizen.Multimedia.Vision/ @hsgwon @tyoungroy
+
+# UI FW (NUI)
+/src/Tizen.NUI.Components.Design/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Components/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Design/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Extension/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Gadget/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Physics2D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Scene3D/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.Wearable/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.WindowSystem/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI.XamlBuild/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/src/Tizen.NUI/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/NUITestSample/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/NUITizenGallery/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.ComponentApplication/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.Samples/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.SeamlessSamples/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.StyleGuide/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.Tests/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.WebViewTest/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+/test/Tizen.NUI.WindowSystem.Samples/ @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor
+
+# NETWORK
+/src/Tizen.Network.Bluetooth/ @dh79pyun @wootak-jung
+/src/Tizen.Network.Connection/ @chleun-moon
+/src/Tizen.Network.IoTConnectivity/ @dh79pyun
+/src/Tizen.Network.Nfc/ @dh79pyun #@jh8801jung
+/src/Tizen.Network.Nsd/ @chleun-moon
+/src/Tizen.Network.Smartcard/ @dh79pyun #@jh8801jung
+/src/Tizen.Network.Stc/ @jeik01 #@hyunuk-tak
+/src/Tizen.Network.WiFi/ @chleun-moon
+# /src/Tizen.Network.WiFiDirect/ @jiung-yu
+
+# NLP
+/src/Tizen.Nlp/ @imfine98 @Inhong
+
+# PIMS
+/src/Tizen.PhonenumberUtils/ @randeepsingh01
+/src/Tizen.Pims.Calendar/ @randeepsingh01
+/src/Tizen.Pims.Contacts/ @randeepsingh01
+
+# SECURITY
+/src/Tizen.Security/ @terry2000s #@t-swierczek
+/src/Tizen.Security.PrivacyPrivilegeManager/ @terry2000s #@t-swierczek @z-abramowska @e-borowski 
+/src/Tizen.Security.SecureRepository/ @terry2000s @dmichaluk
+# /src/Tizen.Security.WebAuthn/ @ds73.lee @kjackiewicz
+
+# SECURITY (Deprecated)
+/src/Tizen.Security.DevicePolicyManager/ @y01k
+/src/Tizen.Security.TEEC/  @terry2000s #@kjackiewicz
+
+# SENSOR
+/src/Tizen.Sensor/ @chanwoochoi @SangyounKwak
+
+# SYSTEM
+/src/Tizen.System/ @chanwoochoi @germonado
+/src/Tizen.System.Feedback/ @chanwoochoi @germonado
+/src/Tizen.System.Information/ @chanwoochoi @ppdl
+/src/Tizen.System.MediaKey/ @sukhyungkang
+/src/Tizen.System.PlatformConfig/ @chanwoochoi @ppdl
+/src/Tizen.System.PowerUsage/ @chanwoochoi
+/src/Tizen.System.Resource/ @chanwoochoi @ul24 @SangyounKwak
+/src/Tizen.System.Session/ @chanwoochoi
+/src/Tizen.System.Storage/ @chanwoochoi @ul24
+/src/Tizen.System.SystemSettings/ @jinwangan
+/src/Tizen.System.Usb/ @chanwoochoi @ppdl
+
+# TELEPHONY
+/src/Tizen.Telephony/ @dh79pyun @wootak-jung
+
+# UIX
+/src/Tizen.Uix.InputMethod/ @imfine98 @Inhong
+/src/Tizen.Uix.InputMethodManager/ @imfine98 @Inhong
+/src/Tizen.Uix.Sticker/ @imfine98 @Inhong
+/src/Tizen.Uix.Stt/ @urmain @syeonholic
+/src/Tizen.Uix.SttEngine/ @urmain @syeonholic
+/src/Tizen.Uix.Tts/ @urmain @syeonholic
+/src/Tizen.Uix.TtsEngine/ @urmain @syeonholic
+/src/Tizen.Uix.VoiceControl/ @urmain @syeonholic
+/src/Tizen.Uix.VoiceControlManager/ @urmain @syeonholic
+
+# ELMSHARP (Deprecated)
+/src/ElmSharp.Wearable/ @rookiejava @myroot @JoonghyunCho
+/src/ElmSharp/ @rookiejava @myroot @JoonghyunCho
+
+# Internals
+# /src/Tizen.AIAvatar
+# /src/Tizen.Data.Tdbc.Driver.Sqlite
+# /src/Tizen.Data.Tdbc 
+# /src/Tizen.NUI.AIAvatar
 
 # Please Add more Code Owners below.
