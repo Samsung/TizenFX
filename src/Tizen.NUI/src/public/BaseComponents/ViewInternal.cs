@@ -1575,6 +1575,8 @@ namespace Tizen.NUI.BaseComponents
                     ControlState += ControlState.Disabled;
                 }
             }
+
+            EnabledChanged?.Invoke(this, EventArgs.Empty);
         }
 
 

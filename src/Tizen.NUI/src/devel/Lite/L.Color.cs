@@ -24,12 +24,40 @@ namespace Tizen.NUI.L
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct Color
     {
-        public static readonly Color Transparent = new Color(0, 0, 0, 0);
-        public static readonly Color Black = new Color(0, 0, 0, 1);
-        public static readonly Color White = new Color(1, 1, 1, 1);
-        public static readonly Color Red = new Color(1, 0, 0, 1);
-        public static readonly Color Green = new Color(0, 1, 0, 1);
-        public static readonly Color Blue = new Color(0, 0, 1, 1);
+        /// <summary>
+        /// The default color. (This is to distinguish from zero corners)
+        /// </summary>
+        public static readonly Color Default = new (-1, -1, -1, -1);
+
+        /// <summary>
+        /// The transparent color.
+        /// </summary>
+        public static readonly Color Transparent = new (0, 0, 0, 0);
+
+        /// <summary>
+        /// The transparent color.
+        /// </summary>
+        public static readonly Color Black = new (0, 0, 0, 1);
+
+        /// <summary>
+        /// The white color.
+        /// </summary>
+        public static readonly Color White = new (1, 1, 1, 1);
+
+        /// <summary>
+        /// The red color.
+        /// </summary>
+        public static readonly Color Red = new (1, 0, 0, 1);
+
+        /// <summary>
+        /// The green color.
+        /// </summary>
+        public static readonly Color Green = new (0, 1, 0, 1);
+
+        /// <summary>
+        /// The blue color.
+        /// </summary>
+        public static readonly Color Blue = new (0, 0, 1, 1);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Color"/> struct.
@@ -45,6 +73,39 @@ namespace Tizen.NUI.L
             B = b;
             A = a;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Color"/> struct.
+        /// </summary>
+        /// <param name="value">The value of 0xRRGGBB format.</param>
+        /// <param name="alpha">The alpha value between 0.0 and 1.0.</param>
+        /// <example>
+        /// <code>
+        ///     new L.Color(0xFF0000, 1f); // Solid red
+        ///     new L.Color(0x00FF00, 0.5f) // Half transparent green
+        /// </code>
+        /// </example>
+        public Color(uint value, float alpha)
+        {
+            R = ((value >> 16) & 0xff) / 255.0f;
+            G = ((value >> 8) & 0xff) / 255.0f;
+            B = (value & 0xff) / 255.0f;
+            A = alpha;
+        }
+
+        internal Color(NUI.Vector4 vector4) : this(vector4.X, vector4.Y, vector4.Z, vector4.W)
+        {
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this is default.
+        /// </summary>
+        public readonly bool IsDefault => R == -1 && G == -1 && B == -1 && A == -1;
+
+        /// <summary>
+        /// Gets a value indicating whether this is zero.
+        /// </summary>
+        public readonly bool IsZero => R == 0 && G == 0 && B == 0 && A == 0;
 
         /// <summary>
         /// Gets the red component of the color.
@@ -85,12 +146,15 @@ namespace Tizen.NUI.L
         /// <returns>The new color.</returns>
         public readonly Color MultiplyAlpha(float alpha) => new Color(R, G, B, A * alpha);
 
+        /// <inheritdoc/>
+        public override string ToString() => $"R:{R}, G:{G}, B:{B}, A:{A}";
+
         /// <summary>
         /// Returns a new color object with the specified alpha value.
         /// </summary>
         /// <param name="alpha">The new alpha value.</param>
         /// <returns>A new color object with the specified alpha value.</returns>
-        public readonly Color WithAlpha(float alpha) => new Color(R, G, B, alpha);
+        public readonly Color WithAlpha(float alpha) => new (R, G, B, alpha);
 
         internal readonly NUI.Color ToReferenceType() => new NUI.Color(R, G, B, A);
     }

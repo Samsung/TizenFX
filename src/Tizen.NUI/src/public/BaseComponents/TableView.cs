@@ -499,6 +499,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Width and height.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public void SetCellPadding(Size2D padding)
         {
@@ -511,6 +512,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The current padding as width and height.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public Vector2 GetCellPadding()
         {

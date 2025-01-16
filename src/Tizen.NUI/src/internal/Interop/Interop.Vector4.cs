@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -35,21 +36,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Vector4__SWIG_4")]
             public static extern global::System.IntPtr NewVector4WithVector3(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_ONE_get")]
-            public static extern global::System.IntPtr OneGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_XAXIS_get")]
-            public static extern global::System.IntPtr XaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_YAXIS_get")]
-            public static extern global::System.IntPtr YaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_ZAXIS_get")]
-            public static extern global::System.IntPtr ZaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_ZERO_get")]
-            public static extern global::System.IntPtr ZeroGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_Add")]
             public static extern global::System.IntPtr Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -202,6 +188,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Vector4")]
             public static extern void DeleteVector4(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector4_set_all")]
+            public static extern void SetAll(HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
         }
     }
 }

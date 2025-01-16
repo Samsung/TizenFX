@@ -34,6 +34,8 @@ jobs:
         key: ${{ env.CACHE_NAME }}-${{ hashFiles('repos/commits') }}
 
     - name: Build Documents
+      env:
+        DOCFX_FILE: "docfx_tizen_docs.json"
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
         ./build.sh restore
@@ -44,19 +46,21 @@ jobs:
         cp .gitattributes _site/
         tar cfz site.tar.gz _site/
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: documents
         path: site.tar.gz
+        overwrite: true
 
   deploy:
     needs: [build]
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: documents
+        overwrite: true
 
     - name: Extract Artifacts
       run: |

@@ -248,6 +248,192 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, bool value)
+        {
+            Interop.PropertyMap.AddBool(SwigCPtr, key, value);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, int value)
+        {
+            Interop.PropertyMap.AddInt(SwigCPtr, key, value);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, float value)
+        {
+            Interop.PropertyMap.AddFloat(SwigCPtr, key, value);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, string value)
+        {
+            if (AppendNoneIfNull(key, value))
+            {
+                return this;
+            }
+            Interop.PropertyMap.AddString(SwigCPtr, key, value);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, Vector2 value)
+        {
+            if (AppendNoneIfNull(key, value))
+            {
+                return this;
+            }
+            Interop.PropertyMap.AddVector2(SwigCPtr, key, getCPtr(value));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, L.Vector2 value)
+        {
+            Interop.PropertyMap.AddVector2(SwigCPtr, key, value.X, value.Y);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, Vector3 value)
+        {
+            if (AppendNoneIfNull(key, value))
+            {
+                return this;
+            }
+            Interop.PropertyMap.AddVector3(SwigCPtr, key, getCPtr(value));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, Vector4 value)
+        {
+            if (AppendNoneIfNull(key, value))
+            {
+                return this;
+            }
+            Interop.PropertyMap.AddVector4(SwigCPtr, key, getCPtr(value));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, L.Color value)
+        {
+            Interop.PropertyMap.AddVector4(SwigCPtr, key, value.R, value.G, value.B, value.A);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, L.Corner value)
+        {
+            Interop.PropertyMap.AddVector4(SwigCPtr, key, value.TopLeft, value.TopRight, value.BottomRight, value.BottomLeft);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+        /// <summary>
+        /// Append the key-value pair to the map.
+        /// Does not check for duplicates.
+        /// </summary>
+        /// <param name="key">The key to insert.</param>
+        /// <param name="value">The value to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Append(int key, PropertyMap value)
+        {
+            if (AppendNoneIfNull(key, value))
+            {
+                return this;
+            }
+            Interop.PropertyMap.AddPropertyMap(SwigCPtr, key, getCPtr(value));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
+
+
+        /// <summary>
         /// Removes the element by the specified key.
         /// </summary>
         /// <param name="key">The index key to find.</param>
@@ -442,6 +628,16 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.PropertyMap.DeletePropertyMap(swigCPtr);
+        }
+
+        private bool AppendNoneIfNull(int key, object value)
+        {
+            if (value == null)
+            {
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
+                return true;
+            }
+            return false;
         }
     }
 

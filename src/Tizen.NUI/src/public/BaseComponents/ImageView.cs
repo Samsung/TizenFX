@@ -698,6 +698,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("This has been deprecated since API9 and will be removed in API11. Use SynchronousLoading instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SynchronosLoading
         {
             get

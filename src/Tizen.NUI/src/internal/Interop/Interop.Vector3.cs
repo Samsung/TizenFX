@@ -36,30 +36,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Vector3__SWIG_4")]
             public static extern global::System.IntPtr NewVector3WithVector4(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_ONE_get")]
-            public static extern global::System.IntPtr OneGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_XAXIS_get")]
-            public static extern global::System.IntPtr XaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_YAXIS_get")]
-            public static extern global::System.IntPtr YaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_ZAXIS_get")]
-            public static extern global::System.IntPtr ZaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_NEGATIVE_XAXIS_get")]
-            public static extern global::System.IntPtr NegativeXaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_NEGATIVE_YAXIS_get")]
-            public static extern global::System.IntPtr NegativeYaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_NEGATIVE_ZAXIS_get")]
-            public static extern global::System.IntPtr NegativeZaxisGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_ZERO_get")]
-            public static extern global::System.IntPtr ZeroGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_Add")]
             public static extern global::System.IntPtr Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

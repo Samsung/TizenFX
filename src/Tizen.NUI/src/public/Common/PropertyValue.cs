@@ -443,6 +443,14 @@ namespace Tizen.NUI
             {
                 value = new PropertyValue((Rectangle)obj);
             }
+            else if (type.Equals(typeof(PropertyArray)))
+            {
+                value = new PropertyValue((PropertyArray)obj);
+            }
+            else if (type.Equals(typeof(PropertyMap)))
+            {
+                value = new PropertyValue((PropertyMap)obj);
+            }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
@@ -547,6 +555,14 @@ namespace Tizen.NUI
             else if (type.Equals(typeof(Rectangle)))
             {
                 value = Interop.PropertyValue.NewPropertyValueRect(Rectangle.getCPtr((Rectangle)obj));
+            }
+            else if (type.Equals(typeof(PropertyArray)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueArray(PropertyArray.getCPtr((PropertyArray)(obj)));
+            }
+            else if (type.Equals(typeof(PropertyMap)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueMap(PropertyMap.getCPtr((PropertyMap)(obj)));
             }
             else
             {

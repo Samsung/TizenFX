@@ -28,6 +28,17 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector2TypeConverter))]
     public class Vector2 : Disposable, ICloneable
     {
+        private static readonly Vector2 one = new Vector2(1.0f, 1.0f);
+        private static readonly Vector2 zero = new Vector2(0.0f, 0.0f);
+        private static readonly Vector2 xaxis = new Vector2(1.0f, 0.0f);
+        private static readonly Vector2 yaxis = new Vector2(0.0f, 1.0f);
+        private static readonly Vector2 negativeXaxis = new Vector2(-1.0f, 0.0f);
+        private static readonly Vector2 negativeYaxis = new Vector2(0.0f, -1.0f);
+
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
@@ -111,92 +122,38 @@ namespace Tizen.NUI
         /// Actual value is (1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector2 One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector2.OneGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 One => one;
 
         /// <summary>
         /// The vector representing the x-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector2 XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector2.XaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 XAxis => xaxis;
 
         /// <summary>
         /// The vector representing the y-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector2 YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector2.YaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 YAxis => yaxis;
 
         /// <summary>
         /// The vector representing the negative x-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector2 NegativeXAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector2.NegativeXaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 NegativeXAxis => negativeXaxis;
 
         /// <summary>
         /// The vector representing the negative y-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector2 NegativeYAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector2.NegativeYaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 NegativeYAxis => negativeYaxis;
 
         /// <summary>
         /// A Vector2 object representing the zero vector.
         /// Actual value is (0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector2 Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector2.ZeroGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Zero => zero;
 
         /// <summary>
         /// The x component.

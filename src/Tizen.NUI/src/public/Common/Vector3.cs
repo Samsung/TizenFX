@@ -28,6 +28,20 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector3TypeConverter))]
     public class Vector3 : Disposable, ICloneable
     {
+        private static readonly Vector3 one = new Vector3(1.0f, 1.0f, 1.0f);
+        private static readonly Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
+        private static readonly Vector3 xaxis = new Vector3(1.0f, 0.0f, 0.0f);
+        private static readonly Vector3 yaxis = new Vector3(0.0f, 1.0f, 0.0f);
+        private static readonly Vector3 zaxis = new Vector3(0.0f, 0.0f, 1.0f);
+        private static readonly Vector3 negativeXaxis = new Vector3(-1.0f, 0.0f, 0.0f);
+        private static readonly Vector3 negativeYaxis = new Vector3(0.0f, -1.0f, 0.0f);
+        private static readonly Vector3 negativeZaxis = new Vector3(0.0f, 0.0f, -1.0f);
+
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The default constructor of Vector3 class.
         /// </summary>
@@ -96,122 +110,50 @@ namespace Tizen.NUI
         /// Actual value is (1.0f,1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.OneGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 One => one;
 
         /// <summary>
         /// The vector representing the x-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.XaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 XAxis => xaxis;
 
         /// <summary>
         /// The vector representing the y-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.YaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 YAxis => yaxis;
 
         /// <summary>
         /// The vector representing the z-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 ZAxis => zaxis;
 
         /// <summary>
         /// The vector representing the negative x-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 NegativeXAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeXaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 NegativeXAxis => negativeXaxis;
 
         /// <summary>
         /// Th vector representing the negative y-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 NegativeYAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeYaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 NegativeYAxis => negativeYaxis;
 
         /// <summary>
         /// The vector representing the negative z-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 NegativeZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeZaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 NegativeZAxis => negativeZaxis;
 
         /// <summary>
         /// A Vector2 object representing the zero vector.
         /// Actual value is (0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZeroGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 Zero => zero;
 
         /// <summary>
         /// The x component.

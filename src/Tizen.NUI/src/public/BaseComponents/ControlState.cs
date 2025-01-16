@@ -35,74 +35,70 @@ namespace Tizen.NUI.BaseComponents
         /// The All state is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState All = new ControlState(ControlStateUtility.FullMask);
+        public static readonly ControlState All = new ControlState(ViewState.All);
         /// <summary>
         /// Normal State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Normal = new ControlState(0UL);
+        public static readonly ControlState Normal = new ControlState(ViewState.Normal);
         /// <summary>
         /// Focused State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Focused =  new ControlState(nameof(Focused));
+        public static readonly ControlState Focused =  new ControlState(ViewState.Focused);
         /// <summary>
         /// Pressed State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Pressed = new ControlState(nameof(Pressed));
+        public static readonly ControlState Pressed = new ControlState(ViewState.Pressed);
         /// <summary>
         /// Disabled State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Disabled = new ControlState(nameof(Disabled));
+        public static readonly ControlState Disabled = new ControlState(ViewState.Disabled);
         /// <summary>
         /// Selected State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Selected = new ControlState(nameof(Selected));
+        public static readonly ControlState Selected = new ControlState(ViewState.Selected);
         /// <summary>
         /// SelectedPressed State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState SelectedPressed = Selected + Pressed;
+        public static readonly ControlState SelectedPressed = new ControlState(ViewState.SelectedPressed);
         /// <summary>
         /// DisabledSelected State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState DisabledSelected = Disabled + Selected;
+        public static readonly ControlState DisabledSelected = new ControlState(ViewState.DisabledSelected);
         /// <summary>
         /// DisabledFocused State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState DisabledFocused = Disabled + Focused;
+        public static readonly ControlState DisabledFocused = new ControlState(ViewState.DisabledFocused);
         /// <summary>
         /// SelectedFocused State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState SelectedFocused = Selected + Focused;
+        public static readonly ControlState SelectedFocused = new ControlState(ViewState.SelectedFocused);
         /// <summary>
         /// This is used in a selector class. It represents all other states except for states that are already defined in a selector.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Other = new ControlState(nameof(Other));
+        public static readonly ControlState Other = new ControlState(ViewState.Other);
 
-        readonly ulong bitFlags;
+        readonly ViewState value;
 
 
         /// <summary>
         /// Gets or sets a value indicating whether it has combined states.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsCombined => (bitFlags != 0UL) && ((bitFlags & (bitFlags - 1UL)) != 0UL);
+        public bool IsCombined => value.IsCombined;
 
-        private ControlState(ulong bitMask)
+        internal ControlState(ViewState value)
         {
-            bitFlags = bitMask;
-        }
-
-        private ControlState(string name) : this(ControlStateUtility.Register(name))
-        {
+            this.value = value;
         }
 
         /// <summary>
@@ -115,12 +111,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public static ControlState Create(string name)
         {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException($"{nameof(name)} cannot be whitespace.", nameof(name));
-
-            return new ControlState(name);
+            return new ControlState(ViewState.Create(name));
         }
 
         /// <summary>
@@ -131,14 +122,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState Create(params ControlState[] states)
         {
-            ulong newbits = 0UL;
+            ViewState result = ViewState.Normal;
 
             for (int i = 0; i < states.Length; i++)
             {
-                newbits |= states[i].bitFlags;
+                result += states[i].value;
             }
 
-            return new ControlState(newbits);
+            return new ControlState(result);
         }
 
         /// <summary>
@@ -150,16 +141,20 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public bool Contains(ControlState state)
         {
-            if (state is null) return false;
-            return (bitFlags & state.bitFlags) == state.bitFlags;
+            if (state is null)
+                throw new ArgumentNullException(nameof(state));
+
+            return value.Contains(state.value);
         }
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Equals(ControlState other)
         {
-            if (other is null) return false;
-            return this.bitFlags == other.bitFlags;
+            if (other is null)
+                return false;
+
+            return value.Equals(other.value);
         }
 
         ///  <inheritdoc/>
@@ -168,35 +163,11 @@ namespace Tizen.NUI.BaseComponents
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => bitFlags.GetHashCode();
+        public override int GetHashCode() => value.GetHashCode();
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override string ToString()
-        {
-            var sbuilder = new StringBuilder();
-            var states = ControlStateUtility.RegisteredStates();
-
-            if (bitFlags == 0UL)
-            {
-                return nameof(Normal);
-            }
-            else if (bitFlags == ControlStateUtility.FullMask)
-            {
-                return nameof(All);
-            }
-
-            foreach (var (name, bitMask) in states)
-            {
-                if ((bitFlags & bitMask) > 0)
-                {
-                    if (sbuilder.Length != 0) sbuilder.Append(", ");
-                    sbuilder.Append(name);
-                }
-            }
-
-            return sbuilder.ToString();
-        }
+        public override string ToString() => value.ToString();
 
         /// <summary>
         /// Compares whether the two ControlStates are same or not.
@@ -261,9 +232,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(nameof(operand2));
             }
 
-            ulong newBitFlags = operand1.bitFlags | operand2.bitFlags;
-
-            return new ControlState(newBitFlags);
+            return new ControlState(operand1.value + operand2.value);
         }
 
         static ControlState Remove(ControlState operand1, ControlState operand2)
@@ -277,7 +246,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(nameof(operand2));
             }
 
-            return new ControlState(operand1.bitFlags & ~(operand2.bitFlags));
+            return new ControlState(operand1.value - operand2.value);
         }
 
         class ControlStateTypeConverter : Binding.TypeConverter
