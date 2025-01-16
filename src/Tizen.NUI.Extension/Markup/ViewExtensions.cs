@@ -17,9 +17,10 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI.Markup
+namespace Tizen.NUI.Extension
 {
     /// <summary>
+    /// Markup extensions for View.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ViewExtensions
@@ -31,7 +32,7 @@ namespace Tizen.NUI.Markup
         /// <param name="view">The extension target.</param>
         /// <param name="self">The variable to save the reference to.</param>
         /// <returns>The view itself.</returns>
-        public static T Self<T>(this T view, out T self)  where T : View
+        public static T Self<T>(this T view, out T self) where T : View
         {
             self = view;
             return view;
@@ -86,6 +87,19 @@ namespace Tizen.NUI.Markup
         public static L.Color BackgroundColor(this View view)
         {
             return Object.InternalRetrievingVisualPropertyColor(view.SwigCPtr, View.Property.BACKGROUND, ColorVisualProperty.MixColor);
+        }
+
+        /// <summary>
+        /// Sets the background image of the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="url">The resource url.</param>
+        /// <returns>The view itself.</returns>
+        public static TView BackgroundImage<TView>(this TView view, string url) where TView : View
+        {
+            view.BackgroundImage = url;
+            return view;
         }
 
         /// <summary>
@@ -223,13 +237,10 @@ namespace Tizen.NUI.Markup
         /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
         /// <param name="offsetX">Optional. The x offset value from the top left corner. The default is 0.</param>
         /// <param name="offsetY">Optional. The y offset value from the top left corner. The default is 0.</param>
-        /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
         /// <returns>The view itself.</returns>
-        public static T BoxShadow<T>(this T view, float blurRadius, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None) where T : View
+        public static T BoxShadow<T>(this T view, float blurRadius, float offsetX = 0, float offsetY = 0) where T : View
         {
-            return view.BoxShadow(new L.Shadow(blurRadius, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy));
+            return view.BoxShadow(new L.Shadow(blurRadius));
         }
 
         /// <summary>
@@ -241,13 +252,10 @@ namespace Tizen.NUI.Markup
         /// <param name="color">The color for the shadow.</param>
         /// <param name="offsetX">Optional. The x offset value from the top left corner. The default is 0.</param>
         /// <param name="offsetY">Optional. The y offset value from the top left corner. The default is 0.</param>
-        /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
         /// <returns>The view itself.</returns>
-        public static T BoxShadow<T>(this T view, float blurRadius, L.Color color, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None) where T : View
+        public static T BoxShadow<T>(this T view, float blurRadius, L.Color color, float offsetX = 0, float offsetY = 0) where T : View
         {
-            return view.BoxShadow(new L.Shadow(blurRadius, color, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy));
+            return view.BoxShadow(new L.Shadow(blurRadius, color, offsetX, offsetY));
         }
 
         /// <summary>
