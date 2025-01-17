@@ -16,40 +16,40 @@
  */
 using System.ComponentModel;
 
-namespace Tizen.NUI.L
+namespace Tizen.NUI
 {
     /// <summary>
     /// Defines a value type of corner radius.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct Corner
+    public struct UICorner
     {
         /// <summary>
         /// The default corner. (This is to distinguish from zero corners)
         /// </summary>
-        public static readonly Corner Default = new (-1, -1, -1, -1);
+        public static readonly UICorner Default = new (-1, -1, -1, -1);
 
         /// <summary>
         /// The zero corner.
         /// </summary>
-        public static readonly Corner Zero = new (0.0f, 0.0f, 0.0f, 0.0f);
+        public static readonly UICorner Zero = new (0.0f, 0.0f, 0.0f, 0.0f);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Corner"/> struct.
+        /// Initializes a new instance of the <see cref="UICorner"/> struct.
         /// </summary>
         /// <param name="uniform">The uniform corner value.</param>
-        public Corner(float uniform) : this(uniform, uniform, uniform, uniform)
+        public UICorner(float uniform) : this(uniform, uniform, uniform, uniform)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Corner"/> struct.
+        /// Initializes a new instance of the <see cref="UICorner"/> struct.
         /// </summary>
         /// <param name="topLeft">The top-left value.</param>
         /// <param name="topRight">The top-right value.</param>
         /// <param name="bottomRight">The bottom-right value.</param>
         /// <param name="bottomLeft">The bottom-left value.</param>
-        public Corner(float topLeft, float topRight, float bottomRight, float bottomLeft)
+        public UICorner(float topLeft, float topRight, float bottomRight, float bottomLeft)
         {
             TopLeft = topLeft;
             TopRight = topRight;

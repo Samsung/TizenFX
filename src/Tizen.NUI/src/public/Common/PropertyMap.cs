@@ -338,7 +338,7 @@ namespace Tizen.NUI
         /// <param name="value">The value to insert.</param>
         /// <returns>Returns a reference to this object.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap Append(int key, L.Vector2 value)
+        public PropertyMap Append(int key, UIVector2 value)
         {
             Interop.PropertyMap.AddVector2(SwigCPtr, key, value.X, value.Y);
             NDalicPINVOKE.ThrowExceptionIfExists();
@@ -391,7 +391,7 @@ namespace Tizen.NUI
         /// <param name="value">The value to insert.</param>
         /// <returns>Returns a reference to this object.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap Append(int key, L.Color value)
+        public PropertyMap Append(int key, UIColor value)
         {
             Interop.PropertyMap.AddVector4(SwigCPtr, key, value.R, value.G, value.B, value.A);
             NDalicPINVOKE.ThrowExceptionIfExists();
@@ -406,7 +406,7 @@ namespace Tizen.NUI
         /// <param name="value">The value to insert.</param>
         /// <returns>Returns a reference to this object.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap Append(int key, L.Corner value)
+        public PropertyMap Append(int key, UICorner value)
         {
             Interop.PropertyMap.AddVector4(SwigCPtr, key, value.TopLeft, value.TopRight, value.BottomRight, value.BottomLeft);
             NDalicPINVOKE.ThrowExceptionIfExists();
