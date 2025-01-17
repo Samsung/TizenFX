@@ -328,7 +328,7 @@ namespace Tizen.NUI
         /// <remark>
         /// This is not thread safe.
         /// </remark>
-        internal static void InternalSetPropertyColor(HandleRef actor, int propertyType, L.Color color)
+        internal static void InternalSetPropertyColor(HandleRef actor, int propertyType, UIColor color)
         {
             if (actor.Handle == System.IntPtr.Zero)
             {
@@ -349,7 +349,7 @@ namespace Tizen.NUI
         /// <remark>
         /// This is not thread safe.
         /// </remark>
-        internal static L.Color InternalRetrievingVisualPropertyColor(HandleRef actor, int visualIndex, int visualPropertyIndex)
+        internal static UIColor InternalRetrievingVisualPropertyColor(HandleRef actor, int visualIndex, int visualPropertyIndex)
         {
             if (actor.Handle == System.IntPtr.Zero)
             {
@@ -361,7 +361,7 @@ namespace Tizen.NUI
                 vector4.Reset();
                 _ = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, vector4.SwigCPtr);
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                return new L.Color(vector4);
+                return new UIColor(vector4);
             }, actor, visualIndex, visualPropertyIndex);
         }
 

@@ -722,9 +722,9 @@ namespace Tizen.NUI
 
         internal void Reset() => Reset(0, 0, 0, 0);
 
-        internal void Reset(L.Color color) => Reset(color.R, color.G, color.B, color.A);
+        internal void Reset(UIColor color) => Reset(color.R, color.G, color.B, color.A);
 
-        internal void Reset(L.Corner corner) => Reset(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+        internal void Reset(UICorner corner) => Reset(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
 
         internal void Reset(float x, float y, float z, float w)
         {

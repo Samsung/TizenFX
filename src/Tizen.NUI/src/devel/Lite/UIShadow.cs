@@ -17,13 +17,13 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI.L
+namespace Tizen.NUI
 {
     /// <summary>
     /// Defines a value type of shadow.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct Shadow
+    public struct UIShadow
     {
         /// <summary>
         /// Create a Shadow.
@@ -34,8 +34,8 @@ namespace Tizen.NUI.L
         /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
-        public Shadow(float blurRadius, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
-            : this(blurRadius, L.Color.Black, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy)
+        public UIShadow(float blurRadius, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
+            : this(blurRadius, UIColor.Black, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy)
         {
         }
 
@@ -49,7 +49,7 @@ namespace Tizen.NUI.L
         /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
-        public Shadow(float blurRadius, L.Color color, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
+        public UIShadow(float blurRadius, UIColor color, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
         {
             BlurRadius = blurRadius;
             Color = color;
@@ -75,7 +75,7 @@ namespace Tizen.NUI.L
         /// <summary>
         /// The color for the shadow.
         /// </summary>
-        public L.Color Color
+        public UIColor Color
         {
             get;
             init;
@@ -142,9 +142,9 @@ namespace Tizen.NUI.L
         internal readonly PropertyMap BuildMap(View attachedView)
         {
             using var transform = new PropertyMap()
-                .Append((int)VisualTransformPropertyType.Offset, new L.Vector2(OffsetX, OffsetY))
-                .Append((int)VisualTransformPropertyType.OffsetPolicy, new L.Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute))
-                .Append((int)VisualTransformPropertyType.ExtraSize, new L.Vector2(ExtraWidth, ExtraHeight))
+                .Append((int)VisualTransformPropertyType.Offset, new UIVector2(OffsetX, OffsetY))
+                .Append((int)VisualTransformPropertyType.OffsetPolicy, new UIVector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute))
+                .Append((int)VisualTransformPropertyType.ExtraSize, new UIVector2(ExtraWidth, ExtraHeight))
                 .Append((int)VisualTransformPropertyType.Origin, (int)Visual.AlignType.Center)
                 .Append((int)VisualTransformPropertyType.AnchorPoint, (int)Visual.AlignType.Center);
 
