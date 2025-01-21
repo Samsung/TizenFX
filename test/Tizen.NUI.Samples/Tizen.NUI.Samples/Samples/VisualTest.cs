@@ -9,7 +9,6 @@ namespace Tizen.NUI.Samples
 
         static private string DEMO_IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
 
-        static private readonly string focusIndicatorImageUrl = DEMO_IMAGE_DIR + "i_focus_stroke_tile_2unit.9.webp";
         static private readonly string[] ImageUrlList = {
             //DEMO_IMAGE_DIR + "Dali/DaliDemo/application-icon-1.png",
             //DEMO_IMAGE_DIR + "AGIF/dog-anim.gif",
@@ -26,12 +25,18 @@ namespace Tizen.NUI.Samples
         const float thumbnailAreaHeight = 96.0f;
         const float thumbnailSize = 72.0f;
         const float viewGap = 24.0f;
+        const float defaultCornerRadius = 16.0f;
+
+        float cornerRadius = defaultCornerRadius;
+        float cornerSquareness = 0.0f;
 
         View rootView;
 
         View[] visualViewList = new View[4];
 
-        Visuals.NPatchVisual focusIndicatorVisual;
+        Visuals.ColorVisual focusIndicatorBorderVisual;
+        Visuals.ColorVisual focusIndicatorInnerShadowVisual1;
+        Visuals.ColorVisual focusIndicatorInnerShadowVisual2;
         Visuals.ColorVisual shadowVisual1;
         Visuals.ColorVisual shadowVisual2;
 
@@ -63,13 +68,17 @@ namespace Tizen.NUI.Samples
                     rootView?.Unparent();
                     rootView?.Dispose();
 
-                    focusIndicatorVisual?.Dispose();
+                    focusIndicatorBorderVisual?.Dispose();
+                    focusIndicatorInnerShadowVisual1?.Dispose();
+                    focusIndicatorInnerShadowVisual2?.Dispose();
                     shadowVisual1?.Dispose();
                     shadowVisual2?.Dispose();
 
                     CreateFocusedVisuals();
 
                     CreateLayoutViews();
+
+                    UpdateCornerRadius();
                 }
                 else if(e.Key.KeyPressedName == "2")
                 {
@@ -88,11 +97,36 @@ namespace Tizen.NUI.Samples
                 }
                 else if(e.Key.KeyPressedName == "4")
                 {
-                    focusIndicatorVisual.ResourceUrl = null;
+                    focusIndicatorBorderVisual.BorderlineWidth = 5.0f - focusIndicatorBorderVisual.BorderlineWidth;
+
+                    focusIndicatorInnerShadowVisual1.BorderlineWidth = 8.0f - focusIndicatorInnerShadowVisual1.BorderlineWidth;
+
+                    focusIndicatorInnerShadowVisual1.ExtraWidth = 20.0f - focusIndicatorInnerShadowVisual1.ExtraWidth;
+                    focusIndicatorInnerShadowVisual1.ExtraHeight = 20.0f - focusIndicatorInnerShadowVisual1.ExtraHeight;
+                    focusIndicatorInnerShadowVisual1.OffsetX = 10.0f - focusIndicatorInnerShadowVisual1.OffsetX;
+                    focusIndicatorInnerShadowVisual1.OffsetY = 10.0f - focusIndicatorInnerShadowVisual1.OffsetY;
+
+                    focusIndicatorInnerShadowVisual2.BorderlineWidth = 5.0f - focusIndicatorInnerShadowVisual2.BorderlineWidth;
+
+                    focusIndicatorInnerShadowVisual2.Opacity = 0.15f - focusIndicatorInnerShadowVisual2.Opacity;
+
+                    focusIndicatorInnerShadowVisual2.ExtraWidth = 20.0f - focusIndicatorInnerShadowVisual2.ExtraWidth;
+                    focusIndicatorInnerShadowVisual2.ExtraHeight = 20.0f - focusIndicatorInnerShadowVisual2.ExtraHeight;
+                    focusIndicatorInnerShadowVisual2.OffsetX = -10.0f - focusIndicatorInnerShadowVisual2.OffsetX;
+                    focusIndicatorInnerShadowVisual2.OffsetY = -10.0f - focusIndicatorInnerShadowVisual2.OffsetY;
                 }
                 else if(e.Key.KeyPressedName == "5")
                 {
-                    focusIndicatorVisual.ResourceUrl = focusIndicatorImageUrl;
+                    cornerRadius += defaultCornerRadius;
+                    if(cornerRadius > thumbnailAreaHeight * 0.5f + 1.0f)
+                    {
+                        cornerRadius = defaultCornerRadius;
+                        cornerSquareness = 0.6f - cornerSquareness;
+                    }
+
+                    Tizen.Log.Error("NUI", $"Use corner radius {cornerRadius} and corner squareness {cornerSquareness} Scene\n");
+
+                    UpdateCornerRadius();
                 }
                 else if(e.Key.KeyPressedName == "6")
                 {
@@ -154,7 +188,9 @@ namespace Tizen.NUI.Samples
             rootView?.Unparent();
             rootView?.Dispose();
 
-            focusIndicatorVisual?.Dispose();
+            focusIndicatorBorderVisual?.Dispose();
+            focusIndicatorInnerShadowVisual1?.Dispose();
+            focusIndicatorInnerShadowVisual2?.Dispose();
             shadowVisual1?.Dispose();
             shadowVisual2?.Dispose();
         }
@@ -168,20 +204,86 @@ namespace Tizen.NUI.Samples
 
         private void CreateFocusedVisuals()
         {
-            focusIndicatorVisual = new Visuals.NPatchVisual()
+            focusIndicatorBorderVisual = new Visuals.ColorVisual()
             {
                 Name = "indicator",
-
-                ResourceUrl = focusIndicatorImageUrl,
 
                 Origin = Visual.AlignType.Center,
                 PivotPoint = Visual.AlignType.Center,
 
-                Width = 1.01f,
-                Height = 1.01f,
+                Color = Color.Transparent,
 
-                BorderOnly = true,
+                Width = 1.0f,
+                Height = 1.0f,
+
+                ExtraWidth = 1.0f,
+                ExtraHeight = 1.0f,
+
+                CornerRadius = new Vector4(16.5f, 16.5f, 16.5f, 16.5f),
+
+                BorderlineWidth = 5.0f,
+                BorderlineColor = Color.White,
+                BorderlineOffset = -1.0f,
             };
+
+            focusIndicatorInnerShadowVisual1 = new Visuals.ColorVisual()
+            {
+                Name = "indicator-shadow",
+
+                Origin = Visual.AlignType.Center,
+                PivotPoint = Visual.AlignType.Center,
+
+                Color = Color.Transparent,
+
+                Width = 1.0f,
+                Height = 1.0f,
+
+                ExtraWidth = -1.0f,
+                ExtraHeight = -1.0f,
+
+                OffsetXPolicy = VisualTransformPolicyType.Absolute,
+                OffsetYPolicy = VisualTransformPolicyType.Absolute,
+
+                CornerRadius = new Vector4(15.5f, 15.5f, 15.5f, 15.5f),
+
+                BorderlineWidth = 3.0f,
+                BorderlineColor = Color.Black,
+                BorderlineOffset = -1.0f,
+
+                BlurRadius = 5.0f,
+
+                CutoutPolicy = ColorVisualCutoutPolicyType.CutoutOutsideWithCornerRadius,
+            };
+
+            focusIndicatorInnerShadowVisual2 = new Visuals.ColorVisual()
+            {
+                Name = "indicator-shadow2",
+
+                Origin = Visual.AlignType.Center,
+                PivotPoint = Visual.AlignType.Center,
+
+                Color = Color.Transparent,
+
+                Width = 1.0f,
+                Height = 1.0f,
+
+                ExtraWidth = -1.0f,
+                ExtraHeight = -1.0f,
+
+                OffsetXPolicy = VisualTransformPolicyType.Absolute,
+                OffsetYPolicy = VisualTransformPolicyType.Absolute,
+
+                CornerRadius = new Vector4(15.5f, 15.5f, 15.5f, 15.5f),
+
+                BorderlineWidth = 0.0f,
+                BorderlineColor = Color.White,
+                BorderlineOffset = -1.0f,
+
+                BlurRadius = 5.0f,
+
+                CutoutPolicy = ColorVisualCutoutPolicyType.CutoutOutsideWithCornerRadius,
+            };
+
             shadowVisual1 = new Visuals.ColorVisual()
             {
                 Name = "shadow1",
@@ -424,11 +526,15 @@ namespace Tizen.NUI.Samples
                 {
                     Tizen.Log.Error("NUI", $"View {me.ID} focus gained.\n");
 
-                    me.AddVisual(focusIndicatorVisual);
+                    me.AddVisual(focusIndicatorBorderVisual);
+                    me.AddVisual(focusIndicatorInnerShadowVisual1);
+                    me.AddVisual(focusIndicatorInnerShadowVisual2);
                     me.AddVisual(shadowVisual1);
                     me.AddVisual(shadowVisual2);
 
-                    focusIndicatorVisual.RaiseToTop();
+                    focusIndicatorInnerShadowVisual1.RaiseToTop();
+                    focusIndicatorInnerShadowVisual2.RaiseAbove(focusIndicatorInnerShadowVisual1);
+                    focusIndicatorBorderVisual.RaiseAbove(focusIndicatorInnerShadowVisual2);
                     shadowVisual1.LowerToBottom();
                     shadowVisual2.LowerBelow(shadowVisual1);
 
@@ -461,7 +567,9 @@ namespace Tizen.NUI.Samples
                 {
                     Tizen.Log.Error("NUI", $"View {me.ID} focus losted.\n");
 
-                    me.RemoveVisual(focusIndicatorVisual);
+                    me.RemoveVisual(focusIndicatorBorderVisual);
+                    me.RemoveVisual(focusIndicatorInnerShadowVisual1);
+                    me.RemoveVisual(focusIndicatorInnerShadowVisual2);
                     me.RemoveVisual(shadowVisual1);
                     me.RemoveVisual(shadowVisual2);
 
@@ -493,6 +601,51 @@ namespace Tizen.NUI.Samples
             };
 
             return view;
+        }
+
+        private void UpdateCornerRadius()
+        {
+            foreach (var view in visualViewList)
+            {
+                if(view != null)
+                {
+                    view.CornerRadius = new Vector4(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
+                    view.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+
+                    {
+                        var visual = view.FindVisualByName("background") as Visuals.ColorVisual;
+                        visual.CornerRadius = new Vector4(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
+                        visual.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+                    }
+
+                    {
+                        var visual = view.FindVisualByName("mainImage") as Visuals.ImageVisual;
+                        visual.CornerRadius = new Vector4(cornerRadius, cornerRadius, 0.0f, 0.0f);
+                        visual.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, 0.0f, 0.0f);
+                    }
+
+                    {
+                        var visual = view.FindVisualByName("foreground") as Visuals.ColorVisual;
+                        visual.CornerRadius = new Vector4(0.0f, 0.0f, cornerRadius, cornerRadius);
+                        visual.CornerSquareness = new Vector4(0.0f, 0.0f, cornerSquareness, cornerSquareness);
+                    }
+                }
+            }
+
+            float borderCornerRadius = cornerRadius + 0.5f;
+            focusIndicatorBorderVisual.CornerRadius = new Vector4(borderCornerRadius, borderCornerRadius, borderCornerRadius, borderCornerRadius);
+            focusIndicatorBorderVisual.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+
+            borderCornerRadius = cornerRadius - 0.5f;
+            focusIndicatorInnerShadowVisual1.CornerRadius = new Vector4(borderCornerRadius, borderCornerRadius, borderCornerRadius, borderCornerRadius);
+            focusIndicatorInnerShadowVisual1.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+            focusIndicatorInnerShadowVisual2.CornerRadius = new Vector4(borderCornerRadius, borderCornerRadius, borderCornerRadius, borderCornerRadius);
+            focusIndicatorInnerShadowVisual2.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+
+            shadowVisual1.CornerRadius = new Vector4(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
+            shadowVisual1.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
+            shadowVisual2.CornerRadius = new Vector4(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
+            shadowVisual2.CornerSquareness = new Vector4(cornerSquareness, cornerSquareness, cornerSquareness, cornerSquareness);
         }
 
         static private SamplingModeType GetNextSamplingModeType(SamplingModeType currentSamplingMode)

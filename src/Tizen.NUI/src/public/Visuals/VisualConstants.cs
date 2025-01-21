@@ -1431,11 +1431,13 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         None,
+
         /// <summary>
         /// Cutout as bounding box of view
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         CutoutView,
+
         /// <summary>
         /// Cutout as bounding box of view, include corner radius.
         /// </summary>
@@ -1446,5 +1448,22 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         CutoutViewWithCornerRadius,
+
+        /// <summary>
+        /// Cutout as outside of bounding box of view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutOutside,
+
+        /// <summary>
+        /// Cutout as outside of bounding box of view, include corner radius.
+        /// </summary>
+        /// <remarks>
+        /// The CornerRadius and CornerRadiusPolicy will be used color visual itself's value.
+        /// If you are using this policy at Tizen.NUI.Visuals.ColorVisual, please be careful that CornerRadius value
+        /// is not same as View.CornerRadius.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutOutsideWithCornerRadius,
     };
 }
