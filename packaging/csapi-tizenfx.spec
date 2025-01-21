@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 13
-%define TIZEN_NET_RPM_VERSION 13.0.0.999+nui22402
+%define TIZEN_NET_RPM_VERSION 13.0.0.999+nui22401
 %define TIZEN_NET_NUGET_VERSION 13.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework

@@ -16,25 +16,25 @@
  */
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.L
 {
     /// <summary>
     /// Defines a value type of vector2.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public readonly struct UIVector2
+    public readonly struct Vector2
     {
         /// <summary>
         /// The zero vector2.
         /// </summary>
-        public static readonly UIVector2 Zero = new (0.0f, 0.0f);
+        public static readonly Vector2 Zero = new (0.0f, 0.0f);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UIVector2"/> struct.
+        /// Initializes a new instance of the <see cref="Vector2"/> struct.
         /// </summary>
         /// <param name="x">The x value.</param>
         /// <param name="y">The y value.</param>
-        public UIVector2(float x, float y)
+        public Vector2(float x, float y)
         {
             X = x;
             Y = y;

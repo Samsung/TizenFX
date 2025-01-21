@@ -16,57 +16,57 @@
  */
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.L
 {
     /// <summary>
     /// Defines a value type of color.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UIColor
+    public struct Color
     {
         /// <summary>
         /// The default color. (This is to distinguish from zero corners)
         /// </summary>
-        public static readonly UIColor Default = new (-1, -1, -1, -1);
+        public static readonly Color Default = new (-1, -1, -1, -1);
 
         /// <summary>
         /// The transparent color.
         /// </summary>
-        public static readonly UIColor Transparent = new (0, 0, 0, 0);
+        public static readonly Color Transparent = new (0, 0, 0, 0);
 
         /// <summary>
         /// The transparent color.
         /// </summary>
-        public static readonly UIColor Black = new (0, 0, 0, 1);
+        public static readonly Color Black = new (0, 0, 0, 1);
 
         /// <summary>
         /// The white color.
         /// </summary>
-        public static readonly UIColor White = new (1, 1, 1, 1);
+        public static readonly Color White = new (1, 1, 1, 1);
 
         /// <summary>
         /// The red color.
         /// </summary>
-        public static readonly UIColor Red = new (1, 0, 0, 1);
+        public static readonly Color Red = new (1, 0, 0, 1);
 
         /// <summary>
         /// The green color.
         /// </summary>
-        public static readonly UIColor Green = new (0, 1, 0, 1);
+        public static readonly Color Green = new (0, 1, 0, 1);
 
         /// <summary>
         /// The blue color.
         /// </summary>
-        public static readonly UIColor Blue = new (0, 0, 1, 1);
+        public static readonly Color Blue = new (0, 0, 1, 1);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UIColor"/> struct.
+        /// Initializes a new instance of the <see cref="Color"/> struct.
         /// </summary>
         /// <param name="r">The red component.</param>
         /// <param name="g">The green component.</param>
         /// <param name="b">The blue component.</param>
         /// <param name="a">The alpha component.</param>
-        public UIColor(float r, float g, float b, float a)
+        public Color(float r, float g, float b, float a)
         {
             R = r;
             G = g;
@@ -75,17 +75,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UIColor"/> struct.
+        /// Initializes a new instance of the <see cref="Color"/> struct.
         /// </summary>
         /// <param name="value">The value of 0xRRGGBB format.</param>
         /// <param name="alpha">The alpha value between 0.0 and 1.0.</param>
         /// <example>
         /// <code>
-        ///     new UIColor(0xFF0000, 1f); // Solid red
-        ///     new UIColor(0x00FF00, 0.5f) // Half transparent green
+        ///     new L.Color(0xFF0000, 1f); // Solid red
+        ///     new L.Color(0x00FF00, 0.5f) // Half transparent green
         /// </code>
         /// </example>
-        public UIColor(uint value, float alpha)
+        public Color(uint value, float alpha)
         {
             R = ((value >> 16) & 0xff) / 255.0f;
             G = ((value >> 8) & 0xff) / 255.0f;
@@ -93,7 +93,7 @@ namespace Tizen.NUI
             A = alpha;
         }
 
-        internal UIColor(NUI.Vector4 vector4) : this(vector4.X, vector4.Y, vector4.Z, vector4.W)
+        internal Color(NUI.Vector4 vector4) : this(vector4.X, vector4.Y, vector4.Z, vector4.W)
         {
         }
 
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="alpha">The value to multiply the alpha component by.</param>
         /// <returns>The new color.</returns>
-        public readonly UIColor MultiplyAlpha(float alpha) => new UIColor(R, G, B, A * alpha);
+        public readonly Color MultiplyAlpha(float alpha) => new Color(R, G, B, A * alpha);
 
         /// <inheritdoc/>
         public override string ToString() => $"R:{R}, G:{G}, B:{B}, A:{A}";
@@ -154,7 +154,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="alpha">The new alpha value.</param>
         /// <returns>A new color object with the specified alpha value.</returns>
-        public readonly UIColor WithAlpha(float alpha) => new (R, G, B, alpha);
+        public readonly Color WithAlpha(float alpha) => new (R, G, B, alpha);
 
         internal readonly NUI.Color ToReferenceType() => new NUI.Color(R, G, B, A);
     }
