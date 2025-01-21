@@ -444,6 +444,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets whether the input panel should be shown in fullscreen mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FullScreenMode
+        {
+            get
+            {
+                return IsFullScreenMode();
+            }
+            set
+            {
+                SetFullScreenMode(value);
+            }
+        }
+
+        /// <summary>
         /// Destroys the context of the IMF.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -809,6 +825,19 @@ namespace Tizen.NUI
         internal bool IsTextPredictionAllowed()
         {
             bool ret = Interop.InputMethodContext.IsTextPredictionAllowed(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetFullScreenMode(bool fullScreen)
+        {
+            Interop.InputMethodContext.SetFullScreenMode(SwigCPtr, fullScreen);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsFullScreenMode()
+        {
+            bool ret = Interop.InputMethodContext.IsFullScreenMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
