@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019-2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -273,12 +273,36 @@ namespace Tizen.NUI
 
             edgeList = new Node[gridChildren.Count + axisCount];
 
+            HashSet<int> expandSet = new HashSet<int>();
             for (int i = 0; i < gridChildren.Count; i++)
+            {
                 edgeList[i] = isHorizontal ? gridChildren[i].Column : gridChildren[i].Row;
+                for (int j = edgeList[i].Start; j < edgeList[i].End; j++)
+                {
+                    // If a cell has multiple ColumnSpacing or RowSpacing with Stretch Expand,
+                    // its column or row should occupy Expand space even though the column or row is empty.
+                    // To do so, virtual edges for the column or row have Stretch Expand.
+                    // It works the same way as CSS grid.
+                    // e.g. Child2 begins after the empty space for Row 1, Column 0.
+                    //      GridLayout Width 400.
+                    //      Child1 Row 0, Column 0, ColumnSpan 2, HorizontalStretch Expand.
+                    //      Child2 Row 1, Column 1, ColumnSpan 1, HorizontalStretch None, Width 100.
+                    //      -------------------------------------
+                    //      |||||||||||||||Child1||||||||||||||||
+                    //      -------------------------------------
+                    //      |                 ||Child2||        |
+                    if (edgeList[i].Stretch.HasFlag(StretchFlags.Expand))
+                    {
+                        expandSet.Add(j);
+                    }
+                }
+            }
 
             // Add virtual edge that have no edge for connecting adjacent cells.
             for (int i = gridChildren.Count, end = gridChildren.Count + axisCount, v = 0; i < end; i++, v++)
-                edgeList[i] = new Node(v, 1, 0, 0);
+            {
+                edgeList[i] = new Node(v, 1, 0, expandSet.Contains(v) ? StretchFlags.Expand : 0);
+            }
 
             Array.Sort(edgeList, (a, b) => a.Start.CompareTo(b.Start));
         }
