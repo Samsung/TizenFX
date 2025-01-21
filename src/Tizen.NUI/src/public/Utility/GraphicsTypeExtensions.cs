@@ -88,7 +88,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static float PxToDp(this float pixel)
         {
-            return GraphicsTypeManager.Instance.Dp.ConvertFromPixel(pixel);
+            return PxToDp(pixel);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static float PxToSp(this float pixel)
         {
-            return GraphicsTypeManager.Instance.Sp.ConvertFromPixel(pixel);
+            return PxToSp(pixel);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static int PxToDp(this int pixel)
         {
-            return (int)PxToDp((float)pixel);
+            return (int)PxToDp(pixel);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static int PxToSp(this int pixel)
         {
-            return (int)PxToSp((float)pixel);
+            return (int)PxToSp(pixel);
         }
 
         /// <summary>

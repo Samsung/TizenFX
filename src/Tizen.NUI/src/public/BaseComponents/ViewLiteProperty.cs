@@ -20,7 +20,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         /// NOTE This can replace SetBackgroundColor(NUI.Color) after sufficient verification
-        internal void SetBackgroundColor(UIColor color)
+        internal void SetBackgroundColor(L.Color color)
         {
             themeData?.selectorData?.ClearBackground(this);
 
@@ -47,13 +47,10 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyMap(SwigCPtr, Property.BACKGROUND, map.SwigCPtr);
             }
-
-            NotifyPropertyChanged(nameof(BackgroundColor));
-            NotifyBackgroundChanged();
         }
 
         /// NOTE This can replace SetInternalBoxShadowProperty() after sufficient verification
-        internal void SetBoxShadow(UIShadow shadow)
+        internal void SetBoxShadow(L.Shadow shadow)
         {
             themeData?.selectorData?.ClearShadow(this);
 
@@ -62,7 +59,6 @@ namespace Tizen.NUI.BaseComponents
             using var map = shadow.BuildMap(this);
 
             Object.InternalSetPropertyMap(SwigCPtr, Property.SHADOW, map.SwigCPtr);
-            NotifyPropertyChanged(nameof(BoxShadow));
         }
     }
 }

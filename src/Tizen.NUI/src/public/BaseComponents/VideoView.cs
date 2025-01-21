@@ -448,52 +448,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Enables auto rotation of the video based on the orientation of the video contents.
-        /// </summary>
-        /// <note>
-        /// This feature is supported only when underlay is false.
-        /// So This property will not be set to true unless you first set underlay to false.
-        /// </note>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsAutoRotationEnabled
-        {
-            get
-            {
-                bool ret = (bool)Interop.VideoView.IsAutoRotationEnabled(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-            set
-            {
-                Interop.VideoView.SetAutoRotationEnabled(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        /// <summary>
-        /// Enables letter box of the video based on the aspect of the video contents.
-        /// </summary>
-        /// <note>
-        /// This property is supported only when underlay is false.
-        /// So This property will not be set to true unless you first set underlay to false.
-        /// </note>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsLetterBoxEnabled
-        {
-            get
-            {
-                bool ret = (bool)Interop.VideoView.IsLetterBoxEnabled(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-            set
-            {
-                Interop.VideoView.SetLetterBoxEnabled(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        /// <summary>
         /// Starts the video playback.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
