@@ -35,59 +35,59 @@ namespace Tizen.NUI.BaseComponents
         /// The All state is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState All = new ControlState(ViewState.All);
+        public static readonly ControlState All = new ControlState(UIState.All);
         /// <summary>
         /// Normal State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Normal = new ControlState(ViewState.Normal);
+        public static readonly ControlState Normal = new ControlState(UIState.Normal);
         /// <summary>
         /// Focused State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Focused =  new ControlState(ViewState.Focused);
+        public static readonly ControlState Focused =  new ControlState(UIState.Focused);
         /// <summary>
         /// Pressed State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Pressed = new ControlState(ViewState.Pressed);
+        public static readonly ControlState Pressed = new ControlState(UIState.Pressed);
         /// <summary>
         /// Disabled State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Disabled = new ControlState(ViewState.Disabled);
+        public static readonly ControlState Disabled = new ControlState(UIState.Disabled);
         /// <summary>
         /// Selected State.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Selected = new ControlState(ViewState.Selected);
+        public static readonly ControlState Selected = new ControlState(UIState.Selected);
         /// <summary>
         /// SelectedPressed State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState SelectedPressed = new ControlState(ViewState.SelectedPressed);
+        public static readonly ControlState SelectedPressed = new ControlState(UIState.SelectedPressed);
         /// <summary>
         /// DisabledSelected State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState DisabledSelected = new ControlState(ViewState.DisabledSelected);
+        public static readonly ControlState DisabledSelected = new ControlState(UIState.DisabledSelected);
         /// <summary>
         /// DisabledFocused State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState DisabledFocused = new ControlState(ViewState.DisabledFocused);
+        public static readonly ControlState DisabledFocused = new ControlState(UIState.DisabledFocused);
         /// <summary>
         /// SelectedFocused State.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly ControlState SelectedFocused = new ControlState(ViewState.SelectedFocused);
+        public static readonly ControlState SelectedFocused = new ControlState(UIState.SelectedFocused);
         /// <summary>
         /// This is used in a selector class. It represents all other states except for states that are already defined in a selector.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly ControlState Other = new ControlState(ViewState.Other);
+        public static readonly ControlState Other = new ControlState(UIState.Other);
 
-        readonly ViewState value;
+        readonly UIState value;
 
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsCombined => value.IsCombined;
 
-        internal ControlState(ViewState value)
+        internal ControlState(UIState value)
         {
             this.value = value;
         }
@@ -111,7 +111,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public static ControlState Create(string name)
         {
-            return new ControlState(ViewState.Create(name));
+            return new ControlState(UIState.Create(name));
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState Create(params ControlState[] states)
         {
-            ViewState result = ViewState.Normal;
+            UIState result = UIState.Normal;
 
             for (int i = 0; i < states.Length; i++)
             {

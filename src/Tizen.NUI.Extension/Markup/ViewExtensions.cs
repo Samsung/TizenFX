@@ -17,9 +17,10 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI.Markup
+namespace Tizen.NUI.Extension
 {
     /// <summary>
+    /// Markup extensions for View.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ViewExtensions
@@ -31,7 +32,7 @@ namespace Tizen.NUI.Markup
         /// <param name="view">The extension target.</param>
         /// <param name="self">The variable to save the reference to.</param>
         /// <returns>The view itself.</returns>
-        public static T Self<T>(this T view, out T self)  where T : View
+        public static T Self<T>(this T view, out T self) where T : View
         {
             self = view;
             return view;
@@ -49,7 +50,7 @@ namespace Tizen.NUI.Markup
         /// <returns>The view itself.</returns>
         public static T BackgroundColor<T>(this T view, float r, float g, float b, float a = 1f) where T : View
         {
-            return view.BackgroundColor(new L.Color(r, g, b, a));
+            return view.BackgroundColor(new UIColor(r, g, b, a));
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Tizen.NUI.Markup
         /// <returns>The view itself.</returns>
         public static T BackgroundColor<T>(this T view, uint value, float alpha) where T : View
         {
-            return view.BackgroundColor(new L.Color(value, alpha));
+            return view.BackgroundColor(new UIColor(value, alpha));
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace Tizen.NUI.Markup
         /// <param name="view">The extension target.</param>
         /// <param name="color">The color value.</param>
         /// <returns>The view itself.</returns>
-        public static T BackgroundColor<T>(this T view, L.Color color) where T : View
+        public static T BackgroundColor<T>(this T view, UIColor color) where T : View
         {
             view.SetBackgroundColor(color);
             return view;
@@ -83,9 +84,22 @@ namespace Tizen.NUI.Markup
         /// </summary>
         /// <param name="view">The extension target.</param>
         /// <returns>The background color value.</returns>
-        public static L.Color BackgroundColor(this View view)
+        public static UIColor BackgroundColor(this View view)
         {
             return Object.InternalRetrievingVisualPropertyColor(view.SwigCPtr, View.Property.BACKGROUND, ColorVisualProperty.MixColor);
+        }
+
+        /// <summary>
+        /// Sets the background image of the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="url">The resource url.</param>
+        /// <returns>The view itself.</returns>
+        public static TView BackgroundImage<TView>(this TView view, string url) where TView : View
+        {
+            view.BackgroundImage = url;
+            return view;
         }
 
         /// <summary>
@@ -180,7 +194,7 @@ namespace Tizen.NUI.Markup
         /// <returns>The view itself.</returns>
         public static T CornerRadius<T>(this T view, float uniform, bool isRelative = false) where T : View
         {
-            return view.CornerRadius(new L.Corner(uniform, uniform, uniform, uniform), isRelative);
+            return view.CornerRadius(new UICorner(uniform, uniform, uniform, uniform), isRelative);
         }
 
         /// <summary>
@@ -196,7 +210,7 @@ namespace Tizen.NUI.Markup
         /// <returns>The view itself.</returns>
         public static T CornerRadius<T>(this T view, float topLeft, float topRight, float bottomRight, float bottomLeft, bool isRelative = false) where T : View
         {
-            return view.CornerRadius(new L.Corner(topLeft, topRight, bottomRight, bottomLeft), isRelative);
+            return view.CornerRadius(new UICorner(topLeft, topRight, bottomRight, bottomLeft), isRelative);
         }
 
         /// <summary>
@@ -207,12 +221,25 @@ namespace Tizen.NUI.Markup
         /// <param name="corner">The corner value.</param>
         /// <param name="isRelative">Sets the corner radius policy to relative. The default is false.</param>
         /// <returns>The view itself.</returns>
-        public static T CornerRadius<T>(this T view, L.Corner corner, bool isRelative = false) where T : View
+        public static T CornerRadius<T>(this T view, UICorner corner, bool isRelative = false) where T : View
         {
             // TODO Do not create Vector4 here
             view.CornerRadius = corner.ToReferenceType();
             view.CornerRadiusPolicy = isRelative ? VisualTransformPolicyType.Relative : VisualTransformPolicyType.Absolute;
             return view;
+        }
+
+        /// <summary>
+        /// Gets the corner radius of the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <returns>The corner radius value.</returns>
+        public static UICorner CornerRadius(this View view)
+        {
+            // TODO Do not use Vector4 here
+            var corner = view.CornerRadius;
+            return new UICorner(corner.X, corner.Y, corner.Z, corner.W);
         }
 
         /// <summary>
@@ -223,13 +250,10 @@ namespace Tizen.NUI.Markup
         /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
         /// <param name="offsetX">Optional. The x offset value from the top left corner. The default is 0.</param>
         /// <param name="offsetY">Optional. The y offset value from the top left corner. The default is 0.</param>
-        /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
         /// <returns>The view itself.</returns>
-        public static T BoxShadow<T>(this T view, float blurRadius, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None) where T : View
+        public static T BoxShadow<T>(this T view, float blurRadius, float offsetX = 0, float offsetY = 0) where T : View
         {
-            return view.BoxShadow(new L.Shadow(blurRadius, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy));
+            return view.BoxShadow(new UIShadow(blurRadius));
         }
 
         /// <summary>
@@ -241,13 +265,10 @@ namespace Tizen.NUI.Markup
         /// <param name="color">The color for the shadow.</param>
         /// <param name="offsetX">Optional. The x offset value from the top left corner. The default is 0.</param>
         /// <param name="offsetY">Optional. The y offset value from the top left corner. The default is 0.</param>
-        /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
         /// <returns>The view itself.</returns>
-        public static T BoxShadow<T>(this T view, float blurRadius, L.Color color, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None) where T : View
+        public static T BoxShadow<T>(this T view, float blurRadius, UIColor color, float offsetX = 0, float offsetY = 0) where T : View
         {
-            return view.BoxShadow(new L.Shadow(blurRadius, color, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy));
+            return view.BoxShadow(new UIShadow(blurRadius, color, offsetX, offsetY));
         }
 
         /// <summary>
@@ -257,7 +278,7 @@ namespace Tizen.NUI.Markup
         /// <param name="view">The extension target.</param>
         /// <param name="shadow">The shadow value.</param>
         /// <returns>The view itself.</returns>
-        public static T BoxShadow<T>(this T view, L.Shadow shadow) where T : View
+        public static T BoxShadow<T>(this T view, UIShadow shadow) where T : View
         {
             view.SetBoxShadow(shadow);
             return view;
