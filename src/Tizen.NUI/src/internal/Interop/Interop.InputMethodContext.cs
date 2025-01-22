@@ -188,6 +188,13 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsTextPredictionAllowed(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetFullScreenMode")]
+            public static extern void SetFullScreenMode(global::System.Runtime.InteropServices.HandleRef inputMethodContext, bool fullScreen);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_IsFullScreenMode")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsFullScreenMode(global::System.Runtime.InteropServices.HandleRef inputMethodContext);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelLanguage")]
             public static extern void SetInputPanelLanguage(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
