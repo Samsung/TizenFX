@@ -218,1634 +218,2373 @@ namespace Tizen.NUI
             }
         }
 
+        private static Color aliceBlue = null;
         public static Color ALICE_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.AliceBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == aliceBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.AliceBlueGet();
+                    aliceBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return aliceBlue;
             }
         }
 
+        private static Color antiqueWhite = null;
         public static Color ANTIQUE_WHITE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.AntiqueWhiteGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == antiqueWhite)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.AntiqueWhiteGet();
+                    antiqueWhite = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return antiqueWhite;
             }
         }
 
+        private static Color aqua = null;
         public static Color AQUA
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.AquaGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == aqua)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.AquaGet();
+                    aqua = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return aqua;
             }
         }
 
+        private static Color aquaMarine = null;
         public static Color AQUA_MARINE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.AquaMarineGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == aquaMarine)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.AquaMarineGet();
+                    aquaMarine = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return aquaMarine;
             }
         }
 
+        private static Color azure = null;
         public static Color AZURE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.AzureGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == azure)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.AzureGet();
+                    azure = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return azure;
             }
         }
 
+        private static Color beige = null;
         public static Color BEIGE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BeigeGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == beige)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BeigeGet();
+                    beige = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return beige;
             }
         }
 
+        private static Color bisque = null;
         public static Color BISQUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BisqueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == bisque)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BisqueGet();
+                    bisque = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return bisque;
             }
         }
 
+        private static Color black = null;
         public static Color BLACK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BlackGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == black)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BlackGet();
+                    black = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return black;
             }
         }
 
+        private static Color blancheDalmond = null;
         public static Color BLANCHE_DALMOND
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BlancheDalmondGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == blancheDalmond)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BlancheDalmondGet();
+                    blancheDalmond = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return blancheDalmond;
             }
         }
 
+        private static Color blue = null;
         public static Color BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == blue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BlueGet();
+                    blue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return blue;
             }
         }
 
+        private static Color blueViolet = null;
         public static Color BLUE_VIOLET
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BlueVioletGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == blueViolet)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BlueVioletGet();
+                    blueViolet = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return blueViolet;
             }
         }
 
+        private static Color brown = null;
         public static Color BROWN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BrownGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == brown)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BrownGet();
+                    brown = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return brown;
             }
         }
 
+        private static Color burlyWood = null;
         public static Color BURLY_WOOD
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.BurlyWoodGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == burlyWood)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.BurlyWoodGet();
+                    burlyWood = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return burlyWood;
             }
         }
 
+        private static Color cadetBlue = null;
         public static Color CADET_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CadetBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == cadetBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.CadetBlueGet();
+                    cadetBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return cadetBlue;
             }
         }
 
+        private static Color chartreuse = null;
         public static Color CHARTREUSE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.ChartreuseGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == chartreuse)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.ChartreuseGet();
+                    chartreuse = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return chartreuse;
             }
         }
 
+        private static Color chocolate = null;
         public static Color CHOCOLATE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.ChocolateGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == chocolate)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.ChocolateGet();
+                    chocolate = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return chocolate;
             }
         }
 
+        private static Color coral = null;
         public static Color CORAL
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CoralGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == coral)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.CoralGet();
+                    coral = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return coral;
             }
         }
 
+        private static Color cornflowerBlue = null;
         public static Color CORNFLOWER_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CornflowerBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == cornflowerBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.CornflowerBlueGet();
+                    cornflowerBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return cornflowerBlue;
             }
         }
 
+        private static Color cornsilk = null;
         public static Color CORNSILK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CornsilkGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == cornsilk)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.CornsilkGet();
+                    cornsilk = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return cornsilk;
             }
         }
 
+        private static Color crimson = null;
         public static Color CRIMSON
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CrimsonGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == crimson)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.CrimsonGet();
+                    crimson = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return crimson;
             }
         }
 
+        private static Color cyan = null;
         public static Color CYAN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.CyanGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == cyan)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.CyanGet();
+                    cyan = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return cyan;
             }
         }
 
+        private static Color darkBlue = null;
         public static Color DARK_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkBlueGet();
+                    darkBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkBlue;
             }
         }
 
+        private static Color darkCyan = null;
         public static Color DARK_CYAN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkCyanGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkCyan)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkCyanGet();
+                    darkCyan = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkCyan;
             }
         }
 
+        private static Color darkGoldenrod = null;
         public static Color DARK_GOLDENROD
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGoldenrodGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkGoldenrod)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkGoldenrodGet();
+                    darkGoldenrod = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkGoldenrod;
             }
         }
 
+        private static Color darkGray = null;
         public static Color DARK_GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkGray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkGrayGet();
+                    darkGray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkGray;
             }
         }
 
+        private static Color darkGreen = null;
         public static Color DARK_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkGreenGet();
+                    darkGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkGreen;
             }
         }
 
+        private static Color darkGrey = null;
         public static Color DARK_GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkGreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkGrey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkGreyGet();
+                    darkGrey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkGrey;
             }
         }
 
+        private static Color darkKhaki = null;
         public static Color DARK_KHAKI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkKhakiGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkKhaki)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkKhakiGet();
+                    darkKhaki = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkKhaki;
             }
         }
 
+        private static Color darkMagenta = null;
         public static Color DARK_MAGENTA
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkMagentaGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkMagenta)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkMagentaGet();
+                    darkMagenta = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkMagenta;
             }
         }
 
+        private static Color darkOliveGreen = null;
         public static Color DARK_OLIVE_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkOliveGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkOliveGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkOliveGreenGet();
+                    darkOliveGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkOliveGreen;
             }
         }
 
+        private static Color darkOrange = null;
         public static Color DARK_ORANGE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkOrangeGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkOrange)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkOrangeGet();
+                    darkOrange = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkOrange;
             }
         }
 
+        private static Color darkOrchid = null;
         public static Color DARK_ORCHID
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkOrchidGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkOrchid)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkOrchidGet();
+                    darkOrchid = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkOrchid;
             }
         }
 
+        private static Color darkRed = null;
         public static Color DARK_RED
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkRedGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkRed)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkRedGet();
+                    darkRed = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkRed;
             }
         }
 
+        private static Color darkSalmon = null;
         public static Color DARK_SALMON
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSalmonGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkSalmon)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkSalmonGet();
+                    darkSalmon = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkSalmon;
             }
         }
 
+        private static Color darkSeaGreen = null;
         public static Color DARK_SEA_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSeaGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkSeaGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkSeaGreenGet();
+                    darkSeaGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkSeaGreen;
             }
         }
 
+        private static Color darkSlateBlue = null;
         public static Color DARK_SLATE_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkSlateBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateBlueGet();
+                    darkSlateBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkSlateBlue;
             }
         }
 
+        private static Color darkSlateGray = null;
         public static Color DARK_SLATE_GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateGrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkSlateGray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateGrayGet();
+                    darkSlateGray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkSlateGray;
             }
         }
 
+        private static Color darkSlateGrey = null;
         public static Color DARK_SLATE_GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateGreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkSlateGrey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkSlateGreyGet();
+                    darkSlateGrey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkSlateGrey;
             }
         }
 
+        private static Color darkTurquoise = null;
         public static Color DARK_TURQUOISE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkTurquoiseGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkTurquoise)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkTurquoiseGet();
+                    darkTurquoise = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkTurquoise;
             }
         }
 
+        private static Color darkViolet = null;
         public static Color DARK_VIOLET
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DarkVioletGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == darkViolet)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DarkVioletGet();
+                    darkViolet = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return darkViolet;
             }
         }
 
+        private static Color deepPink = null;
         public static Color DEEP_PINK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DeepPinkGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == deepPink)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DeepPinkGet();
+                    deepPink = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return deepPink;
             }
         }
 
+        private static Color deepSkyBlue = null;
         public static Color DEEP_SKY_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DeepSkyBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == deepSkyBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DeepSkyBlueGet();
+                    deepSkyBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return deepSkyBlue;
             }
         }
 
+        private static Color dimGray = null;
         public static Color DIM_GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DimGrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == dimGray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DimGrayGet();
+                    dimGray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return dimGray;
             }
         }
 
+        private static Color dimGrey = null;
         public static Color DIM_GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DimGreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == dimGrey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DimGreyGet();
+                    dimGrey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return dimGrey;
             }
         }
 
+        private static Color dodgerBlue = null;
         public static Color DODGER_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.DodgerBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == dodgerBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.DodgerBlueGet();
+                    dodgerBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return dodgerBlue;
             }
         }
 
+        private static Color fireBrick = null;
         public static Color FIRE_BRICK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.FireBrickGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == fireBrick)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.FireBrickGet();
+                    fireBrick = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return fireBrick;
             }
         }
 
+        private static Color floralWhite = null;
         public static Color FLORAL_WHITE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.FloralWhiteGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == floralWhite)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.FloralWhiteGet();
+                    floralWhite = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return floralWhite;
             }
         }
 
+        private static Color forestGreen = null;
         public static Color FOREST_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.ForestGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == forestGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.ForestGreenGet();
+                    forestGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return forestGreen;
             }
         }
 
+        private static Color fuchsia = null;
         public static Color FUCHSIA
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.FuchsiaGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == fuchsia)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.FuchsiaGet();
+                    fuchsia = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return fuchsia;
             }
         }
 
+        private static Color gainsboro = null;
         public static Color GAINSBORO
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GainsboroGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == gainsboro)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GainsboroGet();
+                    gainsboro = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return gainsboro;
             }
         }
 
+        private static Color ghostWhite = null;
         public static Color GHOST_WHITE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GhostWhiteGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == ghostWhite)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GhostWhiteGet();
+                    ghostWhite = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return ghostWhite;
             }
         }
 
+        private static Color gold = null;
         public static Color GOLD
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GoldGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == gold)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GoldGet();
+                    gold = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return gold;
             }
         }
 
+        private static Color goldenRod = null;
         public static Color GOLDEN_ROD
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GoldenRodGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == goldenRod)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GoldenRodGet();
+                    goldenRod = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return goldenRod;
             }
         }
 
+        private static Color gray = null;
         public static Color GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == gray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GrayGet();
+                    gray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return gray;
             }
         }
 
+        private static Color green = null;
         public static Color GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == green)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GreenGet();
+                    green = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return green;
             }
         }
 
+        private static Color greenYellow = null;
         public static Color GREEN_YELLOW
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GreenYellowGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == greenYellow)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GreenYellowGet();
+                    greenYellow = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return greenYellow;
             }
         }
 
+        private static Color grey = null;
         public static Color GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.GreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == grey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.GreyGet();
+                    grey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return grey;
             }
         }
 
+        private static Color honeydew = null;
         public static Color HONEYDEW
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.HoneydewGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == honeydew)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.HoneydewGet();
+                    honeydew = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return honeydew;
             }
         }
 
+        private static Color hotPink = null;
         public static Color HOT_PINK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.HotPinkGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == hotPink)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.HotPinkGet();
+                    hotPink = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return hotPink;
             }
         }
 
+        private static Color indianred = null;
         public static Color INDIANRED
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.IndianredGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == indianred)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.IndianredGet();
+                    indianred = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return indianred;
             }
         }
 
+        private static Color indigo = null;
         public static Color INDIGO
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.IndigoGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == indigo)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.IndigoGet();
+                    indigo = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return indigo;
             }
         }
 
+        private static Color ivory = null;
         public static Color IVORY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.IvoryGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == ivory)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.IvoryGet();
+                    ivory = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return ivory;
             }
         }
 
+        private static Color khaki = null;
         public static Color KHAKI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.KhakiGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == khaki)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.KhakiGet();
+                    khaki = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return khaki;
             }
         }
 
+        private static Color lavender = null;
         public static Color LAVENDER
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LavenderGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lavender)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LavenderGet();
+                    lavender = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lavender;
             }
         }
 
+        private static Color lavenderBlush = null;
         public static Color LAVENDER_BLUSH
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LavenderBlushGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lavenderBlush)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LavenderBlushGet();
+                    lavenderBlush = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lavenderBlush;
             }
         }
 
+        private static Color lawnGreen = null;
         public static Color LAWN_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LawnGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lawnGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LawnGreenGet();
+                    lawnGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lawnGreen;
             }
         }
 
+        private static Color lemonChiffon = null;
         public static Color LEMON_CHIFFON
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LemonChiffonGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lemonChiffon)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LemonChiffonGet();
+                    lemonChiffon = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lemonChiffon;
             }
         }
 
+        private static Color lightBlue = null;
         public static Color LIGHT_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightBlueGet();
+                    lightBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightBlue;
             }
         }
 
+        private static Color lightCoral = null;
         public static Color LIGHT_CORAL
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightCoralGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightCoral)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightCoralGet();
+                    lightCoral = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightCoral;
             }
         }
 
+        private static Color lightCyan = null;
         public static Color LIGHT_CYAN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightCyanGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightCyan)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightCyanGet();
+                    lightCyan = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightCyan;
             }
         }
 
+        private static Color lightGoldenRodYellow = null;
         public static Color LIGHT_GOLDEN_ROD_YELLOW
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightGoldenRodYellowGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightGoldenRodYellow)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightGoldenRodYellowGet();
+                    lightGoldenRodYellow = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightGoldenRodYellow;
             }
         }
 
+        private static Color lightGray = null;
         public static Color LIGHT_GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightGrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightGray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightGrayGet();
+                    lightGray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightGray;
             }
         }
 
+        private static Color lightGreen = null;
         public static Color LIGHT_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightGreenGet();
+                    lightGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightGreen;
             }
         }
 
+        private static Color lightGrey = null;
         public static Color LIGHT_GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightGreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightGrey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightGreyGet();
+                    lightGrey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightGrey;
             }
         }
 
+        private static Color lightPink = null;
         public static Color LIGHT_PINK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightPinkGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightPink)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightPinkGet();
+                    lightPink = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightPink;
             }
         }
 
+        private static Color lightSalmon = null;
         public static Color LIGHT_SALMON
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightSalmonGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightSalmon)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightSalmonGet();
+                    lightSalmon = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightSalmon;
             }
         }
 
+        private static Color lightSeaGreen = null;
         public static Color LIGHT_SEA_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightSeaGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightSeaGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightSeaGreenGet();
+                    lightSeaGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightSeaGreen;
             }
         }
 
+        private static Color lightSkyBlue = null;
         public static Color LIGHT_SKY_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightSkyBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightSkyBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightSkyBlueGet();
+                    lightSkyBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightSkyBlue;
             }
         }
 
+        private static Color lightSlateGray = null;
         public static Color LIGHT_SLATE_GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightSlateGrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightSlateGray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightSlateGrayGet();
+                    lightSlateGray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightSlateGray;
             }
         }
 
+        private static Color lightSlateGrey = null;
         public static Color LIGHT_SLATE_GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightSlateGreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightSlateGrey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightSlateGreyGet();
+                    lightSlateGrey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightSlateGrey;
             }
         }
 
+        private static Color lightSteelBlue = null;
         public static Color LIGHT_STEEL_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightSteelBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightSteelBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightSteelBlueGet();
+                    lightSteelBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightSteelBlue;
             }
         }
 
+        private static Color lightYellow = null;
         public static Color LIGHT_YELLOW
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LightYellowGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lightYellow)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LightYellowGet();
+                    lightYellow = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lightYellow;
             }
         }
 
+        private static Color lime = null;
         public static Color LIME
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LimeGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == lime)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LimeGet();
+                    lime = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return lime;
             }
         }
 
+        private static Color limeGreen = null;
         public static Color LIME_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LimeGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == limeGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LimeGreenGet();
+                    limeGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return limeGreen;
             }
         }
 
+        private static Color linen = null;
         public static Color LINEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.LinenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == linen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.LinenGet();
+                    linen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return linen;
             }
         }
 
+        private static Color magenta = null;
         public static Color MAGENTA
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MagentaGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == magenta)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MagentaGet();
+                    magenta = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return magenta;
             }
         }
 
+        private static Color maroon = null;
         public static Color MAROON
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MaroonGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == maroon)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MaroonGet();
+                    maroon = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return maroon;
             }
         }
 
+        private static Color mediumAquaMarine = null;
         public static Color MEDIUM_AQUA_MARINE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumAquaMarineGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumAquaMarine)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumAquaMarineGet();
+                    mediumAquaMarine = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumAquaMarine;
             }
         }
 
+        private static Color mediumBlue = null;
         public static Color MEDIUM_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumBlueGet();
+                    mediumBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumBlue;
             }
         }
 
+        private static Color mediumOrchid = null;
         public static Color MEDIUM_ORCHID
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumOrchidGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumOrchid)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumOrchidGet();
+                    mediumOrchid = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumOrchid;
             }
         }
 
+        private static Color mediumPurple = null;
         public static Color MEDIUM_PURPLE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumPurpleGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumPurple)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumPurpleGet();
+                    mediumPurple = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumPurple;
             }
         }
 
+        private static Color mediumSeaGreen = null;
         public static Color MEDIUM_SEA_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumSeaGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumSeaGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumSeaGreenGet();
+                    mediumSeaGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumSeaGreen;
             }
         }
 
+        private static Color mediumSlateBlue = null;
         public static Color MEDIUM_SLATE_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumSlateBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumSlateBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumSlateBlueGet();
+                    mediumSlateBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumSlateBlue;
             }
         }
 
+        private static Color mediumSpringGreen = null;
         public static Color MEDIUM_SPRING_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumSpringGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumSpringGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumSpringGreenGet();
+                    mediumSpringGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumSpringGreen;
             }
         }
 
+        private static Color mediumTurquoise = null;
         public static Color MEDIUM_TURQUOISE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumTurquoiseGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumTurquoise)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumTurquoiseGet();
+                    mediumTurquoise = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumTurquoise;
             }
         }
 
+        private static Color mediumVioletred = null;
         public static Color MEDIUM_VIOLETRED
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MediumVioletredGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mediumVioletred)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MediumVioletredGet();
+                    mediumVioletred = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mediumVioletred;
             }
         }
 
+        private static Color midnightBlue = null;
         public static Color MIDNIGHT_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MidnightBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == midnightBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MidnightBlueGet();
+                    midnightBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return midnightBlue;
             }
         }
 
+        private static Color mintCream = null;
         public static Color MINT_CREAM
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MintCreamGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mintCream)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MintCreamGet();
+                    mintCream = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mintCream;
             }
         }
 
+        private static Color mistyRose = null;
         public static Color MISTY_ROSE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MistyRoseGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == mistyRose)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MistyRoseGet();
+                    mistyRose = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return mistyRose;
             }
         }
 
+        private static Color moccasin = null;
         public static Color MOCCASIN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.MoccasinGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == moccasin)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.MoccasinGet();
+                    moccasin = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return moccasin;
             }
         }
 
+        private static Color navajoWhite = null;
         public static Color NAVAJO_WHITE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.NavajoWhiteGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == navajoWhite)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.NavajoWhiteGet();
+                    navajoWhite = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return navajoWhite;
             }
         }
 
+        private static Color navy = null;
         public static Color NAVY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.NavyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == navy)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.NavyGet();
+                    navy = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return navy;
             }
         }
 
+        private static Color oldLace = null;
         public static Color OLD_LACE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.OldLaceGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == oldLace)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.OldLaceGet();
+                    oldLace = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return oldLace;
             }
         }
 
+        private static Color olive = null;
         public static Color OLIVE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.OliveGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == olive)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.OliveGet();
+                    olive = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return olive;
             }
         }
 
+        private static Color oliveDrab = null;
         public static Color OLIVE_DRAB
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.OliveDrabGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == oliveDrab)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.OliveDrabGet();
+                    oliveDrab = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return oliveDrab;
             }
         }
 
+        private static Color orange = null;
         public static Color ORANGE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.OrangeGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == orange)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.OrangeGet();
+                    orange = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return orange;
             }
         }
 
+        private static Color orangeRed = null;
         public static Color ORANGE_RED
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.OrangeRedGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == orangeRed)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.OrangeRedGet();
+                    orangeRed = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return orangeRed;
             }
         }
 
+        private static Color orchid = null;
         public static Color ORCHID
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.OrchidGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == orchid)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.OrchidGet();
+                    orchid = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return orchid;
             }
         }
 
+        private static Color paleGoldenRod = null;
         public static Color PALE_GOLDEN_ROD
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PaleGoldenRodGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == paleGoldenRod)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PaleGoldenRodGet();
+                    paleGoldenRod = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return paleGoldenRod;
             }
         }
 
+        private static Color paleGreen = null;
         public static Color PALE_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PaleGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == paleGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PaleGreenGet();
+                    paleGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return paleGreen;
             }
         }
 
+        private static Color paleTurquoise = null;
         public static Color PALE_TURQUOISE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PaleTurquoiseGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == paleTurquoise)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PaleTurquoiseGet();
+                    paleTurquoise = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return paleTurquoise;
             }
         }
 
+        private static Color paleVioletRed = null;
         public static Color PALE_VIOLET_RED
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PaleVioletRedGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == paleVioletRed)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PaleVioletRedGet();
+                    paleVioletRed = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return paleVioletRed;
             }
         }
 
+        private static Color papayaWhip = null;
         public static Color PAPAYA_WHIP
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PapayaWhipGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == papayaWhip)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PapayaWhipGet();
+                    papayaWhip = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return papayaWhip;
             }
         }
 
+        private static Color peachPuff = null;
         public static Color PEACH_PUFF
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PeachPuffGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == peachPuff)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PeachPuffGet();
+                    peachPuff = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return peachPuff;
             }
         }
 
+        private static Color peru = null;
         public static Color PERU
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PeruGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == peru)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PeruGet();
+                    peru = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return peru;
             }
         }
 
+        private static Color pink = null;
         public static Color PINK
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PinkGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == pink)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PinkGet();
+                    pink = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return pink;
             }
         }
 
+        private static Color plum = null;
         public static Color PLUM
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PlumGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == plum)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PlumGet();
+                    plum = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return plum;
             }
         }
 
+        private static Color powderBlue = null;
         public static Color POWDER_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PowderBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == powderBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PowderBlueGet();
+                    powderBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return powderBlue;
             }
         }
 
+        private static Color purple = null;
         public static Color PURPLE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.PurpleGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == purple)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.PurpleGet();
+                    purple = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return purple;
             }
         }
 
+        private static Color red = null;
         public static Color RED
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.RedGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == red)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.RedGet();
+                    red = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return red;
             }
         }
 
+        private static Color rosyBrown = null;
         public static Color ROSY_BROWN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.RosyBrownGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == rosyBrown)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.RosyBrownGet();
+                    rosyBrown = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return rosyBrown;
             }
         }
 
+        private static Color royalBlue = null;
         public static Color ROYAL_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.RoyalBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == royalBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.RoyalBlueGet();
+                    royalBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return royalBlue;
             }
         }
 
+        private static Color saddleBrown = null;
         public static Color SADDLE_BROWN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SaddleBrownGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == saddleBrown)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SaddleBrownGet();
+                    saddleBrown = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return saddleBrown;
             }
         }
 
+        private static Color salmon = null;
         public static Color SALMON
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SalmonGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == salmon)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SalmonGet();
+                    salmon = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return salmon;
             }
         }
 
+        private static Color sandyBrown = null;
         public static Color SANDY_BROWN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SandyBrownGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == sandyBrown)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SandyBrownGet();
+                    sandyBrown = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return sandyBrown;
             }
         }
 
+        private static Color seaGreen = null;
         public static Color SEA_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SeaGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == seaGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SeaGreenGet();
+                    seaGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return seaGreen;
             }
         }
 
+        private static Color seaShell = null;
         public static Color SEA_SHELL
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SeaShellGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == seaShell)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SeaShellGet();
+                    seaShell = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return seaShell;
             }
         }
 
+        private static Color sienna = null;
         public static Color SIENNA
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SiennaGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == sienna)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SiennaGet();
+                    sienna = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return sienna;
             }
         }
 
+        private static Color silver = null;
         public static Color SILVER
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SilverGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == silver)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SilverGet();
+                    silver = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return silver;
             }
         }
 
+        private static Color skyBlue = null;
         public static Color SKY_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SkyBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == skyBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SkyBlueGet();
+                    skyBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return skyBlue;
             }
         }
 
+        private static Color slateBlue = null;
         public static Color SLATE_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SlateBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == slateBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SlateBlueGet();
+                    slateBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return slateBlue;
             }
         }
 
+        private static Color slateGray = null;
         public static Color SLATE_GRAY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SlateGrayGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == slateGray)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SlateGrayGet();
+                    slateGray = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return slateGray;
             }
         }
 
+        private static Color slateGrey = null;
         public static Color SLATE_GREY
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SlateGreyGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == slateGrey)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SlateGreyGet();
+                    slateGrey = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return slateGrey;
             }
         }
 
+        private static Color snow = null;
         public static Color SNOW
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SnowGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == snow)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SnowGet();
+                    snow = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return snow;
             }
         }
 
+        private static Color springGreen = null;
         public static Color SPRING_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SpringGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == springGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SpringGreenGet();
+                    springGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return springGreen;
             }
         }
 
+        private static Color steelBlue = null;
         public static Color STEEL_BLUE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.SteelBlueGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == steelBlue)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.SteelBlueGet();
+                    steelBlue = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return steelBlue;
             }
         }
 
+        private static Color tan = null;
         public static Color TAN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.TanGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == tan)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.TanGet();
+                    tan = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return tan;
             }
         }
 
+        private static Color teal = null;
         public static Color TEAL
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.TealGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == teal)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.TealGet();
+                    teal = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return teal;
             }
         }
 
+        private static Color thistle = null;
         public static Color THISTLE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.ThistleGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == thistle)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.ThistleGet();
+                    thistle = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return thistle;
             }
         }
 
+        private static Color tomato = null;
         public static Color TOMATO
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.TomatoGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == tomato)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.TomatoGet();
+                    tomato = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return tomato;
             }
         }
 
+        private static Color transparent = null;
         public static Color TRANSPARENT
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.TransparentGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == transparent)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.TransparentGet();
+                    transparent = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return transparent;
             }
         }
 
+        private static Color turquoise = null;
         public static Color TURQUOISE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.TurquoiseGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == turquoise)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.TurquoiseGet();
+                    turquoise = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return turquoise;
             }
         }
 
+        private static Color violet = null;
         public static Color VIOLET
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.VioletGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == violet)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.VioletGet();
+                    violet = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return violet;
             }
         }
 
+        private static Color wheat = null;
         public static Color WHEAT
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.WheatGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == wheat)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.WheatGet();
+                    wheat = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return wheat;
             }
         }
 
+        private static Color white = null;
         public static Color WHITE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == white)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.WhiteGet();
+                    white = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return white;
             }
         }
 
+        private static Color whiteSmoke = null;
         public static Color WHITE_SMOKE
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.WhiteSmokeGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == whiteSmoke)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.WhiteSmokeGet();
+                    whiteSmoke = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return whiteSmoke;
             }
         }
 
+        private static Color yellow = null;
         public static Color YELLOW
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == yellow)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.YellowGet();
+                    yellow = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return yellow;
             }
         }
 
+        private static Color yellowGreen = null;
         public static Color YELLOW_GREEN
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicColor.YellowGreenGet();
-                Color ret = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                if (null == yellowGreen)
+                {
+                    global::System.IntPtr cPtr = Interop.NDalicColor.YellowGreenGet();
+                    yellowGreen = (cPtr == global::System.IntPtr.Zero) ? null : new Color(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return yellowGreen;
             }
         }
-
 
         internal static float MACHINE_EPSILON_0
         {
