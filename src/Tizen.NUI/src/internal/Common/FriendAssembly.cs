@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021-2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.TV.FLUX.Component, " + Tizen.NUI.PublicKey.TizenTV)]
 [assembly: InternalsVisibleTo("Tizen.TV.FLUX.Example, " + Tizen.NUI.PublicKey.TizenTV)]
 [assembly: InternalsVisibleTo("Tizen.TV.NUI.Example, " + Tizen.NUI.PublicKey.TizenTV)]
+[assembly: InternalsVisibleTo("Tizen.TV.FLUX.Extension, " + Tizen.NUI.PublicKey.TizenTV)]
 
 [assembly: InternalsVisibleTo("NuiSample, " + Tizen.NUI.PublicKey.Sample)]
 [assembly: InternalsVisibleTo("Tizen.NUI.Devel.Tests, " + Tizen.NUI.PublicKey.Sample)]
