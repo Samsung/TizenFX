@@ -612,19 +612,6 @@ namespace Tizen.NUI.Extension
             return view;
         }
 
-        /// <summary>
-        /// Set the current offscreen rendering type of the view.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="type">The offscreen type value.</param>
-        /// <returns>The view itself.</returns>
-        public static T OffScreenRendering<T>(this T view, View.OffScreenRenderingType type) where T : View
-        {
-            view.OffScreenRendering = type;
-            return view;
-        }
-
 /* Getters */
 
         /// <summary>
