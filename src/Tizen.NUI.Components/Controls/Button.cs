@@ -421,7 +421,7 @@ namespace Tizen.NUI.Components
             {
                 TextLabel.Text = value;
 
-                if (Accessibility.Accessibility.IsEnabled && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && IsAccessibilityNameSignalEmpty())
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
                 }
