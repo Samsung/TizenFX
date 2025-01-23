@@ -1946,8 +1946,8 @@ namespace Tizen.NUI
             tmp.Dispose();
 
             AuxiliaryMessageEventArgs e = new AuxiliaryMessageEventArgs();
-            e.Key = StringToVoidSignal.GetResult(kData);
-            e.Value = StringToVoidSignal.GetResult(vData); ;
+            e.Key = Interop.StringToVoidSignal.GetResult(kData);
+            e.Value = Interop.StringToVoidSignal.GetResult(vData);
             e.Options = tmpList;
 
             auxiliaryMessageEventHandler?.Invoke(this, e);
