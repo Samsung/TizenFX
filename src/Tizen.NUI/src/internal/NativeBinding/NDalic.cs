@@ -1911,9 +1911,8 @@ namespace Tizen.NUI
         {
             get
             {
-                PixelFormat ret = (PixelFormat)Interop.NDalic.FirstValidPixelFormatGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to FIRST_VALID_PIXEL_FORMAT = A8
+                return PixelFormat.A8;
             }
         }
 
@@ -1921,9 +1920,8 @@ namespace Tizen.NUI
         {
             get
             {
-                PixelFormat ret = (PixelFormat)Interop.NDalic.LastValidPixelFormatGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to LAST_VALID_PIXEL_FORMAT = CHROMINANCE_V
+                return (PixelFormat)62;
             }
         }
 
@@ -1951,9 +1949,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.PositiveXGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::CubeMapLayer::POSITIVE_X = 0u
+                return 0;
             }
         }
 
@@ -1961,9 +1958,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.NegativeXGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::CubeMapLayer::NEGATIVE_X = 1u
+                return 1;
             }
         }
 
@@ -1971,9 +1967,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.PositiveYGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::CubeMapLayer::POSITIVE_Y = 2u
+                return 2;
             }
         }
 
@@ -1981,9 +1976,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.NegativeYGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::CubeMapLayer::NEGATIVE_Y = 3u
+                return 3;
             }
         }
 
@@ -1991,9 +1985,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.PositiveZGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::CubeMapLayer::POSITIVE_Z = 4u
+                return 4;
             }
         }
 
@@ -2001,9 +1994,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.NDalicXYZ.NegativeZGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::CubeMapLayer::NEGATIVE_Z = 5u
+                return 5;
             }
         }
 
