@@ -1742,9 +1742,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] gestureInfoCallback");
 
-                gestureInfoSignal?.Disconnect(gestureInfoCallback);
-                gestureInfoSignal?.Dispose();
-                gestureInfoSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityDoGestureDisconnect(handle, gestureInfoCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 gestureInfoCallback = null;
             }
 
@@ -1752,9 +1752,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] getDescriptionCallback");
 
-                getDescriptionSignal?.Disconnect(getDescriptionCallback);
-                getDescriptionSignal?.Dispose();
-                getDescriptionSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityGetDescriptionDisconnect(handle, getDescriptionCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 getDescriptionCallback = null;
             }
 
@@ -1762,9 +1762,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] getNameCallback");
 
-                getNameSignal?.Disconnect(getNameCallback);
-                getNameSignal?.Dispose();
-                getNameSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityGetNameDisconnect(handle, getNameCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 getNameCallback = null;
             }
 
@@ -1772,9 +1772,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] activateCallback");
 
-                ActivateSignal?.Disconnect(activateCallback);
-                ActivateSignal?.Dispose();
-                ActivateSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityActivateDisconnect(handle, activateCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 activateCallback = null;
             }
 
@@ -1782,9 +1782,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] readingSkippedCallback");
 
-                ReadingSkippedSignal?.Disconnect(readingSkippedCallback);
-                ReadingSkippedSignal?.Dispose();
-                ReadingSkippedSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityReadingSkippedDisconnect(handle, readingSkippedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 readingSkippedCallback = null;
             }
 
@@ -1792,9 +1792,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] readingPausedCallback");
 
-                ReadingPausedSignal?.Disconnect(readingPausedCallback);
-                ReadingPausedSignal?.Dispose();
-                ReadingPausedSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityReadingPausedDisconnect(handle, readingPausedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 readingPausedCallback = null;
             }
 
@@ -1802,9 +1802,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] readingResumedCallback");
 
-                ReadingResumedSignal?.Disconnect(readingResumedCallback);
-                ReadingResumedSignal?.Dispose();
-                ReadingResumedSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityReadingResumedDisconnect(handle, readingResumedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 readingResumedCallback = null;
             }
 
@@ -1812,9 +1812,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] readingCancelledCallback");
 
-                ReadingCancelledSignal?.Disconnect(readingCancelledCallback);
-                ReadingCancelledSignal?.Dispose();
-                ReadingCancelledSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityReadingCancelledDisconnect(handle, readingCancelledCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 readingCancelledCallback = null;
             }
 
@@ -1822,9 +1822,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] readingStoppedCallback");
 
-                ReadingStoppedSignal?.Disconnect(readingStoppedCallback);
-                ReadingStoppedSignal?.Dispose();
-                ReadingStoppedSignal = null;
+                using var handle = GetControl();
+                Interop.AccessibilitySignal.AccessibilityReadingStoppedDisconnect(handle, readingStoppedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 readingStoppedCallback = null;
             }
 
