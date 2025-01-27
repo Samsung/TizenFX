@@ -75,7 +75,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Creates an object for the access point.
+        /// Creates a new instance of the WiFiAP class for the specified access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
@@ -95,7 +95,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Creates an object for the hidden access point.
+        /// Creates a new instance of the WiFiAP class for a hidden access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="essid">The Extended Service Set Identifier of the access point.</param>
@@ -178,7 +178,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Refreshes the access point information.
+        /// Updates the information of the access point to reflect the latest state and details.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
@@ -491,7 +491,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Stops ongoing WPS provisioning
+        /// Cancels any ongoing Wi-Fi Protected Setup (WPS) provisioning process.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <feature>http://tizen.org/feature/network.wifi</feature>

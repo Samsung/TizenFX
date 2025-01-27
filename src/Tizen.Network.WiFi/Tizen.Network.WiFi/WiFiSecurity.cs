@@ -148,7 +148,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Sets the passphrase.
+        /// Configures the passphrase for the Wi-Fi access point (AP).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="passphrase">The passphrase of the access point.</param>

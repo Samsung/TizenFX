@@ -202,7 +202,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// DHCP server address. It is only supported for IPv4 address family.
+        /// Represents the DHCP server address for the current Wi-Fi access point (AP). This property is only supported for the IPv4 address family.
         /// </summary>
         /// <value>Represents DHCP server address.</value>
         public System.Net.IPAddress DhcpServerAddress
@@ -222,7 +222,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// DHCP lease duration. It is only supported for IPv4 address family.
+        /// Represents the DHCP lease duration for the current Wi-Fi access point (AP). This property is only supported for the IPv4 address family.
         /// </summary>
         /// <value>Represents DHCP lease duration.</value>
         public int  DhcpLeaseDuration

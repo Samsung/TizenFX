@@ -371,7 +371,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets all IPv6 addresses of the access point.
+        /// Retrieves a list of all IPv6 addresses associated with the specified access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list of IPv6 addresses of the access point.</returns>
@@ -411,7 +411,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the Bssid list.
+        /// Retrieves a list of BSSIDs (Basic Service Set Identifiers) associated with access points that have the same SSID (Service Set Identifier) as the current access point.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <returns>A list of BSSIDs of access points with the same SSID as that of this access point.</returns>
