@@ -134,7 +134,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Starts listening on the passed RFCOMM socket and accepts connection requests.
+        /// Initiates the process of accepting incoming connections on a previously created RFCOMM server socket.
         /// </summary>
         /// <remarks>
         /// The socket must be created with CreateServerSocket(). This API invokes the ConnectionStateChanged event.

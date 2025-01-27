@@ -694,7 +694,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Returns the instance of the Bluetooth profile type.
+        /// It creates an instance of the specified profile and sets the remote address of the profile.
         /// </summary>
         /// <remarks>
         /// The Bluetooth must be enabled.
@@ -717,7 +717,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Creates the client socket.
+        /// Creates a new client socket object for connecting to a Bluetooth server using the specified service UUID.
         /// </summary>
         /// <returns>The IBluetoothClientSocket instance.</returns>
         /// <param name="serviceUuid">The UUID of the service.</param>
