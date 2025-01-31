@@ -38,7 +38,16 @@ namespace Tizen.NUI
         /// Initializes a new instance of the <see cref="UICorner"/> struct.
         /// </summary>
         /// <param name="uniform">The uniform corner value.</param>
-        public UICorner(float uniform) : this(uniform, uniform, uniform, uniform)
+        public UICorner(float uniform) : this(uniform, false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UICorner"/> struct.
+        /// </summary>
+        /// <param name="uniform">The uniform corner value.</param>
+        /// <param name="isRelative">Whether the values should be considered as relative to target box size.</param>
+        public UICorner(float uniform, bool isRelative) : this(uniform, uniform, uniform, uniform, isRelative)
         {
         }
 
@@ -49,12 +58,25 @@ namespace Tizen.NUI
         /// <param name="topRight">The top-right value.</param>
         /// <param name="bottomRight">The bottom-right value.</param>
         /// <param name="bottomLeft">The bottom-left value.</param>
-        public UICorner(float topLeft, float topRight, float bottomRight, float bottomLeft)
+        public UICorner(float topLeft, float topRight, float bottomRight, float bottomLeft) : this(topLeft, topRight, bottomRight, bottomLeft, false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UICorner"/> struct.
+        /// </summary>
+        /// <param name="topLeft">The top-left value.</param>
+        /// <param name="topRight">The top-right value.</param>
+        /// <param name="bottomRight">The bottom-right value.</param>
+        /// <param name="bottomLeft">The bottom-left value.</param>
+        /// <param name="isRelative">Whether the values should be considered as relative to target box size.</param>
+        public UICorner(float topLeft, float topRight, float bottomRight, float bottomLeft, bool isRelative)
         {
             TopLeft = topLeft;
             TopRight = topRight;
             BottomRight = bottomRight;
             BottomLeft = bottomLeft;
+            IsRelative = isRelative;
         }
 
         /// <summary>
@@ -86,6 +108,11 @@ namespace Tizen.NUI
         /// The radius of the bottom left corner of the rectangle.
         /// </summary>
         public float BottomLeft { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the values are relative to target box size.
+        /// </summary>
+        public bool IsRelative { get; }
 
         internal readonly NUI.Vector4 ToReferenceType() => new NUI.Vector4(TopLeft, TopRight, BottomRight, BottomLeft);
     }
