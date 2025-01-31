@@ -156,6 +156,13 @@ namespace Tizen.NUI
         /// <returns>A new color object with the specified alpha value.</returns>
         public readonly UIColor WithAlpha(float alpha) => new (R, G, B, alpha);
 
+        /// <summary>
+        /// Provides an implicit conversion between <see cref="UIColor"/> and <see cref="Color"/>.
+        /// </summary>
+        /// <param name="uiColor">The <see cref="UIColor"/> to convert.</param>
+        /// <returns>The converted <see cref="Color"/>.</returns>
+        public static implicit operator Color(UIColor uiColor) => uiColor.ToReferenceType();
+
         internal readonly NUI.Color ToReferenceType() => new NUI.Color(R, G, B, A);
     }
 }
