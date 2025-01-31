@@ -239,9 +239,10 @@ namespace Tizen.NUI.Extension
         /// <param name="uniform">The uniform corner value.</param>
         /// <param name="isRelative">Sets the corner radius policy to relative. The default is false.</param>
         /// <returns>The view itself.</returns>
+        /// <remarks>This sets both <see cref="View.CornerRadius"/> and <see cref="View.CornerRadiusPolicy"/> at once.</remarks>
         public static T CornerRadius<T>(this T view, float uniform, bool isRelative = false) where T : View
         {
-            return view.CornerRadius(new UICorner(uniform, uniform, uniform, uniform), isRelative);
+            return view.CornerRadius(new UICorner(uniform, isRelative));
         }
 
         /// <summary>
@@ -255,9 +256,10 @@ namespace Tizen.NUI.Extension
         /// <param name="bottomLeft">The bottom-left value.</param>
         /// <param name="isRelative">Sets the corner radius policy to relative. The default is false.</param>
         /// <returns>The view itself.</returns>
+        /// <remarks>This sets both <see cref="View.CornerRadius"/> and <see cref="View.CornerRadiusPolicy"/> at once.</remarks>
         public static T CornerRadius<T>(this T view, float topLeft, float topRight, float bottomRight, float bottomLeft, bool isRelative = false) where T : View
         {
-            return view.CornerRadius(new UICorner(topLeft, topRight, bottomRight, bottomLeft), isRelative);
+            return view.CornerRadius(new UICorner(topLeft, topRight, bottomRight, bottomLeft, isRelative));
         }
 
         /// <summary>
@@ -266,13 +268,13 @@ namespace Tizen.NUI.Extension
         /// <typeparam name="T">The type of the view.</typeparam>
         /// <param name="view">The extension target.</param>
         /// <param name="corner">The corner value.</param>
-        /// <param name="isRelative">Sets the corner radius policy to relative. The default is false.</param>
         /// <returns>The view itself.</returns>
-        public static T CornerRadius<T>(this T view, UICorner corner, bool isRelative = false) where T : View
+        /// <remarks>This sets both <see cref="View.CornerRadius"/> and <see cref="View.CornerRadiusPolicy"/> at once.</remarks>
+        public static T CornerRadius<T>(this T view, UICorner corner) where T : View
         {
             // TODO Do not create Vector4 here
             view.CornerRadius = corner.ToReferenceType();
-            view.CornerRadiusPolicy = isRelative ? VisualTransformPolicyType.Relative : VisualTransformPolicyType.Absolute;
+            view.CornerRadiusPolicy = corner.IsRelative ? VisualTransformPolicyType.Relative : VisualTransformPolicyType.Absolute;
             return view;
         }
 
@@ -644,7 +646,7 @@ namespace Tizen.NUI.Extension
         {
             // TODO Do not use Vector4 here
             var corner = view.CornerRadius;
-            return new UICorner(corner.X, corner.Y, corner.Z, corner.W);
+            return new UICorner(corner.X, corner.Y, corner.Z, corner.W, view.CornerRadiusPolicy == VisualTransformPolicyType.Relative);
         }
 
         /// <summary>
