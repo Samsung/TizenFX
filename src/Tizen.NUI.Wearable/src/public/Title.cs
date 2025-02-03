@@ -32,11 +32,17 @@ namespace Tizen.NUI.Components
     public class Title : TextLabel
     {
         private const string VERTEX_SHADER =
-                        "attribute mediump vec2 aPosition;\n" +
-                        "varying mediump vec2 vTexCoord;\n" +
-                        "uniform highp mat4 uMvpMatrix;\n" +
-                        "uniform mediump vec3 uSize;\n" +
-                        "varying mediump vec2 sTexCoordRect;\n" +
+                        "//@name NUI.Component.Tile.vert\n" +
+                        "\n" +
+                        "//@version 100\n" +
+                        "\n" +
+                        "INPUT mediump vec2 aPosition;\n" +
+                        "OUTPUT mediump vec2 vTexCoord;\n" +
+                        "UNIFORM_BLOCK VertBlock\n" +
+                        "{\n" +
+                        "  UNIFORM highp mat4 uMvpMatrix;\n" +
+                        "  UNIFORM mediump vec3 uSize;\n" +
+                        "};\n" +
                         "void main()\n" +
                         "{\n" +
                         "   gl_Position = uMvpMatrix * vec4(aPosition * uSize.xy, 0.0, 1.0);\n" +
@@ -44,9 +50,16 @@ namespace Tizen.NUI.Components
                         "}\n";
 
         private const string FRAGMENT_SHADER =
-                        "uniform lowp vec4 uColor;\n" +
-                        "varying mediump vec2 vTexCoord;\n" +
-                        "uniform sampler2D sTexture;\n" +
+                        "//@name NUI.Component.Tile.frag\n" +
+                        "\n" +
+                        "//@version 100\n" +
+                        "\n" +
+                        "INPUT mediump vec2 vTexCoord;\n" +
+                        "UNIFORM sampler2D sTexture;\n" +
+                        "UNIFORM_BLOCK FragBlock\n" +
+                        "{\n" +
+                        "  UNIFORM lowp vec4 uColor;\n" +
+                        "};\n" +
                         "void main()\n" +
                         "{\n" +
                         "   gl_FragColor = texture2D(sTexture, vTexCoord) * uColor;\n" +
