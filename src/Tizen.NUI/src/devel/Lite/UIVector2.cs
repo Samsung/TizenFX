@@ -68,6 +68,16 @@ namespace Tizen.NUI
         /// </summary>
         public float Height => Y;
 
+        /// <summary>
+        /// Converts the UIVector2 to Vector3 class implicitly.
+        /// </summary>
+        /// <param name="uiVector2">A UIVector2 to be converted to Vector3</param>
+        public static implicit operator Vector3(UIVector2 uiVector2)
+        {
+            return new Vector3(uiVector2.X, uiVector2.Y, 0f);
+        }
+
+
         internal readonly NUI.Vector2 ToReferenceType() => new NUI.Vector2(X, Y);
     }
 }
