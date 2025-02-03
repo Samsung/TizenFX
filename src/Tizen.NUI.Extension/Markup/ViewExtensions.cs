@@ -165,6 +165,18 @@ namespace Tizen.NUI.Extension
         }
 
         /// <summary>
+        /// Sets the size of the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="size">The size value.</param>
+        /// <returns>The view itself.</returns>
+        public static T Size<T>(this T view, UIVector2 size) where T : View
+        {
+            return Size(view, size.Width, size.Height);
+        }
+
+        /// <summary>
         /// Sets the size width of the view.
         /// </summary>
         /// <typeparam name="T">The type of the view.</typeparam>
@@ -203,6 +215,18 @@ namespace Tizen.NUI.Extension
             view.PositionX = x;
             view.PositionY = y;
             return view;
+        }
+
+        /// <summary>
+        /// Sets the position of the view.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="position">The position value.</param>
+        /// <returns>The view itself.</returns>
+        public static T Position<T>(this T view, UIVector2 position) where T : View
+        {
+            return Position(view, position.X, position.Y);
         }
 
         /// <summary>
@@ -635,6 +659,26 @@ namespace Tizen.NUI.Extension
         public static UIColor BackgroundColor(this View view)
         {
             return Object.InternalRetrievingVisualPropertyColor(view.SwigCPtr, View.Property.BACKGROUND, ColorVisualProperty.MixColor);
+        }
+
+        /// <summary>
+        /// Experimental getter for size
+        /// </summary>
+        /// <param name="view">The extension target.</param>
+        /// <returns>The size value.</returns>
+        public static UIVector2 Size(this View view)
+        {
+            return new UIVector2(view.SizeWidth, view.SizeHeight);
+        }
+
+        /// <summary>
+        /// Experimental getter for position
+        /// </summary>
+        /// <param name="view">The extension target.</param>
+        /// <returns>The position value.</returns>
+        public static UIVector2 Position(this View view)
+        {
+            return new UIVector2(view.PositionX, view.PositionY);
         }
 
         /// <summary>
