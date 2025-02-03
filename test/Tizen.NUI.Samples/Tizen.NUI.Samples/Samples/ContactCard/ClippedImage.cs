@@ -18,20 +18,32 @@ namespace Tizen.NUI.Samples
         static Geometry geometry = null;
 
         private static readonly string VERTEX_SHADER =
-            "attribute vec2  aPositionCircle;\n" +
-            "attribute vec2  aPositionQuad;\n" +
-            "uniform  float uDelta;\n" +
-            "uniform mat4 uMvpMatrix;\n" + 
-            "uniform vec3    uSize;\n" + 
-            "\n" + 
-            "void main()\n" + 
-            "{\n" + 
-            "   vec4 vertexPosition = vec4(mix(aPositionCircle, aPositionQuad, uDelta), 0.0, 1.0);\n" +
-            "   vertexPosition.xyz *= uSize;\n" +
-            "   gl_Position = uMvpMatrix * vertexPosition;\n" +
-            "}\n";
+        "//@name ClippedImage.vert\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
+        "INPUT highp vec2 aPositionCircle;\n" +
+        "INPUT highp vec2 aPositionQuad;\n" +
+        "\n" +
+        "UNIFORM_BLOCK VertBlock\n" +
+        "{\n" +
+        "  UNIFORM highp mat4  uMvpMatrix;\n" + 
+        "  UNIFORM highp vec3  uSize;\n" + 
+        "  UNIFORM highp float uDelta;\n" +
+        "};\n" +
+        "\n" + 
+        "void main()\n" + 
+        "{\n" + 
+        "   vec4 vertexPosition = vec4(mix(aPositionCircle, aPositionQuad, uDelta), 0.0, 1.0);\n" +
+        "   vertexPosition.xyz *= uSize;\n" +
+        "   gl_Position = uMvpMatrix * vertexPosition;\n" +
+        "}\n";
 
         private static readonly string FRAGMENT_SHADER =
+        "//@name ClippedImage.frag\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
         "precision mediump float;\n" +
         "void main()\n" +
         "{\n" +
