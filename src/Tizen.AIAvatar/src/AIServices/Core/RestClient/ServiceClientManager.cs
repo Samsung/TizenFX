@@ -52,10 +52,8 @@ namespace Tizen.AIAvatar
         {
             if (!_clients.ContainsKey(endpoint))
             {
-                var client = new RestClient(new HttpClient
-                {
-                    BaseAddress = new Uri(endpoint)
-                });
+                var httpClient = new HttpClient { BaseAddress = new Uri(endpoint) };
+                var client = new RestClient(httpClient);
                 _clients[endpoint] = client;
             }
             return _clients[endpoint];
