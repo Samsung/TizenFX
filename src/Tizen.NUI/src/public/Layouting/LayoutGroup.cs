@@ -52,7 +52,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected IEnumerable<LayoutItem> IterateLayoutChildren()
         {
-            return LayoutChildren.Where<LayoutItem>(childLayout => childLayout.SetPositionByLayout);
+            return LayoutChildren.Where<LayoutItem>(childLayout => (childLayout.SetPositionByLayout && childLayout.Owner.Visibility));
         }
 
         /// <summary>
