@@ -52,7 +52,7 @@ jobs:
 
     - name: Extract API Spec
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
@@ -100,7 +100,7 @@ jobs:
 
     - name: Extract Base API
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/base-api.json base/Artifacts/bin/public/
 
