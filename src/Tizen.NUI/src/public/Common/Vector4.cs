@@ -739,14 +739,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal SWIGTYPE_p_float AsFloat()
-        {
-            global::System.IntPtr cPtr = Interop.Vector4.AsFloat(SwigCPtr);
-            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal float Dot(Vector3 other)
         {
             float ret = Interop.Vector4.DotWithVector3(SwigCPtr, Vector3.getCPtr(other));
