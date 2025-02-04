@@ -47,7 +47,7 @@ namespace Tizen.NUI
 
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -95,7 +95,7 @@ namespace Tizen.NUI
             // Children could overlap or spill outside the parent, as is the nature of absolute positions.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
