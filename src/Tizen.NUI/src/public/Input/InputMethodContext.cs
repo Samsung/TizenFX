@@ -793,12 +793,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void ApplyOptions(InputMethodOptions options)
-        {
-            Interop.InputMethodContext.ApplyOptions(SwigCPtr, InputMethodOptions.getCPtr(options));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void AllowTextPrediction(bool prediction)
         {
             Interop.InputMethodContext.AllowTextPrediction(SwigCPtr, prediction);
