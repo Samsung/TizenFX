@@ -18,6 +18,7 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -47,6 +48,23 @@ namespace Tizen.NUI.Components
         private ButtonStyle actionButtonStyle;
 
         private bool styleApplied = false;
+
+        static AppBar()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                NavigationContentProperty = BindableProperty.Create(nameof(NavigationContent), typeof(View), typeof(AppBar), null,
+                    propertyChanged: SetInternalNavigationContentProperty, defaultValueCreator: GetInternalNavigationContentProperty);
+                TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(AppBar), default(string),
+                    propertyChanged: SetInternalTitleProperty, defaultValueCreator: GetInternalTitleProperty);
+                TitleContentProperty = BindableProperty.Create(nameof(TitleContent), typeof(View), typeof(AppBar), null,
+                    propertyChanged: SetInternalTitleContentProperty, defaultValueCreator: GetInternalTitleContentProperty);
+                ActionContentProperty = BindableProperty.Create(nameof(ActionContent), typeof(View), typeof(AppBar), null,
+                    propertyChanged: SetInternalActionContentProperty, defaultValueCreator: GetInternalActionContentProperty);
+                AutoNavigationContentProperty = BindableProperty.Create(nameof(AutoNavigationContent), typeof(bool), typeof(AppBar), default(bool),
+                    propertyChanged: SetInternalAutoNavigationContentProperty, defaultValueCreator: GetInternalAutoNavigationContentProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of AppBar.
@@ -172,11 +190,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(NavigationContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(NavigationContentProperty) as View;
+                }
+                else
+                {
+                    return GetInternalNavigationContentProperty(this) as View;
+                }
             }
             set
             {
-                SetValue(NavigationContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(NavigationContentProperty, value);
+                }
+                else
+                {
+                    SetInternalNavigationContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -218,11 +250,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TitleProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TitleProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTitleProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TitleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TitleProperty, value);
+                }
+                else
+                {
+                    SetInternalTitleProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -258,11 +304,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TitleContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TitleContentProperty) as View;
+                }
+                else
+                {
+                    return GetInternalTitleContentProperty(this) as View;
+                }
             }
             set
             {
-                SetValue(TitleContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TitleContentProperty, value);
+                }
+                else
+                {
+                    SetInternalTitleContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -371,11 +431,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ActionContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ActionContentProperty) as View;
+                }
+                else
+                {
+                    return GetInternalActionContentProperty(this) as View;
+                }
             }
             set
             {
-                SetValue(ActionContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ActionContentProperty, value);
+                }
+                else
+                {
+                    SetInternalActionContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -441,11 +515,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(AutoNavigationContentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(AutoNavigationContentProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalAutoNavigationContentProperty(this);
+                }
             }
             set
             {
-                SetValue(AutoNavigationContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AutoNavigationContentProperty, value);
+                }
+                else
+                {
+                    SetInternalAutoNavigationContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
