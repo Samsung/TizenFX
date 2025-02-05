@@ -2887,6 +2887,9 @@ namespace Tizen.NUI.BaseComponents
             float width = sizeWidth;
             userSizeWidth = width;
 
+            if (HasLayoutWidth())
+                SetLayoutWidth(width);
+
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as widthPolicyCeiling
             int widthPolicyCeiling = (int)System.Math.Ceiling(width);
@@ -2950,6 +2953,9 @@ namespace Tizen.NUI.BaseComponents
             // SuggestedMinimumWidth/Height is used by Layout calculation.
             float height = sizeHeight;
             userSizeHeight = height;
+
+            if (HasLayoutHeight())
+                SetLayoutHeight(height);
 
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as heightPolicyCeiling
@@ -4690,6 +4696,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SizeWidth = widthPolicy;
                 }
+
+                if (HasLayoutWidth())
+                    SetLayoutWidth(widthPolicy);
+
                 RequestLayout();
             }
         }
@@ -4765,6 +4775,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SizeHeight = heightPolicy;
                 }
+
+                if (HasLayoutHeight())
+                    SetLayoutHeight(heightPolicy);
+
                 RequestLayout();
             }
         }
@@ -5130,7 +5144,17 @@ namespace Tizen.NUI.BaseComponents
             get => layoutExtraData?.Layout;
             set
             {
+                var hasLayoutWidth = HasLayoutWidth();
+                var hasLayoutHeight = HasLayoutHeight();
+
                 var layoutExtraData = EnsureLayoutExtraData();
+
+                // Copy from width/heightPolicy only if LayoutWidth/Height has not been set before
+                // not to overwrite LayoutWidth/Height value set by user.
+                if (!hasLayoutWidth)
+                    SetLayoutWidth(widthPolicy);
+                if (!hasLayoutHeight)
+                    SetLayoutHeight(heightPolicy);
 
                 // Do nothing if layout provided is already set on this View.
                 if (value == layoutExtraData.Layout)
@@ -6008,5 +6032,83 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private void RequestLayout() => layoutExtraData?.Layout?.RequestLayout();
+
+        /// <summary>
+        /// Gets or sets the width of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutDimension LayoutWidth
+        {
+            get => layoutExtraData?.Width ?? LayoutDimensionMode.WrapContent;
+            set
+            {
+                var layoutExtraData = EnsureLayoutExtraData();
+                if (float.IsNaN(layoutExtraData.Width.GetValue()) || layoutExtraData.Width != value)
+                {
+                    layoutExtraData.Width = value;
+                    layoutExtraData.Layout?.RequestLayout();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the height of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutDimension LayoutHeight
+        {
+            get => layoutExtraData?.Height ?? LayoutDimensionMode.WrapContent;
+            set
+            {
+                var layoutExtraData = EnsureLayoutExtraData();
+                if (float.IsNaN(layoutExtraData.Height.GetValue()) || layoutExtraData.Height != value)
+                {
+                    layoutExtraData.Height = value;
+                    layoutExtraData.Layout?.RequestLayout();
+                }
+            }
+        }
+
+        internal void SetLayoutWidth(float size)
+        {
+            if (size >= 0)
+            {
+                LayoutWidth = size;
+            }
+            else if ((int)size == LayoutParamPolicies.WrapContent)
+            {
+                LayoutWidth = LayoutDimensionMode.WrapContent;
+            }
+            else if ((int)size == LayoutParamPolicies.MatchParent)
+            {
+                LayoutWidth = LayoutDimensionMode.MatchParent;
+            }
+        }
+
+        internal void SetLayoutHeight(float size)
+        {
+            if (size >= 0)
+            {
+                LayoutHeight = size;
+            }
+            else if ((int)size == LayoutParamPolicies.WrapContent)
+            {
+                LayoutHeight = LayoutDimensionMode.WrapContent;
+            }
+            else if ((int)size == LayoutParamPolicies.MatchParent)
+            {
+                LayoutHeight = LayoutDimensionMode.MatchParent;
+            }
+        }
+
+        internal bool HasLayoutWidth()
+        {
+            return layoutExtraData?.Width == null ? false : true;
+        }
+
+        internal bool HasLayoutHeight()
+        {
+            return layoutExtraData?.Height == null ? false : true;
+        }
     }
 }

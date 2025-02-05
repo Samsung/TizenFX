@@ -831,14 +831,14 @@ namespace Tizen.NUI
                                         new LayoutLength(parentMeasureSpecificationWidth.Size - (margin.Start + margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
                                     new LayoutLength(Padding.Start + Padding.End),
-                                    new LayoutLength(child.WidthSpecification));
+                                    new LayoutLength(child.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
                                         new LayoutLength(parentMeasureSpecificationHeight.Size - (margin.Top + margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
-                                    new LayoutLength(child.HeightSpecification));
+                                    new LayoutLength(child.LayoutHeight));
 
             childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 

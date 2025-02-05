@@ -780,29 +780,29 @@ namespace Tizen.NUI
                     // If children have Wrapcontent and the grand children have MatchParent,
                     // then grand children's MeasuredWidth/Height do not fill the children
                     // because the grand children's Measure() is called with the mode type AtMost.
-                    int origWidthSpecification = childLayout.Owner.WidthSpecification;
-                    int origHeightSpecification = childLayout.Owner.HeightSpecification;
+                    var origLayoutParamsWidth = childLayout.Owner.LayoutWidth;
+                    var origLayoutParamsHeight = childLayout.Owner.LayoutHeight;
 
                     if (ellipsisTextWidth || needMeasuredWidth)
                     {
-                        origWidthSpecification = childLayout.Owner.WidthSpecification;
-                        childLayout.Owner.WidthSpecification = LayoutParamPolicies.MatchParent;
+                        origLayoutParamsWidth = childLayout.Owner.LayoutWidth;
+                        childLayout.Owner.LayoutWidth = LayoutDimensionMode.MatchParent;
                     }
                     if (ellipsisTextHeight || needMeasuredHeight)
                     {
-                        origHeightSpecification = childLayout.Owner.HeightSpecification;
-                        childLayout.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
+                        origLayoutParamsHeight = childLayout.Owner.LayoutHeight;
+                        childLayout.Owner.LayoutHeight = LayoutDimensionMode.MatchParent;
                     }
 
                     MeasureChild(childLayout, childWidthMeasureSpec, childHeightMeasureSpec);
 
                     if (ellipsisTextWidth || needMeasuredWidth)
                     {
-                        childLayout.Owner.WidthSpecification = origWidthSpecification;
+                        childLayout.Owner.LayoutWidth = origLayoutParamsWidth;
                     }
                     if (ellipsisTextHeight || needMeasuredHeight)
                     {
-                        childLayout.Owner.HeightSpecification = origHeightSpecification;
+                        childLayout.Owner.LayoutHeight = origLayoutParamsHeight;
                     }
                 }
             }

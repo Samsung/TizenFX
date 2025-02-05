@@ -784,6 +784,11 @@ namespace Tizen.NUI.BaseComponents
                 view.userSizeWidth = (float)width;
                 view.userSizeHeight = (float)height;
 
+                if (view.HasLayoutWidth())
+                    view.SetLayoutWidth(width);
+                if (view.HasLayoutHeight())
+                    view.SetLayoutHeight(height);
+
                 bool relayoutRequired = false;
                 // To avoid duplicated size setup, change internal policy directly.
                 if (view.widthPolicy != width)
@@ -1558,6 +1563,11 @@ namespace Tizen.NUI.BaseComponents
 
                 view.userSizeWidth = width;
                 view.userSizeHeight = height;
+
+                if (view.HasLayoutWidth())
+                    view.SetLayoutWidth(width);
+                if (view.HasLayoutHeight())
+                    view.SetLayoutHeight(height);
 
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
