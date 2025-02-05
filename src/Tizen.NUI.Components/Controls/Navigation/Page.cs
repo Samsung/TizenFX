@@ -62,55 +62,58 @@ namespace Tizen.NUI.Components
         /// AppearingTransitionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AppearingTransitionProperty = BindableProperty.Create(nameof(AppearingTransition), typeof(TransitionBase), typeof(Page), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AppearingTransitionProperty = null;
+        internal static void SetInternalAppearingTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Page)bindable;
             if (newValue != null)
             {
                 instance.InternalAppearingTransition = newValue as TransitionBase;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAppearingTransitionProperty(BindableObject bindable)
         {
             var instance = (Page)bindable;
             return instance.InternalAppearingTransition;
-        });
+        }
 
         /// <summary>
         /// DisappearingTransitionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DisappearingTransitionProperty = BindableProperty.Create(nameof(DisappearingTransition), typeof(TransitionBase), typeof(Page), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisappearingTransitionProperty = null;
+        internal static void SetInternalDisappearingTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Page)bindable;
             if (newValue != null)
             {
                 instance.InternalDisappearingTransition = newValue as TransitionBase;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDisappearingTransitionProperty(BindableObject bindable)
         {
             var instance = (Page)bindable;
             return instance.InternalDisappearingTransition;
-        });
+        }
 
         /// <summary>
         /// EnableBackNavigationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Page), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableBackNavigationProperty = null;
+        internal static void SetInternalEnableBackNavigationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Page)bindable;
             if (newValue != null)
             {
                 instance.InternalEnableBackNavigation = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalEnableBackNavigationProperty(BindableObject bindable)
         {
             var instance = (Page)bindable;
             return instance.InternalEnableBackNavigation;
-        });
+        }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -124,6 +127,19 @@ namespace Tizen.NUI.Components
         private TransitionBase disappearingTransition = null;
 
         private bool enableBackNavigation = true;
+
+        static Page()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                AppearingTransitionProperty = BindableProperty.Create(nameof(AppearingTransition), typeof(TransitionBase), typeof(Page), null,
+                    propertyChanged: SetInternalAppearingTransitionProperty, defaultValueCreator: GetInternalAppearingTransitionProperty);
+                DisappearingTransitionProperty = BindableProperty.Create(nameof(DisappearingTransition), typeof(TransitionBase), typeof(Page), null,
+                    propertyChanged: SetInternalDisappearingTransitionProperty, defaultValueCreator: GetInternalDisappearingTransitionProperty);
+                EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Page), default(bool),
+                    propertyChanged: SetInternalEnableBackNavigationProperty, defaultValueCreator: GetInternalEnableBackNavigationProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a Page.
@@ -181,11 +197,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(AppearingTransitionProperty) as TransitionBase;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(AppearingTransitionProperty) as TransitionBase;
+                }
+                else
+                {
+                    return GetInternalAppearingTransitionProperty(this) as TransitionBase;
+                }
             }
             set
             {
-                SetValue(AppearingTransitionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AppearingTransitionProperty, value);
+                }
+                else
+                {
+                    SetInternalAppearingTransitionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -209,11 +239,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(DisappearingTransitionProperty) as TransitionBase;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(DisappearingTransitionProperty) as TransitionBase;
+                }
+                else
+                {
+                    return GetInternalDisappearingTransitionProperty(this) as TransitionBase;
+                }
             }
             set
             {
-                SetValue(DisappearingTransitionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DisappearingTransitionProperty, value);
+                }
+                else
+                {
+                    SetInternalDisappearingTransitionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -263,11 +307,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(EnableBackNavigationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableBackNavigationProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableBackNavigationProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableBackNavigationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableBackNavigationProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableBackNavigationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

@@ -10,54 +10,57 @@ namespace Tizen.NUI.Components
         /// AnchorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AnchorProperty = BindableProperty.Create(nameof(Anchor), typeof(View), typeof(Menu), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AnchorProperty = null;
+        internal static void SetInternalAnchorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Menu)bindable;
             if (newValue != null)
             {
                 instance.InternalAnchor = newValue as View;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalAnchorProperty(BindableObject bindable)
         {
             var instance = (Menu)bindable;
             return instance.InternalAnchor;
-        });
+        }
 
         /// <summary>
         /// HorizontalPositionToAnchorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalPositionToAnchorProperty = BindableProperty.Create(nameof(HorizontalPositionToAnchor), typeof(Tizen.NUI.Components.Menu.RelativePosition), typeof(Menu), default(RelativePosition), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HorizontalPositionToAnchorProperty = null;
+        internal static void SetInternalHorizontalPositionToAnchorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Menu)bindable;
             if (newValue != null)
             {
                 instance.InternalHorizontalPositionToAnchor = (RelativePosition)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalHorizontalPositionToAnchorProperty(BindableObject bindable)
         {
             var instance = (Menu)bindable;
             return instance.InternalHorizontalPositionToAnchor;
-        });
+        }
 
         /// <summary>
         /// VerticalPositionToAnchorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalPositionToAnchorProperty = BindableProperty.Create(nameof(VerticalPositionToAnchor), typeof(Tizen.NUI.Components.Menu.RelativePosition), typeof(Menu), default(RelativePosition), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VerticalPositionToAnchorProperty = null;
+        internal static void SetInternalVerticalPositionToAnchorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Menu)bindable;
             if (newValue != null)
             {
                 instance.InternalVerticalPositionToAnchor = (RelativePosition)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalVerticalPositionToAnchorProperty(BindableObject bindable)
         {
             var instance = (Menu)bindable;
             return instance.InternalVerticalPositionToAnchor;
-        });
+        }
     }
 }
