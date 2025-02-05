@@ -260,8 +260,8 @@ namespace Tizen.NUI
             }
 
             float childsShare = totalWeightLength * (childWeight / totalWeight);
-            float desiredWidth = childLayout.Owner.WidthSpecification;
-            float desiredHeight = childLayout.Owner.HeightSpecification;
+            var desiredWidth = childLayout.Owner.LayoutWidth;
+            var desiredHeight = childLayout.Owner.LayoutHeight;
 
             MeasureSpecification childWidthMeasureSpec;
             MeasureSpecification childHeightMeasureSpec;
@@ -315,8 +315,8 @@ namespace Tizen.NUI
             int childrenCount = IterateLayoutChildren().Count();
 
             // Child layout, which wants to match its width to its parent's remaining width, is either following 1 or 2.
-            // 1. Child layout whose Owner.WidthSpecification is LayoutParamPolicies.MatchParent.
-            // 2. Child layout whose Owner.WidthSpecification is 0 and Owner.Weight is greater than 0.
+            // 1. Child layout whose Owner.LayoutWidth is LayoutDimensionMode.MatchParent.
+            // 2. Child layout whose Owner.LayoutWidth is 0 and Owner.Weight is greater than 0.
             // The number of child layout which wants to match its width to its parent's remaining width.
             int childrenMatchParentCount = 0;
 
@@ -337,14 +337,14 @@ namespace Tizen.NUI
                 {
                     continue;
                 }
-                int childDesiredWidth = childLayout.Owner.WidthSpecification;
-                int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                var childDesiredWidth = childLayout.Owner.LayoutWidth;
+                var childDesiredHeight = childLayout.Owner.LayoutHeight;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
                 float childMarginWidth = childMargin.Start + childMargin.End;
                 bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
 
-                if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
+                if ((childDesiredWidth == LayoutDimensionMode.MatchParent) || (useRemainingWidth))
                 {
                     totalWeight += childWeight;
                     childrenMatchParentCount++;
@@ -358,7 +358,7 @@ namespace Tizen.NUI
                 // Child layout1 is MatchParent and its margin is 20. (This margin is not ad
                 // Child layout2 is MatchParent and its margin is 0.
                 // Then, child layout1's size is 30 and child layout2's size is 50.
-                if ((childDesiredWidth == LayoutParamPolicies.WrapContent) || ((childDesiredWidth >= 0) && (!useRemainingWidth)))
+                if ((childDesiredWidth == LayoutDimensionMode.WrapContent) || ((childDesiredWidth >= 0) && (!useRemainingWidth)))
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
@@ -411,14 +411,14 @@ namespace Tizen.NUI
                 {
                     continue;
                 }
-                int childDesiredWidth = childLayout.Owner.WidthSpecification;
-                int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                var childDesiredWidth = childLayout.Owner.LayoutWidth;
+                var childDesiredHeight = childLayout.Owner.LayoutHeight;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
                 bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
                 bool needToMeasure = false;
 
-                if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
+                if ((childDesiredHeight == LayoutDimensionMode.MatchParent) || (useRemainingWidth))
                 {
                     if (isHeightExactly)
                     {
@@ -429,22 +429,22 @@ namespace Tizen.NUI
                     // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
                     //
                     // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
-                    else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
+                    else if (Owner.LayoutHeight == LayoutDimensionMode.WrapContent)
                     {
-                        if (childDesiredHeight == LayoutParamPolicies.MatchParent)
+                        if (childDesiredHeight == LayoutDimensionMode.MatchParent)
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is MatchParent!");
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is MatchParent!");
                         }
                         else
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is 0 with positive weight!");
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is 0 with positive weight!");
                         }
                     }
                 }
 
                 if (remainingWidth > 0)
                 {
-                    if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
+                    if ((childDesiredWidth == LayoutDimensionMode.MatchParent) || (useRemainingWidth))
                     {
                         if (isWidthExactly)
                         {
@@ -458,15 +458,15 @@ namespace Tizen.NUI
                         // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
                         //
                         // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
-                        else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
+                        else if (Owner.LayoutWidth == LayoutDimensionMode.WrapContent)
                         {
-                            if (childDesiredWidth == LayoutParamPolicies.MatchParent)
+                            if (childDesiredWidth == LayoutDimensionMode.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is MatchParent!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is 0 with positive weight!");
                             }
                         }
                     }
@@ -477,7 +477,7 @@ namespace Tizen.NUI
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
                 }
 
-                if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
+                if ((childWeight > 0) && ((childDesiredWidth == LayoutDimensionMode.MatchParent) || (childDesiredWidth == 0)))
                 {
                     float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
 
@@ -505,10 +505,10 @@ namespace Tizen.NUI
                     {
                         continue;
                     }
-                    int childDesiredWidth = childLayout.Owner.WidthSpecification;
+                    var childDesiredWidth = childLayout.Owner.LayoutWidth;
                     float childWeight = childLayout.Owner.Weight;
 
-                    if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
+                    if ((childWeight > 0) && ((childDesiredWidth == LayoutDimensionMode.MatchParent) || (childDesiredWidth == 0)))
                     {
                         if (isWidthExactly)
                         {
@@ -521,15 +521,15 @@ namespace Tizen.NUI
                         // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
                         //
                         // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
-                        else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
+                        else if (Owner.LayoutWidth == LayoutDimensionMode.WrapContent)
                         {
-                            if (childDesiredWidth == LayoutParamPolicies.MatchParent)
+                            if (childDesiredWidth == LayoutDimensionMode.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is MatchParent!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is 0 with positive weight!");
                             }
                         }
                     }
@@ -580,8 +580,8 @@ namespace Tizen.NUI
             int childrenCount = IterateLayoutChildren().Count();
 
             // Child layout, which wants to match its height to its parent's remaining height, is either following 1 or 2.
-            // 1. Child layout whose Owner.HeightSpecification is LayoutParamPolicies.MatchParent.
-            // 2. Child layout whose Owner.HeightSpecification is 0 and Owner.Weight is greater than 0.
+            // 1. Child layout whose Owner.LayoutHeight is LayoutDimensionMode.MatchParent.
+            // 2. Child layout whose Owner.LayoutHeight is 0 and Owner.Weight is greater than 0.
             // The number of child layout which wants to match its height to its parent's remaining height.
             int childrenMatchParentCount = 0;
 
@@ -602,14 +602,14 @@ namespace Tizen.NUI
                 {
                     continue;
                 }
-                int childDesiredWidth = childLayout.Owner.WidthSpecification;
-                int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                var childDesiredWidth = childLayout.Owner.LayoutWidth;
+                var childDesiredHeight = childLayout.Owner.LayoutHeight;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
                 float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
 
-                if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
+                if ((childDesiredHeight == LayoutDimensionMode.MatchParent) || (useRemainingHeight))
                 {
                     totalWeight += childWeight;
                     childrenMatchParentCount++;
@@ -623,7 +623,7 @@ namespace Tizen.NUI
                 // Child layout1 is MatchParent and its margin is 20. (This margin is not ad
                 // Child layout2 is MatchParent and its margin is 0.
                 // Then, child layout1's size is 30 and child layout2's size is 50.
-                if ((childDesiredHeight == LayoutParamPolicies.WrapContent) || ((childDesiredHeight >= 0) && (!useRemainingHeight)))
+                if ((childDesiredHeight == LayoutDimensionMode.WrapContent) || ((childDesiredHeight >= 0) && (!useRemainingHeight)))
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
@@ -676,14 +676,14 @@ namespace Tizen.NUI
                 {
                     continue;
                 }
-                int childDesiredWidth = childLayout.Owner.WidthSpecification;
-                int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                var childDesiredWidth = childLayout.Owner.LayoutWidth;
+                var childDesiredHeight = childLayout.Owner.LayoutHeight;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
                 bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
                 bool needToMeasure = false;
 
-                if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
+                if ((childDesiredWidth == LayoutDimensionMode.MatchParent) || (useRemainingHeight))
                 {
                     if (isWidthExactly)
                     {
@@ -694,22 +694,22 @@ namespace Tizen.NUI
                     // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
                     //
                     // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
-                    else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
+                    else if (Owner.LayoutWidth == LayoutDimensionMode.WrapContent)
                     {
-                        if (childDesiredWidth == LayoutParamPolicies.MatchParent)
+                        if (childDesiredWidth == LayoutDimensionMode.MatchParent)
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is MatchParent!");
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is MatchParent!");
                         }
                         else
                         {
-                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is 0 with positive weight!");
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutWidth is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutWidth is 0 with positive weight!");
                         }
                     }
                 }
 
                 if (remainingHeight > 0)
                 {
-                    if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
+                    if ((childDesiredHeight == LayoutDimensionMode.MatchParent) || (useRemainingHeight))
                     {
                         if (isHeightExactly)
                         {
@@ -723,15 +723,15 @@ namespace Tizen.NUI
                         // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
                         //
                         // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
-                        else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
+                        else if (Owner.LayoutHeight == LayoutDimensionMode.WrapContent)
                         {
-                            if (childDesiredHeight == LayoutParamPolicies.MatchParent)
+                            if (childDesiredHeight == LayoutDimensionMode.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is MatchParent!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is 0 with positive weight!");
                             }
                         }
                     }
@@ -742,7 +742,7 @@ namespace Tizen.NUI
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
                 }
 
-                if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
+                if ((childWeight > 0) && ((childDesiredHeight == LayoutDimensionMode.MatchParent) || (childDesiredHeight == 0)))
                 {
                     float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
 
@@ -770,10 +770,10 @@ namespace Tizen.NUI
                     {
                         continue;
                     }
-                    int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                    var childDesiredHeight = childLayout.Owner.LayoutHeight;
                     float childWeight = childLayout.Owner.Weight;
 
-                    if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
+                    if ((childWeight > 0) && ((childDesiredHeight == LayoutDimensionMode.MatchParent) || (childDesiredHeight == 0)))
                     {
                         if (isHeightExactly)
                         {
@@ -786,15 +786,15 @@ namespace Tizen.NUI
                         // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
                         //
                         // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
-                        else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
+                        else if (Owner.LayoutHeight == LayoutDimensionMode.WrapContent)
                         {
-                            if (childDesiredHeight == LayoutParamPolicies.MatchParent)
+                            if (childDesiredHeight == LayoutDimensionMode.MatchParent)
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is MatchParent!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is MatchParent!");
                             }
                             else
                             {
-                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is 0 with positive weight!");
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s LayoutHeight is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s LayoutHeight is 0 with positive weight!");
                             }
                         }
                     }
@@ -997,19 +997,19 @@ namespace Tizen.NUI
                 {
                     continue;
                 }
-                int desiredChildHeight = childLayout.Owner.HeightSpecification;
-                int desiredChildWidth = childLayout.Owner.WidthSpecification;
+                var desiredChildHeight = childLayout.Owner.LayoutHeight;
+                var desiredChildWidth = childLayout.Owner.LayoutWidth;
 
-                if (desiredChildHeight == LayoutParamPolicies.MatchParent)
+                if (desiredChildHeight == LayoutDimensionMode.MatchParent)
                 {
                     // Temporarily force children to reuse their original measured width
-                    int originalWidth = desiredChildWidth;
-                    childLayout.Owner.WidthSpecification = (int)childLayout.MeasuredWidth.Size.AsRoundedValue();
+                    var originalWidth = desiredChildWidth;
+                    childLayout.Owner.LayoutWidth = childLayout.MeasuredWidth.Size.AsRoundedValue();
                     // Remeasure with new dimensions
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0),
                                              uniformMeasureSpec, new LayoutLength(0));
                     // Restore width specification
-                    childLayout.Owner.WidthSpecification = originalWidth;
+                    childLayout.Owner.LayoutWidth = originalWidth;
                 }
             }
         }

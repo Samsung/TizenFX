@@ -47,6 +47,16 @@ namespace Tizen.NUI.BaseComponents
         // The status of whether the view is excluded from its parent's layouting or not.
         public bool ExcludeLayouting { get; set; }
 
+        /// <summary>
+        /// Gets or sets the width of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        public LayoutDimension Width { get; set; } = LayoutDimensionMode.WrapContent;
+
+        /// <summary>
+        /// Gets or sets the height of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        public LayoutDimension Height { get; set; } = LayoutDimensionMode.WrapContent;
+
         ~LayoutExtraData() => Dispose(false);
 
         public void Dispose()

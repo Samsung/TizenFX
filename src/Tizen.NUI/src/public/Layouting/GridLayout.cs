@@ -690,17 +690,17 @@ namespace Tizen.NUI
                     // If children have Wrapcontent and the grand children have MatchParent,
                     // then grand children's MeasuredWidth/Height do not fill the children
                     // because the grand children's Measure() is called with the mode type AtMost.
-                    int widthSpecification = child.LayoutItem.Owner.WidthSpecification;
-                    int heightSpecification = child.LayoutItem.Owner.HeightSpecification;
+                    var layoutWidth = child.LayoutItem.Owner.LayoutWidth;
+                    var layoutHeight = child.LayoutItem.Owner.LayoutHeight;
                     Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
 
                     if (needMeasuredWidth)
                     {
-                        child.LayoutItem.Owner.WidthSpecification = LayoutParamPolicies.MatchParent;
+                        child.LayoutItem.Owner.LayoutWidth = LayoutDimensionMode.MatchParent;
                     }
                     if (needMeasuredHeight)
                     {
-                        child.LayoutItem.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
+                        child.LayoutItem.Owner.LayoutHeight = LayoutDimensionMode.MatchParent;
                     }
 
                     MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(width), MeasureSpecification.ModeType.Exactly);
@@ -709,17 +709,17 @@ namespace Tizen.NUI
 
                     if (needMeasuredWidth)
                     {
-                        child.LayoutItem.Owner.WidthSpecification = widthSpecification;
+                        child.LayoutItem.Owner.LayoutWidth = layoutWidth;
                     }
                     if (needMeasuredHeight)
                     {
-                        child.LayoutItem.Owner.HeightSpecification = heightSpecification;
+                        child.LayoutItem.Owner.LayoutHeight = layoutHeight;
                     }
 
                     // If the both Width/HeightSpecification are set with values bigger than 0,
                     // then the child's Size2D is changed with the values of Width/HeightSpecification.
                     // The Size2D changes, caused by setting Width/HeightSpecification, should be reverted.
-                    if (needMeasuredWidth && needMeasuredHeight && (widthSpecification > 0) && (heightSpecification > 0))
+                    if (needMeasuredWidth && needMeasuredHeight && (layoutWidth > 0) && (layoutHeight > 0))
                     {
                         child.LayoutItem.Owner.SetSize(origSize.Width, origSize.Height);
                     }
