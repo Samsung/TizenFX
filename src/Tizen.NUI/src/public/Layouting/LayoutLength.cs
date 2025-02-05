@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -54,6 +55,16 @@ namespace Tizen.NUI
         public LayoutLength(LayoutLength layoutLength)
         {
             value = layoutLength.value;
+        }
+
+        /// <summary>
+        /// Constructor from a LayoutDimension
+        /// </summary>
+        /// <param name="layoutDimension">LayoutSize to initialize with.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutLength(LayoutDimension layoutDimension)
+        {
+            this.value = layoutDimension.IsFixedValue ? layoutDimension.GetValue() : (int)layoutDimension.GetMode();
         }
 
         /// <summary>
