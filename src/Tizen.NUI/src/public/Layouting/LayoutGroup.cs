@@ -682,6 +682,7 @@ namespace Tizen.NUI
 
             bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet);
         }
+
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
         {
             // Unused parameters
