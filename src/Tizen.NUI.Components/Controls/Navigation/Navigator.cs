@@ -78,37 +78,39 @@ namespace Tizen.NUI.Components
         /// TransitionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TransitionProperty = BindableProperty.Create(nameof(Transition), typeof(Transition), typeof(Navigator), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TransitionProperty = null;
+        internal static void SetInternalTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Navigator)bindable;
             if (newValue != null)
             {
                 instance.InternalTransition = newValue as Transition;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTransitionProperty(BindableObject bindable)
         {
             var instance = (Navigator)bindable;
             return instance.InternalTransition;
-        });
+        }
 
         /// <summary>
         /// EnableBackNavigationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Navigator), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableBackNavigationProperty = null;
+        internal static void SetInternalEnableBackNavigationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Navigator)bindable;
             if (newValue != null)
             {
                 instance.InternalEnableBackNavigation = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalEnableBackNavigationProperty(BindableObject bindable)
         {
             var instance = (Navigator)bindable;
             return instance.InternalEnableBackNavigation;
-        });
+        }
 
         private const int DefaultTransitionDuration = 300;
 
@@ -178,6 +180,17 @@ namespace Tizen.NUI.Components
             RemovedFromWindow += OnRemovedFromWindow;
         }
 
+        static Navigator()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                TransitionProperty = BindableProperty.Create(nameof(Transition), typeof(Transition), typeof(Navigator), null,
+                    propertyChanged: SetInternalTransitionProperty, defaultValueCreator: GetInternalTransitionProperty);
+                EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Navigator), default(bool),
+                    propertyChanged: SetInternalEnableBackNavigationProperty, defaultValueCreator: GetInternalEnableBackNavigationProperty);
+            }
+        }
+
         /// <summary>
         /// Creates a new instance of a Navigator.
         /// </summary>
@@ -245,11 +258,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TransitionProperty) as Transition;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TransitionProperty) as Transition;
+                }
+                else
+                {
+                    return GetInternalTransitionProperty(this) as Transition;
+                }
             }
             set
             {
-                SetValue(TransitionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TransitionProperty, value);
+                }
+                else
+                {
+                    SetInternalTransitionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -774,11 +801,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(EnableBackNavigationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableBackNavigationProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableBackNavigationProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableBackNavigationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableBackNavigationProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableBackNavigationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
