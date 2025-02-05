@@ -10,72 +10,76 @@ namespace Tizen.NUI.Components
         /// ContentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(DialogPage), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContentProperty = null;
+        internal static void SetInternalContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DialogPage)bindable;
             if (newValue != null)
             {
                 instance.InternalContent = newValue as View;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalContentProperty(BindableObject bindable)
         {
             var instance = (DialogPage)bindable;
             return instance.InternalContent;
-        });
+        }
 
         /// <summary>
         /// EnableScrimProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableScrimProperty = BindableProperty.Create(nameof(EnableScrim), typeof(bool), typeof(DialogPage), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableScrimProperty = null;
+        internal static void SetInternalEnableScrimProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DialogPage)bindable;
             if (newValue != null)
             {
                 instance.InternalEnableScrim = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalEnableScrimProperty(BindableObject bindable)
         {
             var instance = (DialogPage)bindable;
             return instance.InternalEnableScrim;
-        });
+        }
 
         /// <summary>
         /// EnableDismissOnScrimProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableDismissOnScrimProperty = BindableProperty.Create(nameof(EnableDismissOnScrim), typeof(bool), typeof(DialogPage), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableDismissOnScrimProperty = null;
+        internal static void SetInternalEnableDismissOnScrimProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DialogPage)bindable;
             if (newValue != null)
             {
                 instance.InternalEnableDismissOnScrim = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalEnableDismissOnScrimProperty(BindableObject bindable)
         {
             var instance = (DialogPage)bindable;
             return instance.InternalEnableDismissOnScrim;
-        });
+        }
 
         /// <summary>
         /// ScrimColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrimColorProperty = BindableProperty.Create(nameof(ScrimColor), typeof(Color), typeof(DialogPage), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrimColorProperty = null;
+        internal static void SetInternalScrimColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DialogPage)bindable;
             if (newValue != null)
             {
                 instance.InternalScrimColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalScrimColorProperty(BindableObject bindable)
         {
             var instance = (DialogPage)bindable;
             return instance.InternalScrimColor;
-        });
+        }
     }
 }
