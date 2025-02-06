@@ -93,9 +93,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultExclusiveGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_EXCLUSIVE
+                return false;
             }
         }
 
@@ -103,20 +102,24 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultInputEnabledGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_INPUT_ENABLED
+                return true;
             }
         }
+
+        private static Vector4 defaultClearColor;
 
         public static Vector4 DEFAULT_CLEAR_COLOR
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.RenderTask.DefaultClearColorGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_CLEAR_COLOR
+                if (null == defaultClearColor)
+                {
+                    defaultClearColor = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+                }    
+
+                return defaultClearColor;
             }
         }
 
@@ -124,9 +127,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultClearEnabledGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_CLEAR_ENABLED
+                return false;
             }
         }
 
@@ -134,9 +136,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultCullModeGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_CULL_MODE
+                return true;
             }
         }
 
@@ -144,9 +145,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.RenderTask.DefaultRefreshRateGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_REFRESH_RATE
+                return 1;
             }
         }
 #pragma warning restore CA1707
