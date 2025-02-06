@@ -42,9 +42,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.FontClient.DefaultPointSizeGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                //this originates to Dali::TextAbstraction::FontClient::DEFAULT_POINT_SIZE   = 768u;
+                return 768;
             }
         }
 
