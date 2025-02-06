@@ -160,23 +160,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds the specified <see cref="float"/> to each component of the <see cref="UIExtents"/>.
         /// </summary>
-        /// <param name="addend">The value to add.</param>
+        /// <param name="left">The left operand.</param>
+        /// <param name="addend">The float value to add.</param>
         /// <returns>A new <see cref="UIExtents"/> with the added values.</returns>
         public static UIExtents operator +(UIExtents left, float addend) => new UIExtents(left.Start + addend, left.End + addend, left.Top + addend, left.Bottom + addend);
 
         /// <summary>
         /// Adds the specified <see cref="UIExtents"/> to the current <see cref="UIExtents"/>.
         /// </summary>
-        /// <param name="right">The <see cref="UIExtents"/> to add.</param>
+        /// <param name="left">The left operand.</param>
+        /// <param name="right">The right operand.</param>
         /// <returns>A new <see cref="UIExtents"/> with the added values.</returns>
         public static UIExtents operator +(UIExtents left, UIExtents right) => new UIExtents(left.Start + right.Start, left.End + right.End, left.Top + right.Top, left.Bottom + right.Bottom);
 
         /// <summary>
         /// Subtracts the specified <see cref="float"/> from each component of the <see cref="UIExtents"/>.
         /// </summary>
+        /// <param name="left">The left operand.</param>
         /// <param name="subtrahend">The value to subtract.</param>
         /// <returns>A new <see cref="UIExtents"/> with the subtracted values.</returns>
-        public static UIExtents operator -(UIExtents left, float addend) => left + (-addend);
+        public static UIExtents operator -(UIExtents left, float subtrahend) => left + (-subtrahend);
 
         public static implicit operator Extents(UIExtents uiExtents) => new Extents((ushort)uiExtents.Start, (ushort)uiExtents.End, (ushort)uiExtents.Top, (ushort)uiExtents.Bottom);
     }
