@@ -3,7 +3,7 @@ name: Build Branches
 on:
   push:
     branches:
-    - master
+    - main
     - DevelNUI
     - API*
 
@@ -36,7 +36,7 @@ jobs:
 
     - name: Extract API
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
