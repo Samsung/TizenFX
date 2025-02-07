@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,25 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
 
-namespace Tizen.NUI.EXaml
+using System;
+using Tizen.NUI;
+using Tizen.NUI.Components;
+
+namespace NUITizenGallery
 {
-    internal interface Operation
+    internal class GridTest5 : IExample
     {
-        void Do();
+        private Window window;
+        public void Activate()
+        {
+            window = NUIApplication.GetDefaultWindow();
+            window.GetDefaultNavigator().Push(new GridTest5Page());
+        }
+        public void Deactivate()
+        {
+            window.GetDefaultNavigator().Pop();
+        }
     }
 }
+

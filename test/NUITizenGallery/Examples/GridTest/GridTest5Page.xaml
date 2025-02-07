@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.GridTest5Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="GridTest5Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+		<View x:Name="gridView"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+				WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+			<View.Layout >
+				<GridLayout Columns="2" Rows="2" ColumnSpacing="10" RowSpacing="10" />
+			</View.Layout>
+
+            <!-- Row 0 -->
+			<View x:Name="child1"
+					GridLayout.Column="0"
+					GridLayout.Row="0"
+                    GridLayout.ColumnSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill" BackgroundColor="Red"/>
+            <!-- Row 0 Column 1 is expanded by span -->
+            <!-- Row 1 -->
+			<View x:Name="child2"
+                    SizeWidth="300"
+					GridLayout.Column="1"
+					GridLayout.Row="1"
+                    GridLayout.VerticalStretch="ExpandAndFill" BackgroundColor="Green"/>
+            <!-- Row 1 Column 0 is empty space by span -->
+		</View>
+	</ContentPage.Content>
+</ContentPage>

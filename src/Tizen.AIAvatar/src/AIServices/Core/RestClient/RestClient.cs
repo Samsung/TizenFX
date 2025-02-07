@@ -27,9 +27,10 @@ namespace Tizen.AIAvatar
     /// A class that provides methods to execute REST requests and handle responses.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class RestClient : IRestClient
+    public class RestClient : IRestClient, IDisposable
     {
         private readonly HttpClient _httpClient;
+        private bool _disposed = false;
 
         /// <summary>
         /// Initializes a new instance of the RestClient class with the specified HttpClient.
@@ -38,7 +39,7 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RestClient(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
         /// <summary>
@@ -91,7 +92,24 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
-            _httpClient?.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Disposes of the resources used by the RestClient.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _httpClient.Dispose();
+                }
+                _disposed = true;
+            }
         }
     }
 }

@@ -107,6 +107,40 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_RemoveFrameCallback")]
             public static extern void FrameCallbackInterfaceRemoveFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            // UIVector2 and UIColor
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetPositionVector2Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceGetPositionVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakePositionVector2Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceBakePositionVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetSizeVector2Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceGetSizeVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakeSizeVector2Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceBakeSizeVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetScaleVector2Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceGetScaleVector2Componentwise(global::System.IntPtr proxy, uint id, ref float x, ref float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakeScaleVector2Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceBakeScaleVector2Componentwise(global::System.IntPtr proxy, uint id, float x, float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_GetColorVector4Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceGetColorVector4Componentwise(global::System.IntPtr proxy, uint id, ref float r, ref float g, ref float b, ref float a);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameCallbackInterface_BakeColorVector4Componentwise")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FrameCallbackInterfaceBakeColorVector4Componentwise(global::System.IntPtr proxy, uint id, float r, float g, float b, float a);
         }
     }
 }

@@ -320,9 +320,13 @@ namespace Tizen.AIAvatar
                         audioPlayback?.Prepare();
                         Log.Debug(LogTag, "Audio is playing.");
                     }
-                    catch (NullReferenceException e)
+                    catch (ArgumentNullException ex)
                     {
-                        Log.Error(LogTag, $"NullReferenceException in Playing state: {e.Message}");
+                        Log.Error(LogTag, $"ArgumentNullException in Playing state: {ex.Message}");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Log.Error(LogTag, $"InvalidOperationException in Playing state: {ex.Message}");
                     }
                     catch (Exception e)
                     {
@@ -343,9 +347,13 @@ namespace Tizen.AIAvatar
 
                         Log.Debug(LogTag, "Audio is paused.");
                     }
-                    catch (NullReferenceException e)
+                    catch (ArgumentNullException ex)
                     {
-                        Log.Error(LogTag, $"NullReferenceException in Paused state: {e.Message}");
+                        Log.Error(LogTag, $"ArgumentNullException in Paused state: {ex.Message}");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Log.Error(LogTag, $"InvalidOperationException in Paused state: {ex.Message}");
                     }
                     catch (Exception e)
                     {
@@ -370,9 +378,13 @@ namespace Tizen.AIAvatar
 
                         Log.Debug(LogTag, "Audio is stopped.");
                     }
-                    catch (NullReferenceException e)
+                    catch (ArgumentNullException ex)
                     {
-                        Log.Error(LogTag, $"NullReferenceException in Stopped/Finished state: {e.Message}");
+                        Log.Error(LogTag, $"ArgumentNullException in Stopped/Finished state: {ex.Message}");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Log.Error(LogTag, $"InvalidOperationException in Stopped/Finished state: {ex.Message}");
                     }
                     catch (Exception e)
                     {
