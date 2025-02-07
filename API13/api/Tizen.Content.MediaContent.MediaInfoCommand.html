@@ -1260,7 +1260,7 @@ public int CountTag(string mediaId)</code></pre>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnail_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnail*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L1009">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L893">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnail_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnail(System.String)">CreateThumbnail(string)</h4>
     <section>
@@ -1364,232 +1364,6 @@ The media is in the external USB storage.</p>
       <tr>
         <td><span class="xref">System.UnauthorizedAccessException</span></td>
         <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L924">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_System_String_System_Threading_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync(System.String,System.Threading.CancellationToken)">CreateThumbnailAsync(string, CancellationToken)</h4>
-    <section>
-    <p>Creates the thumbnail image for the given media.
-If the thumbnail already exists for the given media, the existing path will be returned.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12. Please use CreateThumbnail instead.&quot;)]
-public Task&lt;string&gt; CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p>The media ID to create the thumbnail.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>The token to cancel the operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>A task that represents the asynchronous operation. The task result contains the thumbnail path.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.RecordNotFoundException.html">RecordNotFoundException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> does not exist in the database.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.UnsupportedContentException.html">UnsupportedContentException</a></td>
-        <td><p>The thumbnail is not available for the given media.<br>
--or-<br>
-The media is in the external USB storage.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <a id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L891">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync(System.String)">CreateThumbnailAsync(string)</h4>
-    <section>
-    <p>Creates the thumbnail image for the given media.
-If the thumbnail already exists for the given media, the existing path will be returned.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12. Please use CreateThumbnail instead.&quot;)]
-public Task&lt;string&gt; CreateThumbnailAsync(string mediaId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">mediaId</span></td>
-        <td><p>The media ID to create the thumbnail.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td><p>A task that represents the asynchronous operation. The task result contains the thumbnail path.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
-        <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.RecordNotFoundException.html">RecordNotFoundException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> does not exist in the database.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Content.MediaContent.UnsupportedContentException.html">UnsupportedContentException</a></td>
-        <td><p>The thumbnail is not available for the given media.<br>
--or-<br>
-The media is in the external USB storage.</p>
 </td>
       </tr>
     </tbody>
@@ -1701,7 +1475,7 @@ The file related with the <code data-dev-comment-type="paramref" class="paramref
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L1123">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L1007">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_System_String_System_Threading_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync(System.String,System.Threading.CancellationToken)">DetectFaceAsync(string, CancellationToken)</h4>
     <section>
@@ -1826,7 +1600,7 @@ The media is in the external USB storage.</p>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L1084">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L968">View Source</a>
     </span>
     <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_System_String_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync(System.String)">DetectFaceAsync(string)</h4>
     <section>
