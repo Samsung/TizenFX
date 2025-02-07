@@ -10,90 +10,95 @@ namespace Tizen.NUI.Components
         /// LastIndicatorImageUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LastIndicatorImageUrlProperty = BindableProperty.Create(nameof(LastIndicatorImageUrl), typeof(Tizen.NUI.BaseComponents.Selector<string>), typeof(Pagination), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LastIndicatorImageUrlProperty = null;
+        internal static void SetInternalLastIndicatorImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Pagination)bindable;
             if (newValue != null)
             {
                 instance.InternalLastIndicatorImageUrl = newValue as Selector<string>;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLastIndicatorImageUrlProperty(BindableObject bindable)
         {
             var instance = (Pagination)bindable;
             return instance.InternalLastIndicatorImageUrl;
-        });
+        }
 
         /// <summary>
         /// IndicatorCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorCountProperty = BindableProperty.Create(nameof(IndicatorCount), typeof(int), typeof(Pagination), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorCountProperty = null;
+        internal static void SetInternalIndicatorCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Pagination)bindable;
             if (newValue != null)
             {
                 instance.InternalIndicatorCount = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorCountProperty(BindableObject bindable)
         {
             var instance = (Pagination)bindable;
             return instance.InternalIndicatorCount;
-        });
+        }
 
         /// <summary>
         /// IndicatorColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorColorProperty = BindableProperty.Create(nameof(IndicatorColor), typeof(Color), typeof(Pagination), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorColorProperty = null;
+        internal static void SetInternalIndicatorColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Pagination)bindable;
             if (newValue != null)
             {
                 instance.InternalIndicatorColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorColorProperty(BindableObject bindable)
         {
             var instance = (Pagination)bindable;
             return instance.InternalIndicatorColor;
-        });
+        }
 
         /// <summary>
         /// SelectedIndicatorColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedIndicatorColorProperty = BindableProperty.Create(nameof(SelectedIndicatorColor), typeof(Color), typeof(Pagination), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedIndicatorColorProperty = null;
+        internal static void SetInternalSelectedIndicatorColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Pagination)bindable;
             if (newValue != null)
             {
                 instance.InternalSelectedIndicatorColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSelectedIndicatorColorProperty(BindableObject bindable)
         {
             var instance = (Pagination)bindable;
             return instance.InternalSelectedIndicatorColor;
-        });
+        }
 
         /// <summary>
         /// SelectedIndexProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(Pagination), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedIndexProperty = null;
+        internal static void SetInternalSelectedIndexProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Pagination)bindable;
             if (newValue != null)
             {
                 instance.InternalSelectedIndex = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSelectedIndexProperty(BindableObject bindable)
         {
             var instance = (Pagination)bindable;
             return instance.InternalSelectedIndex;
-        });
+        }
     }
 }
