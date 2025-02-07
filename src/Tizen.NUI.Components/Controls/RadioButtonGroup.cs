@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -42,9 +43,28 @@ namespace Tizen.NUI.Components
         /// IsGroupHolderProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsGroupHolderProperty = BindableProperty.CreateAttached("IsGroupHolder", typeof(bool), typeof(View), false, propertyChanged: OnIsGroupHolderChanged);
+        public static readonly BindableProperty IsGroupHolderProperty = null;
 
-        private static readonly BindableProperty RadioButtonGroupProperty = BindableProperty.CreateAttached("RadioButtonGroup", typeof(RadioButtonGroup), typeof(View), null, propertyChanged: OnRadioButtonGroupChanged);
+        private static readonly BindableProperty RadioButtonGroupProperty = null;
+
+        private static Dictionary<View, bool> isGroupHolderMap = null;
+        private static Dictionary<View, RadioButtonGroup> radioButtonGroupMap = null;
+
+        static RadioButtonGroup()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IsGroupHolderProperty = BindableProperty.CreateAttached("IsGroupHolder", typeof(bool), typeof(View), false,
+                    propertyChanged: OnIsGroupHolderChanged);
+                RadioButtonGroupProperty = BindableProperty.CreateAttached("RadioButtonGroup", typeof(RadioButtonGroup), typeof(View), null,
+                    propertyChanged: OnRadioButtonGroupChanged);
+            }
+            else
+            {
+                isGroupHolderMap = new Dictionary<View, bool>();
+                radioButtonGroupMap = new Dictionary<View, RadioButtonGroup>();
+            }
+        }
 
         /// <summary>
         /// Construct RadioButtonGroup
@@ -62,7 +82,17 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="view">The group holder.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool GetIsGroupHolder(View view) => (bool)view.GetValue(IsGroupHolderProperty);
+        public static bool GetIsGroupHolder(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return (bool)view.GetValue(IsGroupHolderProperty);
+            }
+            else
+            {
+                return isGroupHolderMap[view];
+            }
+        }
 
         /// <summary>
         /// Sets a RadioButtonGroup.IsGroupHolder property for a view.
@@ -70,14 +100,34 @@ namespace Tizen.NUI.Components
         /// <param name="view">The group holder.</param>
         /// <param name="value">The value to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void SetIsGroupHolder(View view, bool value) => view.SetValue(IsGroupHolderProperty, value, false, true);
+        public static void SetIsGroupHolder(View view, bool value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                view.SetValue(IsGroupHolderProperty, value, false, true);
+            }
+            else
+            {
+                isGroupHolderMap[view] = value;
+            }
+        }
 
         /// <summary>
         /// Gets a attached RadioButtonGroup for a view.
         /// </summary>
         /// <param name="view">The group holder.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static RadioButtonGroup GetRadioButtonGroup(View view) => view.GetValue(RadioButtonGroupProperty) as RadioButtonGroup;
+        public static RadioButtonGroup GetRadioButtonGroup(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return view.GetValue(RadioButtonGroupProperty) as RadioButtonGroup;
+            }
+            else
+            {
+                return radioButtonGroupMap[view];
+            }
+        }
 
         /// <summary>
         /// Get the RadioButton object at the specified index.
@@ -138,13 +188,30 @@ namespace Tizen.NUI.Components
 
             if (!(bool)newValue)
             {
-                view.SetValue(RadioButtonGroupProperty, null, false, true);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    view.SetValue(RadioButtonGroupProperty, null, false, true);
+                }
+                else
+                {
+                    radioButtonGroupMap[view] = null;
+                }
                 return;
             }
 
-            if (view.GetValue(RadioButtonGroupProperty) == null)
+            if (NUIApplication.IsUsingXaml)
             {
-                view.SetValue(RadioButtonGroupProperty, new RadioButtonGroup(), false, true);
+                if (view.GetValue(RadioButtonGroupProperty) == null)
+                {
+                    view.SetValue(RadioButtonGroupProperty, new RadioButtonGroup(), false, true);
+                }
+            }
+            else
+            {
+                if (radioButtonGroupMap[view] == null)
+                {
+                    radioButtonGroupMap[view] = new RadioButtonGroup();
+                }
             }
         }
 

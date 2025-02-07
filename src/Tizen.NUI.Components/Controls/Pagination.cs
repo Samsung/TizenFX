@@ -33,7 +33,8 @@ namespace Tizen.NUI.Components
     {
         /// <summary>The IndicatorSize bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(Pagination), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorSizeProperty = null;
+        internal static void SetInternalIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
             {
@@ -42,37 +43,39 @@ namespace Tizen.NUI.Components
                 pagination.UpdateVisual();
                 pagination.UpdateContainer();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorSizeProperty(BindableObject bindable)
         {
             return ((Pagination)bindable).indicatorSize;
-        });
+        }
 
         /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorImageUrlProperty = BindableProperty.Create(nameof(IndicatorImageUrl), typeof(Selector<string>), typeof(Pagination), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorImageUrlProperty = null;
+        internal static void SetInternalIndicatorImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var pagination = (Pagination)bindable;
             pagination.indicatorImageUrl = ((Selector<string>)newValue)?.Clone();
             pagination.UpdateVisual();
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorImageUrlProperty(BindableObject bindable)
         {
             return ((Pagination)bindable).indicatorImageUrl;
-        });
+        }
 
         /// <summary>The IndicatorSpacing bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int), typeof(Pagination), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorSpacingProperty = null;
+        internal static void SetInternalIndicatorSpacingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var pagination = (Pagination)bindable;
             pagination.indicatorSpacing = (int)newValue;
             pagination.UpdateVisual();
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorSpacingProperty(BindableObject bindable)
         {
             return ((Pagination)bindable).indicatorSpacing;
-        });
+        }
 
         // Depending on Tizen 7.0 Pagination UX guide
         private const int DefaultIndicatorWidth = 64;
@@ -94,7 +97,28 @@ namespace Tizen.NUI.Components
         private Color selectedIndicatorColor;
         private Selector<string> lastIndicatorImageUrl;
 
-        static Pagination() { }
+        static Pagination()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(Pagination), null,
+                    propertyChanged: SetInternalIndicatorSizeProperty, defaultValueCreator: GetInternalIndicatorSizeProperty);
+                IndicatorImageUrlProperty = BindableProperty.Create(nameof(IndicatorImageUrl), typeof(Selector<string>), typeof(Pagination), null,
+                    propertyChanged: SetInternalIndicatorImageUrlProperty, defaultValueCreator: GetInternalIndicatorImageUrlProperty);
+                IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int), typeof(Pagination), default(int),
+                    propertyChanged: SetInternalIndicatorSpacingProperty, defaultValueCreator: GetInternalIndicatorSpacingProperty);
+                LastIndicatorImageUrlProperty = BindableProperty.Create(nameof(LastIndicatorImageUrl), typeof(Tizen.NUI.BaseComponents.Selector<string>), typeof(Pagination), null,
+                    propertyChanged: SetInternalLastIndicatorImageUrlProperty, defaultValueCreator: GetInternalLastIndicatorImageUrlProperty);
+                IndicatorCountProperty = BindableProperty.Create(nameof(IndicatorCount), typeof(int), typeof(Pagination), default(int),
+                    propertyChanged: SetInternalIndicatorCountProperty, defaultValueCreator: GetInternalIndicatorCountProperty);
+                IndicatorColorProperty = BindableProperty.Create(nameof(IndicatorColor), typeof(Color), typeof(Pagination), null,
+                    propertyChanged: SetInternalIndicatorColorProperty, defaultValueCreator: GetInternalIndicatorColorProperty);
+                SelectedIndicatorColorProperty = BindableProperty.Create(nameof(SelectedIndicatorColor), typeof(Color), typeof(Pagination), null,
+                    propertyChanged: SetInternalSelectedIndicatorColorProperty, defaultValueCreator: GetInternalSelectedIndicatorColorProperty);
+                SelectedIndexProperty = BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(Pagination), default(int),
+                    propertyChanged: SetInternalSelectedIndexProperty, defaultValueCreator: GetInternalSelectedIndexProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a Pagination.
@@ -137,8 +161,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Size IndicatorSize
         {
-            get => (Size)GetValue(IndicatorSizeProperty);
-            set => SetValue(IndicatorSizeProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Size)GetValue(IndicatorSizeProperty);
+                }
+                else
+                {
+                    return (Size)GetInternalIndicatorSizeProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorSizeProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -147,8 +191,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Selector<string> IndicatorImageUrl
         {
-            get => (Selector<string>)GetValue(IndicatorImageUrlProperty);
-            set => SetValue(IndicatorImageUrlProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Selector<string>)GetValue(IndicatorImageUrlProperty);
+                }
+                else
+                {
+                    return (Selector<string>)GetInternalIndicatorImageUrlProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorImageUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorImageUrlProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -160,11 +224,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(LastIndicatorImageUrlProperty) as Selector<string>;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(LastIndicatorImageUrlProperty) as Selector<string>;
+                }
+                else
+                {
+                    return GetInternalLastIndicatorImageUrlProperty(this) as Selector<string>;
+                }
             }
             set
             {
-                SetValue(LastIndicatorImageUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LastIndicatorImageUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalLastIndicatorImageUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -187,8 +265,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public int IndicatorSpacing
         {
-            get => (int)GetValue(IndicatorSpacingProperty);
-            set => SetValue(IndicatorSpacingProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(IndicatorSpacingProperty);
+                }
+                else
+                {
+                    return (int)GetInternalIndicatorSpacingProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorSpacingProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorSpacingProperty(this, null, value);
+                }
+            }
         }
 
 
@@ -201,11 +299,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(IndicatorCountProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(IndicatorCountProperty);
+                }
+                else
+                {
+                    return (int)GetInternalIndicatorCountProperty(this);
+                }
             }
             set
             {
-                SetValue(IndicatorCountProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorCountProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorCountProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -283,11 +395,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(IndicatorColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(IndicatorColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalIndicatorColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(IndicatorColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorColorProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -348,11 +474,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SelectedIndicatorColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SelectedIndicatorColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalSelectedIndicatorColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(SelectedIndicatorColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectedIndicatorColorProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectedIndicatorColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -398,11 +538,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(SelectedIndexProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(SelectedIndexProperty);
+                }
+                else
+                {
+                    return (int)GetInternalSelectedIndexProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectedIndexProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectedIndexProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectedIndexProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
