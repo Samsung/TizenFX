@@ -3,19 +3,20 @@ name: "Build Pull Request"
 on:
   pull_request:
     branches:
-    - master
+    - main
     - DevelNUI
     - API*
+  workflow_dispatch:
 
 jobs:
 
   build:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 3.1.402
 
@@ -44,72 +45,62 @@ jobs:
       run: ./build.sh pack
 
     - name: Checkout APITool
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool
 
     - name: Extract API Spec
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: reports
         if-no-files-found: ignore
         path: Artifacts/*.json
+        overwrite : true
 
   check-api:
     needs: [build]
     runs-on: ubuntu-20.04
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 3.1.x
 
     - name: Download Artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: reports
         path: Artifacts
+        overwrite: true
 
-    - name: Download Base API Spec
-      id: base-spec
-      uses: TizenAPI/tizenfx-build-actions/s3-download-public@master
-      with:
-        region: ap-northeast-2
-        bucket: tizenfx-api-specs
-        key: ${{ github.event.pull_request.base.sha }}.json
-        path: Artifacts/base-api.json
-
-    - uses: actions/checkout@v2
-      if: ${{ steps.base-spec.outputs.code != 200 }}
+    - name: Checkout to base spec
+      uses: actions/checkout@v3
       with:
         ref: ${{ github.event.pull_request.base.sha }}
         path: base
 
     - name: Build Base Branch
-      if: ${{ steps.base-spec.outputs.code != 200 }}
       uses: TizenAPI/tizenfx-build-actions/problem-filter@master
       with:
         run: ./build.sh full
         working-directory: base
 
     - name: Checkout APITool
-      if: ${{ steps.base-spec.outputs.code != 200 }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool
 
     - name: Extract Base API
-      if: ${{ steps.base-spec.outputs.code != 200 }}
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/base-api.json base/Artifacts/bin/public/
 
@@ -120,7 +111,8 @@ jobs:
         base-file: Artifacts/base-api.json
         output: Artifacts/api-comp.json
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: reports
         path: Artifacts/api-comp.json
+        overwrite: true

@@ -218,3 +218,5 @@ externals/libs/
 tools/coverage
 coverage.json
 
+# vs code temp
+.vscode/
