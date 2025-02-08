@@ -2639,43 +2639,28 @@ namespace Tizen.NUI.BaseComponents
             }
 
             using var map = new PropertyMap();
-            using var url = new PropertyValue(value);
-            using var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
 
-            map.Add(ImageVisualProperty.URL, url)
-               .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
+            map.Add(ImageVisualProperty.URL, value)
+               .Add(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
 
             if ((backgroundExtraData?.BackgroundImageBorder) != null)
             {
-                using var npatchType = new PropertyValue((int)Visual.Type.NPatch);
-                using var border = new PropertyValue(backgroundExtraData.BackgroundImageBorder);
-                map.Add(Visual.Property.Type, npatchType)
-                   .Add(NpatchImageVisualProperty.Border, border);
+                map.Add(Visual.Property.Type, (int)Visual.Type.NPatch)
+                   .Add(NpatchImageVisualProperty.Border, backgroundExtraData.BackgroundImageBorder);
             }
             else
             {
-                using var imageType = new PropertyValue((int)Visual.Type.Image);
-                map.Add(Visual.Property.Type, imageType);
+                map.Add(Visual.Property.Type, (int)Visual.Type.Image);
             }
 
             if (backgroundExtraData != null)
             {
-                using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-                using var cornerRadius = new PropertyValue(cornerRadiusValue);
-                using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
-                using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
-                using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-                using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-                using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-                using var borderlineColor = new PropertyValue(borderlineColorValue);
-                using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
-
-                map.Add(Visual.Property.CornerRadius, cornerRadius)
-                   .Add(Visual.Property.CornerSquareness, cornerSquareness)
-                   .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
-                   .Add(Visual.Property.BorderlineWidth, borderlineWidth)
-                   .Add(Visual.Property.BorderlineColor, borderlineColor)
-                   .Add(Visual.Property.BorderlineOffset, borderlineOffset);
+                map.Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
+                   .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
+                   .Add(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy)
+                   .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
+                   .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
+                   .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
             }
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
@@ -2750,26 +2735,15 @@ namespace Tizen.NUI.BaseComponents
             }
 
             using var map = new PropertyMap();
-            using var colorType = new PropertyValue((int)Visual.Type.Color);
-            using var mixColor = new PropertyValue(value);
-            using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            using var cornerRadius = new PropertyValue(cornerRadiusValue);
-            using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
-            using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
-            using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-            using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            using var borderlineColor = new PropertyValue(borderlineColorValue);
-            using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
-            map.Add(Visual.Property.Type, colorType)
-               .Add(ColorVisualProperty.MixColor, mixColor)
-               .Add(Visual.Property.CornerRadius, cornerRadius)
-               .Add(Visual.Property.CornerSquareness, cornerSquareness)
-               .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
-               .Add(Visual.Property.BorderlineWidth, borderlineWidth)
-               .Add(Visual.Property.BorderlineColor, borderlineColor)
-               .Add(Visual.Property.BorderlineOffset, borderlineOffset);
+            map.Add(Visual.Property.Type, (int)Visual.Type.Color)
+               .Add(ColorVisualProperty.MixColor, value)
+               .Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
+               .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
+               .Add(Visual.Property.CornerRadiusPolicy, (int)(backgroundExtraData.CornerRadiusPolicy))
+               .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
+               .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
+               .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 

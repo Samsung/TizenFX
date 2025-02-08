@@ -203,43 +203,28 @@ namespace Tizen.NUI
             if (objectURL != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Mesh);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(objectURL);
-                _outputVisualMap.Add(MeshVisualProperty.ObjectURL, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.Mesh);
+                _outputVisualMap.Add(MeshVisualProperty.ObjectURL, objectURL);
 
                 if (materialURL != null)
                 {
-                    temp = new PropertyValue(materialURL);
-                    _outputVisualMap.Add(MeshVisualProperty.MaterialtURL, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(MeshVisualProperty.MaterialtURL, materialURL);
                 }
                 if (texturesPath != null)
                 {
-                    temp = new PropertyValue(texturesPath);
-                    _outputVisualMap.Add(MeshVisualProperty.TexturesPath, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(MeshVisualProperty.TexturesPath, texturesPath);
                 }
                 if (shadingMode != null)
                 {
-                    temp = new PropertyValue((int)shadingMode);
-                    _outputVisualMap.Add(MeshVisualProperty.ShadingMode, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(MeshVisualProperty.ShadingMode, (int)shadingMode);
                 }
                 if (useMipmapping != null)
                 {
-                    temp = new PropertyValue((bool)useMipmapping);
-                    _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(MeshVisualProperty.UseMipmapping, (bool)useMipmapping);
                 }
                 if (useSoftNormals != null)
                 {
-                    temp = new PropertyValue((bool)useSoftNormals);
-                    _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(MeshVisualProperty.UseSoftNormals, (bool)useSoftNormals);
                 }
                 base.ComposingPropertyMap();
             }

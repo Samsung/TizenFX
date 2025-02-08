@@ -296,9 +296,8 @@ namespace Tizen.NUI
         private PropertyBuffer CreateQuadPropertyBuffer()
         {
             /* Create Property buffer */
-            PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
             PropertyMap vertexFormat = new PropertyMap();
-            vertexFormat.Add("aPosition", value);
+            vertexFormat.Add("aPosition", (int)PropertyType.Vector2);
 
             PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
             
@@ -335,7 +334,6 @@ namespace Tizen.NUI
                 Marshal.FreeHGlobal(pA);
             }
 
-            value.Dispose();
             vertexFormat.Dispose();
 
             return vertexBuffer;

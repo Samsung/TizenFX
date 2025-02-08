@@ -3362,10 +3362,7 @@ namespace Tizen.NUI.BaseComponents
                     using (var fontStyle = new PropertyMap())
                     {
                         properyValue.Get(fontStyle);
-                        using (var fontStyleValue = new PropertyValue(fontStyle))
-                        {
-                            map.Add("fontStyle", fontStyleValue);
-                        }
+                        map.Add("fontStyle", fontStyle);
                     }
                 }
 
