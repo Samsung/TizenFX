@@ -489,9 +489,8 @@ namespace Tizen.NUI.BaseComponents
             if (placeholder.FontStyle != null)
             {
                 using (var fontStyleMap = GetFontStyleMap((FontStyle)placeholder.FontStyle))
-                using (var fontStyleValue = new PropertyValue(fontStyleMap))
                 {
-                    map.Add("fontStyle", fontStyleValue);
+                    map.Add("fontStyle", fontStyleMap);
                 }
             }
 
