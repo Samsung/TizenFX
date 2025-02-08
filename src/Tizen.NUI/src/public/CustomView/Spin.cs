@@ -750,21 +750,10 @@ namespace Tizen.NUI
             {
                 arrowImage = value;
                 var ptMap = new PropertyMap();
-                var temp = new PropertyValue((int)Visual.Type.Image);
-                ptMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(arrowImage);
-                ptMap.Add(ImageVisualProperty.URL, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(150);
-                ptMap.Add(ImageVisualProperty.DesiredHeight, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(150);
-                ptMap.Add(ImageVisualProperty.DesiredWidth, temp);
-                temp.Dispose();
+                ptMap.Add(Visual.Property.Type, (int)Visual.Type.Image);
+                ptMap.Add(ImageVisualProperty.URL, arrowImage);
+                ptMap.Add(ImageVisualProperty.DesiredHeight, 150);
+                ptMap.Add(ImageVisualProperty.DesiredWidth, 150);
 
                 arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
                 ptMap.Dispose();
@@ -802,21 +791,10 @@ namespace Tizen.NUI
             temp.Dispose();
 
             var ptMap = new PropertyMap();
-            temp = new PropertyValue((int)Visual.Type.Image);
-            ptMap.Add(Visual.Property.Type, temp);
-            temp.Dispose();
-
-            temp = new PropertyValue(arrowImage);
-            ptMap.Add(ImageVisualProperty.URL, temp);
-            temp.Dispose();
-
-            temp = new PropertyValue(150);
-            ptMap.Add(ImageVisualProperty.DesiredHeight, temp);
-            temp.Dispose();
-
-            temp = new PropertyValue(150);
-            ptMap.Add(ImageVisualProperty.DesiredWidth, temp);
-            temp.Dispose();
+            ptMap.Add(Visual.Property.Type, (int)Visual.Type.Image);
+            ptMap.Add(ImageVisualProperty.URL, arrowImage);
+            ptMap.Add(ImageVisualProperty.DesiredHeight, arrowImage);
+            ptMap.Add(ImageVisualProperty.DesiredWidth, arrowImage);
 
             arrowVisual = VisualFactory.Instance.CreateVisual(ptMap);
             ptMap.Dispose();

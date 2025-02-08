@@ -299,13 +299,12 @@ namespace Tizen.NUI.Visuals
                     using var urlValue = new PropertyValue(url);
                     urlArray.Add(urlValue);
                 }
-                using var urlArrayValue = new PropertyValue(urlArray);
 
                 if (cachedVisualPropertyMap != null)
                 {
                     // Remove ResourceUrl from cachedVisualPropertyMap
                     cachedVisualPropertyMap.Remove((int)Tizen.NUI.ImageVisualProperty.URL);
-                    cachedVisualPropertyMap.Add((int)Tizen.NUI.ImageVisualProperty.URL, urlArrayValue);
+                    cachedVisualPropertyMap.Add((int)Tizen.NUI.ImageVisualProperty.URL, urlArray);
                 }
             }
             else

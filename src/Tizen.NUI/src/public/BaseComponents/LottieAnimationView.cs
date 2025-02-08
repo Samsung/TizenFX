@@ -217,37 +217,25 @@ namespace Tizen.NUI.BaseComponents
 
                 // TODO : Could create new Image without additional creation?
                 using PropertyMap map = new PropertyMap();
-                using PropertyValue type = new PropertyValue((int)Visual.Type.AnimatedVectorImage);
-                using PropertyValue url = new PropertyValue(currentStates.url);
-                using PropertyValue loopCnt = new PropertyValue(currentStates.loopCount);
-                using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
-                using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
-                using PropertyValue redrawInScalingDown = new PropertyValue(currentStates.redrawInScalingDown);
-                using PropertyValue synchronousLoading = new PropertyValue(currentStates.synchronousLoading);
-                using PropertyValue enableFrameCache = new PropertyValue(currentStates.enableFrameCache);
-                using PropertyValue notifyAfterRasterization = new PropertyValue(currentStates.notifyAfterRasterization);
-                using PropertyValue frameSpeedFactor = new PropertyValue(currentStates.frameSpeedFactor);
 
-                map.Add(Visual.Property.Type, type)
-                    .Add(ImageVisualProperty.URL, url)
-                    .Add(ImageVisualProperty.LoopCount, loopCnt)
-                    .Add(ImageVisualProperty.StopBehavior, stopAction)
-                    .Add(ImageVisualProperty.LoopingMode, loopMode)
-                    .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown)
-                    .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading)
-                    .Add(ImageVisualProperty.EnableFrameCache, enableFrameCache)
-                    .Add(ImageVisualProperty.NotifyAfterRasterization, notifyAfterRasterization)
-                    .Add(ImageVisualProperty.FrameSpeedFactor, frameSpeedFactor);
+                map.Add(Visual.Property.Type, (int)Visual.Type.AnimatedVectorImage)
+                    .Add(ImageVisualProperty.URL, currentStates.url)
+                    .Add(ImageVisualProperty.LoopCount, currentStates.loopCount)
+                    .Add(ImageVisualProperty.StopBehavior, (int)currentStates.stopEndAction)
+                    .Add(ImageVisualProperty.LoopingMode, (int)currentStates.loopMode)
+                    .Add(ImageVisualProperty.RedrawInScalingDown, currentStates.redrawInScalingDown)
+                    .Add(ImageVisualProperty.SynchronousLoading, currentStates.synchronousLoading)
+                    .Add(ImageVisualProperty.EnableFrameCache, currentStates.enableFrameCache)
+                    .Add(ImageVisualProperty.NotifyAfterRasterization, currentStates.notifyAfterRasterization)
+                    .Add(ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor);
 
                 if (currentStates.desiredWidth > 0)
                 {
-                    using PropertyValue desiredWidth = new PropertyValue((int)currentStates.desiredWidth);
-                    map.Add(ImageVisualProperty.DesiredWidth, desiredWidth);
+                    map.Add(ImageVisualProperty.DesiredWidth, currentStates.desiredWidth);
                 }
                 if (currentStates.desiredHeight > 0)
                 {
-                    using PropertyValue desiredHeight = new PropertyValue((int)currentStates.desiredHeight);
-                    map.Add(ImageVisualProperty.DesiredHeight, desiredHeight);
+                    map.Add(ImageVisualProperty.DesiredHeight, currentStates.desiredHeight);
                 }
 
                 Image = map;

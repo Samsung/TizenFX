@@ -1365,39 +1365,23 @@ namespace Tizen.NUI.BaseComponents
             using (PropertyMap timePeriod = new PropertyMap())
             using (PropertyValue initValue = PropertyValue.CreateFromObject(initialImageAlpha))
             using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationImageAlpha))
-            using (PropertyValue pvDelay = new PropertyValue(delay))
-            using (PropertyValue pvSpeed = new PropertyValue(speed))
-            using (PropertyValue pvProperty = new PropertyValue("opacity"))
-            using (PropertyValue pvAnimationType = new PropertyValue("BETWEEN"))
             using (PropertyMap transition = new PropertyMap())
             {
                 if (alphaFunction != null)
                 {
-                    using (PropertyValue pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)))
-                    {
-                        animator.Add("alphaFunction", pvAlpha);
-                    }
+                    animator.Add("alphaFunction", AlphaFunction.BuiltinToPropertyKey(alphaFunction));
                 }
 
-                timePeriod.Add("duration", pvSpeed);
-                timePeriod.Add("delay", pvDelay);
-                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                {
-                    animator.Add("timePeriod", pvTimePeriod);
-                }
+                timePeriod.Add("duration", speed);
+                timePeriod.Add("delay", delay);
+                animator.Add("timePeriod", timePeriod);
 
-                animator.Add("animationType", pvAnimationType);
+                animator.Add("animationType", "BETWEEN");
 
-                using (PropertyValue pvAnimator = new PropertyValue(animator))
-                {
-                    transition.Add("animator", pvAnimator);
-                }
-                using(PropertyValue pvTarget = new PropertyValue("image"))
-                {
-                    transition.Add("target", pvTarget);
-                }
+                transition.Add("animator", animator);
 
-                transition.Add("property", pvProperty);
+                transition.Add("target", "image");
+                transition.Add("property", "opacity");
                 transition.Add("initialValue", initValue);
                 transition.Add("targetValue", destValue);
 
