@@ -16,6 +16,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -33,7 +34,16 @@ namespace Tizen.NUI.Components
         private Size prevSize;
         private DefaultTitleItemStyle ItemStyle => ViewStyle as DefaultTitleItemStyle;
 
-        static DefaultTitleItem() { }
+        static DefaultTitleItem()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IconProperty = BindableProperty.Create(nameof(Icon), typeof(View), typeof(DefaultTitleItem), null,
+                    propertyChanged: SetInternalIconProperty, defaultValueCreator: GetInternalIconProperty);
+                TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(DefaultTitleItem), default(string),
+                    propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of DefaultTitleItem.
@@ -69,11 +79,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(IconProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(IconProperty) as View;
+                }
+                else
+                {
+                    return GetInternalIconProperty(this) as View;
+                }
             }
             set
             {
-                SetValue(IconProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IconProperty, value);
+                }
+                else
+                {
+                    SetInternalIconProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -164,11 +188,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTextProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextProperty, value);
+                }
+                else
+                {
+                    SetInternalTextProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
