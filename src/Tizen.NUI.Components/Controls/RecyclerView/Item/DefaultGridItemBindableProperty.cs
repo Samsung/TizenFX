@@ -10,73 +10,76 @@ namespace Tizen.NUI.Components
         /// BadgeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BadgeProperty = BindableProperty.Create(nameof(Badge), typeof(View), typeof(DefaultGridItem), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BadgeProperty = null;
+        internal static void SetInternalBadgeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
                 instance.InternalBadge = newValue as View;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBadgeProperty(BindableObject bindable)
         {
             var instance = (DefaultGridItem)bindable;
             return instance.InternalBadge;
-        });
+        }
 
         /// <summary>
         /// TextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(DefaultGridItem), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextProperty = null;
+        internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
                 instance.InternalText = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTextProperty(BindableObject bindable)
         {
             var instance = (DefaultGridItem)bindable;
             return instance.InternalText;
-        });
-
+        }
 
         /// <summary>
         /// ResourceUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(DefaultGridItem), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = null;
+        internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
                 instance.InternalResourceUrl = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var instance = (DefaultGridItem)bindable;
             return instance.InternalResourceUrl;
-        });
+        }
 
         /// <summary>
         /// LabelOrientationTypeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LabelOrientationTypeProperty = BindableProperty.Create(nameof(LabelOrientationType), typeof(Tizen.NUI.Components.DefaultGridItem.LabelOrientation), typeof(DefaultGridItem), default(LabelOrientation), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelOrientationTypeProperty = null;
+        internal static void SetInternalLabelOrientationTypeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
                 instance.InternalLabelOrientationType = (Tizen.NUI.Components.DefaultGridItem.LabelOrientation)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLabelOrientationTypeProperty(BindableObject bindable)
         {
             var instance = (DefaultGridItem)bindable;
             return instance.InternalLabelOrientationType;
-        });
+        }
     }
 }
