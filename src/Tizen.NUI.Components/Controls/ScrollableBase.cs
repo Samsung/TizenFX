@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -258,11 +259,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (Direction)GetValue(ScrollingDirectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Direction)GetValue(ScrollingDirectionProperty);
+                }
+                else
+                {
+                    return (Direction)GetInternalScrollingDirectionProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollingDirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollingDirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollingDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -299,11 +314,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(ScrollEnabledProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(ScrollEnabledProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalScrollEnabledProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollEnabledProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollEnabledProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollEnabledProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -348,11 +377,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(SnapToPageProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(SnapToPageProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalSnapToPageProperty(this);
+                }
             }
             set
             {
-                SetValue(SnapToPageProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SnapToPageProperty, value);
+                }
+                else
+                {
+                    SetInternalSnapToPageProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -374,11 +417,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(ScrollDurationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(ScrollDurationProperty);
+                }
+                else
+                {
+                    return (int)GetInternalScrollDurationProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollDurationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollDurationProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollDurationProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -402,11 +459,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ScrollAvailableAreaProperty) as Vector2;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ScrollAvailableAreaProperty) as Vector2;
+                }
+                else
+                {
+                    return GetInternalScrollAvailableAreaProperty(this) as Vector2;
+                }
             }
             set
             {
-                SetValue(ScrollAvailableAreaProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollAvailableAreaProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollAvailableAreaProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -456,11 +527,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ScrollbarProperty) as ScrollbarBase;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ScrollbarProperty) as ScrollbarBase;
+                }
+                else
+                {
+                    return GetInternalScrollbarProperty(this) as ScrollbarBase;
+                }
             }
             set
             {
-                SetValue(ScrollbarProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollbarProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollbarProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -505,11 +590,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(HideScrollbarProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(HideScrollbarProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalHideScrollbarProperty(this);
+                }
             }
             set
             {
-                SetValue(HideScrollbarProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HideScrollbarProperty, value);
+                }
+                else
+                {
+                    SetInternalHideScrollbarProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -550,8 +649,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool FadeScrollbar
         {
-            get => (bool)GetValue(FadeScrollbarProperty);
-            set => SetValue(FadeScrollbarProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(FadeScrollbarProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalFadeScrollbarProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FadeScrollbarProperty, value);
+                }
+                else
+                {
+                    SetInternalFadeScrollbarProperty(this, null, value);
+                }
+            }
         }
 
         private bool InternalFadeScrollbar
@@ -594,11 +713,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(LayoutProperty) as LayoutItem;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(LayoutProperty) as LayoutItem;
+                }
+                else
+                {
+                    return GetInternalLayoutProperty(this) as LayoutItem;
+                }
             }
             set
             {
-                SetValue(LayoutProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LayoutProperty, value);
+                }
+                else
+                {
+                    SetInternalLayoutProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -636,11 +769,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(DecelerationRateProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(DecelerationRateProperty);
+                }
+                else
+                {
+                    return (float)GetInternalDecelerationRateProperty(this);
+                }
             }
             set
             {
-                SetValue(DecelerationRateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DecelerationRateProperty, value);
+                }
+                else
+                {
+                    SetInternalDecelerationRateProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -665,11 +812,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(DecelerationThresholdProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(DecelerationThresholdProperty);
+                }
+                else
+                {
+                    return (float)GetInternalDecelerationThresholdProperty(this);
+                }
             }
             set
             {
-                SetValue(DecelerationThresholdProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DecelerationThresholdProperty, value);
+                }
+                else
+                {
+                    SetInternalDecelerationThresholdProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -686,11 +847,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(ScrollingEventThresholdProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ScrollingEventThresholdProperty);
+                }
+                else
+                {
+                    return (float)GetInternalScrollingEventThresholdProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollingEventThresholdProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollingEventThresholdProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollingEventThresholdProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -721,11 +896,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(PageFlickThresholdProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(PageFlickThresholdProperty);
+                }
+                else
+                {
+                    return (float)GetInternalPageFlickThresholdProperty(this);
+                }
             }
             set
             {
-                SetValue(PageFlickThresholdProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PageFlickThresholdProperty, value);
+                }
+                else
+                {
+                    SetInternalPageFlickThresholdProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -749,11 +938,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(PaddingProperty) as Extents;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(PaddingProperty) as Extents;
+                }
+                else
+                {
+                    return GetInternalPaddingProperty(this) as Extents;
+                }
             }
             set
             {
-                SetValue(PaddingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PaddingProperty, value);
+                }
+                else
+                {
+                    SetInternalPaddingProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -777,11 +980,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ScrollAlphaFunctionProperty) as AlphaFunction;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ScrollAlphaFunctionProperty) as AlphaFunction;
+                }
+                else
+                {
+                    return GetInternalScrollAlphaFunctionProperty(this) as AlphaFunction;
+                }
             }
             set
             {
-                SetValue(ScrollAlphaFunctionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollAlphaFunctionProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollAlphaFunctionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -810,11 +1027,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(NoticeAnimationEndBeforePositionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(NoticeAnimationEndBeforePositionProperty);
+                }
+                else
+                {
+                    return (float)GetInternalNoticeAnimationEndBeforePositionProperty(this);
+                }
             }
             set
             {
-                SetValue(NoticeAnimationEndBeforePositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(NoticeAnimationEndBeforePositionProperty, value);
+                }
+                else
+                {
+                    SetInternalNoticeAnimationEndBeforePositionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -837,11 +1068,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(StepScrollDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(StepScrollDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalStepScrollDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(StepScrollDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(StepScrollDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalStepScrollDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -856,11 +1101,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(WheelScrollDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(WheelScrollDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalWheelScrollDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(WheelScrollDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WheelScrollDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalWheelScrollDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -963,6 +1222,51 @@ namespace Tizen.NUI.Components
             WheelEvent += OnWheelEvent;
 
             SetKeyboardNavigationSupport(true);
+        }
+
+        static ScrollableBase()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ScrollingDirectionProperty = BindableProperty.Create(nameof(ScrollingDirection), typeof(Direction), typeof(ScrollableBase), default(Direction),
+                    propertyChanged: SetInternalScrollingDirectionProperty, defaultValueCreator: GetInternalScrollingDirectionProperty);
+                ScrollEnabledProperty = BindableProperty.Create(nameof(ScrollEnabled), typeof(bool), typeof(ScrollableBase), default(bool),
+                    propertyChanged: SetInternalScrollEnabledProperty, defaultValueCreator: GetInternalScrollEnabledProperty);
+                SnapToPageProperty = BindableProperty.Create(nameof(SnapToPage), typeof(bool), typeof(ScrollableBase), default(bool),
+                    propertyChanged: SetInternalSnapToPageProperty, defaultValueCreator: GetInternalSnapToPageProperty);
+                ScrollDurationProperty = BindableProperty.Create(nameof(ScrollDuration), typeof(int), typeof(ScrollableBase), default(int),
+                    propertyChanged: SetInternalScrollDurationProperty, defaultValueCreator: GetInternalScrollDurationProperty);
+                ScrollAvailableAreaProperty = BindableProperty.Create(nameof(ScrollAvailableArea), typeof(Vector2), typeof(ScrollableBase), null,
+                    propertyChanged: SetInternalScrollAvailableAreaProperty, defaultValueCreator: GetInternalScrollAvailableAreaProperty);
+                ScrollbarProperty = BindableProperty.Create(nameof(Scrollbar), typeof(ScrollbarBase), typeof(ScrollableBase), null,
+                    propertyChanged: SetInternalScrollbarProperty, defaultValueCreator: GetInternalScrollbarProperty);
+                HideScrollbarProperty = BindableProperty.Create(nameof(HideScrollbar), typeof(bool), typeof(ScrollableBase), default(bool),
+                    propertyChanged: SetInternalHideScrollbarProperty, defaultValueCreator: GetInternalHideScrollbarProperty);
+                LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(LayoutItem), typeof(ScrollableBase), null,
+                    propertyChanged: SetInternalLayoutProperty, defaultValueCreator: GetInternalLayoutProperty);
+                DecelerationRateProperty = BindableProperty.Create(nameof(DecelerationRate), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalDecelerationRateProperty, defaultValueCreator: GetInternalDecelerationRateProperty);
+                DecelerationThresholdProperty = BindableProperty.Create(nameof(DecelerationThreshold), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalDecelerationThresholdProperty, defaultValueCreator: GetInternalDecelerationThresholdProperty);
+                ScrollingEventThresholdProperty = BindableProperty.Create(nameof(ScrollingEventThreshold), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalScrollingEventThresholdProperty, defaultValueCreator: GetInternalScrollingEventThresholdProperty);
+                PageFlickThresholdProperty = BindableProperty.Create(nameof(PageFlickThreshold), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalPageFlickThresholdProperty, defaultValueCreator: GetInternalPageFlickThresholdProperty);
+                PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(ScrollableBase), null,
+                    propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
+                ScrollAlphaFunctionProperty = BindableProperty.Create(nameof(ScrollAlphaFunction), typeof(AlphaFunction), typeof(ScrollableBase), null,
+                    propertyChanged: SetInternalScrollAlphaFunctionProperty, defaultValueCreator: GetInternalScrollAlphaFunctionProperty);
+                NoticeAnimationEndBeforePositionProperty = BindableProperty.Create(nameof(NoticeAnimationEndBeforePosition), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalNoticeAnimationEndBeforePositionProperty, defaultValueCreator: GetInternalNoticeAnimationEndBeforePositionProperty);
+                EnableOverShootingEffectProperty = BindableProperty.Create(nameof(EnableOverShootingEffect), typeof(bool), typeof(ScrollableBase), default(bool),
+                    propertyChanged: SetInternalEnableOverShootingEffectProperty, defaultValueCreator: GetInternalEnableOverShootingEffectProperty);
+                StepScrollDistanceProperty = BindableProperty.Create(nameof(StepScrollDistance), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalStepScrollDistanceProperty, defaultValueCreator: GetInternalStepScrollDistanceProperty);
+                WheelScrollDistanceProperty = BindableProperty.Create(nameof(WheelScrollDistance), typeof(float), typeof(ScrollableBase), default(float),
+                    propertyChanged: SetInternalWheelScrollDistanceProperty, defaultValueCreator: GetInternalWheelScrollDistanceProperty);
+                FadeScrollbarProperty = BindableProperty.Create(nameof(FadeScrollbar), typeof(bool), typeof(ScrollableBase), default(bool),
+                    propertyChanged: SetInternalFadeScrollbarProperty, defaultValueCreator: GetInternalFadeScrollbarProperty);
+            }
         }
 
         /// <summary>
@@ -1471,11 +1775,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(EnableOverShootingEffectProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableOverShootingEffectProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableOverShootingEffectProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableOverShootingEffectProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableOverShootingEffectProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableOverShootingEffectProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
