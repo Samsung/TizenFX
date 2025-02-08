@@ -623,6 +623,281 @@ namespace Tizen.NUI
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
+        internal PropertyMap Add(string key, PropertyMap propertyMapValue)
+        {
+            using var propertyValue = new PropertyValue(propertyMapValue);
+            return Add(key, propertyValue);
+        }
+
+        internal PropertyMap Add(int key, PropertyMap propertyMapValue)
+        {
+            using var propertyValue = new PropertyValue(propertyMapValue);
+            return Add(key, propertyValue);
+        }
+
+        internal PropertyMap Add(string key, PropertyArray propertyArrayValue)
+        {
+            using var propertyValue = new PropertyValue(propertyArrayValue);
+            return Add(key, propertyValue);
+        }
+
+        internal PropertyMap Add(int key, PropertyArray propertyArrayValue)
+        {
+            using var propertyValue = new PropertyValue(propertyArrayValue);
+            return Add(key, propertyValue);
+        }
+
+        internal PropertyMap Add(int key, Vector2 value)
+        {
+            if (null == value)
+            {
+                using var propertyValue1 = new PropertyValue();
+                using var propertyValue2 = new PropertyValue(propertyValue1);
+                Add(key, propertyValue2);
+            }
+            else
+            {
+                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+                if (cPtr != global::System.IntPtr.Zero)
+                {
+                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+                }
+
+                Interop.PropertyMap.AddVector2(SwigCPtr, key, value.X, value.Y);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(string key, Vector2 value)
+        {
+            if (null == value)
+            {
+                using var propertyValue1 = new PropertyValue();
+                using var propertyValue2 = new PropertyValue(propertyValue1);
+                Add(key, propertyValue2);
+            }
+            else
+            {
+                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+                if (cPtr != global::System.IntPtr.Zero)
+                {
+                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+                }
+
+                Interop.PropertyMap.AddVector2(SwigCPtr, key, value.X, value.Y);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+
+        internal PropertyMap Add(int key, Vector3 value)
+        {
+            if (null == value)
+            {
+                using var propertyValue1 = new PropertyValue();
+                using var propertyValue2 = new PropertyValue(propertyValue1);
+                Add(key, propertyValue2);
+            }
+            else
+            {
+                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+                if (cPtr != global::System.IntPtr.Zero)
+                {
+                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+                }
+
+                Interop.PropertyMap.AddVector3(SwigCPtr, key, getCPtr(value));
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(int key, Vector4 value)
+        {
+            if (null == value)
+            {
+                using var propertyValue1 = new PropertyValue();
+                using var propertyValue2 = new PropertyValue(propertyValue1);
+                Add(key, propertyValue2);
+            }
+            else
+            {
+                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+                if (cPtr != global::System.IntPtr.Zero)
+                {
+                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+                }
+
+                Interop.PropertyMap.AddVector4(SwigCPtr, key, value.X, value.Y, value.Z, value.W);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(string key, Vector4 value)
+        {
+            if (null == value)
+            {
+                using var propertyValue1 = new PropertyValue();
+                using var propertyValue2 = new PropertyValue(propertyValue1);
+                Add(key, propertyValue2);
+            }
+            else
+            {
+                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+                if (cPtr != global::System.IntPtr.Zero)
+                {
+                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+                }
+
+                Interop.PropertyMap.AddVector4(SwigCPtr, key, value.X, value.Y, value.Z, value.W);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(int key, Rectangle value)
+        {
+            if (null == value)
+            {
+                using var propertyValue1 = new PropertyValue();
+                using var propertyValue2 = new PropertyValue(propertyValue1);
+                Add(key, propertyValue2);
+            }
+            else
+            {
+                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+                if (cPtr != global::System.IntPtr.Zero)
+                {
+                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+                }
+
+                Interop.PropertyMap.AddVector4(SwigCPtr, key, value.X, value.Y, value.Width, value.Height);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(int key, string value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddString(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(string key, string value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddString(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(int key, bool value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddBool(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(string key, bool value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddBool(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(int key, int value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddInt(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(string key, int value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddInt(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(int key, float value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddFloat(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Add(string key, float value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            Interop.PropertyMap.AddFloat(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

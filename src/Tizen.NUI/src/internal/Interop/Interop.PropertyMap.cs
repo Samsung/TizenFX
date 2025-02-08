@@ -98,20 +98,38 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Bool")]
             public static extern IntPtr AddBool(HandleRef propertyMap, int key, bool value);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_Bool")]
+            public static extern IntPtr AddBool(HandleRef propertyMap, string key, bool value);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Int")]
             public static extern IntPtr AddInt(HandleRef propertyMap, int key, int value);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_Int")]
+            public static extern IntPtr AddInt(HandleRef propertyMap, string key, int value);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Float")]
             public static extern IntPtr AddFloat(HandleRef propertyMap, int key, float value);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_Float")]
+            public static extern IntPtr AddFloat(HandleRef propertyMap, string key, float value);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Str")]
             public static extern IntPtr AddString(HandleRef propertyMap, int key, string value);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_Str")]
+            public static extern IntPtr AddString(HandleRef propertyMap, string key, string value);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Vector2")]
             public static extern IntPtr AddVector2(HandleRef propertyMap, int key, HandleRef value);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_Vector2")]
+            public static extern IntPtr AddVector2(HandleRef propertyMap, string key, HandleRef value);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_NVector2")]
             public static extern IntPtr AddVector2(HandleRef propertyMap, int key, float x, float y);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_NVector2")]
+            public static extern IntPtr AddVector2(HandleRef propertyMap, string key, float x, float y);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Vector3")]
             public static extern IntPtr AddVector3(HandleRef propertyMap, int key, HandleRef value);
@@ -121,6 +139,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_NVector4")]
             public static extern IntPtr AddVector4(HandleRef propertyMap, int key, float x, float y, float z, float w);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Str_NVector4")]
+            public static extern IntPtr AddVector4(HandleRef propertyMap, string key, float x, float y, float z, float w);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add_Int_Rectangle")]
             public static extern IntPtr AddRectangle(HandleRef propertyMap, int key, HandleRef value);
