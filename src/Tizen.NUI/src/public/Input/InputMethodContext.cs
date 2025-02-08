@@ -77,7 +77,7 @@ namespace Tizen.NUI
             {
                 if (activatedEventHandler == null)
                 {
-                    activatedEventCallback = OnActivated;
+                    CreateSafeCallback(OnActivated, out activatedEventCallback);
                     ActivatedSignal().Connect(activatedEventCallback);
                 }
 
@@ -90,6 +90,7 @@ namespace Tizen.NUI
                 if (activatedEventHandler == null && activatedEventCallback != null)
                 {
                     ActivatedSignal().Disconnect(activatedEventCallback);
+                    ReleaseSafeCallback(ref activatedEventCallback);
                 }
             }
         }
@@ -104,7 +105,7 @@ namespace Tizen.NUI
             {
                 if (eventReceivedEventHandler == null)
                 {
-                    eventReceivedEventCallback = OnEventReceived;
+                    CreateSafeCallback(OnEventReceived, out eventReceivedEventCallback);
                     EventReceivedSignal().Connect(eventReceivedEventCallback);
                 }
 
@@ -117,6 +118,7 @@ namespace Tizen.NUI
                 if (eventReceivedEventHandler == null && eventReceivedEventCallback != null)
                 {
                     EventReceivedSignal().Disconnect(eventReceivedEventCallback);
+                    ReleaseSafeCallback(ref eventReceivedEventCallback);
                 }
             }
         }
@@ -131,7 +133,7 @@ namespace Tizen.NUI
             {
                 if (statusChangedEventHandler == null)
                 {
-                    statusChangedEventCallback = OnStatusChanged;
+                    CreateSafeCallback(OnStatusChanged, out statusChangedEventCallback);
                     StatusChangedSignal().Connect(statusChangedEventCallback);
                 }
 
@@ -144,6 +146,7 @@ namespace Tizen.NUI
                 if (statusChangedEventHandler == null && statusChangedEventCallback != null)
                 {
                     StatusChangedSignal().Disconnect(statusChangedEventCallback);
+                    ReleaseSafeCallback(ref statusChangedEventCallback);
                 }
             }
         }
@@ -158,7 +161,7 @@ namespace Tizen.NUI
             {
                 if (resizedEventHandler == null)
                 {
-                    resizedEventCallback = OnResized;
+                    CreateSafeCallback(OnResized, out resizedEventCallback);
                     ResizedSignal().Connect(resizedEventCallback);
                 }
 
@@ -171,6 +174,7 @@ namespace Tizen.NUI
                 if (resizedEventHandler == null && resizedEventCallback != null)
                 {
                     ResizedSignal().Disconnect(resizedEventCallback);
+                    ReleaseSafeCallback(ref resizedEventCallback);
                 }
             }
         }
@@ -185,7 +189,7 @@ namespace Tizen.NUI
             {
                 if (languageChangedEventHandler == null)
                 {
-                    languageChangedEventCallback = OnLanguageChanged;
+                    CreateSafeCallback(OnLanguageChanged, out languageChangedEventCallback);
                     LanguageChangedSignal().Connect(languageChangedEventCallback);
                 }
 
@@ -198,6 +202,7 @@ namespace Tizen.NUI
                 if (languageChangedEventHandler == null && languageChangedEventCallback != null)
                 {
                     LanguageChangedSignal().Disconnect(languageChangedEventCallback);
+                    ReleaseSafeCallback(ref languageChangedEventCallback);
                 }
             }
         }
@@ -212,7 +217,7 @@ namespace Tizen.NUI
             {
                 if (keyboardTypeChangedEventHandler == null)
                 {
-                    keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
+                    CreateSafeCallback(OnKeyboardTypeChanged, out keyboardTypeChangedEventCallback);
                     KeyboardTypeChangedSignal().Connect(keyboardTypeChangedEventCallback);
                 }
 
@@ -225,6 +230,7 @@ namespace Tizen.NUI
                 if (keyboardTypeChangedEventHandler == null && keyboardTypeChangedEventCallback != null)
                 {
                     KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+                    ReleaseSafeCallback(ref keyboardTypeChangedEventCallback);
                 }
             }
         }
@@ -240,7 +246,7 @@ namespace Tizen.NUI
             {
                 if (contentReceivedEventHandler == null)
                 {
-                    contentReceivedEventCallback = OnContentReceived;
+                    CreateSafeCallback(OnContentReceived, out contentReceivedEventCallback);
                     ContentReceivedSignal().Connect(contentReceivedEventCallback);
                 }
 
@@ -253,6 +259,7 @@ namespace Tizen.NUI
                 if (contentReceivedEventHandler == null && contentReceivedEventCallback != null)
                 {
                     ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
+                    ReleaseSafeCallback(ref contentReceivedEventCallback);
                 }
             }
         }
@@ -793,12 +800,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void ApplyOptions(InputMethodOptions options)
-        {
-            Interop.InputMethodContext.ApplyOptions(SwigCPtr, InputMethodOptions.getCPtr(options));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void AllowTextPrediction(bool prediction)
         {
             Interop.InputMethodContext.AllowTextPrediction(SwigCPtr, prediction);
@@ -880,42 +881,63 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance
             //because the execution order of Finalizes is non-deterministic.
 
+            if (type == DisposeTypes.Explicit)
+            {
+                DisconnectNativeSignals();
+            }
+
+            base.Dispose(type);
+        }
+
+        private void DisconnectNativeSignals()
+        {
+            if (HasBody() == false)
+            {
+                NUILog.Debug($"[Dispose] DisConnectFromSignals() No native body! No need to Disconnect Signals!");
+                return;
+            }
+
             if (activatedEventCallback != null)
             {
                 ActivatedSignal().Disconnect(activatedEventCallback);
+                activatedEventCallback = null;
             }
 
             if (eventReceivedEventCallback != null)
             {
                 EventReceivedSignal().Disconnect(eventReceivedEventCallback);
+                eventReceivedEventCallback = null;
             }
 
             if (statusChangedEventCallback != null)
             {
                 StatusChangedSignal().Disconnect(statusChangedEventCallback);
+                statusChangedEventCallback = null;
             }
 
             if (resizedEventCallback != null)
             {
                 ResizedSignal().Disconnect(resizedEventCallback);
+                resizedEventCallback = null;
             }
 
             if (languageChangedEventCallback != null)
             {
                 LanguageChangedSignal().Disconnect(languageChangedEventCallback);
+                languageChangedEventCallback = null;
             }
 
             if (keyboardTypeChangedEventCallback != null)
             {
                 KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+                keyboardTypeChangedEventCallback = null;
             }
 
             if (contentReceivedEventCallback != null)
             {
                 ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
+                contentReceivedEventCallback = null;
             }
-
-            base.Dispose(type);
         }
 
         /// This will not be public opened.
@@ -1068,6 +1090,22 @@ namespace Tizen.NUI
             {
                 contentReceivedEventHandler(this, e);
             }
+        }
+
+        void CreateSafeCallback<T>(T method, out T safeCallback) where T : Delegate
+        {
+            AddToNativeHolder(method);
+            safeCallback = method;
+        }
+
+        void ReleaseSafeCallback<T>(ref T safeCallback) where T : Delegate
+        {
+            System.Diagnostics.Debug.Assert(safeCallback != null);
+            // FIXME: If eventReceivedEventCallback is removed from nativeholder,
+            //        then it is called from unmanaged code although it is disconnected.
+            //        So the callbacks are not removed from nativeholder until dispose.
+            // RemoveFromNativeHolder(safeCallback);
+            safeCallback = null;
         }
 
         /// <summary>

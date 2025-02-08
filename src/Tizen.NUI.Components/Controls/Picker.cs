@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -90,6 +91,19 @@ namespace Tizen.NUI.Components
         private View keyEditModeIndicator = null;
         private View UpperMask = null; //For Tizen 7.0 UX
         private View LowerMask = null; //For Tizen 7.0 UX
+
+        static Picker()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(int), typeof(Picker), default(int),
+                    propertyChanged: SetInternalCurrentValueProperty, defaultValueCreator: GetInternalCurrentValueProperty);
+                MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(Picker), default(int),
+                    propertyChanged: SetInternalMaxValueProperty, defaultValueCreator: GetInternalMaxValueProperty);
+                MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(Picker), default(int),
+                    propertyChanged: SetInternalMinValueProperty, defaultValueCreator: GetInternalMinValueProperty);
+            }
+        }
 
 
         /// <summary>
@@ -213,11 +227,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(CurrentValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CurrentValueProperty);
+                }
+                else
+                {
+                    return (int)GetInternalCurrentValueProperty(this);
+                }
             }
             set
             {
-                SetValue(CurrentValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentValueProperty, value);
+                }
+                else
+                {
+                    SetInternalCurrentValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -246,11 +274,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(MaxValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(MaxValueProperty);
+                }
+                else
+                {
+                    return (int)GetInternalMaxValueProperty(this);
+                }
             }
             set
             {
-                SetValue(MaxValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MaxValueProperty, value);
+                }
+                else
+                {
+                    SetInternalMaxValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -280,11 +322,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(MinValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(MinValueProperty);
+                }
+                else
+                {
+                    return (int)GetInternalMinValueProperty(this);
+                }
             }
             set
             {
-                SetValue(MinValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinValueProperty, value);
+                }
+                else
+                {
+                    SetInternalMinValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

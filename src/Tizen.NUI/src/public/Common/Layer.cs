@@ -809,11 +809,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal void SetSortFunction(SWIGTYPE_p_f_r_q_const__Dali__Vector3__float function)
-        {
-            Interop.Layer.SetSortFunction(SwigCPtr, SWIGTYPE_p_f_r_q_const__Dali__Vector3__float.getCPtr(function));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         internal bool IsTouchConsumed()
         {

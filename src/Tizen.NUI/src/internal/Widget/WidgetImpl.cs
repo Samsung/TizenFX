@@ -294,11 +294,6 @@ namespace Tizen.NUI
             Interop.WidgetImpl.SetUsingKeyEvent(SwigCPtr, flag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
-        {
-            Interop.WidgetImpl.SetImpl(SwigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         private void SwigDirectorConnect()
         {

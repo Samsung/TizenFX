@@ -9,54 +9,57 @@ namespace Tizen.NUI.Components
         /// CurrentValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(int), typeof(Picker), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = null;
+        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Picker)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentValue = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
         {
             var instance = (Picker)bindable;
             return instance.InternalCurrentValue;
-        });
+        }
 
         /// <summary>
         /// MaxValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(Picker), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = null;
+        internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Picker)bindable;
             if (newValue != null)
             {
                 instance.InternalMaxValue = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMaxValueProperty(BindableObject bindable)
         {
             var instance = (Picker)bindable;
             return instance.InternalMaxValue;
-        });
+        }
 
         /// <summary>
         /// MinValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(Picker), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = null;
+        internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Picker)bindable;
             if (newValue != null)
             {
                 instance.InternalMinValue = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMinValueProperty(BindableObject bindable)
         {
             var instance = (Picker)bindable;
             return instance.InternalMinValue;
-        });
+        }
     }
 }
