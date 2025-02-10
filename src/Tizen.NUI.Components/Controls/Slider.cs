@@ -72,61 +72,65 @@ namespace Tizen.NUI.Components
         /// SpaceBetweenTrackAndIndicatorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorProperty = BindableProperty.Create(nameof(Indicator), typeof(IndicatorType), typeof(Slider), IndicatorType.None, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorProperty = null;
+        internal static void SetInternalIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
             if (newValue != null)
             {
                 instance.privateIndicatorType = (IndicatorType)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.privateIndicatorType;
-        });
+        }
 
         /// <summary>
         /// SpaceBetweenTrackAndIndicatorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = null;
+        internal static void SetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
             if (newValue != null)
             {
                 instance.privateSpaceBetweenTrackAndIndicator = (uint)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.privateSpaceBetweenTrackAndIndicator;
-        });
+        }
 
         /// <summary>
         /// TrackThicknessProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackThicknessProperty = null;
+        internal static void SetInternalTrackThicknessProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
             if (newValue != null)
             {
                 instance.privateTrackThickness = (uint)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTrackThicknessProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.privateTrackThickness;
-        });
+        }
 
         /// <summary>
         /// IsValueShownProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsValueShownProperty = BindableProperty.Create(nameof(IsValueShown), typeof(bool), typeof(Slider), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsValueShownProperty = null;
+        internal static void SetInternalIsValueShownProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
             if (newValue != null)
@@ -137,18 +141,19 @@ namespace Tizen.NUI.Components
                     instance.isValueShown = newValueShown;
                 }
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIsValueShownProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.isValueShown;
-        });
+        }
 
         /// <summary>
         /// ValueIndicatorTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueIndicatorTextProperty = BindableProperty.Create(nameof(ValueIndicatorText), typeof(string), typeof(Slider), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueIndicatorTextProperty = null;
+        internal static void SetInternalValueIndicatorTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
             if (newValue != null)
@@ -156,12 +161,12 @@ namespace Tizen.NUI.Components
                 string newText = (string)newValue;
                 instance.valueIndicatorText.Text = newText;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalValueIndicatorTextProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.valueIndicatorText.Text;
-        });
+        }
 
         /// <summary>
         /// Bindable property of CurrentValue
@@ -170,46 +175,112 @@ namespace Tizen.NUI.Components
         /// </remark>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(Slider), 0.0f, BindingMode.TwoWay,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var instance = (Slider)bindable;
+        public static readonly BindableProperty CurrentValueProperty = null;
+        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Slider)bindable;
 
-                if (newValue != null)
+            if (newValue != null)
+            {
+                float value = (float)newValue;
+                if (value < instance.minValue)
                 {
-                    float value = (float)newValue;
-                    if (value < instance.minValue)
-                    {
-                        instance.curValue = instance.minValue;
-                    }
-                    else if (value > instance.maxValue)
-                    {
-                        instance.curValue = instance.maxValue;
-                    }
-                    else
-                    {
-                        instance.curValue = value;
-                    }
-
-                    instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs
-                    {
-                        CurrentValue = instance.curValue
-                    });
-                    if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
-                    {
-                        instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
-                    }
-                    instance.UpdateValue();
+                    instance.curValue = instance.minValue;
                 }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var instance = (Slider)bindable;
-                return instance.curValue;
-            }
-        );
+                else if (value > instance.maxValue)
+                {
+                    instance.curValue = instance.maxValue;
+                }
+                else
+                {
+                    instance.curValue = value;
+                }
 
-        static Slider() { }
+                instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs
+                {
+                    CurrentValue = instance.curValue
+                });
+                if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
+                {
+                    instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
+                }
+                instance.UpdateValue();
+            }
+        }
+        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.curValue;
+        }
+
+        static Slider()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IndicatorProperty = BindableProperty.Create(nameof(Indicator), typeof(IndicatorType), typeof(Slider), IndicatorType.None,
+                    propertyChanged: SetInternalIndicatorProperty, defaultValueCreator: GetInternalIndicatorProperty);
+                SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint), typeof(Slider), (uint)0,
+                    propertyChanged: SetInternalSpaceBetweenTrackAndIndicatorProperty, defaultValueCreator: GetInternalSpaceBetweenTrackAndIndicatorProperty);
+                TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint), typeof(Slider), (uint)0,
+                    propertyChanged: SetInternalTrackThicknessProperty, defaultValueCreator: GetInternalTrackThicknessProperty);
+                IsValueShownProperty = BindableProperty.Create(nameof(IsValueShown), typeof(bool), typeof(Slider), true,
+                    propertyChanged: SetInternalIsValueShownProperty, defaultValueCreator: GetInternalIsValueShownProperty);
+                ValueIndicatorTextProperty = BindableProperty.Create(nameof(ValueIndicatorText), typeof(string), typeof(Slider), string.Empty,
+                    propertyChanged: SetInternalValueIndicatorTextProperty, defaultValueCreator: GetInternalValueIndicatorTextProperty);
+                CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(Slider), 0.0f, BindingMode.TwoWay,
+                    propertyChanged: SetInternalCurrentValueProperty, defaultValueCreator: GetInternalCurrentValueProperty);
+                DirectionProperty = BindableProperty.Create(nameof(Direction), typeof(DirectionType), typeof(Slider), default(DirectionType),
+                    propertyChanged: SetInternalDirectionProperty, defaultValueCreator: GetInternalDirectionProperty);
+                MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(float), typeof(Slider), default(float),
+                    propertyChanged: SetInternalMinValueProperty, defaultValueCreator: GetInternalMinValueProperty);
+                MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(float), typeof(Slider), default(float),
+                    propertyChanged: SetInternalMaxValueProperty, defaultValueCreator: GetInternalMaxValueProperty);
+                ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(Slider), null,
+                    propertyChanged: SetInternalThumbSizeProperty, defaultValueCreator: GetInternalThumbSizeProperty);
+                ThumbImageURLProperty = BindableProperty.Create(nameof(ThumbImageURL), typeof(string), typeof(Slider), default(string),
+                    propertyChanged: SetInternalThumbImageURLProperty, defaultValueCreator: GetInternalThumbImageURLProperty);
+                ThumbImageURLSelectorProperty = BindableProperty.Create(nameof(ThumbImageURLSelector), typeof(StringSelector), typeof(Slider), null,
+                    propertyChanged: SetInternalThumbImageURLSelectorProperty, defaultValueCreator: GetInternalThumbImageURLSelectorProperty);
+                ThumbImageUrlProperty = BindableProperty.Create(nameof(ThumbImageUrl), typeof(Selector<string>), typeof(Slider), null,
+                    propertyChanged: SetInternalThumbImageUrlProperty, defaultValueCreator: GetInternalThumbImageUrlProperty);
+                ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Slider), null,
+                    propertyChanged: SetInternalThumbColorProperty, defaultValueCreator: GetInternalThumbColorProperty);
+                BgTrackColorProperty = BindableProperty.Create(nameof(BgTrackColor), typeof(Color), typeof(Slider), null,
+                    propertyChanged: SetInternalBgTrackColorProperty, defaultValueCreator: GetInternalBgTrackColorProperty);
+                SlidedTrackColorProperty = BindableProperty.Create(nameof(SlidedTrackColor), typeof(Color), typeof(Slider), null,
+                    propertyChanged: SetInternalSlidedTrackColorProperty, defaultValueCreator: GetInternalSlidedTrackColorProperty);
+                WarningStartValueProperty = BindableProperty.Create(nameof(WarningStartValue), typeof(float), typeof(Slider), default(float),
+                    propertyChanged: SetInternalWarningStartValueProperty, defaultValueCreator: GetInternalWarningStartValueProperty);
+                WarningTrackColorProperty = BindableProperty.Create(nameof(WarningTrackColor), typeof(Color), typeof(Slider), null,
+                    propertyChanged: SetInternalWarningTrackColorProperty, defaultValueCreator: GetInternalWarningTrackColorProperty);
+                WarningSlidedTrackColorProperty = BindableProperty.Create(nameof(WarningSlidedTrackColor), typeof(Color), typeof(Slider), null,
+                    propertyChanged: SetInternalWarningSlidedTrackColorProperty, defaultValueCreator: GetInternalWarningSlidedTrackColorProperty);
+                WarningThumbImageUrlProperty = BindableProperty.Create(nameof(WarningThumbImageUrl), typeof(Tizen.NUI.BaseComponents.Selector<string>), typeof(Slider), null,
+                    propertyChanged: SetInternalWarningThumbImageUrlProperty, defaultValueCreator: GetInternalWarningThumbImageUrlProperty);
+                WarningThumbColorProperty = BindableProperty.Create(nameof(WarningThumbColor), typeof(Color), typeof(Slider), null,
+                    propertyChanged: SetInternalWarningThumbColorProperty, defaultValueCreator: GetInternalWarningThumbColorProperty);
+                LowIndicatorImageURLProperty = BindableProperty.Create(nameof(LowIndicatorImageURL), typeof(string), typeof(Slider), default(string),
+                    propertyChanged: SetInternalLowIndicatorImageURLProperty, defaultValueCreator: GetInternalLowIndicatorImageURLProperty);
+                HighIndicatorImageURLProperty = BindableProperty.Create(nameof(HighIndicatorImageURL), typeof(string), typeof(Slider), default(string),
+                    propertyChanged: SetInternalHighIndicatorImageURLProperty, defaultValueCreator: GetInternalHighIndicatorImageURLProperty);
+                LowIndicatorTextContentProperty = BindableProperty.Create(nameof(LowIndicatorTextContent), typeof(string), typeof(Slider), default(string),
+                    propertyChanged: SetInternalLowIndicatorTextContentProperty, defaultValueCreator: GetInternalLowIndicatorTextContentProperty);
+                HighIndicatorTextContentProperty = BindableProperty.Create(nameof(HighIndicatorTextContent), typeof(string), typeof(Slider), default(string),
+                    propertyChanged: SetInternalHighIndicatorTextContentProperty, defaultValueCreator: GetInternalHighIndicatorTextContentProperty);
+                LowIndicatorSizeProperty = BindableProperty.Create(nameof(LowIndicatorSize), typeof(Size), typeof(Slider), null,
+                    propertyChanged: SetInternalLowIndicatorSizeProperty, defaultValueCreator: GetInternalLowIndicatorSizeProperty);
+                HighIndicatorSizeProperty = BindableProperty.Create(nameof(HighIndicatorSize), typeof(Size), typeof(Slider), null,
+                    propertyChanged: SetInternalHighIndicatorSizeProperty, defaultValueCreator: GetInternalHighIndicatorSizeProperty);
+                ValueIndicatorSizeProperty = BindableProperty.Create(nameof(ValueIndicatorSize), typeof(Size), typeof(Slider), null,
+                    propertyChanged: SetInternalValueIndicatorSizeProperty, defaultValueCreator: GetInternalValueIndicatorSizeProperty);
+                ValueIndicatorUrlProperty = BindableProperty.Create(nameof(ValueIndicatorUrl), typeof(string), typeof(Slider), default(string),
+                    propertyChanged: SetInternalValueIndicatorUrlProperty, defaultValueCreator: GetInternalValueIndicatorUrlProperty);
+                IsDiscreteProperty = BindableProperty.Create(nameof(IsDiscrete), typeof(bool), typeof(Slider), default(bool),
+                    propertyChanged: SetInternalIsDiscreteProperty, defaultValueCreator: GetInternalIsDiscreteProperty);
+                DiscreteValueProperty = BindableProperty.Create(nameof(DiscreteValue), typeof(float), typeof(Slider), default(float),
+                    propertyChanged: SetInternalDiscreteValueProperty, defaultValueCreator: GetInternalDiscreteValueProperty);
+            }
+        }
 
         /// <summary>
         /// The constructor of the Slider class.
@@ -346,11 +417,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (DirectionType)GetValue(DirectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (DirectionType)GetValue(DirectionProperty);
+                }
+                else
+                {
+                    return (DirectionType)GetInternalDirectionProperty(this);
+                }
             }
             set
             {
-                SetValue(DirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -383,11 +468,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (IndicatorType)GetValue(IndicatorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (IndicatorType)GetValue(IndicatorProperty);
+                }
+                else
+                {
+                    return (IndicatorType)GetInternalIndicatorProperty(this);
+                }
             }
             set
             {
-                SetValue(IndicatorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorProperty(this, null, value);
+                }
             }
         }
 
@@ -399,11 +498,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(MinValueProperty);
+                if (!NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MinValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMinValueProperty(this);
+                }
             }
             set
             {
-                SetValue(MinValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinValueProperty, value);
+                }
+                else
+                {
+                    SetInternalMinValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -428,11 +541,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(MaxValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MaxValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMaxValueProperty(this);
+                }
             }
             set
             {
-                SetValue(MaxValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MaxValueProperty, value);
+                }
+                else
+                {
+                    SetInternalMaxValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -457,11 +584,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(CurrentValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(CurrentValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalCurrentValueProperty(this);
+                }
             }
             set
             {
-                SetValue(CurrentValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentValueProperty, value);
+                }
+                else
+                {
+                    SetInternalCurrentValueProperty(this, null, value);
+                }
             }
         }
 
@@ -473,11 +614,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalThumbSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(ThumbSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -507,11 +662,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalThumbImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(ThumbImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -543,11 +712,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbImageURLSelectorProperty) as StringSelector;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbImageURLSelectorProperty) as StringSelector;
+                }
+                else
+                {
+                    return GetInternalThumbImageURLSelectorProperty(this) as StringSelector;
+                }
             }
             set
             {
-                SetValue(ThumbImageURLSelectorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbImageURLSelectorProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbImageURLSelectorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -584,11 +767,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbImageUrlProperty) as Selector<string>;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbImageUrlProperty) as Selector<string>;
+                }
+                else
+                {
+                    return GetInternalThumbImageUrlProperty(this) as Selector<string>;
+                }
             }
             set
             {
-                SetValue(ThumbImageUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbImageUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbImageUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -626,11 +823,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalThumbColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(ThumbColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbColorProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -684,11 +895,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(BgTrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(BgTrackColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalBgTrackColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(BgTrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BgTrackColorProperty, value);
+                }
+                else
+                {
+                    SetInternalBgTrackColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -715,11 +940,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SlidedTrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SlidedTrackColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalSlidedTrackColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(SlidedTrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SlidedTrackColorProperty, value);
+                }
+                else
+                {
+                    SetInternalSlidedTrackColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -746,11 +985,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (uint)GetValue(TrackThicknessProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint)GetValue(TrackThicknessProperty);
+                }
+                else
+                {
+                    return (uint)GetInternalTrackThicknessProperty(this);
+                }
             }
             set
             {
-                SetValue(TrackThicknessProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackThicknessProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackThicknessProperty(this, null, value);
+                }
             }
         }
 
@@ -763,11 +1016,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(WarningStartValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(WarningStartValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalWarningStartValueProperty(this);
+                }
             }
             set
             {
-                SetValue(WarningStartValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WarningStartValueProperty, value);
+                }
+                else
+                {
+                    SetInternalWarningStartValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -793,11 +1060,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(WarningTrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(WarningTrackColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalWarningTrackColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(WarningTrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WarningTrackColorProperty, value);
+                }
+                else
+                {
+                    SetInternalWarningTrackColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -825,11 +1106,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(WarningSlidedTrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(WarningSlidedTrackColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalWarningSlidedTrackColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(WarningSlidedTrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WarningSlidedTrackColorProperty, value);
+                }
+                else
+                {
+                    SetInternalWarningSlidedTrackColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -858,11 +1153,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(WarningThumbImageUrlProperty) as Selector<string>;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(WarningThumbImageUrlProperty) as Selector<string>;
+                }
+                else
+                {
+                    return GetInternalWarningThumbImageUrlProperty(this) as Selector<string>;
+                }
             }
             set
             {
-                SetValue(WarningThumbImageUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WarningThumbImageUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalWarningThumbImageUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -894,11 +1203,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(WarningThumbColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(WarningThumbColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalWarningThumbColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(WarningThumbColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(WarningThumbColorProperty, value);
+                }
+                else
+                {
+                    SetInternalWarningThumbColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -922,11 +1245,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(LowIndicatorImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(LowIndicatorImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalLowIndicatorImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(LowIndicatorImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LowIndicatorImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalLowIndicatorImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -958,11 +1295,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(HighIndicatorImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(HighIndicatorImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalHighIndicatorImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(HighIndicatorImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HighIndicatorImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalHighIndicatorImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -994,11 +1345,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(LowIndicatorTextContentProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(LowIndicatorTextContentProperty) as string;
+                }
+                else
+                {
+                    return GetInternalLowIndicatorTextContentProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(LowIndicatorTextContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LowIndicatorTextContentProperty, value);
+                }
+                else
+                {
+                    SetInternalLowIndicatorTextContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1025,11 +1390,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(HighIndicatorTextContentProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(HighIndicatorTextContentProperty) as string;
+                }
+                else
+                {
+                    return GetInternalHighIndicatorTextContentProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(HighIndicatorTextContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HighIndicatorTextContentProperty, value);
+                }
+                else
+                {
+                    SetInternalHighIndicatorTextContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1056,11 +1435,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(LowIndicatorSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(LowIndicatorSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalLowIndicatorSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(LowIndicatorSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LowIndicatorSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalLowIndicatorSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1088,11 +1481,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(HighIndicatorSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(HighIndicatorSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalHighIndicatorSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(HighIndicatorSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HighIndicatorSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalHighIndicatorSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1120,11 +1527,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (uint)GetValue(SpaceBetweenTrackAndIndicatorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint)GetValue(SpaceBetweenTrackAndIndicatorProperty);
+                }
+                else
+                {
+                    return (uint)GetInternalSpaceBetweenTrackAndIndicatorProperty(this);
+                }
             }
             set
             {
-                SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
+                }
+                else
+                {
+                    SetInternalSpaceBetweenTrackAndIndicatorProperty(this, null, value);
+                }
             }
         }
 
@@ -1136,11 +1557,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(IsValueShownProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(IsValueShownProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalIsValueShownProperty(this);
+                }
             }
             set
             {
-                SetValue(IsValueShownProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsValueShownProperty, value);
+                }
+                else
+                {
+                    SetInternalIsValueShownProperty(this, null, value);
+                }
             }
         }
 
@@ -1152,11 +1587,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (string)GetValue(ValueIndicatorTextProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(ValueIndicatorTextProperty);
+                }
+                else
+                {
+                    return (string)GetInternalValueIndicatorTextProperty(this);
+                }
             }
             set
             {
-                SetValue(ValueIndicatorTextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ValueIndicatorTextProperty, value);
+                }
+                else
+                {
+                    SetInternalValueIndicatorTextProperty(this, null, value);
+                }
             }
         }
 
@@ -1168,11 +1617,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ValueIndicatorSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ValueIndicatorSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalValueIndicatorSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(ValueIndicatorSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ValueIndicatorSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalValueIndicatorSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1199,11 +1662,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ValueIndicatorUrlProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ValueIndicatorUrlProperty) as string;
+                }
+                else
+                {
+                    return GetInternalValueIndicatorUrlProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(ValueIndicatorUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ValueIndicatorUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalValueIndicatorUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1232,11 +1709,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(IsDiscreteProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(IsDiscreteProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalIsDiscreteProperty(this);
+                }
             }
             set
             {
-                SetValue(IsDiscreteProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsDiscreteProperty, value);
+                }
+                else
+                {
+                    SetInternalIsDiscreteProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1256,11 +1747,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(DiscreteValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(DiscreteValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalDiscreteValueProperty(this);
+                }
             }
             set
             {
-                SetValue(DiscreteValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DiscreteValueProperty, value);
+                }
+                else
+                {
+                    SetInternalDiscreteValueProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

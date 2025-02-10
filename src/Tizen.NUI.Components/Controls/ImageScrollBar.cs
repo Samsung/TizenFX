@@ -160,6 +160,14 @@ namespace Tizen.NUI.Components
                     propertyChanged: SetInternalCurrentValueProperty, defaultValueCreator: GetInternalCurrentValueProperty);
                 DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(ScrollBar), default(uint),
                     propertyChanged: SetInternalDurationProperty, defaultValueCreator: GetInternalDurationProperty);
+                ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(ScrollBar), null,
+                    propertyChanged: SetInternalThumbSizeProperty, defaultValueCreator: GetInternalThumbSizeProperty);
+                TrackImageURLProperty = BindableProperty.Create(nameof(TrackImageURL), typeof(string), typeof(ScrollBar), default(string),
+                    propertyChanged: SetInternalTrackImageURLProperty, defaultValueCreator: GetInternalTrackImageURLProperty);
+                TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollBar), null,
+                    propertyChanged: SetInternalTrackColorProperty, defaultValueCreator: GetInternalTrackColorProperty);
+                ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollBar), null,
+                    propertyChanged: SetInternalThumbColorProperty, defaultValueCreator: GetInternalThumbColorProperty);
             }
         }
 
@@ -273,11 +281,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalThumbSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(ThumbSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -307,11 +329,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TrackImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TrackImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTrackImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TrackImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -341,11 +377,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TrackColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalTrackColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(TrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackColorProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -374,11 +424,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalThumbColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(ThumbColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbColorProperty, value);
+                }
+                else
+                {
+                    SetInternalThumbColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
