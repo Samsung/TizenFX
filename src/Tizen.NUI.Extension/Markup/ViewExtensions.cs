@@ -731,5 +731,61 @@ namespace Tizen.NUI.Extension
             view.LayoutHeight = layoutHeight;
             return view;
         }
+
+        /// <summary>
+        /// Sets the minimum width of the view used to size the view within its parent layout container.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="minimumWidth">The minimum width value.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T MinimumWidth<T>(this T view, float minimumWidth) where T : View
+        {
+            view.SetMinimumWidth(minimumWidth, true);
+            return view;
+        }
+
+        /// <summary>
+        /// Sets the minimum height of the view used to size the view within its parent layout container.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="minimumHeight">The minimum height value.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T MinimumHeight<T>(this T view, float minimumHeight) where T : View
+        {
+            view.SetMinimumHeight(minimumHeight, true);
+            return view;
+        }
+
+        /// <summary>
+        /// Sets the maximum width of the view used to size the view within its parent layout container.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="maximumWidth">The maximum width value.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T MaximumWidth<T>(this T view, float maximumWidth) where T : View
+        {
+            view.SetMaximumWidth(maximumWidth, true);
+            return view;
+        }
+
+        /// <summary>
+        /// Sets the maximum height of the view used to size the view within its parent layout container.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="maximumHeight">The maximum height value.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T MaximumHeight<T>(this T view, float maximumHeight) where T : View
+        {
+            view.SetMaximumHeight(maximumHeight, true);
+            return view;
+        }
     }
 }

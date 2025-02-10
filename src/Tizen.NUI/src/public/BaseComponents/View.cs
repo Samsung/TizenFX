@@ -4196,6 +4196,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
+
+                if (HasMinimumWidth())
+                    SetMinimumWidth(value.Width, false);
+                if (HasMinimumHeight())
+                    SetMinimumHeight(value.Height, false);
+
                 if (layoutExtraData?.Layout is LayoutItem layout)
                 {
                     // Note: it only works if minimum size is >= than natural size.
@@ -4246,6 +4252,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (HasMaximumWidth())
+                    SetMaximumWidth(value.Width, false);
+                if (HasMaximumHeight())
+                    SetMaximumHeight(value.Height, false);
+
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
                 RequestLayout();
@@ -5155,6 +5166,15 @@ namespace Tizen.NUI.BaseComponents
                     SetLayoutWidth(widthPolicy);
                 if (!hasLayoutHeight)
                     SetLayoutHeight(heightPolicy);
+
+                if (!HasMinimumWidth())
+                    SetMinimumWidth(MinimumSize.Width, false);
+                if (!HasMinimumHeight())
+                    SetMinimumHeight(MinimumSize.Height, false);
+                if (!HasMaximumWidth())
+                    SetMaximumWidth(MaximumSize.Width, false);
+                if (!HasMaximumHeight())
+                    SetMaximumHeight(MaximumSize.Height, false);
 
                 // Do nothing if layout provided is already set on this View.
                 if (value == layoutExtraData.Layout)
@@ -6107,6 +6127,146 @@ namespace Tizen.NUI.BaseComponents
         internal bool HasLayoutHeight()
         {
             return layoutExtraData?.Height == null ? false : true;
+        }
+
+        internal void SetMinimumWidth(float minimumWidth, bool updateMinimumSize)
+        {
+            if (float.IsNaN(minimumWidth))
+            {
+                return;
+            }
+
+            var layoutExtraData = EnsureLayoutExtraData();
+            if (layoutExtraData.MinimumWidth != minimumWidth)
+            {
+                if (updateMinimumSize)
+                {
+                    if (minimumWidth >= int.MaxValue)
+                    {
+                        MinimumSize.Width = int.MaxValue;
+                    }
+                    else if (minimumWidth <= int.MinValue)
+                    {
+                        MinimumSize.Width = int.MinValue;
+                    }
+                    else
+                    {
+                        MinimumSize.Width = (int)minimumWidth;
+                    }
+                }
+                layoutExtraData.MinimumWidth = minimumWidth;
+                layoutExtraData.Layout?.RequestLayout();
+            }
+        }
+
+        internal void SetMinimumHeight(float minimumHeight, bool updateMinimumSize)
+        {
+            if (float.IsNaN(minimumHeight))
+            {
+                return;
+            }
+
+            var layoutExtraData = EnsureLayoutExtraData();
+            if (layoutExtraData.MinimumHeight != minimumHeight)
+            {
+                if (updateMinimumSize)
+                {
+                    if (minimumHeight >= int.MaxValue)
+                    {
+                        MinimumSize.Height = int.MaxValue;
+                    }
+                    else if (minimumHeight <= int.MinValue)
+                    {
+                        MinimumSize.Height = int.MinValue;
+                    }
+                    else
+                    {
+                        MinimumSize.Height = (int)minimumHeight;
+                    }
+                }
+                layoutExtraData.MinimumHeight = minimumHeight;
+                layoutExtraData.Layout?.RequestLayout();
+            }
+        }
+
+        internal void SetMaximumWidth(float maximumWidth, bool updateMaximumSize)
+        {
+            if (float.IsNaN(maximumWidth))
+            {
+                return;
+            }
+
+            var layoutExtraData = EnsureLayoutExtraData();
+            if (layoutExtraData.MaximumWidth != maximumWidth)
+            {
+                if (updateMaximumSize)
+                {
+                    if (maximumWidth >= int.MaxValue)
+                    {
+                        MaximumSize.Width = int.MaxValue;
+                    }
+                    else if (maximumWidth <= int.MinValue)
+                    {
+                        MaximumSize.Width = int.MinValue;
+                    }
+                    else
+                    {
+                        MaximumSize.Width = (int)maximumWidth;
+                    }
+                }
+                layoutExtraData.MaximumWidth = maximumWidth;
+                layoutExtraData.Layout?.RequestLayout();
+            }
+        }
+
+        internal void SetMaximumHeight(float maximumHeight, bool updateMaximumSize)
+        {
+            if (float.IsNaN(maximumHeight))
+            {
+                return;
+            }
+
+            var layoutExtraData = EnsureLayoutExtraData();
+            if (layoutExtraData.MaximumHeight != maximumHeight)
+            {
+                if (updateMaximumSize)
+                {
+                    if (maximumHeight >= int.MaxValue)
+                    {
+                        MaximumSize.Height = int.MaxValue;
+                    }
+                    else if (maximumHeight <= int.MinValue)
+                    {
+                        MaximumSize.Height = int.MinValue;
+                    }
+                    else
+                    {
+                        MaximumSize.Height = (int)maximumHeight;
+                    }
+                }
+                layoutExtraData.MaximumHeight = maximumHeight;
+                layoutExtraData.Layout?.RequestLayout();
+            }
+        }
+
+        internal bool HasMinimumWidth()
+        {
+            return layoutExtraData?.MinimumWidth == null ? false : true;
+        }
+
+        internal bool HasMinimumHeight()
+        {
+            return layoutExtraData?.MinimumHeight == null ? false : true;
+        }
+
+        internal bool HasMaximumWidth()
+        {
+            return layoutExtraData?.MaximumWidth == null ? false : true;
+        }
+
+        internal bool HasMaximumHeight()
+        {
+            return layoutExtraData?.MaximumHeight == null ? false : true;
         }
     }
 }
