@@ -787,5 +787,35 @@ namespace Tizen.NUI.Extension
             view.SetMaximumHeight(maximumHeight, true);
             return view;
         }
+
+        /// <summary>
+        /// Sets the margin of the view used to size and position the view within its parent layout container.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="margin">The margin value.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T Margin<T>(this T view, UIExtents margin) where T : View
+        {
+            // FIXME: UIExtents is not supported yet. Instead, Extents is used internally.
+            view.SetMargin(margin, true);
+            return view;
+        }
+
+        /// <summary>
+        /// Sets the padding of the view used to size and position the child views within this layout container.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="padding">The padding value.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T Padding<T>(this T view, UIExtents padding) where T : View
+        {
+            // FIXME: UIExtents is not supported yet. Instead, Extents is used internally.
+            view.SetPadding(padding, true);
+            return view;
+        }
     }
 }

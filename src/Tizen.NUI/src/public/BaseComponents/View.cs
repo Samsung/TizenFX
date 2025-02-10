@@ -5176,6 +5176,11 @@ namespace Tizen.NUI.BaseComponents
                 if (!HasMaximumHeight())
                     SetMaximumHeight(MaximumSize.Height, false);
 
+                if (!HasMargin())
+                    SetMargin(new UIExtents(Margin.Start, Margin.End, Margin.Top, Margin.End), false);
+                if (!HasPadding())
+                    SetPadding(new UIExtents(Padding.Start, Padding.End, Padding.Top, Padding.End), false);
+
                 // Do nothing if layout provided is already set on this View.
                 if (value == layoutExtraData.Layout)
                 {
@@ -6267,6 +6272,54 @@ namespace Tizen.NUI.BaseComponents
         internal bool HasMaximumHeight()
         {
             return layoutExtraData?.MaximumHeight == null ? false : true;
+        }
+
+        internal void SetMargin(UIExtents margin, bool updateMargin)
+        {
+            if (margin.IsNaN)
+            {
+                return;
+            }
+
+            var layoutExtraData = EnsureLayoutExtraData();
+            if (layoutExtraData.Margin != margin)
+            {
+                if (updateMargin)
+                {
+                    Margin = new Extents(margin);
+                }
+                layoutExtraData.Margin = margin;
+                layoutExtraData.Layout?.RequestLayout();
+            }
+        }
+
+        internal bool HasMargin()
+        {
+            return layoutExtraData?.Margin == null ? false : true;
+        }
+
+        internal void SetPadding(UIExtents padding, bool updatePadding)
+        {
+            if (padding.IsNaN)
+            {
+                return;
+            }
+
+            var layoutExtraData = EnsureLayoutExtraData();
+            if (layoutExtraData.Padding != padding)
+            {
+                if (updatePadding)
+                {
+                    Padding = new Extents(padding);
+                }
+                layoutExtraData.Padding = padding;
+                layoutExtraData.Layout?.RequestLayout();
+            }
+        }
+
+        internal bool HasPadding()
+        {
+            return layoutExtraData?.Padding == null ? false : true;
         }
     }
 }
