@@ -1494,6 +1494,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                if (view.HasPadding() && newValue is Extents newPadding)
+                    view.SetPadding(new UIExtents(newPadding.Start, newPadding.End, newPadding.Top, newPadding.Bottom), false);
+
                 if (view.Layout != null)
                 {
                     view.Layout.Padding = new Extents((Extents)newValue);
@@ -1752,6 +1755,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                if (view.HasMargin() && newValue is Extents newMargin)
+                    view.SetMargin(new UIExtents(newMargin.Start, newMargin.End, newMargin.Top, newMargin.Bottom), false);
+
                 if (view.Layout != null)
                 {
                     view.Layout.Margin = new Extents((Extents)newValue);
