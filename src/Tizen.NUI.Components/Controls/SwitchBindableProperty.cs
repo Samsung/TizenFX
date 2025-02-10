@@ -9,73 +9,76 @@ namespace Tizen.NUI.Components
         /// SwitchBackgroundImageURLSelectorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SwitchBackgroundImageURLSelectorProperty = BindableProperty.Create(nameof(SwitchBackgroundImageURLSelector), typeof(StringSelector), typeof(Switch), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SwitchBackgroundImageURLSelectorProperty = null;
+        internal static void SetInternalSwitchBackgroundImageURLSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Switch)bindable;
             if (newValue != null)
             {
                 instance.InternalSwitchBackgroundImageURLSelector = newValue as StringSelector;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSwitchBackgroundImageURLSelectorProperty(BindableObject bindable)
         {
             var instance = (Switch)bindable;
             return instance.InternalSwitchBackgroundImageURLSelector;
-        });
+        }
 
         /// <summary>
         /// SwitchHandlerImageURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SwitchHandlerImageURLProperty = BindableProperty.Create(nameof(SwitchHandlerImageURL), typeof(string), typeof(Switch), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SwitchHandlerImageURLProperty = null;
+        internal static void SetInternalSwitchHandlerImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Switch)bindable;
             if (newValue != null)
             {
                 instance.InternalSwitchHandlerImageURL = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSwitchHandlerImageURLProperty(BindableObject bindable)
         {
             var instance = (Switch)bindable;
             return instance.InternalSwitchHandlerImageURL;
-        });
+        }
 
         /// <summary>
         /// SwitchHandlerImageURLSelectorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SwitchHandlerImageURLSelectorProperty = BindableProperty.Create(nameof(SwitchHandlerImageURLSelector), typeof(StringSelector), typeof(Switch), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SwitchHandlerImageURLSelectorProperty = null;
+        internal static void SetInternalSwitchHandlerImageURLSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Switch)bindable;
             if (newValue != null)
             {
                 instance.InternalSwitchHandlerImageURLSelector = newValue as StringSelector;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSwitchHandlerImageURLSelectorProperty(BindableObject bindable)
         {
             var instance = (Switch)bindable;
             return instance.InternalSwitchHandlerImageURLSelector;
-        });
+        }
 
         /// <summary>
         /// SwitchHandlerImageSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SwitchHandlerImageSizeProperty = BindableProperty.Create(nameof(SwitchHandlerImageSize), typeof(Size), typeof(Switch), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SwitchHandlerImageSizeProperty = null;
+        internal static void SetInternalSwitchHandlerImageSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Switch)bindable;
             if (newValue != null)
             {
                 instance.InternalSwitchHandlerImageSize = newValue as Size;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSwitchHandlerImageSizeProperty(BindableObject bindable)
         {
             var instance = (Switch)bindable;
             return instance.InternalSwitchHandlerImageSize;
-        });
-
+        }
     }
 }
