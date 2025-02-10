@@ -77,6 +77,16 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public float MaximumHeight { get; set; } = int.MaxValue;
 
+        /// <summary>
+        /// Gets or sets the margin of the view.
+        /// </summary>
+        public UIExtents Margin { get; set; } = UIExtents.Zero;
+
+        /// <summary>
+        /// Gets or sets the padding of the view.
+        /// </summary>
+        public UIExtents Padding { get; set; } = UIExtents.Zero;
+
         ~LayoutExtraData() => Dispose(false);
 
         public void Dispose()
