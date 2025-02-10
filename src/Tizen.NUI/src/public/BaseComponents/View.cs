@@ -6034,10 +6034,9 @@ namespace Tizen.NUI.BaseComponents
         private void RequestLayout() => layoutExtraData?.Layout?.RequestLayout();
 
         /// <summary>
-        /// Gets or sets the width of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// Gets or sets the width of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LayoutDimension LayoutWidth
+        internal LayoutDimension LayoutWidth
         {
             get => layoutExtraData?.Width ?? LayoutDimensionMode.WrapContent;
             set
@@ -6052,10 +6051,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the height of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// Gets or sets the height of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LayoutDimension LayoutHeight
+        internal LayoutDimension LayoutHeight
         {
             get => layoutExtraData?.Height ?? LayoutDimensionMode.WrapContent;
             set
