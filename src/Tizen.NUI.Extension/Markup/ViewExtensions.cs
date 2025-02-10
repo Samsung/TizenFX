@@ -84,8 +84,7 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T Color<T>(this T view, UIColor color) where T : View
         {
-            //FIXME: we need to set UI value type directly without converting reference value.
-            view.Color = color.ToReferenceType();
+            color.Apply(view, ViewPropertySetters.Color);
             return view;
         }
 
@@ -132,7 +131,7 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T BackgroundColor<T>(this T view, UIColor color) where T : View
         {
-            view.SetBackgroundColor(color);
+            color.Apply(view, ViewPropertySetters.BackgroundColor);
             return view;
         }
 
@@ -416,8 +415,7 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T BorderlineColor<T>(this T view, UIColor color) where T : View
         {
-            //FIXME: we need to set UI value type directly without converting reference value.
-            view.BorderlineColor = color.ToReferenceType();
+            color.Apply(view, ViewPropertySetters.BorderlineColor);
             return view;
         }
 
@@ -447,7 +445,7 @@ namespace Tizen.NUI.Extension
         {
             view.BorderlineWidth = width;
             //FIXME: we need to set UI value type directly without converting reference value.
-            view.BorderlineColor = color.ToReferenceType();
+            view.BorderlineColor(color);
             view.BorderlineOffset = offset;
             return view;
         }
