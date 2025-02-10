@@ -9,72 +9,76 @@ namespace Tizen.NUI.Components
         /// ThumbSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(ScrollBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbSizeProperty = null;
+        internal static void SetInternalThumbSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
                 instance.InternalThumbSize = newValue as Size;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbSizeProperty(BindableObject bindable)
         {
             var instance = (ScrollBar)bindable;
             return instance.InternalThumbSize;
-        });
+        }
 
         /// <summary>
         /// TrackImageURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackImageURLProperty = BindableProperty.Create(nameof(TrackImageURL), typeof(string), typeof(ScrollBar), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackImageURLProperty = null;
+        internal static void SetInternalTrackImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
                 instance.InternalTrackImageURL = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTrackImageURLProperty(BindableObject bindable)
         {
             var instance = (ScrollBar)bindable;
             return instance.InternalTrackImageURL;
-        });
+        }
 
         /// <summary>
         /// TrackColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackColorProperty = null;
+        internal static void SetInternalTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
                 instance.InternalTrackColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTrackColorProperty(BindableObject bindable)
         {
             var instance = (ScrollBar)bindable;
             return instance.InternalTrackColor;
-        });
+        }
 
         /// <summary>
         /// ThumbColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbColorProperty = null;
+        internal static void SetInternalThumbColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
                 instance.InternalThumbColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbColorProperty(BindableObject bindable)
         {
             var instance = (ScrollBar)bindable;
             return instance.InternalThumbColor;
-        });
+        }
     }
 }
