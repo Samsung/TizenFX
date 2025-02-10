@@ -704,5 +704,32 @@ namespace Tizen.NUI.Extension
             return new UIColor(view.BorderlineColor);
         }
 
+        /// <summary>
+        /// Sets the width of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="layoutWidth">The layout dimension of the width of the view.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T LayoutWidth<T>(this T view, LayoutDimension layoutWidth) where T : View
+        {
+            view.LayoutWidth = layoutWidth;
+            return view;
+        }
+
+        /// <summary>
+        /// Sets the height of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        /// <typeparam name="T">The type of the view.</typeparam>
+        /// <param name="view">The extension target.</param>
+        /// <param name="layoutHeight">The layout dimension of the height of the view.</param>
+        /// <returns>The view itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static T LayoutHeight<T>(this T view, LayoutDimension layoutHeight) where T : View
+        {
+            view.LayoutHeight = layoutHeight;
+            return view;
+        }
     }
 }
