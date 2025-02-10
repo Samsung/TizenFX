@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -38,7 +39,34 @@ namespace Tizen.NUI.Components
         private Extents space;
         private TabStyle tabStyle => ViewStyle as TabStyle;
 
-        static Tab() { }
+        static Tab()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SelectedItemIndexProperty = BindableProperty.Create(nameof(SelectedItemIndex), typeof(int), typeof(Tab), default(int),
+                    propertyChanged: SetInternalSelectedItemIndexProperty, defaultValueCreator: GetInternalSelectedItemIndexProperty);
+                UseTextNaturalSizeProperty = BindableProperty.Create(nameof(UseTextNaturalSize), typeof(bool), typeof(Tab), default(bool),
+                    propertyChanged: SetInternalUseTextNaturalSizeProperty, defaultValueCreator: GetInternalUseTextNaturalSizeProperty);
+                ItemSpaceProperty = BindableProperty.Create(nameof(ItemSpace), typeof(int), typeof(Tab), default(int),
+                    propertyChanged: SetInternalItemSpaceProperty, defaultValueCreator: GetInternalItemSpaceProperty);
+                SpaceProperty = BindableProperty.Create(nameof(Space), typeof(Extents), typeof(Tab), null,
+                    propertyChanged: SetInternalSpaceProperty, defaultValueCreator: GetInternalSpaceProperty);
+                ItemPaddingProperty = BindableProperty.Create(nameof(ItemPadding), typeof(Extents), typeof(Tab), null,
+                    propertyChanged: SetInternalItemPaddingProperty, defaultValueCreator: GetInternalItemPaddingProperty);
+                UnderLineSizeProperty = BindableProperty.Create(nameof(UnderLineSize), typeof(Size), typeof(Tab), null,
+                    propertyChanged: SetInternalUnderLineSizeProperty, defaultValueCreator: GetInternalUnderLineSizeProperty);
+                UnderLineBackgroundColorProperty = BindableProperty.Create(nameof(UnderLineBackgroundColor), typeof(Color), typeof(Tab), null,
+                    propertyChanged: SetInternalUnderLineBackgroundColorProperty, defaultValueCreator: GetInternalUnderLineBackgroundColorProperty);
+                PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(Tab), default(float),
+                    propertyChanged: SetInternalPointSizeProperty, defaultValueCreator: GetInternalPointSizeProperty);
+                FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(Tab), default(string),
+                    propertyChanged: SetInternalFontFamilyProperty, defaultValueCreator: GetInternalFontFamilyProperty);
+                TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(Tab), null,
+                    propertyChanged: SetInternalTextColorProperty, defaultValueCreator: GetInternalTextColorProperty);
+                TextColorSelectorProperty = BindableProperty.Create(nameof(TextColorSelector), typeof(ColorSelector), typeof(Tab), null,
+                    propertyChanged: SetInternalTextColorSelectorProperty, defaultValueCreator: GetInternalTextColorSelectorProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a Tab.
@@ -121,11 +149,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(SelectedItemIndexProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(SelectedItemIndexProperty);
+                }
+                else
+                {
+                    return (int)GetInternalSelectedItemIndexProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectedItemIndexProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectedItemIndexProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectedItemIndexProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -154,11 +196,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(UseTextNaturalSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(UseTextNaturalSizeProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalUseTextNaturalSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(UseTextNaturalSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UseTextNaturalSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalUseTextNaturalSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -187,11 +243,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(ItemSpaceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(ItemSpaceProperty);
+                }
+                else
+                {
+                    return (int)GetInternalItemSpaceProperty(this);
+                }
             }
             set
             {
-                SetValue(ItemSpaceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemSpaceProperty, value);
+                }
+                else
+                {
+                    SetInternalItemSpaceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -220,11 +290,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SpaceProperty) as Extents;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SpaceProperty) as Extents;
+                }
+                else
+                {
+                    return GetInternalSpaceProperty(this) as Extents;
+                }
             }
             set
             {
-                SetValue(SpaceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SpaceProperty, value);
+                }
+                else
+                {
+                    SetInternalSpaceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -250,11 +334,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ItemPaddingProperty) as Extents;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ItemPaddingProperty) as Extents;
+                }
+                else
+                {
+                    return GetInternalItemPaddingProperty(this) as Extents;
+                }
             }
             set
             {
-                SetValue(ItemPaddingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemPaddingProperty, value);
+                }
+                else
+                {
+                    SetInternalItemPaddingProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -300,11 +398,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(UnderLineSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(UnderLineSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalUnderLineSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(UnderLineSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderLineSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalUnderLineSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -333,11 +445,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(UnderLineBackgroundColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(UnderLineBackgroundColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalUnderLineBackgroundColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(UnderLineBackgroundColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderLineBackgroundColorProperty, value);
+                }
+                else
+                {
+                    SetInternalUnderLineBackgroundColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -366,11 +492,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(PointSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(PointSizeProperty);
+                }
+                else
+                {
+                    return (float)GetInternalPointSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(PointSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PointSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalPointSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -399,11 +539,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(FontFamilyProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(FontFamilyProperty) as string;
+                }
+                else
+                {
+                    return GetInternalFontFamilyProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(FontFamilyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontFamilyProperty, value);
+                }
+                else
+                {
+                    SetInternalFontFamilyProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -432,11 +586,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalTextColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(TextColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextColorProperty, value);
+                }
+                else
+                {
+                    SetInternalTextColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -466,11 +634,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextColorSelectorProperty) as ColorSelector;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextColorSelectorProperty) as ColorSelector;
+                }
+                else
+                {
+                    return GetInternalTextColorSelectorProperty(this) as ColorSelector;
+                }
             }
             set
             {
-                SetValue(TextColorSelectorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextColorSelectorProperty, value);
+                }
+                else
+                {
+                    SetInternalTextColorSelectorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

@@ -28,18 +28,26 @@ namespace Tizen.NUI.Components
     {
         /// <summary>The Duration bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint?), typeof(ToastStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DurationProperty = null;
+        internal static void SetInternalDurationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ((ToastStyle)bindable).duration = (uint?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDurationProperty(BindableObject bindable)
         {
             return ((ToastStyle)bindable).duration;
-        });
+        }
 
         private uint? duration;
 
-        static ToastStyle() { }
+        static ToastStyle()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint?), typeof(ToastStyle), null,
+                    propertyChanged: SetInternalDurationProperty, defaultValueCreator: GetInternalDurationProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a ToastStyle.
@@ -64,8 +72,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? Duration
         {
-            get => (uint?)GetValue(DurationProperty);
-            set => SetValue(DurationProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint?)GetValue(DurationProperty);
+                }
+                else
+                {
+                    return (uint?)GetInternalDurationProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DurationProperty, value);
+                }
+                else
+                {
+                    SetInternalDurationProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>

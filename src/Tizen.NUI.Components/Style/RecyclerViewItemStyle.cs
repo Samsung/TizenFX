@@ -30,33 +30,45 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectableProperty = null;
+        internal static void SetInternalIsSelectableProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
             RecyclerViewItemStyle.isSelectable = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIsSelectableProperty(BindableObject bindable)
         {
             var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
             return RecyclerViewItemStyle.isSelectable;
-        });
+        }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = null;
+        internal static void SetInternalIsSelectedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
             RecyclerViewItemStyle.isSelected = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIsSelectedProperty(BindableObject bindable)
         {
             var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
             return RecyclerViewItemStyle.isSelected;
-        });
+        }
 
         private bool? isSelectable;
         private bool? isSelected;
 
-        static RecyclerViewItemStyle() { }
+        static RecyclerViewItemStyle()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(RecyclerViewItemStyle), null,
+                    propertyChanged: SetInternalIsSelectableProperty, defaultValueCreator: GetInternalIsSelectableProperty);
+                IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(RecyclerViewItemStyle), null,
+                    propertyChanged: SetInternalIsSelectedProperty, defaultValueCreator: GetInternalIsSelectedProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a RecyclerViewItemStyle.
@@ -81,8 +93,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? IsSelectable
         {
-            get => (bool?)GetValue(IsSelectableProperty);
-            set => SetValue(IsSelectableProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool?)GetValue(IsSelectableProperty);
+                }
+                else
+                {
+                    return (bool?)GetInternalIsSelectableProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsSelectableProperty, value);
+                }
+                else
+                {
+                    SetInternalIsSelectableProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -91,8 +123,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? IsSelected
         {
-            get => (bool?)GetValue(IsSelectedProperty);
-            set => SetValue(IsSelectedProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool?)GetValue(IsSelectedProperty);
+                }
+                else
+                {
+                    return (bool?)GetInternalIsSelectedProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsSelectedProperty, value);
+                }
+                else
+                {
+                    SetInternalIsSelectedProperty(this, null, value);
+                }
+            }
         }
 
         /// <inheritdoc/>
