@@ -57,6 +57,26 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         public LayoutDimension Height { get; set; } = LayoutDimensionMode.WrapContent;
 
+        /// <summary>
+        /// Gets or sets the minimum width of the view.
+        /// </summary>
+        public float MinimumWidth { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets the minimum height of the view.
+        /// </summary>
+        public float MinimumHeight { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets the maximum width of the view.
+        /// </summary>
+        public float MaximumWidth { get; set; } = int.MaxValue;
+
+        /// <summary>
+        /// Gets or sets the maximum height of the view.
+        /// </summary>
+        public float MaximumHeight { get; set; } = int.MaxValue;
+
         ~LayoutExtraData() => Dispose(false);
 
         public void Dispose()
