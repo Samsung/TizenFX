@@ -28,42 +28,56 @@ namespace Tizen.NUI.Components
     {
         /// <summary>The IndicatorSize bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorSizeProperty = null;
+        internal static void SetInternalIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ((PaginationStyle)bindable).indicatorSize = newValue == null ? null : new Size((Size)newValue);
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorSizeProperty(BindableObject bindable)
         {
             return ((PaginationStyle)bindable).indicatorSize;
-        });
+        }
 
         /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorImageUrlSelectorProperty = BindableProperty.Create("IndicatorImageUrl", typeof(Selector<string>), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorImageUrlSelectorProperty = null;
+        internal static void SetInternalIndicatorImageUrlSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ((PaginationStyle)bindable).indicatorImageUrl = (Selector<string>)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorImageUrlSelectorProperty(BindableObject bindable)
         {
             return ((PaginationStyle)bindable).indicatorImageUrl;
-        });
+        }
 
         /// <summary>The IndicatorSpacing bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int?), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorSpacingProperty = null;
+        internal static void SetInternalIndicatorSpacingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ((PaginationStyle)bindable).indicatorSpacing = (int?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorSpacingProperty(BindableObject bindable)
         {
             return ((PaginationStyle)bindable).indicatorSpacing;
-        });
+        }
 
         private Size indicatorSize;
         private Selector<string> indicatorImageUrl;
         private int? indicatorSpacing;
 
-        static PaginationStyle() { }
+        static PaginationStyle()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(PaginationStyle), null,
+                    propertyChanged: SetInternalIndicatorSizeProperty, defaultValueCreator: GetInternalIndicatorSizeProperty);
+                IndicatorImageUrlSelectorProperty = BindableProperty.Create("IndicatorImageUrl", typeof(Selector<string>), typeof(PaginationStyle), null,
+                    propertyChanged: SetInternalIndicatorImageUrlSelectorProperty, defaultValueCreator: GetInternalIndicatorImageUrlSelectorProperty);
+                IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int?), typeof(PaginationStyle), null,
+                    propertyChanged: SetInternalIndicatorSpacingProperty, defaultValueCreator: GetInternalIndicatorSpacingProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a PaginationStyle.
@@ -86,8 +100,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Size IndicatorSize
         {
-            get => (Size)GetValue(IndicatorSizeProperty);
-            set => SetValue(IndicatorSizeProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Size)GetValue(IndicatorSizeProperty);
+                }
+                else
+                {
+                    return (Size)GetInternalIndicatorSizeProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorSizeProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -96,8 +130,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Selector<string> IndicatorImageUrl
         {
-            get => (Selector<string>)GetValue(IndicatorImageUrlSelectorProperty);
-            set => SetValue(IndicatorImageUrlSelectorProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Selector<string>)GetValue(IndicatorImageUrlSelectorProperty);
+                }
+                else
+                {
+                    return (Selector<string>)GetInternalIndicatorImageUrlSelectorProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorImageUrlSelectorProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorImageUrlSelectorProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -106,8 +160,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public int IndicatorSpacing
         {
-            get => ((int?)GetValue(IndicatorSpacingProperty)) ?? 0;
-            set => SetValue(IndicatorSpacingProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return ((int?)GetValue(IndicatorSpacingProperty)) ?? 0;
+                }
+                else
+                {
+                    return ((int?)GetInternalIndicatorSpacingProperty(this)) ?? 0;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorSpacingProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorSpacingProperty(this, null, value);
+                }
+            }
         }
 
         /// <inheritdoc/>

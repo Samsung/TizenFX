@@ -31,76 +31,93 @@ namespace Tizen.NUI.Components
         /// IndicatorTypeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create(nameof(IndicatorType), typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorTypeProperty = null;
+        internal static void SetInternalIndicatorTypeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (SliderStyle)bindable;
             if (newValue != null)
             {
                 instance.privateIndicatorType = (IndicatorType)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIndicatorTypeProperty(BindableObject bindable)
         {
             var instance = (SliderStyle)bindable;
             return instance.privateIndicatorType;
-        });
+        }
 
         /// <summary>
         /// SpaceBetweenTrackAndIndicatorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = null;
+        internal static void SetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (SliderStyle)bindable;
             if (newValue != null)
             {
                 instance.privateSpaceBetweenTrackAndIndicator = (uint?)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable)
         {
             var instance = (SliderStyle)bindable;
             return instance.privateSpaceBetweenTrackAndIndicator;
-        });
+        }
 
         /// <summary>
         /// TrackThicknessProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackThicknessProperty = null;
+        internal static void SetInternalTrackThicknessProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (SliderStyle)bindable;
             if (newValue != null)
             {
                 instance.privateTrackThickness = (uint?)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTrackThicknessProperty(BindableObject bindable)
         {
             var instance = (SliderStyle)bindable;
             return instance.privateTrackThickness;
-        });
+        }
 
         /// <summary>
         /// TrackPaddingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackPaddingProperty = null;
+        internal static void SetInternalTrackPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ((SliderStyle)bindable).trackPadding = newValue == null ? null : new Extents((Extents)newValue);
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTrackPaddingProperty(BindableObject bindable)
         {
             var instance = (SliderStyle)bindable;
             return instance.trackPadding;
-        });
+        }
 
         private IndicatorType? privateIndicatorType = Slider.IndicatorType.None;
         private uint? privateTrackThickness;
         private uint? privateSpaceBetweenTrackAndIndicator;
         private Extents trackPadding;
 
-        static SliderStyle() { }
+        static SliderStyle()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IndicatorTypeProperty = BindableProperty.Create(nameof(IndicatorType), typeof(IndicatorType?), typeof(SliderStyle), null,
+                    propertyChanged: SetInternalIndicatorTypeProperty, defaultValueCreator: GetInternalIndicatorTypeProperty);
+                SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint?), typeof(SliderStyle), null,
+                    propertyChanged: SetInternalSpaceBetweenTrackAndIndicatorProperty, defaultValueCreator: GetInternalSpaceBetweenTrackAndIndicatorProperty);
+                TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint?), typeof(SliderStyle), null,
+                    propertyChanged: SetInternalTrackThicknessProperty, defaultValueCreator: GetInternalTrackThicknessProperty);
+                TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null,
+                    propertyChanged: SetInternalTrackPaddingProperty, defaultValueCreator: GetInternalTrackPaddingProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a SliderStyle.
@@ -193,8 +210,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public IndicatorType? IndicatorType
         {
-            get => (IndicatorType?)GetValue(IndicatorTypeProperty);
-            set => SetValue(IndicatorTypeProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (IndicatorType?)GetValue(IndicatorTypeProperty);
+                }
+                else
+                {
+                    return (IndicatorType)GetInternalIndicatorTypeProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndicatorTypeProperty, value);
+                }
+                else
+                {
+                    SetInternalIndicatorTypeProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -203,8 +240,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public uint? TrackThickness
         {
-            get => (uint?)GetValue(TrackThicknessProperty);
-            set => SetValue(TrackThicknessProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint?)GetValue(TrackThicknessProperty);
+                }
+                else
+                {
+                    return (uint?)GetInternalTrackThicknessProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackThicknessProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackThicknessProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -213,8 +270,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public uint? SpaceBetweenTrackAndIndicator
         {
-            get => (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
-            set => SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
+                }
+                else
+                {
+                    return (uint?)GetInternalSpaceBetweenTrackAndIndicatorProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
+                }
+                else
+                {
+                    SetInternalSpaceBetweenTrackAndIndicatorProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -223,8 +300,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
-            get => ((Extents)GetValue(TrackPaddingProperty)) ?? (trackPadding = new Extents(0, 0, 0, 0));
-            set => SetValue(TrackPaddingProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return ((Extents)GetValue(TrackPaddingProperty)) ?? (trackPadding = new Extents(0, 0, 0, 0));
+                }
+                else
+                {
+                    return (Extents)GetInternalTrackPaddingProperty(this) ?? (trackPadding = new Extents(0, 0, 0, 0));
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackPaddingProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackPaddingProperty(this, null, value);
+                }
+            }
         }
 
         /// <inheritdoc/>
