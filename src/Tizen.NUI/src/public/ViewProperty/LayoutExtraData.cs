@@ -47,6 +47,46 @@ namespace Tizen.NUI.BaseComponents
         // The status of whether the view is excluded from its parent's layouting or not.
         public bool ExcludeLayouting { get; set; }
 
+        /// <summary>
+        /// Gets or sets the width of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        public LayoutDimension Width { get; set; } = LayoutDimensionMode.WrapContent;
+
+        /// <summary>
+        /// Gets or sets the height of the view. It can be set to a fixed value, wrap content, or match parent.
+        /// </summary>
+        public LayoutDimension Height { get; set; } = LayoutDimensionMode.WrapContent;
+
+        /// <summary>
+        /// Gets or sets the minimum width of the view.
+        /// </summary>
+        public float MinimumWidth { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets the minimum height of the view.
+        /// </summary>
+        public float MinimumHeight { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets the maximum width of the view.
+        /// </summary>
+        public float MaximumWidth { get; set; } = int.MaxValue;
+
+        /// <summary>
+        /// Gets or sets the maximum height of the view.
+        /// </summary>
+        public float MaximumHeight { get; set; } = int.MaxValue;
+
+        /// <summary>
+        /// Gets or sets the margin of the view.
+        /// </summary>
+        public UIExtents Margin { get; set; } = UIExtents.Zero;
+
+        /// <summary>
+        /// Gets or sets the padding of the view.
+        /// </summary>
+        public UIExtents Padding { get; set; } = UIExtents.Zero;
+
         ~LayoutExtraData() => Dispose(false);
 
         public void Dispose()

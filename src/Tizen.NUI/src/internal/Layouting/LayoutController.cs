@@ -236,10 +236,10 @@ namespace Tizen.NUI
                 // If wrap children then at most it can be the root parent size.
                 // If match parent then should be root parent size.
                 // If exact then should be that size limited by the root parent size.
-                float widthSize = GetLengthSize(parentWidth, root.WidthSpecification);
-                float heightSize = GetLengthSize(parentHeight, root.HeightSpecification);
-                var widthMode = GetMode(root.WidthSpecification);
-                var heightMode = GetMode(root.HeightSpecification);
+                float widthSize = GetLengthSize(parentWidth, root.LayoutWidth);
+                float heightSize = GetLengthSize(parentHeight, root.LayoutHeight);
+                var widthMode = GetMode(root.LayoutWidth);
+                var heightMode = GetMode(root.LayoutHeight);
 
                 if (layout.NeedsLayout(widthSize, heightSize, widthMode, heightMode))
                 {
@@ -260,15 +260,15 @@ namespace Tizen.NUI
             }
         }
 
-        private float GetLengthSize(float size, int specification)
+        private float GetLengthSize(float size, LayoutDimension layoutDimension)
         {
             // exact size provided so match width exactly
-            return (specification >= 0) ? specification : size;
+            return layoutDimension.IsFixedValue ? layoutDimension.GetValue() : size;
         }
 
-        private MeasureSpecification.ModeType GetMode(int specification)
+        private MeasureSpecification.ModeType GetMode(LayoutDimension layoutDimension)
         {
-            if (specification >= 0 || specification == LayoutParamPolicies.MatchParent)
+            if (layoutDimension.IsFixedValue || layoutDimension == LayoutDimensionMode.MatchParent)
             {
                 return MeasureSpecification.ModeType.Exactly;
             }

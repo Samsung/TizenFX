@@ -2887,6 +2887,9 @@ namespace Tizen.NUI.BaseComponents
             float width = sizeWidth;
             userSizeWidth = width;
 
+            if (HasLayoutWidth())
+                SetLayoutWidth(width);
+
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as widthPolicyCeiling
             int widthPolicyCeiling = (int)System.Math.Ceiling(width);
@@ -2950,6 +2953,9 @@ namespace Tizen.NUI.BaseComponents
             // SuggestedMinimumWidth/Height is used by Layout calculation.
             float height = sizeHeight;
             userSizeHeight = height;
+
+            if (HasLayoutHeight())
+                SetLayoutHeight(height);
 
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as heightPolicyCeiling
@@ -4190,6 +4196,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
+
+                if (HasMinimumWidth())
+                    SetMinimumWidth(value.Width, false);
+                if (HasMinimumHeight())
+                    SetMinimumHeight(value.Height, false);
+
                 if (layoutExtraData?.Layout is LayoutItem layout)
                 {
                     // Note: it only works if minimum size is >= than natural size.
@@ -4240,6 +4252,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (HasMaximumWidth())
+                    SetMaximumWidth(value.Width, false);
+                if (HasMaximumHeight())
+                    SetMaximumHeight(value.Height, false);
+
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
                 RequestLayout();
@@ -4690,6 +4707,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SizeWidth = widthPolicy;
                 }
+
+                if (HasLayoutWidth())
+                    SetLayoutWidth(widthPolicy);
+
                 RequestLayout();
             }
         }
@@ -4765,6 +4786,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SizeHeight = heightPolicy;
                 }
+
+                if (HasLayoutHeight())
+                    SetLayoutHeight(heightPolicy);
+
                 RequestLayout();
             }
         }
@@ -5130,7 +5155,31 @@ namespace Tizen.NUI.BaseComponents
             get => layoutExtraData?.Layout;
             set
             {
+                var hasLayoutWidth = HasLayoutWidth();
+                var hasLayoutHeight = HasLayoutHeight();
+
                 var layoutExtraData = EnsureLayoutExtraData();
+
+                // Copy from width/heightPolicy only if LayoutWidth/Height has not been set before
+                // not to overwrite LayoutWidth/Height value set by user.
+                if (!hasLayoutWidth)
+                    SetLayoutWidth(widthPolicy);
+                if (!hasLayoutHeight)
+                    SetLayoutHeight(heightPolicy);
+
+                if (!HasMinimumWidth())
+                    SetMinimumWidth(MinimumSize.Width, false);
+                if (!HasMinimumHeight())
+                    SetMinimumHeight(MinimumSize.Height, false);
+                if (!HasMaximumWidth())
+                    SetMaximumWidth(MaximumSize.Width, false);
+                if (!HasMaximumHeight())
+                    SetMaximumHeight(MaximumSize.Height, false);
+
+                if (!HasMargin())
+                    SetMargin(new UIExtents(Margin.Start, Margin.End, Margin.Top, Margin.End), false);
+                if (!HasPadding())
+                    SetPadding(new UIExtents(Padding.Start, Padding.End, Padding.Top, Padding.End), false);
 
                 // Do nothing if layout provided is already set on this View.
                 if (value == layoutExtraData.Layout)

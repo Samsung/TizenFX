@@ -784,6 +784,11 @@ namespace Tizen.NUI.BaseComponents
                 view.userSizeWidth = (float)width;
                 view.userSizeHeight = (float)height;
 
+                if (view.HasLayoutWidth())
+                    view.SetLayoutWidth(width);
+                if (view.HasLayoutHeight())
+                    view.SetLayoutHeight(height);
+
                 bool relayoutRequired = false;
                 // To avoid duplicated size setup, change internal policy directly.
                 if (view.widthPolicy != width)
@@ -1489,6 +1494,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                if (view.HasPadding() && newValue is Extents newPadding)
+                    view.SetPadding(new UIExtents(newPadding.Start, newPadding.End, newPadding.Top, newPadding.Bottom), false);
+
                 if (view.Layout != null)
                 {
                     view.Layout.Padding = new Extents((Extents)newValue);
@@ -1558,6 +1566,11 @@ namespace Tizen.NUI.BaseComponents
 
                 view.userSizeWidth = width;
                 view.userSizeHeight = height;
+
+                if (view.HasLayoutWidth())
+                    view.SetLayoutWidth(width);
+                if (view.HasLayoutHeight())
+                    view.SetLayoutHeight(height);
 
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
@@ -1742,6 +1755,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                if (view.HasMargin() && newValue is Extents newMargin)
+                    view.SetMargin(new UIExtents(newMargin.Start, newMargin.End, newMargin.Top, newMargin.Bottom), false);
+
                 if (view.Layout != null)
                 {
                     view.Layout.Margin = new Extents((Extents)newValue);
