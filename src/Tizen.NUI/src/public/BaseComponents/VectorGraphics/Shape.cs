@@ -56,7 +56,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 global::System.IntPtr cPtr = Interop.Shape.GetFillColor(BaseHandle.getCPtr(this));
-                return Vector4.GetVector4FromPtr(cPtr);
+                return new Vector4(cPtr, true);
             }
             set
             {
@@ -144,7 +144,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 global::System.IntPtr cPtr = Interop.Shape.GetStrokeColor(BaseHandle.getCPtr(this));
-                return Vector4.GetVector4FromPtr(cPtr);
+                return new Vector4(cPtr, true);
             }
             set
             {

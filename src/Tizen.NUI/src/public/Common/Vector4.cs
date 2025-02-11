@@ -732,13 +732,6 @@ namespace Tizen.NUI
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
-        internal static Vector4 GetVector4FromPtr(global::System.IntPtr cPtr)
-        {
-            Vector4 ret = new Vector4(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal float Dot(Vector3 other)
         {
             float ret = Interop.Vector4.DotWithVector3(SwigCPtr, Vector3.getCPtr(other));
