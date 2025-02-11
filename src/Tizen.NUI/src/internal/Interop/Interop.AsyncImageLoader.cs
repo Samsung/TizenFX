@@ -25,12 +25,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AsyncImageLoader")]
             public static extern void DeleteAsyncImageLoader(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AsyncImageLoader__SWIG_1")]
-            public static extern global::System.IntPtr NewAsyncImageLoader(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_New")]
             public static extern global::System.IntPtr New();
 
@@ -50,8 +44,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_CancelAll")]
             public static extern void CancelAll(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_ImageLoadedSignal")]
-            public static extern global::System.IntPtr ImageLoadedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_ImageLoadedSignal_Connect")]
+            public static extern void ImageLoadedSignalConnect(global::System.Runtime.InteropServices.HandleRef asyncImageLoader, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_ImageLoadedSignal_Disconnect")]
+            public static extern void ImageLoadedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef asyncImageLoader, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_PixelBufferLoadedSignal_Connect")]
+            public static extern void PixelBufferLoadedSignalConnect(global::System.Runtime.InteropServices.HandleRef asyncImageLoader, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AsyncImageLoader_PixelBufferLoadedSignal_Disconnect")]
+            public static extern void PixelBufferLoadedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef asyncImageLoader, global::System.Runtime.InteropServices.HandleRef handler);
         }
     }
 }
