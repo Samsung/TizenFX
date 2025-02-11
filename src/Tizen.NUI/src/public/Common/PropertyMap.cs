@@ -779,7 +779,7 @@ namespace Tizen.NUI
                     Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
                 }
 
-                Interop.PropertyMap.AddVector4(SwigCPtr, key, value.X, value.Y, value.Width, value.Height);
+                Interop.PropertyMap.AddRectangle(SwigCPtr, key, value.SwigCPtr);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
