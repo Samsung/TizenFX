@@ -81,7 +81,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 global::System.IntPtr cPtr = Interop.Drawable.GetBoundingBox(BaseHandle.getCPtr(this));
-                return Vector4.GetVector4FromPtr(cPtr);
+                return new Vector4(cPtr, true);
             }
         }
 
