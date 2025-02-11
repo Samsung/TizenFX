@@ -647,22 +647,21 @@ namespace Tizen.NUI
             return Add(key, propertyValue);
         }
 
+        #region Add Vector2 value
         internal PropertyMap Add(int key, Vector2 value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
             if (null == value)
             {
-                using var propertyValue1 = new PropertyValue();
-                using var propertyValue2 = new PropertyValue(propertyValue1);
-                Add(key, propertyValue2);
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
             }
             else
             {
-                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-                if (cPtr != global::System.IntPtr.Zero)
-                {
-                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
-                }
-
                 Interop.PropertyMap.AddVector2(SwigCPtr, key, value.X, value.Y);
             }
 
@@ -672,20 +671,18 @@ namespace Tizen.NUI
 
         internal PropertyMap Add(string key, Vector2 value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
             if (null == value)
             {
-                using var propertyValue1 = new PropertyValue();
-                using var propertyValue2 = new PropertyValue(propertyValue1);
-                Add(key, propertyValue2);
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
             }
             else
             {
-                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-                if (cPtr != global::System.IntPtr.Zero)
-                {
-                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
-                }
-
                 Interop.PropertyMap.AddVector2(SwigCPtr, key, value.X, value.Y);
             }
 
@@ -693,46 +690,75 @@ namespace Tizen.NUI
             return this;
         }
 
-
-        internal PropertyMap Add(int key, Vector3 value)
+        internal PropertyMap Set(int key, Vector2 value)
         {
             if (null == value)
             {
-                using var propertyValue1 = new PropertyValue();
-                using var propertyValue2 = new PropertyValue(propertyValue1);
-                Add(key, propertyValue2);
+                Interop.PropertyMap.SetNone(SwigCPtr, key);
             }
             else
             {
-                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-                if (cPtr != global::System.IntPtr.Zero)
-                {
-                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
-                }
-
-                Interop.PropertyMap.AddVector3(SwigCPtr, key, getCPtr(value));
+                Interop.PropertyMap.SetVector2(SwigCPtr, key, value.X, value.Y);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
         }
 
-        internal PropertyMap Add(int key, Vector4 value)
+        internal PropertyMap Set(string key, Vector2 value)
         {
             if (null == value)
             {
-                using var propertyValue1 = new PropertyValue();
-                using var propertyValue2 = new PropertyValue(propertyValue1);
-                Add(key, propertyValue2);
+                Interop.PropertyMap.SetNone(SwigCPtr, key);
             }
             else
             {
-                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-                if (cPtr != global::System.IntPtr.Zero)
-                {
-                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
-                }
+                Interop.PropertyMap.SetVector2(SwigCPtr, key, value.X, value.Y);
+            }
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add Vector3 value
+        internal PropertyMap Add(int key, Vector3 value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            if (null == value)
+            {
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
+            }
+            else
+            {
+                Interop.PropertyMap.AddVector3(SwigCPtr, key, getCPtr(value));
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add/Set Vector4 value
+        internal PropertyMap Add(int key, Vector4 value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            if (null == value)
+            {
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
+            }
+            else
+            {
                 Interop.PropertyMap.AddVector4(SwigCPtr, key, value.X, value.Y, value.Z, value.W);
             }
 
@@ -742,20 +768,18 @@ namespace Tizen.NUI
 
         internal PropertyMap Add(string key, Vector4 value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
             if (null == value)
             {
-                using var propertyValue1 = new PropertyValue();
-                using var propertyValue2 = new PropertyValue(propertyValue1);
-                Add(key, propertyValue2);
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
             }
             else
             {
-                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-                if (cPtr != global::System.IntPtr.Zero)
-                {
-                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
-                }
-
                 Interop.PropertyMap.AddVector4(SwigCPtr, key, value.X, value.Y, value.Z, value.W);
             }
 
@@ -763,22 +787,52 @@ namespace Tizen.NUI
             return this;
         }
 
-        internal PropertyMap Add(int key, Rectangle value)
+        internal PropertyMap Set(int key, Vector4 value)
         {
             if (null == value)
             {
-                using var propertyValue1 = new PropertyValue();
-                using var propertyValue2 = new PropertyValue(propertyValue1);
-                Add(key, propertyValue2);
+                Interop.PropertyMap.SetNone(SwigCPtr, key);
             }
             else
             {
-                global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-                if (cPtr != global::System.IntPtr.Zero)
-                {
-                    Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
-                }
+                Interop.PropertyMap.SetVector4(SwigCPtr, key, value.X, value.Y, value.Z, value.W);
+            }
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Set(string key, Vector4 value)
+        {
+            if (null == value)
+            {
+                Interop.PropertyMap.SetNone(SwigCPtr, key);
+            }
+            else
+            {
+                Interop.PropertyMap.SetVector4(SwigCPtr, key, value.X, value.Y, value.Z, value.W);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add/Set Rectangle value
+        internal PropertyMap Add(int key, Rectangle value)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
+
+            if (null == value)
+            {
+                Interop.PropertyMap.AddNone(SwigCPtr, key);
+            }
+            else
+            {
                 Interop.PropertyMap.AddRectangle(SwigCPtr, key, value.SwigCPtr);
             }
 
@@ -786,6 +840,23 @@ namespace Tizen.NUI
             return this;
         }
 
+        internal PropertyMap Set(int key, Rectangle value)
+        {
+            if (null == value)
+            {
+                Interop.PropertyMap.SetNone(SwigCPtr, key);
+            }
+            else
+            {
+                Interop.PropertyMap.SetRectangle(SwigCPtr, key, value.SwigCPtr);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add/Set string value
         internal PropertyMap Add(int key, string value)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
@@ -814,6 +885,24 @@ namespace Tizen.NUI
             return this;
         }
 
+        internal PropertyMap Set(int key, string value)
+        {
+            Interop.PropertyMap.SetString(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Set(string key, string value)
+        {
+            Interop.PropertyMap.SetString(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add/Set bool value
         internal PropertyMap Add(int key, bool value)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
@@ -842,6 +931,24 @@ namespace Tizen.NUI
             return this;
         }
 
+        internal PropertyMap Set(int key, bool value)
+        {
+            Interop.PropertyMap.SetBool(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Set(string key, bool value)
+        {
+            Interop.PropertyMap.SetBool(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add/Set int value
         internal PropertyMap Add(int key, int value)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
@@ -870,6 +977,24 @@ namespace Tizen.NUI
             return this;
         }
 
+        internal PropertyMap Set(int key, int value)
+        {
+            Interop.PropertyMap.SetInt(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Set(string key, int value)
+        {
+            Interop.PropertyMap.SetInt(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        #region Add/Set float value
         internal PropertyMap Add(int key, float value)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
@@ -894,6 +1019,37 @@ namespace Tizen.NUI
 
             Interop.PropertyMap.AddFloat(SwigCPtr, key, value);
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Set(int key, float value)
+        {
+            Interop.PropertyMap.SetFloat(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap Set(string key, float value)
+        {
+            Interop.PropertyMap.SetFloat(SwigCPtr, key, value);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+        #endregion
+
+        internal PropertyMap SetNone(int key)
+        {
+            Interop.PropertyMap.SetNone(SwigCPtr, key);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return this;
+        }
+
+        internal PropertyMap SetNone(string key)
+        {
+            Interop.PropertyMap.SetNone(SwigCPtr, key);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
         }

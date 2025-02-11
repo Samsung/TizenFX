@@ -2705,7 +2705,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            map[NpatchImageVisualProperty.Border] = new PropertyValue(backgroundImageBorder);
+            map.Set(NpatchImageVisualProperty.Border, backgroundImageBorder);
 
             int visualType = 0;
 
@@ -2713,7 +2713,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (visualType == (int)Visual.Type.Image)
             {
-                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+                map.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
             }
 
             // Background extra data flag is not meanful anymore.
