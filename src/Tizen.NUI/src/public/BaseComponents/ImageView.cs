@@ -2122,7 +2122,7 @@ namespace Tizen.NUI.BaseComponents
                 _resourceUrl = "";
                 if (cachedImagePropertyMap != null)
                 {
-                    cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
+                    cachedImagePropertyMap.SetNone(ImageVisualProperty.URL);
                 }
             }
         }
@@ -2278,48 +2278,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (_border == null)
                 {
-                    PropertyValue image = new PropertyValue((int)Visual.Type.Image);
-                    cachedImagePropertyMap[Visual.Property.Type] = image;
-                    image?.Dispose();
+                    cachedImagePropertyMap.Set(Visual.Property.Type, (int)Visual.Type.Image);
                 }
                 else
                 {
-                    PropertyValue nPatch = new PropertyValue((int)Visual.Type.NPatch);
-                    cachedImagePropertyMap[Visual.Property.Type] = nPatch;
-                    nPatch?.Dispose();
-                    PropertyValue border = new PropertyValue(_border);
-                    cachedImagePropertyMap[NpatchImageVisualProperty.Border] = border;
-                    border?.Dispose();
+                    cachedImagePropertyMap.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
+                    cachedImagePropertyMap.Set(NpatchImageVisualProperty.Border, _border);
                 }
             }
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
-                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
-                using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
-                {
-                    cachedImagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
-                    cachedImagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-                }
+                cachedImagePropertyMap.Set(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius);
+                cachedImagePropertyMap.Set(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+
                 if (backgroundExtraData.CornerSquareness != null)
                 {
-                    using (var cornerSquareness = new PropertyValue(backgroundExtraData.CornerSquareness))
-                    {
-                        cachedImagePropertyMap[Visual.Property.CornerSquareness] = cornerSquareness;
-                    }
+                    cachedImagePropertyMap.Set(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness);
                 }
             }
 
             if (backgroundExtraData != null && backgroundExtraData.BorderlineWidth > 0.0f)
             {
-                using (var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth))
-                using (var borderlineColor = new PropertyValue(backgroundExtraData.BorderlineColor))
-                using (var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset))
-                {
-                    cachedImagePropertyMap[Visual.Property.BorderlineWidth] = borderlineWidth;
-                    cachedImagePropertyMap[Visual.Property.BorderlineColor] = borderlineColor;
-                    cachedImagePropertyMap[Visual.Property.BorderlineOffset] = borderlineOffset;
-                }
+                cachedImagePropertyMap.Set(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                cachedImagePropertyMap.Set(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor);
+                cachedImagePropertyMap.Set(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
             }
 
             // We already applied background extra data now.

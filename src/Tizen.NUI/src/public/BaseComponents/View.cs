@@ -5402,9 +5402,7 @@ namespace Tizen.NUI.BaseComponents
                     if (!string.IsNullOrEmpty(BackgroundImage))
                     {
                         PropertyMap bgMap = this.Background;
-                        var temp = new PropertyValue(backgroundImageSynchronousLoading);
-                        bgMap[ImageVisualProperty.SynchronousLoading] = temp;
-                        temp.Dispose();
+                        bgMap.Set(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
                         Background = bgMap;
                     }
                 }
