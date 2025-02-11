@@ -174,13 +174,13 @@ namespace Tizen.NUI
         {
             var map = base.GetPropertyMap();
 
-            map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
+            map.Set(Visual.Property.Type, (int)Visual.Type.Color);
 
-            map[ColorVisualProperty.MixColor] = new PropertyValue(Color ?? noColor);
+            map.Set(ColorVisualProperty.MixColor, Color ?? noColor);
 
-            map[ColorVisualProperty.BlurRadius] = new PropertyValue(BlurRadius < 0 ? 0 : BlurRadius);
+            map.Set(ColorVisualProperty.BlurRadius, BlurRadius < 0 ? 0 : BlurRadius);
 
-            map[ColorVisualProperty.CutoutPolicy] = new PropertyValue((int)CutoutPolicy);
+            map.Set(ColorVisualProperty.CutoutPolicy, (int)CutoutPolicy);
 
             return map;
         }
