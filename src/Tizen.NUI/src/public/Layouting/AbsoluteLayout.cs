@@ -52,13 +52,26 @@ namespace Tizen.NUI
                     continue;
                 }
 
-                // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
-                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                }
+                else
+                {
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                }
 
                 // Determine the width and height needed by the children using their given position and size.
                 // Children could overlap so find the right most child.
                 float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
                 float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (!childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    childRight += Padding.Start + childLayout.Margin.Start;
+                    childBottom += Padding.Top + childLayout.Margin.Top;
+                }
 
                 if (maxWidth < childRight)
                     maxWidth = childRight;
@@ -100,13 +113,26 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                Extents childMargin = childLayout.Margin;
+
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
-                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
-
-                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
+                LayoutLength childLeft;
+                LayoutLength childTop;
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                    childTop = new LayoutLength(childLayout.Owner.PositionY);
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
+                }
+                else
+                {
+                    childLeft = new LayoutLength(Padding.Start + childLayout.Owner.PositionX + childMargin.Start);
+                    childTop = new LayoutLength(Padding.Top + childLayout.Owner.PositionY + childMargin.Top);
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                }
             }
         }
     }
