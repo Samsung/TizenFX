@@ -52,8 +52,7 @@ namespace Tizen.NUI
                     continue;
                 }
 
-                // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
-                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
                 // Determine the width and height needed by the children using their given position and size.
                 // Children could overlap so find the right most child.
@@ -100,13 +99,15 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                Extents childMargin = childLayout.Margin;
+
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
-                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
+                LayoutLength childLeft = new LayoutLength(Padding.Start + childLayout.Owner.PositionX + childMargin.Start);
+                LayoutLength childTop = new LayoutLength(Padding.Top + childLayout.Owner.PositionY + childMargin.Top);
 
-                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
             }
         }
     }
