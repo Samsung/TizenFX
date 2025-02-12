@@ -127,7 +127,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return columnMap[view];
+                if (columnMap.TryGetValue(view, out var column))
+                {
+                    return column;
+                }
+                else
+                {
+                    return AutoColumn;
+                }
             }
         }
 
@@ -146,7 +153,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return columnSpanMap[view] != 0 ? columnSpanMap[view] : 1;
+                if (columnSpanMap.TryGetValue(view, out var columnSpan))
+                {
+                    return columnSpan;
+                }
+                else
+                {
+                    return 1;
+                }
             }
         }
 
@@ -165,7 +179,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return rowMap[view];
+                if (rowMap.TryGetValue(view, out var row))
+                {
+                    return row;
+                }
+                else
+                {
+                    return AutoRow;
+                }
             }
         }
 
@@ -184,7 +205,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return rowSpanMap[view] != 0 ? rowSpanMap[view] : 1;
+                if (rowSpanMap.TryGetValue(view, out var rowSpan))
+                {
+                    return rowSpan;
+                }
+                else
+                {
+                    return 1;
+                }
             }
         }
 
@@ -203,7 +231,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return horizontalStretchMap[view];
+                if (horizontalStretchMap.TryGetValue(view, out var horizontalStretch))
+                {
+                    return horizontalStretch;
+                }
+                else
+                {
+                    return StretchFlags.None;
+                }
             }
         }
 
@@ -222,7 +257,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return verticalStretchMap[view];
+                if (verticalStretchMap.TryGetValue(view, out var verticalStretch))
+                {
+                    return verticalStretch;
+                }
+                else
+                {
+                    return StretchFlags.None;
+                }
             }
         }
 
@@ -241,7 +283,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return horizontalAlignmentMap[view];
+                if (horizontalAlignmentMap.TryGetValue(view, out var horizontalAlignment))
+                {
+                    return horizontalAlignment;
+                }
+                else
+                {
+                    return Alignment.Start;
+                }
             }
         }
 
@@ -260,7 +309,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return verticalAlignmentMap[view];
+                if (verticalAlignmentMap.TryGetValue(view, out var verticalAlignment))
+                {
+                    return verticalAlignment;
+                }
+                else
+                {
+                    return Alignment.Start;
+                }
             }
         }
 
