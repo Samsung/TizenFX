@@ -22,6 +22,7 @@ using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+//using Tizen.NUI.Bindings;
 using System.Reflection;
 
 namespace Tizen.NUI.StyleGuide
@@ -307,11 +308,16 @@ namespace Tizen.NUI.StyleGuide
                 ItemsLayouter = new LinearLayouter(),
                 ItemTemplate = new DataTemplate(() =>
                 {
+                    var session = new BindingSession<ControlMenu>();
                     DefaultLinearItem item = new DefaultLinearItem()
                     {
                         WidthSpecification = LayoutParamPolicies.MatchParent,
                     };
-                    item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
+                    item.BindingContextChanged += (sender, e) =>
+                    {
+                        session.ViewModel = (ControlMenu)item.BindingContext;
+                    };
+                    item.Label.SetBinding(session, TextLabelBindings.TextProperty, "ViewLabel");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
                     item.Focusable = true; //BaseComponents' Focusable is false as a default value, true should be set to navigate key focus.
                     return item;
