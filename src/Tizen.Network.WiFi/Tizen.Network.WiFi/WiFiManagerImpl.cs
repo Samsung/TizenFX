@@ -150,11 +150,7 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        private static ThreadLocal<HandleHolder> s_threadName = new ThreadLocal<HandleHolder>(() =>
-        {
-            Log.Info(Globals.LogTag, "In threadlocal delegate");
-            return new HandleHolder();
-        });
+        private static HandleHolder _handle = new HandleHolder();
 
         private WiFiManagerImpl()
         {
@@ -163,7 +159,7 @@ namespace Tizen.Network.WiFi
 
         internal SafeWiFiManagerHandle GetSafeHandle()
         {
-            return s_threadName.Value.GetSafeHandle();
+            return _handle.GetSafeHandle();
         }
 
         internal SafeWiFiManagerHandle Initialize()
