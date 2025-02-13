@@ -47,6 +47,7 @@ namespace Tizen.Applications
         public Service()
         {
             Log.Debug("Service");
+            TizenCore.Initialize();
             State = ServiceLifecycleState.Initialized;
             NotifyLifecycleChanged();
         }
@@ -58,6 +59,7 @@ namespace Tizen.Applications
         {
             Log.Debug("~Service");
             Dispose(false);
+            TizenCore.Shutdown();
         }
 
         /// <summary>
@@ -137,7 +139,6 @@ namespace Tizen.Applications
                 return;
             }
 
-            TizenCore.Initialize();
             if (ServiceInfo.UseThread)
             {
                 _task = TizenCore.Spawn(Name);
@@ -171,7 +172,6 @@ namespace Tizen.Applications
                 _task.Dispose();
             }
             _task = null;
-            TizenCore.Shutdown();
         }
 
         internal void SendAppcOntrolReceivedEvent(AppControlReceivedEventArgs args)

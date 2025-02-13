@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Tizen.Core;
 
 namespace Tizen.Applications
 {
@@ -52,6 +53,7 @@ namespace Tizen.Applications
         {
             Log.Debug("OnCreate");
             base.OnCreate();
+            TizenCore.Initialize();
             CreateServiceInfos();
         }
 
@@ -77,6 +79,7 @@ namespace Tizen.Applications
         {
             Log.Debug("OnTerminate");
             base.OnTerminate();
+            TizenCore.Shutdown();
         }
 
         /// <summary>
