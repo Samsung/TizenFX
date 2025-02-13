@@ -46,6 +46,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public Service()
         {
+            Log.Debug("Service");
             State = ServiceLifecycleState.Initialized;
             NotifyLifecycleChanged();
         }
@@ -55,6 +56,7 @@ namespace Tizen.Applications
         /// </summary>
         ~Service()
         {
+            Log.Debug("~Service");
             Dispose(false);
         }
 
@@ -128,6 +130,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public void Run(AppControlReceivedEventArgs args)
         {
+            Log.Debug("Run");
             if (_task != null && _task.Running)
             {
                 Log.Info("Already running");
@@ -155,6 +158,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public void Quit()
         {
+            Log.Debug("Quit");
             if (_task == null || !_task.Running)
             {
                 return;
@@ -233,6 +237,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnCreate()
         {
+            Log.Debug("OnCreate");
             State = ServiceLifecycleState.Created;
             NotifyLifecycleChanged();
         }
@@ -248,6 +253,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            Log.Debug("OnAppControlReceived");
             if (State == ServiceLifecycleState.Created)
             {
                 State = ServiceLifecycleState.Running;
@@ -262,6 +268,7 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         protected virtual void OnDestroy()
         {
+            Log.Debug("OnDestroy");
             State = ServiceLifecycleState.Destroyed;
             NotifyLifecycleChanged();
         }
@@ -271,28 +278,40 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="e">The locale changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLocaleChanged(LocaleChangedEventArgs e) { }
+        protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
+        {
+            Log.Debug("OnLocaleChanged");
+        }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// </summary>
         /// <param name="e">The low batter event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLowBattery(LowBatteryEventArgs e) { }
+        protected virtual void OnLowBattery(LowBatteryEventArgs e)
+        {
+            Log.Debug("OnLowBattery");
+        }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// </summary>
         /// <param name="e">The low memory event argument.</param>
         /// <since_tizen> 13 </since_tizen>c
-        protected virtual void OnLowMemory(LowMemoryEventArgs e) { }
+        protected virtual void OnLowMemory(LowMemoryEventArgs e)
+        {
+            Log.Debug("OnLowMemory");
+        }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// </summary>
         /// <param name="e">The region format changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e) { }
+        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
+        {
+            Log.Debug("OnRegionFormatChanged");
+        }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.

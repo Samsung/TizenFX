@@ -273,6 +273,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Creates the information of the Service.
+        /// </summary>
+        /// <param name="packageId">The package ID of the service.</param>
+        /// <returns>The information of the service.</returns>
+        /// <since_tizen> 13 </since_tizen>
         public static ServiceInfo Create(string packageId) 
         {
             Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);

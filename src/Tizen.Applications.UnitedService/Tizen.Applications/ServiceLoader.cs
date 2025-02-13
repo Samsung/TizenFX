@@ -30,7 +30,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ServiceLoader : ServiceApplication
     {
-        private const string AulOrgAppId = "__AUL_ORG_APPID__";
         private readonly Dictionary<string, ServiceInfo> _serviceInfos = new Dictionary<string, ServiceInfo>();
         private readonly Dictionary<string, Service> _services = new Dictionary<string, Service>();
 
@@ -38,7 +37,10 @@ namespace Tizen.Applications
         /// Initializes the ServiceLoader class.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public ServiceLoader() {}
+        public ServiceLoader()
+        {
+            Log.Debug("ServiceLoader");
+        }
 
         /// <summary>
         /// Overrides this method if you want to handle specific behavior when the application is created.
@@ -48,6 +50,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnCreate()
         {
+            Log.Debug("OnCreate");
             base.OnCreate();
             CreateServiceInfos();
         }
@@ -60,6 +63,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            Log.Debug("OnAppControlReceived");
             base.OnAppControlReceived(e);
             HandleAppControlReceivedEvent(e);
         }
@@ -71,6 +75,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnTerminate()
         {
+            Log.Debug("OnTerminate");
             base.OnTerminate();
         }
 
@@ -82,6 +87,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
+            Log.Debug("OnLowMemory");
             base.OnLowMemory(e);
             SendSystemEvent(ServiceEventType.LowMemory, e);
         }
@@ -94,6 +100,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
+            Log.Debug("OnLowBattery");
             base.OnLowBattery(e);
             SendSystemEvent(ServiceEventType.LowBattery, e);
         }
@@ -106,6 +113,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
+            Log.Debug("OnLocaleChanged");
             base.OnLocaleChanged(e);
             SendSystemEvent(ServiceEventType.LocaleChanged, e);
         }
@@ -118,6 +126,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
+            Log.Debug("OnRegionFormatChanged");
             base.OnRegionFormatChanged(e);
             SendSystemEvent(ServiceEventType.RegionFormatChanged, e);
         }
@@ -130,6 +139,11 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnServiceLifecycleChanged(ServiceLifecycleChangedEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             Log.Info("Service=" + e.Service.Name + ", State=" + e.State);
         }
 
@@ -161,6 +175,11 @@ namespace Tizen.Applications
 
         private void HandleAppControlReceivedEvent(AppControlReceivedEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             var applicationId = e.ReceivedAppControl.ApplicationId;
             string resourceType = string.Empty;
             lock (_serviceInfos)
