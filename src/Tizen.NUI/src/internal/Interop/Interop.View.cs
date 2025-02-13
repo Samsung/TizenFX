@@ -29,6 +29,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewCustom")]
             public static extern global::System.IntPtr NewCustom();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewWithBehaviour")]
+            public static extern global::System.IntPtr NewWithBehaviour(int behaviour);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewCustomWithBehaviour")]
+            public static extern global::System.IntPtr NewCustomWithBehaviour(int behaviour);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_View")]
             public static extern void DeleteView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
