@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.Core;
 
@@ -132,7 +133,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public void Run(AppControlReceivedEventArgs args)
         {
-            Log.Debug("Run");
+            Log.Warn("Run");
             if (_task != null && _task.Running)
             {
                 Log.Info("Already running");
@@ -158,7 +159,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public void Quit()
         {
-            Log.Debug("Quit");
+            Log.Warn("Quit");
             if (_task == null || !_task.Running)
             {
                 return;
@@ -173,6 +174,29 @@ namespace Tizen.Applications
             _task = null;
         }
 
+        private string GetCommand(ReceivedAppControl receivedAppControl)
+        {
+            string command = string.Empty;
+            try
+            {
+                command = receivedAppControl.ExtraData.Get<string>("__K_SERVICE_COMMAND");
+            }
+            catch (ArgumentNullException e)
+            {
+                Log.Warn("ArgumentNullException=" + e.Message); ;
+            }
+            catch (KeyNotFoundException e)
+            {
+                Log.Warn("KeyNotFoundException=" + e.Message); ;
+            }
+            catch (ArgumentException e)
+            {
+                Log.Warn("KeyNotFoundException=" + e.Message); ;
+            }
+
+            return command;
+        }
+
         internal void SendAppcOntrolReceivedEvent(AppControlReceivedEventArgs args)
         {
             _task.Post(() =>
@@ -185,7 +209,12 @@ namespace Tizen.Applications
                 }
                 else
                 {
+                    var command = GetCommand(args.ReceivedAppControl);
                     OnAppControlReceived(args);
+                    if (command == "QUIT")
+                    {
+                        Quit();
+                    }
                 }
             });
         }

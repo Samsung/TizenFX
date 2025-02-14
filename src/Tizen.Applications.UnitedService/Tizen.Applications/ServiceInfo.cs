@@ -33,7 +33,8 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ServiceInfo
     {
-        private const string MetadataUnitedServiceDll = "http://tizen.org/metadata/united-service/dll";
+        private const string MetadataUnitedServiceExec = "http://tizen.org/metadata/united-service/exec";
+        private const string MetadataUnitedServiceType = "http://tizen.org/metadata/united-service/type";
         private const string MetadataUnitedServiceId = "http://tizen.org/metadata/united-service/id";
         private const string MetadataUnitedServiceUseThread = "http://tizen.org/metadata/united-service/use-thread";
         private const string MetadataUnitedServiceClassName = "http://tizen.org/metadata/united-service/class-name";
@@ -75,10 +76,10 @@ namespace Tizen.Applications
         public string ResourceVersion {  get; private set; }
 
         /// <summary>
-        /// The name of the dll file of the service.
+        /// Gets the executable path of the application.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public string DllFile {  get; private set; }
+        public string ExecutablePath {  get; private set; }
 
         /// <summary>
         /// The resource path of the service.
@@ -99,16 +100,42 @@ namespace Tizen.Applications
         public string ClassName { get; private set; }
 
         /// <summary>
+        /// The type of the runtime of the service.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string Type { get; private set; }
+
+        /// <summary>
         /// The metadata of the service.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
+
+        private string ExecutableFile { get; set; }
 
         /// <summary>
         /// The assembly of the service.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public ServiceAssembly Assembly { get; internal set; }
+
+        private static void SetType(ServiceInfo info)
+        {
+            if (info == null)
+            {
+                return;
+            }
+
+            if (info.Metadata.TryGetValue(MetadataUnitedServiceType, out string type))
+            {
+                info.Type = type;
+                Log.Info("Type=" + type);
+            }
+            else
+            {
+                Log.Error("Failed to get type");
+            }
+        }
 
         private static void SetName(ServiceInfo info)
         {
@@ -189,21 +216,21 @@ namespace Tizen.Applications
             }
         }
 
-        private static void SetDllFile(ServiceInfo info)
+        private static void SetExecutableFile(ServiceInfo info)
         {
             if (info == null)
             {
                 return;
             }
 
-            if (info.Metadata.TryGetValue(MetadataUnitedServiceDll, out string dllFile))
+            if (info.Metadata.TryGetValue(MetadataUnitedServiceExec, out string executableFile))
             {
-                info.DllFile = dllFile;
-                Log.Info("DllFile=" + info.DllFile);
+                info.ExecutableFile = executableFile;
+                Log.Info("ExecutableFile=" + info.ExecutableFile);
             }
             else
             {
-                Log.Error("Failed to find metadata. " + MetadataUnitedServiceDll);
+                Log.Error("Failed to find metadata. " + MetadataUnitedServiceExec);
             }
         }
 
@@ -292,13 +319,15 @@ namespace Tizen.Applications
             SetResourceType(info, handle);
             SetResourceVersion(info, handle);
             SetMetadata(info, handle);
-            SetDllFile(info);
+            SetExecutableFile(info);
             SetResourcePath(info);
             SetUseThread(info);
             SetClassName(info);
             SetId(info);
             SetName(info);
-            info.Assembly = new ServiceAssembly(info.ResourcePath + info.DllFile);
+            SetType(info);
+            info.ExecutablePath = info.ResourcePath + info.ExecutableFile;
+            info.Assembly = new ServiceAssembly(info.ExecutablePath);
             Interop.PackageManagerInfo.PackageInfoDestroy(handle);
             return info;
         }

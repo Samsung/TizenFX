@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Tizen.Core;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Tizen.Applications
 {
@@ -176,6 +177,51 @@ namespace Tizen.Applications
             }
         }
 
+        private string GetResourceTypeFromReceivedAppControl(ReceivedAppControl receivedAppControl)
+        {
+            string resourceType = string.Empty;
+            try
+            {
+                var id = receivedAppControl.ExtraData.Get<string>("__K_SERVICE_ID");
+                if (!string.IsNullOrEmpty(id))
+                {
+                    resourceType = GetResourceTypeFromId(id);
+                }
+            }
+            catch (ArgumentNullException e)
+            {
+                Log.Warn("ArgumentNullException=" + e.Message); ;
+            }
+            catch (KeyNotFoundException e)
+            {
+                Log.Warn("KeyNotFoundException=" + e.Message); ;
+            }
+            catch (ArgumentException e)
+            {
+                Log.Warn("KeyNotFoundException=" + e.Message); ;
+            }
+
+            return resourceType;
+        }
+
+        private string GetResourceTypeFromId(string id)
+        {
+            string resourceType = string.Empty;
+            lock (_serviceInfos)
+            {
+                foreach (var info in _serviceInfos.Values)
+                {
+                    if (info.Id == id)
+                    {
+                        resourceType = info.ResourceType;
+                        break;
+                    }
+                }
+            }
+
+            return resourceType;
+        }
+
         private void HandleAppControlReceivedEvent(AppControlReceivedEventArgs e)
         {
             if (e == null)
@@ -183,18 +229,10 @@ namespace Tizen.Applications
                 return;
             }
 
-            var applicationId = e.ReceivedAppControl.ApplicationId;
-            string resourceType = string.Empty;
-            lock (_serviceInfos)
+            string resourceType = GetResourceTypeFromId(e.ReceivedAppControl.ApplicationId);
+            if (string.IsNullOrEmpty(resourceType))
             {
-                foreach (var info in _serviceInfos.Values)
-                {
-                    if (info.Id == applicationId)
-                    {
-                        resourceType = info.ResourceType;
-                        break;
-                    }
-                }
+                resourceType = GetResourceTypeFromReceivedAppControl(e.ReceivedAppControl);
             }
 
             if (!string.IsNullOrEmpty(resourceType))
@@ -278,9 +316,9 @@ namespace Tizen.Applications
                         return;
                     }
 
-                    Log.Warn("ServiceAssembly.Load()=" + info.ResourcePath + info.DllFile + " ++");
+                    Log.Warn("ServiceAssembly.Load()=" + info.ExecutablePath + " ++");
                     info.Assembly.Load();
-                    Log.Warn("ServiceAssembly.Load()=" + info.ResourcePath + info.DllFile + " --");
+                    Log.Warn("ServiceAssembly.Load()=" + info.ExecutablePath + " --");
                 }
             }
             catch (FileLoadException e)
