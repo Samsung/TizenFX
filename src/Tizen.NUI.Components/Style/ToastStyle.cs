@@ -26,28 +26,9 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
-        /// <summary>The Duration bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = null;
-        internal static void SetInternalDurationProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((ToastStyle)bindable).duration = (uint?)newValue;
-        }
-        internal static object GetInternalDurationProperty(BindableObject bindable)
-        {
-            return ((ToastStyle)bindable).duration;
-        }
+        static readonly IStyleProperty DurationProperty = new StyleProperty<Toast, uint>((v, o) => v.Duration = o);
 
-        private uint? duration;
-
-        static ToastStyle()
-        {
-            if (NUIApplication.IsUsingXaml)
-            {
-                DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint?), typeof(ToastStyle), null,
-                    propertyChanged: SetInternalDurationProperty, defaultValueCreator: GetInternalDurationProperty);
-            }
-        }
+        static ToastStyle() { }
 
         /// <summary>
         /// Creates a new instance of a ToastStyle.
@@ -72,28 +53,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? Duration
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (uint?)GetValue(DurationProperty);
-                }
-                else
-                {
-                    return (uint?)GetInternalDurationProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(DurationProperty, value);
-                }
-                else
-                {
-                    SetInternalDurationProperty(this, null, value);
-                }
-            }
+            get => (uint?)GetValue(DurationProperty);
+            set => SetValue(DurationProperty, value);
         }
 
         /// <summary>
