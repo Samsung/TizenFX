@@ -5857,44 +5857,16 @@ namespace Tizen.NUI.BaseComponents
 
             themeData.viewStyle = viewStyle;
 
-            if (viewStyle.DirtyProperties == null || viewStyle.DirtyProperties.Count == 0)
+            ChangedPropertiesSetExcludingStyle = new HashSet<string>();
+
+            foreach (var (property, value) in viewStyle.GetProperties())
             {
-                // Nothing to apply
-                return;
+                // TODO Check isThemeChanged & ChangedPropertiesSetExcludingStyle
+                property.ApplyTo(this, value);
             }
 
-            BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
-
-            if (bindablePropertyOfView == null)
-            {
-                return;
-            }
-
-            var dirtyStyleProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
-            viewStyle.DirtyProperties.CopyTo(dirtyStyleProperties);
-
-            foreach (var sourceProperty in dirtyStyleProperties)
-            {
-                var sourceValue = viewStyle.GetValue(sourceProperty);
-
-                if (sourceValue == null)
-                {
-                    continue;
-                }
-
-                bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
-
-                // Do not set value again when theme is changed and the value has been set already.
-                if (isThemeChanged && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty))
-                {
-                    continue;
-                }
-
-                if (destinationProperty != null)
-                {
-                    InternalSetValue(destinationProperty, sourceValue);
-                }
-            }
+            // NOTE Support backward compatibility.
+            ApplyStyleUsingBindableProperty(viewStyle);
         }
 
         /// <summary>
@@ -6055,5 +6027,48 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private void RequestLayout() => layoutExtraData?.Layout?.RequestLayout();
+
+        private void ApplyStyleUsingBindableProperty(ViewStyle viewStyle)
+        {
+            // NOTE Support backward compatibility.
+            if (viewStyle.DirtyProperties == null || viewStyle.DirtyProperties.Count == 0)
+            {
+                // Nothing to apply
+                return;
+            }
+
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
+
+            if (bindablePropertyOfView == null)
+            {
+                return;
+            }
+
+            var dirtyStyleProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
+            viewStyle.DirtyProperties.CopyTo(dirtyStyleProperties);
+
+            foreach (var sourceProperty in dirtyStyleProperties)
+            {
+                var sourceValue = viewStyle.GetValue(sourceProperty);
+
+                if (sourceValue == null)
+                {
+                    continue;
+                }
+
+                bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
+
+                // Do not set value again when theme is changed and the value has been set already.
+                if (isThemeChanged && ChangedPropertiesSetExcludingStyle != null && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty.PropertyName))
+                {
+                    continue;
+                }
+
+                if (destinationProperty != null)
+                {
+                    InternalSetValue(destinationProperty, sourceValue);
+                }
+            }
+        }
     }
 }
