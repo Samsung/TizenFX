@@ -853,7 +853,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Extents)GetInternalPaddingProperty(this);
+                    return (Extents)GetInternalPaddingProperty(this) ?? (padding = new Extents());
                 }
             }
             set
@@ -1001,7 +1001,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Extents)GetInternalMarginProperty(this);
+                    return (Extents)GetInternalMarginProperty(this) ?? (margin = new Extents());
                 }
             }
             set
