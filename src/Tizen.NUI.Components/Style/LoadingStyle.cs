@@ -27,86 +27,14 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class LoadingStyle : ControlStyle
     {
-        /// <summary>The FrameRateSelector bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameRateSelectorProperty = null;
-        internal static void SetInternalFrameRateSelectorProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((LoadingStyle)bindable).frameRate = ((Selector<int?>)newValue)?.Clone();
-        }
-        internal static object GetInternalFrameRateSelectorProperty(BindableObject bindable)
-        {
-            return ((LoadingStyle)bindable).frameRate;
-        }
+        // NOTE framerate selector does not work.
+        static readonly IStyleProperty FrameRateProperty = new StyleProperty<Loading, Selector<int?>>((v, o) => v.FrameRate = (int)o.Normal);
+        static readonly IStyleProperty ImageListProperty = new StyleProperty<Loading, IList<string>>((v, o) => Loading.SetInternalImageListProperty(v, null, o));
+        static readonly IStyleProperty LottieResourceUrlProperty = new StyleProperty<Loading, string>((v, o) => v.LottieResourceUrl = o);
 
-        /// <summary>The LoadingSize bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoadingSizeProperty = null;
-        internal static void SetInternalLoadingSizeProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((LoadingStyle)bindable).Size = (Size)newValue;
-        }
-        internal static object GetInternalLoadingSizeProperty(BindableObject bindable)
-        {
-            return ((LoadingStyle)bindable).Size;
-        }
+        private Size loadingSize;
 
-        /// <summary>The Images bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImagesProperty = null;
-        internal static void SetInternalImagesProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((LoadingStyle)bindable).images = newValue == null ? null : new List<string>((string[])newValue);
-        }
-        internal static object GetInternalImagesProperty(BindableObject bindable)
-        {
-            return ((LoadingStyle)bindable).images?.ToArray();
-        }
-
-        /// <summary>The Images bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageListProperty = null;
-        internal static void SetInternalImageListProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((LoadingStyle)bindable).images = newValue == null ? null : newValue as List<string>;
-        }
-        internal static object GetInternalImageListProperty(BindableObject bindable)
-        {
-            return ((LoadingStyle)bindable).images;
-        }
-
-        /// <summary>The lottie resource url bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LottieResourceUrlProperty = null;
-        internal static void SetInternalLottieResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((LoadingStyle)bindable).lottieResourceUrl = newValue as string;
-        }
-        internal static object GetInternalLottieResourceUrlProperty(BindableObject bindable)
-        {
-            return ((LoadingStyle)bindable).lottieResourceUrl;
-        }
-
-        private Selector<int?> frameRate;
-        private List<string> images;
-        private string lottieResourceUrl;
-
-        static LoadingStyle()
-        {
-            if (NUIApplication.IsUsingXaml)
-            {
-                FrameRateSelectorProperty = BindableProperty.Create("FrameRateSelector", typeof(Selector<int?>), typeof(LoadingStyle), null,
-                    propertyChanged: SetInternalFrameRateSelectorProperty, defaultValueCreator: GetInternalFrameRateSelectorProperty);
-                LoadingSizeProperty = BindableProperty.Create(nameof(LoadingSize), typeof(Size), typeof(LoadingStyle), null,
-                    propertyChanged: SetInternalLoadingSizeProperty, defaultValueCreator: GetInternalLoadingSizeProperty);
-                ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null,
-                    propertyChanged: SetInternalImagesProperty, defaultValueCreator: GetInternalImagesProperty);
-                ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(LoadingStyle), null,
-                    propertyChanged: SetInternalImageListProperty, defaultValueCreator: GetInternalImageListProperty);
-                LottieResourceUrlProperty = BindableProperty.Create(nameof(LottieResourceUrl), typeof(string), typeof(LoadingStyle), null,
-                    propertyChanged: SetInternalLottieResourceUrlProperty, defaultValueCreator: GetInternalLottieResourceUrlProperty);
-            }
-        }
+        static LoadingStyle() { }
 
         /// <summary>
         /// Creates a new instance of a LoadingStyle.
@@ -127,24 +55,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading image resources.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public string[] Images
-        {
-            get
-            {
-                return (ImageList as List<string>)?.ToArray();
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ImagesProperty, value);
-                }
-                else
-                {
-                    SetInternalImagesProperty(this, null, value);
-                }
-            }
-        }
+        public string[] Images { get; set; }
 
         /// <summary>
         /// Gets loading image resources.
@@ -154,26 +65,9 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return GetValue(ImageListProperty) as List<string>;
-                }
-                else
-                {
-                    return GetInternalImageListProperty(this) as IList<string>;
-                }
+                return GetValue(ImageListProperty) as List<string>;
             }
-            internal set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ImageListProperty, value);
-                }
-                else
-                {
-                    SetInternalImageListProperty(this, null, value);
-                }
-            }
+            internal set => SetValue(ImageListProperty, value);
         }
 
         /// <summary>
@@ -183,28 +77,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LottieResourceUrl
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return GetValue(LottieResourceUrlProperty) as string;
-                }
-                else
-                {
-                    return GetInternalLottieResourceUrlProperty(this) as string;
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(LottieResourceUrlProperty, value);
-                }
-                else
-                {
-                    SetInternalLottieResourceUrlProperty(this, null, value);
-                }
-            }
+            get => GetValue(LottieResourceUrlProperty) as string;
+            set => SetValue(LottieResourceUrlProperty, value);
         }
 
         /// <summary>
@@ -213,27 +87,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Size LoadingSize
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Size)GetValue(LoadingSizeProperty);
-                }
-                else
-                {
-                    return (Size)GetInternalLoadingSizeProperty(this);
-                }
-            }
+            get => loadingSize;
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(LoadingSizeProperty, value);
-                }
-                else
-                {
-                    SetInternalLoadingSizeProperty(this, null, value);
-                }
+                loadingSize = value;
             }
         }
 
@@ -243,28 +100,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Selector<int?> FrameRate
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Selector<int?>)GetValue(FrameRateSelectorProperty);
-                }
-                else
-                {
-                    return (Selector<int?>)GetInternalFrameRateSelectorProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(FrameRateSelectorProperty, value);
-                }
-                else
-                {
-                    SetInternalFrameRateSelectorProperty(this, null, value);
-                }
-            }
+            get => (Selector<int?>)GetValue(FrameRateProperty);
+            set => SetValue(FrameRateProperty, value);
         }
 
         /// <inheritdoc/>

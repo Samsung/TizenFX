@@ -61,6 +61,7 @@ namespace Tizen.NUI
         private static readonly List<string> packages = new List<string>();// This is to store base theme creators by packages.
         private static bool platformThemeEnabled = false;
         private static bool isInEventProgress = false;
+        private static bool updateThemeDirty = false;
 
         static ThemeManager()
         {
@@ -174,7 +175,7 @@ namespace Tizen.NUI
 
 #if PROFILE_TV
         internal const bool InitialThemeDisabled = true;
-#else        
+#else
         internal const bool InitialThemeDisabled = false;
 #endif
 
@@ -215,22 +216,26 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void AppendTheme(Theme theme)
         {
-            var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException(nameof(theme));
-
-            if (string.IsNullOrEmpty(newTheme.Id))
+            if (theme == null)
             {
-                newTheme.Id = "NONAME";
+                throw new ArgumentNullException(nameof(theme));
             }
 
-            if (newTheme.SmallBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl);
-            if (newTheme.BrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl);
-            if (newTheme.LargeBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl);
+            // var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException(nameof(theme));
 
-            if (userTheme == null) userTheme = newTheme;
+            if (string.IsNullOrEmpty(theme.Id))
+            {
+                theme.Id = "NONAME";
+            }
+
+            if (theme.SmallBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, theme.SmallBrokenImageUrl);
+            if (theme.BrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, theme.BrokenImageUrl);
+            if (theme.LargeBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, theme.LargeBrokenImageUrl);
+
+            if (userTheme == null) userTheme = theme;
             else
             {
-                userTheme = (Theme)userTheme.Clone();
-                userTheme.MergeWithoutClone(newTheme);
+                userTheme.Merge(theme);
             }
 
             UpdateThemeForInitialize();
@@ -342,13 +347,13 @@ namespace Tizen.NUI
         /// Load a style with style name in the current theme.
         /// </summary>
         /// <param name="styleName">The style name.</param>
-        internal static ViewStyle GetUpdateStyleWithoutClone(string styleName) => themeForUpdate?.GetStyle(styleName);
+        internal static ViewStyle GetUpdateStyleWithoutClone(string styleName) => ThemeForUpdate?.GetStyle(styleName);
 
         /// <summary>
         /// Load a style with View type in the current theme.
         /// </summary>
         /// <param name="viewType">The type of View.</param>
-        internal static ViewStyle GetUpdateStyleWithoutClone(Type viewType) => themeForUpdate?.GetStyle(viewType);
+        internal static ViewStyle GetUpdateStyleWithoutClone(Type viewType) => ThemeForUpdate?.GetStyle(viewType);
 
         /// <summary>
         /// Load a initial component style.
@@ -491,21 +496,33 @@ namespace Tizen.NUI
         // TODO Please make it private after removing Tizen.NUI.Components.StyleManager.
         internal static void UpdateThemeForUpdate()
         {
-            if (userTheme == null)
-            {
-                themeForUpdate = platformTheme;
-                return;
-            }
+            updateThemeDirty = true;
+        }
 
-            if (platformTheme == null)
+        static Theme ThemeForUpdate
+        {
+            get
             {
-                themeForUpdate = userTheme;
-                return;
+                if (updateThemeDirty)
+                {
+                    if (userTheme == null)
+                    {
+                        themeForUpdate = platformTheme;
+                    }
+                    else if (platformTheme == null)
+                    {
+                        themeForUpdate = userTheme;
+                    }
+                    else
+                    {
+                        themeForUpdate = new Theme();
+                        themeForUpdate.Merge(platformTheme);
+                        themeForUpdate.Merge(userTheme);
+                    }
+                    updateThemeDirty = false;
+                }
+                return themeForUpdate;
             }
-
-            themeForUpdate = new Theme();
-            themeForUpdate.Merge(platformTheme);
-            themeForUpdate.MergeWithoutClone(userTheme);
         }
 
         // TODO Please make it private after removing Tizen.NUI.Components.StyleManager.
@@ -523,12 +540,12 @@ namespace Tizen.NUI
 
             if (userTheme == null)
             {
-                if (platformTheme != null) themeForInitialize.MergeWithoutClone(platformTheme);
+                if (platformTheme != null) themeForInitialize.Merge(platformTheme);
             }
             else
             {
                 if (platformTheme != null) themeForInitialize.Merge(platformTheme);
-                themeForInitialize.MergeWithoutClone(userTheme);
+                themeForInitialize.Merge(userTheme);
             }
         }
 
@@ -543,7 +560,7 @@ namespace Tizen.NUI
 
             for (var i = theme.PackageCount; i < packages.Count; i++)
             {
-                theme.MergeWithoutClone(CreatePlatformTheme(sharedResourcePath, packages[i]));
+                theme.Merge(CreatePlatformTheme(sharedResourcePath, packages[i]));
             }
             theme.PackageCount = packages.Count;
         }

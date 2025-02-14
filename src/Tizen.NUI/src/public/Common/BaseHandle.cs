@@ -576,6 +576,11 @@ namespace Tizen.NUI
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            if (!ThemeManager.InitialThemeDisabled && ChangedPropertiesSetExcludingStyle != null)
+            {
+                ChangedPropertiesSetExcludingStyle.Add(propertyName);
+            }
         }
 
         internal void UnregisterFromRegistry()
