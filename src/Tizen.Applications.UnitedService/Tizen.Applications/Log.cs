@@ -20,7 +20,7 @@ namespace Tizen.Applications
 {
     internal class Log
     {
-        private static string LogTag = "UnistedService";
+        private static string LogTag = "UnitedService";
 
         public static void Error(string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {

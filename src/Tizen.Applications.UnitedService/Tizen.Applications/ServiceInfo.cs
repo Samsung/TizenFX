@@ -117,8 +117,8 @@ namespace Tizen.Applications
                 return;
             }
 
-            string[] tokens = info.ResourceType.Split(',');
-            info.Name = tokens[^1];
+            string resourceType = info.ResourceType;
+            info.Name = resourceType.Substring(resourceType.LastIndexOf('.') + 1);
         }
 
         private static void SetId(ServiceInfo info)

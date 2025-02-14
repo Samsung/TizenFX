@@ -142,7 +142,6 @@ namespace Tizen.Applications
             if (ServiceInfo.UseThread)
             {
                 _task = TizenCore.Spawn(Name);
-                _task.Run();
             }
             else
             {
