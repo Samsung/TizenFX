@@ -177,6 +177,29 @@ namespace Tizen.Applications
             }
         }
 
+        private string GetCommand(ReceivedAppControl receivedAppControl)
+        {
+            string command = string.Empty;
+            try
+            {
+                command = receivedAppControl.ExtraData.Get<string>("__K_SERVICE_COMMAND");
+            }
+            catch (ArgumentNullException e)
+            {
+                Log.Warn("ArgumentNullException=" + e.Message); ;
+            }
+            catch (KeyNotFoundException e)
+            {
+                Log.Warn("KeyNotFoundException=" + e.Message); ;
+            }
+            catch (ArgumentException e)
+            {
+                Log.Warn("KeyNotFoundException=" + e.Message); ;
+            }
+
+            return command;
+        }
+
         private string GetResourceTypeFromReceivedAppControl(ReceivedAppControl receivedAppControl)
         {
             string resourceType = string.Empty;
@@ -237,6 +260,24 @@ namespace Tizen.Applications
 
             if (!string.IsNullOrEmpty(resourceType))
             {
+                string command = GetCommand(e.ReceivedAppControl);
+
+                if (command == "QUIT")
+                {
+                    Service service = null;
+                    lock (_services)
+                    {
+                        if (_services.TryGetValue(resourceType, out service))
+                        {
+                            if (service.State != ServiceLifecycleState.Destroyed)
+                            {
+                                service.Quit();
+                            }
+                        }
+                    }
+                    return;
+                }
+
                 Run(resourceType, e);
             }
         }

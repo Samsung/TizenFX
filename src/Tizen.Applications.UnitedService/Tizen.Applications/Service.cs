@@ -160,7 +160,7 @@ namespace Tizen.Applications
         public void Quit()
         {
             Log.Warn("Quit");
-            if (_task == null || !_task.Running)
+            if (_task == null || State == ServiceLifecycleState.Destroyed)
             {
                 return;
             }
@@ -170,31 +170,8 @@ namespace Tizen.Applications
             {
                 _task.Quit();
                 _task.Dispose();
+                _task = null;
             }
-            _task = null;
-        }
-
-        private string GetCommand(ReceivedAppControl receivedAppControl)
-        {
-            string command = string.Empty;
-            try
-            {
-                command = receivedAppControl.ExtraData.Get<string>("__K_SERVICE_COMMAND");
-            }
-            catch (ArgumentNullException e)
-            {
-                Log.Warn("ArgumentNullException=" + e.Message); ;
-            }
-            catch (KeyNotFoundException e)
-            {
-                Log.Warn("KeyNotFoundException=" + e.Message); ;
-            }
-            catch (ArgumentException e)
-            {
-                Log.Warn("KeyNotFoundException=" + e.Message); ;
-            }
-
-            return command;
         }
 
         internal void SendAppcOntrolReceivedEvent(AppControlReceivedEventArgs args)
@@ -209,12 +186,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    var command = GetCommand(args.ReceivedAppControl);
                     OnAppControlReceived(args);
-                    if (command == "QUIT")
-                    {
-                        Quit();
-                    }
                 }
             });
         }
@@ -246,11 +218,11 @@ namespace Tizen.Applications
 
         private void NotifyLifecycleChanged()
         {
+            var args = new ServiceLifecycleChangedEventArgs();
+            args.Service = this;
+            args.State = State;
             CoreApplication.Post(() =>
             {
-                var args = new ServiceLifecycleChangedEventArgs();
-                args.Service = this;
-                args.State = State;
                 lock (_eventLock)
                 {
                     _serviceLifecycleChanged?.Invoke(this, args);
