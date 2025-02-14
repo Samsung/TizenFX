@@ -95,21 +95,11 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-
-            if (NUIApplication.IsUsingXaml)
+            view.themeData?.selectorData?.ClearBackground(view);
+            if (newValue is Selector<Color> selector)
             {
-                view.themeData?.selectorData?.ClearBackground(view);
-
-                if (newValue is Selector<Color> selector)
-                {
-                    if (selector.HasAll()) view.SetBackgroundColor(selector.All);
-                    else view.EnsureSelectorData().BackgroundColor = new TriggerableSelector<Color>(view, selector, view.SetBackgroundColor, true);
-                }
-                else
-                {
-                    view.SetBackgroundColor((Color)newValue);
-                }
-
+                if (selector.HasAll()) view.SetBackgroundColor(selector.All);
+                else view.EnsureSelectorData().BackgroundColor = new TriggerableSelector<Color>(view, selector, view.SetBackgroundColor, true);
             }
             else
             {

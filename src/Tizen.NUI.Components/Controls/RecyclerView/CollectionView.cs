@@ -284,8 +284,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public override IEnumerable ItemsSource
         {
-            get => GetValue(RecyclerView.ItemsSourceProperty) as IEnumerable;
-            set => SetValue(RecyclerView.ItemsSourceProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(RecyclerView.ItemsSourceProperty) as IEnumerable;
+                }
+                else
+                {
+                    return GetInternalItemsSourceProperty(this) as IEnumerable;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RecyclerView.ItemsSourceProperty, value);
+                }
+                else
+                {
+                    SetInternalItemsSourceProperty(this, null, value);
+                }
+            }
         }
 
         internal override IEnumerable InternalItemsSource
@@ -347,11 +367,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ItemTemplateProperty) as DataTemplate;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ItemTemplateProperty) as DataTemplate;
+                }
+                else
+                {
+                    return GetInternalItemTemplateProperty(this) as DataTemplate;
+                }
             }
             set
             {
-                SetValue(ItemTemplateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemTemplateProperty, value);
+                }
+                else
+                {
+                    SetInternalItemTemplateProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
