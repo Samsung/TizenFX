@@ -365,6 +365,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterDeviceListGetCallback")]
             public static extern void RegisterDeviceListGetCallback(HandleRef webViewRef, IntPtr callbackRef);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SetVideoHole")]
+            public static extern void SetVideoHole(HandleRef webViewRef, bool enable, bool isWaylandWindow);
         }
     }
 }
