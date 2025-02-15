@@ -3132,6 +3132,18 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Enable video hole for a specific window type.
+        /// </summary>
+        /// <param name="enable">true if enabled, false othewise</param>
+        /// <param name="isWaylandWindow">true if wayland window, false if EFL window.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetVideoHole(bool enable, bool isWaylandWindow)
+        {
+            Interop.WebView.SetVideoHole(SwigCPtr, enable, isWaylandWindow);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static WebView DownCast(BaseHandle handle)
         {
             WebView ret = new WebView(Interop.WebView.DownCast(BaseHandle.getCPtr(handle)), true);
