@@ -41,6 +41,7 @@ namespace Tizen.Applications
         private bool _isSystemPackage;
         private bool _isRemovable;
         private bool _isPreloaded;
+        private bool _isUpdated;
         private bool _isAccessible;
         private Lazy<IReadOnlyDictionary<CertificateType, PackageCertificate>> _certificates;
         private List<string> _privileges;
@@ -124,6 +125,13 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool IsPreloaded { get { return _isPreloaded; } }
+
+        /// <summary>
+        /// Checks whether the package is updated.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsUpdated { get { return _isUpdated; } }
 
         /// <summary>
         /// Checks whether the current package is accessible.
@@ -349,29 +357,34 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, "Failed to get installed storage type of " + pkgId);
             }
-            Interop.Package.PackageInfoIsSystemPackage(handle, out package._isSystemPackage);
+            err = Interop.Package.PackageInfoIsSystemPackage(handle, out package._isSystemPackage);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is system package or not");
             }
-            Interop.Package.PackageInfoIsRemovablePackage(handle, out package._isRemovable);
+            err = Interop.Package.PackageInfoIsRemovablePackage(handle, out package._isRemovable);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is removable or not");
             }
-            Interop.Package.PackageInfoIsPreloadPackage(handle, out package._isPreloaded);
+            err = Interop.Package.PackageInfoIsPreloadPackage(handle, out package._isPreloaded);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is preloaded or not");
             }
-            Interop.Package.PackageInfoIsAccessible(handle, out package._isAccessible);
+            err = Interop.Package.PackageInfoIsUpdatePackage(handle, out package._isUpdated);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is updated or not");
+            }
+            err = Interop.Package.PackageInfoIsAccessible(handle, out package._isAccessible);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is accessible or not");
             }
             try
             {
-                Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
+                err = Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
                     Log.Warn(LogTag, "Failed to get installed time of " + pkgId);
