@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 using Tizen.NUI.Components.Extension;
 
 namespace Tizen.NUI.Components
@@ -31,7 +32,20 @@ namespace Tizen.NUI.Components
     {
         private ImageView thumb = null;
 
-        static Switch() { }
+        static Switch()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SwitchBackgroundImageURLSelectorProperty = BindableProperty.Create(nameof(SwitchBackgroundImageURLSelector), typeof(StringSelector), typeof(Switch), null,
+                    propertyChanged: SetInternalSwitchBackgroundImageURLSelectorProperty, defaultValueCreator: GetInternalSwitchBackgroundImageURLSelectorProperty);
+                SwitchHandlerImageURLProperty = BindableProperty.Create(nameof(SwitchHandlerImageURL), typeof(string), typeof(Switch), default(string),
+                    propertyChanged: SetInternalSwitchHandlerImageURLProperty, defaultValueCreator: GetInternalSwitchHandlerImageURLProperty);
+                SwitchHandlerImageURLSelectorProperty = BindableProperty.Create(nameof(SwitchHandlerImageURLSelector), typeof(StringSelector), typeof(Switch), null,
+                    propertyChanged: SetInternalSwitchHandlerImageURLSelectorProperty, defaultValueCreator: GetInternalSwitchHandlerImageURLSelectorProperty);
+                SwitchHandlerImageSizeProperty = BindableProperty.Create(nameof(SwitchHandlerImageSize), typeof(Size), typeof(Switch), null,
+                    propertyChanged: SetInternalSwitchHandlerImageSizeProperty, defaultValueCreator: GetInternalSwitchHandlerImageSizeProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a Switch.
@@ -192,11 +206,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SwitchBackgroundImageURLSelectorProperty) as StringSelector;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SwitchBackgroundImageURLSelectorProperty) as StringSelector;
+                }
+                else
+                {
+                    return GetInternalSwitchBackgroundImageURLSelectorProperty(this) as StringSelector;
+                }
             }
             set
             {
-                SetValue(SwitchBackgroundImageURLSelectorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SwitchBackgroundImageURLSelectorProperty, value);
+                }
+                else
+                {
+                    SetInternalSwitchBackgroundImageURLSelectorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -226,11 +254,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SwitchHandlerImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SwitchHandlerImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalSwitchHandlerImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(SwitchHandlerImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SwitchHandlerImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalSwitchHandlerImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -255,11 +297,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SwitchHandlerImageURLSelectorProperty) as StringSelector;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SwitchHandlerImageURLSelectorProperty) as StringSelector;
+                }
+                else
+                {
+                    return GetInternalSwitchHandlerImageURLSelectorProperty(this) as StringSelector;
+                }
             }
             set
             {
-                SetValue(SwitchHandlerImageURLSelectorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SwitchHandlerImageURLSelectorProperty, value);
+                }
+                else
+                {
+                    SetInternalSwitchHandlerImageURLSelectorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -289,11 +345,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SwitchHandlerImageSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SwitchHandlerImageSizeProperty) as Size;
+                }
+                else
+                {
+                    return GetInternalSwitchHandlerImageSizeProperty(this) as Size;
+                }
             }
             set
             {
-                SetValue(SwitchHandlerImageSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SwitchHandlerImageSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalSwitchHandlerImageSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
