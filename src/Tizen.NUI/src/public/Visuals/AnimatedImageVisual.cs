@@ -198,7 +198,7 @@ namespace Tizen.NUI
                 }
                 if (loopCount != null)
                 {
-                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, cacheSize.Value);
+                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, loopCount.Value);
                 }
                 base.ComposingPropertyMap();
             }
