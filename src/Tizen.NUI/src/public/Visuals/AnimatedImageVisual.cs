@@ -178,7 +178,10 @@ namespace Tizen.NUI
                     {
                         urlArray.Add(new PropertyValue(url));
                     }
-                    _outputVisualMap.Add(ImageVisualProperty.URL, urls[0]);
+                    using (var temp = new PropertyValue(urlArray))
+                    {
+                        _outputVisualMap.Add(ImageVisualProperty.URL, temp);
+                    }
                     urlArray.Dispose();
                 }
                 if (batchSize != null)
