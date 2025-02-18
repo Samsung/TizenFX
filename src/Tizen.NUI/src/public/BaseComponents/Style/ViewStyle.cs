@@ -33,15 +33,12 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty FocusableProperty = new StyleProperty<View, bool>((v, o) => v.Focusable = o);
         static readonly IStyleProperty FocusableChildrenProperty = new StyleProperty<View, bool>((v, o) => v.FocusableChildren = o);
         static readonly IStyleProperty FocusableInTouchProperty = new StyleProperty<View, bool>((v, o) => v.FocusableInTouch = o);
-        static readonly IStyleProperty Size2DProperty = new StyleProperty<View, Size2D>((v, o) => v.Size2D = o);
         static readonly IStyleProperty OpacityProperty = new StyleProperty<View, Selector<float?>>((v, o) => View.SetInternalOpacityProperty(v, null, o));
-        static readonly IStyleProperty Position2DProperty = new StyleProperty<View, Position2D>((v, o) => v.Position2D = o);
         static readonly IStyleProperty PositionUsesPivotPointProperty = new StyleProperty<View, bool>((v, o) => v.PositionUsesPivotPoint = o);
         static readonly IStyleProperty ParentOriginProperty = new StyleProperty<View, Position>((v, o) => v.ParentOrigin = o);
         static readonly IStyleProperty PivotPointProperty = new StyleProperty<View, Position>((v, o) => v.PivotPoint = o);
         static readonly IStyleProperty SizeWidthProperty = new StyleProperty<View, float>((v, o) => v.SizeWidth = o);
         static readonly IStyleProperty SizeHeightProperty = new StyleProperty<View, float>((v, o) => v.SizeHeight = o);
-        static readonly IStyleProperty PositionProperty = new StyleProperty<View, Position>((v, o) => v.Position = o);
         static readonly IStyleProperty PositionXProperty = new StyleProperty<View, float>((v, o) => v.PositionX = o);
         static readonly IStyleProperty PositionYProperty = new StyleProperty<View, float>((v, o) => v.PositionY = o);
         static readonly IStyleProperty OrientationProperty = new StyleProperty<View, Rotation>((v, o) => v.Orientation = o);
@@ -55,7 +52,6 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty MinimumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MinimumSize = o);
         static readonly IStyleProperty MaximumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MaximumSize = o);
         static readonly IStyleProperty ClippingModeProperty = new StyleProperty<View, ClippingModeType>((v, o) => v.ClippingMode = o);
-        static readonly IStyleProperty SizeProperty = new StyleProperty<View, Size>((v, o) => v.Size = o);
         static readonly IStyleProperty MarginProperty = new StyleProperty<View, Extents>((v, o) => v.Margin = o);
         static readonly IStyleProperty BackgroundColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => View.SetInternalBackgroundColorProperty(v, null, o));
         static readonly IStyleProperty ColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => View.SetInternalColorProperty(v, null, o));
@@ -144,8 +140,37 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2D
         {
-            get => (Size2D)GetValue(Size2DProperty);
-            set => SetValue(Size2DProperty, value);
+            get
+            {
+                var width = (float?)GetValue(SizeWidthProperty);
+                var height = (float?)GetValue(SizeHeightProperty);
+
+                if (null == width && null == height)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realWidth = null == width ? 0 : width.Value;
+                    var realHeight = null == height ? 0 : height.Value;
+
+                    return new Size2D((int)realWidth, (int)realHeight);
+                }
+            }
+            set
+            {
+                float? width = null;
+                float? height = null;
+
+                if (value is Size2D size)
+                {
+                    width = size.Width;
+                    height = size.Height;
+                }
+
+                SetValue(SizeWidthProperty, width);
+                SetValue(SizeHeightProperty, height);
+            }
         }
 
         /// <summary>
@@ -165,8 +190,37 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2D
         {
-            get => (Position2D)GetValue(Position2DProperty);
-            set => SetValue(Position2DProperty, value);
+            get
+            {
+                var x = (float?)GetValue(PositionXProperty);
+                var height = (float?)GetValue(PositionYProperty);
+
+                if (null == x && null == height)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realX = null == x ? 0 : x.Value;
+                    var realY = null == height ? 0 : height.Value;
+
+                    return new Position2D((int)realX, (int)realY);
+                }
+            }
+            set
+            {
+                float? x = null;
+                float? y = null;
+
+                if (value is Position2D position)
+                {
+                    x = position.X;
+                    y = position.Y;
+                }
+
+                SetValue(PositionXProperty, x);
+                SetValue(PositionYProperty, y);
+            }
         }
 
         /// <summary>
@@ -232,8 +286,37 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Position Position
         {
-            get => (Position)GetValue(PositionProperty);
-            set => SetValue(PositionProperty, value);
+            get
+            {
+                var x = (float?)GetValue(PositionXProperty);
+                var height = (float?)GetValue(PositionYProperty);
+
+                if (null == x && null == height)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realX = null == x ? 0 : x.Value;
+                    var realY = null == height ? 0 : height.Value;
+
+                    return new Position(realX, realY);
+                }
+            }
+            set
+            {
+                float? x = null;
+                float? y = null;
+
+                if (value is Position position)
+                {
+                    x = position.X;
+                    y = position.Y;
+                }
+
+                SetValue(PositionXProperty, x);
+                SetValue(PositionYProperty, y);
+            }
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -360,8 +443,37 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Size Size
         {
-            get => (Size)GetValue(SizeProperty);
-            set => SetValue(SizeProperty, value);
+            get
+            {
+                var width = (float?)GetValue(SizeWidthProperty);
+                var height = (float?)GetValue(SizeHeightProperty);
+
+                if (null == width && null == height)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realWidth = null == width ? 0 : width.Value;
+                    var realHeight = null == height ? 0 : height.Value;
+
+                    return new Size(realWidth, realHeight);
+                }
+            }
+            set
+            {
+                float? width = null;
+                float? height = null;
+
+                if (value is Size size)
+                {
+                    width = size.Width;
+                    height = size.Height;
+                }
+
+                SetValue(SizeWidthProperty, width);
+                SetValue(SizeHeightProperty, height);
+            }
         }
 
         /// <summary>
