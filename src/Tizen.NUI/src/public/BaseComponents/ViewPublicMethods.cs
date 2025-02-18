@@ -69,6 +69,10 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
+            if (targetVisual == null)
+            {
+                throw new ArgumentNullException(nameof(targetVisual), "targetVisual is null.");
+            }
             Animation animation = null;
             using (PropertyMap animator = new PropertyMap())
             using (PropertyMap timePeriod = new PropertyMap())
