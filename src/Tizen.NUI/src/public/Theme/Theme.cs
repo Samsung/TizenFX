@@ -358,11 +358,13 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].MergeDirectly(item.Value);
+                    var merged = map[item.Key].Clone();
+                    merged.MergeDirectly(item.Value);
+                    map[item.Key] = merged;
                 }
                 else
                 {
-                    map[item.Key] = item.Value.Clone();
+                    map[item.Key] = item.Value;
                 }
             }
 
