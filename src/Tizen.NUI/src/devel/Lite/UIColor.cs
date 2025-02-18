@@ -253,19 +253,6 @@ namespace Tizen.NUI
             return !operand1.Equals(operand2);
         }
 
-        /// <inheritdoc/>
-        public void Apply<T>(T target, IPropertySetter<UIColor> propertySetter) where T : View
-        {
-            if (IsToken)
-            {
-                TokenManager.ColorTable.Bind(target, propertySetter, this);
-            }
-            else
-            {
-                propertySetter.Invoke(target, this);
-            }
-        }
-
         /// <summary>
         /// Whether this is equivalent to other.
         /// </summary>
