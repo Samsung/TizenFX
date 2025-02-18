@@ -25,6 +25,13 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct UIShadow
     {
+        private static readonly UIColor s_defaultColor = UIColor.Black;
+
+        /// <summary>
+        /// The default shadow value.
+        /// </summary>
+        public static UIShadow Default => new UIShadow(0f, UIColor.Transparent);
+
         /// <summary>
         /// Create a Shadow.
         /// </summary>
@@ -35,7 +42,7 @@ namespace Tizen.NUI
         /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
         public UIShadow(float blurRadius, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
-            : this(blurRadius, UIColor.Black, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy)
+            : this(blurRadius, s_defaultColor, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy)
         {
         }
 
@@ -136,6 +143,11 @@ namespace Tizen.NUI
             get;
             init;
         }
+
+        /// <summary>
+        /// Whether this shadow is default.
+        /// </summary>
+        public bool IsDefault => BlurRadius == 0 && Color == UIColor.Transparent && OffsetX == 0 && OffsetY == 0 && ExtraWidth == 0 && ExtraHeight == 0 && CutoutPolicy == ColorVisualCutoutPolicyType.None;
 
         internal readonly NUI.Shadow ToShadow() => new NUI.Shadow(BlurRadius, Color.ToReferenceType(), new (OffsetX, OffsetY), new (ExtraWidth, ExtraHeight));
 
