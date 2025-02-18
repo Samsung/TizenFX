@@ -759,6 +759,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual T GetOrCreateValue<T>(IStyleProperty styleProperty)
         {
+            if (values.TryGetValue(styleProperty, out var value))
+            {
+                return (T)value;
+            }
             T newValue = (T)Activator.CreateInstance(typeof(T));
             values[styleProperty] = newValue;
             return newValue;
