@@ -97,6 +97,13 @@ namespace Tizen.NUI
                 blurRadiusValue?.Get(out blurRadius);
             }
             BlurRadius = blurRadius;
+
+            int cutoutPolicy = (int)ColorVisualCutoutPolicyType.None;
+            using (PropertyValue cutoutPolicyValue = propertyMap.Find(ColorVisualProperty.CutoutPolicy))
+            {
+                cutoutPolicyValue?.Get(out cutoutPolicy);
+            }
+            CutoutPolicy = (ColorVisualCutoutPolicyType)cutoutPolicy;
         }
 
         /// <summary>

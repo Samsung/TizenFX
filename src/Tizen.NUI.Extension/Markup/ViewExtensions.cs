@@ -84,7 +84,13 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T Color<T>(this T view, UIColor color) where T : View
         {
-            color.Apply(view, ViewPropertySetters.Color);
+            //FIXME: we need to set UI value type directly without converting reference value.
+            view.Color = color.ToReferenceType();
+
+            if (color.IsToken)
+            {
+                TokenManager.ColorTable.Bind(view, ViewPropertySetters.Color, color);
+            }
             return view;
         }
 
@@ -131,7 +137,12 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T BackgroundColor<T>(this T view, UIColor color) where T : View
         {
-            color.Apply(view, ViewPropertySetters.BackgroundColor);
+            view.SetBackgroundColor(color);
+
+            if (color.IsToken)
+            {
+                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BackgroundColor, color);
+            }
             return view;
         }
 
@@ -161,18 +172,6 @@ namespace Tizen.NUI.Extension
             view.SizeWidth = width;
             view.SizeHeight = height;
             return view;
-        }
-
-        /// <summary>
-        /// Sets the size of the view.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="size">The size value.</param>
-        /// <returns>The view itself.</returns>
-        public static T Size<T>(this T view, UIVector2 size) where T : View
-        {
-            return Size(view, size.Width, size.Height);
         }
 
         /// <summary>
@@ -214,18 +213,6 @@ namespace Tizen.NUI.Extension
             view.PositionX = x;
             view.PositionY = y;
             return view;
-        }
-
-        /// <summary>
-        /// Sets the position of the view.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="position">The position value.</param>
-        /// <returns>The view itself.</returns>
-        public static T Position<T>(this T view, UIVector2 position) where T : View
-        {
-            return Position(view, position.X, position.Y);
         }
 
         /// <summary>
@@ -340,7 +327,27 @@ namespace Tizen.NUI.Extension
         public static T BoxShadow<T>(this T view, UIShadow shadow) where T : View
         {
             view.SetBoxShadow(shadow);
+
+            if (shadow.Color.IsToken)
+            {
+                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BoxShadowColor, shadow.Color);
+            }
+
             return view;
+        }
+
+        /// <summary>
+        /// Gets the box shadow of the view.
+        /// </summary>
+        /// <param name="view">The extension target.</param>
+        /// <returns>The box shadow value.</returns>
+        public static UIShadow BoxShadow(this View view)
+        {
+            if (TokenManager.ColorTable.TryGetToken(view, nameof(View.BoxShadow), out var token))
+            {
+                return view.GetBoxShadow() with { Color = (UIColor)token };
+            }
+            return view.GetBoxShadow();
         }
 
         /// <summary>
@@ -415,7 +422,13 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T BorderlineColor<T>(this T view, UIColor color) where T : View
         {
-            color.Apply(view, ViewPropertySetters.BorderlineColor);
+            //FIXME: we need to set UI value type directly without converting reference value.
+            view.BorderlineColor = color.ToReferenceType();
+
+            if (color.IsToken)
+            {
+                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BorderlineColor, color);
+            }
             return view;
         }
 
@@ -444,7 +457,6 @@ namespace Tizen.NUI.Extension
         public static T Borderline<T>(this T view, float width, UIColor color, float offset) where T : View
         {
             view.BorderlineWidth = width;
-            //FIXME: we need to set UI value type directly without converting reference value.
             view.BorderlineColor(color);
             view.BorderlineOffset = offset;
             return view;
@@ -645,6 +657,10 @@ namespace Tizen.NUI.Extension
         /// <returns>The color value.</returns>
         public static UIColor Color(this View view)
         {
+            if (TokenManager.ColorTable.TryGetToken(view, nameof(View.Color), out var token))
+            {
+                return (UIColor)token;
+            }
             //FIXME: we need to set UI value type directly without converting reference value.
             return new UIColor(view.Color);
         }
@@ -656,27 +672,11 @@ namespace Tizen.NUI.Extension
         /// <returns>The background color value.</returns>
         public static UIColor BackgroundColor(this View view)
         {
+            if (TokenManager.ColorTable.TryGetToken(view, ViewPropertySetters.BackgroundColor.Name, out var token))
+            {
+                return (UIColor)token;
+            }
             return Object.InternalRetrievingVisualPropertyColor(view.SwigCPtr, View.Property.BACKGROUND, ColorVisualProperty.MixColor);
-        }
-
-        /// <summary>
-        /// Experimental getter for size
-        /// </summary>
-        /// <param name="view">The extension target.</param>
-        /// <returns>The size value.</returns>
-        public static UIVector2 Size(this View view)
-        {
-            return new UIVector2(view.SizeWidth, view.SizeHeight);
-        }
-
-        /// <summary>
-        /// Experimental getter for position
-        /// </summary>
-        /// <param name="view">The extension target.</param>
-        /// <returns>The position value.</returns>
-        public static UIVector2 Position(this View view)
-        {
-            return new UIVector2(view.PositionX, view.PositionY);
         }
 
         /// <summary>
@@ -698,6 +698,10 @@ namespace Tizen.NUI.Extension
         /// <returns>The borderline color value.</returns>
         public static UIColor BorderlineColor(this View view)
         {
+            if (TokenManager.ColorTable.TryGetToken(view, nameof(View.BorderlineColor), out var token))
+            {
+                return (UIColor)token;
+            }
             //FIXME: we need to set UI value type directly without converting reference value.
             return new UIColor(view.BorderlineColor);
         }

@@ -35,5 +35,10 @@ namespace Tizen.NUI.Extension
             //FIXME: we need to set UI value type directly without converting reference value.
             view.Color = value.ToReferenceType();
         });
+
+        public static readonly PropertySetter<View, UIColor> BoxShadowColor = new (nameof(View.BoxShadow), (view, value) =>
+        {
+            view.UpdateBoxShadowColor(value);
+        });
     }
 }
