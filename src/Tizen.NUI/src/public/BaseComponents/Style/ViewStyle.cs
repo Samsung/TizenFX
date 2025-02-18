@@ -193,16 +193,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 var x = (float?)GetValue(PositionXProperty);
-                var height = (float?)GetValue(PositionYProperty);
+                var y = (float?)GetValue(PositionYProperty);
 
-                if (null == x && null == height)
+                if (null == x && null == y)
                 {
                     return null;
                 }
                 else
                 {
                     var realX = null == x ? 0 : x.Value;
-                    var realY = null == height ? 0 : height.Value;
+                    var realY = null == y ? 0 : y.Value;
 
                     return new Position2D((int)realX, (int)realY);
                 }
@@ -289,16 +289,16 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 var x = (float?)GetValue(PositionXProperty);
-                var height = (float?)GetValue(PositionYProperty);
+                var y = (float?)GetValue(PositionYProperty);
 
-                if (null == x && null == height)
+                if (null == x && null == y)
                 {
                     return null;
                 }
                 else
                 {
                     var realX = null == x ? 0 : x.Value;
-                    var realY = null == height ? 0 : height.Value;
+                    var realY = null == y ? 0 : y.Value;
 
                     return new Position(realX, realY);
                 }
