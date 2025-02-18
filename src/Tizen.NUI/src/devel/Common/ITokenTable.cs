@@ -47,5 +47,14 @@ namespace Tizen.NUI
         /// When table is updated, binded view will be updated.
         /// </summary>
         void Bind(View target, IPropertySetter<T> setter, IToken<T> token);
+
+        /// <summary>
+        /// The method to get binded token to the view.
+        /// </summary>
+        /// <param name="target">The target view.</param>
+        /// <param name="propertyName">The property name of the target view.</param>
+        /// <param name="token">The binded token.</param>
+        /// <returns>True if the token is found, otherwise false.</returns>
+        bool TryGetToken(View target, string propertyName, out IToken<T> token);
     }
 }

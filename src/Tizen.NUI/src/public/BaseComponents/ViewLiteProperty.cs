@@ -65,6 +65,53 @@ namespace Tizen.NUI.BaseComponents
             NotifyPropertyChanged(nameof(BoxShadow));
         }
 
+        internal UIShadow GetBoxShadow()
+        {
+            // Sync as current properties
+            UpdateBackgroundExtraData();
+
+            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
+            if (shadowMapValue != null)
+            {
+                using PropertyMap map = new PropertyMap();
+                if (shadowMapValue.Get(map))
+                {
+                    // FIXME do not use Shadow here
+                    var shadow = new Shadow(map);
+                    return new UIShadow()
+                    {
+                        Color = new UIColor(shadow.Color),
+                        BlurRadius = shadow.BlurRadius,
+                        OffsetX = shadow.Offset.X,
+                        OffsetY = shadow.Offset.Y,
+                        ExtraWidth = shadow.Extents.Width,
+                        ExtraHeight = shadow.Extents.Height,
+                        CutoutPolicy = (ColorVisualCutoutPolicyType)shadow.CutoutPolicy
+                    };
+                }
+            }
+            return UIShadow.Default;
+        }
+
+        internal bool UpdateBoxShadowColor(UIColor color)
+        {
+            // Sync as current properties
+            UpdateBackgroundExtraData();
+
+            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
+            if (shadowMapValue != null)
+            {
+                using PropertyMap map = new PropertyMap();
+                if (shadowMapValue.Get(map))
+                {
+                    map.Set(ColorVisualProperty.MixColor, color);
+                    Object.InternalSetPropertyMap(SwigCPtr, Property.SHADOW, map.SwigCPtr);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Gets or sets the width of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
         /// </summary>
