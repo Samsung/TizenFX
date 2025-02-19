@@ -816,6 +816,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
         }
+
+        internal PropertyMap Set(int key, UIColor value)
+        {
+            Interop.PropertyMap.SetVector4(SwigCPtr, key, value.R, value.G, value.B, value.A);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return this;
+        }
         #endregion
 
         #region Add/Set Rectangle value

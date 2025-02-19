@@ -34,10 +34,5 @@ namespace Tizen.NUI
         /// The value of the token.
         /// </summary>
         T Value { get; }
-
-        /// <summary>
-        /// Apply the token to target.
-        /// </summary>
-        void Apply<TView>(TView view, IPropertySetter<T> propertySetter) where TView : View;
     }
 }

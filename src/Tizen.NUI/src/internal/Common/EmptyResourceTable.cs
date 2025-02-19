@@ -39,5 +39,11 @@ namespace Tizen.NUI
         public void Bind(View target, IPropertySetter<T> setter, IToken<T> token)
         {
         }
+
+        public bool TryGetToken(View target, string propertyName, out IToken<T> token)
+        {
+            token = default;
+            return false;
+        }
     }
 }

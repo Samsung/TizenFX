@@ -327,11 +327,7 @@ namespace Tizen.NUI.BaseComponents
 
                 SetValue(PositionXProperty, x);
                 SetValue(PositionYProperty, y);
-
-                if (null != z)
-                {
-                    SetValue(PositionZProperty, z);
-                }
+                SetValue(PositionZProperty, z);
             }
         }
 
@@ -499,11 +495,7 @@ namespace Tizen.NUI.BaseComponents
 
                 SetValue(SizeWidthProperty, width);
                 SetValue(SizeHeightProperty, height);
-
-                if (null != depth)
-                {
-                    SetValue(SizeDepthProperty, depth);
-                }
+                SetValue(SizeDepthProperty, depth);
             }
         }
 
@@ -790,6 +782,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual T GetOrCreateValue<T>(IStyleProperty styleProperty)
         {
+            if (values.TryGetValue(styleProperty, out var value))
+            {
+                return (T)value;
+            }
             T newValue = (T)Activator.CreateInstance(typeof(T));
             values[styleProperty] = newValue;
             return newValue;
