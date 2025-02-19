@@ -39,8 +39,10 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty PivotPointProperty = new StyleProperty<View, Position>((v, o) => v.PivotPoint = o);
         static readonly IStyleProperty SizeWidthProperty = new StyleProperty<View, float>((v, o) => v.SizeWidth = o);
         static readonly IStyleProperty SizeHeightProperty = new StyleProperty<View, float>((v, o) => v.SizeHeight = o);
+        static readonly IStyleProperty SizeDepthProperty = new StyleProperty<View, float>((v, o) => v.Size = new Size(v.SizeWidth, v.SizeHeight, o));
         static readonly IStyleProperty PositionXProperty = new StyleProperty<View, float>((v, o) => v.PositionX = o);
         static readonly IStyleProperty PositionYProperty = new StyleProperty<View, float>((v, o) => v.PositionY = o);
+        static readonly IStyleProperty PositionZProperty = new StyleProperty<View, float>((v, o) => v.PositionZ = o);
         static readonly IStyleProperty OrientationProperty = new StyleProperty<View, Rotation>((v, o) => v.Orientation = o);
         static readonly IStyleProperty DrawModeProperty = new StyleProperty<View, DrawModeType>((v, o) => v.DrawMode = o);
         static readonly IStyleProperty SizeModeFactorProperty = new StyleProperty<View, Vector3>((v, o) => v.SizeModeFactor = o);
@@ -290,8 +292,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 var x = (float?)GetValue(PositionXProperty);
                 var y = (float?)GetValue(PositionYProperty);
+                var z = (float?)GetValue(PositionZProperty);
 
-                if (null == x && null == y)
+                if (null == x && null == y && null == z)
                 {
                     return null;
                 }
@@ -299,23 +302,36 @@ namespace Tizen.NUI.BaseComponents
                 {
                     var realX = null == x ? 0 : x.Value;
                     var realY = null == y ? 0 : y.Value;
+                    var realZ = null == z ? 0 : z.Value;
 
-                    return new Position(realX, realY);
+                    return new Position(realX, realY, realZ);
                 }
             }
             set
             {
                 float? x = null;
                 float? y = null;
+                float? z = null;
 
                 if (value is Position position)
                 {
                     x = position.X;
                     y = position.Y;
+
+                    var positionZ = position.Z;
+                    if (0 != positionZ)
+                    {
+                        z = position.Z;
+                    }
                 }
 
                 SetValue(PositionXProperty, x);
                 SetValue(PositionYProperty, y);
+
+                if (null != z)
+                {
+                    SetValue(PositionZProperty, z);
+                }
             }
         }
 
@@ -447,8 +463,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 var width = (float?)GetValue(SizeWidthProperty);
                 var height = (float?)GetValue(SizeHeightProperty);
+                var depth = (float?)GetValue(SizeDepthProperty);
 
-                if (null == width && null == height)
+                if (null == width && null == height && null == depth)
                 {
                     return null;
                 }
@@ -456,23 +473,37 @@ namespace Tizen.NUI.BaseComponents
                 {
                     var realWidth = null == width ? 0 : width.Value;
                     var realHeight = null == height ? 0 : height.Value;
+                    var realDepth = null == depth ? 0 : depth.Value;
 
-                    return new Size(realWidth, realHeight);
+                    return new Size(realWidth, realHeight, realDepth);
                 }
             }
             set
             {
                 float? width = null;
                 float? height = null;
+                float? depth = null;
 
                 if (value is Size size)
                 {
                     width = size.Width;
                     height = size.Height;
+
+                    var sizeDepth = size.Depth;
+
+                    if (0 != sizeDepth)
+                    {
+                        depth = sizeDepth;
+                    }
                 }
 
                 SetValue(SizeWidthProperty, width);
                 SetValue(SizeHeightProperty, height);
+
+                if (null != depth)
+                {
+                    SetValue(SizeDepthProperty, depth);
+                }
             }
         }
 
