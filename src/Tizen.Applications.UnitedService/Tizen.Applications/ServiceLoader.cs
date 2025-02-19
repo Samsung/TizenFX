@@ -406,6 +406,11 @@ namespace Tizen.Applications
                 if (info.Assembly.IsLoaded)
                 {
                     info.Assembly.Unload();
+                    for (int i = 0; info.Assembly.IsAlive && (i < 10); i++)
+                    {
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                    }
                 }
             }
         }

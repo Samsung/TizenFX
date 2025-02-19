@@ -73,6 +73,8 @@ namespace Tizen.Applications
 
         internal bool IsLoaded { get { return _loaded; } }
 
+        internal bool IsAlive {  get { return _assemblyRef.IsAlive; } }
+
         internal Service CreateInstance(string className)
         {
             lock (_assemblyLock)
