@@ -249,7 +249,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <remarks>
         /// This method provides details on services that are currently accessible rather than listing all installed services.
-        /// A NUIGadget's resource package may specify which applications have access through the "allowed-packages" setting.
+        /// A Service's resource package may specify which applications have access through the "allowed-packages" setting.
         /// During execution, the platform mounts the resource package in the application's resources directory.
         /// </remarks>
         /// <returns>An enumerable list of ServiceInfo objects.</returns>
