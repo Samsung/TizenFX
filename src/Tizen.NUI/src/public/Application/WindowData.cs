@@ -55,7 +55,7 @@ namespace Tizen.NUI
             }
             get
             {
-                Rectangle ret = Rectangle.GetRectangleFromPtr(Interop.WindowData.GetPositionSize(SwigCPtr));
+                Rectangle ret = Rectangle.GetRectangleFromPtr(Interop.WindowData.GetPositionSize(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
