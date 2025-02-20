@@ -265,7 +265,7 @@ namespace Tizen.Applications
         /// Override this method to handle the behavior when the service is destroyed.
         /// If 'base.OnDestroy()' is not called, the 'ServiceLifecycleChanged' event with the 'ServiceLifecycleState.Destroyed' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnDestroy()
         {
             Log.Debug("OnDestroy");
