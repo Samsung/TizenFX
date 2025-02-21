@@ -1581,7 +1581,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Offset)GetInternalTouchAreaOffsetProperty(this);
+                    return GetInternalTouchAreaOffset();
                 }
             }
             set
@@ -1592,10 +1592,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalTouchAreaOffsetProperty(this, null, value);
+                    SetInternalTouchAreaOffset(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalTouchAreaOffset(Offset offset)
+        {
+            InternalTouchAreaOffset = offset;
+        }
+
+        private Offset GetInternalTouchAreaOffset()
+        {
+            return InternalTouchAreaOffset;
         }
 
         private Offset InternalTouchAreaOffset
@@ -1631,7 +1641,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalDispatchKeyEventsProperty(this);
+                    return GetInternalDispatchKeyEvents();
                 }
             }
             set
@@ -1642,10 +1652,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDispatchKeyEventsProperty(this, null, value);
+                    SetInternalDispatchKeyEvents(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalDispatchKeyEvents(bool dispatch)
+        {
+            Object.InternalSetPropertyBool(SwigCPtr, Property.DispatchKeyEvents, dispatch);
+        }
+
+        private bool GetInternalDispatchKeyEvents()
+        {
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.DispatchKeyEvents);
         }
 
         /// <summary>
@@ -1980,7 +2000,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalDispatchTouchMotionProperty(this);
+                    return GetInternalDispatchTouchMotion();
                 }
             }
             set
@@ -1991,9 +2011,19 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDispatchTouchMotionProperty(this, null, value);
+                    SetInternalDispatchTouchMotion(value);
                 }
             }
+        }
+
+        private void SetInternalDispatchTouchMotion(bool dispatch)
+        {
+            InternalDispatchTouchMotion = dispatch;
+        }
+
+        private bool GetInternalDispatchTouchMotion()
+        {
+            return InternalDispatchTouchMotion;
         }
 
         private bool InternalDispatchTouchMotion
@@ -2024,7 +2054,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalDispatchHoverMotionProperty(this);
+                    return GetInternalDispatchHoverMotion();
                 }
             }
             set
@@ -2035,9 +2065,19 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDispatchHoverMotionProperty(this, null, value);
+                    SetInternalDispatchHoverMotion(value);
                 }
             }
+        }
+
+        private void SetInternalDispatchHoverMotion(bool dispatch)
+        {
+            InternalDispatchHoverMotion = dispatch;
+        }
+
+        private bool GetInternalDispatchHoverMotion()
+        {
+            return InternalDispatchHoverMotion;
         }
 
         private bool InternalDispatchHoverMotion
