@@ -355,13 +355,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.LeftFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.LeftFocusableViewId, value);
             }
         }
 
@@ -369,13 +367,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.RightFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.RightFocusableViewId, value);
             }
         }
 
@@ -383,13 +379,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.UpFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.UpFocusableViewId, value);
             }
         }
 
@@ -397,13 +391,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.DownFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.DownFocusableViewId, value);
             }
         }
 
@@ -411,13 +403,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.ClockwiseFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.ClockwiseFocusableViewId, value);
             }
         }
 
@@ -425,13 +415,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.CounterClockwiseFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.CounterClockwiseFocusableViewId, value);
             }
         }
 
