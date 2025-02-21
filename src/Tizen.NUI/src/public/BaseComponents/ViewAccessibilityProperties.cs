@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -42,7 +43,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalAccessibilityNameProperty(this);
+                    return GetInternalAccessibilityName();
                 }
             }
             set
@@ -53,10 +54,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAccessibilityNameProperty(this, null, value);
+                    SetInternalAccessibilityName(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAccessibilityName(string name)
+        {
+            if (name != null)
+            {
+                Object.InternalSetPropertyString(SwigCPtr, Property.AccessibilityName, name);
+            }
+        }
+
+        private string GetInternalAccessibilityName()
+        {
+            return Object.InternalGetPropertyString(SwigCPtr, Property.AccessibilityName);
         }
 
         /// <summary>
@@ -73,7 +87,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalAccessibilityDescriptionProperty(this);
+                    return GetInternalAccessibilityDescription();
                 }
             }
             set
@@ -84,10 +98,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAccessibilityDescriptionProperty(this, null, value);
+                    SetInternalAccessibilityDescription(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAccessibilityDescription(string description)
+        {
+            if (description != null)
+            {
+                Object.InternalSetPropertyString(SwigCPtr, Property.AccessibilityDescription, description);
+            }
+        }
+
+        private string GetInternalAccessibilityDescription()
+        {
+            return Object.InternalGetPropertyString(SwigCPtr, Property.AccessibilityDescription);
         }
 
         /// <summary>
@@ -104,7 +131,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalAccessibilityTranslationDomainProperty(this);
+                    return GetInternalAccessibilityTranslationDomain();
                 }
             }
             set
@@ -115,10 +142,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAccessibilityTranslationDomainProperty(this, null, value);
+                    SetInternalAccessibilityTranslationDomain(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAccessibilityTranslationDomain(string domain)
+        {
+            if (domain != null)
+            {
+                Object.InternalSetPropertyString(SwigCPtr, Property.AccessibilityTranslationDomain, domain);
+            }
+        }
+
+        private string GetInternalAccessibilityTranslationDomain()
+        {
+            return Object.InternalGetPropertyString(SwigCPtr, Property.AccessibilityTranslationDomain);
         }
 
         /// <summary>
@@ -135,7 +175,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Role)GetInternalAccessibilityRoleProperty(this);
+                    return GetInternalAccessibilityRole();
                 }
             }
             set
@@ -146,10 +186,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAccessibilityRoleProperty(this, null, value);
+                    SetInternalAccessibilityRole(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAccessibilityRole(Role role)
+        {
+            Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityRole, (int)role);
+        }
+
+        private Role GetInternalAccessibilityRole()
+        {
+            return (Role)Object.InternalGetPropertyInt(SwigCPtr, Property.AccessibilityRole);
         }
 
         /// <summary>
@@ -170,7 +220,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalAccessibilityHighlightableProperty(this);
+                    return GetInternalAccessibilityHighlightable();
                 }
             }
             set
@@ -181,10 +231,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAccessibilityHighlightableProperty(this, null, value);
+                    SetInternalAccessibilityHighlightable(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAccessibilityHighlightable(bool highlightable)
+        {
+            Object.InternalSetPropertyBool(SwigCPtr, Property.AccessibilityHighlightable, highlightable);
+        }
+
+        private bool GetInternalAccessibilityHighlightable()
+        {
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.AccessibilityHighlightable);
         }
 
         /// <summary>
@@ -204,7 +264,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalAccessibilityHiddenProperty(this);
+                    return GetInternalAccessibilityHidden();
                 }
             }
             set
@@ -215,10 +275,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAccessibilityHiddenProperty(this, null, value);
+                    SetInternalAccessibilityHidden(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAccessibilityHidden(bool hidden)
+        {
+            Object.InternalSetPropertyBool(SwigCPtr, Property.AccessibilityHidden, hidden);
+        }
+
+        private bool GetInternalAccessibilityHidden()
+        {
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.AccessibilityHidden);
         }
 
         /// <summary>
@@ -235,7 +305,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalAutomationIdProperty(this) as string;
+                    return GetInternalAutomationId();
                 }
             }
             set
@@ -246,10 +316,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAutomationIdProperty(this, null, value);
+                    SetInternalAutomationId(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalAutomationId(string newValue)
+        {
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyString(SwigCPtr, Property.AutomationId, newValue);
+            }
+        }
+
+        private string GetInternalAutomationId()
+        {
+            return Object.InternalGetPropertyString(SwigCPtr, Property.AutomationId);
         }
     }
 }

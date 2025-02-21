@@ -29,11 +29,11 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 9 </since_tizen>
     public partial class ViewStyle : BindableObject, IDisposable
     {
-        static readonly IStyleProperty BackgroundImageProperty = new StyleProperty<View, Selector<string>>((v, o) => View.SetInternalBackgroundImageProperty(v, null, o));
+        static readonly IStyleProperty BackgroundImageProperty = new StyleProperty<View, Selector<string>>((v, o) => v.SetInternalBackgroundImage(o));
         static readonly IStyleProperty FocusableProperty = new StyleProperty<View, bool>((v, o) => v.Focusable = o);
         static readonly IStyleProperty FocusableChildrenProperty = new StyleProperty<View, bool>((v, o) => v.FocusableChildren = o);
         static readonly IStyleProperty FocusableInTouchProperty = new StyleProperty<View, bool>((v, o) => v.FocusableInTouch = o);
-        static readonly IStyleProperty OpacityProperty = new StyleProperty<View, Selector<float?>>((v, o) => View.SetInternalOpacityProperty(v, null, o));
+        static readonly IStyleProperty OpacityProperty = new StyleProperty<View, Selector<float?>>((v, o) => v.SetInternalOpacity(o));
         static readonly IStyleProperty PositionUsesPivotPointProperty = new StyleProperty<View, bool>((v, o) => v.PositionUsesPivotPoint = o);
         static readonly IStyleProperty ParentOriginProperty = new StyleProperty<View, Position>((v, o) => v.ParentOrigin = o);
         static readonly IStyleProperty PivotPointProperty = new StyleProperty<View, Position>((v, o) => v.PivotPoint = o);
@@ -54,16 +54,16 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty MaximumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MaximumSize = o);
         static readonly IStyleProperty ClippingModeProperty = new StyleProperty<View, ClippingModeType>((v, o) => v.ClippingMode = o);
         static readonly IStyleProperty MarginProperty = new StyleProperty<View, Extents>((v, o) => v.Margin = o);
-        static readonly IStyleProperty BackgroundColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => View.SetInternalBackgroundColorProperty(v, null, o));
-        static readonly IStyleProperty ColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => View.SetInternalColorProperty(v, null, o));
-        static readonly IStyleProperty BackgroundImageBorderProperty = new StyleProperty<View, Selector<Rectangle>>((v, o) => View.SetInternalBackgroundImageBorderProperty(v, null, o));
-        static readonly IStyleProperty ImageShadowProperty = new StyleProperty<View, Selector<ImageShadow>>((v, o) => View.SetInternalImageShadowProperty(v, null, o));
-        static readonly IStyleProperty BoxShadowProperty = new StyleProperty<View, Selector<Shadow>>((v, o) => View.SetInternalBoxShadowProperty(v, null, o));
+        static readonly IStyleProperty BackgroundColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalBackgroundColor(o));
+        static readonly IStyleProperty ColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalColor(o));
+        static readonly IStyleProperty BackgroundImageBorderProperty = new StyleProperty<View, Selector<Rectangle>>((v, o) => v.SetInternalBackgroundImageBorder(o));
+        static readonly IStyleProperty ImageShadowProperty = new StyleProperty<View, Selector<ImageShadow>>((v, o) => v.SetInternalImageShadow(o));
+        static readonly IStyleProperty BoxShadowProperty = new StyleProperty<View, Selector<Shadow>>((v, o) => v.SetInternalBoxShadow(o));
         static readonly IStyleProperty CornerRadiusProperty = new StyleProperty<View, Vector4>((v, o) => v.CornerRadius = o);
         static readonly IStyleProperty CornerRadiusPolicyProperty = new StyleProperty<View, VisualTransformPolicyType>((v, o) => v.CornerRadiusPolicy = o);
         static readonly IStyleProperty BorderlineWidthProperty = new StyleProperty<View, float>((v, o) => v.BorderlineWidth = o);
         static readonly IStyleProperty BorderlineColorProperty = new StyleProperty<View, Color>((v, o) => v.BorderlineColor = o);
-        static readonly IStyleProperty BorderlineColorSelectorProperty = new StyleProperty<View, Selector<Color>>((v, o) => View.SetInternalBorderlineColorSelectorProperty(v, null, o));
+        static readonly IStyleProperty BorderlineColorSelectorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalBorderlineColor(o));
         static readonly IStyleProperty BorderlineOffsetProperty = new StyleProperty<View, float>((v, o) => v.BorderlineOffset = o);
         static readonly IStyleProperty ThemeChangeSensitiveProperty = new StyleProperty<View, bool>((v, o) => v.ThemeChangeSensitive = o);
         static readonly IStyleProperty IsEnabledProperty = new StyleProperty<View, bool>((v, o) => v.IsEnabled = o);
