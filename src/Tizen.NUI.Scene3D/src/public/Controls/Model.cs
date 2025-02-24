@@ -582,15 +582,18 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.Model.GenerateMotionDataAnimation(SwigCPtr, MotionData.getCPtr(motionData));
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            HandleRef handle = new HandleRef(this, cPtr);
             if (ret == null)
             {
-                // Register new animation into Registry.
-                ret = new Animation(cPtr, true);
+                // Register new animation into Registry only if it has body.
+                if (handle.Handle != global::System.IntPtr.Zero && Tizen.NUI.Interop.BaseHandle.HasBody(handle))
+                {
+                    ret = new Animation(cPtr, true);
+                }
             }
             else
             {
                 // We found matched NUI animation. Reduce cPtr reference count.
-                HandleRef handle = new HandleRef(this, cPtr);
                 Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
@@ -598,9 +601,9 @@ namespace Tizen.NUI.Scene3D
 
             // It is possible if there is no animatable properties exist on inputed motionData.
             // In this case, let we return null.
-            if (!ret.HasBody())
+            if (!(ret?.HasBody() ?? false))
             {
-                ret.Dispose();
+                ret?.Dispose();
                 ret = null;
             }
             return ret;
