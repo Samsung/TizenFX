@@ -36,7 +36,6 @@ namespace Tizen.NUI
             {
                 BlurStrengthProperty = BindableProperty.Create(nameof(BlurStrength), typeof(float), typeof(GaussianBlurView), default(float),
                     propertyChanged: SetInternalBlurStrengthProperty, defaultValueCreator: GetInternalBlurStrengthProperty);
-
             }
         }
 

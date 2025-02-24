@@ -1365,39 +1365,23 @@ namespace Tizen.NUI.BaseComponents
             using (PropertyMap timePeriod = new PropertyMap())
             using (PropertyValue initValue = PropertyValue.CreateFromObject(initialImageAlpha))
             using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationImageAlpha))
-            using (PropertyValue pvDelay = new PropertyValue(delay))
-            using (PropertyValue pvSpeed = new PropertyValue(speed))
-            using (PropertyValue pvProperty = new PropertyValue("opacity"))
-            using (PropertyValue pvAnimationType = new PropertyValue("BETWEEN"))
             using (PropertyMap transition = new PropertyMap())
             {
                 if (alphaFunction != null)
                 {
-                    using (PropertyValue pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)))
-                    {
-                        animator.Add("alphaFunction", pvAlpha);
-                    }
+                    animator.Add("alphaFunction", AlphaFunction.BuiltinToPropertyKey(alphaFunction));
                 }
 
-                timePeriod.Add("duration", pvSpeed);
-                timePeriod.Add("delay", pvDelay);
-                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                {
-                    animator.Add("timePeriod", pvTimePeriod);
-                }
+                timePeriod.Add("duration", speed);
+                timePeriod.Add("delay", delay);
+                animator.Add("timePeriod", timePeriod);
 
-                animator.Add("animationType", pvAnimationType);
+                animator.Add("animationType", "BETWEEN");
 
-                using (PropertyValue pvAnimator = new PropertyValue(animator))
-                {
-                    transition.Add("animator", pvAnimator);
-                }
-                using(PropertyValue pvTarget = new PropertyValue("image"))
-                {
-                    transition.Add("target", pvTarget);
-                }
+                transition.Add("animator", animator);
 
-                transition.Add("property", pvProperty);
+                transition.Add("target", "image");
+                transition.Add("property", "opacity");
                 transition.Add("initialValue", initValue);
                 transition.Add("targetValue", destValue);
 
@@ -2138,7 +2122,7 @@ namespace Tizen.NUI.BaseComponents
                 _resourceUrl = "";
                 if (cachedImagePropertyMap != null)
                 {
-                    cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
+                    cachedImagePropertyMap.SetNone(ImageVisualProperty.URL);
                 }
             }
         }
@@ -2294,48 +2278,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (_border == null)
                 {
-                    PropertyValue image = new PropertyValue((int)Visual.Type.Image);
-                    cachedImagePropertyMap[Visual.Property.Type] = image;
-                    image?.Dispose();
+                    cachedImagePropertyMap.Set(Visual.Property.Type, (int)Visual.Type.Image);
                 }
                 else
                 {
-                    PropertyValue nPatch = new PropertyValue((int)Visual.Type.NPatch);
-                    cachedImagePropertyMap[Visual.Property.Type] = nPatch;
-                    nPatch?.Dispose();
-                    PropertyValue border = new PropertyValue(_border);
-                    cachedImagePropertyMap[NpatchImageVisualProperty.Border] = border;
-                    border?.Dispose();
+                    cachedImagePropertyMap.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
+                    cachedImagePropertyMap.Set(NpatchImageVisualProperty.Border, _border);
                 }
             }
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
-                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
-                using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
-                {
-                    cachedImagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
-                    cachedImagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-                }
+                cachedImagePropertyMap.Set(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius);
+                cachedImagePropertyMap.Set(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+
                 if (backgroundExtraData.CornerSquareness != null)
                 {
-                    using (var cornerSquareness = new PropertyValue(backgroundExtraData.CornerSquareness))
-                    {
-                        cachedImagePropertyMap[Visual.Property.CornerSquareness] = cornerSquareness;
-                    }
+                    cachedImagePropertyMap.Set(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness);
                 }
             }
 
             if (backgroundExtraData != null && backgroundExtraData.BorderlineWidth > 0.0f)
             {
-                using (var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth))
-                using (var borderlineColor = new PropertyValue(backgroundExtraData.BorderlineColor))
-                using (var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset))
-                {
-                    cachedImagePropertyMap[Visual.Property.BorderlineWidth] = borderlineWidth;
-                    cachedImagePropertyMap[Visual.Property.BorderlineColor] = borderlineColor;
-                    cachedImagePropertyMap[Visual.Property.BorderlineOffset] = borderlineOffset;
-                }
+                cachedImagePropertyMap.Set(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                cachedImagePropertyMap.Set(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor);
+                cachedImagePropertyMap.Set(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
             }
 
             // We already applied background extra data now.

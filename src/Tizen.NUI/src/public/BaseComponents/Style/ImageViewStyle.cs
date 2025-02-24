@@ -26,84 +26,11 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ImageViewStyle : ViewStyle
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(Selector<string>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.resourceUrl = ((Selector<string>)newValue)?.Clone();
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.resourceUrl;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Selector<Rectangle>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.border = ((Selector<Rectangle>)newValue)?.Clone();
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.border;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderOnlyProperty = BindableProperty.Create(nameof(BorderOnly), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.borderOnly = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.borderOnly;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.synchronousLoading = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.synchronousLoading;
-        });
-        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.synchronousLoading = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.synchronousLoading;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OrientationCorrectionProperty = BindableProperty.Create(nameof(OrientationCorrection), typeof(bool?), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.orientationCorrection = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageViewStyle = (ImageViewStyle)bindable;
-            return imageViewStyle.orientationCorrection;
-        });
-
-        private bool? borderOnly;
-        private bool? synchronousLoading;
-        private bool? orientationCorrection;
-        private Selector<string> resourceUrl;
-        private Selector<Rectangle> border;
+        static readonly IStyleProperty BorderOnlyProperty = new StyleProperty<ImageView, bool>((v, o) => v.BorderOnly = o);
+        static readonly IStyleProperty SynchronousLoadingProperty = new StyleProperty<ImageView, bool>((v, o) => v.SynchronousLoading = o);
+        static readonly IStyleProperty OrientationCorrectionProperty = new StyleProperty<ImageView, bool>((v, o) => v.OrientationCorrection = o);
+        static readonly IStyleProperty ResourceUrlProperty = new StyleProperty<ImageView, Selector<string>>((v, o) => ImageView.SetInternalResourceUrlProperty(v, null, o));
+        static readonly IStyleProperty BorderProperty = new StyleProperty<ImageView, Selector<Rectangle>>((v, o) => ImageView.SetInternalBorderProperty(v, null, o));
 
         static ImageViewStyle() { }
 
@@ -154,11 +81,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> ResourceUrl
         {
-            get
-            {
-                Selector<string> tmp = (Selector<string>)GetValue(ResourceUrlProperty);
-                return (null != tmp) ? tmp : resourceUrl = new Selector<string>();
-            }
+            get => GetOrCreateValue<Selector<string>>(ResourceUrlProperty);
             set => SetValue(ResourceUrlProperty, value);
         }
 
@@ -169,11 +92,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Rectangle> Border
         {
-            get
-            {
-                Selector<Rectangle> tmp = (Selector<Rectangle>)GetValue(BorderProperty);
-                return (null != tmp) ? tmp : border = new Selector<Rectangle>();
-            }
+            get => GetOrCreateValue<Selector<Rectangle>>(BorderProperty);
             set => SetValue(BorderProperty, value);
         }
     }

@@ -426,138 +426,97 @@ namespace Tizen.NUI
             if (url != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Image);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(url);
-                _outputVisualMap.Add(ImageVisualProperty.URL, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.Image);
+                _outputVisualMap.Add(ImageVisualProperty.URL, url);
 
                 if (alphaMaskUrl != null)
                 {
-                    temp = new PropertyValue(alphaMaskUrl);
-                    _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, alphaMaskUrl);
                 }
 
                 if (auxiliaryImageUrl != null)
                 {
-                    temp = new PropertyValue(auxiliaryImageUrl);
-                    _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, auxiliaryImageUrl);
                 }
 
                 if (fittingMode != null)
                 {
-                    temp = new PropertyValue((int)fittingMode);
-                    _outputVisualMap.Add(ImageVisualProperty.FittingMode, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.FittingMode, (int)fittingMode);
                 }
 
                 if (samplingMode != null)
                 {
-                    temp = new PropertyValue((int)samplingMode);
-                    _outputVisualMap.Add(ImageVisualProperty.SamplingMode, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.SamplingMode, (int)samplingMode);
                 }
 
                 if (desiredWidth != null)
                 {
-                    temp = new PropertyValue((int)desiredWidth);
-                    _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, (int)desiredWidth);
                 }
 
                 if (desiredHeight != null)
                 {
-                    temp = new PropertyValue((int)desiredHeight);
-                    _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.DesiredHeight, (int)desiredHeight);
                 }
 
                 if (synchronousLoading != null)
                 {
-                    temp = new PropertyValue((bool)synchronousLoading);
-                    _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.SynchronousLoading, (bool)synchronousLoading);
                 }
 
                 if (borderOnly != null)
                 {
-                    temp = new PropertyValue((bool)borderOnly);
-                    _outputVisualMap.Add(ImageVisualProperty.BorderOnly, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.BorderOnly, (bool)borderOnly);
                 }
 
                 if (pixelArea != null)
                 {
-                    temp = new PropertyValue(pixelArea);
-                    _outputVisualMap.Add(ImageVisualProperty.PixelArea, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.PixelArea, pixelArea);
                 }
 
                 if (wrapModeU != null)
                 {
-                    temp = new PropertyValue((int)wrapModeU);
-                    _outputVisualMap.Add(ImageVisualProperty.WrapModeU, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.WrapModeU, (int)wrapModeU);
                 }
 
                 if (wrapModeV != null)
                 {
-                    temp = new PropertyValue((int)wrapModeV);
-                    _outputVisualMap.Add(ImageVisualProperty.WrapModeV, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.WrapModeV, (int)wrapModeV);
                 }
 
                 if (maskContentScale != null)
                 {
-                    temp = new PropertyValue((float)maskContentScale);
-                    _outputVisualMap.Add(ImageVisualProperty.MaskContentScale, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.MaskContentScale, (float)maskContentScale);
                 }
 
                 if (cropToMask != null)
                 {
-                    temp = new PropertyValue((bool)cropToMask);
-                    _outputVisualMap.Add(ImageVisualProperty.CropToMask, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.CropToMask, (bool)cropToMask);
                 }
 
                 if (auxiliaryImageAlpha != null)
                 {
-                    temp = new PropertyValue((float)auxiliaryImageAlpha);
-                    _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageAlpha, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageAlpha, (float)auxiliaryImageAlpha);
                 }
 
                 if (releasePolicy != null)
                 {
-                    temp = new PropertyValue((int)releasePolicy);
-                    _outputVisualMap.Add(ImageVisualProperty.ReleasePolicy, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.ReleasePolicy, (int)releasePolicy);
                 }
 
                 if (loadPolicy != null)
                 {
-                    temp = new PropertyValue((int)loadPolicy);
-                    _outputVisualMap.Add(ImageVisualProperty.LoadPolicy, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.LoadPolicy, (int)loadPolicy);
                 }
 
                 if (orientationCorrection != null)
                 {
-                    temp = new PropertyValue((bool)orientationCorrection);
-                    _outputVisualMap.Add(ImageVisualProperty.OrientationCorrection, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.OrientationCorrection, (bool)orientationCorrection);
                 }
 
                 if (atlasing != null)
                 {
-                    temp = new PropertyValue((bool)atlasing);
-                    _outputVisualMap.Add(ImageVisualProperty.Atlasing, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.Atlasing, (bool)atlasing);
                 }
                 base.ComposingPropertyMap();
             }

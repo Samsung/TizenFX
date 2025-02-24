@@ -7,12 +7,12 @@ namespace Tizen.NUI.Components
 {
     public partial class CollectionView
     {
-
         /// <summary>
         /// ItemsLayouterProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ItemsLayouterProperty = BindableProperty.Create(nameof(ItemsLayouter), typeof(ItemsLayouter), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ItemsLayouterProperty = null;
+        internal static void SetInternalItemsLayouterProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -23,8 +23,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalItemsLayouter = newValue as ItemsLayouter;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalItemsLayouterProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -32,13 +32,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalItemsLayouter;
-        });
+        }
 
         /// <summary>
         /// ScrollingDirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly new BindableProperty ScrollingDirectionProperty = BindableProperty.Create(nameof(ScrollingDirection), typeof(Tizen.NUI.Components.ScrollableBase.Direction), typeof(CollectionView), default(Direction), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly new BindableProperty ScrollingDirectionProperty = null;
+        internal static void SetInternalScrollingDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -49,8 +50,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalScrollingDirection = (Direction)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalScrollingDirectionProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -58,13 +59,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalScrollingDirection;
-        });
+        }
 
         /// <summary>
         /// SelectionChangedCommandProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionChangedCommandProperty = null;
+        internal static void SetInternalSelectionChangedCommandProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -75,8 +77,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalSelectionChangedCommand = newValue as ICommand;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSelectionChangedCommandProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -84,13 +86,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalSelectionChangedCommand;
-        });
+        }
 
         /// <summary>
         /// SelectionChangedCommandParameterProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionChangedCommandParameterProperty = BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionChangedCommandParameterProperty = null;
+        internal static void SetInternalSelectionChangedCommandParameterProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -101,8 +104,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalSelectionChangedCommandParameter = newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSelectionChangedCommandParameterProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -110,13 +113,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalSelectionChangedCommandParameter;
-        });
+        }
 
         /// <summary>
         /// HeaderProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(RecyclerViewItem), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HeaderProperty = null;
+        internal static void SetInternalHeaderProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -127,8 +131,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalHeader = newValue as RecyclerViewItem;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalHeaderProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -136,13 +140,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalHeader;
-        });
+        }
 
         /// <summary>
         /// FooterProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FooterProperty = BindableProperty.Create(nameof(Footer), typeof(RecyclerViewItem), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FooterProperty = null;
+        internal static void SetInternalFooterProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -153,8 +158,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalFooter = newValue as RecyclerViewItem;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFooterProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -162,13 +167,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalFooter;
-        });
+        }
 
         /// <summary>
         /// IsGroupedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsGroupedProperty = BindableProperty.Create(nameof(IsGrouped), typeof(bool), typeof(CollectionView), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsGroupedProperty = null;
+        internal static void SetInternalIsGroupedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -179,8 +185,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalIsGrouped = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIsGroupedProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -188,13 +194,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalIsGrouped;
-        });
+        }
 
         /// <summary>
         /// GroupHeaderTemplateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GroupHeaderTemplateProperty = BindableProperty.Create(nameof(GroupHeaderTemplate), typeof(DataTemplate), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GroupHeaderTemplateProperty = null;
+        internal static void SetInternalGroupHeaderTemplateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -205,8 +212,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalGroupHeaderTemplate = newValue as DataTemplate;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalGroupHeaderTemplateProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -214,13 +221,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalGroupHeaderTemplate;
-        });
+        }
 
         /// <summary>
         /// GroupFooterTemplateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GroupFooterTemplateProperty = BindableProperty.Create(nameof(GroupFooterTemplate), typeof(DataTemplate), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GroupFooterTemplateProperty = null;
+        internal static void SetInternalGroupFooterTemplateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -231,8 +239,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalGroupFooterTemplate = newValue as DataTemplate;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalGroupFooterTemplateProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -240,6 +248,6 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not CollectionView.");
             }
             return instance.InternalGroupFooterTemplate;
-        });
+        }
     }
 }

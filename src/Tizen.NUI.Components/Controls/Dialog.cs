@@ -32,19 +32,20 @@ namespace Tizen.NUI.Components
         /// ContentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(Dialog), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContentProperty = null;
+        internal static void SetInternalContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Dialog)bindable;
             if (newValue != null)
             {
                 instance.InternalContent = newValue as View;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalContentProperty(BindableObject bindable)
         {
             var instance = (Dialog)bindable;
             return instance.InternalContent;
-        });
+        }
 
         private View content = null;
 
@@ -55,6 +56,15 @@ namespace Tizen.NUI.Components
             Relayout += OnRelayout;
             AddedToWindow += OnAddedToWindow;
             RemovedFromWindow += OnRemovedFromWindow;
+        }
+
+        static Dialog()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(Dialog), null,
+                    propertyChanged: SetInternalContentProperty, defaultValueCreator: GetInternalContentProperty);
+            }
         }
 
         /// <summary>
@@ -120,11 +130,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ContentProperty) as View;
+                }
+                else
+                {
+                    return GetInternalContentProperty(this) as View;
+                }
             }
             set
             {
-                SetValue(ContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ContentProperty, value);
+                }
+                else
+                {
+                    SetInternalContentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

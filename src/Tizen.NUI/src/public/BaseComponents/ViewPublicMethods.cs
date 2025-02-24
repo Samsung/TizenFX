@@ -69,14 +69,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
+            if (targetVisual == null)
+            {
+                throw new ArgumentNullException(nameof(targetVisual), "targetVisual is null.");
+            }
             Animation animation = null;
             using (PropertyMap animator = new PropertyMap())
             using (PropertyMap timePeriod = new PropertyMap())
-            using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
-            using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
             using (PropertyMap transition = new PropertyMap())
-            using (PropertyValue pvTarget = new PropertyValue(targetVisual))
-            using (PropertyValue pvProperty = new PropertyValue("mixColor"))
             using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor))
             {
                 if (alphaFunction != null)
@@ -87,18 +87,12 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
-                timePeriod.Add("duration", pvDuration);
-                timePeriod.Add("delay", pvDelay);
-                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                {
-                    animator.Add("timePeriod", pvTimePeriod);
-                }
-                using (PropertyValue pvAnimator = new PropertyValue(animator))
-                {
-                    transition.Add("animator", pvAnimator);
-                }
-                transition.Add("target", pvTarget);
-                transition.Add("property", pvProperty);
+                timePeriod.Add("duration", (endTime - startTime) / 1000.0f);
+                timePeriod.Add("delay", startTime / 1000.0f);
+                animator.Add("timePeriod", timePeriod);
+                transition.Add("animator", animator);
+                transition.Add("target", targetVisual);
+                transition.Add("property", "mixColor");
 
                 if (initialColor != null)
                 {

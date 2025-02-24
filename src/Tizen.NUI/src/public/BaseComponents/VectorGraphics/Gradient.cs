@@ -71,7 +71,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 for (uint i = 0; i < colorStopsCount; i++)
                 {
                     retList.Add(new ColorStop(Interop.Gradient.GetColorStopsOffsetIndexOf(BaseHandle.getCPtr(this), i),
-                                              Vector4.GetVector4FromPtr(Interop.Gradient.GetColorStopsColorIndexOf(BaseHandle.getCPtr(this), i))));
+                                              new Vector4(Interop.Gradient.GetColorStopsColorIndexOf(BaseHandle.getCPtr(this), i), true)));
                 }
 
                 return retList.AsReadOnly();

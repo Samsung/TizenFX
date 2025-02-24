@@ -466,19 +466,69 @@ namespace Tizen.NUI.BaseComponents
             Custom,
         }
 
-        private static IntPtr NewWithAccessibilityMode(ViewAccessibilityMode accessibilityMode)
+        /// <summary>
+        /// ResizePolicy mode for controlling View's Relayout implementation.
+        /// It will be used when we can ensure that current view
+        /// will not use ResizePolicy and Relayout signal.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal enum ViewResizePolicyMode
+        {
+            /// <summary>
+            /// Default implementation. Will consider ResizePolicy and Relayout implementations
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Default,
+            /// <summary>
+            /// Ignore ResizePolicy and relative functions.
+            /// </summary>
+            /// <remarks>
+            /// It will be useful when we can assume that this View is...
+            /// - Always be existed under Layout.
+            /// - ResizePolicy don't need.
+            /// - Relayout event not used.
+            /// - Internal visuals and VisualObjects don't use FittingMode.
+            /// - Text don't need.
+            /// </remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Ignore,
+        }
+
+        private static IntPtr NewWithAccessibilityModeAndResizePolicyMode(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode)
         {
             switch (accessibilityMode)
             {
                 case ViewAccessibilityMode.Custom:
+                {
+                    switch (resizePolicyMode)
                     {
-                        return Interop.View.NewCustom();
+                        case ViewResizePolicyMode.Ignore:
+                        {
+                            return Interop.View.NewCustomWithBehaviour(1); // Special enum to ignore size negotiate.
+                        }
+                        case ViewResizePolicyMode.Default:
+                        default:
+                        {
+                            return Interop.View.NewCustom();
+                        }
                     }
+                }
                 case ViewAccessibilityMode.Default:
                 default:
+                {
+                    switch (resizePolicyMode)
                     {
-                        return Interop.View.New();
+                        case ViewResizePolicyMode.Ignore:
+                        {
+                            return Interop.View.NewWithBehaviour(1); // Special enum to ignore size negotiate.
+                        }
+                        case ViewResizePolicyMode.Default:
+                        default:
+                        {
+                            return Interop.View.New();
+                        }
                     }
+                }
             }
         }
 
@@ -492,15 +542,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(ViewAccessibilityMode accessibilityMode) : this(NewWithAccessibilityMode(accessibilityMode), true)
+        public View(ViewAccessibilityMode accessibilityMode) : this(accessibilityMode, ViewResizePolicyMode.Default)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(ViewStyle viewStyle) : this(Interop.View.New(), true, viewStyle)
         {
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// <summary>
@@ -511,8 +561,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(bool shown) : this(Interop.View.New(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
             SetVisible(shown);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal View(ViewResizePolicyMode resizePolicyMode) : this(ViewAccessibilityMode.Default, resizePolicyMode)
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal View(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode) : this(NewWithAccessibilityModeAndResizePolicyMode(accessibilityMode, resizePolicyMode), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
@@ -2887,6 +2948,9 @@ namespace Tizen.NUI.BaseComponents
             float width = sizeWidth;
             userSizeWidth = width;
 
+            if (HasLayoutWidth())
+                SetLayoutWidth(width);
+
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as widthPolicyCeiling
             int widthPolicyCeiling = (int)System.Math.Ceiling(width);
@@ -2950,6 +3014,9 @@ namespace Tizen.NUI.BaseComponents
             // SuggestedMinimumWidth/Height is used by Layout calculation.
             float height = sizeHeight;
             userSizeHeight = height;
+
+            if (HasLayoutHeight())
+                SetLayoutHeight(height);
 
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as heightPolicyCeiling
@@ -4190,6 +4257,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
+
+                if (HasMinimumWidth())
+                    SetMinimumWidth(value.Width, false);
+                if (HasMinimumHeight())
+                    SetMinimumHeight(value.Height, false);
+
                 if (layoutExtraData?.Layout is LayoutItem layout)
                 {
                     // Note: it only works if minimum size is >= than natural size.
@@ -4240,6 +4313,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (HasMaximumWidth())
+                    SetMaximumWidth(value.Width, false);
+                if (HasMaximumHeight())
+                    SetMaximumHeight(value.Height, false);
+
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
                 RequestLayout();
@@ -4690,6 +4768,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SizeWidth = widthPolicy;
                 }
+
+                if (HasLayoutWidth())
+                    SetLayoutWidth(widthPolicy);
+
                 RequestLayout();
             }
         }
@@ -4765,6 +4847,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     SizeHeight = heightPolicy;
                 }
+
+                if (HasLayoutHeight())
+                    SetLayoutHeight(heightPolicy);
+
                 RequestLayout();
             }
         }
@@ -5130,7 +5216,31 @@ namespace Tizen.NUI.BaseComponents
             get => layoutExtraData?.Layout;
             set
             {
+                var hasLayoutWidth = HasLayoutWidth();
+                var hasLayoutHeight = HasLayoutHeight();
+
                 var layoutExtraData = EnsureLayoutExtraData();
+
+                // Copy from width/heightPolicy only if LayoutWidth/Height has not been set before
+                // not to overwrite LayoutWidth/Height value set by user.
+                if (!hasLayoutWidth)
+                    SetLayoutWidth(widthPolicy);
+                if (!hasLayoutHeight)
+                    SetLayoutHeight(heightPolicy);
+
+                if (!HasMinimumWidth())
+                    SetMinimumWidth(MinimumSize.Width, false);
+                if (!HasMinimumHeight())
+                    SetMinimumHeight(MinimumSize.Height, false);
+                if (!HasMaximumWidth())
+                    SetMaximumWidth(MaximumSize.Width, false);
+                if (!HasMaximumHeight())
+                    SetMaximumHeight(MaximumSize.Height, false);
+
+                if (!HasMargin())
+                    SetMargin(new UIExtents(Margin.Start, Margin.End, Margin.Top, Margin.End), false);
+                if (!HasPadding())
+                    SetPadding(new UIExtents(Padding.Start, Padding.End, Padding.Top, Padding.End), false);
 
                 // Do nothing if layout provided is already set on this View.
                 if (value == layoutExtraData.Layout)
@@ -5353,9 +5463,7 @@ namespace Tizen.NUI.BaseComponents
                     if (!string.IsNullOrEmpty(BackgroundImage))
                     {
                         PropertyMap bgMap = this.Background;
-                        var temp = new PropertyValue(backgroundImageSynchronousLoading);
-                        bgMap[ImageVisualProperty.SynchronousLoading] = temp;
-                        temp.Dispose();
+                        bgMap.Set(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
                         Background = bgMap;
                     }
                 }
@@ -5810,44 +5918,16 @@ namespace Tizen.NUI.BaseComponents
 
             themeData.viewStyle = viewStyle;
 
-            if (viewStyle.DirtyProperties == null || viewStyle.DirtyProperties.Count == 0)
+            ChangedPropertiesSetExcludingStyle = new HashSet<string>();
+
+            foreach (var (property, value) in viewStyle.GetProperties())
             {
-                // Nothing to apply
-                return;
+                // TODO Check isThemeChanged & ChangedPropertiesSetExcludingStyle
+                property.ApplyTo(this, value);
             }
 
-            BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
-
-            if (bindablePropertyOfView == null)
-            {
-                return;
-            }
-
-            var dirtyStyleProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
-            viewStyle.DirtyProperties.CopyTo(dirtyStyleProperties);
-
-            foreach (var sourceProperty in dirtyStyleProperties)
-            {
-                var sourceValue = viewStyle.GetValue(sourceProperty);
-
-                if (sourceValue == null)
-                {
-                    continue;
-                }
-
-                bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
-
-                // Do not set value again when theme is changed and the value has been set already.
-                if (isThemeChanged && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty))
-                {
-                    continue;
-                }
-
-                if (destinationProperty != null)
-                {
-                    InternalSetValue(destinationProperty, sourceValue);
-                }
-            }
+            // NOTE Support backward compatibility.
+            ApplyStyleUsingBindableProperty(viewStyle);
         }
 
         /// <summary>
@@ -6008,5 +6088,48 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private void RequestLayout() => layoutExtraData?.Layout?.RequestLayout();
+
+        private void ApplyStyleUsingBindableProperty(ViewStyle viewStyle)
+        {
+            // NOTE Support backward compatibility.
+            if (viewStyle.DirtyProperties == null || viewStyle.DirtyProperties.Count == 0)
+            {
+                // Nothing to apply
+                return;
+            }
+
+            BindableProperty.GetBindablePropertysOfType(GetType(), out var bindablePropertyOfView);
+
+            if (bindablePropertyOfView == null)
+            {
+                return;
+            }
+
+            var dirtyStyleProperties = new BindableProperty[viewStyle.DirtyProperties.Count];
+            viewStyle.DirtyProperties.CopyTo(dirtyStyleProperties);
+
+            foreach (var sourceProperty in dirtyStyleProperties)
+            {
+                var sourceValue = viewStyle.GetValue(sourceProperty);
+
+                if (sourceValue == null)
+                {
+                    continue;
+                }
+
+                bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
+
+                // Do not set value again when theme is changed and the value has been set already.
+                if (isThemeChanged && ChangedPropertiesSetExcludingStyle != null && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty.PropertyName))
+                {
+                    continue;
+                }
+
+                if (destinationProperty != null)
+                {
+                    InternalSetValue(destinationProperty, sourceValue);
+                }
+            }
+        }
     }
 }

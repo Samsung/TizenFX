@@ -36,7 +36,8 @@ namespace Tizen.NUI.Components
         /// Property of boolean Selected flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(RecyclerViewItem), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = null;
+        internal static void SetInternalIsSelectedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (RecyclerViewItem)bindable;
             if (newValue != null)
@@ -84,18 +85,19 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIsSelectedProperty(BindableObject bindable)
         {
             var instance = (RecyclerViewItem)bindable;
             return instance.isSelectable && instance.isSelected;
-        });
+        }
 
         /// <summary>
         /// Property of boolean Selectable flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool), typeof(RecyclerViewItem), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectableProperty = null;
+        internal static void SetInternalIsSelectableProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (RecyclerViewItem)bindable;
             if (newValue != null)
@@ -107,14 +109,26 @@ namespace Tizen.NUI.Components
                     instance.UpdateState();
                 }
             }
-        },
-        defaultValueCreator: (bindable) => ((RecyclerViewItem)bindable).isSelectable);
+        }
+        internal static object GetInternalIsSelectableProperty(BindableObject bindable)
+        {
+            return ((RecyclerViewItem)bindable).isSelectable;
+        }
 
         private bool isSelected = false;
         private bool isSelectable = true;
         private RecyclerViewItemStyle ItemStyle => ViewStyle as RecyclerViewItemStyle;
 
-        static RecyclerViewItem() { }
+        static RecyclerViewItem()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(RecyclerViewItem), false,
+                    propertyChanged: SetInternalIsSelectedProperty, defaultValueCreator: GetInternalIsSelectedProperty);
+                IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool), typeof(RecyclerViewItem), true,
+                    propertyChanged: SetInternalIsSelectableProperty, defaultValueCreator: GetInternalIsSelectableProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of RecyclerViewItem.
@@ -154,10 +168,27 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public bool IsSelectable
         {
-            get => (bool)GetValue(IsSelectableProperty);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(IsSelectableProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalIsSelectableProperty(this);
+                }
+            }
             set
             {
-                SetValue(IsSelectableProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsSelectableProperty, value);
+                }
+                else
+                {
+                    SetInternalIsSelectableProperty(this, null, value);
+                }
                 OnPropertyChanged(nameof(IsSelectable));
             }
         }
@@ -168,10 +199,27 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public bool IsSelected
         {
-            get => (bool)GetValue(IsSelectedProperty);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(IsSelectedProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalIsSelectedProperty(this);
+                }
+            }
             set
             {
-                SetValue(IsSelectedProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsSelectedProperty, value);
+                }
+                else
+                {
+                    SetInternalIsSelectedProperty(this, null, value);
+                }
                 OnPropertyChanged(nameof(IsSelected));
             }
         }

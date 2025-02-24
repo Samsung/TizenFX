@@ -36,7 +36,8 @@ namespace Tizen.NUI.Components
         /// MaxValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = null;
+        internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -44,18 +45,19 @@ namespace Tizen.NUI.Components
                 instance.maxValue = (float)newValue;
                 instance.UpdateValue();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMaxValueProperty(BindableObject bindable)
         {
             var instance = (Progress)bindable;
             return instance.maxValue;
-        });
+        }
 
         /// <summary>
         /// MinValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = null;
+        internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -63,18 +65,19 @@ namespace Tizen.NUI.Components
                 instance.minValue = (float)newValue;
                 instance.UpdateValue();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMinValueProperty(BindableObject bindable)
         {
             var instance = (Progress)bindable;
             return instance.minValue;
-        });
+        }
 
         /// <summary>
         /// CurrentValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = null;
+        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -86,18 +89,19 @@ namespace Tizen.NUI.Components
                 instance.currentValue = (float)newValue;
                 instance.UpdateValue();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
         {
             var instance = (Progress)bindable;
             return instance.currentValue;
-        });
+        }
 
         /// <summary>
         /// BufferValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BufferValueProperty = BindableProperty.Create(nameof(BufferValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BufferValueProperty = null;
+        internal static void SetInternalBufferValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -109,18 +113,19 @@ namespace Tizen.NUI.Components
                 instance.bufferValue = (float)newValue;
                 instance.UpdateValue();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBufferValueProperty(BindableObject bindable)
         {
             var instance = (Progress)bindable;
             return instance.bufferValue;
-        });
+        }
 
         /// <summary>
         /// ProgressStateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressStateProperty = BindableProperty.Create(nameof(ProgressState), typeof(ProgressStatusType), typeof(Progress), ProgressStatusType.Indeterminate, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressStateProperty = null;
+        internal static void SetInternalProgressStateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -128,12 +133,12 @@ namespace Tizen.NUI.Components
                 instance.state = (ProgressStatusType)newValue;
                 instance.UpdateStates();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalProgressStateProperty(BindableObject bindable)
         {
             var instance = (Progress)bindable;
             return instance.state;
-        });
+        }
 
         /// This needs to be considered more if public-open is necessary.
         private ProgressStatusType state = ProgressStatusType.Determinate;
@@ -150,7 +155,37 @@ namespace Tizen.NUI.Components
         private float bufferValue = 0;
         private Animation indeterminateAnimation = null;
 
-        static Progress() { }
+        static Progress()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(float), typeof(Progress), default(float),
+                    propertyChanged: SetInternalMaxValueProperty, defaultValueCreator: GetInternalMaxValueProperty);
+                MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(float), typeof(Progress), default(float),
+                    propertyChanged: SetInternalMinValueProperty, defaultValueCreator: GetInternalMinValueProperty);
+                CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(float), typeof(Progress), default(float),
+                    propertyChanged: SetInternalCurrentValueProperty, defaultValueCreator: GetInternalCurrentValueProperty);
+                BufferValueProperty = BindableProperty.Create(nameof(BufferValue), typeof(float), typeof(Progress), default(float),
+                    propertyChanged: SetInternalBufferValueProperty, defaultValueCreator: GetInternalBufferValueProperty);
+                ProgressStateProperty = BindableProperty.Create(nameof(ProgressState), typeof(ProgressStatusType), typeof(Progress), ProgressStatusType.Indeterminate,
+                    propertyChanged: SetInternalProgressStateProperty, defaultValueCreator: GetInternalProgressStateProperty);
+                TrackImageURLProperty = BindableProperty.Create(nameof(TrackImageURL), typeof(string), typeof(Progress), default(string),
+                    propertyChanged: SetInternalTrackImageURLProperty, defaultValueCreator: GetInternalTrackImageURLProperty);
+                ProgressImageURLProperty = BindableProperty.Create(nameof(ProgressImageURL), typeof(string), typeof(Progress), default(string),
+                    propertyChanged: SetInternalProgressImageURLProperty,defaultValueCreator: GetInternalProgressImageURLProperty);
+                BufferImageURLProperty = BindableProperty.Create(nameof(BufferImageURL), typeof(string), typeof(Progress), default(string),
+                    propertyChanged: SetInternalBufferImageURLProperty, defaultValueCreator: GetInternalBufferImageURLProperty);
+                IndeterminateImageUrlProperty = BindableProperty.Create(nameof(IndeterminateImageUrl), typeof(string), typeof(Progress), default(string),
+                    propertyChanged: SetInternalIndeterminateImageUrlProperty, defaultValueCreator: GetInternalIndeterminateImageUrlProperty);
+                TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(Progress), null,
+                    propertyChanged: SetInternalTrackColorProperty, defaultValueCreator: GetInternalTrackColorProperty);
+                ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(Progress), null,
+                    propertyChanged: SetInternalProgressColorProperty, defaultValueCreator: GetInternalProgressColorProperty);
+                BufferColorProperty = BindableProperty.Create(nameof(BufferColor), typeof(Color), typeof(Progress), null,
+                    propertyChanged: SetInternalBufferColorProperty, defaultValueCreator: GetInternalBufferColorProperty);
+            }
+        }
+
         /// <summary>
         /// The constructor of Progress
         /// </summary>
@@ -222,11 +257,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TrackImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TrackImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTrackImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TrackImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -244,11 +293,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ProgressImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ProgressImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalProgressImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(ProgressImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ProgressImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalProgressImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -266,11 +329,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(BufferImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(BufferImageURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalBufferImageURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(BufferImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BufferImageURLProperty, value);
+                }
+                else
+                {
+                    SetInternalBufferImageURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -289,11 +366,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(IndeterminateImageUrlProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(IndeterminateImageUrlProperty) as string;
+                }
+                else
+                {
+                    return GetInternalIndeterminateImageUrlProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(IndeterminateImageUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IndeterminateImageUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalIndeterminateImageUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -331,11 +422,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TrackColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalTrackColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(TrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackColorProperty, value);
+                }
+                else
+                {
+                    SetInternalTrackColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -353,11 +458,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ProgressColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ProgressColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalProgressColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(ProgressColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ProgressColorProperty, value);
+                }
+                else
+                {
+                    SetInternalProgressColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -375,11 +494,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(BufferColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(BufferColorProperty) as Color;
+                }
+                else
+                {
+                    return GetInternalBufferColorProperty(this) as Color;
+                }
             }
             set
             {
-                SetValue(BufferColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BufferColorProperty, value);
+                }
+                else
+                {
+                    SetInternalBufferColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -397,11 +530,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(MaxValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MaxValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMaxValueProperty(this);
+                }
             }
             set
             {
-                SetValue(MaxValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MaxValueProperty, value);
+                }
+                else
+                {
+                    SetInternalMaxValueProperty(this, null, value);
+                }
             }
         }
 
@@ -413,11 +560,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(MinValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(MinValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalMinValueProperty(this);
+                }
             }
             set
             {
-                SetValue(MinValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinValueProperty, value);
+                }
+                else
+                {
+                    SetInternalMinValueProperty(this, null, value);
+                }
             }
         }
 
@@ -429,11 +590,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(CurrentValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(CurrentValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalCurrentValueProperty(this);
+                }
             }
             set
             {
-                SetValue(CurrentValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentValueProperty, value);
+                }
+                else
+                {
+                    SetInternalCurrentValueProperty(this, null, value);
+                }
                 if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
@@ -449,11 +624,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(BufferValueProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(BufferValueProperty);
+                }
+                else
+                {
+                    return (float)GetInternalBufferValueProperty(this);
+                }
             }
             set
             {
-                SetValue(BufferValueProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BufferValueProperty, value);
+                }
+                else
+                {
+                    SetInternalBufferValueProperty(this, null, value);
+                }
             }
         }
 
@@ -465,11 +654,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (ProgressStatusType)GetValue(ProgressStateProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (ProgressStatusType)GetValue(ProgressStateProperty);
+                }
+                else
+                {
+                    return (ProgressStatusType)GetInternalProgressStateProperty(this);
+                }
             }
             set
             {
-                SetValue(ProgressStateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ProgressStateProperty, value);
+                }
+                else
+                {
+                    SetInternalProgressStateProperty(this, null, value);
+                }
             }
         }
 

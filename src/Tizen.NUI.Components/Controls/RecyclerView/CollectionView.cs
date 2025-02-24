@@ -35,111 +35,107 @@ namespace Tizen.NUI.Components
         /// Binding Property of selected item in single selection.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty SelectedItemProperty =
-            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CollectionView), null,
-                propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedItemProperty = null;
+        internal static void SetInternalSelectedItemProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+
+            oldValue = colView.selectedItem;
+            colView.selectedItem = newValue;
+
+            var args = new SelectionChangedEventArgs(oldValue, newValue);
+            foreach (RecyclerViewItem item in colView.ContentContainer.Children.Where((item) => item is RecyclerViewItem))
+            {
+                if (item.BindingContext == null)
                 {
-                    var colView = bindable as CollectionView;
-                    if (colView == null)
-                    {
-                        throw new Exception("Bindable object is not CollectionView.");
-                    }
+                    continue;
+                }
 
-                    oldValue = colView.selectedItem;
-                    colView.selectedItem = newValue;
-
-                    var args = new SelectionChangedEventArgs(oldValue, newValue);
-                    foreach (RecyclerViewItem item in colView.ContentContainer.Children.Where((item) => item is RecyclerViewItem))
-                    {
-                        if (item.BindingContext == null)
-                        {
-                            continue;
-                        }
-
-                        if (item.BindingContext == oldValue)
-                        {
-                            item.IsSelected = false;
-                        }
-                        else if (item.BindingContext == newValue)
-                        {
-                            item.IsSelected = true;
-                        }
-                    }
-
-                    SelectionPropertyChanged(colView, args);
-                },
-                defaultValueCreator: (bindable) =>
+                if (item.BindingContext == oldValue)
                 {
-                    var colView = bindable as CollectionView;
-                    if (colView == null)
-                    {
-                        throw new Exception("Bindable object is not CollectionView.");
-                    }
+                    item.IsSelected = false;
+                }
+                else if (item.BindingContext == newValue)
+                {
+                    item.IsSelected = true;
+                }
+            }
 
-                    return colView.selectedItem;
-                });
+            SelectionPropertyChanged(colView, args);
+        }
+        internal static object GetInternalSelectedItemProperty(BindableObject bindable)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+
+            return colView.selectedItem;
+        }
 
         /// <summary>
         /// Binding Property of selected items list in multiple selection.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty SelectedItemsProperty =
-            BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CollectionView), null,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                {
-                    var colView = bindable as CollectionView;
-                    if (colView == null)
-                    {
-                        throw new Exception("Bindable object is not CollectionView.");
-                    }
+        public static readonly BindableProperty SelectedItemsProperty = null;
+        internal static void SetInternalSelectedItemsProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
 
-                    var oldSelection = colView.selectedItems ?? selectEmpty;
-                    //FIXME : CoerceSelectedItems calls only isCreatedByXaml
-                    var newSelection = (SelectionList)CoerceSelectedItems(colView, newValue);
-                    colView.selectedItems = newSelection;
-                    colView.SelectedItemsPropertyChanged(oldSelection, newSelection);
-                },
-                defaultValueCreator: (bindable) =>
-                {
-                    var colView = bindable as CollectionView;
-                    if (colView == null)
-                    {
-                        throw new Exception("Bindable object is not CollectionView.");
-                    }
+            var oldSelection = colView.selectedItems ?? selectEmpty;
+            //FIXME : CoerceSelectedItems calls only isCreatedByXaml
+            var newSelection = (SelectionList)CoerceSelectedItems(colView, newValue);
+            colView.selectedItems = newSelection;
+            colView.SelectedItemsPropertyChanged(oldSelection, newSelection);
+        }
+        internal static object GetInternalSelectedItemsProperty(BindableObject bindable)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
 
-                    colView.selectedItems = colView.selectedItems ?? new SelectionList(colView);
-                    return colView.selectedItems;
-                });
+            colView.selectedItems = colView.selectedItems ?? new SelectionList(colView);
+            return colView.selectedItems;
+        }
 
         /// <summary>
         /// Binding Property of selected items list in multiple selection.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty SelectionModeProperty =
-            BindableProperty.Create(nameof(SelectionMode), typeof(ItemSelectionMode), typeof(CollectionView), ItemSelectionMode.None,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                {
-                    var colView = bindable as CollectionView;
-                    if (colView == null)
-                    {
-                        throw new Exception("Bindable object is not CollectionView.");
-                    }
+        public static readonly BindableProperty SelectionModeProperty = null;
+        internal static void SetInternalSelectionModeProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
 
-                    oldValue = colView.selectionMode;
-                    colView.selectionMode = (ItemSelectionMode)newValue;
-                    SelectionModePropertyChanged(colView, oldValue, newValue);
-                },
-                defaultValueCreator: (bindable) =>
-                {
-                    var colView = bindable as CollectionView;
-                    if (colView == null)
-                    {
-                        throw new Exception("Bindable object is not CollectionView.");
-                    }
+            oldValue = colView.selectionMode;
+            colView.selectionMode = (ItemSelectionMode)newValue;
+            SelectionModePropertyChanged(colView, oldValue, newValue);
+        }
+        internal static object GetInternalSelectionModeProperty(BindableObject bindable)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
 
-                    return colView.selectionMode;
-                });
-
+            return colView.selectionMode;
+        }
 
         private static readonly IList<object> selectEmpty = new List<object>(0);
         private DataTemplate itemTemplate = null;
@@ -168,6 +164,37 @@ namespace Tizen.NUI.Components
         {
             FocusGroup = true;
             SetKeyboardNavigationSupport(true);
+        }
+
+        static CollectionView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CollectionView), null,
+                    propertyChanged: SetInternalSelectedItemProperty, defaultValueCreator: GetInternalSelectedItemProperty);
+                SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CollectionView), null,
+                    propertyChanged: SetInternalSelectedItemsProperty, defaultValueCreator: GetInternalSelectedItemsProperty);
+                SelectionModeProperty = BindableProperty.Create(nameof(SelectionMode), typeof(ItemSelectionMode), typeof(CollectionView), ItemSelectionMode.None,
+                    propertyChanged: SetInternalSelectionModeProperty, defaultValueCreator: GetInternalSelectionModeProperty);
+                ItemsLayouterProperty = BindableProperty.Create(nameof(ItemsLayouter), typeof(ItemsLayouter), typeof(CollectionView), null,
+                    propertyChanged: SetInternalItemsLayouterProperty, defaultValueCreator: GetInternalItemsLayouterProperty);
+                ScrollingDirectionProperty = BindableProperty.Create(nameof(ScrollingDirection), typeof(Tizen.NUI.Components.ScrollableBase.Direction), typeof(CollectionView), default(Direction),
+                    propertyChanged: SetInternalScrollingDirectionProperty, defaultValueCreator: GetInternalScrollingDirectionProperty);
+                SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CollectionView), null,
+                    propertyChanged: SetInternalSelectionChangedCommandProperty, defaultValueCreator: GetInternalSelectionChangedCommandProperty);
+                SelectionChangedCommandParameterProperty = BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object), typeof(CollectionView), null,
+                    propertyChanged: SetInternalSelectionChangedCommandParameterProperty, defaultValueCreator: GetInternalSelectionChangedCommandParameterProperty);
+                HeaderProperty = BindableProperty.Create(nameof(Header), typeof(RecyclerViewItem), typeof(CollectionView), null,
+                    propertyChanged: SetInternalHeaderProperty, defaultValueCreator: GetInternalHeaderProperty);
+                FooterProperty = BindableProperty.Create(nameof(Footer), typeof(RecyclerViewItem), typeof(CollectionView), null,
+                    propertyChanged: SetInternalFooterProperty, defaultValueCreator: GetInternalFooterProperty);
+                IsGroupedProperty = BindableProperty.Create(nameof(IsGrouped), typeof(bool), typeof(CollectionView), default(bool),
+                    propertyChanged: SetInternalIsGroupedProperty, defaultValueCreator: GetInternalIsGroupedProperty);
+                GroupHeaderTemplateProperty = BindableProperty.Create(nameof(GroupHeaderTemplate), typeof(DataTemplate), typeof(CollectionView), null,
+                    propertyChanged: SetInternalGroupHeaderTemplateProperty, defaultValueCreator: GetInternalGroupHeaderTemplateProperty);
+                GroupFooterTemplateProperty = BindableProperty.Create(nameof(GroupFooterTemplate), typeof(DataTemplate), typeof(CollectionView), null,
+                    propertyChanged: SetInternalGroupFooterTemplateProperty, defaultValueCreator: GetInternalGroupFooterTemplateProperty);
+            }
         }
 
         /// <summary>
@@ -257,8 +284,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public override IEnumerable ItemsSource
         {
-            get => GetValue(RecyclerView.ItemsSourceProperty) as IEnumerable;
-            set => SetValue(RecyclerView.ItemsSourceProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(RecyclerView.ItemsSourceProperty) as IEnumerable;
+                }
+                else
+                {
+                    return GetInternalItemsSourceProperty(this) as IEnumerable;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RecyclerView.ItemsSourceProperty, value);
+                }
+                else
+                {
+                    SetInternalItemsSourceProperty(this, null, value);
+                }
+            }
         }
 
         internal override IEnumerable InternalItemsSource
@@ -320,11 +367,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ItemTemplateProperty) as DataTemplate;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ItemTemplateProperty) as DataTemplate;
+                }
+                else
+                {
+                    return GetInternalItemTemplateProperty(this) as DataTemplate;
+                }
             }
             set
             {
-                SetValue(ItemTemplateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemTemplateProperty, value);
+                }
+                else
+                {
+                    SetInternalItemTemplateProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -359,11 +420,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ItemsLayouterProperty) as ItemsLayouter;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ItemsLayouterProperty) as ItemsLayouter;
+                }
+                else
+                {
+                    return GetInternalItemsLayouterProperty(this) as ItemsLayouter;
+                }
             }
             set
             {
-                SetValue(ItemsLayouterProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemsLayouterProperty, value);
+                }
+                else
+                {
+                    SetInternalItemsLayouterProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -410,11 +485,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (Direction)GetValue(ScrollingDirectionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Direction)GetValue(ScrollingDirectionProperty);
+                }
+                else
+                {
+                    return (Direction)GetInternalScrollingDirectionProperty(this);
+                }
             }
             set
             {
-                SetValue(ScrollingDirectionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollingDirectionProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollingDirectionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -441,8 +530,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public object SelectedItem
         {
-            get => GetValue(SelectedItemProperty);
-            set => SetValue(SelectedItemProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SelectedItemProperty);
+                }
+                else
+                {
+                    return GetInternalSelectedItemProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectedItemProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectedItemProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -451,7 +560,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public IList<object> SelectedItems
         {
-            get => GetValue(SelectedItemsProperty) as IList<object>;
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SelectedItemsProperty) as IList<object>;
+                }
+                else
+                {
+                    return GetInternalSelectedItemsProperty(this) as IList<object>;
+                }
+            }
             // set => SetValue(SelectedItemsProperty, new SelectionList(this, value));
         }
 
@@ -461,8 +580,28 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public ItemSelectionMode SelectionMode
         {
-            get => (ItemSelectionMode)GetValue(SelectionModeProperty);
-            set => SetValue(SelectionModeProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (ItemSelectionMode)GetValue(SelectionModeProperty);
+                }
+                else
+                {
+                    return (ItemSelectionMode)GetInternalSelectionModeProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionModeProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionModeProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -473,11 +612,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SelectionChangedCommandProperty) as ICommand;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SelectionChangedCommandProperty) as ICommand;
+                }
+                else
+                {
+                    return GetInternalSelectionChangedCommandProperty(this) as ICommand;
+                }
             }
             set
             {
-                SetValue(SelectionChangedCommandProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionChangedCommandProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionChangedCommandProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -491,11 +644,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SelectionChangedCommandParameterProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SelectionChangedCommandParameterProperty);
+                }
+                else
+                {
+                    return GetInternalSelectionChangedCommandParameterProperty(this);
+                }
             }
             set
             {
-                SetValue(SelectionChangedCommandParameterProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SelectionChangedCommandParameterProperty, value);
+                }
+                else
+                {
+                    SetInternalSelectionChangedCommandParameterProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -510,11 +677,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(HeaderProperty) as RecyclerViewItem;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(HeaderProperty) as RecyclerViewItem;
+                }
+                else
+                {
+                    return GetInternalHeaderProperty(this) as RecyclerViewItem;
+                }
             }
             set
             {
-                SetValue(HeaderProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HeaderProperty, value);
+                }
+                else
+                {
+                    SetInternalHeaderProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -554,11 +735,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(FooterProperty) as RecyclerViewItem;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(FooterProperty) as RecyclerViewItem;
+                }
+                else
+                {
+                    return GetInternalFooterProperty(this) as RecyclerViewItem;
+                }
             }
             set
             {
-                SetValue(FooterProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FooterProperty, value);
+                }
+                else
+                {
+                    SetInternalFooterProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -597,11 +792,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(IsGroupedProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(IsGroupedProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalIsGroupedProperty(this);
+                }
             }
             set
             {
-                SetValue(IsGroupedProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IsGroupedProperty, value);
+                }
+                else
+                {
+                    SetInternalIsGroupedProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -637,11 +846,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(GroupHeaderTemplateProperty) as DataTemplate;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(GroupHeaderTemplateProperty) as DataTemplate;
+                }
+                else
+                {
+                    return GetInternalGroupHeaderTemplateProperty(this) as DataTemplate;
+                }
             }
             set
             {
-                SetValue(GroupHeaderTemplateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(GroupHeaderTemplateProperty, value);
+                }
+                else
+                {
+                    SetInternalGroupHeaderTemplateProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -681,11 +904,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(GroupFooterTemplateProperty) as DataTemplate;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(GroupFooterTemplateProperty) as DataTemplate;
+                }
+                else
+                {
+                    return GetInternalGroupFooterTemplateProperty(this) as DataTemplate;
+                }
             }
             set
             {
-                SetValue(GroupFooterTemplateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(GroupFooterTemplateProperty, value);
+                }
+                else
+                {
+                    SetInternalGroupFooterTemplateProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

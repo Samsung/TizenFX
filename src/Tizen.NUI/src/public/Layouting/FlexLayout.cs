@@ -20,6 +20,7 @@ using Tizen.NUI.BaseComponents;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Tizen.NUI.Binding;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -35,59 +36,66 @@ namespace Tizen.NUI
         /// FlexItemProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty FlexItemProperty = BindableProperty.CreateAttached("FlexItem", typeof(HandleRef), typeof(FlexLayout), default(HandleRef));
+        internal static readonly BindableProperty FlexItemProperty = null;
 
         /// <summary>
         /// FlexAlignmentSelfProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto, validateValue: ValidateEnum((int)AlignmentType.Auto, (int)AlignmentType.Stretch), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexAlignmentSelfProperty = null;
 
         /// <summary>
         /// FlexPositionTypeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative, validateValue: ValidateEnum((int)PositionType.Relative, (int)PositionType.Absolute),
-        propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexPositionTypeProperty = null;
+        internal static void SetInternalFlexPositionTypeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is View view)
             {
                 view.ExcludeLayouting = (PositionType)newValue == PositionType.Absolute;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFlexPositionTypeProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             if (view.ExcludeLayouting)
                 return PositionType.Absolute;
 
             return PositionType.Relative;
-        });
-
+        }
 
         /// <summary>
         /// AspectRatioProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexAspectRatioProperty = BindableProperty.CreateAttached("FlexAspectRatio", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value > 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexAspectRatioProperty = null;
 
         /// <summary>
         /// FlexBasisProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexBasisProperty = BindableProperty.CreateAttached("FlexBasis", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexBasisProperty = null;
 
         /// <summary>
         /// FlexShrinkProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexShrinkProperty = BindableProperty.CreateAttached("FlexShrink", typeof(float), typeof(FlexLayout), 1.0f, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexShrinkProperty = null;
 
         /// <summary>
         /// FlexGrowProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexGrowProperty = null;
+
+        private static Dictionary<View, AlignmentType> flexAlignmentSelfMap = null;
+        private static Dictionary<View, float> flexAspectRatioMap = null;
+        private static Dictionary<View, float> flexBasisMap = null;
+        private static Dictionary<View, float> flexShrinkMap = null;
+        private static Dictionary<View, float> flexGrowMap = null;
+
+        private Dictionary<View, HandleRef> childHandleRefMap = null;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn;
@@ -120,7 +128,24 @@ namespace Tizen.NUI
         /// <returns> The value of alignment self.</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static AlignmentType GetFlexAlignmentSelf(View view) => GetAttachedValue<AlignmentType>(view, FlexAlignmentSelfProperty);
+        public static AlignmentType GetFlexAlignmentSelf(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return GetAttachedValue<AlignmentType>(view, FlexAlignmentSelfProperty);
+            }
+            else
+            {
+                if (flexAlignmentSelfMap.TryGetValue(view, out var flexAlignmentSelf))
+                {
+                    return flexAlignmentSelf;
+                }
+                else
+                {
+                    return AlignmentType.Auto;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the position type of the child view.
@@ -130,7 +155,17 @@ namespace Tizen.NUI
         /// <returns> The value of position type</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static PositionType GetFlexPositionType(View view) => GetAttachedValue<PositionType>(view, FlexPositionTypeProperty);
+        public static PositionType GetFlexPositionType(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return GetAttachedValue<PositionType>(view, FlexPositionTypeProperty);
+            }
+            else
+            {
+                return (PositionType)GetInternalFlexPositionTypeProperty(view);
+            }
+        }
 
         /// <summary>
         /// Gets the aspect ratio of the child view.
@@ -140,7 +175,24 @@ namespace Tizen.NUI
         /// <returns> The value of aspect ratio</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexAspectRatio(View view) => GetAttachedValue<float>(view, FlexAspectRatioProperty);
+        public static float GetFlexAspectRatio(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return GetAttachedValue<float>(view, FlexAspectRatioProperty);
+            }
+            else
+            {
+                if (flexAspectRatioMap.TryGetValue(view, out var flexAspectRatio))
+                {
+                    return flexAspectRatio;
+                }
+                else
+                {
+                    return FlexUndefined;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the basis of the child view.
@@ -150,7 +202,24 @@ namespace Tizen.NUI
         /// <returns> The value of basis</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexBasis(View view) => GetAttachedValue<float>(view, FlexBasisProperty);
+        public static float GetFlexBasis(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return GetAttachedValue<float>(view, FlexBasisProperty);
+            }
+            else
+            {
+                if (flexBasisMap.TryGetValue(view, out var flexBasis))
+                {
+                    return flexBasis;
+                }
+                else
+                {
+                    return FlexUndefined;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the shrink of the child view.
@@ -160,7 +229,24 @@ namespace Tizen.NUI
         /// <returns> The value of shrink</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexShrink(View view) => GetAttachedValue<float>(view, FlexShrinkProperty);
+        public static float GetFlexShrink(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return GetAttachedValue<float>(view, FlexShrinkProperty);
+            }
+            else
+            {
+                if (flexShrinkMap.TryGetValue(view, out var flexShrink))
+                {
+                    return flexShrink;
+                }
+                else
+                {
+                    return 1.0f;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the grow of the child view.
@@ -170,7 +256,24 @@ namespace Tizen.NUI
         /// <returns> The value of grow</returns>
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static float GetFlexGrow(View view) => GetAttachedValue<float>(view, FlexGrowProperty);
+        public static float GetFlexGrow(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return GetAttachedValue<float>(view, FlexGrowProperty);
+            }
+            else
+            {
+                if (flexGrowMap.TryGetValue(view, out var flexGrow))
+                {
+                    return flexGrow;
+                }
+                else
+                {
+                    return FlexUndefined;
+                }
+            }
+        }
 
         /// <summary>
         /// Sets the alignment self of the child view.<br/>
@@ -183,7 +286,21 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="AlignmentType"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexAlignmentSelf(View view, AlignmentType value) => SetAttachedValue(view, FlexAlignmentSelfProperty, value);
+        public static void SetFlexAlignmentSelf(View view, AlignmentType value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(view, FlexAlignmentSelfProperty, value);
+            }
+            else
+            {
+                if (value >= AlignmentType.Auto && value <= AlignmentType.Stretch)
+                {
+                    flexAlignmentSelfMap[view] = value;
+                    OnChildPropertyChanged(view, null, value);
+                }
+            }
+        }
 
         /// <summary>
         /// Sets the position type of the child view.<br/>
@@ -198,7 +315,20 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="PositionType"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexPositionType(View view, PositionType value) => SetAttachedValue(view, FlexPositionTypeProperty, value);
+        public static void SetFlexPositionType(View view, PositionType value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(view, FlexPositionTypeProperty, value);
+            }
+            else
+            {
+                if (value >= PositionType.Relative && value <= PositionType.Absolute)
+                {
+                    SetInternalFlexPositionTypeProperty(view, null, value);
+                }
+            }
+        }
 
         /// <summary>
         /// Sets the aspect ratio of the child view.
@@ -211,7 +341,21 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than or equal to 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexAspectRatio(View view, float value) => SetAttachedValue(view, FlexAspectRatioProperty, value);
+        public static void SetFlexAspectRatio(View view, float value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(view, FlexAspectRatioProperty, value);
+            }
+            else
+            {
+                if (value > 0)
+                {
+                    flexAspectRatioMap[view] = value;
+                    OnChildPropertyChanged(view, null, value);
+                }
+            }
+        }
 
         /// <summary>
         /// Sets the flex basis of the child view.
@@ -225,7 +369,21 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexBasis(View view, float value) => SetAttachedValue(view, FlexBasisProperty, value);
+        public static void SetFlexBasis(View view, float value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(view, FlexBasisProperty, value);
+            }
+            else
+            {
+                if (value >= 0)
+                {
+                    flexBasisMap[view] = value;
+                    OnChildPropertyChanged(view, null, value);
+                }
+            }
+        }
 
         /// <summary>
         /// Sets the flex shrink of the child view.
@@ -239,7 +397,21 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexShrink(View view, float value) => SetAttachedValue(view, FlexShrinkProperty, value);
+        public static void SetFlexShrink(View view, float value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(view, FlexShrinkProperty, value);
+            }
+            else
+            {
+                if (value >= 0)
+                {
+                    flexShrinkMap[view] = value;
+                    OnChildPropertyChanged(view, null, value);
+                }
+            }
+        }
 
         /// <summary>
         /// Sets the grow of the child view.
@@ -253,12 +425,54 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 0.0f.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public static void SetFlexGrow(View view, float value) => SetAttachedValue(view, FlexGrowProperty, value);
+        public static void SetFlexGrow(View view, float value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(view, FlexGrowProperty, value);
+            }
+            else
+            {
+                if (value >= 0)
+                {
+                    flexGrowMap[view] = value;
+                    OnChildPropertyChanged(view, null, value);
+                }
+            }
+        }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ChildMeasureCallback(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize);
 
         event ChildMeasureCallback measureChildDelegate; // Stores a delegate to the child measure callback. Used for all children of this FlexLayout.
+
+        static FlexLayout()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                FlexItemProperty = BindableProperty.CreateAttached("FlexItem", typeof(HandleRef), typeof(FlexLayout), default(HandleRef));
+                FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto,
+                    validateValue: ValidateEnum((int)AlignmentType.Auto, (int)AlignmentType.Stretch), propertyChanged: OnChildPropertyChanged);
+                FlexPositionTypeProperty = BindableProperty.CreateAttached("FlexPositionType", typeof(PositionType), typeof(FlexLayout), PositionType.Relative,
+                    validateValue: ValidateEnum((int)PositionType.Relative, (int)PositionType.Absolute), propertyChanged: SetInternalFlexPositionTypeProperty, defaultValueCreator: GetInternalFlexPositionTypeProperty);
+                FlexAspectRatioProperty = BindableProperty.CreateAttached("FlexAspectRatio", typeof(float), typeof(FlexLayout), FlexUndefined,
+                    validateValue: (bindable, value) => (float)value > 0, propertyChanged: OnChildPropertyChanged);
+                FlexBasisProperty = BindableProperty.CreateAttached("FlexBasis", typeof(float), typeof(FlexLayout), FlexUndefined,
+                    validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+                FlexShrinkProperty = BindableProperty.CreateAttached("FlexShrink", typeof(float), typeof(FlexLayout), 1.0f,
+                    validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+                FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined,
+                    validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+            }
+            else
+            {
+                flexAlignmentSelfMap = new Dictionary<View, AlignmentType>();
+                flexAspectRatioMap = new Dictionary<View, float>();
+                flexBasisMap = new Dictionary<View, float>();
+                flexShrinkMap = new Dictionary<View, float>();
+                flexGrowMap = new Dictionary<View, float>();
+            }
+        }
 
         internal FlexLayout(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
@@ -266,6 +480,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             _rootFlex = Interop.FlexLayout.New();
             measureChildDelegate = new ChildMeasureCallback(measureChild);
+            if (!NUIApplication.IsUsingXaml)
+            {
+                childHandleRefMap = new Dictionary<View, HandleRef>();
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FlexLayout obj)
@@ -466,7 +684,6 @@ namespace Tizen.NUI
 
                 Interop.FlexLayout.SetFlexWrap(swigCPtr, (int)value);
                 RequestLayout();
-
             }
         }
 
@@ -649,14 +866,14 @@ namespace Tizen.NUI
                                         new LayoutLength(parentMeasureSpecificationWidth.Size - (margin.Start + margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
                                     new LayoutLength(Padding.Start + Padding.End),
-                                    new LayoutLength(child.WidthSpecification));
+                                    new LayoutLength(child.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
                                         new LayoutLength(parentMeasureSpecificationHeight.Size - (margin.Top + margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
-                                    new LayoutLength(child.HeightSpecification));
+                                    new LayoutLength(child.LayoutHeight));
 
             childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
@@ -669,7 +886,14 @@ namespace Tizen.NUI
             // Store created node for child
             IntPtr childPtr = Interop.FlexLayout.AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count - 1);
             HandleRef childHandleRef = new HandleRef(child.Owner, childPtr);
-            SetAttachedValue(child.Owner, FlexItemProperty, childHandleRef);
+            if (NUIApplication.IsUsingXaml)
+            {
+                SetAttachedValue(child.Owner, FlexItemProperty, childHandleRef);
+            }
+            else
+            {
+                childHandleRefMap[child.Owner] = childHandleRef;
+            }
         }
 
         /// <summary>
@@ -744,7 +968,15 @@ namespace Tizen.NUI
             {
                 LayoutItem layoutItem = LayoutChildren[i];
                 View Child = layoutItem?.Owner;
-                HandleRef childHandleRef = (HandleRef)Child.GetValue(FlexItemProperty);
+                HandleRef childHandleRef;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    childHandleRef = (HandleRef)Child.GetValue(FlexItemProperty);
+                }
+                else
+                {
+                    childHandleRef = childHandleRefMap[Child];
+                }
                 if (childHandleRef.Handle == IntPtr.Zero || Child == null)
                     continue;
 

@@ -57,15 +57,25 @@ namespace Tizen.NUI.Samples
         }
 
         static readonly string VERTEX_SHADER =
-        "attribute mediump vec3 aPosition;\n" +
-        "attribute mediump vec3 aNormal;\n" +
-        "attribute mediump vec2 aTexCoord;\n" +
-        "uniform mediump mat4 uMvpMatrix;\n" +
-        "uniform mediump mat3 uNormalMatrix;\n" +
-        "uniform mediump vec3 uSize;\n" +
-        "varying mediump vec3 vNormal;\n" +
-        "varying mediump vec2 vTexCoord;\n" +
-        "varying mediump vec3 vPosition;\n" +
+        "//@name DisposeTest.vert\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
+        "precision mediump float;\n"+
+        "INPUT highp vec3 aPosition;\n" +
+        "INPUT highp vec3 aNormal;\n" +
+        "INPUT highp vec2 aTexCoord;\n" +
+        "\n" +
+        "OUTPUT highp vec3 vNormal;\n" +
+        "OUTPUT highp vec2 vTexCoord;\n" +
+        "OUTPUT highp vec3 vPosition;\n" +
+        "\n" +
+        "UNIFORM_BLOCK VertBlock\n" +
+        "{\n" +
+        "  UNIFORM highp mat4 uMvpMatrix;\n" +
+        "  UNIFORM highp mat3 uNormalMatrix;\n" +
+        "  UNIFORM highp vec3 uSize;\n" +
+        "};\n" +
         "void main()\n" +
         "{\n" +
         "    vec4 pos = vec4(aPosition, 1.0)*vec4(uSize,1.0);\n"+
@@ -76,11 +86,21 @@ namespace Tizen.NUI.Samples
         "}\n";
 
         static readonly string FRAGMENT_SHADER =
-        "uniform lowp vec4 uColor;\n" +
-        "uniform sampler2D sTexture;\n" +
-        "varying mediump vec3 vNormal;\n" +
-        "varying mediump vec2 vTexCoord;\n" +
-        "varying mediump vec3 vPosition;\n" +
+        "//@name DisposeTest.frag\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
+        "precision mediump float;\n"+
+        "INPUT highp vec3 vNormal;\n" +
+        "INPUT highp vec2 vTexCoord;\n" +
+        "INPUT highp vec3 vPosition;\n" +
+        "\n" +
+        "UNIFORM_BLOCK FragBlock\n" +
+        "{\n" +
+        "  UNIFORM lowp vec4 uColor;\n" +
+        "};\n" +
+        "UNIFORM sampler2D sTexture;\n" +
+        "\n" +
         "mediump vec3 uLightDir = vec3(2.0, 0.5, 1.0);\n" + // constant light dir
         "mediump vec3 uViewDir  = vec3(0.0, 0.0, 1.0);\n" + // constant view dir.
         "mediump vec3 uAmbientColor = vec3(0.2, 0.2, 0.2);\n" +

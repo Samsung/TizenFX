@@ -10,36 +10,38 @@ namespace Tizen.NUI.Components
         /// IconProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(View), typeof(DefaultTitleItem), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IconProperty = null;
+        internal static void SetInternalIconProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultTitleItem)bindable;
             if (newValue != null)
             {
                 instance.InternalIcon = newValue as View;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIconProperty(BindableObject bindable)
         {
             var instance = (DefaultTitleItem)bindable;
             return instance.InternalIcon;
-        });
+        }
 
         /// <summary>
         /// TextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(DefaultTitleItem), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextProperty = null;
+        internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultTitleItem)bindable;
             if (newValue != null)
             {
                 instance.InternalText = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTextProperty(BindableObject bindable)
         {
             var instance = (DefaultTitleItem)bindable;
             return instance.InternalText;
-        });
+        }
     }
 }

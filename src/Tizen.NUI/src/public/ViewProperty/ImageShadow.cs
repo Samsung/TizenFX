@@ -156,18 +156,18 @@ namespace Tizen.NUI
         {
             var map = base.GetPropertyMap();
 
-            map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+            map.Set(Visual.Property.Type, (int)Visual.Type.Image);
 
             if (Rectangle.IsNullOrZero(Border))
             {
-                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+                map.Set(Visual.Property.Type, (int)Visual.Type.Image);
             }
             else
             {
-                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+                map.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
             }
 
-            map[ImageVisualProperty.Border] = PropertyValue.CreateWithGuard(Border);
+            map.Set(ImageVisualProperty.Border, Border);
 
             string urlString = Url;
             if (Url.StartsWith("*Resource*"))
@@ -176,7 +176,7 @@ namespace Tizen.NUI
                 urlString = Url.Replace("*Resource*", resource);
             }
 
-            map[ImageVisualProperty.URL] = PropertyValue.CreateWithGuard(urlString);
+            map.Set(ImageVisualProperty.URL, urlString);
 
             return map;
         }

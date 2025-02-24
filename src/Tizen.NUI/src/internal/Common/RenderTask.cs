@@ -66,36 +66,13 @@ namespace Tizen.NUI
             internal static readonly int RequiresSync = Interop.RenderTask.RequiresSyncGet();
         }
 
-#pragma warning disable CA1707
-        internal static SWIGTYPE_p_f_r_Dali__Vector2__bool DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.RenderTask.DefaultScreenToFramebufferFunctionGet();
-                SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        internal static SWIGTYPE_p_f_r_Dali__Vector2__bool FULLSCREEN_FRAMEBUFFER_FUNCTION
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.RenderTask.FullscreenFramebufferFunctionGet();
-                SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
 
         public static bool DEFAULT_EXCLUSIVE
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultExclusiveGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_EXCLUSIVE
+                return false;
             }
         }
 
@@ -103,20 +80,24 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultInputEnabledGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_INPUT_ENABLED
+                return true;
             }
         }
+
+        private static Vector4 defaultClearColor;
 
         public static Vector4 DEFAULT_CLEAR_COLOR
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.RenderTask.DefaultClearColorGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_CLEAR_COLOR
+                if (null == defaultClearColor)
+                {
+                    defaultClearColor = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+                }    
+
+                return defaultClearColor;
             }
         }
 
@@ -124,9 +105,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultClearEnabledGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_CLEAR_ENABLED
+                return false;
             }
         }
 
@@ -134,9 +114,8 @@ namespace Tizen.NUI
         {
             get
             {
-                bool ret = Interop.RenderTask.DefaultCullModeGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_CULL_MODE
+                return true;
             }
         }
 
@@ -144,9 +123,8 @@ namespace Tizen.NUI
         {
             get
             {
-                uint ret = Interop.RenderTask.DefaultRefreshRateGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::RenderTask::DEFAULT_REFRESH_RATE
+                return 1;
             }
         }
 #pragma warning restore CA1707
@@ -246,20 +224,6 @@ namespace Tizen.NUI
         {
             // TODO : Fix me, to avoid memory leak issue.
             FrameBuffer ret = new FrameBuffer(Interop.RenderTask.GetFrameBuffer(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetScreenToFrameBufferFunction(SWIGTYPE_p_f_r_Dali__Vector2__bool conversionFunction)
-        {
-            Interop.RenderTask.SetScreenToFrameBufferFunction(SwigCPtr, SWIGTYPE_p_f_r_Dali__Vector2__bool.getCPtr(conversionFunction));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal SWIGTYPE_p_f_r_Dali__Vector2__bool GetScreenToFrameBufferFunction()
-        {
-            global::System.IntPtr cPtr = Interop.RenderTask.GetScreenToFrameBufferFunction(SwigCPtr);
-            SWIGTYPE_p_f_r_Dali__Vector2__bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_r_Dali__Vector2__bool(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

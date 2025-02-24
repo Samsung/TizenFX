@@ -27,134 +27,15 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class ButtonStyle : ControlStyle
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            buttonStyle.isSelectable = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            return buttonStyle.isSelectable;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            buttonStyle.isSelected = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            return buttonStyle.isSelected;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(Button.IconOrientation?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            buttonStyle.iconRelativeOrientation = (Button.IconOrientation?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            return buttonStyle.iconRelativeOrientation;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ButtonStyle)bindable).iconPadding = null == newValue ? null : new Extents((Extents)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            return buttonStyle.iconPadding;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ButtonStyle)bindable).textPadding = null == newValue ? null : new Extents((Extents)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            return buttonStyle.textPadding;
-        });
-
-        /// <summary> The bindable property of ItemAlignment. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemAlignmentProperty = BindableProperty.Create(nameof(ItemAlignment), typeof(LinearLayout.Alignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ButtonStyle)bindable).itemAlignment = (LinearLayout.Alignment?)newValue;
-
-            switch (newValue)
-            {
-                case LinearLayout.Alignment.Begin:
-                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.Begin;
-                    break;
-                case LinearLayout.Alignment.End:
-                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.End;
-                    break;
-                case LinearLayout.Alignment.CenterHorizontal:
-                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.Center;
-                    break;
-                case LinearLayout.Alignment.Top:
-                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Top;
-                    break;
-                case LinearLayout.Alignment.Bottom:
-                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Bottom;
-                    break;
-                case LinearLayout.Alignment.CenterVertical:
-                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Center;
-                    break;
-                case LinearLayout.Alignment.Center:
-                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.Center;
-                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Center;
-                    break;
-                default:
-                    break;
-            }
-        },
-        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemAlignment);
-
-        /// <summary> The bindable property of ItemHorizontalAlignment. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemHorizontalAlignmentProperty = BindableProperty.Create(nameof(ItemHorizontalAlignment), typeof(HorizontalAlignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ButtonStyle)bindable).itemHorizontalAlignment = (HorizontalAlignment?)newValue;
-        },
-        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemHorizontalAlignment);
-
-        /// <summary> The bindable property of ItemVerticalAlignment. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemVerticalAlignmentProperty = BindableProperty.Create(nameof(ItemVerticalAlignment), typeof(VerticalAlignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ButtonStyle)bindable).itemVerticalAlignment = (VerticalAlignment?)newValue;
-        },
-        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemVerticalAlignment);
-
-        /// <summary> The bindable property of ItemSpacing. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemSpacingProperty = BindableProperty.Create(nameof(ItemSpacing), typeof(Size2D), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ButtonStyle)bindable).itemSpacing = (Size2D)newValue;
-        },
-        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemSpacing);
-
-        private bool? isSelectable;
-        private bool? isSelected;
-        private Button.IconOrientation? iconRelativeOrientation;
-        private Extents iconPadding;
-        private Extents textPadding;
-        private Size2D itemSpacing;
-        private LinearLayout.Alignment? itemAlignment;
-        private HorizontalAlignment? itemHorizontalAlignment;
-        private VerticalAlignment? itemVerticalAlignment;
+        static readonly IStyleProperty IsSelectableProperty = new StyleProperty<Button, bool>((v, o) => v.IsSelectable = o);
+        static readonly IStyleProperty IsSelectedProperty = new StyleProperty<Button, bool>((v, o) => v.IsSelected = o);
+        static readonly IStyleProperty IconRelativeOrientationProperty = new StyleProperty<Button, Button.IconOrientation?>((v, o) => v.IconRelativeOrientation = o);
+        static readonly IStyleProperty IconPaddingProperty = new StyleProperty<Button, Extents>((v, o) => v.IconPadding = o);
+        static readonly IStyleProperty TextPaddingProperty = new StyleProperty<Button, Extents>((v, o) => v.TextPadding = o);
+        static readonly IStyleProperty ItemAlignmentProperty = new StyleProperty<Button, LinearLayout.Alignment>((v, o) => v.ItemAlignment = o);
+        static readonly IStyleProperty ItemHorizontalAlignmentProperty = new StyleProperty<Button, HorizontalAlignment>((v, o) => v.ItemHorizontalAlignment = o);
+        static readonly IStyleProperty ItemVerticalAlignmentProperty = new StyleProperty<Button, VerticalAlignment>((v, o) => v.ItemVerticalAlignment = o);
+        static readonly IStyleProperty ItemSpacingProperty = new StyleProperty<Button, Size2D>((v, o) => v.ItemSpacing = o);
 
         static ButtonStyle() { }
 
@@ -244,7 +125,7 @@ namespace Tizen.NUI.Components
         {
             // TODO Fixme
             // When there are icon and text, the linear layout does not count padding.
-            get => ((Extents)GetValue(IconPaddingProperty)) ?? (iconPadding = new Extents());
+            get => GetOrCreateValue<Extents>(IconPaddingProperty);
             set => SetValue(IconPaddingProperty, value);
         }
 
@@ -254,7 +135,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TextPadding
         {
-            get => ((Extents)GetValue(TextPaddingProperty)) ?? (textPadding = new Extents());
+            get => GetOrCreateValue<Extents>(TextPaddingProperty);
             set => SetValue(TextPaddingProperty, value);
         }
 
@@ -324,22 +205,6 @@ namespace Tizen.NUI.Components
         public virtual ButtonExtension CreateExtension()
         {
             return null;
-        }
-
-        /// <summary>
-        /// Dispose ButtonStyle and all children on it.
-        /// </summary>
-        /// <param name="disposing">true in order to free managed objects</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                iconPadding?.Dispose();
-                textPadding?.Dispose();
-            }
-
-            base.Dispose(disposing);
         }
     }
 }

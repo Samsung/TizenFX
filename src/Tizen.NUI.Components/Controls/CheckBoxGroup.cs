@@ -42,11 +42,26 @@ namespace Tizen.NUI.Components
         /// IsGroupHolderProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsGroupHolderProperty = BindableProperty.CreateAttached("IsGroupHolder", typeof(bool), typeof(View), false, propertyChanged: OnIsGroupHolderChanged);
+        public static readonly BindableProperty IsGroupHolderProperty = null;
 
-        private static readonly BindableProperty CheckBoxGroupProperty = BindableProperty.CreateAttached("CheckBoxGroup", typeof(CheckBoxGroup), typeof(View), null, propertyChanged: OnCheckBoxGroupChanged);
+        private static readonly BindableProperty CheckBoxGroupProperty = null;
 
-        static CheckBoxGroup() { }
+        private static Dictionary<View, bool> isGroupHolderMap = null;
+        private static Dictionary<View, CheckBoxGroup> checkBoxGroupMap = null;
+
+        static CheckBoxGroup()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IsGroupHolderProperty = BindableProperty.CreateAttached("IsGroupHolder", typeof(bool), typeof(View), false, propertyChanged: OnIsGroupHolderChanged);
+                CheckBoxGroupProperty = BindableProperty.CreateAttached("CheckBoxGroup", typeof(CheckBoxGroup), typeof(View), null, propertyChanged: OnCheckBoxGroupChanged);
+            }
+            else
+            {
+                isGroupHolderMap = new Dictionary<View, bool>();
+                checkBoxGroupMap = new Dictionary<View, CheckBoxGroup>();
+            }
+        }
 
         /// <summary>
         /// Construct CheckBoxGroup
@@ -63,7 +78,17 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="view">The group holder.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool GetIsGroupHolder(View view) => (bool)view.GetValue(IsGroupHolderProperty);
+        public static bool GetIsGroupHolder(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return (bool)view.GetValue(IsGroupHolderProperty);
+            }
+            else
+            {
+                return isGroupHolderMap[view];
+            }
+        }
 
         /// <summary>
         /// Sets a CheckBoxGroup.IsGroupHolder property for a view.
@@ -71,14 +96,34 @@ namespace Tizen.NUI.Components
         /// <param name="view">The group holder.</param>
         /// <param name="value">The value to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void SetIsGroupHolder(View view, bool value) => view.SetValue(IsGroupHolderProperty, value, false, true);
+        public static void SetIsGroupHolder(View view, bool value)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                view.SetValue(IsGroupHolderProperty, value, false, true);
+            }
+            else
+            {
+                isGroupHolderMap[view] = value;
+            }
+        }
 
         /// <summary>
         /// Gets a attached CheckBoxGroup for a view.
         /// </summary>
         /// <param name="view">The group holder.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static CheckBoxGroup GetCheckBoxGroup(View view) => view.GetValue(CheckBoxGroupProperty) as CheckBoxGroup;
+        public static CheckBoxGroup GetCheckBoxGroup(View view)
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                return view.GetValue(CheckBoxGroupProperty) as CheckBoxGroup;
+            }
+            else
+            {
+                return checkBoxGroupMap[view];
+            }
+        }
 
         /// <summary>
         /// Add CheckBox to the end of CheckBoxGroup.
@@ -207,13 +252,30 @@ namespace Tizen.NUI.Components
 
             if (!(bool)newValue)
             {
-                view.SetValue(CheckBoxGroupProperty, null, false, true);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    view.SetValue(CheckBoxGroupProperty, null, false, true);
+                }
+                else
+                {
+                    checkBoxGroupMap[view] = null;
+                }
                 return;
             }
 
-            if (view.GetValue(CheckBoxGroupProperty) == null)
+            if (NUIApplication.IsUsingXaml)
             {
-                view.SetValue(CheckBoxGroupProperty, new CheckBoxGroup(), false, true);
+                if (view.GetValue(CheckBoxGroupProperty) == null)
+                {
+                    view.SetValue(CheckBoxGroupProperty, new CheckBoxGroup(), false, true);
+                }
+            }
+            else
+            {
+                if (checkBoxGroupMap[view] == null)
+                {
+                    checkBoxGroupMap[view] = new CheckBoxGroup();
+                }
             }
         }
 

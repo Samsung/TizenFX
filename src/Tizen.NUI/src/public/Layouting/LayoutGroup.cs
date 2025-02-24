@@ -571,12 +571,12 @@ namespace Tizen.NUI
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(childOwner.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
-                        new LayoutLength(childOwner.HeightSpecification));
+                        new LayoutLength(childOwner.LayoutHeight));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
@@ -608,14 +608,14 @@ namespace Tizen.NUI
                             new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (margin.Start + margin.End)),
                             parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(childOwner.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
                             new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (margin.Top + margin.Bottom)),
                             parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
-                        new LayoutLength(childOwner.HeightSpecification));
+                        new LayoutLength(childOwner.LayoutHeight));
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
         }
@@ -642,12 +642,12 @@ namespace Tizen.NUI
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
                         new LayoutLength(0),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(childOwner.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
                         new LayoutLength(0),
-                        new LayoutLength(childOwner.HeightSpecification));
+                        new LayoutLength(childOwner.LayoutHeight));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
@@ -682,6 +682,7 @@ namespace Tizen.NUI
 
             bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet);
         }
+
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
         {
             // Unused parameters

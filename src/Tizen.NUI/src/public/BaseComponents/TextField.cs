@@ -3362,10 +3362,7 @@ namespace Tizen.NUI.BaseComponents
                     using (var fontStyle = new PropertyMap())
                     {
                         properyValue.Get(fontStyle);
-                        using (var fontStyleValue = new PropertyValue(fontStyle))
-                        {
-                            map.Add("fontStyle", fontStyleValue);
-                        }
+                        map.Add("fontStyle", fontStyle);
                     }
                 }
 
@@ -3719,13 +3716,6 @@ namespace Tizen.NUI.BaseComponents
         {
             _ = Interop.TextField.SelectNone(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
-        {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(Interop.TextField.InputStyleChangedSignal(SwigCPtr));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>

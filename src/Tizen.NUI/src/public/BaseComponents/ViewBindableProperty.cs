@@ -95,21 +95,11 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
-
-            if (NUIApplication.IsUsingXaml)
+            view.themeData?.selectorData?.ClearBackground(view);
+            if (newValue is Selector<Color> selector)
             {
-                view.themeData?.selectorData?.ClearBackground(view);
-
-                if (newValue is Selector<Color> selector)
-                {
-                    if (selector.HasAll()) view.SetBackgroundColor(selector.All);
-                    else view.EnsureSelectorData().BackgroundColor = new TriggerableSelector<Color>(view, selector, view.SetBackgroundColor, true);
-                }
-                else
-                {
-                    view.SetBackgroundColor((Color)newValue);
-                }
-
+                if (selector.HasAll()) view.SetBackgroundColor(selector.All);
+                else view.EnsureSelectorData().BackgroundColor = new TriggerableSelector<Color>(view, selector, view.SetBackgroundColor, true);
             }
             else
             {
@@ -783,6 +773,11 @@ namespace Tizen.NUI.BaseComponents
                 int height = ((Size2D)newValue).Height;
                 view.userSizeWidth = (float)width;
                 view.userSizeHeight = (float)height;
+
+                if (view.HasLayoutWidth())
+                    view.SetLayoutWidth(width);
+                if (view.HasLayoutHeight())
+                    view.SetLayoutHeight(height);
 
                 bool relayoutRequired = false;
                 // To avoid duplicated size setup, change internal policy directly.
@@ -1489,6 +1484,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                if (view.HasPadding() && newValue is Extents newPadding)
+                    view.SetPadding(new UIExtents(newPadding.Start, newPadding.End, newPadding.Top, newPadding.Bottom), false);
+
                 if (view.Layout != null)
                 {
                     view.Layout.Padding = new Extents((Extents)newValue);
@@ -1558,6 +1556,11 @@ namespace Tizen.NUI.BaseComponents
 
                 view.userSizeWidth = width;
                 view.userSizeHeight = height;
+
+                if (view.HasLayoutWidth())
+                    view.SetLayoutWidth(width);
+                if (view.HasLayoutHeight())
+                    view.SetLayoutHeight(height);
 
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
@@ -1742,6 +1745,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                if (view.HasMargin() && newValue is Extents newMargin)
+                    view.SetMargin(new UIExtents(newMargin.Start, newMargin.End, newMargin.Top, newMargin.Bottom), false);
+
                 if (view.Layout != null)
                 {
                     view.Layout.Margin = new Extents((Extents)newValue);
@@ -2639,43 +2645,28 @@ namespace Tizen.NUI.BaseComponents
             }
 
             using var map = new PropertyMap();
-            using var url = new PropertyValue(value);
-            using var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
 
-            map.Add(ImageVisualProperty.URL, url)
-               .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
+            map.Add(ImageVisualProperty.URL, value)
+               .Add(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
 
             if ((backgroundExtraData?.BackgroundImageBorder) != null)
             {
-                using var npatchType = new PropertyValue((int)Visual.Type.NPatch);
-                using var border = new PropertyValue(backgroundExtraData.BackgroundImageBorder);
-                map.Add(Visual.Property.Type, npatchType)
-                   .Add(NpatchImageVisualProperty.Border, border);
+                map.Add(Visual.Property.Type, (int)Visual.Type.NPatch)
+                   .Add(NpatchImageVisualProperty.Border, backgroundExtraData.BackgroundImageBorder);
             }
             else
             {
-                using var imageType = new PropertyValue((int)Visual.Type.Image);
-                map.Add(Visual.Property.Type, imageType);
+                map.Add(Visual.Property.Type, (int)Visual.Type.Image);
             }
 
             if (backgroundExtraData != null)
             {
-                using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-                using var cornerRadius = new PropertyValue(cornerRadiusValue);
-                using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
-                using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
-                using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-                using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-                using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-                using var borderlineColor = new PropertyValue(borderlineColorValue);
-                using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
-
-                map.Add(Visual.Property.CornerRadius, cornerRadius)
-                   .Add(Visual.Property.CornerSquareness, cornerSquareness)
-                   .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
-                   .Add(Visual.Property.BorderlineWidth, borderlineWidth)
-                   .Add(Visual.Property.BorderlineColor, borderlineColor)
-                   .Add(Visual.Property.BorderlineOffset, borderlineOffset);
+                map.Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
+                   .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
+                   .Add(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy)
+                   .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
+                   .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
+                   .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
             }
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
@@ -2704,7 +2695,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            map[NpatchImageVisualProperty.Border] = new PropertyValue(backgroundImageBorder);
+            map.Set(NpatchImageVisualProperty.Border, backgroundImageBorder);
 
             int visualType = 0;
 
@@ -2712,7 +2703,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (visualType == (int)Visual.Type.Image)
             {
-                map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+                map.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
             }
 
             // Background extra data flag is not meanful anymore.
@@ -2750,26 +2741,15 @@ namespace Tizen.NUI.BaseComponents
             }
 
             using var map = new PropertyMap();
-            using var colorType = new PropertyValue((int)Visual.Type.Color);
-            using var mixColor = new PropertyValue(value);
-            using var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            using var cornerRadius = new PropertyValue(cornerRadiusValue);
-            using var cornerSquarenessValue = backgroundExtraData.CornerSquareness == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerSquareness);
-            using var cornerSquareness = new PropertyValue(cornerSquarenessValue);
-            using var cornerRadiusPolicy = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-            using var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            using var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            using var borderlineColor = new PropertyValue(borderlineColorValue);
-            using var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
-            map.Add(Visual.Property.Type, colorType)
-               .Add(ColorVisualProperty.MixColor, mixColor)
-               .Add(Visual.Property.CornerRadius, cornerRadius)
-               .Add(Visual.Property.CornerSquareness, cornerSquareness)
-               .Add(Visual.Property.CornerRadiusPolicy, cornerRadiusPolicy)
-               .Add(Visual.Property.BorderlineWidth, borderlineWidth)
-               .Add(Visual.Property.BorderlineColor, borderlineColor)
-               .Add(Visual.Property.BorderlineOffset, borderlineOffset);
+            map.Add(Visual.Property.Type, (int)Visual.Type.Color)
+               .Add(ColorVisualProperty.MixColor, value)
+               .Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
+               .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
+               .Add(Visual.Property.CornerRadiusPolicy, (int)(backgroundExtraData.CornerRadiusPolicy))
+               .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
+               .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
+               .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 

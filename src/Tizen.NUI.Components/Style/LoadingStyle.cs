@@ -27,58 +27,12 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class LoadingStyle : ControlStyle
     {
-        /// <summary>The FrameRateSelector bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameRateSelectorProperty = BindableProperty.Create("FrameRateSelector", typeof(Selector<int?>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((LoadingStyle)bindable).frameRate = ((Selector<int?>)newValue)?.Clone();
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((LoadingStyle)bindable).frameRate;
-        });
+        // NOTE framerate selector does not work.
+        static readonly IStyleProperty FrameRateProperty = new StyleProperty<Loading, Selector<int?>>((v, o) => v.FrameRate = (int)o.Normal);
+        static readonly IStyleProperty ImageListProperty = new StyleProperty<Loading, IList<string>>((v, o) => Loading.SetInternalImageListProperty(v, null, o));
+        static readonly IStyleProperty LottieResourceUrlProperty = new StyleProperty<Loading, string>((v, o) => v.LottieResourceUrl = o);
 
-        /// <summary>The LoadingSize bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoadingSizeProperty = BindableProperty.Create(nameof(LoadingSize), typeof(Size), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((LoadingStyle)bindable).Size = (Size)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((LoadingStyle)bindable).Size;
-        });
-
-        /// <summary>The Images bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((LoadingStyle)bindable).images = newValue == null ? null : new List<string>((string[])newValue);
-        },
-        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images?.ToArray()
-        );
-
-        /// <summary>The Images bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((LoadingStyle)bindable).images = newValue == null ? null : newValue as List<string>;
-        },
-        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images
-        );
-
-        /// <summary>The lottie resource url bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LottieResourceUrlProperty = BindableProperty.Create(nameof(LottieResourceUrl), typeof(string), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((LoadingStyle)bindable).lottieResourceUrl = newValue as string;
-        },
-        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).lottieResourceUrl
-        );
-
-        private Selector<int?> frameRate;
-        private List<string> images;
-        private string lottieResourceUrl;
+        private Size loadingSize;
 
         static LoadingStyle() { }
 
@@ -101,11 +55,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading image resources.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public string[] Images
-        {
-            get => (ImageList as List<string>)?.ToArray();
-            set => SetValue(ImagesProperty, value);
-        }
+        public string[] Images { get; set; }
 
         /// <summary>
         /// Gets loading image resources.
@@ -137,8 +87,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Size LoadingSize
         {
-            get => (Size)GetValue(LoadingSizeProperty);
-            set => SetValue(LoadingSizeProperty, value);
+            get => loadingSize;
+            set
+            {
+                loadingSize = value;
+            }
         }
 
         /// <summary>
@@ -147,8 +100,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Selector<int?> FrameRate
         {
-            get => (Selector<int?>)GetValue(FrameRateSelectorProperty);
-            set => SetValue(FrameRateSelectorProperty, value);
+            get => (Selector<int?>)GetValue(FrameRateProperty);
+            set => SetValue(FrameRateProperty, value);
         }
 
         /// <inheritdoc/>

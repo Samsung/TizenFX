@@ -28,33 +28,8 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class RecyclerViewItemStyle : ControlStyle
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
-            RecyclerViewItemStyle.isSelectable = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
-            return RecyclerViewItemStyle.isSelectable;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
-            RecyclerViewItemStyle.isSelected = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
-            return RecyclerViewItemStyle.isSelected;
-        });
-
-        private bool? isSelectable;
-        private bool? isSelected;
+        static readonly IStyleProperty IsSelectableProperty = new StyleProperty<RecyclerViewItem, bool>((v, o) => v.IsSelectable = o);
+        static readonly IStyleProperty IsSelectedProperty = new StyleProperty<RecyclerViewItem, bool>((v, o) => v.IsSelected = o);
 
         static RecyclerViewItemStyle() { }
 

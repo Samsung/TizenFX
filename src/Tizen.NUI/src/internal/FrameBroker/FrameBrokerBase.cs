@@ -250,7 +250,8 @@ namespace Tizen.NUI
 
         private Shader CreateShader()
         {
-            string vertex_shader =
+            // TODO : How can we support native texture for vulkan case?
+            string vertexShader =
                 "attribute mediump vec2 aPosition;\n" +
                 "varying mediump vec2 vTexCoord;\n" +
                 "uniform highp mat4 uMvpMatrix;\n" +
@@ -262,7 +263,7 @@ namespace Tizen.NUI
                 "vTexCoord = aPosition + vec2(0.5);\n" +
                 "}\n";
 
-            string fragment_shader =
+            string fragmentShader =
                 "#extension GL_OES_EGL_image_external:require\n" +
                 "uniform lowp vec4 uColor;\n" +
                 "varying mediump vec2 vTexCoord;\n" +
@@ -272,7 +273,7 @@ namespace Tizen.NUI
                 "gl_FragColor = texture2D(sTexture, vTexCoord) * uColor;\n" +
                 "}\n";
 
-            return new Shader(vertex_shader, fragment_shader);
+            return new Shader(vertexShader, fragmentShader);
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -295,9 +296,8 @@ namespace Tizen.NUI
         private PropertyBuffer CreateQuadPropertyBuffer()
         {
             /* Create Property buffer */
-            PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
             PropertyMap vertexFormat = new PropertyMap();
-            vertexFormat.Add("aPosition", value);
+            vertexFormat.Add("aPosition", (int)PropertyType.Vector2);
 
             PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
             
@@ -334,7 +334,6 @@ namespace Tizen.NUI
                 Marshal.FreeHGlobal(pA);
             }
 
-            value.Dispose();
             vertexFormat.Dispose();
 
             return vertexBuffer;
