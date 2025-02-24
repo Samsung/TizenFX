@@ -111,9 +111,6 @@
 /src/Tizen.Network.WiFi/ @chleun-moon
 # /src/Tizen.Network.WiFiDirect/ @jiung-yu
 
-# NLP
-/src/Tizen.Nlp/ @imfine98 @Inhong
-
 # PIMS
 /src/Tizen.PhonenumberUtils/ @randeepsingh01
 /src/Tizen.Pims.Calendar/ @randeepsingh01
@@ -121,7 +118,7 @@
 
 # SECURITY
 /src/Tizen.Security/ @terry2000s #@t-swierczek
-/src/Tizen.Security.PrivacyPrivilegeManager/ @terry2000s #@t-swierczek @z-abramowska @e-borowski 
+/src/Tizen.Security.PrivacyPrivilegeManager/ @terry2000s #@t-swierczek @z-abramowska @e-borowski
 /src/Tizen.Security.SecureRepository/ @terry2000s @dmichaluk
 # /src/Tizen.Security.WebAuthn/ @ds73.lee @kjackiewicz
 
@@ -166,7 +163,7 @@
 # Internals
 # /src/Tizen.AIAvatar
 # /src/Tizen.Data.Tdbc.Driver.Sqlite
-# /src/Tizen.Data.Tdbc 
+# /src/Tizen.Data.Tdbc
 # /src/Tizen.NUI.AIAvatar
 
 # Please Add more Code Owners below.
