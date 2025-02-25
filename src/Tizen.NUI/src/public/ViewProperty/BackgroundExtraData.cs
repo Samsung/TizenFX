@@ -33,9 +33,7 @@ namespace Tizen.NUI
         internal BackgroundExtraData(BackgroundExtraData other)
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
-            CornerRadius = other.CornerRadius;
             CornerSquareness = other.CornerSquareness;
-            CornerRadiusPolicy = other.CornerRadiusPolicy;
             BorderlineWidth = other.BorderlineWidth;
             BorderlineColor = other.BorderlineColor;
             BorderlineOffset = other.BorderlineOffset;
@@ -51,15 +49,7 @@ namespace Tizen.NUI
         }
 
         /// <summary></summary>
-        internal Vector4 CornerRadius { get; set; }
-
-        /// <summary></summary>
         internal Vector4 CornerSquareness { get; set; }
-
-        /// <summary>
-        /// Whether the CornerRadius value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
-        /// </summary>
-        internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
 
         /// <summary></summary>
         internal float BorderlineWidth { get; set; }
@@ -80,7 +70,6 @@ namespace Tizen.NUI
             if (disposing)
             {
                 backgroundImageBorder?.Dispose();
-                CornerRadius?.Dispose();
                 CornerSquareness?.Dispose();
                 BorderlineColor?.Dispose();
             }

@@ -293,6 +293,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
             internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
             internal static readonly int OffScreenRendering = Interop.ViewProperty.OffScreenRenderingGet();
+            internal static readonly int CornerRadiusPolicy = Interop.ViewProperty.CornerRadiusPolicyGet();
+            internal static readonly int CornerRadius = Interop.ViewProperty.CornerRadiusGet();
         }
     }
 }

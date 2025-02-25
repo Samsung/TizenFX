@@ -2241,15 +2241,10 @@ namespace Tizen.NUI.BaseComponents
             // Update corner radius properties to image by ActionUpdateProperty
             if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
             {
-                if (backgroundExtraData.CornerRadius != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                }
                 if (backgroundExtraData.CornerSquareness != null)
                 {
                     _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
                 }
-                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
         }
 
@@ -2562,11 +2557,8 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
+            if (backgroundExtraData != null)
             {
-                cachedImagePropertyMap.Set(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius);
-                cachedImagePropertyMap.Set(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-
                 if (backgroundExtraData.CornerSquareness != null)
                 {
                     cachedImagePropertyMap.Set(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness);
