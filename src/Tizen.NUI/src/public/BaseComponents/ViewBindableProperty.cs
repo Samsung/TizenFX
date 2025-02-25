@@ -1595,7 +1595,17 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.internalSize = new Size(view.OnSizeChanged, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
+            
+            var w = Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, Property.SizeWidth);
+            var h = Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, Property.SizeHeight);
+            var d = view.sizeDepth;
+
+            view.internalSize.ResetValue(w, h, d);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
             return view.internalSize;
         }

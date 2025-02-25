@@ -220,7 +220,7 @@ namespace Tizen.NUI
         /// Creates a Size property value.
         /// </summary>
         /// <param name="vectorValue">Size values.</param>
-        internal PropertyValue(Size vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr(vectorValue)), true)
+        internal PropertyValue(Size vectorValue) : this(vectorValue.Width, vectorValue.Height, vectorValue.Depth)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -548,7 +548,8 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Size)))
             {
-                value = Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr((Size)obj));
+                var size = obj as Size;
+                value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(size.Width, size.Height, size.Depth);
             }
             else if (type.Equals(typeof(Size2D)))
             {
@@ -655,8 +656,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Get(Size vectorValue)
         {
-            bool ret = Interop.PropertyValue.GetVector3(SwigCPtr, Size.getCPtr(vectorValue));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (null == vectorValue)
+            {
+                throw new ArgumentNullException(nameof(vectorValue));
+            }
+
+            var ret = GetVector3Component(out var w, out var h, out var d);
+            vectorValue.ResetValue(w, h, d);
+
             return ret;
         }
 

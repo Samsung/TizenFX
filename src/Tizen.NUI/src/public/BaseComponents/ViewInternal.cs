@@ -542,8 +542,10 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        private float sizeDepth = 0.0f;
         internal void SetSize(float width, float height, float depth)
         {
+            sizeDepth = depth;
             Interop.ActorInternal.SetSize(SwigCPtr, width, height, depth);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
