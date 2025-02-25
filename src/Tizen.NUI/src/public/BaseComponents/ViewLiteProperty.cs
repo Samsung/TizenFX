@@ -117,11 +117,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal LayoutDimension LayoutWidth
         {
-            get => layoutExtraData?.Width ?? LayoutDimensionMode.WrapContent;
+            get => layoutExtraData?.Width ?? LayoutDimension.WrapContent;
             set
             {
                 var layoutExtraData = EnsureLayoutExtraData();
-                if (float.IsNaN(layoutExtraData.Width.GetValue()) || layoutExtraData.Width != value)
+                if (!layoutExtraData.Width.IsFixedValue || layoutExtraData.Width != value)
                 {
                     layoutExtraData.Width = value;
                     layoutExtraData.Layout?.RequestLayout();
@@ -134,47 +134,15 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal LayoutDimension LayoutHeight
         {
-            get => layoutExtraData?.Height ?? LayoutDimensionMode.WrapContent;
+            get => layoutExtraData?.Height ?? LayoutDimension.WrapContent;
             set
             {
                 var layoutExtraData = EnsureLayoutExtraData();
-                if (float.IsNaN(layoutExtraData.Height.GetValue()) || layoutExtraData.Height != value)
+                if (!layoutExtraData.Height.IsFixedValue || layoutExtraData.Height != value)
                 {
                     layoutExtraData.Height = value;
                     layoutExtraData.Layout?.RequestLayout();
                 }
-            }
-        }
-
-        internal void SetLayoutWidth(float size)
-        {
-            if (size >= 0)
-            {
-                LayoutWidth = size;
-            }
-            else if ((int)size == LayoutParamPolicies.WrapContent)
-            {
-                LayoutWidth = LayoutDimensionMode.WrapContent;
-            }
-            else if ((int)size == LayoutParamPolicies.MatchParent)
-            {
-                LayoutWidth = LayoutDimensionMode.MatchParent;
-            }
-        }
-
-        internal void SetLayoutHeight(float size)
-        {
-            if (size >= 0)
-            {
-                LayoutHeight = size;
-            }
-            else if ((int)size == LayoutParamPolicies.WrapContent)
-            {
-                LayoutHeight = LayoutDimensionMode.WrapContent;
-            }
-            else if ((int)size == LayoutParamPolicies.MatchParent)
-            {
-                LayoutHeight = LayoutDimensionMode.MatchParent;
             }
         }
 
