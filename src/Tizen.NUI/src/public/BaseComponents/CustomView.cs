@@ -28,12 +28,12 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty FocusNavigationSupportProperty = null;
+        public static readonly BindableProperty FocusNavigationSupportProperty = null;
         internal static void SetInternalFocusNavigationSupportProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var customView = (CustomView)bindable;
             if (newValue != null)
             {
+                var customView = (CustomView)bindable;
                 customView.SetKeyboardNavigationSupport((bool)newValue);
             }
         }
@@ -45,12 +45,12 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty FocusGroupProperty = null;
+        public static readonly BindableProperty FocusGroupProperty = null;
         internal static void SetInternalFocusGroupProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var customView = (CustomView)bindable;
             if (newValue != null)
             {
+                var customView = (CustomView)bindable;
                 customView.SetAsKeyboardFocusGroup((bool)newValue);
             }
         }
@@ -110,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusNavigationSupportProperty(this);
+                    return IsKeyboardNavigationSupported();
                 }
             }
             set
@@ -121,7 +121,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusNavigationSupportProperty(this, null, value);
+                    SetKeyboardNavigationSupport(value);
                 }
             }
         }
@@ -141,7 +141,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFocusGroupProperty(this);
+                    return IsKeyboardFocusGroup();
                 }
             }
             set
@@ -152,7 +152,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFocusGroupProperty(this, null, value);
+                    SetAsKeyboardFocusGroup(value);
                 }
             }
         }
