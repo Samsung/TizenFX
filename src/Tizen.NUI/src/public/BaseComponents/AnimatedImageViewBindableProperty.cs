@@ -48,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BatchSizeProperty = null;
         internal static void SetInternalBatchSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalBatchSize = (int)newValue;
@@ -56,7 +56,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static object GetInternalBatchSizeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalBatchSize;
         }
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CacheSizeProperty = null;
         internal static void SetInternalCacheSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCacheSize = (int)newValue;
@@ -75,7 +75,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static object GetInternalCacheSizeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalCacheSize;
         }
 
@@ -86,7 +86,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty FrameDelayProperty = null;
         internal static void SetInternalFrameDelayProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalFrameDelay = (int)newValue;
@@ -94,7 +94,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static object GetInternalFrameDelayProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalFrameDelay;
         }
 
@@ -105,7 +105,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty LoopCountProperty = null;
         internal static void SetInternalLoopCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalLoopCount = (int)newValue;
@@ -113,7 +113,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static object GetInternalLoopCountProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalLoopCount;
         }
 
@@ -124,15 +124,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty StopBehaviorProperty = null;
         internal static void SetInternalStopBehaviorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalStopBehavior = (Tizen.NUI.BaseComponents.AnimatedImageView.StopBehaviorType)newValue;
+                instance.InternalStopBehavior = (StopBehaviorType)newValue;
             }
         }
         internal static object GetInternalStopBehaviorProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalStopBehavior;
         }
 
@@ -143,7 +143,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CurrentFrameProperty = null;
         internal static void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentFrame = (int)newValue;
@@ -151,7 +151,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalCurrentFrame;
         }
     }
