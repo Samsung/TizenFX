@@ -86,11 +86,7 @@ namespace Tizen.NUI.Extension
         {
             //FIXME: we need to set UI value type directly without converting reference value.
             view.Color = color.ToReferenceType();
-
-            if (color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.Color, color);
-            }
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.Color, color);
             return view;
         }
 
@@ -138,11 +134,7 @@ namespace Tizen.NUI.Extension
         public static T BackgroundColor<T>(this T view, UIColor color) where T : View
         {
             view.SetBackgroundColor(color);
-
-            if (color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BackgroundColor, color);
-            }
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.BackgroundColor, color);
             return view;
         }
 
@@ -327,12 +319,7 @@ namespace Tizen.NUI.Extension
         public static T BoxShadow<T>(this T view, UIShadow shadow) where T : View
         {
             view.SetBoxShadow(shadow);
-
-            if (shadow.Color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BoxShadowColor, shadow.Color);
-            }
-
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.BoxShadowColor, shadow.Color);
             return view;
         }
 
@@ -424,11 +411,7 @@ namespace Tizen.NUI.Extension
         {
             //FIXME: we need to set UI value type directly without converting reference value.
             view.BorderlineColor = color.ToReferenceType();
-
-            if (color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BorderlineColor, color);
-            }
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.BorderlineColor, color);
             return view;
         }
 
