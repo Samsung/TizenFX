@@ -14,6 +14,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -24,56 +25,27 @@ namespace Tizen.NUI
     public struct LayoutDimension
     {
         private bool isFixedValue;
-        private LayoutDimensionMode mode;
         private float value;
-
-        private LayoutDimension(LayoutDimensionMode mode)
-        {
-            isFixedValue = false;
-            this.mode = mode;
-            value = float.NaN;
-        }
 
         private LayoutDimension(float value)
         {
-            isFixedValue = true;
-            this.mode = LayoutDimensionMode.FixedValue;
+            if (value == LayoutParamPolicies.WrapContent || value == LayoutParamPolicies.MatchParent)
+            {
+                isFixedValue = false;
+            }
+            else
+            {
+                isFixedValue = true;
+            }
             this.value = value;
         }
 
         /// <summary>
-        /// Gets whether the size is fixed value or not. If it's fixed value, then the value is valid. Otherwise, the mode is valid.
+        /// Gets whether the size is fixed value or not. If it's fixed value, then the value is valid.
         /// </summary>
         public bool IsFixedValue
         {
             get => isFixedValue;
-        }
-
-        /// <summary>
-        /// Gets the mode of the size. If size is fixed value, then the mode is set to <see cref="LayoutDimensionMode.FixedValue"/>.
-        /// </summary>
-        /// <returns>The mode of the size.</returns>
-        public LayoutDimensionMode GetMode()
-        {
-            return mode;
-        }
-
-        /// <summary>
-        /// Gets the value of the size. This value is valid only when the size is fixed value. Otherwise, it returns NaN.
-        /// </summary>
-        /// <returns>The fixed value of the size.</returns>
-        public float GetValue()
-        {
-            return value;
-        }
-
-        /// <summary>
-        /// Creates a LayoutDimension from a LayoutDimensionMode. It's used implicitly. For example, LayoutDimension layoutWidth = LayoutDimensionMode.MatchParent;
-        /// </summary>
-        /// <param name="mode">The mode of the size.</param>
-        public static implicit operator LayoutDimension(LayoutDimensionMode mode)
-        {
-            return new LayoutDimension(mode);
         }
 
         /// <summary>
@@ -97,7 +69,7 @@ namespace Tizen.NUI
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return isFixedValue ? value.GetHashCode() : mode.GetHashCode();
+            return value.GetHashCode();
         }
 
         /// <inheritdoc/>
@@ -112,9 +84,9 @@ namespace Tizen.NUI
             }
             else
             {
-                if (obj is LayoutDimension ls)
+                if (obj is LayoutDimension ld)
                 {
-                    return mode == ls.mode;
+                    return value == ld.value;
                 }
             }
 
@@ -122,7 +94,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Equality operator for LayoutDimension. It compares two LayoutDimensions. If both are fixed values, then it compares their values. Otherwise, it compares their modes.
+        /// Equality operator for LayoutDimension. It compares two LayoutDimensions. If both are fixed values, then it compares their values.
         /// </summary>
         /// <param name="a">A <see cref="LayoutDimension"/> on the left hand side.</param>
         /// <param name="b">A <see cref="LayoutDimension"/> on the right hand side.</param>
@@ -131,14 +103,14 @@ namespace Tizen.NUI
         {
             if (a.isFixedValue == b.isFixedValue)
             {
-                return a.isFixedValue ? a.value == b.value : a.mode == b.mode;
+                return a.value == b.value;
             }
 
             return false;
         }
 
         /// <summary>
-        /// Inequality operator for LayoutDimension. It compares two LayoutDimensions. If both are fixed values, then it compares their values. Otherwise, it compares their modes.
+        /// Inequality operator for LayoutDimension. It compares two LayoutDimensions. If both are fixed values, then it compares their values.
         /// </summary>
         /// <param name="a">A <see cref="LayoutDimension"/> on the left hand side.</param>
         /// <param name="b">A <see cref="LayoutDimension"/> on the right hand side.</param>
@@ -147,7 +119,7 @@ namespace Tizen.NUI
         {
             if (a.isFixedValue == b.isFixedValue)
             {
-                return a.isFixedValue ? a.value != b.value : a.mode != b.mode;
+                return a.value != b.value;
             }
 
             return false;
@@ -344,27 +316,15 @@ namespace Tizen.NUI
 
             return a;
         }
-    }
-
-    /// <summary>
-    /// The LayoutDimensionMode enum defines the mode of a LayoutDimension. It can be wrap content, match parent, or fixed value.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum LayoutDimensionMode
-    {
-        /// <summary>
-        /// Wrap content means that the size fits the child's content.
-        /// </summary>
-        WrapContent = BaseComponents.LayoutParamPolicies.WrapContent,
 
         /// <summary>
-        /// Match parent means that the size fills the available space in parent.
+        /// Constant value that indicates WrapContent for LayoutDimension. For example, LayoutDimension layoutWidth = LayoutDimension.WrapContent;
         /// </summary>
-        MatchParent = BaseComponents.LayoutParamPolicies.MatchParent,
+        public const float WrapContent = LayoutParamPolicies.WrapContent;
 
         /// <summary>
-        /// Fixed value means that the size is fixed value. This is used when the size is explicitly specified.
+        /// Constant value that indicates MatchParent for LayoutDimension. For example, LayoutDimension layoutWidth = LayoutDimension.MatchParent;
         /// </summary>
-        FixedValue = 0,
+        public const float MatchParent = LayoutParamPolicies.MatchParent;
     }
 }

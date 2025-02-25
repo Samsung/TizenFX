@@ -752,11 +752,11 @@ namespace Tizen.NUI
 
                     if (needMeasuredWidth)
                     {
-                        child.LayoutItem.Owner.LayoutWidth = LayoutDimensionMode.MatchParent;
+                        child.LayoutItem.Owner.LayoutWidth = LayoutDimension.MatchParent;
                     }
                     if (needMeasuredHeight)
                     {
-                        child.LayoutItem.Owner.LayoutHeight = LayoutDimensionMode.MatchParent;
+                        child.LayoutItem.Owner.LayoutHeight = LayoutDimension.MatchParent;
                     }
 
                     MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(width), MeasureSpecification.ModeType.Exactly);

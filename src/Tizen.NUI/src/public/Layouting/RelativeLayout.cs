@@ -870,12 +870,12 @@ namespace Tizen.NUI
                     if (ellipsisTextWidth || needMeasuredWidth)
                     {
                         origLayoutParamsWidth = childLayout.Owner.LayoutWidth;
-                        childLayout.Owner.LayoutWidth = LayoutDimensionMode.MatchParent;
+                        childLayout.Owner.LayoutWidth = LayoutDimension.MatchParent;
                     }
                     if (ellipsisTextHeight || needMeasuredHeight)
                     {
                         origLayoutParamsHeight = childLayout.Owner.LayoutHeight;
-                        childLayout.Owner.LayoutHeight = LayoutDimensionMode.MatchParent;
+                        childLayout.Owner.LayoutHeight = LayoutDimension.MatchParent;
                     }
 
                     MeasureChild(childLayout, childWidthMeasureSpec, childHeightMeasureSpec);

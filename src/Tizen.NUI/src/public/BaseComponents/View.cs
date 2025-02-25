@@ -2905,9 +2905,9 @@ namespace Tizen.NUI.BaseComponents
             userSizeHeight = (float)height;
 
             if (HasLayoutWidth())
-                SetLayoutWidth(width);
+                LayoutWidth = width;
             if (HasLayoutHeight())
-                SetLayoutHeight(height);
+                LayoutHeight = height;
 
             bool relayoutRequired = false;
             // To avoid duplicated size setup, change internal policy directly.
@@ -3531,7 +3531,7 @@ namespace Tizen.NUI.BaseComponents
             userSizeWidth = width;
 
             if (HasLayoutWidth())
-                SetLayoutWidth(width);
+                LayoutWidth = width;
 
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as widthPolicyCeiling
@@ -3599,7 +3599,7 @@ namespace Tizen.NUI.BaseComponents
             userSizeHeight = height;
 
             if (HasLayoutHeight())
-                SetLayoutHeight(height);
+                LayoutHeight = height;
 
             // To avoid duplicated size setup, change internal policy directly.
             // change temporary value's name as heightPolicyCeiling
@@ -5342,9 +5342,9 @@ namespace Tizen.NUI.BaseComponents
                 userSizeHeight = height;
 
                 if (HasLayoutWidth())
-                    SetLayoutWidth(width);
+                    LayoutWidth = width;
                 if (HasLayoutHeight())
-                    SetLayoutHeight(height);
+                    LayoutHeight = height;
 
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
@@ -5678,7 +5678,7 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 if (HasLayoutWidth())
-                    SetLayoutWidth(widthPolicy);
+                    LayoutWidth = widthPolicy;
 
                 RequestLayout();
             }
@@ -5759,7 +5759,7 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 if (HasLayoutHeight())
-                    SetLayoutHeight(heightPolicy);
+                    LayoutHeight = heightPolicy;
 
                 RequestLayout();
             }
@@ -6202,9 +6202,9 @@ namespace Tizen.NUI.BaseComponents
                 // Copy from width/heightPolicy only if LayoutWidth/Height has not been set before
                 // not to overwrite LayoutWidth/Height value set by user.
                 if (!hasLayoutWidth)
-                    SetLayoutWidth(widthPolicy);
+                    LayoutWidth = widthPolicy;
                 if (!hasLayoutHeight)
-                    SetLayoutHeight(heightPolicy);
+                    LayoutHeight = heightPolicy;
 
                 if (!HasMinimumWidth())
                     SetMinimumWidth(MinimumSize.Width, false);
