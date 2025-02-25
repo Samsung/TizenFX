@@ -62,7 +62,7 @@ namespace Tizen.Applications.Notifications
             /// IsAutoRemove option lets the active notification to be removed several seconds after it shows.
             /// When 'IsAutoRemove' is set as false, the active notification will not be removed as long as the user removes
             /// it or the application, which posted the active notification.
-            /// </remarks>>
+            /// </remarks>
             /// <since_tizen> 3 </since_tizen>
             public bool IsAutoRemove { get; set; } = true;
 
