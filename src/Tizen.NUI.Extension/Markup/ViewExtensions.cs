@@ -735,6 +735,28 @@ namespace Tizen.NUI.Extension
         }
 
         /// <summary>
+        /// Gets the width of the view used to size the view within its parent layout container. It can be a fixed value, wrap content, or match parent.
+        /// </summary>
+        /// <param name="view">The extension target.</param>
+        /// <returns>The width of the view used to size the view within its parent layout container.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static LayoutDimension LayoutWidth(this View view)
+        {
+            return view.LayoutWidth;
+        }
+
+        /// <summary>
+        /// Gets the height of the view used to size the view within its parent layout container. It can be a fixed value, wrap content, or match parent.
+        /// </summary>
+        /// <param name="view">The extension target.</param>
+        /// <returns>The height of the view used to size the view within its parent layout container.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static LayoutDimension LayoutHeight(this View view)
+        {
+            return view.LayoutHeight;
+        }
+
+        /// <summary>
         /// Sets the minimum width of the view used to size the view within its parent layout container.
         /// </summary>
         /// <typeparam name="T">The type of the view.</typeparam>
