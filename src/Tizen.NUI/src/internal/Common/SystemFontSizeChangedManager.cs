@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,10 +58,24 @@ namespace Tizen.NUI
 
         private static void SystemFontSizeChanged(object sender, FontSizeChangedEventArgs args)
         {
+            fontSize = args.Value;
             proxy.Invoke(sender, args);
             Finished?.Invoke(sender, args);
         }
 
+        public static SystemSettingsFontSize FontSize
+        {
+            get
+            {
+                if (fontSize == null)
+                {
+                    fontSize = SystemSettings.FontSize;
+                }
+                return fontSize ?? SystemSettingsFontSize.Normal;
+            }
+        }
+
+        private static SystemSettingsFontSize? fontSize = null;
         private static WeakEvent<EventHandler<FontSizeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontSizeChangedEventArgs>>();
     }
 }
