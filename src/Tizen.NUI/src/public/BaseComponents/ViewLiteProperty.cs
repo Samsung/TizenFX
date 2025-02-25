@@ -146,6 +146,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal float GetMinimumWidth()
+        {
+            return layoutExtraData?.MinimumWidth ?? 0;
+        }
+
         internal void SetMinimumWidth(float minimumWidth, bool updateMinimumSize)
         {
             if (float.IsNaN(minimumWidth))
@@ -174,6 +179,11 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.MinimumWidth = minimumWidth;
                 layoutExtraData.Layout?.RequestLayout();
             }
+        }
+
+        internal float GetMinimumHeight()
+        {
+            return layoutExtraData?.MinimumHeight ?? 0;
         }
 
         internal void SetMinimumHeight(float minimumHeight, bool updateMinimumSize)
@@ -206,6 +216,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal float GetMaximumWidth()
+        {
+            return layoutExtraData?.MaximumWidth ?? int.MaxValue;
+        }
+
         internal void SetMaximumWidth(float maximumWidth, bool updateMaximumSize)
         {
             if (float.IsNaN(maximumWidth))
@@ -234,6 +249,11 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.MaximumWidth = maximumWidth;
                 layoutExtraData.Layout?.RequestLayout();
             }
+        }
+
+        internal float GetMaximumHeight()
+        {
+            return layoutExtraData?.MaximumHeight ?? int.MaxValue;
         }
 
         internal void SetMaximumHeight(float maximumHeight, bool updateMaximumSize)
@@ -266,6 +286,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal UIExtents GetMargin()
+        {
+            return layoutExtraData?.Margin ?? 0;
+        }
+
         internal void SetMargin(UIExtents margin, bool updateMargin)
         {
             if (margin.IsNaN)
@@ -283,6 +308,11 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.Margin = margin;
                 layoutExtraData.Layout?.RequestLayout();
             }
+        }
+
+        internal UIExtents GetPadding()
+        {
+            return layoutExtraData?.Padding ?? 0;
         }
 
         internal void SetPadding(UIExtents padding, bool updatePadding)
