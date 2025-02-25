@@ -95,6 +95,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_OFFSCREEN_RENDERING_get")]
             public static extern int OffScreenRenderingGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_CORNER_RADIUS_POLICY_get")]
+            public static extern int CornerRadiusPolicyGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_CORNER_RADIUS_get")]
+            public static extern int CornerRadiusGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_CORNER_SQUARENESS_get")]
+            public static extern int CornerSquarenessGet();
         }
     }
 }
