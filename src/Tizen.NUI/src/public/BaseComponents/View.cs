@@ -1893,7 +1893,9 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalTooltip()
         {
-            using PropertyMap temp = new PropertyMap();
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            PropertyMap temp = new PropertyMap();
+#pragma warning restore CA2000 // Dispose objects before losing scope
             using var pv = Object.GetProperty(SwigCPtr, Property.TOOLTIP);
             pv.Get(temp);
             return temp;
@@ -3900,7 +3902,9 @@ namespace Tizen.NUI.BaseComponents
 
         private Rotation GetInternalOrientation()
         {
-            using Rotation temp = new Rotation();
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            Rotation temp = new Rotation();
+#pragma warning restore CA2000 // Dispose objects before losing scope
             using var pv = Object.GetProperty(SwigCPtr, Property.ORIENTATION);
             pv.Get(temp);
             return temp;
