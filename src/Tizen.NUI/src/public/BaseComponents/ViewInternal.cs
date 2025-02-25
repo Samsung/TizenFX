@@ -840,6 +840,8 @@ namespace Tizen.NUI.BaseComponents
             Interop.Actor.SetVisible(SwigCPtr, visible);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            EnsureLayoutExtraData()?.Layout?.RequestLayout();
         }
 
         /// <summary>
