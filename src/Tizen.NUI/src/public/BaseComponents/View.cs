@@ -1458,15 +1458,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void SetInternalCornerRadius(Vector4 newValue)
+        private void SetInternalCornerRadius(Vector4 cornerRadius)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = newValue;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+            Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerRadius, cornerRadius.SwigCPtr);
         }
 
         private Vector4 GetInternalCornerRadius()
         {
-            return backgroundExtraData == null ? Vector4.Zero : backgroundExtraData.CornerRadius;
+            Vector4 value = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.CornerRadius, value.SwigCPtr);
+            return value;
         }
 
         /// <summary>
@@ -1501,19 +1502,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType value)
+        private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType cornerRadiusPolicy)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = value;
-
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-            }
+            Object.InternalSetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy, (int)cornerRadiusPolicy);
         }
 
         private VisualTransformPolicyType GetInternalCornerRadiusPolicy()
         {
-            return backgroundExtraData == null ? VisualTransformPolicyType.Absolute : backgroundExtraData.CornerRadiusPolicy;
+            return (VisualTransformPolicyType)(Object.InternalGetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy));
         }
 
         /// <summary>
@@ -1541,22 +1537,23 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetInternalCornerSqurenessProperty();
+                return GetInternalCornerSqureness();
             }
             set
             {
-                SetInternalCornerSqurenessProperty(value);
+                SetInternalCornerSqureness(value);
                 NotifyPropertyChanged();
             }
         }
-        internal void SetInternalCornerSqurenessProperty(Vector4 cornerSquareness)
+        internal void SetInternalCornerSqureness(Vector4 cornerSquareness)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+            Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerSquareness, cornerSquareness.SwigCPtr);
         }
-        internal Vector4 GetInternalCornerSqurenessProperty()
+        internal Vector4 GetInternalCornerSqureness()
         {
-            return backgroundExtraData == null ? Vector4.Zero : backgroundExtraData.CornerSquareness;
+            Vector4 value = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.CornerSquareness, value.SwigCPtr);
+            return value;
         }
 
         /// <summary>
