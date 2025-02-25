@@ -146,16 +146,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool HasLayoutWidth()
-        {
-            return layoutExtraData?.Width == null ? false : true;
-        }
-
-        internal bool HasLayoutHeight()
-        {
-            return layoutExtraData?.Height == null ? false : true;
-        }
-
         internal void SetMinimumWidth(float minimumWidth, bool updateMinimumSize)
         {
             if (float.IsNaN(minimumWidth))
@@ -276,26 +266,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool HasMinimumWidth()
-        {
-            return layoutExtraData?.MinimumWidth == null ? false : true;
-        }
-
-        internal bool HasMinimumHeight()
-        {
-            return layoutExtraData?.MinimumHeight == null ? false : true;
-        }
-
-        internal bool HasMaximumWidth()
-        {
-            return layoutExtraData?.MaximumWidth == null ? false : true;
-        }
-
-        internal bool HasMaximumHeight()
-        {
-            return layoutExtraData?.MaximumHeight == null ? false : true;
-        }
-
         internal void SetMargin(UIExtents margin, bool updateMargin)
         {
             if (margin.IsNaN)
@@ -315,11 +285,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool HasMargin()
-        {
-            return layoutExtraData?.Margin == null ? false : true;
-        }
-
         internal void SetPadding(UIExtents padding, bool updatePadding)
         {
             if (padding.IsNaN)
@@ -337,11 +302,6 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.Padding = padding;
                 layoutExtraData.Layout?.RequestLayout();
             }
-        }
-
-        internal bool HasPadding()
-        {
-            return layoutExtraData?.Padding == null ? false : true;
         }
     }
 }
