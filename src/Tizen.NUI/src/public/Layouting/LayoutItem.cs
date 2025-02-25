@@ -347,6 +347,16 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RequestLayout()
         {
+            RequestLayout(this);
+        }
+
+        /// <summary>
+        /// Internal method for request that this layout is re-laid out.<br />
+        /// This will make this layout and all it's parent layouts dirty.<br />
+        /// <param name="requested">LayoutItem who request the layout.</param>
+        /// </summary>
+        internal void RequestLayout(LayoutItem requsted)
+        {
             flags = flags | LayoutFlags.ForceLayout;
             if (parent == null)
             {
@@ -361,10 +371,10 @@ namespace Tizen.NUI
                 LayoutGroup layoutGroup = parent as LayoutGroup;
                 if (layoutGroup != null && !layoutGroup.LayoutRequested)
                 {
-                    layoutGroup.RequestLayout();
+                    layoutGroup.RequestLayout(this);
                 }
             }
-
+            OnRequestLayout(requsted);
         }
 
         /// <summary>
@@ -540,6 +550,13 @@ namespace Tizen.NUI
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
 
         internal virtual void OnLayoutIndependentChildren(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
+
+        /// <summary>
+        /// Virtual method called when this Layout is requested layout by LayoutItem.
+        /// <param name="requested">LayoutItem who request the layout.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRequestLayout(LayoutItem requested) {}
 
         /// <summary>
         /// Virtual method to allow derived classes to remove any children before it is removed from
