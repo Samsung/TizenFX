@@ -224,6 +224,9 @@ namespace Tizen.NUI.BaseComponents
 
                 CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
                     propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
+
+                FontVariationsProperty = BindableProperty.Create(nameof(FontVariations), typeof(PropertyMap), typeof(TextLabel), null,
+                    propertyChanged: SetInternalFontVariationsProperty, defaultValueCreator: GetInternalFontVariationsProperty);
             }
         }
 
@@ -409,6 +412,18 @@ namespace Tizen.NUI.BaseComponents
         {
             Interop.TextLabel.RequestAsyncHeightForWidth(SwigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="tag">The tag of font variations.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RegisterFontVariationProperty(string tag)
+        {
+            int index = Interop.TextLabel.RegisterFontVariationProperty(SwigCPtr, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return index;
         }
 
         /// <summary>
@@ -3259,6 +3274,40 @@ namespace Tizen.NUI.BaseComponents
             get => Object.InternalGetPropertyInt(SwigCPtr, Property.AsyncLineCount);
         }
 
+        /// <summary>
+        /// The font variations property.
+        /// </summary>
+        /// <remarks>
+        /// asdfasdfasdfasdf.<br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontVariations
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(FontVariationsProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalFontVariationsProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontVariationsProperty, value);
+                }
+                else
+                {
+                    SetInternalFontVariationsProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -3535,6 +3584,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
+            internal static readonly int FontVariations = Interop.TextLabel.FontVariationsGet();
             internal static readonly int EllipsisMode = Interop.TextLabel.EllipsisModeGet();
             internal static readonly int IsScrolling = Interop.TextLabel.IsScrollingGet();
 

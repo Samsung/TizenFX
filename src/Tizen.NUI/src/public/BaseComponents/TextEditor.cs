@@ -204,6 +204,8 @@ namespace Tizen.NUI.BaseComponents
                 RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
 
                 RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
+
+                FontVariationsProperty = BindableProperty.Create(nameof(FontVariations), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalFontVariationsProperty, defaultValueCreator: GetInternalFontVariationsProperty);
             }
         }
 
@@ -4734,6 +4736,40 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The font variations property.
+        /// </summary>
+        /// <remarks>
+        /// asdfasdfasdfasdf.<br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontVariations
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(FontVariationsProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalFontVariationsProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontVariationsProperty, value);
+                }
+                else
+                {
+                    SetInternalFontVariationsProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// Releases unmanaged and optionally managed resources.
         /// </summary>
@@ -5047,6 +5083,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
             internal static readonly int RemoveFrontInset = Interop.TextEditor.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextEditor.RemoveBackInsetGet();
+            internal static readonly int FontVariations = Interop.TextEditor.FontVariationsGet();
 
             internal static void Preload()
             {

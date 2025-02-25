@@ -260,6 +260,9 @@ namespace Tizen.NUI.BaseComponents
 
                 RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextField), false, 
                     propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
+
+                FontVariationsProperty = BindableProperty.Create(nameof(FontVariations), typeof(PropertyMap), typeof(TextField), null,
+                    propertyChanged: SetInternalFontVariationsProperty, defaultValueCreator: GetInternalFontVariationsProperty);
             }
         }
 
@@ -4678,6 +4681,40 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The font variations property.
+        /// </summary>
+        /// <remarks>
+        /// asdfasdfasdfasdf.<br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontVariations
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(FontVariationsProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalFontVariationsProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontVariationsProperty, value);
+                }
+                else
+                {
+                    SetInternalFontVariationsProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// Releases unmanaged and optionally managed resources.
         /// </summary>
@@ -4991,6 +5028,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CharacterSpacing = Interop.TextField.CharacterSpacingGet();
             internal static readonly int RemoveFrontInset = Interop.TextField.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextField.RemoveBackInsetGet();
+            internal static readonly int FontVariations = Interop.TextField.FontVariationsGet();
 
             internal static void Preload()
             {
