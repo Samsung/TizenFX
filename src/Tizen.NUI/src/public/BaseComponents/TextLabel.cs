@@ -81,7 +81,6 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
-        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
         private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
@@ -285,7 +284,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     try
                     {
-                        newFontFamily = SystemSettings.FontType;
+                        newFontFamily = SystemFontTypeChangedManager.FontType;
                     }
                     catch (Exception e)
                     {
@@ -1537,7 +1536,7 @@ namespace Tizen.NUI.BaseComponents
 
                     try
                     {
-                        systemSettingsFontSize = SystemSettings.FontSize;
+                        systemSettingsFontSize = SystemFontSizeChangedManager.FontSize;
                     }
                     catch (Exception e)
                     {
@@ -1732,7 +1731,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
+                    SystemFontTypeChangedManager.Add(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = true;
                 }
                 catch (Exception e)
@@ -1749,7 +1748,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
+                    SystemFontTypeChangedManager.Remove(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = false;
                 }
                 catch (Exception e)
