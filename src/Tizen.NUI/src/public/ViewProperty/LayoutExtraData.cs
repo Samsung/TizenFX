@@ -50,12 +50,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the width of the view. It can be set to a fixed value, wrap content, or match parent.
         /// </summary>
-        public LayoutDimension Width { get; set; } = LayoutDimensionMode.WrapContent;
+        public LayoutDimension Width { get; set; } = LayoutDimension.WrapContent;
 
         /// <summary>
         /// Gets or sets the height of the view. It can be set to a fixed value, wrap content, or match parent.
         /// </summary>
-        public LayoutDimension Height { get; set; } = LayoutDimensionMode.WrapContent;
+        public LayoutDimension Height { get; set; } = LayoutDimension.WrapContent;
 
         /// <summary>
         /// Gets or sets the minimum width of the view.
