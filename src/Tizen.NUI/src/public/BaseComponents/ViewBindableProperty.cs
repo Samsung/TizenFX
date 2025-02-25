@@ -2216,9 +2216,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData != null)
             {
-                map.Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-                   .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-                   .Add(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy)
+                map.Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
                    .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
                    .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
                    .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
@@ -2299,9 +2297,7 @@ namespace Tizen.NUI.BaseComponents
 
             map.Add(Visual.Property.Type, (int)Visual.Type.Color)
                .Add(ColorVisualProperty.MixColor, value)
-               .Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
                .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-               .Add(Visual.Property.CornerRadiusPolicy, (int)(backgroundExtraData.CornerRadiusPolicy))
                .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
                .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
                .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);

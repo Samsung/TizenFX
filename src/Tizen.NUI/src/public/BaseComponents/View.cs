@@ -1460,13 +1460,14 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadius(Vector4 newValue)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = newValue;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+            Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerRadius, newValue.SwigCPtr);
         }
 
         private Vector4 GetInternalCornerRadius()
         {
-            return backgroundExtraData == null ? Vector4.Zero : backgroundExtraData.CornerRadius;
+            Vector4 value = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.CornerRadius, value.SwigCPtr);
+            return value;
         }
 
         /// <summary>
@@ -1503,17 +1504,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType value)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = value;
-
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-            }
+            Object.InternalSetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy, (int)value);
         }
 
         private VisualTransformPolicyType GetInternalCornerRadiusPolicy()
         {
-            return backgroundExtraData == null ? VisualTransformPolicyType.Absolute : backgroundExtraData.CornerRadiusPolicy;
+            return (VisualTransformPolicyType)(Object.InternalGetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy));
         }
 
         /// <summary>
