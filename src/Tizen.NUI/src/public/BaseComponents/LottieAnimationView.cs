@@ -242,10 +242,6 @@ namespace Tizen.NUI.BaseComponents
 
                 if (backgroundExtraData != null)
                 {
-                    if (backgroundExtraData.CornerRadius != null || backgroundExtraData.CornerSquareness != null)
-                    {
-                        UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius);
-                    }
                     if (backgroundExtraData.BorderlineWidth > 0.0f)
                     {
                         UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsBorderline);
