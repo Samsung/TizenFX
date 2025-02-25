@@ -37,7 +37,7 @@ namespace Tizen.NUI
             // TextLabel style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextLabel", new TextLabelStyle()
             {
-                FontFamily = Tizen.NUI.FontFamily.UseSystemSetting,
+                FontFamily = "BreezeSans",
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
@@ -52,7 +52,7 @@ namespace Tizen.NUI
             // TextField style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextField", new TextFieldStyle()
             {
-                FontFamily = Tizen.NUI.FontFamily.UseSystemSetting,
+                FontFamily = "BreezeSans",
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 PlaceholderTextColor = new Vector4(0.79f, 0.79f, 0.79f, 1),
@@ -89,7 +89,7 @@ namespace Tizen.NUI
             // TextEditor style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextEditor", new TextEditorStyle()
             {
-                FontFamily = Tizen.NUI.FontFamily.UseSystemSetting,
+                FontFamily = "BreezeSans",
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 PlaceholderTextColor = new Color(0.79f, 0.79f, 0.79f, 1),

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,6 @@ namespace Tizen.NUI.BaseComponents
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
         static private string defaultFontFamily = "TizenSans";
-        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
         private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textEditorTextSid = null;
         private string textEditorPlaceHolderTextSid = null;
@@ -485,7 +484,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     try
                     {
-                        newFontFamily = SystemSettings.FontType;
+                        newFontFamily = SystemFontTypeChangedManager.FontType;
                     }
                     catch (Exception e)
                     {
@@ -3342,7 +3341,7 @@ namespace Tizen.NUI.BaseComponents
 
                     try
                     {
-                        systemSettingsFontSize = SystemSettings.FontSize;
+                        systemSettingsFontSize = SystemFontSizeChangedManager.FontSize;
                     }
                     catch (Exception e)
                     {
@@ -3898,7 +3897,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
+                    SystemFontTypeChangedManager.Add(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = true;
                 }
                 catch (Exception e)
@@ -3915,7 +3914,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
+                    SystemFontTypeChangedManager.Remove(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = false;
                 }
                 catch (Exception e)
