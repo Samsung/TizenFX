@@ -121,7 +121,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 var layoutExtraData = EnsureLayoutExtraData();
-                if (!layoutExtraData.Width.IsFixedValue || layoutExtraData.Width != value)
+                if (layoutExtraData.Width != value)
                 {
                     layoutExtraData.Width = value;
                     layoutExtraData.Layout?.RequestLayout();
@@ -138,7 +138,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 var layoutExtraData = EnsureLayoutExtraData();
-                if (!layoutExtraData.Height.IsFixedValue || layoutExtraData.Height != value)
+                if (layoutExtraData.Height != value)
                 {
                     layoutExtraData.Height = value;
                     layoutExtraData.Layout?.RequestLayout();

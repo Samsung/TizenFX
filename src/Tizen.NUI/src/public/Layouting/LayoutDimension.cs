@@ -122,7 +122,7 @@ namespace Tizen.NUI
                 return a.value != b.value;
             }
 
-            return false;
+            return true;
         }
 
         /// <summary>
