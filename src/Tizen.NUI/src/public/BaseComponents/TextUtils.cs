@@ -758,7 +758,10 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.SizeSet(SwigCPtr, Size.getCPtr(value));
+                var handle = Size.GetHandleRef(value);
+                Interop.EmbeddedItemInfo.SizeSet(SwigCPtr, handle);
+                Size.ReleaseHandleRef(handle);
+
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -778,7 +781,10 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                Interop.EmbeddedItemInfo.RotatedSizeSet(SwigCPtr, Size.getCPtr(value));
+                var handleRef = Size.GetHandleRef(value);
+                Interop.EmbeddedItemInfo.RotatedSizeSet(SwigCPtr, handleRef);
+                Size.ReleaseHandleRef (handleRef);
+
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
