@@ -31,6 +31,7 @@ namespace Tizen.NUI
         private volatile static GraphicsTypeManager graphicsTypeManager;
         private DpTypeConverter dp;
         private SpTypeConverter sp;
+        private SdpTypeConverter sdp;
         private PointTypeConverter pt;
         private float scalingFactor = 1.0f;
         private int baselineDpi = DensityMedium;
@@ -200,6 +201,7 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public SpTypeConverter Sp
         {
             get
@@ -209,6 +211,24 @@ namespace Tizen.NUI
             set
             {
                 sp = value;
+            }
+        }
+
+        /// <summary>
+        /// Default SdpTypeConverter. use this Converter to convert Sdp to/from other types.
+        /// See <see cref="Tizen.NUI.SdpTypeConverter" />.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SdpTypeConverter Sdp
+        {
+            get
+            {
+                return sdp;
+            }
+            set
+            {
+                sdp = value;
             }
         }
 
@@ -241,6 +261,7 @@ namespace Tizen.NUI
             // Get default type converter
             dp = DpTypeConverter.Instance;
             sp = SpTypeConverter.Instance;
+            sdp = SdpTypeConverter.Instance;
             pt = PointTypeConverter.Instance;
 
             // Get ScalingFactor.
@@ -275,9 +296,17 @@ namespace Tizen.NUI
                 {
                     convertedValue = Sp.ConvertScriptToPixel(scriptValue);
                 }
+                else if (scriptValue.EndsWith("sdp"))
+                {
+                    convertedValue = Sdp.ConvertScriptToPixel(scriptValue);
+                }
                 else if (scriptValue.EndsWith("pt"))
                 {
                     convertedValue = Point.ConvertScriptToPixel(scriptValue);
+                }
+                else if (scriptValue.EndsWith("spx"))
+                {
+                    convertedValue = scalingFactor * float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("spx")), CultureInfo.InvariantCulture);
                 }
                 else if (scriptValue.EndsWith("px"))
                 {
