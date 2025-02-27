@@ -529,10 +529,11 @@ namespace Tizen.NUI
         /// Get Rectangle from Intptr.<br/>
         /// </summary>
         /// <param name="cPtr">An object of IntPtr type.</param>
+        /// <param name="isMemoryOwned">The memory is allocated by csharp-binder or not.</param>
         /// <returns>An object of the Rectangle type.</returns>
-        internal static Rectangle GetRectangleFromPtr(global::System.IntPtr cPtr)
+        internal static Rectangle GetRectangleFromPtr(global::System.IntPtr cPtr, bool isMemoryOwned)
         {
-            Rectangle ret = new Rectangle(cPtr, false);
+            Rectangle ret = new Rectangle(cPtr, isMemoryOwned);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

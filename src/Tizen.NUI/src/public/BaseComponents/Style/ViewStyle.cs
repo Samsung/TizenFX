@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI.Binding;
+using static Tizen.Applications.ApplicationInfoFilter;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -28,132 +29,51 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 9 </since_tizen>
     public partial class ViewStyle : BindableObject, IDisposable
     {
+        static readonly IStyleProperty BackgroundImageProperty = new StyleProperty<View, Selector<string>>((v, o) => v.SetInternalBackgroundImage(o));
+        static readonly IStyleProperty FocusableProperty = new StyleProperty<View, bool>((v, o) => v.Focusable = o);
+        static readonly IStyleProperty FocusableChildrenProperty = new StyleProperty<View, bool>((v, o) => v.FocusableChildren = o);
+        static readonly IStyleProperty FocusableInTouchProperty = new StyleProperty<View, bool>((v, o) => v.FocusableInTouch = o);
+        static readonly IStyleProperty OpacityProperty = new StyleProperty<View, Selector<float?>>((v, o) => v.SetInternalOpacity(o));
+        static readonly IStyleProperty PositionUsesPivotPointProperty = new StyleProperty<View, bool>((v, o) => v.PositionUsesPivotPoint = o);
+        static readonly IStyleProperty ParentOriginProperty = new StyleProperty<View, Position>((v, o) => v.ParentOrigin = o);
+        static readonly IStyleProperty PivotPointProperty = new StyleProperty<View, Position>((v, o) => v.PivotPoint = o);
+        static readonly IStyleProperty SizeWidthProperty = new StyleProperty<View, float>((v, o) => v.SizeWidth = o);
+        static readonly IStyleProperty SizeHeightProperty = new StyleProperty<View, float>((v, o) => v.SizeHeight = o);
+        static readonly IStyleProperty PositionXProperty = new StyleProperty<View, float>((v, o) => v.PositionX = o);
+        static readonly IStyleProperty PositionYProperty = new StyleProperty<View, float>((v, o) => v.PositionY = o);
+        static readonly IStyleProperty PositionZProperty = new StyleProperty<View, float>((v, o) => v.PositionZ = o);
+        static readonly IStyleProperty OrientationProperty = new StyleProperty<View, Rotation>((v, o) => v.Orientation = o);
+        static readonly IStyleProperty DrawModeProperty = new StyleProperty<View, DrawModeType>((v, o) => v.DrawMode = o);
+        static readonly IStyleProperty SizeModeFactorProperty = new StyleProperty<View, Vector3>((v, o) => v.SizeModeFactor = o);
+        static readonly IStyleProperty WidthResizePolicyProperty = new StyleProperty<View, ResizePolicyType>((v, o) => v.WidthResizePolicy = o);
+        static readonly IStyleProperty HeightResizePolicyProperty = new StyleProperty<View, ResizePolicyType>((v, o) => v.HeightResizePolicy = o);
+        static readonly IStyleProperty WidthForHeightProperty = new StyleProperty<View, bool>((v, o) => v.WidthForHeight = o);
+        static readonly IStyleProperty HeightForWidthProperty = new StyleProperty<View, bool>((v, o) => v.HeightForWidth = o);
+        static readonly IStyleProperty PaddingProperty = new StyleProperty<View, Extents>((v, o) => v.Padding = o);
+        static readonly IStyleProperty MinimumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MinimumSize = o);
+        static readonly IStyleProperty MaximumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MaximumSize = o);
+        static readonly IStyleProperty ClippingModeProperty = new StyleProperty<View, ClippingModeType>((v, o) => v.ClippingMode = o);
+        static readonly IStyleProperty MarginProperty = new StyleProperty<View, Extents>((v, o) => v.Margin = o);
+        static readonly IStyleProperty BackgroundColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalBackgroundColor(o));
+        static readonly IStyleProperty ColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalColor(o));
+        static readonly IStyleProperty BackgroundImageBorderProperty = new StyleProperty<View, Selector<Rectangle>>((v, o) => v.SetInternalBackgroundImageBorder(o));
+        static readonly IStyleProperty ImageShadowProperty = new StyleProperty<View, Selector<ImageShadow>>((v, o) => v.SetInternalImageShadow(o));
+        static readonly IStyleProperty BoxShadowProperty = new StyleProperty<View, Selector<Shadow>>((v, o) => v.SetInternalBoxShadow(o));
+        static readonly IStyleProperty CornerRadiusProperty = new StyleProperty<View, Vector4>((v, o) => v.CornerRadius = o);
+        static readonly IStyleProperty CornerRadiusPolicyProperty = new StyleProperty<View, VisualTransformPolicyType>((v, o) => v.CornerRadiusPolicy = o);
+        static readonly IStyleProperty BorderlineWidthProperty = new StyleProperty<View, float>((v, o) => v.BorderlineWidth = o);
+        static readonly IStyleProperty BorderlineColorProperty = new StyleProperty<View, Color>((v, o) => v.BorderlineColor = o);
+        static readonly IStyleProperty BorderlineColorSelectorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalBorderlineColor(o));
+        static readonly IStyleProperty BorderlineOffsetProperty = new StyleProperty<View, float>((v, o) => v.BorderlineOffset = o);
+        static readonly IStyleProperty ThemeChangeSensitiveProperty = new StyleProperty<View, bool>((v, o) => v.ThemeChangeSensitive = o);
+        static readonly IStyleProperty IsEnabledProperty = new StyleProperty<View, bool>((v, o) => v.IsEnabled = o);
+
+        private Dictionary<IStyleProperty, object> values = new Dictionary<IStyleProperty, object>();
         private bool disposed = false;
-        private bool? focusable;
-        private bool? focusableChildren;
-        private bool? focusableInTouch;
-        private bool? positionUsesPivotPoint;
-        private Position parentOrigin;
-        private Position pivotPoint;
-        private Position position;
-        private Rotation orientation;
-        private DrawModeType? drawMode;
-        private Vector3 sizeModeFactor;
-        private ResizePolicyType? widthResizePolicy;
-        private ResizePolicyType? heightResizePolicy;
-        private bool? widthForHeight;
-        private bool? heightForWidth;
-        private Extents padding;
-        private Size2D minimumSize;
-        private Size2D maximumSize;
-        private ClippingModeType? clippingMode;
-        private Size size;
-        private Extents margin;
-        private bool? themeChangeSensitive;
-        private Vector4 cornerRadius;
-        private float? borderlineWidth;
-        private Color borderlineColor;
-        private float? borderlineOffset;
-        private bool? isEnabled;
 
-        private Selector<ImageShadow> imageShadow;
-        private Selector<Shadow> boxShadow;
-        private Selector<string> backgroundImageSelector;
-        private Selector<float?> opacitySelector;
-        private Selector<Color> backgroundColorSelector;
-        private Selector<Rectangle> backgroundImageBorderSelector;
-        private Selector<Color> colorSelector;
-        private VisualTransformPolicyType? cornerRadiusPolicy;
-        private Selector<Color> borderlineColorSelector;
+        private float? sizeDepth = null;
 
-        static ViewStyle()
-        {
-            if (NUIApplication.IsUsingXaml)
-            {
-                BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(Selector<string>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBackgroundImageProperty, defaultValueCreator: GetInternalBackgroundImageProperty);
-                FocusableProperty = BindableProperty.Create(nameof(Focusable), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalFocusableProperty, defaultValueCreator: GetInternalFocusableProperty);
-                FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool?), typeof(ViewStyle), true,
-                    propertyChanged: SetInternalFocusableChildrenProperty, defaultValueCreator: GetInternalFocusableChildrenProperty);
-                FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalFocusableInTouchProperty, defaultValueCreator: GetInternalFocusableInTouchProperty);
-                Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalSize2DProperty, defaultValueCreator: GetInternalSize2DProperty);
-                OpacityProperty = BindableProperty.Create(nameof(Opacity), typeof(Selector<float?>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalOpacityProperty, defaultValueCreator: GetInternalOpacityProperty);
-                Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(ViewStyle), null, 
-                    propertyChanged: SetInternalPosition2DProperty, defaultValueCreator: GetInternalPosition2DProperty);
-                PositionUsesPivotPointProperty = BindableProperty.Create(nameof(PositionUsesPivotPoint), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalPositionUsesPivotPointProperty, defaultValueCreator: GetInternalPositionUsesPivotPointProperty);
-                ParentOriginProperty = BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalParentOriginProperty, defaultValueCreator: GetInternalParentOriginProperty);
-                PivotPointProperty = BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalPivotPointProperty, defaultValueCreator: GetInternalPivotPointProperty);
-                SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalSizeWidthProperty, defaultValueCreator: GetInternalSizeWidthProperty);
-                SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalSizeHeightProperty, defaultValueCreator: GetInternalSizeHeightProperty);
-                PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalPositionProperty, defaultValueCreator: GetInternalPositionProperty);
-                PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalPositionXProperty, defaultValueCreator: GetInternalPositionXProperty);
-                PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalPositionYProperty, defaultValueCreator: GetInternalPositionYProperty);
-                OrientationProperty = BindableProperty.Create(nameof(Orientation), typeof(Rotation), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalOrientationProperty, defaultValueCreator: GetInternalOrientationProperty);
-                DrawModeProperty = BindableProperty.Create(nameof(DrawMode), typeof(DrawModeType?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalDrawModeProperty, defaultValueCreator: GetInternalDrawModeProperty);
-                SizeModeFactorProperty = BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalSizeModeFactorProperty, defaultValueCreator: GetInternalSizeModeFactorProperty);
-                WidthResizePolicyProperty = BindableProperty.Create(nameof(WidthResizePolicy), typeof(ResizePolicyType?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalWidthResizePolicyProperty, defaultValueCreator: GetInternalWidthResizePolicyProperty);
-                HeightResizePolicyProperty = BindableProperty.Create(nameof(HeightResizePolicy), typeof(ResizePolicyType?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalHeightResizePolicyProperty, defaultValueCreator: GetInternalHeightResizePolicyProperty);
-                WidthForHeightProperty = BindableProperty.Create(nameof(WidthForHeight), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalWidthForHeightProperty, defaultValueCreator: GetInternalWidthForHeightProperty);
-                HeightForWidthProperty = BindableProperty.Create(nameof(HeightForWidth), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalHeightForWidthProperty, defaultValueCreator: GetInternalHeightForWidthProperty);
-                PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
-                MinimumSizeProperty = BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalMinimumSizeProperty, defaultValueCreator: GetInternalMinimumSizeProperty);
-                MaximumSizeProperty = BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalMaximumSizeProperty, defaultValueCreator: GetInternalMaximumSizeProperty);
-                ClippingModeProperty = BindableProperty.Create(nameof(ClippingMode), typeof(ClippingModeType?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalClippingModeProperty, defaultValueCreator: GetInternalClippingModeProperty);
-                SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalSizeProperty, defaultValueCreator: GetInternalSizeProperty);
-                MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalMarginProperty, defaultValueCreator: GetInternalMarginProperty);
-                BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Selector<Color>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBackgroundColorProperty, defaultValueCreator: GetInternalBackgroundColorProperty);
-                ColorProperty = BindableProperty.Create(nameof(Color), typeof(Selector<Color>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
-                BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Selector<Rectangle>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBackgroundImageBorderProperty, defaultValueCreator: GetInternalBackgroundImageBorderProperty);
-                ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalImageShadowProperty, defaultValueCreator: GetInternalImageShadowProperty);
-                BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Selector<Shadow>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBoxShadowProperty, defaultValueCreator: GetInternalBoxShadowProperty);
-                CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Vector4), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalCornerRadiusProperty, defaultValueCreator: GetInternalCornerRadiusProperty);
-                CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalCornerRadiusPolicyProperty, defaultValueCreator: GetInternalCornerRadiusPolicyProperty);
-                BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBorderlineWidthProperty, defaultValueCreator: GetInternalBorderlineWidthProperty);
-                BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBorderlineColorProperty, defaultValueCreator: GetInternalBorderlineColorProperty);
-                BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBorderlineColorSelectorProperty, defaultValueCreator: GetInternalBorderlineColorSelectorProperty);
-                BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalBorderlineOffsetProperty, defaultValueCreator: GetInternalBorderlineOffsetProperty);
-                ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalThemeChangeSensitiveProperty, defaultValueCreator: GetInternalThemeChangeSensitiveProperty);
-                IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(ViewStyle), null,
-                    propertyChanged: SetInternalIsEnabledProperty, defaultValueCreator: GetInternalIsEnabledProperty);
-            }
-        }
+        static ViewStyle() { }
 
         /// <summary>
         /// Create an empty style instance.
@@ -183,58 +103,16 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Selector<string> BackgroundImage
         {
-            get
-            {
-                Selector<string> image = null;
-                if (NUIApplication.IsUsingXaml)
-                {
-                    image = (Selector<string>)GetValue(BackgroundImageProperty);
-                }
-                else
-                {
-                    image = (Selector<string>)GetInternalBackgroundImageProperty(this);
-                }
-                return (null != image) ? image : backgroundImageSelector = new Selector<string>();
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BackgroundImageProperty, value);
-                }
-                else
-                {
-                    SetInternalBackgroundImageProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Selector<string>>(BackgroundImageProperty);
+            set => SetValue(BackgroundImageProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Focusable
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(FocusableProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalFocusableProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(FocusableProperty, value);
-                }
-                else
-                {
-                    SetInternalFocusableProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(FocusableProperty);
+            set => SetValue(FocusableProperty, value);
         }
 
         /// <summary>
@@ -244,28 +122,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? FocusableChildren
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(FocusableChildrenProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalFocusableChildrenProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(FocusableChildrenProperty, value);
-                }
-                else
-                {
-                    SetInternalFocusableChildrenProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(FocusableChildrenProperty);
+            set => SetValue(FocusableChildrenProperty, value);
         }
 
         /// <summary>
@@ -276,28 +134,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? FocusableInTouch
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(FocusableInTouchProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalFocusableInTouchProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(FocusableInTouchProperty, value);
-                }
-                else
-                {
-                    SetInternalFocusableInTouchProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(FocusableInTouchProperty);
+            set => SetValue(FocusableInTouchProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -307,25 +145,34 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                var width = (float?)GetValue(SizeWidthProperty);
+                var height = (float?)GetValue(SizeHeightProperty);
+
+                if (null == width && null == height)
                 {
-                    return (Size2D)GetValue(Size2DProperty);
+                    return null;
                 }
                 else
                 {
-                    return (Size2D)GetInternalSize2DProperty(this);
+                    var realWidth = null == width ? 0 : width.Value;
+                    var realHeight = null == height ? 0 : height.Value;
+
+                    return new Size2D((int)realWidth, (int)realHeight);
                 }
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                float? width = null;
+                float? height = null;
+
+                if (value is Size2D size)
                 {
-                    SetValue(Size2DProperty, value);
+                    width = size.Width;
+                    height = size.Height;
                 }
-                else
-                {
-                    SetInternalSize2DProperty(this, null, value);
-                }
+
+                SetValue(SizeWidthProperty, width);
+                SetValue(SizeHeightProperty, height);
             }
         }
 
@@ -337,30 +184,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Selector<float?> Opacity
         {
-            get
-            {
-                Selector<float?> opacity = null;
-                if (NUIApplication.IsUsingXaml)
-                {
-                    opacity = (Selector<float?>)GetValue(OpacityProperty);
-                }
-                else
-                {
-                    opacity = (Selector<float?>)GetInternalOpacityProperty(this);
-                }
-                return (null != opacity) ? opacity : opacitySelector = new Selector<float?>();
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(OpacityProperty, value);
-                }
-                else
-                {
-                    SetInternalOpacityProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Selector<float?>>(OpacityProperty);
+            set => SetValue(OpacityProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -370,25 +195,34 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                var x = (float?)GetValue(PositionXProperty);
+                var y = (float?)GetValue(PositionYProperty);
+
+                if (null == x && null == y)
                 {
-                    return (Position2D)GetValue(Position2DProperty);
+                    return null;
                 }
                 else
                 {
-                    return (Position2D)GetInternalPosition2DProperty(this);
+                    var realX = null == x ? 0 : x.Value;
+                    var realY = null == y ? 0 : y.Value;
+
+                    return new Position2D((int)realX, (int)realY);
                 }
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                float? x = null;
+                float? y = null;
+
+                if (value is Position2D position)
                 {
-                    SetValue(Position2DProperty, value);
+                    x = position.X;
+                    y = position.Y;
                 }
-                else
-                {
-                    SetInternalPosition2DProperty(this, null, value);
-                }
+
+                SetValue(PositionXProperty, x);
+                SetValue(PositionYProperty, y);
             }
         }
 
@@ -398,28 +232,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public bool? PositionUsesPivotPoint
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(PositionUsesPivotPointProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalPositionUsesPivotPointProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionUsesPivotPointProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionUsesPivotPointProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(PositionUsesPivotPointProperty);
+            set => SetValue(PositionUsesPivotPointProperty, value);
         }
 
         /// <summary>
@@ -431,28 +245,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Position ParentOrigin
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Position)GetValue(ParentOriginProperty);
-                }
-                else
-                {
-                    return (Position)GetInternalParentOriginProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ParentOriginProperty, value);
-                }
-                else
-                {
-                    SetInternalParentOriginProperty(this, null, value);
-                }
-            }
+            get => (Position)GetValue(ParentOriginProperty);
+            set => SetValue(ParentOriginProperty, value);
         }
 
         /// <summary>
@@ -465,28 +259,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Position PivotPoint
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Position)GetValue(PivotPointProperty);
-                }
-                else
-                {
-                    return (Position)GetInternalPivotPointProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PivotPointProperty, value);
-                }
-                else
-                {
-                    SetInternalPivotPointProperty(this, null, value);
-                }
-            }
+            get => (Position)GetValue(PivotPointProperty);
+            set => SetValue(PivotPointProperty, value);
         }
 
         /// <summary>
@@ -495,28 +269,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public float? SizeWidth
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float?)GetValue(SizeWidthProperty);
-                }
-                else
-                {
-                    return (float?)GetInternalSizeWidthProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeWidthProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeWidthProperty(this, null, value);
-                }
-            }
+            get => (float?)GetValue(SizeWidthProperty);
+            set => SetValue(SizeWidthProperty, value);
         }
 
         /// <summary>
@@ -525,28 +279,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public float? SizeHeight
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float?)GetValue(SizeHeightProperty);
-                }
-                else
-                {
-                    return (float?)GetInternalSizeHeightProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeHeightProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeHeightProperty(this, null, value);
-                }
-            }
+            get => (float?)GetValue(SizeHeightProperty);
+            set => SetValue(SizeHeightProperty, value);
         }
 
         /// <summary>
@@ -557,25 +291,39 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                var x = (float?)GetValue(PositionXProperty);
+                var y = (float?)GetValue(PositionYProperty);
+                var z = (float?)GetValue(PositionZProperty);
+
+                if (null == x && null == y && null == z)
                 {
-                    return (Position)GetValue(PositionProperty);
+                    return null;
                 }
                 else
                 {
-                    return (Position)GetInternalPositionProperty(this);
+                    var realX = null == x ? 0 : x.Value;
+                    var realY = null == y ? 0 : y.Value;
+                    var realZ = null == z ? 0 : z.Value;
+
+                    return new Position(realX, realY, realZ);
                 }
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                float? x = null;
+                float? y = null;
+                float? z = null;
+
+                if (value is Position position)
                 {
-                    SetValue(PositionProperty, value);
+                    x = position.X;
+                    y = position.Y;
+                    z = position.Z;
                 }
-                else
-                {
-                    SetInternalPositionProperty(this, null, value);
-                }
+
+                SetValue(PositionXProperty, x);
+                SetValue(PositionYProperty, y);
+                SetValue(PositionZProperty, z);
             }
         }
 
@@ -583,112 +331,32 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionX
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float?)GetValue(PositionXProperty);
-                }
-                else
-                {
-                    return (float?)GetInternalPositionXProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionXProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionXProperty(this, null, value);
-                }
-            }
+            get => (float?)GetValue(PositionXProperty);
+            set => SetValue(PositionXProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionY
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float?)GetValue(PositionYProperty);
-                }
-                else
-                {
-                    return (float?)GetInternalPositionYProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionYProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionYProperty(this, null, value);
-                }
-            }
+            get => (float?)GetValue(PositionYProperty);
+            set => SetValue(PositionYProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation Orientation
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Rotation)GetValue(OrientationProperty);
-                }
-                else
-                {
-                    return (Rotation)GetInternalOrientationProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(OrientationProperty, value);
-                }
-                else
-                {
-                    SetInternalOrientationProperty(this, null, value);
-                }
-            }
+            get => (Rotation)GetValue(OrientationProperty);
+            set => SetValue(OrientationProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DrawModeType? DrawMode
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (DrawModeType?)GetValue(DrawModeProperty);
-                }
-                else
-                {
-                    return (DrawModeType?)GetInternalDrawModeProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(DrawModeProperty, value);
-                }
-                else
-                {
-                    SetInternalDrawModeProperty(this, null, value);
-                }
-            }
+            get => (DrawModeType?)GetValue(DrawModeProperty);
+            set => SetValue(DrawModeProperty, value);
         }
 
         /// <summary>
@@ -699,28 +367,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Vector3 SizeModeFactor
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Vector3)GetValue(SizeModeFactorProperty);
-                }
-                else
-                {
-                    return (Vector3)GetInternalSizeModeFactorProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeModeFactorProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeModeFactorProperty(this, null, value);
-                }
-            }
+            get => (Vector3)GetValue(SizeModeFactorProperty);
+            set => SetValue(SizeModeFactorProperty, value);
         }
 
         /// <summary>
@@ -729,28 +377,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public ResizePolicyType? WidthResizePolicy
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
-                }
-                else
-                {
-                    return (ResizePolicyType?)GetInternalWidthResizePolicyProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(WidthResizePolicyProperty, value);
-                }
-                else
-                {
-                    SetInternalWidthResizePolicyProperty(this, null, value);
-                }
-            }
+            get => (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
+            set => SetValue(WidthResizePolicyProperty, value);
         }
 
         /// <summary>
@@ -759,84 +387,24 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public ResizePolicyType? HeightResizePolicy
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
-                }
-                else
-                {
-                    return (ResizePolicyType?)GetInternalHeightResizePolicyProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(HeightResizePolicyProperty, value);
-                }
-                else
-                {
-                    SetInternalHeightResizePolicyProperty(this, null, value);
-                }
-            }
+            get => (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
+            set => SetValue(HeightResizePolicyProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WidthForHeight
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(WidthForHeightProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalWidthForHeightProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(WidthForHeightProperty, value);
-                }
-                else
-                {
-                    SetInternalWidthForHeightProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(WidthForHeightProperty);
+            set => SetValue(WidthForHeightProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? HeightForWidth
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(HeightForWidthProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalHeightForWidthProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(HeightForWidthProperty, value);
-                }
-                else
-                {
-                    SetInternalHeightForWidthProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(HeightForWidthProperty);
+            set => SetValue(HeightForWidthProperty, value);
         }
 
         /// <summary>
@@ -845,28 +413,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Extents Padding
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Extents)GetValue(PaddingProperty) ?? (padding = new Extents());
-                }
-                else
-                {
-                    return (Extents)GetInternalPaddingProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PaddingProperty, value);
-                }
-                else
-                {
-                    SetInternalPaddingProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Extents>(PaddingProperty);
+            set => SetValue(PaddingProperty, value);
         }
 
         /// <summary>
@@ -875,28 +423,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Size2D MinimumSize
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Size2D)GetValue(MinimumSizeProperty);
-                }
-                else
-                {
-                    return (Size2D)GetInternalMinimumSizeProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(MinimumSizeProperty, value);
-                }
-                else
-                {
-                    SetInternalMinimumSizeProperty(this, null, value);
-                }
-            }
+            get => (Size2D)GetValue(MinimumSizeProperty);
+            set => SetValue(MinimumSizeProperty, value);
         }
 
         /// <summary>
@@ -905,56 +433,16 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Size2D MaximumSize
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Size2D)GetValue(MaximumSizeProperty);
-                }
-                else
-                {
-                    return (Size2D)GetInternalMaximumSizeProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(MaximumSizeProperty, value);
-                }
-                else
-                {
-                    SetInternalMaximumSizeProperty(this, null, value);
-                }
-            }
+            get => (Size2D)GetValue(MaximumSizeProperty);
+            set => SetValue(MaximumSizeProperty, value);
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ClippingModeType? ClippingMode
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (ClippingModeType?)GetValue(ClippingModeProperty);
-                }
-                else
-                {
-                    return (ClippingModeType?)GetInternalClippingModeProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ClippingModeProperty, value);
-                }
-                else
-                {
-                    SetInternalClippingModeProperty(this, null, value);
-                }
-            }
+            get => (ClippingModeType?)GetValue(ClippingModeProperty);
+            set => SetValue(ClippingModeProperty, value);
         }
 
         /// <summary>
@@ -965,25 +453,39 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                var width = (float?)GetValue(SizeWidthProperty);
+                var height = (float?)GetValue(SizeHeightProperty);
+                var depth = sizeDepth;
+
+                if (null == width && null == height && null == depth)
                 {
-                    return (Size)GetValue(SizeProperty);
+                    return null;
                 }
                 else
                 {
-                    return (Size)GetInternalSizeProperty(this);
+                    var realWidth = null == width ? 0 : width.Value;
+                    var realHeight = null == height ? 0 : height.Value;
+                    var realDepth = null == depth ? 0 : depth.Value;
+
+                    return new Size(realWidth, realHeight, realDepth);
                 }
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                float? width = null;
+                float? height = null;
+                float? depth = null;
+
+                if (value is Size size)
                 {
-                    SetValue(SizeProperty, value);
+                    width = size.Width;
+                    height = size.Height;
+                    depth = size.Depth;
                 }
-                else
-                {
-                    SetInternalSizeProperty(this, null, value);
-                }
+
+                SetValue(SizeWidthProperty, width);
+                SetValue(SizeHeightProperty, height);
+                sizeDepth = depth;
             }
         }
 
@@ -993,28 +495,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Extents Margin
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Extents)GetValue(MarginProperty) ?? (margin = new Extents());
-                }
-                else
-                {
-                    return (Extents)GetInternalMarginProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(MarginProperty, value);
-                }
-                else
-                {
-                    SetInternalMarginProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Extents>(MarginProperty);
+            set => SetValue(MarginProperty, value);
         }
 
         /// <summary>
@@ -1024,30 +506,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Selector<Color> BackgroundColor
         {
-            get
-            {
-                Selector<Color> color = null;
-                if (NUIApplication.IsUsingXaml)
-                {
-                    color = (Selector<Color>)GetValue(BackgroundColorProperty);
-                }
-                else
-                {
-                    color = (Selector<Color>)GetInternalBackgroundColorProperty(this);
-                }
-                return (null != color) ? color : backgroundColorSelector = new Selector<Color>();
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BackgroundColorProperty, value);
-                }
-                else
-                {
-                    SetInternalBackgroundColorProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Selector<Color>>(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
         }
 
         /// <summary>
@@ -1056,28 +516,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> Color
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Selector<Color>)GetValue(ColorProperty) ?? (colorSelector = new Selector<Color>());
-                }
-                else
-                {
-                    return (Selector<Color>)GetInternalColorProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ColorProperty, value);
-                }
-                else
-                {
-                    SetInternalColorProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Selector<Color>>(ColorProperty);
+            set => SetValue(ColorProperty, value);
         }
 
         /// <summary>View BackgroundBorder</summary>
@@ -1085,30 +525,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Rectangle> BackgroundImageBorder
         {
-            get
-            {
-                Selector<Rectangle> border = null;
-                if (NUIApplication.IsUsingXaml)
-                {
-                    border = (Selector<Rectangle>)GetValue(BackgroundImageBorderProperty);
-                }
-                else
-                {
-                    border = (Selector<Rectangle>)GetInternalBackgroundImageBorderProperty(this);
-                }
-                return (null != border) ? border : backgroundImageBorderSelector = new Selector<Rectangle>();
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BackgroundImageBorderProperty, value);
-                }
-                else
-                {
-                    SetInternalBackgroundImageBorderProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Selector<Rectangle>>(BackgroundImageBorderProperty);
+            set => SetValue(BackgroundImageBorderProperty, value);
         }
 
         /// <summary>
@@ -1121,28 +539,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<ImageShadow> ImageShadow
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Selector<ImageShadow>)GetValue(ImageShadowProperty);
-                }
-                else
-                {
-                    return (Selector<ImageShadow>)GetInternalImageShadowProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ImageShadowProperty, value);
-                }
-                else
-                {
-                    SetInternalImageShadowProperty(this, null, value);
-                }
-            }
+            get => (Selector<ImageShadow>)GetValue(ImageShadowProperty);
+            set => SetValue(ImageShadowProperty, value);
         }
 
         /// <summary>
@@ -1151,28 +549,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Selector<Shadow> BoxShadow
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Selector<Shadow>)GetValue(BoxShadowProperty);
-                }
-                else
-                {
-                    return (Selector<Shadow>)GetInternalBoxShadowProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BoxShadowProperty, value);
-                }
-                else
-                {
-                    SetInternalBoxShadowProperty(this, null, value);
-                }
-            }
+            get => (Selector<Shadow>)GetValue(BoxShadowProperty);
+            set => SetValue(BoxShadowProperty, value);
         }
 
         /// <summary>
@@ -1183,28 +561,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Vector4 CornerRadius
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Vector4)GetValue(CornerRadiusProperty);
-                }
-                else
-                {
-                    return (Vector4)GetInternalCornerRadiusProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(CornerRadiusProperty, value);
-                }
-                else
-                {
-                    SetInternalCornerRadiusProperty(this, null, value);
-                }
-            }
+            get => (Vector4)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
 
         /// <summary>
@@ -1215,28 +573,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public VisualTransformPolicyType? CornerRadiusPolicy
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (VisualTransformPolicyType?)GetValue(CornerRadiusPolicyProperty);
-                }
-                else
-                {
-                    return (VisualTransformPolicyType?)GetInternalCornerRadiusPolicyProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(CornerRadiusPolicyProperty, value);
-                }
-                else
-                {
-                    SetInternalCornerRadiusPolicyProperty(this, null, value);
-                }
-            }
+            get => (VisualTransformPolicyType?)GetValue(CornerRadiusPolicyProperty);
+            set => SetValue(CornerRadiusPolicyProperty, value);
         }
 
         /// <summary>
@@ -1245,28 +583,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public float? BorderlineWidth
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float?)GetValue(BorderlineWidthProperty);
-                }
-                else
-                {
-                    return (float?)GetInternalBorderlineWidthProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BorderlineWidthProperty, value);
-                }
-                else
-                {
-                    SetInternalBorderlineWidthProperty(this, null, value);
-                }
-            }
+            get => (float?)GetValue(BorderlineWidthProperty);
+            set => SetValue(BorderlineWidthProperty, value);
         }
 
         /// <summary>
@@ -1275,28 +593,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Color BorderlineColor
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Color)GetValue(BorderlineColorProperty);
-                }
-                else
-                {
-                    return (Color)GetInternalBorderlineColorProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BorderlineColorProperty, value);
-                }
-                else
-                {
-                    SetInternalBorderlineColorProperty(this, null, value);
-                }
-            }
+            get => (Color)GetValue(BorderlineColorProperty);
+            set => SetValue(BorderlineColorProperty, value);
         }
 
         /// <summary>
@@ -1305,30 +603,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> BorderlineColorSelector
         {
-            get
-            {
-                Selector<Color> color = null;
-                if (NUIApplication.IsUsingXaml)
-                {
-                    color = (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
-                }
-                else
-                {
-                    color = (Selector<Color>)GetInternalBorderlineColorSelectorProperty(this);
-                }
-                return (null != color) ? color : borderlineColorSelector = new Selector<Color>();
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BorderlineColorSelectorProperty, value);
-                }
-                else
-                {
-                    SetInternalBorderlineColorSelectorProperty(this, null, value);
-                }
-            }
+            get => GetOrCreateValue<Selector<Color>>(BorderlineColorSelectorProperty);
+            set => SetValue(BorderlineColorSelectorProperty, value);
         }
 
         /// <summary>
@@ -1341,28 +617,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public float? BorderlineOffset
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float?)GetValue(BorderlineOffsetProperty);
-                }
-                else
-                {
-                    return (float?)GetInternalBorderlineOffsetProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(BorderlineOffsetProperty, value);
-                }
-                else
-                {
-                    SetInternalBorderlineOffsetProperty(this, null, value);
-                }
-            }
+            get => (float?)GetValue(BorderlineOffsetProperty);
+            set => SetValue(BorderlineOffsetProperty, value);
         }
 
         /// <summary>
@@ -1371,28 +627,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? ThemeChangeSensitive
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(ThemeChangeSensitiveProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalThemeChangeSensitiveProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ThemeChangeSensitiveProperty, value);
-                }
-                else
-                {
-                    SetInternalThemeChangeSensitiveProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(ThemeChangeSensitiveProperty);
+            set => SetValue(ThemeChangeSensitiveProperty, value);
         }
 
         /// <summary>
@@ -1401,28 +637,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? IsEnabled
         {
-            get
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (bool?)GetValue(IsEnabledProperty);
-                }
-                else
-                {
-                    return (bool?)GetInternalIsEnabledProperty(this);
-                }
-            }
-            set
-            {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(IsEnabledProperty, value);
-                }
-                else
-                {
-                    SetInternalIsEnabledProperty(this, null, value);
-                }
-            }
+            get => (bool?)GetValue(IsEnabledProperty);
+            set => SetValue(IsEnabledProperty, value);
         }
 
         /// <summary>
@@ -1465,9 +681,119 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject other)
         {
-            var source = other as ViewStyle;
+            if (!(other is ViewStyle source))
+            {
+                return;
+            }
 
-            if (source == null || source.DirtyProperties == null || source.DirtyProperties.Count == 0)
+            IncludeDefaultStyle = source.IncludeDefaultStyle;
+            SolidNull = source.SolidNull;
+
+            foreach (var (property, value) in source.values)
+            {
+                if (value != null)
+                {
+                    values[property] = value;
+                }
+            }
+
+            // NOTE Support backward compatibility.
+            CopyBindablePropertyValues(source);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and optionally managed resources.
+        /// </summary>
+        /// <param name="disposing"> If it true, the method has been called by a user's code to release both managed and unmanaged resources. Otherwise the method has been called by the finalizer to release only unmanaged resources.</param>
+        /// <since_tizen> 9 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                // Dispose managed state (managed objects).
+                values = null;
+            }
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Method that is called when a bound property is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnPropertyChangedWithData(BindableProperty property)
+        {
+            base.OnPropertyChangedWithData(property);
+
+            if (property != null)
+            {
+                (DirtyProperties ?? (DirtyProperties = new HashSet<BindableProperty>())).Add(property);
+            }
+        }
+
+        internal ViewStyle CreateInstance()
+        {
+            return (ViewStyle)Activator.CreateInstance(GetType());
+        }
+
+        /// <summary>Merge other style into the current style without creating new one.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void MergeDirectly(ViewStyle other)
+        {
+            CopyFrom(other);
+        }
+
+        internal IEnumerable<(IStyleProperty, object)> GetProperties()
+        {
+            foreach (var (key, value) in values)
+            {
+                if (value != null)
+                {
+                    yield return (key, value);
+                }
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual object GetValue(IStyleProperty styleProperty)
+        {
+            if (values.TryGetValue(styleProperty, out var value))
+            {
+                return value;
+            }
+            return default;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual T GetOrCreateValue<T>(IStyleProperty styleProperty)
+        {
+            if (values.TryGetValue(styleProperty, out var value))
+            {
+                return (T)value;
+            }
+            T newValue = (T)Activator.CreateInstance(typeof(T));
+            values[styleProperty] = newValue;
+            return newValue;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void SetValue(IStyleProperty styleProperty, object value)
+        {
+            // NOTE Allow null value. It is used when merging styles with solid null option
+            values[styleProperty] = value;
+        }
+
+        private void CopyBindablePropertyValues(ViewStyle source)
+        {
+            // NOTE This is to support legacy way of copying styles using bindable properties.
+            // Please do not spend time to keep this code
+            // This is just to make sure we don't break backward compatibility
+            if (source.DirtyProperties == null || source.DirtyProperties.Count == 0)
             {
                 return;
             }
@@ -1498,64 +824,6 @@ namespace Tizen.NUI.BaseComponents
                     InternalSetValue(destinationProperty, sourceValue);
                 }
             }
-        }
-
-        /// <summary>
-        /// Releases unmanaged and optionally managed resources.
-        /// </summary>
-        /// <param name="disposing"> If it true, the method has been called by a user's code to release both managed and unmanaged resources. Otherwise the method has been called by the finalizer to release only unmanaged resources.</param>
-        /// <since_tizen> 9 </since_tizen>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                // Dispose managed state (managed objects).
-                margin?.Dispose();
-                maximumSize?.Dispose();
-                minimumSize?.Dispose();
-                orientation?.Dispose();
-                padding?.Dispose();
-                parentOrigin?.Dispose();
-                pivotPoint?.Dispose();
-                position?.Dispose();
-                size?.Dispose();
-                sizeModeFactor?.Dispose();
-                cornerRadius?.Dispose();
-                borderlineColor?.Dispose();
-            }
-
-            disposed = true;
-        }
-
-        /// <summary>
-        /// Method that is called when a bound property is changed.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnPropertyChangedWithData(BindableProperty property)
-        {
-            base.OnPropertyChangedWithData(property);
-
-            if (property != null)
-            {
-                (DirtyProperties ?? (DirtyProperties = new HashSet<BindableProperty>())).Add(property);
-            }
-        }
-
-        internal ViewStyle CreateInstance()
-        {
-            return (ViewStyle)Activator.CreateInstance(GetType());
-        }
-
-        /// <summary>Merge other style into the current style without creating new one.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void MergeDirectly(ViewStyle other)
-        {
-            CopyFrom(other);
         }
     }
 

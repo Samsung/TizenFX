@@ -41,6 +41,10 @@ namespace Tizen.Core
         private static readonly ConcurrentDictionary<int, Event> _eventMap = new ConcurrentDictionary<int, Event>(); 
         private static Object _idLock = new Object();
         private static int _id = 1;
+        private static Interop.LibTizenCore.TizenCore.TaskCallback _nativeTaskHandler = new Interop.LibTizenCore.TizenCore.TaskCallback(NativeTaskCallback);
+        private static Interop.LibTizenCore.TizenCore.TaskCallback _nativeActionHandler = new Interop.LibTizenCore.TizenCore.TaskCallback(NativeActionCallback);
+        private static Interop.LibTizenCore.TizenCore.TaskCallback _nativeTimerHandler = new Interop.LibTizenCore.TizenCore.TaskCallback(NativeTimerCallback);
+        private static Interop.LibTizenCore.TizenCore.ChannelReceiveCallback _nativeChannelReceiveHandler = new Interop.LibTizenCore.TizenCore.ChannelReceiveCallback(NativeChannelReceiveCallback);
 
         /// <summary>
         /// Initializes the Task class with the specified ID.
@@ -125,7 +129,7 @@ namespace Tizen.Core
                 id = _id++;
             }
             _actionkMap[id] = action;
-            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddIdleJob(_handle, NativeActionCallback, (IntPtr)id, out IntPtr handle);
+            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddIdleJob(_handle, _nativeActionHandler, (IntPtr)id, out IntPtr handle);
             if (error != Interop.LibTizenCore.ErrorCode.None)
             {
                 if (error == Interop.LibTizenCore.ErrorCode.InvalidParameter)
@@ -180,7 +184,7 @@ namespace Tizen.Core
                 id = _id++;
             }
             _taskMap[id] = task;
-            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddIdleJob(_handle, NativeTaskCallback, (IntPtr)id, out IntPtr handle);
+            Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddIdleJob(_handle, _nativeTaskHandler, (IntPtr)id, out IntPtr handle);
             if (error != Interop.LibTizenCore.ErrorCode.None)
             {
                 _taskMap.TryRemove(id, out var _);
@@ -233,7 +237,7 @@ namespace Tizen.Core
             _timerMap[id] = timerSource;
             lock (timerSource)
             {
-                Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddTimer(_handle, interval, NativeTimerCallback, (IntPtr)id, out IntPtr handle);
+                Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddTimer(_handle, interval, _nativeTimerHandler, (IntPtr)id, out IntPtr handle);
                 if (error != Interop.LibTizenCore.ErrorCode.None)
                 {
                     _timerMap.TryRemove(id, out var _);
@@ -327,7 +331,7 @@ namespace Tizen.Core
             _channelMap[id] = receiver;
             lock (receiver)
             {
-                Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddChannel(_handle, receiver.Handle, NativeChannelReceiveCallback, (IntPtr)id, out IntPtr handle);
+                Interop.LibTizenCore.ErrorCode error = Interop.LibTizenCore.TizenCore.AddChannel(_handle, receiver.Handle, _nativeChannelReceiveHandler, (IntPtr)id, out IntPtr handle);
                 if (error != Interop.LibTizenCore.ErrorCode.None)
                 {
                     _channelMap.TryRemove(id, out var _);

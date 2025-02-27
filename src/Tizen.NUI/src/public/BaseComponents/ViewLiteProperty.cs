@@ -65,16 +65,63 @@ namespace Tizen.NUI.BaseComponents
             NotifyPropertyChanged(nameof(BoxShadow));
         }
 
+        internal UIShadow GetBoxShadow()
+        {
+            // Sync as current properties
+            UpdateBackgroundExtraData();
+
+            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
+            if (shadowMapValue != null)
+            {
+                using PropertyMap map = new PropertyMap();
+                if (shadowMapValue.Get(map))
+                {
+                    // FIXME do not use Shadow here
+                    var shadow = new Shadow(map);
+                    return new UIShadow()
+                    {
+                        Color = new UIColor(shadow.Color),
+                        BlurRadius = shadow.BlurRadius,
+                        OffsetX = shadow.Offset.X,
+                        OffsetY = shadow.Offset.Y,
+                        ExtraWidth = shadow.Extents.Width,
+                        ExtraHeight = shadow.Extents.Height,
+                        CutoutPolicy = (ColorVisualCutoutPolicyType)shadow.CutoutPolicy
+                    };
+                }
+            }
+            return UIShadow.Default;
+        }
+
+        internal bool UpdateBoxShadowColor(UIColor color)
+        {
+            // Sync as current properties
+            UpdateBackgroundExtraData();
+
+            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
+            if (shadowMapValue != null)
+            {
+                using PropertyMap map = new PropertyMap();
+                if (shadowMapValue.Get(map))
+                {
+                    map.Set(ColorVisualProperty.MixColor, color);
+                    Object.InternalSetPropertyMap(SwigCPtr, Property.SHADOW, map.SwigCPtr);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Gets or sets the width of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
         /// </summary>
         internal LayoutDimension LayoutWidth
         {
-            get => layoutExtraData?.Width ?? LayoutDimensionMode.WrapContent;
+            get => layoutExtraData?.Width ?? LayoutDimension.WrapContent;
             set
             {
                 var layoutExtraData = EnsureLayoutExtraData();
-                if (float.IsNaN(layoutExtraData.Width.GetValue()) || layoutExtraData.Width != value)
+                if (layoutExtraData.Width != value)
                 {
                     layoutExtraData.Width = value;
                     layoutExtraData.Layout?.RequestLayout();
@@ -87,11 +134,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal LayoutDimension LayoutHeight
         {
-            get => layoutExtraData?.Height ?? LayoutDimensionMode.WrapContent;
+            get => layoutExtraData?.Height ?? LayoutDimension.WrapContent;
             set
             {
                 var layoutExtraData = EnsureLayoutExtraData();
-                if (float.IsNaN(layoutExtraData.Height.GetValue()) || layoutExtraData.Height != value)
+                if (layoutExtraData.Height != value)
                 {
                     layoutExtraData.Height = value;
                     layoutExtraData.Layout?.RequestLayout();
@@ -99,46 +146,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal void SetLayoutWidth(float size)
+        internal float GetMinimumWidth()
         {
-            if (size >= 0)
-            {
-                LayoutWidth = size;
-            }
-            else if ((int)size == LayoutParamPolicies.WrapContent)
-            {
-                LayoutWidth = LayoutDimensionMode.WrapContent;
-            }
-            else if ((int)size == LayoutParamPolicies.MatchParent)
-            {
-                LayoutWidth = LayoutDimensionMode.MatchParent;
-            }
-        }
-
-        internal void SetLayoutHeight(float size)
-        {
-            if (size >= 0)
-            {
-                LayoutHeight = size;
-            }
-            else if ((int)size == LayoutParamPolicies.WrapContent)
-            {
-                LayoutHeight = LayoutDimensionMode.WrapContent;
-            }
-            else if ((int)size == LayoutParamPolicies.MatchParent)
-            {
-                LayoutHeight = LayoutDimensionMode.MatchParent;
-            }
-        }
-
-        internal bool HasLayoutWidth()
-        {
-            return layoutExtraData?.Width == null ? false : true;
-        }
-
-        internal bool HasLayoutHeight()
-        {
-            return layoutExtraData?.Height == null ? false : true;
+            return layoutExtraData?.MinimumWidth ?? 0;
         }
 
         internal void SetMinimumWidth(float minimumWidth, bool updateMinimumSize)
@@ -171,6 +181,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal float GetMinimumHeight()
+        {
+            return layoutExtraData?.MinimumHeight ?? 0;
+        }
+
         internal void SetMinimumHeight(float minimumHeight, bool updateMinimumSize)
         {
             if (float.IsNaN(minimumHeight))
@@ -199,6 +214,11 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.MinimumHeight = minimumHeight;
                 layoutExtraData.Layout?.RequestLayout();
             }
+        }
+
+        internal float GetMaximumWidth()
+        {
+            return layoutExtraData?.MaximumWidth ?? int.MaxValue;
         }
 
         internal void SetMaximumWidth(float maximumWidth, bool updateMaximumSize)
@@ -231,6 +251,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal float GetMaximumHeight()
+        {
+            return layoutExtraData?.MaximumHeight ?? int.MaxValue;
+        }
+
         internal void SetMaximumHeight(float maximumHeight, bool updateMaximumSize)
         {
             if (float.IsNaN(maximumHeight))
@@ -261,24 +286,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool HasMinimumWidth()
+        internal UIExtents GetMargin()
         {
-            return layoutExtraData?.MinimumWidth == null ? false : true;
-        }
-
-        internal bool HasMinimumHeight()
-        {
-            return layoutExtraData?.MinimumHeight == null ? false : true;
-        }
-
-        internal bool HasMaximumWidth()
-        {
-            return layoutExtraData?.MaximumWidth == null ? false : true;
-        }
-
-        internal bool HasMaximumHeight()
-        {
-            return layoutExtraData?.MaximumHeight == null ? false : true;
+            return layoutExtraData?.Margin ?? 0;
         }
 
         internal void SetMargin(UIExtents margin, bool updateMargin)
@@ -300,9 +310,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool HasMargin()
+        internal UIExtents GetPadding()
         {
-            return layoutExtraData?.Margin == null ? false : true;
+            return layoutExtraData?.Padding ?? 0;
         }
 
         internal void SetPadding(UIExtents padding, bool updatePadding)
@@ -322,11 +332,6 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.Padding = padding;
                 layoutExtraData.Layout?.RequestLayout();
             }
-        }
-
-        internal bool HasPadding()
-        {
-            return layoutExtraData?.Padding == null ? false : true;
         }
     }
 }
