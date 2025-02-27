@@ -27,7 +27,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
-		
+
 		[Test]
         [Category("P1")]
         [Description("GraphicsTypeExtensions DpToPx.")]
@@ -47,18 +47,18 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
-			    float temp1 = GraphicsTypeExtensions.SpToPx(20.0f);
-                tlog.Debug(tag, "SpToPx : " + temp1);
+			    float temp1 = GraphicsTypeExtensions.SdpToPx(20.0f);
+                tlog.Debug(tag, "SdpToPx : " + temp1);
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
 			    float temp2 = GraphicsTypeExtensions.PxToDp(20.0f);
@@ -69,18 +69,18 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
-			    float temp3 = GraphicsTypeExtensions.PxToSp(10.0f);
-                tlog.Debug(tag, "PxToSp : " + temp3);
+			    float temp3 = GraphicsTypeExtensions.PxToSdp(10.0f);
+                tlog.Debug(tag, "PxToSdp : " + temp3);
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
 			    int temp4 = GraphicsTypeExtensions.DpToPx(20);
@@ -91,18 +91,18 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
-			    int temp5 = GraphicsTypeExtensions.SpToPx(30);
-                tlog.Debug(tag, "SpToPx : " + temp5);
+			    int temp5 = GraphicsTypeExtensions.SdpToPx(30);
+                tlog.Debug(tag, "SdpToPx : " + temp5);
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
 			    int temp6 = GraphicsTypeExtensions.PxToDp(10);
@@ -113,25 +113,25 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			
+
 			try
 			{
-			    int temp7 = GraphicsTypeExtensions.PxToSp(20);
-                tlog.Debug(tag, "PxToSp : " + temp7);
+			    int temp7 = GraphicsTypeExtensions.PxToSdp(20);
+                tlog.Debug(tag, "PxToSdp : " + temp7);
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-			  
+
             tlog.Debug(tag, $"GraphicsTypeExtensionsDpToPx END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("GraphicsTypeExtensions PtToSp. with float")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.PtToSp M")]
+        [Description("GraphicsTypeExtensions PtToSdp. with float")]
+        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.PtToSdp M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -139,8 +139,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             try
 			{
-			    float temp8 = GraphicsTypeExtensions.PtToSp(7.2f);
-                tlog.Debug(tag, "PtToSp : " + temp8);
+			    float temp8 = GraphicsTypeExtensions.PtToSdp(7.2f);
+                tlog.Debug(tag, "PtToSdp : " + temp8);
 			}
 			catch (Exception e)
             {
@@ -150,8 +150,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
 			{
-			    float temp9 = GraphicsTypeExtensions.SpToPt(7.2f);
-                tlog.Debug(tag, "SpToPt : " + temp9);
+			    float temp9 = GraphicsTypeExtensions.SdpToPt(7.2f);
+                tlog.Debug(tag, "SdpToPt : " + temp9);
 			}
 			catch (Exception e)
             {
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }  
+            }
 
             try
 			{
@@ -217,9 +217,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             try
 			{
-                var sp = new Extents(1, 2, 3, 4);
-			    var temp14 = GraphicsTypeExtensions.SpToPx(sp);
-                tlog.Debug(tag, "SpToPx : " + temp14);
+                var sdp = new Extents(1, 2, 3, 4);
+			    var temp14 = GraphicsTypeExtensions.SdpToPx(sdp);
+                tlog.Debug(tag, "SdpToPx : " + temp14);
 			}
 			catch (Exception e)
             {
@@ -242,8 +242,8 @@ namespace Tizen.NUI.Devel.Tests
             try
 			{
                 var pixel = new Extents(1, 2, 3, 4);
-			    var temp16 = GraphicsTypeExtensions.PxToSp(pixel);
-                tlog.Debug(tag, "PxToSp : " + temp16);
+			    var temp16 = GraphicsTypeExtensions.PxToSdp(pixel);
+                tlog.Debug(tag, "PxToSdp : " + temp16);
 			}
 			catch (Exception e)
             {
@@ -277,15 +277,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             try
 			{
-                var sp = new Rectangle(5, 6, 100, 200);
-			    var rectangle1 = GraphicsTypeExtensions.SpToPx(sp);
-                tlog.Debug(tag, "SpToPx : " + rectangle1);
+                var sdp = new Rectangle(5, 6, 100, 200);
+			    var rectangle1 = GraphicsTypeExtensions.SdpToPx(sdp);
+                tlog.Debug(tag, "SdpToPx : " + rectangle1);
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }            
+            }
 
             try
 			{
@@ -297,19 +297,19 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            } 
+            }
 
             try
 			{
                 var pixel = new Rectangle(5, 6, 100, 200);
-			    var rectangle3 = GraphicsTypeExtensions.PxToSp(pixel);
-                tlog.Debug(tag, "PxToSp : " + rectangle3);
+			    var rectangle3 = GraphicsTypeExtensions.PxToSdp(pixel);
+                tlog.Debug(tag, "PxToSdp : " + rectangle3);
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }  
+            }
 
             try
 			{
@@ -328,110 +328,19 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("GraphicsTypeExtensions SpToPx. with Position2D ")]
+        [Description("GraphicsTypeExtensions SdpToPx. with Position2D ")]
         [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.PxToPt M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void GraphicsTypeExtensionsPxToPtwithPosition2D()
         {
-            var sp = new Position2D(2, 3);
+            var sdp = new Position2D(2, 3);
 
             try
 			{
-			    var position2D1 = GraphicsTypeExtensions.SpToPx(sp);
-                tlog.Debug(tag, "SpToPx : Position2D SpToPx" );
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            } 
-
-            try
-			{
-			    var position2D2 = GraphicsTypeExtensions.DpToPx(sp);
-                tlog.Debug(tag, "DpToPx : Position2D  DpToPx");
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            } 
-
-            try
-			{
-			    var position2D3 = GraphicsTypeExtensions.PxToSp(sp);
-                tlog.Debug(tag, "PxToSp : Position2D PxToSp");
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            } 
-
-            try
-			{
-			    var position2D4 = GraphicsTypeExtensions.PxToDp(sp);
-                tlog.Debug(tag, "PxToDp : Position2D PxToDp " );
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            } 
-
-            sp.Dispose();
-            tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithPosition2D END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("GraphicsTypeExtensions SpToPx. with Position ")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.SpToPx M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GraphicsTypeExtensionsPxToPtwithPosition()
-        {
-            var sp = new Position(5.0f, 5.0f, 0.5f);
-            try
-			{
-			    var position1 = GraphicsTypeExtensions.SpToPx(sp);
-                tlog.Debug(tag, "SpToPx : Position SpToPx " );
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            } 
-
-            try
-			{
-			    var position2 = GraphicsTypeExtensions.DpToPx(sp);
-                tlog.Debug(tag, "DpToPx : Position DpToPx " );
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }     
-
-            try
-			{
-			    var position3 = GraphicsTypeExtensions.PxToSp(sp);
-                tlog.Debug(tag, "PxToSp : Position PxToSp " );
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }      
-
-            try
-			{
-			    var position4 = GraphicsTypeExtensions.PxToDp(sp);
-                tlog.Debug(tag, "PxToDp : Position PxToSp " );
+			    var position2D1 = GraphicsTypeExtensions.SdpToPx(sdp);
+                tlog.Debug(tag, "SdpToPx : Position2D SdpToPx" );
 			}
 			catch (Exception e)
             {
@@ -439,14 +348,105 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            sp.Dispose();                          
+            try
+			{
+			    var position2D2 = GraphicsTypeExtensions.DpToPx(sdp);
+                tlog.Debug(tag, "DpToPx : Position2D  DpToPx");
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            try
+			{
+			    var position2D3 = GraphicsTypeExtensions.PxToSdp(sdp);
+                tlog.Debug(tag, "PxToSdp : Position2D PxToSdp");
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            try
+			{
+			    var position2D4 = GraphicsTypeExtensions.PxToDp(sdp);
+                tlog.Debug(tag, "PxToDp : Position2D PxToDp " );
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            sdp.Disdpose();
+            tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithPosition2D END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GraphicsTypeExtensions SdpToPx. with Position ")]
+        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.SdpToPx M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GraphicsTypeExtensionsPxToPtwithPosition()
+        {
+            var sdp = new Position(5.0f, 5.0f, 0.5f);
+            try
+			{
+			    var position1 = GraphicsTypeExtensions.SdpToPx(sdp);
+                tlog.Debug(tag, "SdpToPx : Position SdpToPx " );
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            try
+			{
+			    var position2 = GraphicsTypeExtensions.DpToPx(sdp);
+                tlog.Debug(tag, "DpToPx : Position DpToPx " );
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            try
+			{
+			    var position3 = GraphicsTypeExtensions.PxToSdp(sdp);
+                tlog.Debug(tag, "PxToSdp : Position PxToSdp " );
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            try
+			{
+			    var position4 = GraphicsTypeExtensions.PxToDp(sdp);
+                tlog.Debug(tag, "PxToDp : Position PxToSdp " );
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            sdp.Disdpose();
             tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithPosition END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("GraphicsTypeExtensions SpToPx. with Size2D ")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.SpToPx M")]
+        [Description("GraphicsTypeExtensions SdpToPx. with Size2D ")]
+        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.SdpToPx M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -456,14 +456,14 @@ namespace Tizen.NUI.Devel.Tests
 
             try
 			{
-			    var size2D1 = GraphicsTypeExtensions.SpToPx(dp);
-                tlog.Debug(tag, "SpToPx : Size2D SpToPx " );
+			    var size2D1 = GraphicsTypeExtensions.SdpToPx(dp);
+                tlog.Debug(tag, "SdpToPx : Size2D SdpToPx " );
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }    
+            }
 
             try
 			{
@@ -474,18 +474,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }   
+            }
 
             try
 			{
-			    var size2D1 = GraphicsTypeExtensions.PxToSp(dp);
-                tlog.Debug(tag, "PxToSp : Size2D PxToSp " );
+			    var size2D1 = GraphicsTypeExtensions.PxToSdp(dp);
+                tlog.Debug(tag, "PxToSdp : Size2D PxToSdp " );
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            } 
+            }
 
             try
 			{
@@ -498,57 +498,57 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            dp.Dispose();                                       
+            dp.Disdpose();
             tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithSize2D END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("GraphicsTypeExtensions SpToPx. with Size ")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.SpToPx M")]
+        [Description("GraphicsTypeExtensions SdpToPx. with Size ")]
+        [Property("SPEC", "Tizen.NUI.GraphicsTypeExtensions.SdpToPx M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void GraphicsTypeExtensionsPxToPtwithSize()
         {
-            var sp = new Size(100.0f, 100.0f, 100.0f);
+            var sdp = new Size(100.0f, 100.0f, 100.0f);
 
             try
 			{
-			    var size1 = GraphicsTypeExtensions.SpToPx(sp);
-                tlog.Debug(tag, "SpToPx : Size SpToPx " );
+			    var size1 = GraphicsTypeExtensions.SdpToPx(sdp);
+                tlog.Debug(tag, "SdpToPx : Size SdpToPx " );
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }              
+            }
 
             try
 			{
-			    var size2 = GraphicsTypeExtensions.DpToPx(sp);
+			    var size2 = GraphicsTypeExtensions.DpToPx(sdp);
                 tlog.Debug(tag, "DpToPx : Size DpToPx " );
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            } 
+            }
 
             try
 			{
-			    var size3 = GraphicsTypeExtensions.PxToSp(sp);
-                tlog.Debug(tag, "PxToSp : Size PxToSp " );
+			    var size3 = GraphicsTypeExtensions.PxToSdp(sdp);
+                tlog.Debug(tag, "PxToSdp : Size PxToSdp " );
 			}
 			catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
-            }  
+            }
 
             try
 			{
-			    var size4 = GraphicsTypeExtensions.PxToDp(sp);
+			    var size4 = GraphicsTypeExtensions.PxToDp(sdp);
                 tlog.Debug(tag, "PxToDp : Size PxToDp " );
 			}
 			catch (Exception e)
@@ -556,9 +556,9 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-            
-            sp.Dispose();                                       
-            tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithSize END (OK)");            
+
+            sdp.Disdpose();
+            tlog.Debug(tag, $"GraphicsTypeExtensionsPxToPtwithSize END (OK)");
         }
 	}
 }
