@@ -11,7 +11,7 @@ namespace Tizen.NUI.Devel.Tests
 
     [TestFixture]
     [Description("public/Utility/PointTypeConverter  ")]
-    public class PublicPointTypeConverterTest 
+    public class PublicPointTypeConverterTest
     {
         private const string tag = "NUITEST";
 
@@ -26,7 +26,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
-		
+
 		[Test]
         [Category("P1")]
         [Description("PointTypeConverter Instance.")]
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = PointTypeConverter.Instance;
             Assert.IsNotNull(testingTarget, "Can't create success object PointTypeConverter ");
             Assert.IsInstanceOf<PointTypeConverter >(testingTarget, "Should be an instance of PointTypeConverter  type.");
-            
+
             var result = testingTarget.ConvertScriptToPixel("100pt");
             tlog.Debug(tag, "ConvertScriptToPixel(pt)" + result);
 
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"PointTypeConverterConvertScriptToPixel END (OK)");
         }
-		
+
 
 		[Test]
         [Category("P1")]
@@ -80,17 +80,17 @@ namespace Tizen.NUI.Devel.Tests
         public void PointTypeConverterConvertToPixel()
         {
             tlog.Debug(tag, $"DpTypeConverterConvertToPixel START");
-    
+
             var testingTarget = PointTypeConverter.Instance;
             Assert.IsNotNull(testingTarget, "Can't create success object PointTypeConverter ");
             Assert.IsInstanceOf<PointTypeConverter >(testingTarget, "Should be an instance of PointTypeConverter  type.");
-            
+
             var result = testingTarget.ConvertToPixel(20.0f);
             tlog.Debug(tag, "ConvertToPixel : " + result);
 
             tlog.Debug(tag, $"PointTypeConverterConvertToPixel END (OK)");
-        }		
-		
+        }
+
 		[Test]
         [Category("P1")]
         [Description("PointTypeConverter ConvertFromPixel.")]
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = PointTypeConverter.Instance;
             Assert.IsNotNull(testingTarget, "Can't create success object PointTypeConverter ");
             Assert.IsInstanceOf<PointTypeConverter >(testingTarget, "Should be an instance of PointTypeConverter  type.");
-             
+
             var result0 = testingTarget.ConvertFromPixel(30.0f);
             tlog.Debug(tag, "ConvertFromPixel : " + result0);
 
@@ -115,13 +115,13 @@ namespace Tizen.NUI.Devel.Tests
             var result2 = testingTarget.ConvertPointToDp(20.0f);
             tlog.Debug(tag, "ConvertPointToDp : " + result2);
 
-            var result3 = testingTarget.ConvertSpToPoint(10.0f);
-            tlog.Debug(tag, "ConvertSpToPoint : " + result3);
+            var result3 = testingTarget.ConvertSdpToPoint(10.0f);
+            tlog.Debug(tag, "ConvertSdpToPoint : " + result3);
 
-            var result4 = testingTarget.ConvertPointToSp(20.0f);
-            tlog.Debug(tag, "ConvertPointToSp : " + result4);
+            var result4 = testingTarget.ConvertPointToSdp(20.0f);
+            tlog.Debug(tag, "ConvertPointToSdp : " + result4);
 
             tlog.Debug(tag, $"PointTypeConverterConvertFromPixel END (OK)");
-        }		
-	}	
+        }
+	}
 }

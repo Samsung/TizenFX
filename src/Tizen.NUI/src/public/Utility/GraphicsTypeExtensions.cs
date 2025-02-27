@@ -58,13 +58,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Converter float scaled dp to pixel.
         /// </summary>
-        /// <param name="sp">The float scaled dp unit value to be converted pixel unit.</param>
+        /// <param name="sdp">The float scaled dp unit value to be converted pixel unit.</param>
         /// <returns>The float pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static float Sp(this float sp)
+        public static float Sdp(this float sdp)
         {
-            return GraphicsTypeManager.Instance.Sp.ConvertToPixel(sp);
+            return GraphicsTypeManager.Instance.Sdp.ConvertToPixel(sdp);
         }
 
         /// <summary>
@@ -74,9 +74,10 @@ namespace Tizen.NUI
         /// <returns>The float pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static float SpToPx(this float sp)
         {
-            return Sp(sp);
+            return GraphicsTypeManager.Instance.Sp.ConvertToPixel(sp);
         }
 
         /// <summary>
@@ -92,12 +93,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter float pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The float pixel unit value to be converted sdp unit.</param>
+        /// <returns>The float sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float PxToSdp(this float pixel)
+        {
+            return GraphicsTypeManager.Instance.Sdp.ConvertFromPixel(pixel);
+        }
+
+        /// <summary>
         /// Converter float pixel to sp.
         /// </summary>
         /// <param name="pixel">The float pixel unit value to be converted sp unit.</param>
         /// <returns>The float sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static float PxToSp(this float pixel)
         {
             return GraphicsTypeManager.Instance.Sp.ConvertFromPixel(pixel);
@@ -128,15 +142,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converter int dp to pixel.
+        /// Converter int sdp to pixel.
         /// </summary>
-        /// <param name="sp">The int sp unit value to be converted pixel unit.</param>
+        /// <param name="sdp">The int sdp unit value to be converted pixel unit.</param>
         /// <returns>The int pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static int Sp(this int sp)
+        public static int Sdp(this int sdp)
         {
-            return (int)GraphicsTypeManager.Instance.Sp.ConvertToPixel(sp);
+            return (int)GraphicsTypeManager.Instance.Sdp.ConvertToPixel(sdp);
         }
 
         /// <summary>
@@ -146,9 +160,10 @@ namespace Tizen.NUI
         /// <returns>The int pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static int SpToPx(this int sp)
         {
-            return Sp(sp);
+            return (int)GraphicsTypeManager.Instance.Sp.ConvertToPixel(sp);
         }
 
 
@@ -165,12 +180,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter int pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The int pixel unit value to be converted sdp unit.</param>
+        /// <returns>The int sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int PxToSdp(this int pixel)
+        {
+            return (int)PxToSdp((float)pixel);
+        }
+
+        /// <summary>
         /// Converter int pixel to sp.
         /// </summary>
         /// <param name="pixel">The int pixel unit value to be converted sp unit.</param>
         /// <returns>The int sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static int PxToSp(this int pixel)
         {
             return (int)PxToSp((float)pixel);
@@ -190,16 +218,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Size sdp to pixel.
+        /// </summary>
+        /// <param name="sdp">The Size sdp unit value to be converted pixel unit.</param>
+        /// <returns>The Size pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size SdpToPx(this Size sdp)
+        {
+            if (sdp == null) return null;
+            return new Size(Sdp(sdp.Width), Sdp(sdp.Height));
+        }
+
+        /// <summary>
         /// Converter Size sp to pixel.
         /// </summary>
         /// <param name="sp">The Size sp unit value to be converted pixel unit.</param>
         /// <returns>The Size pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Size SpToPx(this Size sp)
         {
             if (sp == null) return null;
-            return new Size(Sp(sp.Width), Sp(sp.Height));
+            return new Size(SpToPx(sp.Width), SpToPx(sp.Height));
         }
 
         /// <summary>
@@ -216,12 +258,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Size pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The Size pixel unit value to be converted sdp unit.</param>
+        /// <returns>The Size sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size PxToSdp(this Size pixel)
+        {
+            if (pixel == null) return null;
+            return new Size(PxToSdp(pixel.Width), PxToSdp(pixel.Height));
+        }
+
+        /// <summary>
         /// Converter Size pixel to sp.
         /// </summary>
         /// <param name="pixel">The Size pixel unit value to be converted sp unit.</param>
         /// <returns>The Size sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Size PxToSp(this Size pixel)
         {
             if (pixel == null) return null;
@@ -242,12 +298,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Size2D pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The Size2D pixel unit value to be converted sdp unit.</param>
+        /// <returns>The Size2D sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D PxToSdp(this Size2D pixel)
+        {
+            if (pixel == null) return null;
+            return new Size2D(PxToSdp(pixel.Width), PxToSdp(pixel.Height));
+        }
+
+        /// <summary>
         /// Converter Size2D pixel to sp.
         /// </summary>
         /// <param name="pixel">The Size2D pixel unit value to be converted sp unit.</param>
         /// <returns>The Size2D sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Size2D PxToSp(this Size2D pixel)
         {
             if (pixel == null) return null;
@@ -268,16 +338,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Size2D sdp to pixel.
+        /// </summary>
+        /// <param name="sdp">The Size2D sdp unit value to be converted pixel unit.</param>
+        /// <returns>The Size2D pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D SdpToPx(this Size2D sdp)
+        {
+            if (sdp == null) return null;
+            return new Size2D(Sdp(sdp.Width), Sdp(sdp.Height));
+        }
+
+        /// <summary>
         /// Converter Size2D sp to pixel.
         /// </summary>
         /// <param name="sp">The Size2D sp unit value to be converted pixel unit.</param>
         /// <returns>The Size2D pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Size2D SpToPx(this Size2D sp)
         {
             if (sp == null) return null;
-            return new Size2D(Sp(sp.Width), Sp(sp.Height));
+            return new Size2D(SpToPx(sp.Width), SpToPx(sp.Height));
         }
 
         /// <summary>
@@ -294,12 +378,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Position pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The Position pixel unit value to be converted sdp unit.</param>
+        /// <returns>The Position sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Position PxToSdp(this Position pixel)
+        {
+            if (pixel == null) return null;
+            return new Position(PxToSdp(pixel.X), PxToSdp(pixel.Y));
+        }
+
+        /// <summary>
         /// Converter Position pixel to sp.
         /// </summary>
         /// <param name="pixel">The Position pixel unit value to be converted sp unit.</param>
         /// <returns>The Position sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Position PxToSp(this Position pixel)
         {
             if (pixel == null) return null;
@@ -320,16 +418,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Position sdp to pixel.
+        /// </summary>
+        /// <param name="sdp">The Position sdp unit value to be converted pixel unit.</param>
+        /// <returns>The Position pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Position SdpToPx(this Position sdp)
+        {
+            if (sdp == null) return null;
+            return new Position(Sdp(sdp.X), Sdp(sdp.Y));
+        }
+
+        /// <summary>
         /// Converter Position sp to pixel.
         /// </summary>
         /// <param name="sp">The Position sp unit value to be converted pixel unit.</param>
         /// <returns>The Position pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Position SpToPx(this Position sp)
         {
             if (sp == null) return null;
-            return new Position(Sp(sp.X), Sp(sp.Y));
+            return new Position(SpToPx(sp.X), SpToPx(sp.Y));
         }
 
         /// <summary>
@@ -346,12 +458,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Position2D pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The Position2D pixel unit value to be converted sdp unit.</param>
+        /// <returns>The Position2D sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Position2D PxToSdp(this Position2D pixel)
+        {
+            if (pixel == null) return null;
+            return new Position2D(PxToSdp(pixel.X), PxToSdp(pixel.Y));
+        }
+
+        /// <summary>
         /// Converter Position2D pixel to sp.
         /// </summary>
         /// <param name="pixel">The Position2D pixel unit value to be converted sp unit.</param>
         /// <returns>The Position2D sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Position2D PxToSp(this Position2D pixel)
         {
             if (pixel == null) return null;
@@ -372,16 +498,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Position2D sdp to pixel.
+        /// </summary>
+        /// <param name="sdp">The Position2D sdp unit value to be converted pixel unit.</param>
+        /// <returns>The Position2D pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Position2D SdpToPx(this Position2D sdp)
+        {
+            if (sdp == null) return null;
+            return new Position2D(Sdp(sdp.X), Sdp(sdp.Y));
+        }
+
+        /// <summary>
         /// Converter Position2D sp to pixel.
         /// </summary>
         /// <param name="sp">The Position2D sp unit value to be converted pixel unit.</param>
         /// <returns>The Position2D pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Position2D SpToPx(this Position2D sp)
         {
             if (sp == null) return null;
-            return new Position2D(Sp(sp.X), Sp(sp.Y));
+            return new Position2D(SpToPx(sp.X), SpToPx(sp.Y));
         }
 
         /// <summary>
@@ -398,12 +538,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Rectangle pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The Rectangle pixel unit value to be converted sdp unit.</param>
+        /// <returns>The Rectangle sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Rectangle PxToSdp(this Rectangle pixel)
+        {
+            if (pixel == null) return null;
+            return new Rectangle(PxToSdp(pixel.X), PxToSdp(pixel.Y), PxToSdp(pixel.Width), PxToSdp(pixel.Height));
+        }
+
+        /// <summary>
         /// Converter Rectangle pixel to sp.
         /// </summary>
         /// <param name="pixel">The Rectangle pixel unit value to be converted sp unit.</param>
         /// <returns>The Rectangle sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Rectangle PxToSp(this Rectangle pixel)
         {
             if (pixel == null) return null;
@@ -424,16 +578,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Rectangle sdp to pixel.
+        /// </summary>
+        /// <param name="sdp">The Rectangle sdp unit value to be converted pixel unit.</param>
+        /// <returns>The Rectangle pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Rectangle SdpToPx(this Rectangle sdp)
+        {
+            if (sdp == null) return null;
+            return new Rectangle((int)Sdp(sdp.X), Sdp(sdp.Y), Sdp(sdp.Width), Sdp(sdp.Height));
+        }
+
+        /// <summary>
         /// Converter Rectangle sp to pixel.
         /// </summary>
         /// <param name="sp">The Rectangle sp unit value to be converted pixel unit.</param>
         /// <returns>The Rectangle pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Rectangle SpToPx(this Rectangle sp)
         {
             if (sp == null) return null;
-            return new Rectangle((int)Sp(sp.X), Sp(sp.Y), Sp(sp.Width), Sp(sp.Height));
+            return new Rectangle((int)SpToPx(sp.X), SpToPx(sp.Y), SpToPx(sp.Width), SpToPx(sp.Height));
         }
 
         /// <summary>
@@ -453,12 +621,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Extents pixel to sdp.
+        /// </summary>
+        /// <param name="pixel">The Extents pixel unit value to be converted sdp unit.</param>
+        /// <returns>The Extents sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Extents PxToSdp(this Extents pixel)
+        {
+            if (pixel == null) return null;
+            return new Extents((ushort)PxToSdp((int)pixel.Start),
+                               (ushort)PxToSdp((int)pixel.End),
+                               (ushort)PxToSdp((int)pixel.Top),
+                               (ushort)PxToSdp((int)pixel.Bottom));
+        }
+
+        /// <summary>
         /// Converter Extents pixel to sp.
         /// </summary>
         /// <param name="pixel">The Extents pixel unit value to be converted sp unit.</param>
         /// <returns>The Extents sp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Extents PxToSp(this Extents pixel)
         {
             if (pixel == null) return null;
@@ -485,19 +670,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter Extents sdp to pixel.
+        /// </summary>
+        /// <param name="sdp">The Extents sdp unit value to be converted pixel unit.</param>
+        /// <returns>The Extents pixel unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Extents SdpToPx(this Extents sdp)
+        {
+            if (sdp == null) return null;
+            return new Extents((ushort)Sdp(sdp.Start),
+                               (ushort)Sdp(sdp.End),
+                               (ushort)Sdp(sdp.Top),
+                               (ushort)Sdp(sdp.Bottom));
+        }
+
+        /// <summary>
         /// Converter Extents sp to pixel.
         /// </summary>
         /// <param name="sp">The Extents sp unit value to be converted pixel unit.</param>
         /// <returns>The Extents pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static Extents SpToPx(this Extents sp)
         {
             if (sp == null) return null;
-            return new Extents((ushort)Sp(sp.Start),
-                               (ushort)Sp(sp.End),
-                               (ushort)Sp(sp.Top),
-                               (ushort)Sp(sp.Bottom));
+            return new Extents((ushort)SpToPx((int)sp.Start),
+                               (ushort)SpToPx((int)sp.End),
+                               (ushort)SpToPx((int)sp.Top),
+                               (ushort)SpToPx((int)sp.Bottom));
         }
 
         /// <summary>
@@ -551,15 +753,40 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converter float font sdp size to point size.
+        /// </summary>
+        /// <param name="sdp">The float sdp unit value to be converted point unit.</param>
+        /// <returns>The float point unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float SdpToPt(this float sdp)
+        {
+            return GraphicsTypeManager.Instance.Point.ConvertSdpToPoint(sdp);
+        }
+
+        /// <summary>
         /// Converter float font sp size to point size.
         /// </summary>
         /// <param name="sp">The float sp unit value to be converted point unit.</param>
         /// <returns>The float point unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static float SpToPt(this float sp)
         {
             return GraphicsTypeManager.Instance.Point.ConvertSpToPoint(sp);
+        }
+
+        /// <summary>
+        /// Converter float font point size to sdp size.
+        /// </summary>
+        /// <param name="pt">The float point unit value to be converted sdp unit.</param>
+        /// <returns>The float sdp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float PtToSdp(this float pt)
+        {
+            return GraphicsTypeManager.Instance.Point.ConvertPointToSdp(pt);
         }
 
         /// <summary>
@@ -569,6 +796,7 @@ namespace Tizen.NUI
         /// <returns>The float dp unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static float PtToSp(this float pt)
         {
             return GraphicsTypeManager.Instance.Point.ConvertPointToSp(pt);
@@ -581,7 +809,7 @@ namespace Tizen.NUI
         /// <returns>The float scaled pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static float Scale(this float px)
+        public static float Spx(this float px)
         {
             return px * GraphicsTypeManager.Instance.ScalingFactor;
         }
@@ -593,10 +821,9 @@ namespace Tizen.NUI
         /// <returns>The int scaled pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static int Scale(this int px)
+        public static int Spx(this int px)
         {
             return (int)(px * GraphicsTypeManager.Instance.ScalingFactor);
         }
-
     }
 }

@@ -15,8 +15,10 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -95,6 +97,10 @@ namespace Tizen.NUI
                 {
                     convertedValue = ConvertSpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sp")), CultureInfo.InvariantCulture));
                 }
+                else if (scriptValue.EndsWith("sdp"))
+                {
+                    convertedValue = ConvertSdpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sdp")), CultureInfo.InvariantCulture));
+                }
                 else if (scriptValue.EndsWith("dp"))
                 {
                     convertedValue = ConvertDpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
@@ -160,11 +166,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converts sdp type to point type.
+        /// </summary>
+        /// <returns>Point value that is converted from sdp.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ConvertSdpToPoint(float value)
+        {
+            float scale = GraphicsTypeManager.Instance.ScalingFactor;
+            if (scale <= 0) scale = 1;
+            return value * ((float)pointDpi / (float)GraphicsTypeManager.Instance.BaselineDpi) * scale;
+        }
+
+        /// <summary>
+        /// Converts point type to sdp type.
+        /// </summary>
+        /// <returns>Sdp value that is converted from point.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ConvertPointToSdp(float value)
+        {
+            float scale = GraphicsTypeManager.Instance.ScalingFactor;
+            if (scale <= 0) scale = 1;
+            return value * ((float)GraphicsTypeManager.Instance.BaselineDpi / (float)pointDpi) / scale;
+        }
+
+        /// <summary>
         /// Converts sp type to point type.
         /// </summary>
         /// <returns>Point value that is converted from dp.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public float ConvertSpToPoint(float value)
         {
             float scale = GraphicsTypeManager.Instance.ScalingFactor;
@@ -178,6 +211,7 @@ namespace Tizen.NUI
         /// <returns>Sp value that is converted from point.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public float ConvertPointToSp(float value)
         {
             float scale = GraphicsTypeManager.Instance.ScalingFactor;
