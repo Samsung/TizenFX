@@ -10,44 +10,41 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
+ * See the License for the Sdpecific language governing permissions and
  * limitations under the License.
  *
  */
 
-using System;
 using System.ComponentModel;
 using System.Globalization;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Default SpTypeConverter class to convert dp types.
+    /// Default SdpTypeConverter class to convert dp types.
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Obsolete("This has been deprecated in API13")]
-    public sealed class SpTypeConverter : GraphicsTypeConverter
+    public sealed class SdpTypeConverter : GraphicsTypeConverter
     {
-        private volatile static SpTypeConverter spTypeConverter;
+        private volatile static SdpTypeConverter sdpTypeConverter;
 
         /// <summary>
-        /// An unique Singleton Instance of SpTypeConverter
+        /// An unique Singleton Instance of SdpTypeConverter
         /// </summary>
-        /// <value>Singleton instance of SpTypeConverter</value>
+        /// <value>Singleton instance of SdpTypeConverter</value>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This has been deprecated in API13")]
-        public static SpTypeConverter Instance
+        public static SdpTypeConverter Instance
         {
             get
             {
-                if (spTypeConverter == null)
+                if (sdpTypeConverter == null)
                 {
-                    spTypeConverter = new SpTypeConverter();
+                    sdpTypeConverter = new SdpTypeConverter();
                 }
 
-                return spTypeConverter;
+                return sdpTypeConverter;
             }
         }
 
@@ -57,15 +54,14 @@ namespace Tizen.NUI
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This has been deprecated in API13")]
         public override float ConvertScriptToPixel(string scriptValue)
         {
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("sp"))
+                if (scriptValue.EndsWith("sdp"))
                 {
-                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sp")), CultureInfo.InvariantCulture));
+                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sdp")), CultureInfo.InvariantCulture));
                 }
                 else
                 {
@@ -80,24 +76,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts sp type to pixel
+        /// Converts Sdp type to pixel
         /// </summary>
-        /// <returns>Pixel value that is converted by the the display matric</returns>
+        /// <returns>Pixel value that is converted by the the diSdplay matric</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This has been deprecated in API13")]
         public override float ConvertToPixel(float value)
         {
             return value * ((float)(GraphicsTypeManager.Instance.Dpi * GraphicsTypeManager.Instance.ScalingFactor) / GraphicsTypeManager.Instance.BaselineDpi);
         }
 
         /// <summary>
-        /// Converts pixel to sp type
+        /// Converts pixel to Sdp type
         /// </summary>
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This has been deprecated in API13")]
         public override float ConvertFromPixel(float value)
         {
             return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)(GraphicsTypeManager.Instance.Dpi * GraphicsTypeManager.Instance.ScalingFactor));
