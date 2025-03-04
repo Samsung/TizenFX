@@ -25,8 +25,8 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextLabelStyle : ViewStyle
     {
-        static readonly IStyleProperty TranslatableTextSelectorProperty = new StyleProperty<TextLabel, Selector<string>>((v, o) => TextLabel.SetInternalTranslatableTextProperty(v, null, o));
-        static readonly IStyleProperty FontFamilySelectorProperty = new StyleProperty<TextLabel, Selector<string>>((v, o) => TextLabel.SetInternalFontFamilyProperty(v, null, o));
+        static readonly IStyleProperty TranslatableTextSelectorProperty = new StyleProperty<TextLabel, Selector<string>>((v, o) => v.TranslatableTextSelector = o);
+        static readonly IStyleProperty FontFamilySelectorProperty = new StyleProperty<TextLabel, Selector<string>>((v, o) => v.FontFamilySelector = o);
         static readonly IStyleProperty MultiLineProperty = new StyleProperty<TextLabel, bool>((v, o) => v.MultiLine = o);
         static readonly IStyleProperty HorizontalAlignmentProperty = new StyleProperty<TextLabel, HorizontalAlignment>((v, o) => v.HorizontalAlignment = o);
         static readonly IStyleProperty VerticalAlignmentProperty = new StyleProperty<TextLabel, VerticalAlignment>((v, o) => v.VerticalAlignment = o);
@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty LineSpacingProperty = new StyleProperty<TextLabel, float>((v, o) => v.LineSpacing = o);
         static readonly IStyleProperty RelativeLineHeightProperty = new StyleProperty<TextLabel, float>((v, o) => v.RelativeLineHeight = o);
         static readonly IStyleProperty EmbossProperty = new StyleProperty<TextLabel, string>((v, o) => v.Emboss = o);
-        static readonly IStyleProperty PixelSizeSelectorProperty = new StyleProperty<TextLabel, Selector<float?>>((v, o) => TextLabel.SetInternalPixelSizeProperty(v, null, o));
+        static readonly IStyleProperty PixelSizeSelectorProperty = new StyleProperty<TextLabel, Selector<float?>>((v, o) => v.PixelSizeSelector = o);
         static readonly IStyleProperty EllipsisProperty = new StyleProperty<TextLabel, bool>((v, o) => v.Ellipsis = o);
         static readonly IStyleProperty AutoScrollLoopDelayProperty = new StyleProperty<TextLabel, float>((v, o) => v.AutoScrollLoopDelay = o);
         static readonly IStyleProperty AutoScrollStopModeProperty = new StyleProperty<TextLabel, AutoScrollStopMode>((v, o) => v.AutoScrollStopMode = o);
@@ -50,10 +50,10 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty AnchorColorProperty = new StyleProperty<TextLabel, Color>((v, o) => v.AnchorColor = o);
         static readonly IStyleProperty AnchorClickedColorProperty = new StyleProperty<TextLabel, Color>((v, o) => v.AnchorClickedColor = o);
         static readonly IStyleProperty MatchSystemLanguageDirectionProperty = new StyleProperty<TextLabel, bool>((v, o) => v.MatchSystemLanguageDirection = o);
-        static readonly IStyleProperty TextSelectorProperty = new StyleProperty<TextLabel, Selector<string>>((v, o) => TextLabel.SetInternalTextProperty(v, null, o));
-        static readonly IStyleProperty TextColorSelectorProperty = new StyleProperty<TextLabel, Selector<Color>>((v, o) => TextLabel.SetInternalTextColorProperty(v, null, o));
-        static readonly IStyleProperty PointSizeSelectorProperty = new StyleProperty<TextLabel, Selector<float?>>((v, o) => TextLabel.SetInternalPointSizeProperty(v, null, o));
-        static readonly IStyleProperty TextShadowProperty = new StyleProperty<TextLabel, Selector<TextShadow>>((v, o) => TextLabel.SetInternalTextShadowProperty(v, null, o));
+        static readonly IStyleProperty TextSelectorProperty = new StyleProperty<TextLabel, Selector<string>>((v, o) => v.TextSelector = o);
+        static readonly IStyleProperty TextColorSelectorProperty = new StyleProperty<TextLabel, Selector<Color>>((v, o) => v.TextColorSelector = o);
+        static readonly IStyleProperty PointSizeSelectorProperty = new StyleProperty<TextLabel, Selector<float?>>((v, o) => v.PointSizeSelector = o);
+        static readonly IStyleProperty TextShadowProperty = new StyleProperty<TextLabel, Selector<TextShadow>>((v, o) => v.TextShadowSelector = o);
         static readonly IStyleProperty FontStyleProperty = new StyleProperty<TextLabel, PropertyMap>((v, o) => v.FontStyle = o);
 
         static TextLabelStyle() { }

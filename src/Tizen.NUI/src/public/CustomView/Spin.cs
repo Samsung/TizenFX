@@ -34,12 +34,12 @@ namespace Tizen.NUI
         /// ValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty ValueProperty = null;
+        public static readonly BindableProperty ValueProperty = null;
         internal static void SetInternalValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalValue = (int)newValue;
             }
         }
@@ -53,12 +53,12 @@ namespace Tizen.NUI
         /// MinValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty MinValueProperty = null;
+        public static readonly BindableProperty MinValueProperty = null;
         internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalMinValue = (int)newValue;
             }
         }
@@ -72,12 +72,12 @@ namespace Tizen.NUI
         /// MaxValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty MaxValueProperty = null;
+        public static readonly BindableProperty MaxValueProperty = null;
         internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalMaxValue = (int)newValue;
             }
         }
@@ -91,12 +91,12 @@ namespace Tizen.NUI
         /// StepProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty StepProperty = null;
+        public static readonly BindableProperty StepProperty = null;
         internal static void SetInternalStepProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalStep = (int)newValue;
             }
         }
@@ -110,12 +110,12 @@ namespace Tizen.NUI
         /// WrappingEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty WrappingEnabledProperty = null;
+        public static readonly BindableProperty WrappingEnabledProperty = null;
         internal static void SetInternalWrappingEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalWrappingEnabled = (bool)newValue;
             }
         }
@@ -129,12 +129,12 @@ namespace Tizen.NUI
         /// TextPointSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty TextPointSizeProperty = null;
+        public static readonly BindableProperty TextPointSizeProperty = null;
         internal static void SetInternalTextPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalTextPointSize = (int)newValue;
             }
         }
@@ -148,12 +148,12 @@ namespace Tizen.NUI
         /// TextColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty TextColorProperty = null;
+        public static readonly BindableProperty TextColorProperty = null;
         internal static void SetInternalTextColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalTextColor = (Tizen.NUI.Color)newValue;
             }
         }
@@ -168,12 +168,12 @@ namespace Tizen.NUI
         /// MaxTextLengthProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty MaxTextLengthProperty = null;
+        public static readonly BindableProperty MaxTextLengthProperty = null;
         internal static void SetInternalMaxTextLengthProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalMaxTextLength = (int)newValue;
             }
         }
@@ -187,12 +187,12 @@ namespace Tizen.NUI
         /// SpinTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty SpinTextProperty = null;
+        public static readonly BindableProperty SpinTextProperty = null;
         internal static void SetInternalSpinTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalSpinText = (Tizen.NUI.BaseComponents.TextField)newValue;
             }
         }
@@ -206,12 +206,12 @@ namespace Tizen.NUI
         /// IndicatorImageProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty IndicatorImageProperty = null;
+        public static readonly BindableProperty IndicatorImageProperty = null;
         internal static void SetInternalIndicatorImageProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Spin)bindable;
                 instance.InternalIndicatorImage = (string)newValue;
             }
         }
@@ -306,7 +306,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (int)GetInternalValueProperty(this);
+                    return InternalValue;
                 }
             }
             set
@@ -317,7 +317,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalValueProperty(this, null, value);
+                    InternalValue = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -364,7 +364,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (int)GetInternalMinValueProperty(this);
+                    return InternalMinValue;
                 }
             }
             set
@@ -375,7 +375,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalMinValueProperty(this, null, value);
+                    InternalMinValue = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -408,7 +408,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (int)GetInternalMaxValueProperty(this);
+                    return InternalMaxValue;
                 }
             }
             set
@@ -419,7 +419,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalMaxValueProperty(this, null, value);
+                    InternalMaxValue = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -452,7 +452,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (int)GetInternalStepProperty(this);
+                    return InternalStep;
                 }
             }
             set
@@ -463,7 +463,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalStepProperty(this, null, value);
+                    InternalStep = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -496,7 +496,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (bool)GetInternalWrappingEnabledProperty(this);
+                    return InternalWrappingEnabled;
                 }
             }
             set
@@ -507,7 +507,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalWrappingEnabledProperty(this, null, value);
+                    InternalWrappingEnabled = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -540,7 +540,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (int)GetInternalTextPointSizeProperty(this);
+                    return InternalTextPointSize;
                 }
             }
             set
@@ -551,7 +551,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalTextPointSizeProperty(this, null, value);
+                    InternalTextPointSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -585,7 +585,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return GetInternalTextColorProperty(this) as Color;
+                    return InternalTextColor;
                 }
             }
             set
@@ -596,7 +596,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalTextColorProperty(this, null, value);
+                    InternalTextColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -635,7 +635,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (int)GetInternalMaxTextLengthProperty(this);
+                    return InternalMaxTextLength;
                 }
             }
             set
@@ -646,7 +646,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalMaxTextLengthProperty(this, null, value);
+                    InternalMaxTextLength = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -680,7 +680,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return GetInternalSpinTextProperty(this) as TextField;
+                    return InternalSpinText;
                 }
             }
             set
@@ -691,7 +691,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalSpinTextProperty(this, null, value);
+                    InternalSpinText = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -723,7 +723,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return GetInternalIndicatorImageProperty(this) as string;
+                    return InternalIndicatorImage;
                 }
             }
             set
@@ -734,7 +734,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalIndicatorImageProperty(this, null, value);
+                    InternalIndicatorImage = value;
                 }
                 NotifyPropertyChanged();
             }
