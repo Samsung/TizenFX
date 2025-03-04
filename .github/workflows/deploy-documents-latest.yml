@@ -12,7 +12,7 @@ jobs:
       options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
 
@@ -21,7 +21,7 @@ jobs:
         ./build_all.sh clone
     - name: Cache DocFX output
       id: cache-site
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: _site
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
@@ -33,11 +33,11 @@ jobs:
         ./build_all.sh restore
         ./build_all.sh build
         ./build_all.sh index
-		
+
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: documents
         path: site.tar.gz
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4
       with:
         name: documents
 
