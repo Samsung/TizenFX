@@ -41,21 +41,19 @@ namespace Tizen.NUI
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty BlurStrengthProperty = null;
+        public static readonly BindableProperty BlurStrengthProperty = null;
         internal static void SetInternalBlurStrengthProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var gaussianBlurView = (GaussianBlurView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex(), new Tizen.NUI.PropertyValue((float)newValue));
+                var gaussianBlurView = (GaussianBlurView)bindable;
+                gaussianBlurView.SetInternalBlurStrength((float)newValue);
             }
         }
         internal static object GetInternalBlurStrengthProperty(BindableObject bindable)
         {
             var gaussianBlurView = (GaussianBlurView)bindable;
-            float temp;
-            Tizen.NUI.Object.GetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex()).Get(out temp);
-            return temp;
+            return gaussianBlurView.GetInternalBlurStrength();
         }
 
         internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
@@ -158,7 +156,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalBlurStrengthProperty(this);
+                    return GetInternalBlurStrength();
                 }
             }
             set
@@ -169,10 +167,24 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalBlurStrengthProperty(this, null, value);
+                    SetInternalBlurStrength(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalBlurStrength(float newValue)
+        {
+            using var pv =  new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, GetBlurStrengthPropertyIndex(), pv);
+        }
+
+        private float GetInternalBlurStrength()
+        {
+            float temp;
+            using var prop = Object.GetProperty(SwigCPtr, GetBlurStrengthPropertyIndex());
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
