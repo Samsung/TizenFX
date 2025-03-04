@@ -12,7 +12,7 @@ jobs:
       options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
 
