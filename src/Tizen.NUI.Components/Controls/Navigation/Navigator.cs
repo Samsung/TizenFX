@@ -81,9 +81,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TransitionProperty = null;
         internal static void SetInternalTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Navigator)bindable;
             if (newValue != null)
             {
+                var instance = (Navigator)bindable;
                 instance.InternalTransition = newValue as Transition;
             }
         }
@@ -100,9 +100,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty EnableBackNavigationProperty = null;
         internal static void SetInternalEnableBackNavigationProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Navigator)bindable;
             if (newValue != null)
             {
+                var instance = (Navigator)bindable;
                 instance.InternalEnableBackNavigation = (bool)newValue;
             }
         }
@@ -264,7 +264,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTransitionProperty(this) as Transition;
+                    return InternalTransition;
                 }
             }
             set
@@ -275,7 +275,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTransitionProperty(this, null, value);
+                    InternalTransition = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -807,7 +807,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalEnableBackNavigationProperty(this);
+                    return InternalEnableBackNavigation;
                 }
             }
             set
@@ -818,7 +818,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalEnableBackNavigationProperty(this, null, value);
+                    InternalEnableBackNavigation = value;
                 }
                 NotifyPropertyChanged();
             }

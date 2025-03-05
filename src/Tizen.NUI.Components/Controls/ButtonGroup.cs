@@ -35,19 +35,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemheightProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.SizeHeight = (float)newValue;
-                }
-                btGroup.itemheight = (float)newValue;
-            }
+            btGroup.SetInternalItemheight((float)newValue);
         }
         internal static object GetInternalItemheightProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemheight;
+            return btGroup.GetInternalItemheight();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -56,19 +49,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.TextLabel.PointSize = (float)newValue;
-                }
-                btGroup.itemPointSize = (float)newValue;
-            }
+            btGroup.SetInternalItemPointSize((float)newValue);
         }
         internal static object GetInternalItemPointSizeProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemPointSize;
+            return btGroup.GetInternalItemPointSize();
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -77,19 +63,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.TextLabel.FontFamily = (string)newValue;
-                }
-                btGroup.itemFontFamily = (string)newValue;
-            }
+            btGroup.SetInternalItemFontFamily((string)newValue);
         }
         internal static object GetInternalItemFontFamilyProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemFontFamily;
+            return btGroup.GetInternalItemFontFamily();
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -98,19 +77,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemTextColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.TextLabel.TextColor = (Color)newValue;
-                }
-                btGroup.itemTextColor = (Color)newValue;
-            }
+            btGroup.SetInternalItemTextColor((Color)newValue);
         }
         internal static object GetInternalItemTextColorProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemTextColor;
+            return btGroup.GetInternalItemTextColor();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -119,19 +91,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemTextAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.TextLabel.HorizontalAlignment = (HorizontalAlignment)newValue;
-                }
-                btGroup.itemTextAlignment = (HorizontalAlignment)newValue;
-            }
+            btGroup.SetInternalItemTextAlignment((HorizontalAlignment)newValue);
         }
         internal static object GetInternalItemTextAlignmentProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemTextAlignment;
+            return btGroup.GetInternalItemTextAlignment();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -140,22 +105,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalOverLayBackgroundColorSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    if (btn.OverlayImage != null)
-                    {
-                        btn.OverlayImage.BackgroundColor = ((Selector<Color>)newValue).All;
-                    }
-                }
-                btGroup.overLayBackgroundColorSelector = (Selector<Color>)newValue;
-            }
+            btGroup.SetInternalOverLayBackgroundColorSelector((Selector<Color>)newValue);
         }
         internal static object GetInternalOverLayBackgroundColorSelectorProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.overLayBackgroundColorSelector;
+            return btGroup.GetInternalOverLayBackgroundColorSelector();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -164,19 +119,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemBackgroundImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.BackgroundImage = (string)newValue;
-                }
-                btGroup.itemBackgroundImageUrl = (string)newValue;
-            }
+            btGroup.SetInternalItemBackgroundImageUrl((string)newValue);
         }
         internal static object GetInternalItemBackgroundImageUrlProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemBackgroundImageUrl;
+            return btGroup.GetInternalItemBackgroundImageUrl();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -185,19 +133,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemBackgroundBorderProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.BackgroundImageBorder = (Rectangle)newValue;
-                }
-                btGroup.itemBackgroundBorder = (Rectangle)newValue;
-            }
+            btGroup.SetInternalItemBackgroundBorder((Rectangle)newValue);
         }
         internal static object GetInternalItemBackgroundBorderProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemBackgroundBorder;
+            return btGroup.GetInternalItemBackgroundBorder();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -206,20 +147,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalItemImageShadowProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null)
-            {
-                var shadow = (ImageShadow)newValue;
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.ImageShadow = new ImageShadow(shadow);
-                }
-                btGroup.itemImageShadow = new ImageShadow(shadow);
-            }
+            btGroup.SetInternalItemImageShadow((ImageShadow)newValue);
         }
         internal static object GetInternalItemImageShadowProperty(BindableObject bindable)
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemImageShadow;
+            return btGroup.GetInternalItemImageShadow();
         }
 
         static ButtonGroup()
@@ -426,7 +359,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalItemheightProperty(this);
+                    return GetInternalItemheight();
                 }
             }
             set
@@ -437,9 +370,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemheightProperty(this, null, value);
+                    SetInternalItemheight(value);
                 }
             }
+        }
+
+        private void SetInternalItemheight(float newValue)
+        {
+            if (itemGroup != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.SizeHeight = (float)newValue;
+                }
+                itemheight = newValue;
+            }
+        }
+
+        private float GetInternalItemheight()
+        {
+            return itemheight;
         }
 
         /// <summary>
@@ -456,7 +406,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalItemPointSizeProperty(this);
+                    return GetInternalItemPointSize();
                 }
             }
             set
@@ -467,9 +417,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemPointSizeProperty(this, null, value);
+                    SetInternalItemPointSize(value);
                 }
             }
+        }
+
+        private void SetInternalItemPointSize(float newValue)
+        {
+            if (itemGroup != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.TextLabel.PointSize = (float)newValue;
+                }
+                itemPointSize = newValue;
+            }
+        }
+
+        private float GetInternalItemPointSize()
+        {
+            return itemPointSize;
         }
 
         /// <summary>
@@ -486,7 +453,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (string)GetInternalItemFontFamilyProperty(this);
+                    return GetInternalItemFontFamily();
                 }
             }
             set
@@ -497,9 +464,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemFontFamilyProperty(this, null, value);
+                    SetInternalItemFontFamily(value);
                 }
             }
+        }
+
+        private void SetInternalItemFontFamily(string newValue)
+        {
+            if (itemGroup != null && newValue != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.TextLabel.FontFamily = newValue;
+                }
+                itemFontFamily = newValue;
+            }
+        }
+
+        private string GetInternalItemFontFamily()
+        {
+            return itemFontFamily;
         }
 
         /// <summary>
@@ -516,7 +500,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Color)GetInternalItemTextColorProperty(this);
+                    return GetInternalItemTextColor();
                 }
             }
             set
@@ -527,9 +511,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemTextColorProperty(this, null, value);
+                    SetInternalItemTextColor(value);
                 }
             }
+        }
+
+        private void SetInternalItemTextColor(Color newValue)
+        {
+            if (itemGroup != null && newValue != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.TextLabel.TextColor = newValue;
+                }
+                itemTextColor = newValue;
+            }
+        }
+
+        private Color GetInternalItemTextColor()
+        {
+            return itemTextColor;
         }
 
         /// <summary>
@@ -546,7 +547,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (HorizontalAlignment)GetInternalItemTextAlignmentProperty(this);
+                    return GetInternalItemTextAlignment();
                 }
             }
             set
@@ -557,9 +558,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemTextAlignmentProperty(this, null, value);
+                    SetInternalItemTextAlignment(value);
                 }
             }
+        }
+
+        private void SetInternalItemTextAlignment(HorizontalAlignment newValue)
+        {
+            if (itemGroup != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.TextLabel.HorizontalAlignment = newValue;
+                }
+                itemTextAlignment = newValue;
+            }
+        }
+
+        private HorizontalAlignment GetInternalItemTextAlignment()
+        {
+            return itemTextAlignment;
         }
 
         /// <summary>
@@ -576,7 +594,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Selector<Color>)GetInternalOverLayBackgroundColorSelectorProperty(this);
+                    return GetInternalOverLayBackgroundColorSelector();
                 }
             }
             set
@@ -587,9 +605,29 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalOverLayBackgroundColorSelectorProperty(this, null, value);
+                    SetInternalOverLayBackgroundColorSelector(value);
                 }
             }
+        }
+
+        private void SetInternalOverLayBackgroundColorSelector(Selector<Color> newValue)
+        {
+            if (itemGroup != null && newValue != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    if (btn.OverlayImage != null)
+                    {
+                        btn.OverlayImage.BackgroundColor = newValue.All;
+                    }
+                }
+                overLayBackgroundColorSelector = newValue;
+            }
+        }
+
+        private Selector<Color> GetInternalOverLayBackgroundColorSelector()
+        {
+            return overLayBackgroundColorSelector;
         }
 
         /// <summary>
@@ -607,7 +645,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (string)GetInternalItemBackgroundImageUrlProperty(this);
+                    return GetInternalItemBackgroundImageUrl();
                 }
             }
             set
@@ -618,9 +656,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemBackgroundImageUrlProperty(this, null, value);
+                    SetInternalItemBackgroundImageUrl(value);
                 }
             }
+        }
+
+        private void SetInternalItemBackgroundImageUrl(string newValue)
+        {
+            if (itemGroup != null && newValue != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.BackgroundImage = newValue;
+                }
+                itemBackgroundImageUrl = newValue;
+            }
+        }
+
+        private string GetInternalItemBackgroundImageUrl()
+        {
+            return itemBackgroundImageUrl;
         }
 
         /// <summary>
@@ -637,7 +692,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Rectangle)GetInternalItemBackgroundBorderProperty(this);
+                    return GetInternalItemBackgroundBorder();
                 }
             }
             set
@@ -648,9 +703,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemBackgroundBorderProperty(this, null, value);
+                    SetInternalItemBackgroundBorder(value);
                 }
             }
+        }
+
+        private void SetInternalItemBackgroundBorder(Rectangle newValue)
+        {
+            if (itemGroup != null && newValue != null)
+            {
+                foreach (Button btn in itemGroup)
+                {
+                    btn.BackgroundImageBorder = newValue;
+                }
+                itemBackgroundBorder = newValue;
+            }
+        }
+
+        private Rectangle GetInternalItemBackgroundBorder()
+        {
+            return itemBackgroundBorder;
         }
 
         /// <summary>
@@ -667,7 +739,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (ImageShadow)GetInternalItemImageShadowProperty(this);
+                    return GetInternalItemImageShadow();
                 }
             }
             set
@@ -678,9 +750,27 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemImageShadowProperty(this, null, value);
+                    SetInternalItemImageShadow(value);
                 }
             }
+        }
+
+        private void SetInternalItemImageShadow(ImageShadow newValue)
+        {
+            if (itemGroup != null)
+            {
+                var shadow = newValue;
+                foreach (Button btn in itemGroup)
+                {
+                    btn.ImageShadow = new ImageShadow(shadow);
+                }
+                itemImageShadow = new ImageShadow(shadow);
+            }
+        }
+
+        private ImageShadow GetInternalItemImageShadow()
+        {
+            return itemImageShadow;
         }
 
         /// <summary>

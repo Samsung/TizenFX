@@ -39,9 +39,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FeedbackProperty = null;
         internal static void SetInternalFeedbackProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Control)bindable;
             if (newValue != null)
             {
+                var instance = (Control)bindable;
                 instance.InternalFeedback = (bool)newValue;
             }
         }
@@ -57,12 +57,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalCommandProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Control)bindable;
-            instance.command = (ICommand)newValue;
-            instance.OnCommandChanged();
+            instance.SetInternalCommand((ICommand)newValue);
         }
         internal static object GetInternalCommandProperty(BindableObject bindable)
         {
-            return ((Control)bindable).command;
+            var instance = (Control)bindable;
+            return instance.GetInternalCommand();
         }
 
         /// Internal used.
@@ -157,7 +157,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalFeedbackProperty(this);
+                    return InternalFeedback;
                 }
             }
             set
@@ -168,11 +168,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFeedbackProperty(this, null, value);
+                    InternalFeedback = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private bool InternalFeedback
         {
             get => feedback != null;
@@ -242,7 +243,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (ICommand)GetInternalCommandProperty(this);
+                    return GetInternalCommand();
                 }
             }
             set
@@ -253,9 +254,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalCommandProperty(this, null, value);
+                    SetInternalCommand(value);
                 }
             }
+        }
+
+        private void SetInternalCommand(ICommand newValue)
+        {
+            command = newValue;
+            OnCommandChanged();
+        }
+
+        private ICommand GetInternalCommand()
+        {
+            return command;
         }
 
         /// Internal used.
