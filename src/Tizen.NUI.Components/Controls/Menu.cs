@@ -237,7 +237,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalAnchorProperty(this) as View;
+                    return InternalAnchor;
                 }
             }
             set
@@ -248,7 +248,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalAnchorProperty(this, null, value);
+                    InternalAnchor =  value;
                 }
                 NotifyPropertyChanged();
             }
@@ -297,7 +297,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (RelativePosition)GetInternalHorizontalPositionToAnchorProperty(this);
+                    return InternalHorizontalPositionToAnchor;
                 }
             }
             set
@@ -308,7 +308,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalHorizontalPositionToAnchorProperty(this, null, value);
+                    InternalHorizontalPositionToAnchor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -353,7 +353,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (RelativePosition)GetInternalVerticalPositionToAnchorProperty(this);
+                    return InternalVerticalPositionToAnchor;
                 }
             }
             set
@@ -364,7 +364,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalVerticalPositionToAnchorProperty(this, null, value);
+                    InternalVerticalPositionToAnchor = value;
                 }
                 NotifyPropertyChanged();
             }

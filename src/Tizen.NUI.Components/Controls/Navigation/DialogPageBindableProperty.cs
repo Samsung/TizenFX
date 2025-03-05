@@ -13,9 +13,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ContentProperty = null;
         internal static void SetInternalContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DialogPage)bindable;
             if (newValue != null)
             {
+                var instance = (DialogPage)bindable;
                 instance.InternalContent = newValue as View;
             }
         }
@@ -32,9 +32,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty EnableScrimProperty = null;
         internal static void SetInternalEnableScrimProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DialogPage)bindable;
             if (newValue != null)
             {
+                var instance = (DialogPage)bindable;
                 instance.InternalEnableScrim = (bool)newValue;
             }
         }
@@ -51,9 +51,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty EnableDismissOnScrimProperty = null;
         internal static void SetInternalEnableDismissOnScrimProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DialogPage)bindable;
             if (newValue != null)
             {
+                var instance = (DialogPage)bindable;
                 instance.InternalEnableDismissOnScrim = (bool)newValue;
             }
         }
@@ -70,9 +70,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrimColorProperty = null;
         internal static void SetInternalScrimColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DialogPage)bindable;
             if (newValue != null)
             {
+                var instance = (DialogPage)bindable;
                 instance.InternalScrimColor = newValue as Color;
             }
         }

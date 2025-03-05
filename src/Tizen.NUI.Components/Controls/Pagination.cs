@@ -31,52 +31,6 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public partial class Pagination : Control, IAtspiValue
     {
-        /// <summary>The IndicatorSize bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSizeProperty = null;
-        internal static void SetInternalIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (newValue != null)
-            {
-                var pagination = (Pagination)bindable;
-                pagination.indicatorSize = new Size((Size)newValue);
-                pagination.UpdateVisual();
-                pagination.UpdateContainer();
-            }
-        }
-        internal static object GetInternalIndicatorSizeProperty(BindableObject bindable)
-        {
-            return ((Pagination)bindable).indicatorSize;
-        }
-
-        /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorImageUrlProperty = null;
-        internal static void SetInternalIndicatorImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var pagination = (Pagination)bindable;
-            pagination.indicatorImageUrl = ((Selector<string>)newValue)?.Clone();
-            pagination.UpdateVisual();
-        }
-        internal static object GetInternalIndicatorImageUrlProperty(BindableObject bindable)
-        {
-            return ((Pagination)bindable).indicatorImageUrl;
-        }
-
-        /// <summary>The IndicatorSpacing bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSpacingProperty = null;
-        internal static void SetInternalIndicatorSpacingProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var pagination = (Pagination)bindable;
-            pagination.indicatorSpacing = (int)newValue;
-            pagination.UpdateVisual();
-        }
-        internal static object GetInternalIndicatorSpacingProperty(BindableObject bindable)
-        {
-            return ((Pagination)bindable).indicatorSpacing;
-        }
-
         // Depending on Tizen 7.0 Pagination UX guide
         private const int DefaultIndicatorWidth = 64;
         private const int DefaultIndicatorHeight = 8;
@@ -169,7 +123,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Size)GetInternalIndicatorSizeProperty(this);
+                    return GetInternalIndicatorSize();
                 }
             }
             set
@@ -180,9 +134,24 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndicatorSizeProperty(this, null, value);
+                    SetInternalIndicatorSize(value);
                 }
             }
+        }
+
+        private void SetInternalIndicatorSize(Size newValue)
+        {
+            if (newValue != null)
+            {
+                indicatorSize = new Size(newValue);
+                UpdateVisual();
+                UpdateContainer();
+            }
+        }
+
+        private Size GetInternalIndicatorSize()
+        {
+            return indicatorSize;
         }
 
         /// <summary>
@@ -199,7 +168,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Selector<string>)GetInternalIndicatorImageUrlProperty(this);
+                    return GetInternalIndicatorImageUrl();
                 }
             }
             set
@@ -210,9 +179,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndicatorImageUrlProperty(this, null, value);
+                    SetInternalIndicatorImageUrl(value);
                 }
             }
+        }
+
+        private void SetInternalIndicatorImageUrl(Selector<string> newValue)
+        {
+            indicatorImageUrl = newValue?.Clone();
+            UpdateVisual();
+        }
+
+        private Selector<string> GetInternalIndicatorImageUrl()
+        {
+            return indicatorImageUrl;
         }
 
         /// <summary>
@@ -230,7 +210,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalLastIndicatorImageUrlProperty(this) as Selector<string>;
+                    return InternalLastIndicatorImageUrl;
                 }
             }
             set
@@ -241,7 +221,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLastIndicatorImageUrlProperty(this, null, value);
+                    InternalLastIndicatorImageUrl = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -273,7 +253,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalIndicatorSpacingProperty(this);
+                    return GetInternalIndicatorSpacing();
                 }
             }
             set
@@ -284,11 +264,21 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndicatorSpacingProperty(this, null, value);
+                    SetInternalIndicatorSpacing(value);
                 }
             }
         }
 
+        private void SetInternalIndicatorSpacing(int newValue)
+        {
+            indicatorSpacing = newValue;
+            UpdateVisual();
+        }
+
+        private int GetInternalIndicatorSpacing()
+        {
+            return indicatorSpacing;
+        }
 
         /// <summary>
         /// Gets or sets the count of the pages/indicators.
@@ -305,7 +295,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalIndicatorCountProperty(this);
+                    return InternalIndicatorCount;
                 }
             }
             set
@@ -316,7 +306,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndicatorCountProperty(this, null, value);
+                    InternalIndicatorCount = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -401,7 +391,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIndicatorColorProperty(this) as Color;
+                    return InternalIndicatorColor;
                 }
             }
             set
@@ -412,7 +402,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndicatorColorProperty(this, null, value);
+                    InternalIndicatorColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -480,7 +470,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSelectedIndicatorColorProperty(this) as Color;
+                    return InternalSelectedIndicatorColor;
                 }
             }
             set
@@ -491,7 +481,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSelectedIndicatorColorProperty(this, null, value);
+                    InternalSelectedIndicatorColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -544,7 +534,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalSelectedIndexProperty(this);
+                    return InternalSelectedIndex;
                 }
             }
             set
@@ -555,7 +545,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSelectedIndexProperty(this, null, value);
+                    InternalSelectedIndex =  value;
                 }
                 NotifyPropertyChanged();
             }

@@ -35,9 +35,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ContentProperty = null;
         internal static void SetInternalContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Dialog)bindable;
             if (newValue != null)
             {
+                var instance = (Dialog)bindable;
                 instance.InternalContent = newValue as View;
             }
         }
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalContentProperty(this) as View;
+                    return InternalContent;
                 }
             }
             set
@@ -147,11 +147,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalContentProperty(this, null, value);
+                    InternalContent = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private View InternalContent
         {
             get
