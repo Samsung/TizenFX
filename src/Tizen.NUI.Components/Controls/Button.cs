@@ -49,210 +49,6 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public partial class Button : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconRelativeOrientationProperty = null;
-        internal static void SetInternalIconRelativeOrientationProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            var newIconOrientation = (IconOrientation?)newValue;
-            if (instance.iconRelativeOrientation != newIconOrientation)
-            {
-                instance.iconRelativeOrientation = newIconOrientation;
-                instance.LayoutItems();
-            }
-        }
-        internal static object GetInternalIconRelativeOrientationProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).iconRelativeOrientation;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = null;
-        internal static void SetInternalIsSelectedProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                bool newSelected = (bool)newValue;
-                if (instance.isSelected != newSelected)
-                {
-                    instance.isSelected = newSelected;
-
-                    if (instance.isSelectable)
-                    {
-                        instance.UpdateState();
-                    }
-
-                    if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
-                    {
-                        instance.EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, newSelected);
-                    }
-                }
-            }
-        }
-        internal static object GetInternalIsSelectedProperty(BindableObject bindable)
-        {
-            var instance = (Button)bindable;
-            return instance.isSelectable && instance.isSelected;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = null;
-        internal static void SetInternalIsSelectableProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                bool newSelectable = (bool)newValue;
-                if (instance.isSelectable != newSelectable)
-                {
-                    instance.isSelectable = newSelectable;
-                    instance.UpdateState();
-                }
-            }
-        }
-        internal static object GetInternalIsSelectableProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).isSelectable;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconPaddingProperty = null;
-        internal static void SetInternalIconPaddingProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            if (instance.buttonIcon == null)
-            {
-                return;
-            }
-            instance.buttonIcon.Padding = (Extents)newValue;
-        }
-        internal static object GetInternalIconPaddingProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).buttonIcon?.Padding;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextPaddingProperty = null;
-        internal static void SetInternalTextPaddingProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            if (instance.buttonText == null)
-            {
-                return;
-            }
-            instance.buttonText.Padding = (Extents)newValue;
-        }
-        internal static object GetInternalTextPaddingProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).buttonText?.Padding;
-        }
-
-        /// <summary> The bindable property of ItemAlignment. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemAlignmentProperty = null;
-        internal static void SetInternalItemAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            var newAlignment = (LinearLayout.Alignment)newValue;
-
-            if (instance.itemAlignment != newAlignment)
-            {
-                instance.itemAlignment = newAlignment;
-
-                switch (newAlignment)
-                {
-                    case LinearLayout.Alignment.Begin:
-                        instance.itemHorizontalAlignment = HorizontalAlignment.Begin;
-                        break;
-                    case LinearLayout.Alignment.End:
-                        instance.itemHorizontalAlignment = HorizontalAlignment.End;
-                        break;
-                    case LinearLayout.Alignment.CenterHorizontal:
-                        instance.itemHorizontalAlignment = HorizontalAlignment.Center;
-                        break;
-                    case LinearLayout.Alignment.Top:
-                        instance.itemVerticalAlignment = VerticalAlignment.Top;
-                        break;
-                    case LinearLayout.Alignment.Bottom:
-                        instance.itemVerticalAlignment = VerticalAlignment.Bottom;
-                        break;
-                    case LinearLayout.Alignment.CenterVertical:
-                        instance.itemVerticalAlignment = VerticalAlignment.Center;
-                        break;
-                    case LinearLayout.Alignment.Center:
-                        instance.itemHorizontalAlignment = HorizontalAlignment.Center;
-                        instance.itemVerticalAlignment = VerticalAlignment.Center;
-                        break;
-                    default:
-                        break;
-                }
-
-                instance.LayoutItems();
-            }
-        }
-        internal static object GetInternalItemAlignmentProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).itemAlignment;
-        }
-
-        /// <summary> The bindable property of ItemHorizontalAlignment. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemHorizontalAlignmentProperty = null;
-        internal static void SetInternalItemHorizontalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            var newHorizontalAlignment = (HorizontalAlignment)newValue;
-
-            if (instance.itemHorizontalAlignment != newHorizontalAlignment)
-            {
-                instance.itemHorizontalAlignment = newHorizontalAlignment;
-                instance.LayoutItems();
-            }
-        }
-        internal static object GetInternalItemHorizontalAlignmentProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).itemHorizontalAlignment;
-        }
-
-        /// <summary> The bindable property of ItemVerticalAlignment. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemVerticalAlignmentProperty = null;
-        internal static void SetInternalItemVerticalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            var newVerticalAlignment = (VerticalAlignment)newValue;
-
-            if (instance.itemVerticalAlignment != newVerticalAlignment)
-            {
-                instance.itemVerticalAlignment = newVerticalAlignment;
-                instance.LayoutItems();
-            }
-        }
-        internal static object GetInternalItemVerticalAlignmentProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).itemVerticalAlignment;
-        }
-
-        /// <summary> The bindable property of ItemSpacing. </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty ItemSpacingProperty = null;
-        internal static void SetInternalItemSpacingProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Button)bindable;
-            instance.itemSpacing = (Size2D)newValue;
-            instance.UpdateSizeAndSpacing();
-        }
-        internal static object GetInternalItemSpacingProperty(BindableObject bindable)
-        {
-            return ((Button)bindable).itemSpacing;
-        }
-
         private IconOrientation? iconRelativeOrientation = IconOrientation.Left;
         private bool isSelected = false;
         private bool isSelectable = false;
@@ -491,7 +287,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextProperty(this) as string;
+                    return InternalText;
                 }
             }
             set
@@ -502,11 +298,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextProperty(this, null, value);
+                    InternalText = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private string InternalText
         {
             get
@@ -538,7 +335,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIsSelectableProperty(this);
+                    return GetInternalIsSelectable();
                 }
             }
             set
@@ -549,9 +346,24 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIsSelectableProperty(this, null, value);
+                    SetInternalIsSelectable(value);
                 }
             }
+        }
+
+        private void SetInternalIsSelectable(bool newValue)
+        {
+            bool newSelectable = newValue;
+            if (isSelectable != newSelectable)
+            {
+                isSelectable = newSelectable;
+                UpdateState();
+            }
+        }
+
+        private bool GetInternalIsSelectable()
+        {
+            return isSelectable;
         }
 
         /// <summary>
@@ -568,7 +380,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTranslatableTextProperty(this) as string;
+                    return InternalTranslatableText;
                 }
             }
             set
@@ -579,11 +391,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTranslatableTextProperty(this, null, value);
+                    InternalTranslatableText = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private string InternalTranslatableText
         {
             get
@@ -610,7 +423,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalPointSizeProperty(this);
+                    return InternalPointSize;
                 }
             }
             set
@@ -621,11 +434,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPointSizeProperty(this, null, value);
+                    InternalPointSize = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private float InternalPointSize
         {
             get
@@ -652,7 +466,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalFontFamilyProperty(this) as string;
+                    return InternalFontFamily;
                 }
             }
             set
@@ -663,11 +477,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFontFamilyProperty(this, null, value);
+                    InternalFontFamily = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private string InternalFontFamily
         {
             get
@@ -694,7 +509,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextColorProperty(this) as Color;
+                    return InternalTextColor;
                 }
             }
             set
@@ -705,11 +520,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextColorProperty(this, null, value);
+                    InternalTextColor = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private Color InternalTextColor
         {
             get
@@ -736,7 +552,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (HorizontalAlignment)GetInternalTextAlignmentProperty(this);
+                    return InternalTextAlignment;
                 }
             }
             set
@@ -747,11 +563,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextAlignmentProperty(this, null, value);
+                    InternalTextAlignment = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private HorizontalAlignment InternalTextAlignment
         {
             get
@@ -778,7 +595,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIconURLProperty(this) as string;
+                    return InternalIconURL;
                 }
             }
             set
@@ -789,11 +606,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconURLProperty(this, null, value);
+                    InternalIconURL = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private string InternalIconURL
         {
             get
@@ -820,7 +638,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIconSizeProperty(this) as Size;
+                    return InternalIconSize;
                 }
             }
             set
@@ -831,11 +649,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconSizeProperty(this, null, value);
+                    InternalIconSize = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private Size InternalIconSize
         {
             get => Icon.Size;
@@ -858,7 +677,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextSelectorProperty(this) as StringSelector;
+                    return InternalTextSelector;
                 }
             }
             set
@@ -869,11 +688,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextSelectorProperty(this, null, value);
+                    InternalTextSelector = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private StringSelector InternalTextSelector
         {
             get => buttonText?.TextSelector == null ? null : new StringSelector(buttonText.TextSelector);
@@ -906,7 +726,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTranslatableTextSelectorProperty(this) as StringSelector;
+                    return InternalTranslatableTextSelector;
                 }
             }
             set
@@ -917,11 +737,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTranslatableTextSelectorProperty(this, null, value);
+                    InternalTranslatableTextSelector = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private StringSelector InternalTranslatableTextSelector
         {
             get => (buttonText?.TranslatableTextSelector == null) ? null : new StringSelector(buttonText.TranslatableTextSelector);
@@ -954,7 +775,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextColorSelectorProperty(this) as ColorSelector;
+                    return InternalTextColorSelector;
                 }
             }
             set
@@ -965,11 +786,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextColorSelectorProperty(this, null, value);
+                    InternalTextColorSelector = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private ColorSelector InternalTextColorSelector
         {
             get => buttonText?.TextColorSelector == null ? null : new ColorSelector(buttonText.TextColorSelector);
@@ -1002,7 +824,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalPointSizeSelectorProperty(this) as FloatSelector;
+                    return InternalPointSizeSelector;
                 }
             }
             set
@@ -1013,11 +835,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPointSizeSelectorProperty(this, null, value);
+                    InternalPointSizeSelector = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private FloatSelector InternalPointSizeSelector
         {
             get => buttonText?.PointSizeSelector == null ? null : new FloatSelector(buttonText.PointSizeSelector);
@@ -1050,7 +873,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIconURLSelectorProperty(this) as StringSelector;
+                    return InternalIconURLSelector;
                 }
             }
             set
@@ -1061,11 +884,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconURLSelectorProperty(this, null, value);
+                    InternalIconURLSelector = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private StringSelector InternalIconURLSelector
         {
             get
@@ -1104,7 +928,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIsSelectedProperty(this);
+                    return GetInternalIsSelected();
                 }
             }
             set
@@ -1115,9 +939,33 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIsSelectedProperty(this, null, value);
+                    SetInternalIsSelected(value);
                 }
             }
+        }
+
+        private void SetInternalIsSelected(bool newValue)
+        {
+            bool newSelected = newValue;
+            if (isSelected != newSelected)
+            {
+                isSelected = newSelected;
+
+                if (isSelectable)
+                {
+                    UpdateState();
+                }
+
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
+                {
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, newSelected);
+                }
+            }
+        }
+
+        private bool GetInternalIsSelected()
+        {
+            return isSelectable && isSelected;
         }
 
         /// <summary>
@@ -1147,7 +995,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (IconOrientation?)GetInternalIconRelativeOrientationProperty(this) ?? IconOrientation.Left;
+                    return GetInternalIconRelativeOrientation() ?? IconOrientation.Left;
                 }
             }
             set
@@ -1158,9 +1006,24 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconRelativeOrientationProperty(this, null, value);
+                    SetInternalIconRelativeOrientation(value);
                 }
             }
+        }
+
+        private void SetInternalIconRelativeOrientation(IconOrientation? newValue)
+        {
+            var newIconOrientation = newValue;
+            if (iconRelativeOrientation != newIconOrientation)
+            {
+                iconRelativeOrientation = newIconOrientation;
+                LayoutItems();
+            }
+        }
+
+        private IconOrientation? GetInternalIconRelativeOrientation()
+        {
+            return iconRelativeOrientation;
         }
 
         /// <summary>
@@ -1177,7 +1040,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Extents)GetInternalIconPaddingProperty(this) ?? new Extents();
+                    return GetInternalIconPadding() ?? new Extents();
                 }
             }
             set
@@ -1188,9 +1051,22 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconPaddingProperty(this, null, value);
+                    SetInternalIconPadding(value);
                 }
             }
+        }
+
+        private void SetInternalIconPadding(Extents newValue)
+        {
+            if (buttonIcon != null)
+            {
+                buttonIcon.Padding = newValue;
+            }
+        }
+
+        private Extents GetInternalIconPadding()
+        {
+            return buttonIcon?.Padding;
         }
 
         /// <summary>
@@ -1207,7 +1083,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Extents)GetInternalTextPaddingProperty(this) ?? new Extents();
+                    return GetInternalTextPadding() ?? new Extents();
                 }
             }
             set
@@ -1218,9 +1094,22 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextPaddingProperty(this, null, value);
+                    SetInternalTextPadding(value);
                 }
             }
+        }
+
+        private void SetInternalTextPadding(Extents newValue)
+        {
+            if (buttonText != null)
+            {
+                buttonText.Padding = newValue;
+            }
+        }
+
+        private Extents GetInternalTextPadding()
+        {
+            return buttonText?.Padding;
         }
 
         /// <summary>
@@ -1237,7 +1126,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (LinearLayout.Alignment)GetInternalItemAlignmentProperty(this);
+                    return GetInternalItemAlignment();
                 }
             }
             set
@@ -1248,9 +1137,51 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemAlignmentProperty(this, null, value);
+                    SetInternalItemAlignment(value);
                 }
             }
+        }
+
+        private void SetInternalItemAlignment(LinearLayout.Alignment newValue)
+        {
+            var newAlignment = newValue;
+            if (itemAlignment != newAlignment)
+            {
+                itemAlignment = newAlignment;
+                switch (newAlignment)
+                {
+                    case LinearLayout.Alignment.Begin:
+                        itemHorizontalAlignment = HorizontalAlignment.Begin;
+                        break;
+                    case LinearLayout.Alignment.End:
+                        itemHorizontalAlignment = HorizontalAlignment.End;
+                        break;
+                    case LinearLayout.Alignment.CenterHorizontal:
+                        itemHorizontalAlignment = HorizontalAlignment.Center;
+                        break;
+                    case LinearLayout.Alignment.Top:
+                        itemVerticalAlignment = VerticalAlignment.Top;
+                        break;
+                    case LinearLayout.Alignment.Bottom:
+                        itemVerticalAlignment = VerticalAlignment.Bottom;
+                        break;
+                    case LinearLayout.Alignment.CenterVertical:
+                        itemVerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    case LinearLayout.Alignment.Center:
+                        itemHorizontalAlignment = HorizontalAlignment.Center;
+                        itemVerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    default:
+                        break;
+                }
+                LayoutItems();
+            }
+        }
+
+        private LinearLayout.Alignment GetInternalItemAlignment()
+        {
+            return itemAlignment;
         }
 
         /// <summary>
@@ -1267,7 +1198,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (HorizontalAlignment)GetInternalItemHorizontalAlignmentProperty(this);
+                    return GetInternalItemHorizontalAlignment();
                 }
             }
             set
@@ -1278,9 +1209,24 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemHorizontalAlignmentProperty(this, null, value);
+                    SetInternalItemHorizontalAlignment(value);
                 }
             }
+        }
+
+        private void SetInternalItemHorizontalAlignment(HorizontalAlignment newValue)
+        {
+            var newHorizontalAlignment = newValue;
+            if (itemHorizontalAlignment != newHorizontalAlignment)
+            {
+                itemHorizontalAlignment = newHorizontalAlignment;
+                LayoutItems();
+            }
+        }
+
+        private HorizontalAlignment GetInternalItemHorizontalAlignment()
+        {
+            return itemHorizontalAlignment;
         }
 
         /// <summary>
@@ -1297,7 +1243,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (VerticalAlignment)GetInternalItemVerticalAlignmentProperty(this);
+                    return GetInternalItemVerticalAlignment();
                 }
             }
             set
@@ -1308,9 +1254,24 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemVerticalAlignmentProperty(this, null, value);
+                    SetInternalItemVerticalAlignment(value);
                 }
             }
+        }
+
+        private void SetInternalItemVerticalAlignment(VerticalAlignment newValue)
+        {
+            var newVerticalAlignment = newValue;
+            if (itemVerticalAlignment != newVerticalAlignment)
+            {
+                itemVerticalAlignment = newVerticalAlignment;
+                LayoutItems();
+            }
+        }
+
+        private VerticalAlignment GetInternalItemVerticalAlignment()
+        {
+            return itemVerticalAlignment;
         }
 
         /// <summary>
@@ -1329,7 +1290,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Size2D)GetInternalItemSpacingProperty(this);
+                    return GetInternalItemSpacing();
                 }
             }
             set
@@ -1340,9 +1301,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemSpacingProperty(this, null, value);
+                    SetInternalItemSpacing(value);
                 }
             }
+        }
+
+        private void SetInternalItemSpacing(Size2D newValue)
+        {
+            itemSpacing = newValue;
+            UpdateSizeAndSpacing();
+        }
+
+        private Size2D GetInternalItemSpacing()
+        {
+            return itemSpacing;
         }
 
         /// <summary>

@@ -14,9 +14,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TitleProperty = null;
         internal static void SetInternalTitleProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AlertDialog)bindable;
             if (newValue != null)
             {
+                var instance = (AlertDialog)bindable;
                 instance.InternalTitle = newValue as string;
             }
         }
@@ -33,9 +33,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TitleContentProperty = null;
         internal static void SetInternalTitleContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AlertDialog)bindable;
             if (newValue != null)
             {
+                var instance = (AlertDialog)bindable;
                 instance.InternalTitleContent = newValue as View;
             }
         }
@@ -52,9 +52,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty MessageProperty = null;
         internal static void SetInternalMessageProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AlertDialog)bindable;
             if (newValue != null)
             {
+                var instance = (AlertDialog)bindable;
                 instance.InternalMessage = newValue as string;
             }
         }
@@ -71,9 +71,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ContentProperty = null;
         internal static void SetInternalContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AlertDialog)bindable;
             if (newValue != null)
             {
+                var instance = (AlertDialog)bindable;
                 instance.InternalContent = newValue as View;
             }
         }
@@ -90,9 +90,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ActionsProperty = null;
         internal static void SetInternalActionsProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AlertDialog)bindable;
             if (newValue != null)
             {
+                var instance = (AlertDialog)bindable;
                 instance.InternalActions = newValue as IEnumerable<View>;
             }
         }
@@ -109,9 +109,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ActionContentProperty = null;
         internal static void SetInternalActionContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AlertDialog)bindable;
             if (newValue != null)
             {
+                var instance = (AlertDialog)bindable;
                 instance.InternalActionContent = newValue as View;
             }
         }

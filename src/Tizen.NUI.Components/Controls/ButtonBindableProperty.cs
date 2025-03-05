@@ -1,10 +1,143 @@
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     public partial class Button
     {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IconRelativeOrientationProperty = null;
+        internal static void SetInternalIconRelativeOrientationProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalIconRelativeOrientation((IconOrientation)newValue);
+        }
+        internal static object GetInternalIconRelativeOrientationProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalIconRelativeOrientation();
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsSelectedProperty = null;
+        internal static void SetInternalIsSelectedProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Button)bindable;
+                instance.SetInternalIsSelected((bool)newValue);
+            }
+        }
+        internal static object GetInternalIsSelectedProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalIsSelected();
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsSelectableProperty = null;
+        internal static void SetInternalIsSelectableProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Button)bindable;
+                instance.SetInternalIsSelectable((bool)newValue);
+            }
+        }
+        internal static object GetInternalIsSelectableProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalIsSelectable();
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IconPaddingProperty = null;
+        internal static void SetInternalIconPaddingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalIconPadding((Extents)newValue);
+        }
+        internal static object GetInternalIconPaddingProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalIconPadding();
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextPaddingProperty = null;
+        internal static void SetInternalTextPaddingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalTextPadding((Extents)newValue);
+        }
+        internal static object GetInternalTextPaddingProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalTextPadding();
+        }
+
+        /// <summary> The bindable property of ItemAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemAlignmentProperty = null;
+        internal static void SetInternalItemAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalItemAlignment((LinearLayout.Alignment)newValue);
+        }
+        internal static object GetInternalItemAlignmentProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalItemAlignment();
+        }
+
+        /// <summary> The bindable property of ItemHorizontalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemHorizontalAlignmentProperty = null;
+        internal static void SetInternalItemHorizontalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalItemHorizontalAlignment((HorizontalAlignment)newValue);
+        }
+        internal static object GetInternalItemHorizontalAlignmentProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalItemHorizontalAlignment();
+        }
+
+        /// <summary> The bindable property of ItemVerticalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemVerticalAlignmentProperty = null;
+        internal static void SetInternalItemVerticalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalItemVerticalAlignment((VerticalAlignment)newValue);
+        }
+        internal static object GetInternalItemVerticalAlignmentProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalItemVerticalAlignment();
+        }
+
+        /// <summary> The bindable property of ItemSpacing. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemSpacingProperty = null;
+        internal static void SetInternalItemSpacingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Button)bindable;
+            instance.SetInternalItemSpacing((Size2D)newValue);
+        }
+        internal static object GetInternalItemSpacingProperty(BindableObject bindable)
+        {
+            var instance = (Button)bindable;
+            return instance.GetInternalItemSpacing();
+        }
+
         /// <summary>
         /// TextProperty
         /// </summary>
@@ -12,9 +145,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextProperty = null;
         internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalText = newValue as string;
             }
         }
@@ -31,9 +164,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TranslatableTextProperty = null;
         internal static void SetInternalTranslatableTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalTranslatableText = newValue as string;
             }
         }
@@ -50,9 +183,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty PointSizeProperty = null;
         internal static void SetInternalPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalPointSize = (float)newValue;
             }
         }
@@ -69,9 +202,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FontFamilyProperty = null;
         internal static void SetInternalFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalFontFamily = newValue as string;
             }
         }
@@ -88,9 +221,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextColorProperty = null;
         internal static void SetInternalTextColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalTextColor = newValue as Color;
             }
         }
@@ -107,9 +240,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextAlignmentProperty = null;
         internal static void SetInternalTextAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalTextAlignment = (HorizontalAlignment)newValue;
             }
         }
@@ -126,9 +259,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconURLProperty = null;
         internal static void SetInternalIconURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalIconURL = newValue as string;
             }
         }
@@ -145,9 +278,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconSizeProperty = null;
         internal static void SetInternalIconSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Button)bindable;
             if (newValue != null)
             {
+                var instance = (Button)bindable;
                 instance.InternalIconSize = newValue as Size;
             }
         }

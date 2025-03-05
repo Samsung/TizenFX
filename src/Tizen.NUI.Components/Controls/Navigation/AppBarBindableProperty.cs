@@ -13,9 +13,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty NavigationContentProperty = null;
         internal static void SetInternalNavigationContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AppBar)bindable;
             if (newValue != null)
             {
+                var instance = (AppBar)bindable;
                 instance.InternalNavigationContent = newValue as View;
             }
         }
@@ -32,9 +32,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TitleProperty = null;
         internal static void SetInternalTitleProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AppBar)bindable;
             if (newValue != null)
             {
+                var instance = (AppBar)bindable;
                 instance.InternalTitle = newValue as string;
             }
         }
@@ -51,9 +51,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TitleContentProperty = null;
         internal static void SetInternalTitleContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AppBar)bindable;
             if (newValue != null)
             {
+                var instance = (AppBar)bindable;
                 instance.InternalTitleContent = newValue as View;
             }
         }
@@ -70,9 +70,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ActionContentProperty = null;
         internal static void SetInternalActionContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AppBar)bindable;
             if (newValue != null)
             {
+                var instance = (AppBar)bindable;
                 instance.InternalActionContent = newValue as View;
             }
         }
@@ -89,9 +89,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty AutoNavigationContentProperty = null;
         internal static void SetInternalAutoNavigationContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (AppBar)bindable;
             if (newValue != null)
             {
+                var instance = (AppBar)bindable;
                 instance.InternalAutoNavigationContent = (bool)newValue;
             }
         }
