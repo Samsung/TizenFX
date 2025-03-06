@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using Tizen.NUI.Binding;
 
@@ -7,6 +8,104 @@ namespace Tizen.NUI.Components
 {
     public partial class CollectionView
     {
+        /// <summary>
+        /// Binding Property of selected item in single selection.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public static readonly BindableProperty SelectedItemProperty = null;
+        internal static void SetInternalSelectedItemProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+
+            oldValue = colView.selectedItem;
+            colView.selectedItem = newValue;
+
+            var args = new SelectionChangedEventArgs(oldValue, newValue);
+            foreach (RecyclerViewItem item in colView.ContentContainer.Children.Where((item) => item is RecyclerViewItem))
+            {
+                if (item.BindingContext == null)
+                {
+                    continue;
+                }
+
+                if (item.BindingContext == oldValue)
+                {
+                    item.IsSelected = false;
+                }
+                else if (item.BindingContext == newValue)
+                {
+                    item.IsSelected = true;
+                }
+            }
+            SelectionPropertyChanged(colView, args);
+        }
+        internal static object GetInternalSelectedItemProperty(BindableObject bindable)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+            return colView.selectedItem;
+        }
+
+        /// <summary>
+        /// Binding Property of selected items list in multiple selection.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public static readonly BindableProperty SelectedItemsProperty = null;
+        internal static void SetInternalSelectedItemsProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+
+            var oldSelection = colView.selectedItems ?? selectEmpty;
+            //FIXME : CoerceSelectedItems calls only isCreatedByXaml
+            var newSelection = (SelectionList)CoerceSelectedItems(colView, newValue);
+            colView.selectedItems = newSelection;
+            colView.SelectedItemsPropertyChanged(oldSelection, newSelection);
+        }
+        internal static object GetInternalSelectedItemsProperty(BindableObject bindable)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+            return colView.GetInternalSelectedItems();
+        }
+
+        /// <summary>
+        /// Binding Property of selected items list in multiple selection.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public static readonly BindableProperty SelectionModeProperty = null;
+        internal static void SetInternalSelectionModeProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+            colView.SetInternalSelectionMode((ItemSelectionMode)newValue);
+        }
+        internal static object GetInternalSelectionModeProperty(BindableObject bindable)
+        {
+            var colView = bindable as CollectionView;
+            if (colView == null)
+            {
+                throw new Exception("Bindable object is not CollectionView.");
+            }
+            return colView.GetInternalSelectionMode();
+        }
+
         /// <summary>
         /// ItemsLayouterProperty
         /// </summary>
@@ -39,7 +138,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly new BindableProperty ScrollingDirectionProperty = null;
-        internal static void SetInternalScrollingDirectionProperty(BindableObject bindable, object oldValue, object newValue)
+        internal static new void SetInternalScrollingDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
@@ -51,7 +150,7 @@ namespace Tizen.NUI.Components
                 instance.InternalScrollingDirection = (Direction)newValue;
             }
         }
-        internal static object GetInternalScrollingDirectionProperty(BindableObject bindable)
+        internal static new object GetInternalScrollingDirectionProperty(BindableObject bindable)
         {
             var instance = bindable as CollectionView;
             if (instance == null)
