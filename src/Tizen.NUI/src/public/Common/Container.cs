@@ -34,7 +34,7 @@ namespace Tizen.NUI
     {
         /// <summary> XamlStyleProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty XamlStyleProperty = null;
+        public static readonly BindableProperty XamlStyleProperty = null;
         internal static void SetInternalXamlStyleProperty(BindableObject bindable, object oldValue, object newValue)
         {
             ((View)bindable).MergedStyle.Style = (XamlStyle)newValue;
@@ -112,7 +112,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (XamlStyle)GetInternalXamlStyleProperty(this);
+                    return (XamlStyle)MergedStyle.Style;
                 }
             }
             set
@@ -123,7 +123,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalXamlStyleProperty(this, null, value);
+                    MergedStyle.Style = value;
                 }
             }
         }

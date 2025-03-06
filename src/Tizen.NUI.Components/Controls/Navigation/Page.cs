@@ -65,9 +65,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty AppearingTransitionProperty = null;
         internal static void SetInternalAppearingTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Page)bindable;
             if (newValue != null)
             {
+                var instance = (Page)bindable;
                 instance.InternalAppearingTransition = newValue as TransitionBase;
             }
         }
@@ -84,9 +84,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty DisappearingTransitionProperty = null;
         internal static void SetInternalDisappearingTransitionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Page)bindable;
             if (newValue != null)
             {
+                var instance = (Page)bindable;
                 instance.InternalDisappearingTransition = newValue as TransitionBase;
             }
         }
@@ -103,9 +103,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty EnableBackNavigationProperty = null;
         internal static void SetInternalEnableBackNavigationProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Page)bindable;
             if (newValue != null)
             {
+                var instance = (Page)bindable;
                 instance.InternalEnableBackNavigation = (bool)newValue;
             }
         }
@@ -203,7 +203,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalAppearingTransitionProperty(this) as TransitionBase;
+                    return InternalAppearingTransition;
                 }
             }
             set
@@ -214,7 +214,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalAppearingTransitionProperty(this, null, value);
+                    InternalAppearingTransition = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -245,7 +245,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalDisappearingTransitionProperty(this) as TransitionBase;
+                    return InternalDisappearingTransition;
                 }
             }
             set
@@ -256,7 +256,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDisappearingTransitionProperty(this, null, value);
+                    InternalDisappearingTransition =  value;
                 }
                 NotifyPropertyChanged();
             }
@@ -313,7 +313,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalEnableBackNavigationProperty(this);
+                    return InternalEnableBackNavigation;
                 }
             }
             set
@@ -324,7 +324,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalEnableBackNavigationProperty(this, null, value);
+                    InternalEnableBackNavigation = value;
                 }
                 NotifyPropertyChanged();
             }

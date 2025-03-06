@@ -45,6 +45,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.NUI2.Compatibility, " + Tizen.NUI.PublicKey.TizenNUI2)]
 
 [assembly: InternalsVisibleTo("Tizen.NUI.OneUI, " + Tizen.NUI.PublicKey.TizenNUIOneUI)]
+[assembly: InternalsVisibleTo("Tizen.NUI.OneUI.Components, " + Tizen.NUI.PublicKey.TizenNUIOneUI)]
 
 [assembly: InternalsVisibleTo("Tizen.NUI.FLUX, " + Tizen.NUI.PublicKey.TizenFLUX)]
 [assembly: InternalsVisibleTo("Tizen.NUI.FLUX.Components, " + Tizen.NUI.PublicKey.TizenFLUX)]

@@ -13,9 +13,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty AppBarProperty = null;
         internal static void SetInternalAppBarProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ContentPage)bindable;
             if (newValue != null)
             {
+                var instance = (ContentPage)bindable;
                 instance.InternalAppBar = newValue as AppBar;
             }
         }
@@ -32,9 +32,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ContentProperty = null;
         internal static void SetInternalContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ContentPage)bindable;
             if (newValue != null)
             {
+                var instance = (ContentPage)bindable;
                 instance.InternalContent = newValue as View;
             }
         }

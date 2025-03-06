@@ -65,9 +65,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty DateProperty = null;
         internal static void SetInternalDateProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DatePicker)bindable;
             if (newValue != null)
             {
+                var instance = (DatePicker)bindable;
                 instance.InternalDate = (DateTime)newValue;
             }
         }
@@ -179,7 +179,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (DateTime)GetInternalDateProperty(this);
+                    return InternalDate;
                 }
             }
             set
@@ -190,11 +190,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDateProperty(this, null, value);
+                    InternalDate = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private DateTime InternalDate
         {
             get
