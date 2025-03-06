@@ -39,57 +39,16 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsSelectedProperty = null;
         internal static void SetInternalIsSelectedProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (RecyclerViewItem)bindable;
             if (newValue != null)
             {
-                bool newSelected = (bool)newValue;
-                if (instance.isSelected != newSelected)
-                {
-                    instance.isSelected = newSelected;
-
-                    if (instance.isSelectable)
-                    {
-                        instance.UpdateState();
-                    }
-                    if (instance.ParentItemsView is CollectionView collectionView)
-                    {
-                        var context = instance.BindingContext;
-                        if (collectionView.SelectionMode is ItemSelectionMode.Single ||
-                            collectionView.SelectionMode is ItemSelectionMode.SingleAlways)
-                        {
-                            if (newSelected && collectionView.SelectedItem != context)
-                            {
-                                collectionView.SelectedItem = context;
-                            }
-                            else if (!newSelected && collectionView.SelectedItem == context)
-                            {
-                                collectionView.SelectedItem = null;
-                            }
-                        }
-                        else if (collectionView.SelectionMode is ItemSelectionMode.Multiple)
-                        {
-                            var selectedList = collectionView.SelectedItems;
-                            if (selectedList != null && context != null)
-                            {
-                                bool contains = selectedList.Contains(context);
-                                if (newSelected && !contains)
-                                {
-                                    selectedList.Add(context);
-                                }
-                                else if (!newSelected && contains)
-                                {
-                                    selectedList.Remove(context);
-                                }
-                            }
-                        }
-                    }
-                }
+                var instance = (RecyclerViewItem)bindable;
+                instance.SetInternalIsSelected((bool)newValue);
             }
         }
         internal static object GetInternalIsSelectedProperty(BindableObject bindable)
         {
             var instance = (RecyclerViewItem)bindable;
-            return instance.isSelectable && instance.isSelected;
+            return instance.GetInternalIsSelected();
         }
 
         /// <summary>
@@ -99,25 +58,20 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsSelectableProperty = null;
         internal static void SetInternalIsSelectableProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (RecyclerViewItem)bindable;
             if (newValue != null)
             {
-                bool newSelectable = (bool)newValue;
-                if (instance.isSelectable != newSelectable)
-                {
-                    instance.isSelectable = newSelectable;
-                    instance.UpdateState();
-                }
+                var instance = (RecyclerViewItem)bindable;
+                instance.SetInternalIsSelectable((bool)newValue);
             }
         }
         internal static object GetInternalIsSelectableProperty(BindableObject bindable)
         {
-            return ((RecyclerViewItem)bindable).isSelectable;
+            var instance = (RecyclerViewItem)bindable;
+            return instance.GetInternalIsSelectable();
         }
 
         private bool isSelected = false;
         private bool isSelectable = true;
-        private RecyclerViewItemStyle ItemStyle => ViewStyle as RecyclerViewItemStyle;
 
         static RecyclerViewItem()
         {
@@ -176,7 +130,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIsSelectableProperty(this);
+                    return GetInternalIsSelectable();
                 }
             }
             set
@@ -187,10 +141,25 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIsSelectableProperty(this, null, value);
+                    SetInternalIsSelectable(value);
                 }
                 OnPropertyChanged(nameof(IsSelectable));
             }
+        }
+
+        private void SetInternalIsSelectable(bool newValue)
+        {
+            bool newSelectable = newValue;
+            if (isSelectable != newSelectable)
+            {
+                isSelectable = newSelectable;
+                UpdateState();
+            }
+        }
+
+        private bool GetInternalIsSelectable()
+        {
+            return isSelectable;
         }
 
         /// <summary>
@@ -207,7 +176,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIsSelectedProperty(this);
+                    return GetInternalIsSelected();
                 }
             }
             set
@@ -218,10 +187,61 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIsSelectedProperty(this, null, value);
+                    SetInternalIsSelected(value);
                 }
                 OnPropertyChanged(nameof(IsSelected));
             }
+        }
+
+        private void SetInternalIsSelected(bool newValue)
+        {
+            bool newSelected = newValue;
+            if (isSelected != newSelected)
+            {
+                isSelected = newSelected;
+
+                if (isSelectable)
+                {
+                    UpdateState();
+                }
+                if (ParentItemsView is CollectionView collectionView)
+                {
+                    var context = BindingContext;
+                    if (collectionView.SelectionMode is ItemSelectionMode.Single ||
+                        collectionView.SelectionMode is ItemSelectionMode.SingleAlways)
+                    {
+                        if (newSelected && collectionView.SelectedItem != context)
+                        {
+                            collectionView.SelectedItem = context;
+                        }
+                        else if (!newSelected && collectionView.SelectedItem == context)
+                        {
+                            collectionView.SelectedItem = null;
+                        }
+                    }
+                    else if (collectionView.SelectionMode is ItemSelectionMode.Multiple)
+                    {
+                        var selectedList = collectionView.SelectedItems;
+                        if (selectedList != null && context != null)
+                        {
+                            bool contains = selectedList.Contains(context);
+                            if (newSelected && !contains)
+                            {
+                                selectedList.Add(context);
+                            }
+                            else if (!newSelected && contains)
+                            {
+                                selectedList.Remove(context);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool GetInternalIsSelected()
+        {
+            return isSelectable && isSelected;
         }
 
         /// <summary>
