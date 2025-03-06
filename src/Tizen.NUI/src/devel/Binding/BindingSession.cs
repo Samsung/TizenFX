@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Binding
 {
@@ -74,6 +73,7 @@ namespace Tizen.NUI.Binding
         /// <param name="path">The path of the property to bind.</param>
         public void AddBinding(Action<TViewModel> setter, string path)
         {
+            _ = setter ?? throw new ArgumentNullException(nameof(setter));
             var action = new Action(() =>
             {
                 if (ViewModel != null)
@@ -103,6 +103,7 @@ namespace Tizen.NUI.Binding
         /// <param name="path">The path of the property to bind.</param>
         public void AddTwoWayBinding<T>(Action<Action> register, Action<Action> unregister, Action<TViewModel> setter, Func<T> getter, string path)
         {
+            _ = register ?? throw new ArgumentNullException(nameof(register));
             var action = new Action(() =>
             {
                 if (ViewModel != null)
