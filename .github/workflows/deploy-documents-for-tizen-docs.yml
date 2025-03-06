@@ -18,7 +18,7 @@ jobs:
       options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
 
@@ -28,7 +28,7 @@ jobs:
 
     - name: Cache DocFX output
       id: cache-site
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: _site
         key: ${{ env.CACHE_NAME }}-${{ hashFiles('repos/commits') }}
