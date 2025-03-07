@@ -39,7 +39,16 @@ namespace Tizen.NUI
             CurrentGeometry = geometry;
             CurrentShader = shader;
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Create an instance of Renderer without Geometry or Shader.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Renderer() : this(Interop.Renderer.New(), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// <summary>
@@ -803,6 +812,35 @@ namespace Tizen.NUI
 
         internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+        }
+
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+                CurrentGeometry = null;
+                CurrentShader = null;
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
