@@ -33,48 +33,6 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MessageProperty = null;
-        internal static void SetInternalMessageProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Toast)bindable;
-            if (newValue != null)
-            {
-                instance.strText = (string)(newValue);
-                if (null != instance.textLabel)
-                {
-                    instance.textLabel.Text = instance.strText;
-                }
-            }
-        }
-        internal static object GetInternalMessageProperty(BindableObject bindable)
-        {
-            var instance = (Toast)bindable;
-            return instance.strText;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = null;
-        internal static void SetInternalDurationProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Toast)bindable;
-            if (newValue != null)
-            {
-                if (instance.timer == null)
-                {
-                    instance.timer = new Timer(instance.duration);
-                }
-                instance.timer.Interval = (uint)newValue;
-            }
-        }
-        internal static object GetInternalDurationProperty(BindableObject bindable)
-        {
-            var instance = (Toast)bindable;
-            return instance.timer == null ? instance.duration : instance.timer.Interval;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Toast FromText(string text, uint duration)
         {
             Toast toast = new Toast();
@@ -162,7 +120,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextArrayProperty(this) as string[];
+                    return InternalTextArray;
                 }
             }
             set
@@ -173,7 +131,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextArrayProperty(this, null, value);
+                    InternalTextArray = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -199,7 +157,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalPointSizeProperty(this);
+                    return InternalPointSize;
                 }
             }
             set
@@ -210,7 +168,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPointSizeProperty(this, null, value);
+                    InternalPointSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -245,7 +203,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalFontFamilyProperty(this) as string;
+                    return InternalFontFamily;
                 }
             }
             set
@@ -256,7 +214,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFontFamilyProperty(this, null, value);
+                    InternalFontFamily = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -291,7 +249,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextColorProperty(this) as Color;
+                    return InternalTextColor;
                 }
             }
             set
@@ -302,7 +260,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextColorProperty(this, null, value);
+                    InternalTextColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -337,7 +295,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (HorizontalAlignment)GetInternalTextAlignmentProperty(this);
+                    return InternalTextAlignment;
                 }
             }
             set
@@ -348,7 +306,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextAlignmentProperty(this, null, value);
+                    InternalTextAlignment = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -395,7 +353,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (string)GetInternalMessageProperty(this);
+                    return GetInternalMessage();
                 }
             }
             set
@@ -406,9 +364,26 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMessageProperty(this, null, value);
+                    SetInternalMessage(value);
                 }
             }
+        }
+
+        private void SetInternalMessage(string newValue)
+        {
+            if (newValue != null)
+            {
+                strText = newValue;
+                if (null != textLabel)
+                {
+                    textLabel.Text = strText;
+                }
+            }
+        }
+
+        private string GetInternalMessage()
+        {
+            return strText;
         }
 
         /// <summary>
@@ -426,7 +401,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextPaddingProperty(this) as Extents;
+                    return InternalTextPadding;
                 }
             }
             set
@@ -437,7 +412,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextPaddingProperty(this, null, value);
+                    InternalTextPadding = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -472,7 +447,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (uint)GetInternalTextLineHeightProperty(this);
+                    return InternalTextLineHeight;
                 }
             }
             set
@@ -483,7 +458,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextLineHeightProperty(this, null, value);
+                    InternalTextLineHeight = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -505,7 +480,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (uint)GetInternalTextLineSpaceProperty(this);
+                    return InternalTextLineSpace;
                 }
             }
             set
@@ -516,7 +491,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextLineSpaceProperty(this, null, value);
+                    InternalTextLineSpace = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -538,7 +513,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (uint)GetInternalDurationProperty(this);
+                    return GetInternalDuration();
                 }
             }
             set
@@ -549,9 +524,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDurationProperty(this, null, value);
+                    SetInternalDuration(value);
                 }
             }
+        }
+
+        private void SetInternalDuration(uint newValue)
+        {
+            if (timer == null)
+            {
+                timer = new Timer(duration);
+            }
+            timer.Interval = newValue;
+        }
+
+        private uint GetInternalDuration()
+        {
+            return timer == null ? duration : timer.Interval;
         }
 
         /// <inheritdoc/>

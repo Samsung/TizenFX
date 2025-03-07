@@ -68,151 +68,6 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public partial class Slider : Control, IAtspiValue
     {
-        /// <summary>
-        /// SpaceBetweenTrackAndIndicatorProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorProperty = null;
-        internal static void SetInternalIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                instance.privateIndicatorType = (IndicatorType)newValue;
-            }
-        }
-        internal static object GetInternalIndicatorProperty(BindableObject bindable)
-        {
-            var instance = (Slider)bindable;
-            return instance.privateIndicatorType;
-        }
-
-        /// <summary>
-        /// SpaceBetweenTrackAndIndicatorProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = null;
-        internal static void SetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                instance.privateSpaceBetweenTrackAndIndicator = (uint)newValue;
-            }
-        }
-        internal static object GetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable)
-        {
-            var instance = (Slider)bindable;
-            return instance.privateSpaceBetweenTrackAndIndicator;
-        }
-
-        /// <summary>
-        /// TrackThicknessProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = null;
-        internal static void SetInternalTrackThicknessProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                instance.privateTrackThickness = (uint)newValue;
-            }
-        }
-        internal static object GetInternalTrackThicknessProperty(BindableObject bindable)
-        {
-            var instance = (Slider)bindable;
-            return instance.privateTrackThickness;
-        }
-
-        /// <summary>
-        /// IsValueShownProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsValueShownProperty = null;
-        internal static void SetInternalIsValueShownProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                bool newValueShown = (bool)newValue;
-                if (instance.isValueShown != newValueShown)
-                {
-                    instance.isValueShown = newValueShown;
-                }
-            }
-        }
-        internal static object GetInternalIsValueShownProperty(BindableObject bindable)
-        {
-            var instance = (Slider)bindable;
-            return instance.isValueShown;
-        }
-
-        /// <summary>
-        /// ValueIndicatorTextProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueIndicatorTextProperty = null;
-        internal static void SetInternalValueIndicatorTextProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                string newText = (string)newValue;
-                instance.valueIndicatorText.Text = newText;
-            }
-        }
-        internal static object GetInternalValueIndicatorTextProperty(BindableObject bindable)
-        {
-            var instance = (Slider)bindable;
-            return instance.valueIndicatorText.Text;
-        }
-
-        /// <summary>
-        /// Bindable property of CurrentValue
-        /// <remark>
-        /// Hidden API, used for NUI XAML data binding
-        /// </remark>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = null;
-        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Slider)bindable;
-
-            if (newValue != null)
-            {
-                float value = (float)newValue;
-                if (value < instance.minValue)
-                {
-                    instance.curValue = instance.minValue;
-                }
-                else if (value > instance.maxValue)
-                {
-                    instance.curValue = instance.maxValue;
-                }
-                else
-                {
-                    instance.curValue = value;
-                }
-
-                instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs
-                {
-                    CurrentValue = instance.curValue
-                });
-                if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
-                {
-                    instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
-                }
-                instance.UpdateValue();
-            }
-        }
-        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
-        {
-            var instance = (Slider)bindable;
-            return instance.curValue;
-        }
-
         static Slider()
         {
             if (NUIApplication.IsUsingXaml)
@@ -423,7 +278,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (DirectionType)GetInternalDirectionProperty(this);
+                    return InternalDirection;
                 }
             }
             set
@@ -434,7 +289,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDirectionProperty(this, null, value);
+                    InternalDirection = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -474,7 +329,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (IndicatorType)GetInternalIndicatorProperty(this);
+                    return privateIndicatorType;
                 }
             }
             set
@@ -485,7 +340,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndicatorProperty(this, null, value);
+                    privateIndicatorType = value;
                 }
             }
         }
@@ -504,7 +359,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalMinValueProperty(this);
+                    return InternalMinValue;
                 }
             }
             set
@@ -515,7 +370,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMinValueProperty(this, null, value);
+                    InternalMinValue = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -547,7 +402,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalMaxValueProperty(this);
+                    return InternalMaxValue;
                 }
             }
             set
@@ -558,7 +413,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMaxValueProperty(this, null, value);
+                    InternalMaxValue = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -590,7 +445,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalCurrentValueProperty(this);
+                    return GetInternalCurrentValue();
                 }
             }
             set
@@ -601,9 +456,41 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalCurrentValueProperty(this, null, value);
+                    SetInternalCurrentValue(value);
                 }
             }
+        }
+
+        private void SetInternalCurrentValue(float newValue)
+        {
+            float value = (float)newValue;
+            if (value < minValue)
+            {
+                curValue = minValue;
+            }
+            else if (value > maxValue)
+            {
+                curValue = maxValue;
+            }
+            else
+            {
+                curValue = value;
+            }
+
+            sliderValueChangedHandler?.Invoke(this, new SliderValueChangedEventArgs
+            {
+                CurrentValue = curValue
+            });
+            if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
+            {
+                EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
+            }
+            UpdateValue();
+        }
+
+        private float GetInternalCurrentValue()
+        {
+            return curValue;
         }
 
         /// <summary>
@@ -620,7 +507,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalThumbSizeProperty(this) as Size;
+                    return InternalThumbSize;
                 }
             }
             set
@@ -631,7 +518,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbSizeProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalThumbSize = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -668,7 +558,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalThumbImageURLProperty(this) as string;
+                    return InternalThumbImageURL;
                 }
             }
             set
@@ -679,7 +569,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbImageURLProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalThumbImageURL = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -718,7 +611,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalThumbImageURLSelectorProperty(this) as StringSelector;
+                    return InternalThumbImageURLSelector;
                 }
             }
             set
@@ -729,7 +622,8 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbImageURLSelectorProperty(this, null, value);
+                    //NOTE: null value is allowed here.
+                    InternalThumbImageURLSelector = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -773,7 +667,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalThumbImageUrlProperty(this) as Selector<string>;
+                    return InternalThumbImageUrl;
                 }
             }
             set
@@ -784,7 +678,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbImageUrlProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalThumbImageUrl = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -829,7 +726,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalThumbColorProperty(this) as Color;
+                    return InternalThumbColor;
                 }
             }
             set
@@ -840,7 +737,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbColorProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalThumbColor = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -901,7 +801,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalBgTrackColorProperty(this) as Color;
+                    return InternalBgTrackColor;
                 }
             }
             set
@@ -912,7 +812,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalBgTrackColorProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalBgTrackColor = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -946,7 +849,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSlidedTrackColorProperty(this) as Color;
+                    return InternalSlidedTrackColor;
                 }
             }
             set
@@ -957,7 +860,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSlidedTrackColorProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalSlidedTrackColor = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -991,7 +897,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (uint)GetInternalTrackThicknessProperty(this);
+                    return privateTrackThickness;
                 }
             }
             set
@@ -1002,7 +908,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTrackThicknessProperty(this, null, value);
+                    privateTrackThickness = value;
                 }
             }
         }
@@ -1022,7 +928,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalWarningStartValueProperty(this);
+                    return InternalWarningStartValue;
                 }
             }
             set
@@ -1033,7 +939,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalWarningStartValueProperty(this, null, value);
+                    InternalWarningStartValue = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1066,7 +972,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalWarningTrackColorProperty(this) as Color;
+                    return InternalWarningTrackColor;
                 }
             }
             set
@@ -1077,7 +983,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalWarningTrackColorProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalWarningTrackColor = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1112,7 +1021,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalWarningSlidedTrackColorProperty(this) as Color;
+                    return InternalWarningSlidedTrackColor;
                 }
             }
             set
@@ -1123,7 +1032,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalWarningSlidedTrackColorProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalWarningSlidedTrackColor = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1159,7 +1071,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalWarningThumbImageUrlProperty(this) as Selector<string>;
+                    return InternalWarningThumbImageUrl;
                 }
             }
             set
@@ -1170,7 +1082,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalWarningThumbImageUrlProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalWarningThumbImageUrl = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1209,7 +1124,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalWarningThumbColorProperty(this) as Color;
+                    return InternalWarningThumbColor;
                 }
             }
             set
@@ -1220,7 +1135,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalWarningThumbColorProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalWarningThumbColor = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1251,7 +1169,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalLowIndicatorImageURLProperty(this) as string;
+                    return InternalLowIndicatorImageURL;
                 }
             }
             set
@@ -1262,7 +1180,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLowIndicatorImageURLProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalLowIndicatorImageURL = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1301,7 +1222,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalHighIndicatorImageURLProperty(this) as string;
+                    return InternalHighIndicatorImageURL;
                 }
             }
             set
@@ -1312,7 +1233,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalHighIndicatorImageURLProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalHighIndicatorImageURL = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1351,7 +1275,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalLowIndicatorTextContentProperty(this) as string;
+                    return InternalLowIndicatorTextContent;
                 }
             }
             set
@@ -1362,7 +1286,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLowIndicatorTextContentProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalLowIndicatorTextContent = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1396,7 +1323,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalHighIndicatorTextContentProperty(this) as string;
+                    return InternalHighIndicatorTextContent;
                 }
             }
             set
@@ -1407,7 +1334,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalHighIndicatorTextContentProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalHighIndicatorTextContent = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1441,7 +1371,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalLowIndicatorSizeProperty(this) as Size;
+                    return InternalLowIndicatorSize;
                 }
             }
             set
@@ -1452,7 +1382,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLowIndicatorSizeProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalLowIndicatorSize = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1487,7 +1420,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalHighIndicatorSizeProperty(this) as Size;
+                    return InternalHighIndicatorSize;
                 }
             }
             set
@@ -1498,7 +1431,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalHighIndicatorSizeProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalHighIndicatorSize = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1533,7 +1469,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (uint)GetInternalSpaceBetweenTrackAndIndicatorProperty(this);
+                    return privateSpaceBetweenTrackAndIndicator;
                 }
             }
             set
@@ -1544,7 +1480,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSpaceBetweenTrackAndIndicatorProperty(this, null, value);
+                    privateSpaceBetweenTrackAndIndicator = value;
                 }
             }
         }
@@ -1563,7 +1499,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIsValueShownProperty(this);
+                    return GetInternalIsValueShown();
                 }
             }
             set
@@ -1574,9 +1510,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIsValueShownProperty(this, null, value);
+                    SetInternalIsValueShown(value);
                 }
             }
+        }
+
+        private void SetInternalIsValueShown(bool newValue)
+        {
+            bool newValueShown = newValue;
+            if (isValueShown != newValueShown)
+            {
+                isValueShown = newValueShown;
+            }
+        }
+
+        private bool GetInternalIsValueShown()
+        {
+            return isValueShown;
         }
 
         /// <summary>
@@ -1593,7 +1543,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (string)GetInternalValueIndicatorTextProperty(this);
+                    return valueIndicatorText.Text;
                 }
             }
             set
@@ -1604,7 +1554,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalValueIndicatorTextProperty(this, null, value);
+                    if (value != null)
+                    {
+                        valueIndicatorText.Text = value;
+                    }
                 }
             }
         }
@@ -1623,7 +1576,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalValueIndicatorSizeProperty(this) as Size;
+                    return InternalValueIndicatorSize;
                 }
             }
             set
@@ -1634,7 +1587,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalValueIndicatorSizeProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalValueIndicatorSize = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1668,7 +1624,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalValueIndicatorUrlProperty(this) as string;
+                    return InternalValueIndicatorUrl;
                 }
             }
             set
@@ -1679,7 +1635,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalValueIndicatorUrlProperty(this, null, value);
+                    if (value != null)
+                    {
+                        InternalValueIndicatorUrl = value;
+                    }
                 }
                 NotifyPropertyChanged();
             }
@@ -1715,7 +1674,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIsDiscreteProperty(this);
+                    return InternalIsDiscrete;
                 }
             }
             set
@@ -1726,7 +1685,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIsDiscreteProperty(this, null, value);
+                    InternalIsDiscrete = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1753,7 +1712,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalDiscreteValueProperty(this);
+                    return InternalDiscreteValue;
                 }
             }
             set
@@ -1764,7 +1723,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDiscreteValueProperty(this, null, value);
+                    InternalDiscreteValue = value;
                 }
                 NotifyPropertyChanged();
             }
