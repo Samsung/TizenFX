@@ -1,0 +1,121 @@
+diff a/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManagerImpl.cs b/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManagerImpl.cs	(rejected hunks)
+@@ -50,8 +49,6 @@ namespace Tizen.Network.WiFi
+         private static readonly Lazy<WiFiManagerImpl> _instance =
+             new Lazy<WiFiManagerImpl>(() => new WiFiManagerImpl());
+ 
+-        private TizenSynchronizationContext context = new TizenSynchronizationContext();
+-
+         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map =
+             new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
+ 
+@@ -380,24 +374,21 @@ namespace Tizen.Network.WiFi
+                 };
+             }
+ 
+-            context.Post((x) =>
++            Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
++            try
+             {
+-                Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
+-                try
++                int ret = (int)WiFiError.None;
++                lock (_callback_map)
+                 {
+-                    int ret = (int)WiFiError.None;
+-                    lock (_callback_map)
+-                    {
+-                        ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
+-                    }
+-                    CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
+-                }
+-                catch (Exception e)
+-                {
+-                    Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e);
+-                    task.SetException(e);
++                    ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
+                 }
+-            }, null);
++                CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
++            }
++            catch (Exception e)
++            {
++                Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e);
++                task.SetException(e);
++            }
+ 
+             return task.Task;
+         }
+@@ -429,24 +420,21 @@ namespace Tizen.Network.WiFi
+                 };
+             }
+ 
+-            context.Post((x) =>
++            Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
++            try
+             {
+-                Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
+-                try
++                int ret = (int)WiFiError.None;
++                lock (_callback_map)
+                 {
+-                    int ret = (int)WiFiError.None;
+-                    lock (_callback_map)
+-                    {
+-                        ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
+-                    }
+-                    CheckReturnValue(ret, "Deactivate", "");
+-                }
+-                catch (Exception e)
+-                {
+-                    Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e);
+-                    task.SetException(e);
++                    ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
+                 }
+-            }, null);
++                CheckReturnValue(ret, "Deactivate", "");
++            }
++            catch (Exception e)
++            {
++                Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e);
++                task.SetException(e);
++            }
+ 
+             return task.Task;
+         }
+@@ -632,24 +611,21 @@ namespace Tizen.Network.WiFi
+                 };
+             }
+ 
+-            context.Post((x) =>
++            Log.Info(Globals.LogTag, "Interop.WiFi.HiddenAPConnect");
++            try
+             {
+-                Log.Info(Globals.LogTag, "Interop.WiFi.HiddenAPConnect");
+-                try
++                int ret = (int)WiFiError.None;
++                lock (_callback_map)
+                 {
+-                    int ret = (int)WiFiError.None;
+-                    lock (_callback_map)
+-                    {
+-                        ret = Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, _callback_map[id], id);
+-                    }
+-                    CheckReturnValue(ret, "HiddenAPConnect", "");
+-                }
+-                catch (Exception e)
+-                {
+-                    Log.Error(Globals.LogTag, "Exception on HiddenAPConnect\n" + e);
+-                    task.SetException(e);
++                    ret = Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, _callback_map[id], id);
+                 }
+-            }, null);
++                CheckReturnValue(ret, "HiddenAPConnect", "");
++            }
++            catch (Exception e)
++            {
++                Log.Error(Globals.LogTag, "Exception on HiddenAPConnect\n" + e);
++                task.SetException(e);
++            }
+ 
+             return task.Task;
+         }
