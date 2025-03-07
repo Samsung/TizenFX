@@ -80,7 +80,7 @@ namespace Tizen.NUI.Samples
 
         private static Shader CreateShader()
         {
-            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER);
+            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "ClippedImageShader");
 
             return shader;
         }
