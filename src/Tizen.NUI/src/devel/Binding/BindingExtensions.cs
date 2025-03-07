@@ -24,6 +24,7 @@ namespace Tizen.NUI.Binding
         public static TView SetBinding<T, TView>(this TView view, BindingSession<T> vm, Action<T, TView> set, string path) where TView : View
         {
             _ = view ?? throw new ArgumentNullException(nameof(view));
+            _ = vm ?? throw new ArgumentNullException(nameof(vm));
 
             var setter = new Action<T>(vm =>
             {
@@ -44,6 +45,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The view.</returns>
         public static View SetBinding<T>(this View view, BindingSession<T> vm, Action<T> set, string path)
         {
+            _ = vm ?? throw new ArgumentNullException(nameof(vm));
             vm.AddBinding(set, path);
             return view;
         }
@@ -59,6 +61,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The view.</returns>
         public static View SetBinding<TViewModel>(this View view, BindingSession<TViewModel> session, string targetPath, string srcPath)
         {
+            _ = session ?? throw new ArgumentNullException(nameof(session));
             var setter = new Action<TViewModel>(model =>
             {
                 if (view.Disposed)
@@ -85,6 +88,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The view.</returns>
         public static TView SetBinding<TView, TViewModel, TProperty>(this TView view, BindingSession<TViewModel> session, BindingProperty<TView, TProperty> property, string path) where TView : View
         {
+            _ = session ?? throw new ArgumentNullException(nameof(session));
             var setter = new Action<TViewModel>(model =>
             {
                 if (view.Disposed)
@@ -124,6 +128,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The view.</returns>
         public static View SetTwoWayBinding<TViewModel, TProperty>(this View view, BindingSession<TViewModel> session, TwoWayBindingProperty<View, TProperty> property, string path)
         {
+            _ = session ?? throw new ArgumentNullException(nameof(session));
             var regit = new Action<Action>(act =>
             {
                 property.AddObserver(view, act);
@@ -158,6 +163,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The view.</returns>
         public static TView SetTwoWayBinding<TView, TViewModel, TProperty>(this TView view, BindingSession<TViewModel> session, TwoWayBindingProperty<TView, TProperty> property, string path) where TView : View
         {
+            _ = session ?? throw new ArgumentNullException(nameof(session));
             var regit = new Action<Action>(act =>
             {
                 property.AddObserver(view, act);
@@ -187,6 +193,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The binding session.</returns>
         public static BindingSession<TViewModel> BindingSession<TViewModel>(this View view)
         {
+            _ = view ?? throw new ArgumentNullException(nameof(view));
             return view.GetAttached<BindingSession<TViewModel>>();
         }
 
@@ -200,6 +207,7 @@ namespace Tizen.NUI.Binding
         /// <returns>The view.</returns>
         public static T BindingSession<T, TViewModel>(this T view, BindingSession<TViewModel> session) where T : View
         {
+            _ = view ?? throw new ArgumentNullException(nameof(view));
             view.SetAttached(session);
             return view;
         }
