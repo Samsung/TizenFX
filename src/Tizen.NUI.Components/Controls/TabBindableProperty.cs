@@ -12,9 +12,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SelectedItemIndexProperty = null;
         internal static void SetInternalSelectedItemIndexProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalSelectedItemIndex = (int)newValue;
             }
         }
@@ -31,9 +31,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty UseTextNaturalSizeProperty = null;
         internal static void SetInternalUseTextNaturalSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalUseTextNaturalSize = (bool)newValue;
             }
         }
@@ -50,9 +50,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ItemSpaceProperty = null;
         internal static void SetInternalItemSpaceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalItemSpace = (int)newValue;
             }
         }
@@ -69,9 +69,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SpaceProperty = null;
         internal static void SetInternalSpaceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalSpace = newValue as Extents;
             }
         }
@@ -88,9 +88,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ItemPaddingProperty = null;
         internal static void SetInternalItemPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalItemPadding = newValue as Extents;
             }
         }
@@ -107,9 +107,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty UnderLineSizeProperty = null;
         internal static void SetInternalUnderLineSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalUnderLineSize = newValue as Size;
             }
         }
@@ -126,9 +126,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty UnderLineBackgroundColorProperty = null;
         internal static void SetInternalUnderLineBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalUnderLineBackgroundColor = newValue as Color;
             }
         }
@@ -145,9 +145,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty PointSizeProperty = null;
         internal static void SetInternalPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalPointSize = (float)newValue;
             }
         }
@@ -164,9 +164,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FontFamilyProperty = null;
         internal static void SetInternalFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalFontFamily = newValue as string;
             }
         }
@@ -183,9 +183,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextColorProperty = null;
         internal static void SetInternalTextColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalTextColor = newValue as Color;
             }
         }
@@ -202,9 +202,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextColorSelectorProperty = null;
         internal static void SetInternalTextColorSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tab)bindable;
             if (newValue != null)
             {
+                var instance = (Tab)bindable;
                 instance.InternalTextColorSelector = newValue as ColorSelector;
             }
         }

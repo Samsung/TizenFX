@@ -7,15 +7,132 @@ namespace Tizen.NUI.Components
     public partial class Slider
     {
         /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorProperty = null;
+        internal static void SetInternalIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.privateIndicatorType = (IndicatorType)newValue;
+            }
+        }
+        internal static object GetInternalIndicatorProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.privateIndicatorType;
+        }
+
+        /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = null;
+        internal static void SetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.privateSpaceBetweenTrackAndIndicator = (uint)newValue;
+            }
+        }
+        internal static object GetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.privateSpaceBetweenTrackAndIndicator;
+        }
+
+        /// <summary>
+        /// TrackThicknessProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackThicknessProperty = null;
+        internal static void SetInternalTrackThicknessProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.privateTrackThickness = (uint)newValue;
+            }
+        }
+        internal static object GetInternalTrackThicknessProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.privateTrackThickness;
+        }
+
+        /// <summary>
+        /// IsValueShownProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsValueShownProperty = null;
+        internal static void SetInternalIsValueShownProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.SetInternalIsValueShown((bool)newValue);
+            }
+        }
+        internal static object GetInternalIsValueShownProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.GetInternalIsValueShown();
+        }
+
+        /// <summary>
+        /// ValueIndicatorTextProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ValueIndicatorTextProperty = null;
+        internal static void SetInternalValueIndicatorTextProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.valueIndicatorText.Text = (string)newValue;
+            }
+        }
+        internal static object GetInternalValueIndicatorTextProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.valueIndicatorText.Text;
+        }
+
+        /// <summary>
+        /// Bindable property of CurrentValue
+        /// <remark>
+        /// Hidden API, used for NUI XAML data binding
+        /// </remark>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CurrentValueProperty = null;
+        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.SetInternalCurrentValue((float)newValue);
+            }
+        }
+        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.GetInternalCurrentValue();
+        }
+
+        /// <summary>
         /// DirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DirectionProperty = null;
         internal static void SetInternalDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalDirection = (DirectionType)newValue;
             }
         }
@@ -32,9 +149,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty MinValueProperty = null;
         internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalMinValue = (float)newValue;
             }
         }
@@ -51,9 +168,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty MaxValueProperty = null;
         internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalMaxValue = (float)newValue;
             }
         }
@@ -70,9 +187,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ThumbSizeProperty = null;
         internal static void SetInternalThumbSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbSize = newValue as Size;
             }
         }
@@ -89,9 +206,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ThumbImageURLProperty = null;
         internal static void SetInternalThumbImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbImageURL = newValue as string;
             }
         }
@@ -109,6 +226,7 @@ namespace Tizen.NUI.Components
         internal static void SetInternalThumbImageURLSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
+            //NOTE: null value is allowed here.
             instance.InternalThumbImageURLSelector = newValue as StringSelector;
         }
         internal static object GetInternalThumbImageURLSelectorProperty(BindableObject bindable)
@@ -124,9 +242,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ThumbImageUrlProperty = null;
         internal static void SetInternalThumbImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbImageUrl = newValue as Tizen.NUI.BaseComponents.Selector<string>;
             }
         }
@@ -143,9 +261,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ThumbColorProperty = null;
         internal static void SetInternalThumbColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbColor = newValue as Color;
             }
         }
@@ -162,9 +280,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty BgTrackColorProperty = null;
         internal static void SetInternalBgTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalBgTrackColor = newValue as Color;
             }
         }
@@ -181,9 +299,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SlidedTrackColorProperty = null;
         internal static void SetInternalSlidedTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalSlidedTrackColor = newValue as Color;
             }
         }
@@ -200,9 +318,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty WarningStartValueProperty = null;
         internal static void SetInternalWarningStartValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningStartValue = (float)newValue;
             }
         }
@@ -219,9 +337,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty WarningTrackColorProperty = null;
         internal static void SetInternalWarningTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningTrackColor = newValue as Color;
             }
         }
@@ -238,9 +356,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty WarningSlidedTrackColorProperty = null;
         internal static void SetInternalWarningSlidedTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningSlidedTrackColor = newValue as Color;
             }
         }
@@ -257,9 +375,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty WarningThumbImageUrlProperty = null;
         internal static void SetInternalWarningThumbImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningThumbImageUrl = newValue as Tizen.NUI.BaseComponents.Selector<string>;
             }
         }
@@ -276,9 +394,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty WarningThumbColorProperty = null;
         internal static void SetInternalWarningThumbColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningThumbColor = newValue as Color;
             }
         }
@@ -295,9 +413,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty LowIndicatorImageURLProperty = null;
         internal static void SetInternalLowIndicatorImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalLowIndicatorImageURL = newValue as string;
             }
         }
@@ -314,9 +432,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty HighIndicatorImageURLProperty = null;
         internal static void SetInternalHighIndicatorImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalHighIndicatorImageURL = newValue as string;
             }
         }
@@ -333,9 +451,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty LowIndicatorTextContentProperty = null;
         internal static void SetInternalLowIndicatorTextContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalLowIndicatorTextContent = newValue as string;
             }
         }
@@ -352,9 +470,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty HighIndicatorTextContentProperty = null;
         internal static void SetInternalHighIndicatorTextContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalHighIndicatorTextContent = newValue as string;
             }
         }
@@ -371,9 +489,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty LowIndicatorSizeProperty = null;
         internal static void SetInternalLowIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue as Size is var nVal && nVal != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalLowIndicatorSize = nVal;
             }
         }
@@ -390,9 +508,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty HighIndicatorSizeProperty = null;
         internal static void SetInternalHighIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue as Size is var nVal && nVal != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalHighIndicatorSize = nVal;
             }
         }
@@ -409,9 +527,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ValueIndicatorSizeProperty = null;
         internal static void SetInternalValueIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue as Size is var nVal && nVal != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalValueIndicatorSize = nVal;
             }
         }
@@ -428,9 +546,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ValueIndicatorUrlProperty = null;
         internal static void SetInternalValueIndicatorUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalValueIndicatorUrl = newValue as string;
             }
         }
@@ -447,9 +565,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IsDiscreteProperty = null;
         internal static void SetInternalIsDiscreteProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalIsDiscrete = (bool)newValue;
             }
         }
@@ -466,9 +584,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty DiscreteValueProperty = null;
         internal static void SetInternalDiscreteValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalDiscreteValue = (float)newValue;
             }
         }

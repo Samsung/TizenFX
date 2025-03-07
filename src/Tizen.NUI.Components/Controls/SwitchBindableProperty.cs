@@ -12,9 +12,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SwitchBackgroundImageURLSelectorProperty = null;
         internal static void SetInternalSwitchBackgroundImageURLSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Switch)bindable;
             if (newValue != null)
             {
+                var instance = (Switch)bindable;
                 instance.InternalSwitchBackgroundImageURLSelector = newValue as StringSelector;
             }
         }
@@ -31,9 +31,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SwitchHandlerImageURLProperty = null;
         internal static void SetInternalSwitchHandlerImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Switch)bindable;
             if (newValue != null)
             {
+                var instance = (Switch)bindable;
                 instance.InternalSwitchHandlerImageURL = newValue as string;
             }
         }
@@ -50,9 +50,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SwitchHandlerImageURLSelectorProperty = null;
         internal static void SetInternalSwitchHandlerImageURLSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Switch)bindable;
             if (newValue != null)
             {
+                var instance = (Switch)bindable;
                 instance.InternalSwitchHandlerImageURLSelector = newValue as StringSelector;
             }
         }
@@ -69,9 +69,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SwitchHandlerImageSizeProperty = null;
         internal static void SetInternalSwitchHandlerImageSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Switch)bindable;
             if (newValue != null)
             {
+                var instance = (Switch)bindable;
                 instance.InternalSwitchHandlerImageSize = newValue as Size;
             }
         }

@@ -265,7 +265,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Direction)GetInternalScrollingDirectionProperty(this);
+                    return InternalScrollingDirection;
                 }
             }
             set
@@ -276,7 +276,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollingDirectionProperty(this, null, value);
+                    InternalScrollingDirection = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -320,7 +320,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalScrollEnabledProperty(this);
+                    return InternalScrollEnabled;
                 }
             }
             set
@@ -331,7 +331,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollEnabledProperty(this, null, value);
+                    InternalScrollEnabled = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -383,7 +383,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalSnapToPageProperty(this);
+                    return InternalSnapToPage;
                 }
             }
             set
@@ -394,7 +394,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSnapToPageProperty(this, null, value);
+                    InternalSnapToPage = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -423,7 +423,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalScrollDurationProperty(this);
+                    return InternalScrollDuration;
                 }
             }
             set
@@ -434,7 +434,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollDurationProperty(this, null, value);
+                    InternalScrollDuration = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -465,7 +465,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalScrollAvailableAreaProperty(this) as Vector2;
+                    return InternalScrollAvailableArea;
                 }
             }
             set
@@ -476,7 +476,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollAvailableAreaProperty(this, null, value);
+                    InternalScrollAvailableArea = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -533,7 +533,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalScrollbarProperty(this) as ScrollbarBase;
+                    return InternalScrollbar;
                 }
             }
             set
@@ -544,7 +544,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollbarProperty(this, null, value);
+                    InternalScrollbar = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -596,7 +596,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalHideScrollbarProperty(this);
+                    return InternalHideScrollbar;
                 }
             }
             set
@@ -607,7 +607,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalHideScrollbarProperty(this, null, value);
+                    InternalHideScrollbar = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -657,7 +657,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalFadeScrollbarProperty(this);
+                    return InternalFadeScrollbar;
                 }
             }
             set
@@ -668,7 +668,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFadeScrollbarProperty(this, null, value);
+                    InternalFadeScrollbar = value;
                 }
             }
         }
@@ -719,7 +719,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalLayoutProperty(this) as LayoutItem;
+                    return InternalLayout;
                 }
             }
             set
@@ -730,7 +730,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLayoutProperty(this, null, value);
+                    InternalLayout = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -775,7 +775,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalDecelerationRateProperty(this);
+                    return InternalDecelerationRate;
                 }
             }
             set
@@ -786,7 +786,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDecelerationRateProperty(this, null, value);
+                    InternalDecelerationRate = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -818,7 +818,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalDecelerationThresholdProperty(this);
+                    return InternalDecelerationThreshold;
                 }
             }
             set
@@ -829,7 +829,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDecelerationThresholdProperty(this, null, value);
+                    InternalDecelerationThreshold = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -853,7 +853,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalScrollingEventThresholdProperty(this);
+                    return InternalScrollingEventThreshold;
                 }
             }
             set
@@ -864,7 +864,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollingEventThresholdProperty(this, null, value);
+                    InternalScrollingEventThreshold = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -902,7 +902,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalPageFlickThresholdProperty(this);
+                    return InternalPageFlickThreshold;
                 }
             }
             set
@@ -913,7 +913,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPageFlickThresholdProperty(this, null, value);
+                    InternalPageFlickThreshold = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -944,7 +944,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalPaddingProperty(this) as Extents;
+                    return InternalPadding;
                 }
             }
             set
@@ -955,7 +955,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPaddingProperty(this, null, value);
+                    InternalPadding = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -986,7 +986,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalScrollAlphaFunctionProperty(this) as AlphaFunction;
+                    return InternalScrollAlphaFunction;
                 }
             }
             set
@@ -997,7 +997,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrollAlphaFunctionProperty(this, null, value);
+                    InternalScrollAlphaFunction = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1033,7 +1033,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalNoticeAnimationEndBeforePositionProperty(this);
+                    return InternalNoticeAnimationEndBeforePosition;
                 }
             }
             set
@@ -1044,7 +1044,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalNoticeAnimationEndBeforePositionProperty(this, null, value);
+                    InternalNoticeAnimationEndBeforePosition = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1074,7 +1074,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalStepScrollDistanceProperty(this);
+                    return stepScrollDistance;
                 }
             }
             set
@@ -1085,7 +1085,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalStepScrollDistanceProperty(this, null, value);
+                    stepScrollDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1107,7 +1107,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalWheelScrollDistanceProperty(this);
+                    return wheelScrollDistance;
                 }
             }
             set
@@ -1118,7 +1118,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalWheelScrollDistanceProperty(this, null, value);
+                    wheelScrollDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1781,7 +1781,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalEnableOverShootingEffectProperty(this);
+                    return InternalEnableOverShootingEffect;
                 }
             }
             set
@@ -1792,7 +1792,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalEnableOverShootingEffectProperty(this, null, value);
+                    InternalEnableOverShootingEffect = value;
                 }
                 NotifyPropertyChanged();
             }

@@ -212,7 +212,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSwitchBackgroundImageURLSelectorProperty(this) as StringSelector;
+                    return InternalSwitchBackgroundImageURLSelector;
                 }
             }
             set
@@ -223,7 +223,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSwitchBackgroundImageURLSelectorProperty(this, null, value);
+                    InternalSwitchBackgroundImageURLSelector = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -260,7 +260,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSwitchHandlerImageURLProperty(this) as string;
+                    return InternalSwitchHandlerImageURL;
                 }
             }
             set
@@ -271,7 +271,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSwitchHandlerImageURLProperty(this, null, value);
+                    InternalSwitchHandlerImageURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -303,7 +303,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSwitchHandlerImageURLSelectorProperty(this) as StringSelector;
+                    return InternalSwitchHandlerImageURLSelector;
                 }
             }
             set
@@ -314,7 +314,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSwitchHandlerImageURLSelectorProperty(this, null, value);
+                    InternalSwitchHandlerImageURLSelector = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -351,7 +351,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSwitchHandlerImageSizeProperty(this) as Size;
+                    return InternalSwitchHandlerImageSize;
                 }
             }
             set
@@ -362,7 +362,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSwitchHandlerImageSizeProperty(this, null, value);
+                    InternalSwitchHandlerImageSize = value;
                 }
                 NotifyPropertyChanged();
             }

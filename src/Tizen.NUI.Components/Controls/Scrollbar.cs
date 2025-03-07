@@ -90,6 +90,7 @@ namespace Tizen.NUI.Components
         }
         internal static object GetInternalTrackPaddingProperty(BindableObject bindable)
         {
+            //NOTE: the type of trackPadding is not Extents.
             return ((Scrollbar)bindable).trackPadding;
         }
 
@@ -212,7 +213,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalTrackThicknessProperty(this);
+                    return trackThickness;
                 }
             }
             set
@@ -223,7 +224,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTrackThicknessProperty(this, null, value);
+                    UpdateTrackThickness(value);
                 }
             }
         }
@@ -242,7 +243,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalThumbThicknessProperty(this);
+                    return thumbThickness;
                 }
             }
             set
@@ -253,7 +254,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbThicknessProperty(this, null, value);
+                    UpdateThumbThickness(value);
                 }
             }
         }
@@ -272,7 +273,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Color)GetInternalTrackColorProperty(this);
+                    return trackView.BackgroundColor;
                 }
             }
             set
@@ -283,7 +284,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTrackColorProperty(this, null, value);
+                    trackView.BackgroundColor = value;
                 }
             }
         }
@@ -302,7 +303,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Color)GetInternalThumbColorProperty(this);
+                    return thumbColor;
                 }
             }
             set
@@ -313,7 +314,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbColorProperty(this, null, value);
+                    UpdateThumbColor(value);
                 }
             }
         }
@@ -334,7 +335,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Extents)GetInternalTrackPaddingProperty(this);
+                    return new Extents(trackPadding.Item1, trackPadding.Item2, trackPadding.Item3, trackPadding.Item4);
                 }
             }
             set
@@ -345,7 +346,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTrackPaddingProperty(this, null, value);
+                    UpdateTrackPadding(value);
                 }
             }
         }
@@ -364,7 +365,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (string)GetInternalThumbVerticalImageUrlProperty(this);
+                    return thumbVerticalImageUrl;
                 }
             }
             set
@@ -375,7 +376,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbVerticalImageUrlProperty(this, null, value);
+                    UpdateThumbImage(value, false);
                 }
             }
         }
@@ -394,7 +395,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (string)GetInternalThumbHorizontalImageUrlProperty(this);
+                    return thumbHorizontalImageUrl;
                 }
             }
             set
@@ -405,7 +406,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalThumbHorizontalImageUrlProperty(this, null, value);
+                    UpdateThumbImage(value, true);
                 }
             }
         }
