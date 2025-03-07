@@ -85,7 +85,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIconProperty(this) as View;
+                    return InternalIcon;
                 }
             }
             set
@@ -96,7 +96,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconProperty(this, null, value);
+                    InternalIcon = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -194,7 +194,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextProperty(this) as string;
+                    return InternalText;
                 }
             }
             set
@@ -205,7 +205,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextProperty(this, null, value);
+                    InternalText = value;
                 }
                 NotifyPropertyChanged();
             }

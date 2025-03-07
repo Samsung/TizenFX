@@ -92,7 +92,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIconProperty(this) as View;
+                    return InternalIcon;
                 }
             }
             set
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIconProperty(this, null, value);
+                    InternalIcon = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -206,7 +206,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextProperty(this) as string;
+                    return InternalText;
                 }
             }
             set
@@ -217,7 +217,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextProperty(this, null, value);
+                    InternalText = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -276,7 +276,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSubTextProperty(this) as string;
+                    return InternalSubText;
                 }
             }
             set
@@ -287,7 +287,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSubTextProperty(this, null, value);
+                    InternalSubText = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -318,7 +318,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalExtraProperty(this) as View;
+                    return InternalExtra;
                 }
             }
             set
@@ -329,7 +329,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalExtraProperty(this, null, value);
+                    InternalExtra = value;
                 }
                 NotifyPropertyChanged();
             }

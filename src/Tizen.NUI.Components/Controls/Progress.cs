@@ -32,114 +32,6 @@ namespace Tizen.NUI.Components
     {
         private const int IndeterminateAnimationDuration = 2000;
 
-        /// <summary>
-        /// MaxValueProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = null;
-        internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Progress)bindable;
-            if (newValue != null)
-            {
-                instance.maxValue = (float)newValue;
-                instance.UpdateValue();
-            }
-        }
-        internal static object GetInternalMaxValueProperty(BindableObject bindable)
-        {
-            var instance = (Progress)bindable;
-            return instance.maxValue;
-        }
-
-        /// <summary>
-        /// MinValueProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = null;
-        internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Progress)bindable;
-            if (newValue != null)
-            {
-                instance.minValue = (float)newValue;
-                instance.UpdateValue();
-            }
-        }
-        internal static object GetInternalMinValueProperty(BindableObject bindable)
-        {
-            var instance = (Progress)bindable;
-            return instance.minValue;
-        }
-
-        /// <summary>
-        /// CurrentValueProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = null;
-        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Progress)bindable;
-            if (newValue != null)
-            {
-                if ((float)newValue > instance.maxValue || (float)newValue < instance.minValue)
-                {
-                    return;
-                }
-                instance.currentValue = (float)newValue;
-                instance.UpdateValue();
-            }
-        }
-        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
-        {
-            var instance = (Progress)bindable;
-            return instance.currentValue;
-        }
-
-        /// <summary>
-        /// BufferValueProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BufferValueProperty = null;
-        internal static void SetInternalBufferValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Progress)bindable;
-            if (newValue != null)
-            {
-                if ((float)newValue > instance.maxValue || (float)newValue < instance.minValue)
-                {
-                    return;
-                }
-                instance.bufferValue = (float)newValue;
-                instance.UpdateValue();
-            }
-        }
-        internal static object GetInternalBufferValueProperty(BindableObject bindable)
-        {
-            var instance = (Progress)bindable;
-            return instance.bufferValue;
-        }
-
-        /// <summary>
-        /// ProgressStateProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressStateProperty = null;
-        internal static void SetInternalProgressStateProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (Progress)bindable;
-            if (newValue != null)
-            {
-                instance.state = (ProgressStatusType)newValue;
-                instance.UpdateStates();
-            }
-        }
-        internal static object GetInternalProgressStateProperty(BindableObject bindable)
-        {
-            var instance = (Progress)bindable;
-            return instance.state;
-        }
-
         /// This needs to be considered more if public-open is necessary.
         private ProgressStatusType state = ProgressStatusType.Determinate;
 
@@ -263,7 +155,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTrackImageURLProperty(this) as string;
+                    return InternalTrackImageURL;
                 }
             }
             set
@@ -274,7 +166,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTrackImageURLProperty(this, null, value);
+                    InternalTrackImageURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -299,7 +191,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalProgressImageURLProperty(this) as string;
+                    return InternalProgressImageURL;
                 }
             }
             set
@@ -310,7 +202,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalProgressImageURLProperty(this, null, value);
+                    InternalProgressImageURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -335,7 +227,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalBufferImageURLProperty(this) as string;
+                    return InternalBufferImageURL;
                 }
             }
             set
@@ -346,7 +238,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalBufferImageURLProperty(this, null, value);
+                    InternalBufferImageURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -372,7 +264,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalIndeterminateImageUrlProperty(this) as string;
+                    return InternalIndeterminateImageUrl;
                 }
             }
             set
@@ -383,7 +275,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIndeterminateImageUrlProperty(this, null, value);
+                    InternalIndeterminateImageUrl = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -428,7 +320,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTrackColorProperty(this) as Color;
+                    return InternalTrackColor;
                 }
             }
             set
@@ -439,7 +331,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTrackColorProperty(this, null, value);
+                    InternalTrackColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -464,7 +356,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalProgressColorProperty(this) as Color;
+                    return InternalProgressColor;
                 }
             }
             set
@@ -475,7 +367,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalProgressColorProperty(this, null, value);
+                    InternalProgressColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -500,7 +392,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalBufferColorProperty(this) as Color;
+                    return InternalBufferColor;
                 }
             }
             set
@@ -511,7 +403,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalBufferColorProperty(this, null, value);
+                    InternalBufferColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -536,7 +428,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalMaxValueProperty(this);
+                    return GetInternalMaxValue();
                 }
             }
             set
@@ -547,9 +439,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMaxValueProperty(this, null, value);
+                    SetInternalMaxValue(value);
                 }
             }
+        }
+
+        private void SetInternalMaxValue(float newValue)
+        {
+            maxValue = newValue;
+            UpdateValue();
+        }
+
+        private float GetInternalMaxValue()
+        {
+            return maxValue;
         }
 
         /// <summary>
@@ -566,7 +469,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalMinValueProperty(this);
+                    return GetInternalMinValue();
                 }
             }
             set
@@ -577,9 +480,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMinValueProperty(this, null, value);
+                    SetInternalMinValue(value);
                 }
             }
+        }
+
+        private void SetInternalMinValue(float newValue)
+        {
+            minValue = newValue;
+            UpdateValue();
+        }
+
+        private float GetInternalMinValue()
+        {
+            return minValue;
         }
 
         /// <summary>
@@ -596,7 +510,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalCurrentValueProperty(this);
+                    return GetInternalCurrentValue();
                 }
             }
             set
@@ -607,13 +521,28 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalCurrentValueProperty(this, null, value);
+                    SetInternalCurrentValue(value);
                 }
                 if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                 }
             }
+        }
+
+        private void SetInternalCurrentValue(float newValue)
+        {
+            if ((float)newValue > maxValue || (float)newValue < minValue)
+            {
+                return;
+            }
+            currentValue = newValue;
+            UpdateValue();
+        }
+
+        private float GetInternalCurrentValue()
+        {
+            return currentValue;
         }
 
         /// <summary>
@@ -630,7 +559,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalBufferValueProperty(this);
+                    return GetInternalBufferValue();
                 }
             }
             set
@@ -641,9 +570,24 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalBufferValueProperty(this, null, value);
+                    SetInternalBufferValue(value);
                 }
             }
+        }
+
+        private void SetInternalBufferValue(float newValue)
+        {
+            if ((float)newValue > maxValue || (float)newValue < minValue)
+            {
+                return;
+            }
+            bufferValue = newValue;
+            UpdateValue();
+        }
+
+        private float GetInternalBufferValue()
+        {
+            return bufferValue;
         }
 
         /// <summary>
@@ -660,7 +604,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (ProgressStatusType)GetInternalProgressStateProperty(this);
+                    return GetInternalProgressState();
                 }
             }
             set
@@ -671,9 +615,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalProgressStateProperty(this, null, value);
+                    SetInternalProgressState(value);
                 }
             }
+        }
+
+        private void SetInternalProgressState(ProgressStatusType newValue)
+        {
+            state = newValue;
+            UpdateStates();
+        }
+
+        private ProgressStatusType GetInternalProgressState()
+        {
+            return state;
         }
 
         /// <inheritdoc/>

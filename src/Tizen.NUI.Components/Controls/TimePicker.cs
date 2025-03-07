@@ -63,9 +63,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TimeProperty = null;
         internal static void SetInternalTimeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (TimePicker)bindable;
             if (newValue != null)
             {
+                var instance = (TimePicker)bindable;
                 instance.InternalTime = (DateTime)newValue;
             }
         }
@@ -82,9 +82,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty Is24HourViewProperty = null;
         internal static void SetInternalIs24HourViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (TimePicker)bindable;
             if (newValue != null)
             {
+                var instance = (TimePicker)bindable;
                 instance.InternalIs24HourView = (bool)newValue;
             }
         }
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (DateTime)GetInternalTimeProperty(this);
+                    return InternalTime;
                 }
             }
             set
@@ -201,7 +201,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTimeProperty(this, null, value);
+                    InternalTime = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -252,7 +252,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalIs24HourViewProperty(this);
+                    return InternalIs24HourView;
                 }
             }
             set
@@ -263,7 +263,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalIs24HourViewProperty(this, null, value);
+                    InternalIs24HourView = value;
                 }
                 NotifyPropertyChanged();
             }

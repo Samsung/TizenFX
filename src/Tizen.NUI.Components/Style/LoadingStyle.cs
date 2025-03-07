@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     {
         // NOTE framerate selector does not work.
         static readonly IStyleProperty FrameRateProperty = new StyleProperty<Loading, Selector<int?>>((v, o) => v.FrameRate = (int)o.Normal);
-        static readonly IStyleProperty ImageListProperty = new StyleProperty<Loading, IList<string>>((v, o) => Loading.SetInternalImageListProperty(v, null, o));
+        static readonly IStyleProperty ImageListProperty = new StyleProperty<Loading, IList<string>>((v, o) => v.SetInternalImageList(o));
         static readonly IStyleProperty LottieResourceUrlProperty = new StyleProperty<Loading, string>((v, o) => v.LottieResourceUrl = o);
 
         private Size loadingSize;

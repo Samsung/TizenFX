@@ -155,7 +155,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalBadgeProperty(this) as View;
+                    return InternalBadge;
                 }
             }
             set
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalBadgeProperty(this, null, value);
+                    InternalBadge = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -205,7 +205,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalResourceUrlProperty(this) as string;
+                    return InternalResourceUrl;
                 }
             }
             set
@@ -216,7 +216,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalResourceUrlProperty(this, null, value);
+                    InternalResourceUrl = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -275,7 +275,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextProperty(this) as string;
+                    return InternalText;
                 }
             }
             set
@@ -286,7 +286,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextProperty(this, null, value);
+                    InternalText = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -313,11 +313,11 @@ namespace Tizen.NUI.Components
             {
                 if (NUIApplication.IsUsingXaml)
                 {
-                    return (Tizen.NUI.Components.DefaultGridItem.LabelOrientation)GetValue(LabelOrientationTypeProperty);
+                    return (LabelOrientation)GetValue(LabelOrientationTypeProperty);
                 }
                 else
                 {
-                    return (Tizen.NUI.Components.DefaultGridItem.LabelOrientation)GetInternalLabelOrientationTypeProperty(this);
+                    return InternalLabelOrientationType;
                 }
             }
             set
@@ -328,12 +328,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLabelOrientationTypeProperty(this, null, value);
+                    InternalLabelOrientationType = value;
                 }
                 NotifyPropertyChanged();
             }
         }
-        private Tizen.NUI.Components.DefaultGridItem.LabelOrientation InternalLabelOrientationType
+        private LabelOrientation InternalLabelOrientationType
         {
             get
             {

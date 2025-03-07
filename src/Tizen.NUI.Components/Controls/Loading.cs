@@ -40,9 +40,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ImageArrayProperty = null;
         internal static void SetInternalImageArrayProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Loading)bindable;
             if (newValue != null)
             {
+                var instance = (Loading)bindable;
                 instance.InternalImageArray = newValue as string[];
             }
         }
@@ -57,15 +57,13 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ImageListProperty = null;
         internal static void SetInternalImageListProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            Debug.Assert(((Loading)bindable).imageVisual != null);
-
-            var newList = newValue as List<string>;
-            ((Loading)bindable).imageVisual.URLS = newList == null ? new List<string>() : newList;
+            var instance = (Loading)bindable;
+            instance.SetInternalImageList(newValue as List<string>);
         }
         internal static object GetInternalImageListProperty(BindableObject bindable)
         {
-            Debug.Assert(((Loading)bindable).imageVisual != null);
-            return ((Loading)bindable).imageVisual.URLS;
+            var instance = (Loading)bindable;
+            return instance.GetInternalImageList();
         }
 
         /// <summary>The lottie resource url bindable property.</summary>
@@ -74,13 +72,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalLottieResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Loading)bindable;
-            instance.RemoveImageVisual();
-            instance.EnsureLottieView(newValue as string ?? string.Empty);
+            instance.SetInternalLottieResourceUrl(newValue as string);
         }
         internal static object GetInternalLottieResourceUrlProperty(BindableObject bindable)
         {
-            var lottie = ((Loading)bindable).defaultLottieView;
-            return lottie == null ? string.Empty : lottie.URL;
+            var instance = (Loading)bindable;
+            return instance.GetInternalLottieResourceUrl();
         }
 
         /// <summary>The Size bindable property.</summary>
@@ -88,11 +85,9 @@ namespace Tizen.NUI.Components
         public new static readonly BindableProperty SizeProperty = null;
         internal static new void SetInternalSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Loading)bindable;
             if (newValue != null)
             {
-                Size size = (Size)newValue;
-                ((View)bindable).Size = size;
+                ((View)bindable).Size = (Size)newValue;
             }
         }
         internal static new object GetInternalSizeProperty(BindableObject bindable)
@@ -107,15 +102,12 @@ namespace Tizen.NUI.Components
         internal static void SetInternalFrameRateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Loading)bindable;
-            instance.frameRate = (int)newValue;
-            if (0 != instance.frameRate && instance.imageVisual != null) //It will crash if 0
-            {
-                instance.imageVisual.FrameDelay = instance.frameRate;
-            }
+            instance.SetInternalFrameRate((int)newValue);
         }
         internal static object GetInternalFrameRateProperty(BindableObject bindable)
         {
-            return ((Loading)bindable).frameRate;
+            var instance = (Loading)bindable;
+            return instance.GetInternalFrameRate();
         }
 
         private const string ImageVisualName = "loadingImageVisual";
@@ -210,21 +202,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalImageArrayProperty(this) as string[];
+                    return InternalImageArray;
                 }
             }
             set
             {
                 RemoveLottieView();
                 EnsureImageVisual();
-
                 if (NUIApplication.IsUsingXaml)
                 {
                     SetValue(ImageArrayProperty, value);
                 }
                 else
                 {
-                    SetInternalImageArrayProperty(this, null, value);
+                    InternalImageArray = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -239,7 +230,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (GetInternalImageListProperty(this) as List<string>)?.ToArray() ?? null;
+                    return (GetInternalImageList() as List<string>)?.ToArray() ?? null;
                 }
             }
             set
@@ -250,7 +241,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalImageListProperty(this, null, value == null ? new List<string>() : new List<string>((string[])value));
+                    SetInternalImageList(value == null ? new List<string>() : new List<string>(value));
                 }
             }
         }
@@ -269,9 +260,22 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalImageListProperty(this) as IList<string>;
+                    return GetInternalImageList();
                 }
             }
+        }
+
+        internal void SetInternalImageList(IList<string> newValue)
+        {
+            Debug.Assert(imageVisual != null);
+            var newList = newValue as List<string>;
+            imageVisual.URLS = newList == null ? new List<string>() : newList;
+        }
+
+        private IList<string> GetInternalImageList()
+        {
+            Debug.Assert(imageVisual != null);
+            return imageVisual.URLS;
         }
 
         /// <summary>
@@ -289,7 +293,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalLottieResourceUrlProperty(this) as string;
+                    return GetInternalLottieResourceUrl();
                 }
             }
             set
@@ -300,9 +304,21 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalLottieResourceUrlProperty(this, null, value);
+                    SetInternalLottieResourceUrl(value);
                 }
             }
+        }
+
+        private void SetInternalLottieResourceUrl(string newValue)
+        {
+            RemoveImageVisual();
+            EnsureLottieView(newValue ?? string.Empty);
+        }
+
+        private string GetInternalLottieResourceUrl()
+        {
+            var lottie = defaultLottieView;
+            return lottie == null ? string.Empty : lottie.URL;
         }
 
         /// <summary>
@@ -319,7 +335,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (Size)GetInternalSizeProperty(this);
+                    return base.Size;
                 }
             }
             set
@@ -330,7 +346,10 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSizeProperty(this, null, value);
+                    if (value != null)
+                    {
+                        base.Size = value;
+                    }
                 }
             }
         }
@@ -349,7 +368,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalFrameRateProperty(this);
+                    return GetInternalFrameRate();
                 }
             }
             set
@@ -364,9 +383,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFrameRateProperty(this, null, value);
+                    SetInternalFrameRate(value);
                 }
             }
+        }
+
+        private void SetInternalFrameRate(int newValue)
+        {
+            frameRate = newValue;
+            if (0 != frameRate && imageVisual != null) //It will crash if 0
+            {
+                imageVisual.FrameDelay = frameRate;
+            }
+        }
+
+        private int GetInternalFrameRate()
+        {
+            return frameRate;
         }
 
         /// <inheritdoc/>

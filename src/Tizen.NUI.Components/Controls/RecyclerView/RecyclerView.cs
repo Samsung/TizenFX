@@ -17,6 +17,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
@@ -130,7 +131,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalItemsSourceProperty(this) as IEnumerable;
+                    return InternalItemsSource;
                 }
             }
             set
@@ -141,11 +142,12 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemsSourceProperty(this, null, value);
+                    InternalItemsSource = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         internal virtual IEnumerable InternalItemsSource { get; set; }
 
         /// <summary>
@@ -162,7 +164,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalItemTemplateProperty(this) as DataTemplate;
+                    return InternalItemTemplate;
                 }
             }
             set
@@ -173,7 +175,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemTemplateProperty(this, null, value);
+                    InternalItemTemplate = value;
                 }
                 NotifyPropertyChanged();
             }

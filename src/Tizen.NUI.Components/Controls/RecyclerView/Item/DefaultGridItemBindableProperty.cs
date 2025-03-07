@@ -13,9 +13,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty BadgeProperty = null;
         internal static void SetInternalBadgeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultGridItem)bindable;
                 instance.InternalBadge = newValue as View;
             }
         }
@@ -32,9 +32,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextProperty = null;
         internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultGridItem)bindable;
                 instance.InternalText = newValue as string;
             }
         }
@@ -51,9 +51,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ResourceUrlProperty = null;
         internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultGridItem)bindable;
                 instance.InternalResourceUrl = newValue as string;
             }
         }
@@ -70,10 +70,10 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty LabelOrientationTypeProperty = null;
         internal static void SetInternalLabelOrientationTypeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
-                instance.InternalLabelOrientationType = (Tizen.NUI.Components.DefaultGridItem.LabelOrientation)newValue;
+                var instance = (DefaultGridItem)bindable;
+                instance.InternalLabelOrientationType = (LabelOrientation)newValue;
             }
         }
         internal static object GetInternalLabelOrientationTypeProperty(BindableObject bindable)
