@@ -644,8 +644,11 @@ namespace Tizen.NUI.Extension
             {
                 return (UIColor)token;
             }
+
+            var color = view.Color;
+
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.Color);
+            return color != null ? new UIColor(color) : UIColor.Transparent;
         }
 
         /// <summary>
@@ -671,7 +674,8 @@ namespace Tizen.NUI.Extension
         {
             // TODO Do not use Vector4 here
             var corner = view.CornerRadius;
-            return new UICorner(corner.X, corner.Y, corner.Z, corner.W, view.CornerRadiusPolicy == VisualTransformPolicyType.Relative);
+
+            return corner != null ? new UICorner(corner.X, corner.Y, corner.Z, corner.W, view.CornerRadiusPolicy == VisualTransformPolicyType.Relative) : UICorner.Zero;
         }
 
         /// <summary>
@@ -685,8 +689,11 @@ namespace Tizen.NUI.Extension
             {
                 return (UIColor)token;
             }
+
+            var color = view.BorderlineColor;
+
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.BorderlineColor);
+            return color != null ? new UIColor(color) : UIColor.Transparent;
         }
     }
 }
