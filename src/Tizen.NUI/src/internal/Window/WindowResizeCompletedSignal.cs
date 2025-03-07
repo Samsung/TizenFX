@@ -15,6 +15,8 @@
  *
  */
 
+using System;
+
 namespace Tizen.NUI
 {
     internal class WindowResizeCompletedSignal : Disposable
@@ -64,7 +66,13 @@ namespace Tizen.NUI
 
         public bool Emit(Window window, Size2D size)
         {
-            bool ret = Interop.WindowResizeCompletedSignal.Emit(SwigCPtr, Window.getCPtr(window), Size2D.getCPtr(size));
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+
+            using var vector = new Vector2(size.Width, size.Height);
+            bool ret = Interop.WindowResizeCompletedSignal.Emit(SwigCPtr, Window.getCPtr(window), Vector2.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

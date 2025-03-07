@@ -15,6 +15,8 @@
  *
  */
 
+using System;
+
 namespace Tizen.NUI
 {
     internal class GLWindowResizedSignal : Disposable
@@ -62,7 +64,13 @@ namespace Tizen.NUI
 
         public void Emit(Size2D arg)
         {
-            Interop.GLWindowResizedSignal.GlWindowResizedSignalEmit(SwigCPtr, Size2D.getCPtr(arg));
+            if (null == arg)
+            {
+                throw new ArgumentNullException(nameof(arg));
+            }
+
+            using var vector = new Vector2(arg.Width, arg.Height);
+            Interop.GLWindowResizedSignal.GlWindowResizedSignalEmit(SwigCPtr, Vector2.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

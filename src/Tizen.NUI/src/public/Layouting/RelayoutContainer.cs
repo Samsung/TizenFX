@@ -18,6 +18,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+    using System;
     using Tizen.NUI.BaseComponents;
     /// <summary>
     /// An interface to encapsulate the information required for relayout.
@@ -34,7 +35,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public virtual void Add(View view, Size2D size)
         {
-            Interop.NDalic.RelayoutContainerAdd(SwigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+
+            using var vector = new Vector2(size.Width, size.Height);
+            Interop.NDalic.RelayoutContainerAdd(SwigCPtr, View.getCPtr(view), Vector2.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
