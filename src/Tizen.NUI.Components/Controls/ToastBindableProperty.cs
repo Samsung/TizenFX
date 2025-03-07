@@ -5,6 +5,40 @@ namespace Tizen.NUI.Components
 {
     public partial class Toast
     {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MessageProperty = null;
+        internal static void SetInternalMessageProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Toast)bindable;
+                instance.SetInternalMessage((string)newValue);
+            }
+        }
+        internal static object GetInternalMessageProperty(BindableObject bindable)
+        {
+            var instance = (Toast)bindable;
+            return instance.GetInternalMessage();
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DurationProperty = null;
+        internal static void SetInternalDurationProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Toast)bindable;
+                instance.SetInternalDuration((uint)newValue);
+            }
+        }
+        internal static object GetInternalDurationProperty(BindableObject bindable)
+        {
+            var instance = (Toast)bindable;
+            return instance.GetInternalDuration();
+        }
+
         /// <summary>
         /// TextArrayProperty
         /// </summary>
@@ -12,9 +46,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextArrayProperty = null;
         internal static void SetInternalTextArrayProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalTextArray = newValue as string[];
             }
         }
@@ -31,9 +65,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty PointSizeProperty = null;
         internal static void SetInternalPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalPointSize = (float)newValue;
             }
         }
@@ -50,9 +84,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FontFamilyProperty = null;
         internal static void SetInternalFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalFontFamily = newValue as string;
             }
         }
@@ -69,9 +103,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextColorProperty = null;
         internal static void SetInternalTextColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalTextColor = newValue as Color;
             }
         }
@@ -88,9 +122,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextAlignmentProperty = null;
         internal static void SetInternalTextAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalTextAlignment = (HorizontalAlignment)newValue;
             }
         }
@@ -107,9 +141,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextPaddingProperty = null;
         internal static void SetInternalTextPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalTextPadding = newValue as Extents;
             }
         }
@@ -126,9 +160,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextLineHeightProperty = null;
         internal static void SetInternalTextLineHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalTextLineHeight = (uint)newValue;
             }
         }
@@ -145,9 +179,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextLineSpaceProperty = null;
         internal static void SetInternalTextLineSpaceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Toast)bindable;
             if (newValue != null)
             {
+                var instance = (Toast)bindable;
                 instance.InternalTextLineSpace = (uint)newValue;
             }
         }
