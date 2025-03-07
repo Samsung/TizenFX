@@ -33,9 +33,8 @@ namespace Tizen.NUI
         /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
         /// <param name="hints">The hints to define the geometry of the rendered object.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints), true)
+        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(vertexShader, fragmentShader, hints, "")
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -44,9 +43,19 @@ namespace Tizen.NUI
         /// <param name="vertexShader">The vertex shader code for the effect.</param>
         /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.New(vertexShader, fragmentShader), true)
+        public Shader(string vertexShader, string fragmentShader) : this(vertexShader, fragmentShader, Shader.Hint.Value.NONE, "")
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates Shader object with name
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <param name="shaderName">The name of this shader object.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shader(string vertexShader, string fragmentShader, string shaderName) : this(vertexShader, fragmentShader, Shader.Hint.Value.NONE, shaderName)
+        {
         }
 
         /// <summary>
@@ -67,8 +76,31 @@ namespace Tizen.NUI
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
                 Tizen.NUI.Object.SetProperty(SwigCPtr, Shader.Property.PROGRAM, temp);
+
+                // Update shader name
+                Name = "";
+                if (value != null)
+                {
+                    using var nameValue = value.Find("name");
+                    if (nameValue?.Get(out string name) ?? false)
+                    {
+                        Name = name ?? "";
+                    }
+                }
                 temp.Dispose();
             }
+        }
+
+        /// <summary>
+        /// Gets the name of program.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Name { get; private set; }
+
+        internal Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints, string shaderName) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints, shaderName ?? ""), true)
+        {
+            Name = shaderName ?? "";
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

@@ -519,6 +519,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Finds the value for the specified string key if it exists.
+        /// </summary>
+        /// <param name="stringKey">The string key to find.</param>
+        /// <returns>The value if it exists, an empty object otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue Find(string stringKey)
+        {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, stringKey);
+            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Finds the value for the specified key if it exists.
         /// </summary>
         /// <param name="key">The key to find.</param>

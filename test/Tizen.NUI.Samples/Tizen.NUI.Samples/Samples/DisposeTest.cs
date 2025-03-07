@@ -325,7 +325,7 @@ namespace Tizen.NUI.Samples
 
         private Shader GenerateShader()
         {
-            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER);
+            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "DisposeTestShader");
             return shader;
         }
 
