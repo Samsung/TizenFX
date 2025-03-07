@@ -578,7 +578,13 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public void SetCellPadding(Size2D padding)
         {
-            Interop.TableView.SetCellPadding(SwigCPtr, Size2D.getCPtr(padding));
+            if (null == padding)
+            {
+                throw new ArgumentNullException(nameof(padding));
+            }
+
+            using var vector = new Vector2(padding.Width, padding.Height);
+            Interop.TableView.SetCellPadding(SwigCPtr, Vector2.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

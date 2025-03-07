@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(Size2DTypeConverter))]
-    public class Size2D : Disposable, ICloneable
+    public class Size2D : IDisposable, ICloneable
     {
         private int width;
         private int height;
@@ -81,10 +81,10 @@ namespace Tizen.NUI
         /// <param name="disposing">true in order to free managed objects</param>
         // Protected implementation of Dispose pattern.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(bool disposing)
-        {
-            callback = null;
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    callback = null;
+        //}
 
         /// <summary>
         /// The property for the width component of a size.
@@ -419,10 +419,10 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.Vector2.DeleteVector2(swigCPtr);
-        }
+        //protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        //{
+        //    Interop.Vector2.DeleteVector2(swigCPtr);
+        //}
 
         private Size2D Add(Size2D rhs)
         {
@@ -497,5 +497,10 @@ namespace Tizen.NUI
             v > int.MaxValue ? int.MaxValue
             : v < int.MinValue ? int.MinValue
             : (int)v;
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

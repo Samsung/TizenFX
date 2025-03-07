@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -144,7 +145,17 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GetNaturalSize(Size2D naturalSize)
         {
-            Interop.VisualBase.GetNaturalSize(SwigCPtr, Size2D.getCPtr(naturalSize));
+            if (null == naturalSize)
+            {
+                throw new ArgumentNullException(nameof(naturalSize));
+            }
+
+            using var vector = new Vector2();
+
+            Interop.VisualBase.GetNaturalSize(SwigCPtr, Vector2.getCPtr(vector));
+
+            naturalSize.ResetValue((int)vector.Width, (int)vector.Height);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

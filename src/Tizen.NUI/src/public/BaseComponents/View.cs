@@ -2929,7 +2929,7 @@ namespace Tizen.NUI.BaseComponents
                 RequestLayout();
             }
 
-            Object.InternalSetPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, size.SwigCPtr);
+            SetSize(width, height);
         }
 
         private Size2D GetInternalSize2D()
@@ -2938,7 +2938,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalSize2D = new Size2D(OnSize2DChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalSize2D.SwigCPtr);
+
+            var w = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeWidth);
+            var h = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeHeight);
+            
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internalSize2D.ResetValue((int)w, (int)h);
 
             return internalSize2D;
         }
@@ -5034,7 +5043,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (size != null)
             {
-                Object.InternalSetPropertyVector2(SwigCPtr, Property.MinimumSize, size.SwigCPtr);
+                using var vector = new Vector2(size.Width, size.Height);
+                Object.InternalSetPropertyVector2(SwigCPtr, Property.MinimumSize, vector.SwigCPtr);
             }
         }
 
@@ -5044,7 +5054,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MinimumSize, internalMinimumSize.SwigCPtr);
+
+            using var vector = new Vector2();
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MinimumSize, vector.SwigCPtr);
+
+            internalMinimumSize.ResetValue((int)vector.Width, (int)vector.Height);
+
             return internalMinimumSize;
         }
 
@@ -5104,7 +5119,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (size != null)
             {
-                Object.InternalSetPropertyVector2(SwigCPtr, Property.MaximumSize, size.SwigCPtr);
+                using var vector = new Vector2(size.Width, size.Height);
+                Object.InternalSetPropertyVector2(SwigCPtr, Property.MaximumSize, vector.SwigCPtr);
             }
         }
 
@@ -5114,7 +5130,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MaximumSize, internalMaximumSize.SwigCPtr);
+
+            using var vector = new Vector2();
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MaximumSize, vector.SwigCPtr);
+
+            internalMaximumSize.ResetValue((int)vector.Width, (int)vector.Height);
+
             return internalMaximumSize;
         }
 

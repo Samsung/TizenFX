@@ -420,7 +420,8 @@ namespace Tizen.NUI
 
         private global::System.IntPtr DirectorGetNaturalSize()
         {
-            return Size2D.getCPtr(GetNaturalSize()).Handle;
+            var size = GetNaturalSize();
+            return Vector2.getCPtr(new Vector2(size.Width, size.Height)).Handle;
         }
 
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)

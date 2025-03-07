@@ -570,13 +570,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal Size2D GetCurrentSize()
         {
-
             if (internalCurrentSize == null)
             {
                 internalCurrentSize = new Size2D(0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalCurrentSize.SwigCPtr);
+            var w = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeWidth);
+            var h = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeHeight);
+
+            internalCurrentSize.ResetValue((int)w, (int)h);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -1008,12 +1010,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetMinimumSize()
         {
-
             if (internalMinimumSize == null)
             {
                 internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MinimumSize, internalMinimumSize.SwigCPtr);
+
+            using var vector = new Vector2();
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MinimumSize, vector.SwigCPtr);
+
+            internalMinimumSize.ResetValue((int)vector.Width, (int)vector.Height);
+
             return internalMinimumSize;
         }
 
@@ -1026,12 +1032,14 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetMaximumSize()
         {
-
             if (internalMaximumSize == null)
             {
                 internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MaximumSize, internalMaximumSize.SwigCPtr);
+
+            using var vector = new Vector2();
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MaximumSize, vector.SwigCPtr);
+            internalMaximumSize.ResetValue((int)vector.Width, (int)vector.Height);
             return internalMaximumSize;
         }
 
