@@ -2242,6 +2242,53 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The EllipsisMode property.
+        /// </summary>
+        /// <remarks>
+        /// This property is valid when Ellipsis is true.<br />
+        /// Truncate(default), if the text exceeds the layout, it will be truncated with an ellipsis.<br />
+        /// AutoScroll, if the text exceeds the layout, it will be auto scroll animated.<br />
+        /// EllipsisMode.AutoScroll shares the properties of AutoScroll Animation: AutoScrollSpeed, AutoScrollLoopCount, AutoScrollGap, AutoScrollLoopDelay<br />
+        /// EllipsisMode.AutoScroll forces the setting of AutoScrollStopMode to Immediate.<br />
+        /// To dynamically turn off EllipsisMode.AutoScroll, set EllipsisMode.Truncate.<br />
+        /// Cannot be used simultaneously with EnableAutoScroll.<br />
+        /// This property supports get/set operations in XAML scripts, but does not support XAML Data Binding functionality.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisMode EllipsisMode
+        {
+            get
+            {
+                return (EllipsisMode)Object.InternalGetPropertyInt(this.SwigCPtr, TextLabel.Property.EllipsisMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(this.SwigCPtr, TextLabel.Property.EllipsisMode, (int)value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether the auto scroll animation is playing or not.
+        /// </summary>
+        /// <remarks>
+        /// This property supports get operations in XAML scripts, but does not support XAML Data Binding functionality.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsScrolling
+        {
+            get
+            {
+                bool isScrolling = false;
+                using (var propertyValue = GetProperty(TextLabel.Property.IsScrolling))
+                {
+                    propertyValue.Get(out isScrolling);
+                }
+                return isScrolling;
+            }
+        }
+
+        /// <summary>
         /// The AutoScrollLoopDelay property.<br />
         /// The amount of time to delay the starting time of auto scrolling and further loops.<br />
         /// </summary>
@@ -3501,6 +3548,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
+            internal static readonly int EllipsisMode = Interop.TextLabel.EllipsisModeGet();
+            internal static readonly int IsScrolling = Interop.TextLabel.IsScrollingGet();
 
 
             internal static void Preload()
