@@ -985,6 +985,23 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the ellipsis mode of text.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum EllipsisMode
+    {
+        /// <summary>
+        /// When the text is long, it will be truncated with ellipsis.
+        /// </summary>
+        Truncate,
+
+        /// <summary>
+        /// When the text is long, it will automatically scroll with animation.
+        /// </summary>
+        AutoScroll
+    }
+
+    /// <summary>
     /// Enumeration type for the font's slant.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
