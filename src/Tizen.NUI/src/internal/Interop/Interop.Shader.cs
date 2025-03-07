@@ -31,6 +31,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shader_New__SWIG_1")]
             public static extern global::System.IntPtr New(string jarg1, string jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Shader_New__SWIG_2")]
+            public static extern global::System.IntPtr New(string vertexShaderCode, string fragmentShaderCode, int hints, string shaderName);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Shader")]
             public static extern void DeleteShader(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
