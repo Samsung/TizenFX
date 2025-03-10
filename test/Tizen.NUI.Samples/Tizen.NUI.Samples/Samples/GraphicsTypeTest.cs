@@ -14,8 +14,8 @@ namespace Tizen.NUI.Samples
 
             rootView = new ScrollableBase()
             {
-                WidthSdpecification = LayoutParamPolicies.MatchParent,
-                HeightSdpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
                 Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical},
                 Padding = new Extents(20, 20, 0, 0)
             };
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Samples
         public void Deactivate()
         {
             window.Remove(rootView);
-            rootView.Disdpose();
+            rootView.Dispose();
             rootView = null;
         }
     }
