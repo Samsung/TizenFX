@@ -25,35 +25,21 @@ namespace Tizen.NUI
 {
     internal class IntPtrPool
     {
-        private Queue<IntPtr> ptrQueue = new Queue<IntPtr>();
+        private System.Collections.Generic.Stack<IntPtr> pool = new System.Collections.Generic.Stack<IntPtr>();
         private CreatePtrCallback createPtrCb;
-        private DeletePtrCallback deletePtrCb;
-
-        private static List<IntPtrPool> pools = new List<IntPtrPool>();
 
         public delegate IntPtr CreatePtrCallback();
-        public delegate void DeletePtrCallback(IntPtr ptr);
 
-        public static void ClearPools()
-        {
-            foreach (var pool in pools)
-            {
-                pool.ClearPtrs();
-            }
-        }
-
-        public IntPtrPool(CreatePtrCallback createPtrCb, DeletePtrCallback deletePtrCb)
+        public IntPtrPool(CreatePtrCallback createPtrCb)
         {
             this.createPtrCb = createPtrCb;
-            this.deletePtrCb = deletePtrCb;
-            pools.Add(this);
         }
 
         public IntPtr GetPtr()
         {
             IntPtr ret = IntPtr.Zero;
 
-            if (0 == ptrQueue.Count)
+            if (0 == pool.Count)
             {
                 if (null == createPtrCb)
                 {
@@ -64,7 +50,7 @@ namespace Tizen.NUI
             }
             else
             {
-                ret = ptrQueue.Dequeue();
+                ret = pool.Pop();
             }
 
             return ret;
@@ -72,16 +58,7 @@ namespace Tizen.NUI
 
         public void PutPtr(IntPtr ptr)
         {
-            ptrQueue.Enqueue(ptr);
-        }
-
-        public void ClearPtrs()
-        {
-            while (ptrQueue.Count > 0)
-            {
-                var ptr = ptrQueue.Dequeue();
-                deletePtrCb?.Invoke(ptr);
-            }
+            pool.Push(ptr);
         }
     }
 }
