@@ -32,6 +32,26 @@ namespace Tizen.NUI
         private static readonly Position one = new Position(1.0f, 1.0f, 1.0f);
         private static readonly Position zero = new Position(0.0f, 0.0f, 0.0f);
 
+        private static IntPtrPool ptrPool;
+
+        private static IntPtrPool PtrPool
+        {
+            get
+            {
+                if (null == ptrPool)
+                {
+                    ptrPool = new IntPtrPool(CreateEmptryPtr);
+                }
+
+                return ptrPool;
+            }
+        }
+
+        private static IntPtr CreateEmptryPtr()
+        {
+            return Interop.Vector3.NewVector3();
+        }
+
         internal static new void Preload()
         {
             // Do nothing. Just call for load static values.
@@ -47,7 +67,7 @@ namespace Tizen.NUI
         /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Position() : this(Interop.Vector3.NewVector3(), true)
+        public Position() : this(PtrPool.GetPtr(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -65,8 +85,12 @@ namespace Tizen.NUI
         /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Position(float x, float y, float z = 0.0f) : this(Interop.Vector3.NewVector3(x, y, z), true)
+        public Position(float x, float y, float z = 0.0f) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector3.XSet(SwigCPtr, x);
+            Interop.Vector3.YSet(SwigCPtr, y);
+            Interop.Vector3.ZSet(SwigCPtr, z);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -75,8 +99,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position2d">Position2D to create this vector from.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Position(Position2D position2d) : this(Interop.Vector3.NewVector3WithVector2(Position2D.getCPtr(position2d)), true)
+        public Position(Position2D position2d) : this(PtrPool.GetPtr(), true)
         {
+            if (null == position2d)
+            {
+                throw new ArgumentNullException(nameof(position2d));
+            }
+
+            Interop.Vector3.XSet(SwigCPtr, position2d.X);
+            Interop.Vector3.YSet(SwigCPtr, position2d.Y);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -580,6 +612,30 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Dispose()
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Vector3.DeleteVector3(swigCPtr);
@@ -644,9 +700,14 @@ namespace Tizen.NUI
 
         internal delegate void PositionChangedCallback(float x, float y, float z);
 
-        internal Position(PositionChangedCallback cb, float x, float y, float z) : this(Interop.Vector3.NewVector3(x, y, z), true)
+        internal Position(PositionChangedCallback cb, float x, float y, float z) : this(PtrPool.GetPtr(), true)
         {
             callback = cb;
+
+            Interop.Vector3.XSet(SwigCPtr, x);
+            Interop.Vector3.YSet(SwigCPtr, y);
+            Interop.Vector3.ZSet(SwigCPtr, z);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

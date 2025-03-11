@@ -20,7 +20,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A two-dimensional vector.
     /// </summary>
@@ -35,6 +34,26 @@ namespace Tizen.NUI
         private static readonly Vector2 negativeXaxis = new Vector2(-1.0f, 0.0f);
         private static readonly Vector2 negativeYaxis = new Vector2(0.0f, -1.0f);
 
+        private static IntPtrPool ptrPool;
+
+        private static IntPtrPool PtrPool
+        {
+            get
+            {
+                if (null == ptrPool)
+                {
+                    ptrPool = new IntPtrPool(CreateEmptryPtr);
+                }
+
+                return ptrPool;
+            }
+        }
+
+        private static IntPtr CreateEmptryPtr()
+        {
+            return Interop.Vector2.NewVector2();
+        }
+
         internal static new void Preload()
         {
             // Do nothing. Just call for load static values.
@@ -44,7 +63,7 @@ namespace Tizen.NUI
         /// The default constructor initializes the vector to 0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Vector2() : this(Interop.Vector2.NewVector2(), true)
+        public Vector2() : this(PtrPool.GetPtr(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -55,8 +74,11 @@ namespace Tizen.NUI
         /// <param name="x">The x or width component.</param>
         /// <param name="y">The y or height component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector2(float x, float y) : this(Interop.Vector2.NewVector2(x, y), true)
+        public Vector2(float x, float y) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector2.XSet(SwigCPtr, x);
+            Interop.Vector2.YSet(SwigCPtr, y);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -65,8 +87,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="array">The array of xy.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector2(float[] array) : this(Interop.Vector2.NewVector2(array), true)
+        public Vector2(float[] array) : this(PtrPool.GetPtr(), true)
         {
+            if (null == array)
+            {
+                throw new ArgumentNullException(nameof(array));
+            }
+
+            Interop.Vector2.XSet(SwigCPtr, array[0]);
+            Interop.Vector2.YSet(SwigCPtr, array[1]);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -85,8 +114,15 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vec3">Vector3 to create this vector from.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector2(Vector3 vec3) : this(Interop.Vector2.NewVector2WithVector3(Vector3.getCPtr(vec3)), true)
+        public Vector2(Vector3 vec3) : this(PtrPool.GetPtr(), true)
         {
+            if (null == vec3)
+            {
+                throw new ArgumentNullException(nameof(vec3));
+            }
+
+            Interop.Vector2.XSet(SwigCPtr, vec3.X);
+            Interop.Vector2.YSet(SwigCPtr, vec3.Y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -95,8 +131,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vec4">Vector4 to create this vector from.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector2(Vector4 vec4) : this(Interop.Vector2.NewVector2WithVector4(Vector4.getCPtr(vec4)), true)
+        public Vector2(Vector4 vec4) : this(PtrPool.GetPtr(), true)
         {
+            if (null == vec4)
+            {
+                throw new ArgumentNullException(nameof(vec4));
+            }
+
+            Interop.Vector2.XSet(SwigCPtr, vec4.X);
+            Interop.Vector2.YSet(SwigCPtr, vec4.Y);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -104,9 +148,12 @@ namespace Tizen.NUI
         {
         }
 
-        internal Vector2(Vector2ChangedCallback cb, float x, float y) : this(Interop.Vector2.NewVector2(x, y), true)
+        internal Vector2(Vector2ChangedCallback cb, float x, float y) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector2.XSet(SwigCPtr, x);
+            Interop.Vector2.YSet(SwigCPtr, y);
             callback = cb;
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -467,6 +514,30 @@ namespace Tizen.NUI
             Vector2 ret = new Vector2(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Dispose()
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
         }
 
         /// This will not be public opened.
