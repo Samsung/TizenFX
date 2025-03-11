@@ -34,6 +34,26 @@ namespace Tizen.NUI
         private static readonly Vector4 yaxis = new Vector4(0.0f, 1.0f, 0.0f, 0.0f);
         private static readonly Vector4 zaxis = new Vector4(0.0f, 0.0f, 1.0f, 0.0f);
 
+        private static IntPtrPool ptrPool;
+
+        private static IntPtrPool PtrPool
+        {
+            get
+            {
+                if (null == ptrPool)
+                {
+                    ptrPool = new IntPtrPool(CreateEmptryPtr);
+                }
+
+                return ptrPool;
+            }
+        }
+
+        private static IntPtr CreateEmptryPtr()
+        {
+            return Interop.Vector4.NewVector4();
+        }
+
         internal static new void Preload()
         {
             // Do nothing. Just call for load static values.
@@ -43,7 +63,7 @@ namespace Tizen.NUI
         /// The default constructor initializes the vector to 0.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Vector4() : this(Interop.Vector4.NewVector4(), true)
+        public Vector4() : this(PtrPool.GetPtr(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -56,8 +76,13 @@ namespace Tizen.NUI
         /// <param name="z">The z (or b/p) component.</param>
         /// <param name="w">The w (or a/q) component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector4(float x, float y, float z, float w) : this(Interop.Vector4.NewVector4(x, y, z, w), true)
+        public Vector4(float x, float y, float z, float w) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector4.XSet(SwigCPtr, x);
+            Interop.Vector4.YSet(SwigCPtr, y);
+            Interop.Vector4.ZSet(SwigCPtr, z);
+            Interop.Vector4.WSet(SwigCPtr, w);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -66,8 +91,18 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="array">The array of either xyzw/rgba/stpq.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector4(float[] array) : this(Interop.Vector4.NewVector4(array), true)
+        public Vector4(float[] array) : this(PtrPool.GetPtr(), true)
         {
+            if (null == array)
+            {
+                throw new ArgumentNullException(nameof(array));
+            }
+
+            Interop.Vector4.XSet(SwigCPtr, array[0]);
+            Interop.Vector4.YSet(SwigCPtr, array[1]);
+            Interop.Vector4.ZSet(SwigCPtr, array[2]);
+            Interop.Vector4.WSet(SwigCPtr, array[3]);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -76,8 +111,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vec2">Vector2 to copy from, z and w are initialized to 0.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector4(Vector2 vec2) : this(Interop.Vector4.NewVector4WithVector2(Vector2.getCPtr(vec2)), true)
+        public Vector4(Vector2 vec2) : this(PtrPool.GetPtr(), true)
         {
+            if (null == vec2)
+            {
+                throw new ArgumentNullException(nameof(vec2));
+            }
+
+            Interop.Vector4.XSet(SwigCPtr, vec2.X);
+            Interop.Vector4.YSet(SwigCPtr, vec2.Y);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -86,8 +129,17 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vec3">Vector3 to copy from, w is initialized to 0.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Vector4(Vector3 vec3) : this(Interop.Vector4.NewVector4WithVector3(Vector3.getCPtr(vec3)), true)
+        public Vector4(Vector3 vec3) : this(PtrPool.GetPtr(), true)
         {
+            if (null == vec3)
+            {
+                throw new ArgumentNullException(nameof(vec3));
+            }
+
+            Interop.Vector4.XSet(SwigCPtr, vec3.X);
+            Interop.Vector4.YSet(SwigCPtr, vec3.Y);
+            Interop.Vector4.ZSet(SwigCPtr, vec3.Z);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -95,8 +147,13 @@ namespace Tizen.NUI
         {
         }
 
-        internal Vector4(Vector4ChangedCallback cb, float x, float y, float z, float w) : this(Interop.Vector4.NewVector4(x, y, z, w), true)
+        internal Vector4(Vector4ChangedCallback cb, float x, float y, float z, float w) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector4.XSet(SwigCPtr, x);
+            Interop.Vector4.YSet(SwigCPtr, y);
+            Interop.Vector4.ZSet(SwigCPtr, z);
+            Interop.Vector4.WSet(SwigCPtr, w);
+
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -758,6 +815,30 @@ namespace Tizen.NUI
             Vector4 ret = new Vector4(Interop.Vector4.Cross(SwigCPtr, Vector4.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Dispose()
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
         }
 
         /// This will not be public opened.
