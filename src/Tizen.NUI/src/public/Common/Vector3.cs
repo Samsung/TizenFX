@@ -45,7 +45,7 @@ namespace Tizen.NUI
             {
                 if (null == ptrPool)
                 {
-                    ptrPool = new IntPtrPool(CreateEmptryPtr);
+                    ptrPool = new IntPtrPool(CreateEmptryPtr, DeletePtr);
                 }
 
                 return ptrPool;
@@ -55,6 +55,12 @@ namespace Tizen.NUI
         private static IntPtr CreateEmptryPtr()
         {
             return Interop.Vector3.NewVector3();
+        }
+
+        private static void DeletePtr(IntPtr ptr)
+        {
+            var swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, ptr);
+            Interop.Vector3.DeleteVector3(swigCPtr);
         }
 
         internal static new void Preload()
