@@ -29,6 +29,26 @@ namespace Tizen.NUI
     {
         private Position2DChangedCallback callback = null;
 
+        private static IntPtrPool ptrPool;
+
+        private static IntPtrPool PtrPool
+        {
+            get
+            {
+                if (null == ptrPool)
+                {
+                    ptrPool = new IntPtrPool(CreateEmptryPtr);
+                }
+
+                return ptrPool;
+            }
+        }
+
+        private static IntPtr CreateEmptryPtr()
+        {
+            return Interop.Vector2.NewVector2();
+        }
+
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -39,7 +59,7 @@ namespace Tizen.NUI
         /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D() : this(Interop.Vector2.NewVector2(), true)
+        public Position2D() : this(PtrPool.GetPtr(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -49,8 +69,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position">Position to create this vector from</param>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D(Position position) : this(Interop.Vector2.NewVector2WithVector3(Position.getCPtr(position)), true)
+        public Position2D(Position position) : this(PtrPool.GetPtr(), true)
         {
+            if (null == position)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
+
+            Interop.Vector2.XSet(SwigCPtr, position.X);
+            Interop.Vector2.YSet(SwigCPtr, position.Y);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -66,8 +94,11 @@ namespace Tizen.NUI
         /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D(int x, int y) : this(Interop.Vector2.NewVector2((float)x, (float)y), true)
+        public Position2D(int x, int y) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector2.XSet(SwigCPtr, x);
+            Interop.Vector2.YSet(SwigCPtr, y);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -75,8 +106,11 @@ namespace Tizen.NUI
         {
         }
 
-        internal Position2D(Position2DChangedCallback cb, int x, int y) : this(Interop.Vector2.NewVector2((float)x, (float)y), true)
+        internal Position2D(Position2DChangedCallback cb, int x, int y) : this(PtrPool.GetPtr(), true)
         {
+            Interop.Vector2.XSet(SwigCPtr, x);
+            Interop.Vector2.YSet(SwigCPtr, y);
+
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -382,6 +416,30 @@ namespace Tizen.NUI
             Position2D ret = new Position2D(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Dispose()
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                PtrPool.PutPtr(SwigCPtr.Handle);
+                SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
         }
 
         /// This will not be public opened.
