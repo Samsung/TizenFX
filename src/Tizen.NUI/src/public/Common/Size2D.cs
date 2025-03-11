@@ -380,7 +380,6 @@ namespace Tizen.NUI
             var swigCPtr = new global::System.Runtime.InteropServices.HandleRef(ret, cPtr);
             ret.width = (int)Interop.Vector2.WidthGet(swigCPtr);
             ret.height = (int)Interop.Vector2.HeightGet(swigCPtr);
-
             return ret;
         }
 

@@ -2879,6 +2879,7 @@ namespace Tizen.NUI.BaseComponents
                     if (temp.Width < 0) { temp.Width = 0; }
                     if (temp.Height < 0) { temp.Height = 0; }
                 }
+
                 return temp;
             }
             set
@@ -5059,7 +5060,6 @@ namespace Tizen.NUI.BaseComponents
             Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MinimumSize, vector.SwigCPtr);
 
             internalMinimumSize.ResetValue((int)vector.Width, (int)vector.Height);
-
             return internalMinimumSize;
         }
 
@@ -5135,7 +5135,6 @@ namespace Tizen.NUI.BaseComponents
             Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MaximumSize, vector.SwigCPtr);
 
             internalMaximumSize.ResetValue((int)vector.Width, (int)vector.Height);
-
             return internalMaximumSize;
         }
 
