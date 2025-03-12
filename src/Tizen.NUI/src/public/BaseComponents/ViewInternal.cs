@@ -1400,8 +1400,6 @@ namespace Tizen.NUI.BaseComponents
                 internalPosition2D = null;
                 internalScale?.Dispose();
                 internalScale = null;
-                internalSize?.Dispose();
-                internalSize = null;
                 internalSize2D?.Dispose();
                 internalSize2D = null;
 

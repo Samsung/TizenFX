@@ -66,7 +66,6 @@ namespace Tizen.NUI.BaseComponents
         private Position internalPosition = null;
         private Position2D internalPosition2D = null;
         private Vector3 internalScale = null;
-        private Size internalSize = null;
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
         private ControlState propagatableControlStates = ControlState.All;
@@ -5382,10 +5381,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Size GetInternalSize()
         {
-            if (internalSize == null)
-            {
-                internalSize = new Size(OnSizeChanged, 0, 0, 0);
-            }
+            var internalSize = new Size(OnSizeChanged, 0, 0, 0);
 
             var w = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeWidth);
             var h = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeHeight);
