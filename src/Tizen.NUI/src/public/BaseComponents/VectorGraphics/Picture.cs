@@ -73,11 +73,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <since_tizen> 9 </since_tizen>
         public void SetSize(Size2D size)
         {
-            if (size == null)
+            if (null == size)
             {
                 throw new ArgumentNullException(nameof(size));
             }
-            Interop.Picture.SetSize(View.getCPtr(this), Size2D.getCPtr(size));
+
+            using var vector = new Vector2(size.Width, size.Height);
+            Interop.Picture.SetSize(View.getCPtr(this), Vector2.getCPtr(vector));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

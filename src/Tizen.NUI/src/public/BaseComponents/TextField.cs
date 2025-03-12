@@ -1072,7 +1072,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.TextColor, color.SwigCPtr);
+                using var vector = new Vector4(color.R, color.G, color.B, color.A);
+                Object.InternalSetPropertyVector4(SwigCPtr, Property.TextColor, vector.SwigCPtr);
             }
         }
 
@@ -1082,7 +1083,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalTextColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalTextColor.SwigCPtr);
+
+            using var vector = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, vector.SwigCPtr);
+            internalTextColor.ResetValue(vector.R, vector.G, vector.B, vector.A);
             return internalTextColor;
         }
 
@@ -3898,7 +3902,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (newValue != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.GrabHandleColor, newValue.SwigCPtr);
+                using var vector = new Vector4(newValue.R, newValue.G, newValue.B, newValue.A);
+                Object.InternalSetPropertyVector4(SwigCPtr, Property.GrabHandleColor, vector.SwigCPtr);
             }
         }
 
@@ -3908,7 +3913,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalGrabHandleColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.GrabHandleColor, internalGrabHandleColor.SwigCPtr);
+
+            using var vector = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.GrabHandleColor, vector.SwigCPtr);
+            internalGrabHandleColor.ResetValue(vector.R, vector.G, vector.B, vector.A);
             return internalGrabHandleColor;
         }
 
