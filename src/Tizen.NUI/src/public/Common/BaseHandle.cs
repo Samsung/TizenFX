@@ -89,8 +89,6 @@ namespace Tizen.NUI
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} and cRegister:{cRegister} START");
-
             registerMe = cRegister;
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -104,18 +102,12 @@ namespace Tizen.NUI
                     registerMe = false;
                 }
             }
-
-            disposeDebuggingCtor();
-            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn and cRegister END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} START");
 
             registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -129,16 +121,10 @@ namespace Tizen.NUI
                     registerMe = false;
                 }
             }
-
-            disposeDebuggingCtor();
-            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
         internal BaseHandle(global::System.IntPtr cPtr)
         {
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor START");
-
             registerMe = swigCMemOwn = true;
 
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -152,10 +138,6 @@ namespace Tizen.NUI
                     registerMe = false;
                 }
             }
-
-            disposeDebuggingCtor();
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
         /// <summary>
@@ -408,9 +390,6 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    DebugFileLogging.Instance.WriteLog("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
-
                     Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
                         $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
@@ -421,8 +400,6 @@ namespace Tizen.NUI
 
                 if (isDisposeQueued)
                 {
-                    DebugFileLogging.Instance.WriteLog($"should not be here! (dead code) this will be removed!");
-
                     Tizen.Log.Fatal("NUI", $"[NUI] should not be here! (dead code) this will be removed!");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
@@ -608,8 +585,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.Dispose({type}) START");
-
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -624,8 +599,6 @@ namespace Tizen.NUI
 
             //Unreference this instance from Registry.
             UnregisterFromRegistry();
-
-            disposeDebuggingDispose(type);
 
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
@@ -643,13 +616,10 @@ namespace Tizen.NUI
             else
             {
                 var me = this.GetType().FullName;
-                DebugFileLogging.Instance.WriteLog($"[ERR] SwigCPtr is NULL, need to check! me:{me}");
                 Log.Error("NUI", $"[ERR] SwigCPtr is NULL, need to check! me:{me}");
             }
 
             disposed = true;
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.Dispose({type}) END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
             NUILog.Debug($"BaseHandle.Dispose({type}) END");
             NUILog.Debug($"=============================");
         }
@@ -789,59 +759,5 @@ namespace Tizen.NUI
         {
             nativeBindedHolder.Remove(handle);
         }
-
-        [Conditional("NUI_DISPOSE_DEBUG_ON")]
-        private void disposeDebuggingCtor()
-        {
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtr.Handle.ToString("X8")}");
-            if (this is BaseComponents.View view)
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{view.ID} Name:{view.Name}");
-                //back trace
-                global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
-                for (int i = 0; i < st.FrameCount; i++)
-                {
-                    global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
-                }
-            }
-        }
-
-        [Conditional("NUI_DISPOSE_DEBUG_ON")]
-        private void disposeDebuggingDispose(DisposeTypes type)
-        {
-            DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtr.Handle.ToString("X8")} HasBody:{HasBody()}");
-
-            if (HasBody())
-            {
-                using var currentProcess = global::System.Diagnostics.Process.GetCurrentProcess();
-                var process = currentProcess.Id;
-                var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-                var me = this.GetType().FullName;
-                var daliId = "unknown";
-                var hash = this.GetType().GetHashCode();
-                var name = "unknown";
-
-                if (this is BaseComponents.View)
-                {
-                    daliId = Interop.Actor.GetId(swigCPtr).ToString();
-                    name = Interop.Actor.GetName(swigCPtr);
-                    BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtr), false);
-                    var refCnt = tmp.ReferenceCount();
-                    tmp.Dispose();
-                    if (refCnt > 2)
-                    {
-                        DebugFileLogging.Instance.WriteLog($"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                            $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-
-                        Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                            $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-                    }
-                }
-            }
-        }
-
     }
 }

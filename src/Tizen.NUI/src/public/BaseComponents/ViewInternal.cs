@@ -1361,8 +1361,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            disposeDebugging(type);
-
             if (SwigCMemOwn && !IsNativeHandleInvalid())
             {
                 Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
@@ -1937,21 +1935,6 @@ namespace Tizen.NUI.BaseComponents
             if (themeData == null) themeData = new ThemeData();
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
-        }
-
-        [Conditional("NUI_DISPOSE_DEBUG_ON")]
-        private void disposeDebugging(DisposeTypes type)
-        {
-            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
-            if (HasBody())
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
-            }
-            else
-            {
-                DebugFileLogging.Instance.WriteLog($"has no native body!");
-            }
         }
 
         private void NotifyBackgroundChanged()
