@@ -33,10 +33,8 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class Service : IDisposable
     {
-        private Tizen.Core.Task _task = null;
-        private bool _disposed = false;
-        private object _eventLock = new object();
-        private EventHandler<ServiceLifecycleChangedEventArgs> _serviceLifecycleChanged;
+        private Tizen.Core.Task _task;
+        private bool _disposed;
 
         /// <summary>
         /// Initializes the service.
@@ -56,7 +54,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Finalizer of the service class.
         /// </summary>
+#pragma warning disable CA1063
         ~Service()
+#pragma warning restore CA1063
         {
             Log.Debug("~Service");
             Dispose(false);
@@ -67,43 +67,15 @@ namespace Tizen.Applications
         /// The Id.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public string Id
-        {
-            get
-            {
-                return ServiceInfo?.Id;
-            }
-        }
+        public string Id => ServiceInfo?.Id;
 
         /// <summary>
         /// The name.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public string Name
-        {
-            get
-            {
-                return ServiceInfo?.Name;
-            }
-        }
+        public string Name => ServiceInfo?.Name;
 
-        internal event EventHandler<ServiceLifecycleChangedEventArgs> LifecycleChanged
-        {
-            add
-            {
-                lock (_eventLock)
-                {
-                    _serviceLifecycleChanged += value;
-                }
-            }
-            remove
-            {
-                lock (_eventLock)
-                {
-                    _serviceLifecycleChanged -= value;
-                }
-            }
-        }
+        internal event EventHandler<ServiceLifecycleChangedEventArgs> LifecycleChanged;
 
         private void Service_LifecycleChanged(object sender, ServiceLifecycleChangedEventArgs e)
         {
@@ -140,17 +112,9 @@ namespace Tizen.Applications
                 return;
             }
 
-            if (ServiceInfo.UseThread)
-            {
-                _task = TizenCore.Spawn(Name);
-            }
-            else
-            {
-                _task = TizenCore.Find("main");
-            }
-
+            _task = ServiceInfo.UseThread ? TizenCore.Spawn(Name) : TizenCore.Find("main");
             _task.Post(() => { OnCreate(); });
-            SendAppcOntrolReceivedEvent(args);
+            SendAppControlReceivedEvent(args);
         }
 
         /// <summary>
@@ -174,7 +138,7 @@ namespace Tizen.Applications
             }
         }
 
-        internal void SendAppcOntrolReceivedEvent(AppControlReceivedEventArgs args)
+        internal void SendAppControlReceivedEvent(AppControlReceivedEventArgs args)
         {
             _task.Post(() =>
             {
@@ -223,10 +187,7 @@ namespace Tizen.Applications
             args.State = State;
             CoreApplication.Post(() =>
             {
-                lock (_eventLock)
-                {
-                    _serviceLifecycleChanged?.Invoke(this, args);
-                }
+                LifecycleChanged?.Invoke(this, args);
             });
         }
 
@@ -278,40 +239,28 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="e">The locale changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
-        {
-            Log.Debug("OnLocaleChanged");
-        }
+        protected virtual void OnLocaleChanged(LocaleChangedEventArgs e) => Log.Debug("OnLocaleChanged");
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// </summary>
         /// <param name="e">The low batter event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLowBattery(LowBatteryEventArgs e)
-        {
-            Log.Debug("OnLowBattery");
-        }
+        protected virtual void OnLowBattery(LowBatteryEventArgs e) => Log.Debug("OnLowBattery");
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// </summary>
         /// <param name="e">The low memory event argument.</param>
         /// <since_tizen> 13 </since_tizen>c
-        protected virtual void OnLowMemory(LowMemoryEventArgs e)
-        {
-            Log.Debug("OnLowMemory");
-        }
+        protected virtual void OnLowMemory(LowMemoryEventArgs e) => Log.Debug("OnLowMemory");
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// </summary>
         /// <param name="e">The region format changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
-        {
-            Log.Debug("OnRegionFormatChanged");
-        }
+        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e) => Log.Debug("OnRegionFormatChanged");
 
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.

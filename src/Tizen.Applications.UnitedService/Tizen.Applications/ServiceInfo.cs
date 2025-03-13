@@ -121,11 +121,6 @@ namespace Tizen.Applications
 
         private static void SetType(ServiceInfo info)
         {
-            if (info == null)
-            {
-                return;
-            }
-
             if (info.Metadata.TryGetValue(MetadataUnitedServiceType, out string type))
             {
                 info.Type = type;
@@ -139,22 +134,18 @@ namespace Tizen.Applications
 
         private static void SetName(ServiceInfo info)
         {
-            if (info == null)
+            if (!string.IsNullOrEmpty(info.ResourceType))
             {
-                return;
+                info.Name = info.ResourceType.Substring(info.ResourceType.LastIndexOf('.') + 1);
             }
-
-            string resourceType = info.ResourceType;
-            info.Name = resourceType.Substring(resourceType.LastIndexOf('.') + 1);
+            else
+            {
+                Log.Error("Failed to get name");
+            }
         }
 
         private static void SetId(ServiceInfo info)
         {
-            if (info == null)
-            {
-                return;
-            }
-
             if (info.Metadata.TryGetValue(MetadataUnitedServiceId, out string id))
             {
                 info.Id = id;
@@ -168,11 +159,6 @@ namespace Tizen.Applications
 
         private static void SetClassName(ServiceInfo info)
         {
-            if (info == null)
-            {
-                return;
-            }
-
             if (info.Metadata.TryGetValue(MetadataUnitedServiceClassName, out string className))
             {
                 info.ClassName = className;
@@ -186,47 +172,29 @@ namespace Tizen.Applications
 
         private static void SetUseThread(ServiceInfo info)
         {
-            if (info == null)
-            {
-                return;
-            }
-
-            if (info.Metadata.TryGetValue(MetadataUnitedServiceUseThread, out string useThread))
-            {
-                info.UseThread = (useThread == "true") ? true : false;
-            }
-            else
-            {
-                info.UseThread = true;
-            }
+            info.UseThread = info.Metadata.TryGetValue(MetadataUnitedServiceUseThread, out string useThread) && useThread == "true";
             Log.Info("UseThread=" + info.UseThread);
         }
 
         private static void SetResourcePath(ServiceInfo info)
         {
-            if (info == null)
+            string resourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath);
+            if (Directory.Exists(resourcePath + "/.res_mount/service/"))
             {
-                return;
+                info.ResourcePath = resourcePath + "/.res_mount/service/";
             }
-
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/service/";
-            if (!Directory.Exists(info.ResourcePath))
+            else if (Directory.Exists(resourcePath + "/.res_mount/"))
             {
-                info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/";
-                if (!Directory.Exists(info.ResourcePath))
-                {
-                    info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
-                }
+                info.ResourcePath = resourcePath + "/.res_mount/";
+            }
+            else
+            {
+                info.ResourcePath = resourcePath + "/";
             }
         }
 
         private static void SetExecutableFile(ServiceInfo info)
         {
-            if (info == null)
-            {
-                return;
-            }
-
             if (info.Metadata.TryGetValue(MetadataUnitedServiceExec, out string executableFile))
             {
                 info.ExecutableFile = executableFile;
@@ -240,16 +208,11 @@ namespace Tizen.Applications
 
         private static void SetMetadata(ServiceInfo info, IntPtr handle)
         {
-            if (info == null || handle == IntPtr.Zero)
-            {
-                return;
-            }
-
             Dictionary<string, string> metadata = new Dictionary<string, string>();
             int callback(string key, string value, IntPtr userData)
             {
                 Log.Info("key=" + key + ", value=" + value);
-                if (key.Length != 0)
+                if (!string.IsNullOrEmpty(key))
                 {
                     if (!metadata.ContainsKey(key))
                     {
@@ -270,11 +233,6 @@ namespace Tizen.Applications
 
         private static void SetResourceVersion(ServiceInfo info, IntPtr handle)
         {
-            if (info == null || handle == IntPtr.Zero)
-            {
-                return;
-            }
-
             var errorCode = Interop.PackageManagerInfo.PackageInfoGetResourceVersion(handle, out IntPtr resourceVersionPtr);
             if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
             {
@@ -288,11 +246,6 @@ namespace Tizen.Applications
 
         private static void SetResourceType(ServiceInfo info, IntPtr handle)
         {
-            if (info == null || handle == IntPtr.Zero)
-            {
-                return;
-            }
-
             var errorCode = Interop.PackageManagerInfo.PackageInfoGetResourceType(handle, out IntPtr resourceTypePtr);
             if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
             {
@@ -320,6 +273,13 @@ namespace Tizen.Applications
             }
 
             ServiceInfo info = new ServiceInfo(packageId);
+            if (info == null)
+            {
+                Log.Error("Failed to create ServiceInfo. package ID = " + packageId);
+                Interop.PackageManagerInfo.PackageInfoDestroy(handle);
+                return null;
+            }
+
             SetResourceType(info, handle);
             SetResourceVersion(info, handle);
             SetMetadata(info, handle);

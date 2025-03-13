@@ -21,6 +21,7 @@ using System.IO;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.Core;
+using System.Collections.Concurrent;
 
 namespace Tizen.Applications
 {
@@ -31,8 +32,8 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ServiceManager
     {
-        private static readonly Dictionary<string, ServiceInfo> _serviceInfos = new Dictionary<string, ServiceInfo>();
-        private static readonly Dictionary<string, Service> _services = new Dictionary<string, Service>();
+        private static readonly ConcurrentDictionary<string, ServiceInfo> _serviceInfos = new ConcurrentDictionary<string, ServiceInfo>();
+        private static readonly ConcurrentDictionary<string, Service> _services = new ConcurrentDictionary<string, Service>();
 
         static ServiceManager()
         {
@@ -88,7 +89,7 @@ namespace Tizen.Applications
                 ServiceInfo info = ServiceInfo.Create(packageId);
                 if (info != null)
                 {
-                    _serviceInfos.Add(info.ResourceType, info);
+                    _serviceInfos[info.ResourceType] = info;
                 }
             }
         }
@@ -181,20 +182,7 @@ namespace Tizen.Applications
 
         private static string GetResourceTypeFromId(string id)
         {
-            string resourceType = string.Empty;
-            lock (_serviceInfos)
-            {
-                foreach (var info in _serviceInfos.Values)
-                {
-                    if (info.Id == id)
-                    {
-                        resourceType = info.ResourceType;
-                        break;
-                    }
-                }
-            }
-
-            return resourceType;
+            return _serviceInfos.Values.FirstOrDefault(info => info.Id == id)?.ResourceType ?? string.Empty;
         }
 
         private static void HandleAppControlReceivedEvent(AppControlReceivedEventArgs e)
@@ -261,12 +249,9 @@ namespace Tizen.Applications
 
         private static void SendSystemEvent(ServiceEventType eventType, EventArgs args)
         {
-            lock (_services)
+            foreach (var service in _services.Values)
             {
-                foreach (var service in _services.Values)
-                {
-                    service.SendSystemEvent(eventType, args);
-                }
+                service.SendSystemEvent(eventType, args);
             }
         }
 
@@ -275,11 +260,8 @@ namespace Tizen.Applications
             ServiceLifecycleChanged?.Invoke(sender, args);
             if (args.State == ServiceLifecycleState.Destroyed)
             {
-                lock (_services)
-                {
-                    args.Service.LifecycleChanged -= OnServiceLifecycleChangedEvent;
-                    _services.Remove(args.Service.ServiceInfo.ResourceType);
-                }
+                args.Service.LifecycleChanged -= OnServiceLifecycleChangedEvent;
+                _services.TryRemove(args.Service.ServiceInfo.ResourceType, out _);
             }
         }
 
@@ -287,7 +269,7 @@ namespace Tizen.Applications
         {
             if (!_serviceInfos.TryGetValue(resourceType, out var info))
             {
-                throw new ArgumentException("Failed to find ServiceInfo. resource type=" + resourceType);
+                throw new ArgumentException($"Failed to find ServiceInfo. resource type={resourceType}");
             }
 
             return info;
@@ -302,13 +284,8 @@ namespace Tizen.Applications
 
             try
             {
-                lock (info)
+                if (!info.Assembly.IsLoaded)
                 {
-                    if (info.Assembly.IsLoaded)
-                    {
-                        return;
-                    }
-
                     Log.Warn("ServiceAssembly.Load()=" + info.ExecutablePath + " ++");
                     info.Assembly.Load();
                     Log.Warn("ServiceAssembly.Load()=" + info.ExecutablePath + " --");
@@ -353,16 +330,13 @@ namespace Tizen.Applications
                 throw new ArgumentException("Invalid argument");
             }
 
-            lock (info)
+            if (info.Assembly.IsLoaded)
             {
-                if (info.Assembly.IsLoaded)
+                info.Assembly.Unload();
+                for (int i = 0; info.Assembly.IsAlive && i < 10; i++)
                 {
-                    info.Assembly.Unload();
-                    for (int i = 0; info.Assembly.IsAlive && (i < 10); i++)
-                    {
-                        GC.Collect();
-                        GC.WaitForPendingFinalizers();
-                    }
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 }
             }
         }
@@ -405,17 +379,10 @@ namespace Tizen.Applications
                 throw new ArgumentException("Invalid argument");
             }
 
-            Service service = null;
-            lock (_services)
+            if (_services.TryGetValue(resourceType, out var service) && service.State != ServiceLifecycleState.Destroyed)
             {
-                if (_services.TryGetValue(resourceType, out service))
-                {
-                    if (service.State != ServiceLifecycleState.Destroyed)
-                    {
-                        service.SendAppcOntrolReceivedEvent(args);
-                        return;
-                    }
-                }
+                service.SendAppControlReceivedEvent(args);
+                return;
             }
 
             ServiceInfo info = Find(resourceType);
@@ -424,17 +391,14 @@ namespace Tizen.Applications
             service = info.Assembly.CreateInstance(info.ClassName);
             if (service == null)
             {
-                throw new InvalidOperationException("Failed to create instance. class name=" + info.ClassName);
+                throw new InvalidOperationException($"Failed to create instance. class name={info.ClassName}");
             }
 
             service.ServiceInfo = info;
             service.LifecycleChanged += OnServiceLifecycleChangedEvent;
+            _services[resourceType] = service;
 
-            lock (_services)
-            {
-                _services[resourceType] = service;
-                service.Run(args);
-            }
+            service.Run(args);
         }
 
         /// <summary>
@@ -450,14 +414,8 @@ namespace Tizen.Applications
                 throw new ArgumentException("Invalid argument");
             }
 
-            Service service = null;
-            lock (_services)
+            if (_services.TryGetValue(resourceType, out var service))
             {
-                if (!_services.TryGetValue(resourceType, out service))
-                {
-                    return;
-                }
-
                 service.Quit();
             }
         }
@@ -470,12 +428,9 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public static void RunAll()
         {
-            lock (_serviceInfos)
+            foreach (var resourceType in _serviceInfos.Keys)
             {
-                foreach (var resourceType in _serviceInfos.Keys)
-                {
-                    Run(resourceType, null);
-                }
+                Run(resourceType, null);
             }
         }
 
@@ -485,12 +440,9 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public static void QuitAll()
         {
-            lock (_services)
+            foreach (var service in _services.Values)
             {
-                foreach (var service in _services.Values)
-                {
-                    service.Quit();
-                }
+                service.Quit();
             }
         }
     }

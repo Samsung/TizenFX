@@ -43,7 +43,7 @@ namespace Tizen.Applications
     {
         private static readonly object _assemblyLock = new object();
         private readonly string _assemblyPath;
-        private WeakReference _assemblyRef;
+        private WeakReference<ServiceAssemblyLoadContext> _contextRef;
         private Assembly _assembly = null;
         private bool _loaded = false;
 
@@ -60,7 +60,7 @@ namespace Tizen.Applications
 
                 Log.Warn("Load(): " + _assemblyPath + " ++");
                 ServiceAssemblyLoadContext context = new ServiceAssemblyLoadContext();
-                _assemblyRef = new WeakReference(context);
+                _contextRef = new WeakReference<ServiceAssemblyLoadContext>(context);
                 string directoryPath = SystemIO.Path.GetDirectoryName(_assemblyPath);
                 string fileName = SystemIO.Path.GetFileNameWithoutExtension(_assemblyPath);
                 string nativeImagePath = directoryPath + "/.native_image/" + fileName + ".ni.dll";
@@ -71,9 +71,9 @@ namespace Tizen.Applications
             }
         }
 
-        internal bool IsLoaded { get { return _loaded; } }
+        internal bool IsLoaded => _loaded;
 
-        internal bool IsAlive {  get { return _assemblyRef.IsAlive; } }
+        internal bool IsAlive => _contextRef.TryGetTarget(out var context) && context != null;
 
         internal Service CreateInstance(string className)
         {
@@ -82,7 +82,7 @@ namespace Tizen.Applications
                 return (Service)_assembly?.CreateInstance(className);
             }
         }
-                
+
         internal void Unload()
         {
             lock (_assemblyLock)
@@ -93,9 +93,10 @@ namespace Tizen.Applications
                 }
 
                 Log.Warn("Unload(): " + _assemblyPath + " ++");
-                if (_assemblyRef.IsAlive)
+                if (IsAlive)
                 {
-                    (_assemblyRef.Target as ServiceAssemblyLoadContext).Unload();
+                    _contextRef.TryGetTarget(out var context);
+                    context?.Unload();
                 }
 
                 _assembly = null;

@@ -18,7 +18,7 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.Applications
 {
-    internal class Log
+    internal static class Log
     {
         private static string LogTag = "Tizen.Applications";
 
