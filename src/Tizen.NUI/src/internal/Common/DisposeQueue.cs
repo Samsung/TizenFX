@@ -83,8 +83,6 @@ namespace Tizen.NUI
                 disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
                 eventThreadCallback = new EventThreadCallback(disposeQueueProcessDisposablesDelegate);
                 initialized = true;
-
-                DebugFileLogging.Instance.WriteLog("DiposeTest START");
             }
         }
 
@@ -143,7 +141,6 @@ namespace Tizen.NUI
             {
                 if (disposables.Count > 0)
                 {
-                    DebugFileLogging.Instance.WriteLog($"Newly add {disposables.Count} count of disposables. Total disposables count is {incrementallyDisposedQueue.Count + disposables.Count}.\n");
                     // Move item from end, due to the performance issue.
                     while (disposables.Count > 0)
                     {
@@ -172,8 +169,6 @@ namespace Tizen.NUI
             var disposeCount = fullCollectRequested ? incrementallyDisposedQueue.Count
                                                     : Math.Min(incrementallyDisposedQueue.Count, Math.Max(minimumIncrementalCount, incrementallyDisposedQueue.Count * minimumIncrementalRate / 100));
 
-            DebugFileLogging.Instance.WriteLog((fullCollectRequested ? "Fully" : "Incrementally") + $" dispose {disposeCount} disposables. Will remained disposables count is {incrementallyDisposedQueue.Count - disposeCount}.\n");
-
             fullCollectRequested = false;
 
             // Dispose item from end, due to the performance issue.
@@ -182,8 +177,6 @@ namespace Tizen.NUI
                 --disposeCount;
                 var disposable = incrementallyDisposedQueue.Last();
                 incrementallyDisposedQueue.RemoveAt(incrementallyDisposedQueue.Count - 1);
-
-                DebugFileLogging.Instance.WriteLog($"disposable.Dispose(); type={disposable.GetType().FullName}, hash={disposable.GetHashCode()}");
                 disposable.Dispose();
             }
 
@@ -196,8 +189,6 @@ namespace Tizen.NUI
                     ProcessorController.Instance.Awake();
                 }
             }
-
-            DebugFileLogging.Instance.WriteLog($"Incrementally dispose finished.\n");
         }
     }
 }
