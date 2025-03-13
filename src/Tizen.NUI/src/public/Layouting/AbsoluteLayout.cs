@@ -14,7 +14,6 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -26,9 +25,6 @@ namespace Tizen.NUI
     /// </summary>
     public class AbsoluteLayout : LayoutGroup
     {
-        private static Dictionary<View, UIRect> boundsMap = null;
-        private static Dictionary<View, AbsoluteLayoutFlags> flagsMap = null;
-
         /// <summary>
         /// A flag indicating that the width or height of the child view should be calculated based on the child view's WidthSpecification and HeightSpecification.
         /// </summary>
@@ -41,12 +37,6 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public AbsoluteLayout()
         {
-        }
-
-        static AbsoluteLayout()
-        {
-            boundsMap = new Dictionary<View, UIRect>();
-            flagsMap = new Dictionary<View, AbsoluteLayoutFlags>();
         }
 
         /// <summary>
@@ -64,14 +54,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(view));
             }
 
-            if (boundsMap.TryGetValue(view, out var bounds))
-            {
-                return bounds;
-            }
-            else
-            {
-                return new UIRect(0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized);
-            }
+            return view.GetAttached<LayoutParams>()?.LayoutBounds ?? new UIRect(0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized);
         }
 
         /// <summary>
@@ -88,7 +71,16 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(view));
             }
-            boundsMap[view] = rect;
+
+            var layoutParams = view.GetAttached<LayoutParams>();
+            if (layoutParams != null)
+            {
+                layoutParams.LayoutBounds = rect;
+            }
+            else
+            {
+                view.SetAttached(new LayoutParams() { LayoutBounds = rect });
+            }
         }
 
         /// <summary>
@@ -105,14 +97,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(view));
             }
 
-            if (flagsMap.TryGetValue(view, out var flags))
-            {
-                return flags;
-            }
-            else
-            {
-                return AbsoluteLayoutFlags.None;
-            }
+            return view.GetAttached<LayoutParams>()?.LayoutFlags ?? AbsoluteLayoutFlags.None;
         }
 
         /// <summary>
@@ -128,7 +113,16 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(view));
             }
-            flagsMap[view] = flags;
+
+            var layoutParams = view.GetAttached<LayoutParams>();
+            if (layoutParams != null)
+            {
+                layoutParams.LayoutFlags = flags;
+            }
+            else
+            {
+                view.SetAttached(new LayoutParams() { LayoutFlags = flags });
+            }
         }
 
         /// <summary>
@@ -154,7 +148,6 @@ namespace Tizen.NUI
                 }
 
                 Extents childMargin = childLayout.Margin;
-                var isBoundsSet = boundsMap.ContainsKey(childLayout.Owner);
                 var rect = GetLayoutBounds(childLayout.Owner);
                 var flags = GetLayoutFlags(childLayout.Owner);
 
@@ -282,7 +275,7 @@ namespace Tizen.NUI
                 LayoutLength childLeft;
                 LayoutLength childTop;
 
-                var isBoundsSet = boundsMap.ContainsKey(childLayout.Owner);
+                var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
                 var rect = GetLayoutBounds(childLayout.Owner);
                 var flags = GetLayoutFlags(childLayout.Owner);
                 var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
@@ -376,6 +369,35 @@ namespace Tizen.NUI
             {
                 return paddingBegin + position + marginBegin;
             }
+        }
+
+        private class LayoutParams
+        {
+            /// <summary>
+            /// Constructs LayoutParams.
+            /// </summary>
+            public LayoutParams()
+            {
+            }
+
+            /// <summary>
+            /// Gets or sets the layout bounds of the view. The default layout bounds is 0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized.
+            /// LayoutBoundsAutoSized for width and height calculates the view's width and height based on the view's WidthSpecification and HeightSpecification.
+            /// </summary>
+            public UIRect LayoutBounds
+            {
+                get;
+                set;
+            } = new UIRect(0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized);
+
+            /// <summary>
+            /// Gets or sets the absolute layout flags of the view. The default absolute layout flags is <see cref="AbsoluteLayoutFlags.None"/>.
+            /// </summary>
+            public AbsoluteLayoutFlags LayoutFlags
+            {
+                get;
+                set;
+            } = AbsoluteLayoutFlags.None;
         }
     }
 } // namespace
