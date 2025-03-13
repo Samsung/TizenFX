@@ -28,7 +28,6 @@ namespace Tizen.NUI
     {
         private static Dictionary<View, UIRect> boundsMap = null;
         private static Dictionary<View, AbsoluteLayoutFlags> flagsMap = null;
-        private static Dictionary<View, (float, float)> positionCache = null;
 
         /// <summary>
         /// A flag indicating that the width or height of the child view should be calculated based on the child view's WidthSpecification and HeightSpecification.
@@ -48,7 +47,6 @@ namespace Tizen.NUI
         {
             boundsMap = new Dictionary<View, UIRect>();
             flagsMap = new Dictionary<View, AbsoluteLayoutFlags>();
-            positionCache = new Dictionary<View, (float, float)>();
         }
 
         /// <summary>
@@ -215,40 +213,25 @@ namespace Tizen.NUI
                 float childRight;
                 float childBottom;
 
-                // Clear the cache calculated previously.
-                positionCache.Remove(childLayout.Owner);
-
-                 // If child view positions with using pivot point, then padding and margin are not used.
+                // If child view positions with using pivot point, then padding and margin are not used.
                 if (childLayout.Owner.PositionUsesPivotPoint)
                 {
                     childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
                     childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
-
-                    positionCache[childLayout.Owner] = (childLayout.Owner.PositionX, childLayout.Owner.PositionY);
                 }
+                // Padding and margin are considered to decide parent size.
+                // Proportional position does not affect the parent size.
                 else
                 {
-                    var childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                    var childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
-                    var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
-                    var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
+                    if (flags.HasFlag(AbsoluteLayoutFlags.XProportional))
+                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + Padding.Start + Padding.End + childMargin.Start + childMargin.End;
+                    else
+                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + Padding.Start + Padding.End + childMargin.Start + childMargin.End + rect.X;
 
-                    // Determine the width and height needed by the children using their given position and size.
-                    // Children could overlap so find the right most child.
-                    var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
-                                Owner.SizeWidth - (Padding.Start + Padding.End),
-                                childWidth + (childMargin.Start + childMargin.End),
-                                Padding.Start, childMargin.Start);
-
-                    var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
-                                Owner.SizeHeight - (Padding.Top + Padding.Bottom),
-                                childHeight + (childMargin.Top + childMargin.Bottom),
-                                Padding.Top, childMargin.Bottom);
-
-                    childRight = childWidth + childX;
-                    childBottom = childHeight + childY;
-
-                    positionCache[childLayout.Owner] = (childX, childY);
+                    if (flags.HasFlag(AbsoluteLayoutFlags.YProportional))
+                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + Padding.Top + Padding.Bottom + childMargin.Top + childMargin.Bottom;
+                    else
+                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + Padding.Top + Padding.Bottom + childMargin.Top + childMargin.Bottom + rect.Y;
                 }
 
                 if (maxWidth < childRight)
@@ -299,52 +282,54 @@ namespace Tizen.NUI
                 LayoutLength childLeft;
                 LayoutLength childTop;
 
-                // Use the cached position calculated during measure phase.
-                if (positionCache.TryGetValue(childLayout.Owner, out var cachedPosition))
-                {
-                    childLeft = new LayoutLength(cachedPosition.Item1);
-                    childTop = new LayoutLength(cachedPosition.Item2);
+                var isBoundsSet = boundsMap.ContainsKey(childLayout.Owner);
+                var rect = GetLayoutBounds(childLayout.Owner);
+                var flags = GetLayoutFlags(childLayout.Owner);
+                var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
+                var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
 
-                    // If child view positions with using pivot point, then padding and margin are not used.
-                    if (childLayout.Owner.PositionUsesPivotPoint)
-                    {
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
-                    }
-                    else
-                    {
-                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                    }
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
+                                MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End),
+                                childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
+                                Padding.Start, childMargin.Start);
+
+                    var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
+                                MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom),
+                                childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
+                                Padding.Top, childMargin.Bottom);
+
+                    childLeft = new LayoutLength(childX);
+                    childTop = new LayoutLength(childY);
+
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                 }
                 else
                 {
+                    // Determine the width and height needed by the children using their given position and size.
+                    // Children could overlap so find the right most child.
+                    var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
+                                MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End),
+                                childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
+                                Padding.Start, childMargin.Start);
+
+                    var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
+                                MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom),
+                                childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
+                                Padding.Top, childMargin.Bottom);
+
+                    childLeft = new LayoutLength(childX);
+                    childTop = new LayoutLength(childY);
+
                     // If child view positions with using pivot point, then padding and margin are not used.
                     if (childLayout.Owner.PositionUsesPivotPoint)
                     {
-                        childLeft = new LayoutLength(childLayout.Owner.PositionX);
-                        childTop = new LayoutLength(childLayout.Owner.PositionY);
                         childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
                     }
                     else
                     {
-                        var isBoundsSet = boundsMap.ContainsKey(childLayout.Owner);
-                        var rect = GetLayoutBounds(childLayout.Owner);
-                        var flags = GetLayoutFlags(childLayout.Owner);
-                        var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
-                        var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
-
-                        var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
-                                    Owner.SizeWidth - (Padding.Start + Padding.End),
-                                    childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
-                                    Padding.Start, childMargin.Start);
-
-                        var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
-                                    Owner.SizeHeight - (Padding.Top + Padding.Bottom),
-                                    childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
-                                    Padding.Top, childMargin.Bottom);
-
-                        childLeft = new LayoutLength(childX);
-                        childTop = new LayoutLength(childY);
-
                         childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                     }
                 }
