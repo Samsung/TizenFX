@@ -954,7 +954,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, TextLabel.Property.TextColor, value.SwigCPtr);
+                using var vector = new Vector4(value.R, value.G, value.B, value.A);
+                Object.InternalSetPropertyVector4(SwigCPtr, TextLabel.Property.TextColor, vector.SwigCPtr);
             }
         }
 

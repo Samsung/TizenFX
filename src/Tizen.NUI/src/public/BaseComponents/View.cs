@@ -1048,7 +1048,9 @@ namespace Tizen.NUI.BaseComponents
 
             if (visualType == (int)Visual.Type.Color)
             {
-                Object.InternalRetrievingVisualPropertyVector4(SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(internalBackgroundColor));
+                using var vector = new Vector4();
+                Object.InternalRetrievingVisualPropertyVector4(SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Vector4.getCPtr(vector));
+                internalBackgroundColor.ResetValue(vector.R, vector.G, vector.B, vector.A);
             }
             return internalBackgroundColor;
         }
@@ -2879,6 +2881,7 @@ namespace Tizen.NUI.BaseComponents
                     if (temp.Width < 0) { temp.Width = 0; }
                     if (temp.Height < 0) { temp.Height = 0; }
                 }
+
                 return temp;
             }
             set
@@ -2929,7 +2932,7 @@ namespace Tizen.NUI.BaseComponents
                 RequestLayout();
             }
 
-            Object.InternalSetPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, size.SwigCPtr);
+            SetSize(width, height);
         }
 
         private Size2D GetInternalSize2D()
@@ -2938,7 +2941,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalSize2D = new Size2D(OnSize2DChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalSize2D.SwigCPtr);
+
+            var w = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeWidth);
+            var h = Interop.Actor.InternalGetPropertyFloat(SwigCPtr, Property.SizeHeight);
+            
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internalSize2D.ResetValue((int)w, (int)h);
 
             return internalSize2D;
         }
@@ -5034,7 +5046,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (size != null)
             {
-                Object.InternalSetPropertyVector2(SwigCPtr, Property.MinimumSize, size.SwigCPtr);
+                using var vector = new Vector2(size.Width, size.Height);
+                Object.InternalSetPropertyVector2(SwigCPtr, Property.MinimumSize, vector.SwigCPtr);
             }
         }
 
@@ -5044,7 +5057,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MinimumSize, internalMinimumSize.SwigCPtr);
+
+            using var vector = new Vector2();
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MinimumSize, vector.SwigCPtr);
+
+            internalMinimumSize.ResetValue((int)vector.Width, (int)vector.Height);
             return internalMinimumSize;
         }
 
@@ -5104,7 +5121,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (size != null)
             {
-                Object.InternalSetPropertyVector2(SwigCPtr, Property.MaximumSize, size.SwigCPtr);
+                using var vector = new Vector2(size.Width, size.Height);
+                Object.InternalSetPropertyVector2(SwigCPtr, Property.MaximumSize, vector.SwigCPtr);
             }
         }
 
@@ -5114,7 +5132,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MaximumSize, internalMaximumSize.SwigCPtr);
+
+            using var vector = new Vector2();
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, Property.MaximumSize, vector.SwigCPtr);
+
+            internalMaximumSize.ResetValue((int)vector.Width, (int)vector.Height);
             return internalMaximumSize;
         }
 
@@ -6017,7 +6039,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalColor = new Color(OnColorChanged, 0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, View.Property.COLOR, internalColor.SwigCPtr);
+
+            using var vector = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, View.Property.COLOR, vector.SwigCPtr);
+
+            internalColor.ResetValue(vector.R, vector.G, vector.B, vector.A);
+
             return internalColor;
         }
 
