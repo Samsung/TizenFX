@@ -725,6 +725,39 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets and Sets extents of partial update area.
+        /// </summary>
+        /// <remarks>
+        /// Extents the area - the position and the size - used for the attached View's partial update area calculation.
+        /// This value be appended after calculate all update area, like visual offset.
+        /// Change  <see cref="Tizen.NUI.BaseComponents.View.UpdateAreaHint"/> value if you want to change View's partial update area.
+        /// Warning : Only 0u ~ 65535u integer values are allowed for each parameters.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public UIExtents UpdateArea
+        {
+            get
+            {
+                // TODO : Clean up below logics
+                using Extents temp = new Extents();
+                using var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.UpdateAreaExtents);
+                pValue.Get(temp);
+
+                if (temp == null)
+                {
+                    return new UIExtents(0.0f);
+                }
+                UIExtents result = new UIExtents((float)temp.Start, (float)temp.End, (float)temp.Top, (float)temp.Bottom);
+                return result;
+            }
+            set
+            {
+                using var temp = new Tizen.NUI.PropertyValue((Extents)value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.UpdateAreaExtents, temp);
+            }
+        }
+
+        /// <summary>
         /// Sets the geometry to be used by this renderer.
         /// </summary>
         /// <param name="geometry">The geometry to be used by this renderer.</param>
@@ -860,15 +893,15 @@ namespace Tizen.NUI
 
             /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int BACKGROUND = Interop.Renderer.RangesBackgroundGet();
+            public static readonly int Background = Interop.Renderer.RangesBackgroundGet();
 
             /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int CONTENT = Interop.Renderer.RangesContentGet();
+            public static readonly int Content = Interop.Renderer.RangesContentGet();
 
             /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int DECORATION = Interop.Renderer.RangesDecorationGet();
+            public static readonly int Decoration = Interop.Renderer.RangesDecorationGet();
 
             /// This will be opened API after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -876,15 +909,27 @@ namespace Tizen.NUI
 
 
 
-            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use ForegroundEffect instead.")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
-            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.RangesForegroundEffectGet();
-
             [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use BackgroundEffect instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
             public static readonly int BACKGROUND_EFFECT = Interop.Renderer.RangesBackgroundEffectGet();
+
+            [Obsolete("Do not use this, that is deprecated in API13 and will be removed in API15. Use Background instead.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BACKGROUND = Interop.Renderer.RangesBackgroundGet();
+
+            [Obsolete("Do not use this, that is deprecated in API13 and will be removed in API15. Use Content instead.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CONTENT = Interop.Renderer.RangesContentGet();
+
+            [Obsolete("Do not use this, that is deprecated in API13 and will be removed in API15. Use Decoration instead.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int DECORATION = Interop.Renderer.RangesDecorationGet();
+
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use ForegroundEffect instead.")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.RangesForegroundEffectGet();
         }
 
         /// <summary>
@@ -916,6 +961,17 @@ namespace Tizen.NUI
             internal static readonly int StencilOperationOnFail = Interop.Renderer.StencilOperationOnFailGet();
             internal static readonly int StencilOperationOnZFail = Interop.Renderer.StencilOperationOnZFailGet();
             internal static readonly int StencilOperationOnZPass = Interop.Renderer.StencilOperationOnZPassGet();
+            internal static readonly int MixColor = Interop.Renderer.MixColorGet();
+            internal static readonly int MixColorRed = Interop.Renderer.MixColorRedGet();
+            internal static readonly int MixColorGreen = Interop.Renderer.MixColorGreenGet();
+            internal static readonly int MixColorBlue = Interop.Renderer.MixColorBlueGet();
+            internal static readonly int MixColorOpacity = Interop.Renderer.MixColorOpacityGet();
+            internal static readonly int RenderingBehavior = Interop.Renderer.RenderingBehaviorGet();
+            internal static readonly int BlendEquation = Interop.Renderer.BlendEquationGet();
+            internal static readonly int VertexRangeFirst = Interop.Renderer.IndexRangeFirstGet();
+            internal static readonly int VertexRangeCount = Interop.Renderer.IndexRangeCountGet();
+            internal static readonly int InstanceCount = Interop.Renderer.InstanceCountGet();
+            internal static readonly int UpdateAreaExtents = Interop.Renderer.UpdateAreaExtentsGet();
         }
     }
 }
