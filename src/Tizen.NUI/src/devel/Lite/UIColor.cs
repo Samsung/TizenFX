@@ -106,6 +106,19 @@ namespace Tizen.NUI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIColor"/> struct.
         /// </summary>
+        /// <param name="value">The value of 0xRRGGBB format.</param>
+        /// <example>
+        /// <code>
+        ///     new UIColor(0xFF0000); // Solid red
+        /// </code>
+        /// </example>
+        public UIColor(uint value) : this(value, 1f)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UIColor"/> struct.
+        /// </summary>
         /// <param name="tokenId">The unique identifier of the token.</param>
         /// <param name="multiplyAlpha">The alpha value to multiply by.</param>
         /// <param name="fixedAlpha">The fixed alpha value.</param>
