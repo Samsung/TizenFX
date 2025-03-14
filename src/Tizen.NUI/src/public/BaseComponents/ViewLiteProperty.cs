@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
                     var shadow = new Shadow(map);
                     return new UIShadow()
                     {
-                        Color = new UIColor(shadow.Color),
+                        Color = UIColor.From(shadow.Color),
                         BlurRadius = shadow.BlurRadius,
                         OffsetX = shadow.Offset.X,
                         OffsetY = shadow.Offset.Y,
