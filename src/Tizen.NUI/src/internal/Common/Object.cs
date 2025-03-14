@@ -361,7 +361,7 @@ namespace Tizen.NUI
                 vector4.Reset();
                 _ = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, vector4.SwigCPtr);
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                return new UIColor(vector4);
+                return UIColor.From(vector4);
             }, actor, visualIndex, visualPropertyIndex);
         }
 
