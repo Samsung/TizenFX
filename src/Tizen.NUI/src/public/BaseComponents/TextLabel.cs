@@ -977,6 +977,8 @@ namespace Tizen.NUI.BaseComponents
                 internalTextColor = new Color(0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalTextColor.SwigCPtr);
+            internalTextColor.CopyValuesFromDali();
+
             return internalTextColor;
         }
 
@@ -2851,6 +2853,8 @@ namespace Tizen.NUI.BaseComponents
                 internalAnchorColor = new Color(0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalAnchorColor.SwigCPtr);
+            internalAnchorColor.CopyValuesFromDali();
+
             return internalAnchorColor;
         }
 
@@ -2908,6 +2912,8 @@ namespace Tizen.NUI.BaseComponents
                 internalAnchorClickedColor = new Color(0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalAnchorClickedColor.SwigCPtr);
+            internalAnchorClickedColor.CopyValuesFromDali();
+
             return internalAnchorClickedColor;
         }
 
