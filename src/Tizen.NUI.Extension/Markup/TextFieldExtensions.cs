@@ -867,7 +867,7 @@ namespace Tizen.NUI.Extension
         public static UIColor TextColor(this TextField view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.TextColor);
+            return UIColor.From(view.TextColor);
         }
 
         /// <summary>
@@ -878,7 +878,7 @@ namespace Tizen.NUI.Extension
         public static UIColor PlaceholderTextColor(this TextField view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.PlaceholderTextColor);
+            return UIColor.From(view.PlaceholderTextColor);
         }
 
         /// <summary>
@@ -889,7 +889,7 @@ namespace Tizen.NUI.Extension
         public static UIColor PrimaryCursorColor(this TextField view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.PrimaryCursorColor);
+            return UIColor.From(view.PrimaryCursorColor);
         }
 
         /// <summary>
@@ -900,7 +900,7 @@ namespace Tizen.NUI.Extension
         public static UIColor SecondaryCursorColor(this TextField view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.SecondaryCursorColor);
+            return UIColor.From(view.SecondaryCursorColor);
         }
 
         /// <summary>
@@ -911,7 +911,7 @@ namespace Tizen.NUI.Extension
         public static UIColor SelectionHighlightColor(this TextField view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.SelectionHighlightColor);
+            return UIColor.From(view.SelectionHighlightColor);
         }
 
         /// <summary>
@@ -922,7 +922,7 @@ namespace Tizen.NUI.Extension
         public static UIColor InputColor(this TextField view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.InputColor);
+            return UIColor.From(view.InputColor);
         }
     }
 }

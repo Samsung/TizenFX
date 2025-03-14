@@ -47,6 +47,11 @@ namespace Tizen.NUI
         public static readonly UIColor White = new (1, 1, 1, 1);
 
         /// <summary>
+        /// The gray color.
+        /// </summary>
+        public static readonly UIColor Gray = new (0.5f, 0.5f, 0.5f, 1);
+
+        /// <summary>
         /// The red color.
         /// </summary>
         public static readonly UIColor Red = new (1, 0, 0, 1);
@@ -60,6 +65,21 @@ namespace Tizen.NUI
         /// The blue color.
         /// </summary>
         public static readonly UIColor Blue = new (0, 0, 1, 1);
+
+        /// <summary>
+        /// The yellow color.
+        /// </summary>
+        public static readonly UIColor Yellow = new (1, 1, 0, 1);
+
+        /// <summary>
+        /// The cyan color.
+        /// </summary>
+        public static readonly UIColor Cyan = new (0, 1, 1, 1);
+
+        /// <summary>
+        /// The magenta color.
+        /// </summary>
+        public static readonly UIColor Magenta = new (1, 0, 1, 1);
 
         private float _r; // multiply alpha for token
         private float _g; // fixed alpha for token
@@ -121,10 +141,6 @@ namespace Tizen.NUI
             _b = 0f;
             _a = 0f;
             _tokenId = tokenId;
-        }
-
-        internal UIColor(NUI.Vector4 vector4) : this(vector4.X, vector4.Y, vector4.Z, vector4.W)
-        {
         }
 
         /// <summary>
@@ -230,6 +246,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The unique identifier of the token.</param>
         public static UIColor Token(string id) => new (id, 1f);
+
+        internal static UIColor From(NUI.Vector4 vector4) => new UIColor(vector4.X, vector4.Y, vector4.Z, vector4.W);
 
         /// <summary>
         /// Compares two UIColor for equality.
