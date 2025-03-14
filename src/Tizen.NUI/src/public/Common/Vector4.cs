@@ -67,12 +67,18 @@ namespace Tizen.NUI
 
         private static DaliVector4 singletonObj;
 
-        static Vector4()
+        internal static DaliVector4 SingletonDaliVector4
         {
-            singletonObj = new DaliVector4();
-        }
+            get
+            {
+                if (null == singletonObj)
+                {
+                    singletonObj = new DaliVector4();
+                }
 
-        internal static DaliVector4 SingletonDaliVector4 => singletonObj;
+                return singletonObj;
+            }
+        }
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
