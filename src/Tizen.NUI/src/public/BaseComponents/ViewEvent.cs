@@ -886,6 +886,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal virtual void NotifyLayoutUpdated(bool forceTriggerRelayout)
+        {
+            if (forceTriggerRelayout && !IsDisposedOrQueued)
+            {
+                onRelayoutEventHandler?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
         // Callback for View HitTestResultSignal
         private bool OnHitTestResult(IntPtr view, IntPtr touchData)
         {
