@@ -604,12 +604,14 @@ namespace Tizen.NUI
                         if (!Owner.LayoutWidth.IsFixedValue || !Owner.LayoutHeight.IsFixedValue)
                         {
                             Owner.SetSize(right - left, bottom - top);
+                            Owner.NotifyLayoutUpdated(false);
                         }
                     }
                     else
                     {
                         Owner.SetSize(right - left, bottom - top);
                         Owner.SetPosition(left, top);
+                        Owner.NotifyLayoutUpdated(false);
                     }
                 }
 
@@ -619,7 +621,6 @@ namespace Tizen.NUI
 
             return changed;
         }
-
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
