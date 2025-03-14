@@ -20,6 +20,32 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
+    public class DaliVector4 : Disposable
+    {
+        public DaliVector4() : base(Interop.Vector4.NewVector4(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetValues(float r, float g, float b, float a)
+        {
+            Interop.Vector4.RSet(SwigCPtr, r);
+            Interop.Vector4.GSet(SwigCPtr, g);
+            Interop.Vector4.BSet(SwigCPtr, b);
+            Interop.Vector4.ASet(SwigCPtr, a);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+        }
+
+        public void GetValues(out float r, out float g, out float b, out float a)
+        {
+            r = Interop.Vector4.RGet(SwigCPtr);
+            g = Interop.Vector4.GGet(SwigCPtr);
+            b = Interop.Vector4.BGet(SwigCPtr);
+            a = Interop.Vector4.AGet(SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+        }
+    }
 
     /// <summary>
     /// A four-dimensional vector.
@@ -38,6 +64,15 @@ namespace Tizen.NUI
         {
             // Do nothing. Just call for load static values.
         }
+
+        private static DaliVector4 singletonObj;
+
+        static Vector4()
+        {
+            singletonObj = new DaliVector4();
+        }
+
+        internal static DaliVector4 SingletonDaliVector4 => singletonObj;
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
