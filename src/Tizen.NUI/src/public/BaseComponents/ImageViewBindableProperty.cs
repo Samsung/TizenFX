@@ -30,23 +30,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var imageView = (ImageView)bindable;
-
             if (newValue is Selector<string> selector)
             {
-                imageView.ResourceUrlSelector = selector;
+                imageView.SetInternalResourceUrl(selector);
             }
             else
             {
-                imageView.resourceUrlSelector?.Reset(imageView);
-                imageView.SetResourceUrl((string)newValue);
+                imageView.SetInternalResourceUrl((string)newValue);
             }
         }
-
         internal static object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-
-            return imageView?._resourceUrl ?? "";
+            return imageView.GetInternalResourceUrl();
         }
 
         /// Intenal used, will never be opened.
@@ -55,74 +51,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalImageProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                PropertyMap map = (PropertyMap)newValue;
-                if (imageView.IsCreateByXaml)
-                {
-                    string url = "", alphaMaskURL = "", auxiliaryImageURL = "";
-                    string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                    PropertyValue urlValue = map.Find(NDalic.ImageVisualUrl);
-                    bool ret = false;
-                    if (urlValue != null) ret = urlValue.Get(out url);
-                    PropertyMap mmap = new PropertyMap();
-                    if (ret && url.StartsWith("*Resource*"))
-                    {
-                        url = url.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(url));
-                    }
-
-                    ret = false;
-                    PropertyValue alphaMaskUrlValue = map.Find(NDalic.ImageVisualAlphaMaskUrl);
-                    if (alphaMaskUrlValue != null) ret = alphaMaskUrlValue.Get(out alphaMaskURL);
-                    if (ret && alphaMaskURL.StartsWith("*Resource*"))
-                    {
-                        alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualAlphaMaskUrl, new PropertyValue(alphaMaskURL));
-                    }
-
-                    ret = false;
-                    PropertyValue auxiliaryImageURLValue = map.Find(NDalic.ImageVisualAuxiliaryImageUrl);
-                    if (auxiliaryImageURLValue != null) ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
-                    if (ret && auxiliaryImageURL.StartsWith("*Resource*"))
-                    {
-                        auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualAuxiliaryImageUrl, new PropertyValue(auxiliaryImageURL));
-                    }
-
-                    map.Merge(mmap);
-                }
-                if (imageView._border == null)
-                {
-                    imageView.SetImageByPropertyMap(map);
-                }
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalImage((PropertyMap)newValue);
             }
         }
-
         internal static object GetInternalImageProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            if (imageView._border == null)
-            {
-                // Sync as current properties
-                imageView.UpdateImage();
-
-                // Get current properties force.
-                PropertyMap returnValue = new PropertyMap();
-                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(returnValue);
-
-                // Update cached property map
-                if (returnValue != null)
-                {
-                    imageView.MergeCachedImageVisualProperty(returnValue);
-                }
-                return returnValue;
-            }
-            else
-            {
-                return null;
-            }
+            return imageView.GetInternalImage();
         }
 
         /// Intenal used, will never be opened.
@@ -131,38 +69,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalPreMultipliedAlphaProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (imageView.imagePropertyUpdatedFlag)
-                {
-                    // If imageView Property still not send to the dali, Append cached property.
-                    imageView.UpdateImage(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)newValue));
-                }
-                else
-                {
-                    // Else, we don't need to re-create view. Get value from current ImageView.
-                    Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, (bool)newValue);
-                }
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalPreMultipliedAlpha((bool)newValue);
             }
         }
-
         internal static object GetInternalPreMultipliedAlphaProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool temp = false;
-
-            if (imageView.imagePropertyUpdatedFlag)
-            {
-                // If imageView Property still not send to the dali, just get cached property.
-                imageView.GetCachedImageVisualProperty(Visual.Property.PremultipliedAlpha)?.Get(out temp);
-            }
-            else
-            {
-                // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
-                temp = Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
-            }
-            return temp;
+            return imageView.GetInternalPreMultipliedAlpha();
         }
 
         /// Intenal used, will never be opened.
@@ -171,24 +87,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalPixelAreaProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, ((RelativeVector4)newValue).SwigCPtr);
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalPixelArea((RelativeVector4)newValue);
             }
         }
-
         internal static object GetInternalPixelAreaProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-
-            if (imageView.internalPixelArea == null)
-            {
-                imageView.internalPixelArea = new RelativeVector4(imageView.OnPixelAreaChanged, 0, 0, 0, 0);
-            }
-            Object.InternalRetrievingPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, imageView.internalPixelArea.SwigCPtr);
-            return imageView.internalPixelArea;
+            return imageView.GetInternalPixelArea();
         }
 
         /// Intenal used, will never be opened.
@@ -198,23 +106,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalBorderProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var imageView = (ImageView)bindable;
-            imageView.borderSelector?.Reset(imageView);
-
             if (newValue is Selector<Rectangle> selector)
             {
-                if (selector.HasAll()) imageView.SetBorder(selector.All);
-                else imageView.borderSelector = new TriggerableSelector<Rectangle>(imageView, selector, imageView.SetBorder, true);
+                imageView.SetInternalBorder(selector);
             }
             else
             {
-                imageView.SetBorder((Rectangle)newValue);
+                imageView.SetInternalBorder((Rectangle)newValue);
             }
         }
-
         internal static object GetInternalBorderProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            return imageView._border;
+            return imageView.GetInternalBorder();
         }
 
         /// Intenal used, will never be opened.
@@ -223,7 +127,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalBorderOnlyProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
                 if (NUIApplication.IsUsingXaml)
@@ -238,18 +141,14 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
-                imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalBorderOnly((bool)newValue);
             }
         }
-
         internal static object GetInternalBorderOnlyProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalBorderOnly();
         }
 
         /// Intenal used, will never be opened.
@@ -258,7 +157,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalSynchronosLoadingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
                 if (NUIApplication.IsUsingXaml)
@@ -274,18 +172,14 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalSynchronousLoading((bool)newValue);
             }
         }
-
         internal static object GetInternalSynchronosLoadingProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalSynchronousLoading();
         }
 
         /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -294,7 +188,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalSynchronousLoadingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
                 if (NUIApplication.IsUsingXaml)
@@ -310,18 +203,14 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalSynchronousLoading((bool)newValue);
             }
         }
-
         internal static object GetInternalSynchronousLoadingProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalSynchronousLoading();
         }
 
         /// Intenal used, will never be opened.
@@ -330,7 +219,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalOrientationCorrectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
                 if (NUIApplication.IsUsingXaml)
@@ -345,36 +233,14 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
-                imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalOrientationCorrection((bool)newValue);
             }
         }
-
         internal static object GetInternalOrientationCorrectionProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
-
-            return ret;
-        }
-
-        /// <summary>
-        /// SynchronousSizingProperty
-        /// </summary>
-        internal static void SetInternalSynchronousSizingProperty(ImageView imageView, bool newValue)
-        {
-            imageView.UpdateImage(ImageVisualProperty.SynchronousSizing, new PropertyValue(newValue));
-        }
-
-        internal static object GetInternalSynchronousSizingProperty(ImageView imageView)
-        {
-            bool ret = false;
-
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousSizing)?.Get(out ret);
-
-            return ret;
+            return imageView.GetInternalOrientationCorrection();
         }
 
         /// <summary>
@@ -385,16 +251,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalMaskingModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalMaskingMode = (ImageView.MaskingModeType)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalMaskingMode = (MaskingModeType)newValue;
             }
         }
-
         internal static object GetInternalMaskingModeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalMaskingMode;
         }
 
@@ -406,16 +271,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalFastTrackUploadingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
+                var instance = (ImageView)bindable;
                 instance.InternalFastTrackUploading = (bool)newValue;
             }
         }
-
         internal static object GetInternalFastTrackUploadingProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalFastTrackUploading;
         }
 
@@ -427,16 +291,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalImageMapProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalImageMap = (Tizen.NUI.PropertyMap)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalImageMap = (PropertyMap)newValue;
             }
         }
-
         internal static object GetInternalImageMapProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalImageMap;
         }
 
@@ -448,16 +311,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalAlphaMaskURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
+                var instance = (ImageView)bindable;
                 instance.InternalAlphaMaskURL = (string)newValue;
             }
         }
 
         internal static object GetInternalAlphaMaskURLProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalAlphaMaskURL;
         }
 
@@ -469,16 +332,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalCropToMaskProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
+                var instance = (ImageView)bindable;
                 instance.InternalCropToMask = (bool)newValue;
             }
         }
-
         internal static object GetInternalCropToMaskProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalCropToMask;
         }
 
@@ -490,16 +352,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalFittingModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalFittingMode = (Tizen.NUI.FittingModeType)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalFittingMode = (FittingModeType)newValue;
             }
         }
 
         internal static object GetInternalFittingModeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalFittingMode;
         }
 
@@ -511,16 +373,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalDesiredWidthProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
+                var instance = (ImageView)bindable;
                 instance.InternalDesiredWidth = (int)newValue;
             }
         }
-
         internal static object GetInternalDesiredWidthProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalDesiredWidth;
         }
 
@@ -532,16 +393,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalDesiredHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
+                var instance = (ImageView)bindable;
                 instance.InternalDesiredHeight = (int)newValue;
             }
         }
-
         internal static object GetInternalDesiredHeightProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalDesiredHeight;
         }
 
@@ -553,16 +413,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalReleasePolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalReleasePolicy = (Tizen.NUI.ReleasePolicyType)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalReleasePolicy = (ReleasePolicyType)newValue;
             }
         }
-
         internal static object GetInternalReleasePolicyProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalReleasePolicy;
         }
 
@@ -574,16 +433,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalWrapModeUProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalWrapModeU = (Tizen.NUI.WrapModeType)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalWrapModeU = (WrapModeType)newValue;
             }
         }
-
         internal static object GetInternalWrapModeUProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalWrapModeU;
         }
 
@@ -595,16 +453,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalWrapModeVProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalWrapModeV = (Tizen.NUI.WrapModeType)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalWrapModeV = (WrapModeType)newValue;
             }
         }
-
         internal static object GetInternalWrapModeVProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalWrapModeV;
         }
 
@@ -616,16 +473,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalAdjustViewSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
+                var instance = (ImageView)bindable;
                 instance.adjustViewSize = (bool)newValue;
             }
         }
-
         internal static object GetInternalAdjustViewSizeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.adjustViewSize;
         }
 
@@ -637,17 +493,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalPlaceHolderUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl, (string)newValue);
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalPlaceHolderUrl((string)newValue);
             }
         }
-
         internal static object GetInternalPlaceHolderUrlProperty(BindableObject bindable)
         {
-            var imageView = (Tizen.NUI.BaseComponents.ImageView)bindable;
-            return Object.InternalGetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl);
+            var imageView = (ImageView)bindable;
+            return imageView.GetInternalPlaceHolderUrl();
         }
 
         /// Intenal used, will never be opened.
@@ -656,17 +511,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalTransitionEffectProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect, (bool)newValue);
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalTransitionEffect((bool)newValue);
             }
         }
-
         internal static object GetInternalTransitionEffectProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            return Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect);
+            return imageView.GetInternalTransitionEffect();
         }
 
         /// <summary>
@@ -677,25 +531,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalImageColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView.UpdateImage(Visual.Property.Opacity, new PropertyValue(((Color)newValue).A), false);
-                imageView.UpdateImage(Visual.Property.MixColor, new PropertyValue((Color)newValue), false);
-
-                // Update property
-                Interop.View.InternalUpdateVisualPropertyVector4(imageView.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.MixColor, Vector4.getCPtr((Color)newValue));
+                var imageView = (ImageView)bindable;
+                imageView.SetInternalImageColor((Color)newValue);
             }
         }
-
         internal static object GetInternalImageColorProperty(BindableObject bindable)
         {
             var imageView = (ImageView)bindable;
-            Color ret = new Color();
-
-            imageView.GetCachedImageVisualProperty(Visual.Property.MixColor)?.Get(ret);
-
-            return ret;
+            return imageView.GetInternalImageColor();
         }
 
         /// <summary>
@@ -706,16 +551,15 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalTransitionEffectOptionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalTransitionEffectOption = (Tizen.NUI.PropertyMap)newValue;
+                var instance = (ImageView)bindable;
+                instance.InternalTransitionEffectOption = (PropertyMap)newValue;
             }
         }
-
         internal static object GetInternalTransitionEffectOptionProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            var instance = (ImageView)bindable;
             return instance.InternalTransitionEffectOption;
         }
     }

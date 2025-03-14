@@ -139,7 +139,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalAppBarProperty(this) as AppBar;
+                    return InternalAppBar;
                 }
             }
             set
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalAppBarProperty(this, null, value);
+                    InternalAppBar = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -200,7 +200,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalContentProperty(this) as View;
+                    return InternalContent;
                 }
             }
             set
@@ -211,7 +211,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalContentProperty(this, null, value);
+                    InternalContent =  value;
                 }
                 NotifyPropertyChanged();
             }

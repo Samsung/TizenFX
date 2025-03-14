@@ -32,108 +32,6 @@ namespace Tizen.NUI.Components
     [Obsolete("Deprecated in API8; Will be removed in API10")]
     public partial class ScrollBar : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DirectionProperty = null;
-        internal static void SetInternalDirectionProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                instance.direction = (DirectionType)newValue;
-                instance.UpdateValue();
-            }
-        }
-        internal static object GetInternalDirectionProperty(BindableObject bindable)
-        {
-            var instance = (ScrollBar)bindable;
-            return instance.direction;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = null;
-        internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                if ((int)newValue >= 0)
-                {
-                    instance.maxValue = (int)newValue;
-                    instance.UpdateValue();
-                }
-            }
-        }
-        internal static object GetInternalMaxValueProperty(BindableObject bindable)
-        {
-            var instance = (ScrollBar)bindable;
-            return instance.maxValue;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = null;
-        internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                if ((int)newValue >= 0)
-                {
-                    instance.minValue = (int)newValue;
-                    instance.UpdateValue();
-                }
-            }
-        }
-        internal static object GetInternalMinValueProperty(BindableObject bindable)
-        {
-            var instance = (ScrollBar)bindable;
-            return instance.minValue;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = null;
-        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                if ((int)newValue >= 0)
-                {
-                    instance.curValue = (int)newValue;
-                    instance.UpdateValue();
-                }
-            }
-        }
-        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
-        {
-            var instance = (ScrollBar)bindable;
-            return instance.curValue;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = null;
-        internal static void SetInternalDurationProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var instance = (ScrollBar)bindable;
-            if (newValue != null)
-            {
-                instance.duration = (uint)newValue;
-                if (instance.scrollAniPlayer != null)
-                {
-                    instance.scrollAniPlayer.Duration = (int)(uint)newValue;
-                }
-            }
-        }
-        internal static object GetInternalDurationProperty(BindableObject bindable)
-        {
-            var instance = (ScrollBar)bindable;
-            return instance.duration;
-        }
-
         private ImageView trackImage;
         private ImageView thumbImage;
         private Animation scrollAniPlayer = null;
@@ -160,6 +58,14 @@ namespace Tizen.NUI.Components
                     propertyChanged: SetInternalCurrentValueProperty, defaultValueCreator: GetInternalCurrentValueProperty);
                 DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(ScrollBar), default(uint),
                     propertyChanged: SetInternalDurationProperty, defaultValueCreator: GetInternalDurationProperty);
+                ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(ScrollBar), null,
+                    propertyChanged: SetInternalThumbSizeProperty, defaultValueCreator: GetInternalThumbSizeProperty);
+                TrackImageURLProperty = BindableProperty.Create(nameof(TrackImageURL), typeof(string), typeof(ScrollBar), default(string),
+                    propertyChanged: SetInternalTrackImageURLProperty, defaultValueCreator: GetInternalTrackImageURLProperty);
+                TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollBar), null,
+                    propertyChanged: SetInternalTrackColorProperty, defaultValueCreator: GetInternalTrackColorProperty);
+                ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollBar), null,
+                    propertyChanged: SetInternalThumbColorProperty, defaultValueCreator: GetInternalThumbColorProperty);
             }
         }
 
@@ -233,7 +139,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (DirectionType)GetInternalDirectionProperty(this);
+                    return GetInternalDirection();
                 }
             }
             set
@@ -244,9 +150,20 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDirectionProperty(this, null, value);
+                    SetInternalDirection(value);
                 }
             }
+        }
+
+        private void SetInternalDirection(DirectionType newValue)
+        {
+            direction = newValue;
+            UpdateValue();
+        }
+
+        private DirectionType GetInternalDirection()
+        {
+            return direction;
         }
 
         /// <summary>
@@ -273,11 +190,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbSizeProperty) as Size;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbSizeProperty) as Size;
+                }
+                else
+                {
+                    return InternalThumbSize;
+                }
             }
             set
             {
-                SetValue(ThumbSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbSizeProperty, value);
+                }
+                else
+                {
+                    InternalThumbSize = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -307,11 +238,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TrackImageURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TrackImageURLProperty) as string;
+                }
+                else
+                {
+                    return InternalTrackImageURL;
+                }
             }
             set
             {
-                SetValue(TrackImageURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackImageURLProperty, value);
+                }
+                else
+                {
+                    InternalTrackImageURL = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -341,11 +286,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TrackColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TrackColorProperty) as Color;
+                }
+                else
+                {
+                    return InternalTrackColor;
+                }
             }
             set
             {
-                SetValue(TrackColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackColorProperty, value);
+                }
+                else
+                {
+                    InternalTrackColor = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -374,11 +333,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ThumbColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ThumbColorProperty) as Color;
+                }
+                else
+                {
+                    return InternalThumbColor;
+                }
             }
             set
             {
-                SetValue(ThumbColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbColorProperty, value);
+                }
+                else
+                {
+                    InternalThumbColor = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -413,7 +386,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalMaxValueProperty(this);
+                    return GetInternalMaxValue();
                 }
             }
             set
@@ -424,9 +397,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMaxValueProperty(this, null, value);
+                    SetInternalMaxValue(value);
                 }
             }
+        }
+
+        private void SetInternalMaxValue(int newValue)
+        {
+            if (newValue >= 0)
+            {
+                maxValue = newValue;
+                UpdateValue();
+            }
+        }
+
+        private int GetInternalMaxValue()
+        {
+            return maxValue;
         }
 
         /// <summary>
@@ -445,7 +432,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalMinValueProperty(this);
+                    return GetInternalMinValue();
                 }
             }
             set
@@ -456,9 +443,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMinValueProperty(this, null, value);
+                    SetInternalMinValue(value);
                 }
             }
+        }
+
+        private void SetInternalMinValue(int newValue)
+        {
+            if (newValue >= 0)
+            {
+                minValue = newValue;
+                UpdateValue();
+            }
+        }
+
+        private int GetInternalMinValue()
+        {
+            return minValue;
         }
 
         /// <summary>
@@ -493,7 +494,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalCurrentValueProperty(this);
+                    return GetInternalCurrentValue();
                 }
             }
             set
@@ -504,9 +505,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalCurrentValueProperty(this, null, value);
+                    SetInternalCurrentValue(value);
                 }
             }
+        }
+
+        private void SetInternalCurrentValue(int newValue)
+        {
+            if (newValue >= 0)
+            {
+                curValue = newValue;
+                UpdateValue();
+            }
+        }
+
+        private int GetInternalCurrentValue()
+        {
+            return curValue;
         }
 
         /// <summary>
@@ -525,7 +540,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (uint)GetInternalDurationProperty(this);
+                    return GetInternalDuration();
                 }
             }
             set
@@ -536,9 +551,23 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalDurationProperty(this, null, value);
+                    SetInternalDuration(value);
                 }
             }
+        }
+
+        private void SetInternalDuration(uint newValue)
+        {
+            duration = newValue;
+            if (scrollAniPlayer != null)
+            {
+                scrollAniPlayer.Duration = (int)newValue;
+            }
+        }
+
+        private uint GetInternalDuration()
+        {
+            return duration;
         }
         #endregion
 

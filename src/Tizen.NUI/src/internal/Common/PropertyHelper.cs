@@ -158,7 +158,7 @@ namespace Tizen.NUI
                 return new Vector4(colorValue.R, colorValue.G, colorValue.B, colorValue.A);
             }
 
-            return null;
+            return value is UIColor ? value : null;
         }
 
         private static PropertyValue PropertyValueColorToVector4(PropertyValue value)

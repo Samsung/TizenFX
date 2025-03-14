@@ -64,7 +64,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength(LayoutDimension layoutDimension)
         {
-            this.value = layoutDimension.IsFixedValue ? layoutDimension.GetValue() : (int)layoutDimension.GetMode();
+            this.value = layoutDimension;
         }
 
         /// <summary>

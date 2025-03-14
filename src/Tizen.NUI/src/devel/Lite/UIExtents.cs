@@ -181,6 +181,12 @@ namespace Tizen.NUI
         /// <returns>A new <see cref="UIExtents"/> with the subtracted values.</returns>
         public static UIExtents operator -(UIExtents left, float subtrahend) => left + (-subtrahend);
 
+        /// <summary>
+        /// Converts the <see cref="UIExtents"/> to an <see cref="Extents"/>.
+        /// </summary>
+        /// <param name="uiExtents">The <see cref="UIExtents"/> to convert.</param>
         public static implicit operator Extents(UIExtents uiExtents) => new Extents((ushort)uiExtents.Start, (ushort)uiExtents.End, (ushort)uiExtents.Top, (ushort)uiExtents.Bottom);
+
+        internal readonly Extents ToReferenceType() => new Extents((ushort)Start, (ushort)End, (ushort)Top, (ushort)Bottom);
     }
 }

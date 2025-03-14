@@ -233,7 +233,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalCurrentValueProperty(this);
+                    return InternalCurrentValue;
                 }
             }
             set
@@ -244,7 +244,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalCurrentValueProperty(this, null, value);
+                    InternalCurrentValue =  value;
                 }
                 NotifyPropertyChanged();
             }
@@ -280,7 +280,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalMaxValueProperty(this);
+                    return InternalMaxValue;
                 }
             }
             set
@@ -291,7 +291,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMaxValueProperty(this, null, value);
+                    InternalMaxValue =  value;
                 }
                 NotifyPropertyChanged();
             }
@@ -328,7 +328,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalMinValueProperty(this);
+                    return InternalMinValue;
                 }
             }
             set
@@ -339,7 +339,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalMinValueProperty(this, null, value);
+                    InternalMinValue = value;
                 }
                 NotifyPropertyChanged();
             }

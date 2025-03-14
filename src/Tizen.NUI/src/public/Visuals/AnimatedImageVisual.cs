@@ -178,7 +178,10 @@ namespace Tizen.NUI
                     {
                         urlArray.Add(new PropertyValue(url));
                     }
-                    _outputVisualMap.Add(ImageVisualProperty.URL, urls[0]);
+                    using (var temp = new PropertyValue(urlArray))
+                    {
+                        _outputVisualMap.Add(ImageVisualProperty.URL, temp);
+                    }
                     urlArray.Dispose();
                 }
                 if (batchSize != null)
@@ -195,7 +198,7 @@ namespace Tizen.NUI
                 }
                 if (loopCount != null)
                 {
-                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, cacheSize.Value);
+                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, loopCount.Value);
                 }
                 base.ComposingPropertyMap();
             }

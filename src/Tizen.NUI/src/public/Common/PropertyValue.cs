@@ -220,9 +220,8 @@ namespace Tizen.NUI
         /// Creates a Size property value.
         /// </summary>
         /// <param name="vectorValue">Size values.</param>
-        internal PropertyValue(Size vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr(vectorValue)), true)
+        internal PropertyValue(Size vectorValue) : this(vectorValue.Width, vectorValue.Height, vectorValue.Depth)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -312,7 +311,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
@@ -451,6 +450,32 @@ namespace Tizen.NUI
             {
                 value = new PropertyValue((PropertyMap)obj);
             }
+            else if (type.Equals(typeof(UIColor)))
+            {
+                UIColor color = ((UIColor)obj);
+                value = new PropertyValue(color.R, color.G, color.B, color.A);
+            }
+            else if (type.Equals(typeof(UICorner)))
+            {
+                UICorner corner = ((UICorner)obj);
+                value = new PropertyValue(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+            }
+            else if (type.Equals(typeof(UIExtents)))
+            {
+                // TODO Do not create Extents instance
+                using Extents extents = ((UIExtents)obj).ToReferenceType();
+                value = new PropertyValue(extents);
+            }
+            else if (type.Equals(typeof(UIVector2)))
+            {
+                UIVector2 vector2 = ((UIVector2)obj);
+                value = new PropertyValue(vector2.X, vector2.Y);
+            }
+            else if (type.Equals(typeof(UIVector3)))
+            {
+                UIVector3 vector3 = ((UIVector3)obj);
+                value = new PropertyValue(vector3.X, vector3.Y, vector3.Z);
+            }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
@@ -522,7 +547,8 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Size)))
             {
-                value = Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr((Size)obj));
+                var size = obj as Size;
+                value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(size.Width, size.Height, size.Depth);
             }
             else if (type.Equals(typeof(Size2D)))
             {
@@ -564,6 +590,32 @@ namespace Tizen.NUI
             {
                 value = Interop.PropertyValue.NewPropertyValueMap(PropertyMap.getCPtr((PropertyMap)(obj)));
             }
+            else if (type.Equals(typeof(UIColor)))
+            {
+                UIColor color = ((UIColor)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector4Componentwise(color.R, color.G, color.B, color.A);
+            }
+            else if (type.Equals(typeof(UICorner)))
+            {
+                UICorner corner = ((UICorner)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector4Componentwise(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+            }
+            else if (type.Equals(typeof(UIExtents)))
+            {
+                // TODO Do not create Extents instance
+                using Extents extents = ((UIExtents)obj).ToReferenceType();
+                value = Interop.PropertyValue.NewPropertyValueExtents(Extents.getCPtr(extents));
+            }
+            else if (type.Equals(typeof(UIVector2)))
+            {
+                UIVector2 vector2 = ((UIVector2)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector2Componentwise(vector2.X, vector2.Y);
+            }
+            else if (type.Equals(typeof(UIVector3)))
+            {
+                UIVector3 vector3 = ((UIVector3)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(vector3.X, vector3.Y, vector3.Z);
+            }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
@@ -603,8 +655,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Get(Size vectorValue)
         {
-            bool ret = Interop.PropertyValue.GetVector3(SwigCPtr, Size.getCPtr(vectorValue));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (null == vectorValue)
+            {
+                throw new ArgumentNullException(nameof(vectorValue));
+            }
+
+            var ret = GetVector3Component(out var w, out var h, out var d);
+            vectorValue.ResetValue(w, h, d);
+
             return ret;
         }
 

@@ -168,7 +168,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return leftTargetMap[(View)view];
+                if (leftTargetMap.TryGetValue((View)view, out var leftTarget))
+                {
+                    return leftTarget;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -188,7 +195,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return rightTargetMap[(View)view];
+                if (rightTargetMap.TryGetValue((View)view, out var rightTarget))
+                {
+                    return rightTarget;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -208,7 +222,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return topTargetMap[(View)view];
+                if (topTargetMap.TryGetValue((View)view, out var topTarget))
+                {
+                    return topTarget;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -228,7 +249,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return bottomTargetMap[(View)view];
+                if (bottomTargetMap.TryGetValue((View)view, out var bottomTarget))
+                {
+                    return bottomTarget;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -247,7 +275,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return leftRelativeOffsetMap[view];
+                if (leftRelativeOffsetMap.TryGetValue(view, out var leftRelativeOffset))
+                {
+                    return leftRelativeOffset;
+                }
+                else
+                {
+                    return 0.0f;
+                }
             }
         }
 
@@ -266,7 +301,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return rightRelativeOffsetMap[view];
+                if (rightRelativeOffsetMap.TryGetValue(view, out var rightRelativeOffset))
+                {
+                    return rightRelativeOffset;
+                }
+                else
+                {
+                    return 1.0f;
+                }
             }
         }
 
@@ -285,7 +327,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return topRelativeOffsetMap[view];
+                if (topRelativeOffsetMap.TryGetValue(view, out var topRelativeOffset))
+                {
+                    return topRelativeOffset;
+                }
+                else
+                {
+                    return 0.0f;
+                }
             }
         }
 
@@ -304,7 +353,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return bottomRelativeOffsetMap[view];
+                if (bottomRelativeOffsetMap.TryGetValue(view, out var bottomRelativeOffset))
+                {
+                    return bottomRelativeOffset;
+                }
+                else
+                {
+                    return 1.0f;
+                }
             }
         }
 
@@ -323,7 +379,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return horizontalAlignmentMap[view];
+                if (horizontalAlignmentMap.TryGetValue(view, out var horizontalAlignment))
+                {
+                    return horizontalAlignment;
+                }
+                else
+                {
+                    return Alignment.Start;
+                }
             }
         }
 
@@ -342,7 +405,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return verticalAlignmentMap[view];
+                if (verticalAlignmentMap.TryGetValue(view, out var verticalAlignment))
+                {
+                    return verticalAlignment;
+                }
+                else
+                {
+                    return Alignment.Start;
+                }
             }
         }
 
@@ -361,7 +431,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return fillHorizontalMap[view];
+                if (fillHorizontalMap.TryGetValue(view, out var fillHorizontal))
+                {
+                    return fillHorizontal;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -380,7 +457,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return fillVerticalMap[view];
+                if (fillVerticalMap.TryGetValue(view, out var fillVertical))
+                {
+                    return fillVertical;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -786,12 +870,12 @@ namespace Tizen.NUI
                     if (ellipsisTextWidth || needMeasuredWidth)
                     {
                         origLayoutParamsWidth = childLayout.Owner.LayoutWidth;
-                        childLayout.Owner.LayoutWidth = LayoutDimensionMode.MatchParent;
+                        childLayout.Owner.LayoutWidth = LayoutDimension.MatchParent;
                     }
                     if (ellipsisTextHeight || needMeasuredHeight)
                     {
                         origLayoutParamsHeight = childLayout.Owner.LayoutHeight;
-                        childLayout.Owner.LayoutHeight = LayoutDimensionMode.MatchParent;
+                        childLayout.Owner.LayoutHeight = LayoutDimension.MatchParent;
                     }
 
                     MeasureChild(childLayout, childWidthMeasureSpec, childHeightMeasureSpec);

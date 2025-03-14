@@ -13,9 +13,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty AnchorProperty = null;
         internal static void SetInternalAnchorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Menu)bindable;
             if (newValue != null)
             {
+                var instance = (Menu)bindable;
                 instance.InternalAnchor = newValue as View;
             }
         }
@@ -32,9 +32,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty HorizontalPositionToAnchorProperty = null;
         internal static void SetInternalHorizontalPositionToAnchorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Menu)bindable;
             if (newValue != null)
             {
+                var instance = (Menu)bindable;
                 instance.InternalHorizontalPositionToAnchor = (RelativePosition)newValue;
             }
         }
@@ -51,9 +51,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty VerticalPositionToAnchorProperty = null;
         internal static void SetInternalVerticalPositionToAnchorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Menu)bindable;
             if (newValue != null)
             {
+                var instance = (Menu)bindable;
                 instance.InternalVerticalPositionToAnchor = (RelativePosition)newValue;
             }
         }

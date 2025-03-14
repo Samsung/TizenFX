@@ -67,9 +67,9 @@ namespace Tizen.NUI.Components
         public static readonly new BindableProperty PaddingProperty = null;
         internal static new void SetInternalPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (FlexibleView)bindable;
             if (newValue is Extents extents)
             {
+                var instance = (FlexibleView)bindable;
                 instance.InternalPadding = extents;
             }
         }
@@ -86,9 +86,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FocusedItemIndexProperty = null;
         internal static void SetInternalFocusedItemIndexProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (FlexibleView)bindable;
             if (newValue != null)
             {
+                var instance = (FlexibleView)bindable;
                 instance.InternalFocusedItemIndex = (int)newValue;
             }
         }
@@ -242,7 +242,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalPaddingProperty(this) as Extents;
+                    return InternalPadding;
                 }
             }
             set
@@ -253,7 +253,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPaddingProperty(this, null, value);
+                    InternalPadding = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -308,7 +308,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalFocusedItemIndexProperty(this);
+                    return InternalFocusedItemIndex;
                 }
             }
             set
@@ -319,7 +319,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFocusedItemIndexProperty(this, null, value);
+                    InternalFocusedItemIndex = value;
                 }
                 NotifyPropertyChanged();
             }

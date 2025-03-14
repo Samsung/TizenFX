@@ -104,7 +104,7 @@ namespace Tizen.NUI.Samples
             geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
 
             // Create the shader
-            Shader shader = new Shader( VERTEX_SHADER, FRAGMENT_SHADER );
+            Shader shader = new Shader( VERTEX_SHADER, FRAGMENT_SHADER, "CircularTextShader" );
 
             // Create the renderer
             Renderer renderer = new Renderer( geometry, shader );

@@ -227,6 +227,7 @@ namespace Tizen.NUI.Components
         protected override void OnBindingContextChanged()
         {
             PropagateBindingContext(this);
+            base.OnBindingContextChanged();
         }
 
         private void PropagateBindingContext(View parent)

@@ -136,7 +136,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return flexAlignmentSelfMap[view];
+                if (flexAlignmentSelfMap.TryGetValue(view, out var flexAlignmentSelf))
+                {
+                    return flexAlignmentSelf;
+                }
+                else
+                {
+                    return AlignmentType.Auto;
+                }
             }
         }
 
@@ -176,7 +183,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return flexAspectRatioMap[view];
+                if (flexAspectRatioMap.TryGetValue(view, out var flexAspectRatio))
+                {
+                    return flexAspectRatio;
+                }
+                else
+                {
+                    return FlexUndefined;
+                }
             }
         }
 
@@ -196,7 +210,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return flexBasisMap[view];
+                if (flexBasisMap.TryGetValue(view, out var flexBasis))
+                {
+                    return flexBasis;
+                }
+                else
+                {
+                    return FlexUndefined;
+                }
             }
         }
 
@@ -216,7 +237,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return flexShrinkMap[view];
+                if (flexShrinkMap.TryGetValue(view, out var flexShrink))
+                {
+                    return flexShrink;
+                }
+                else
+                {
+                    return 1.0f;
+                }
             }
         }
 
@@ -236,7 +264,14 @@ namespace Tizen.NUI
             }
             else
             {
-                return flexGrowMap[view];
+                if (flexGrowMap.TryGetValue(view, out var flexGrow))
+                {
+                    return flexGrow;
+                }
+                else
+                {
+                    return FlexUndefined;
+                }
             }
         }
 

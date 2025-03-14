@@ -7,451 +7,593 @@ namespace Tizen.NUI.Components
     public partial class Slider
     {
         /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorProperty = null;
+        internal static void SetInternalIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.privateIndicatorType = (IndicatorType)newValue;
+            }
+        }
+        internal static object GetInternalIndicatorProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.privateIndicatorType;
+        }
+
+        /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = null;
+        internal static void SetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.privateSpaceBetweenTrackAndIndicator = (uint)newValue;
+            }
+        }
+        internal static object GetInternalSpaceBetweenTrackAndIndicatorProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.privateSpaceBetweenTrackAndIndicator;
+        }
+
+        /// <summary>
+        /// TrackThicknessProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackThicknessProperty = null;
+        internal static void SetInternalTrackThicknessProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.privateTrackThickness = (uint)newValue;
+            }
+        }
+        internal static object GetInternalTrackThicknessProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.privateTrackThickness;
+        }
+
+        /// <summary>
+        /// IsValueShownProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsValueShownProperty = null;
+        internal static void SetInternalIsValueShownProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.SetInternalIsValueShown((bool)newValue);
+            }
+        }
+        internal static object GetInternalIsValueShownProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.GetInternalIsValueShown();
+        }
+
+        /// <summary>
+        /// ValueIndicatorTextProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ValueIndicatorTextProperty = null;
+        internal static void SetInternalValueIndicatorTextProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.valueIndicatorText.Text = (string)newValue;
+            }
+        }
+        internal static object GetInternalValueIndicatorTextProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.valueIndicatorText.Text;
+        }
+
+        /// <summary>
+        /// Bindable property of CurrentValue
+        /// <remark>
+        /// Hidden API, used for NUI XAML data binding
+        /// </remark>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CurrentValueProperty = null;
+        internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var instance = (Slider)bindable;
+                instance.SetInternalCurrentValue((float)newValue);
+            }
+        }
+        internal static object GetInternalCurrentValueProperty(BindableObject bindable)
+        {
+            var instance = (Slider)bindable;
+            return instance.GetInternalCurrentValue();
+        }
+
+        /// <summary>
         /// DirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DirectionProperty = BindableProperty.Create(nameof(Direction), typeof(DirectionType), typeof(Slider), default(DirectionType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DirectionProperty = null;
+        internal static void SetInternalDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalDirection = (DirectionType)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDirectionProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalDirection;
-        });
+        }
 
         /// <summary>
         /// MinValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = null;
+        internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalMinValue = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMinValueProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalMinValue;
-        });
+        }
 
         /// <summary>
         /// MaxValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = null;
+        internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalMaxValue = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMaxValueProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalMaxValue;
-        });
+        }
 
         /// <summary>
         /// ThumbSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbSizeProperty = null;
+        internal static void SetInternalThumbSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbSize = newValue as Size;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbSizeProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalThumbSize;
-        });
+        }
 
         /// <summary>
         /// ThumbImageURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbImageURLProperty = BindableProperty.Create(nameof(ThumbImageURL), typeof(string), typeof(Slider), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbImageURLProperty = null;
+        internal static void SetInternalThumbImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbImageURL = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbImageURLProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalThumbImageURL;
-        });
+        }
 
         /// <summary>
         /// ThumbImageURLSelectorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbImageURLSelectorProperty = BindableProperty.Create(nameof(ThumbImageURLSelector), typeof(StringSelector), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbImageURLSelectorProperty = null;
+        internal static void SetInternalThumbImageURLSelectorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Slider)bindable;
+            //NOTE: null value is allowed here.
             instance.InternalThumbImageURLSelector = newValue as StringSelector;
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbImageURLSelectorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalThumbImageURLSelector;
-        });
+        }
 
         /// <summary>
         /// ThumbImageUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbImageUrlProperty = BindableProperty.Create(nameof(ThumbImageUrl), typeof(Selector<string>), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbImageUrlProperty = null;
+        internal static void SetInternalThumbImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbImageUrl = newValue as Tizen.NUI.BaseComponents.Selector<string>;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbImageUrlProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalThumbImageUrl;
-        });
+        }
 
         /// <summary>
         /// ThumbColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbColorProperty = null;
+        internal static void SetInternalThumbColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalThumbColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalThumbColorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalThumbColor;
-        });
+        }
 
         /// <summary>
         /// BgTrackColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BgTrackColorProperty = BindableProperty.Create(nameof(BgTrackColor), typeof(Color), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BgTrackColorProperty = null;
+        internal static void SetInternalBgTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalBgTrackColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBgTrackColorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalBgTrackColor;
-        });
+        }
 
         /// <summary>
         /// SlidedTrackColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SlidedTrackColorProperty = BindableProperty.Create(nameof(SlidedTrackColor), typeof(Color), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SlidedTrackColorProperty = null;
+        internal static void SetInternalSlidedTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalSlidedTrackColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSlidedTrackColorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalSlidedTrackColor;
-        });
+        }
 
         /// <summary>
         /// WarningStartValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WarningStartValueProperty = BindableProperty.Create(nameof(WarningStartValue), typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WarningStartValueProperty = null;
+        internal static void SetInternalWarningStartValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningStartValue = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWarningStartValueProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalWarningStartValue;
-        });
+        }
 
         /// <summary>
         /// WarningTrackColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WarningTrackColorProperty = BindableProperty.Create(nameof(WarningTrackColor), typeof(Color), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WarningTrackColorProperty = null;
+        internal static void SetInternalWarningTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningTrackColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWarningTrackColorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalWarningTrackColor;
-        });
+        }
 
         /// <summary>
         /// WarningSlidedTrackColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WarningSlidedTrackColorProperty = BindableProperty.Create(nameof(WarningSlidedTrackColor), typeof(Color), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WarningSlidedTrackColorProperty = null;
+        internal static void SetInternalWarningSlidedTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningSlidedTrackColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWarningSlidedTrackColorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalWarningSlidedTrackColor;
-        });
+        }
 
         /// <summary>
         /// WarningThumbImageUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WarningThumbImageUrlProperty = BindableProperty.Create(nameof(WarningThumbImageUrl), typeof(Tizen.NUI.BaseComponents.Selector<string>), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WarningThumbImageUrlProperty = null;
+        internal static void SetInternalWarningThumbImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningThumbImageUrl = newValue as Tizen.NUI.BaseComponents.Selector<string>;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWarningThumbImageUrlProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalWarningThumbImageUrl;
-        });
+        }
 
         /// <summary>
         /// WarningThumbColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WarningThumbColorProperty = BindableProperty.Create(nameof(WarningThumbColor), typeof(Color), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WarningThumbColorProperty = null;
+        internal static void SetInternalWarningThumbColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalWarningThumbColor = newValue as Color;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWarningThumbColorProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalWarningThumbColor;
-        });
+        }
 
         /// <summary>
         /// LowIndicatorImageURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LowIndicatorImageURLProperty = BindableProperty.Create(nameof(LowIndicatorImageURL), typeof(string), typeof(Slider), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LowIndicatorImageURLProperty = null;
+        internal static void SetInternalLowIndicatorImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalLowIndicatorImageURL = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLowIndicatorImageURLProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalLowIndicatorImageURL;
-        });
+        }
 
         /// <summary>
         /// HighIndicatorImageURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HighIndicatorImageURLProperty = BindableProperty.Create(nameof(HighIndicatorImageURL), typeof(string), typeof(Slider), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HighIndicatorImageURLProperty = null;
+        internal static void SetInternalHighIndicatorImageURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalHighIndicatorImageURL = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalHighIndicatorImageURLProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalHighIndicatorImageURL;
-        });
+        }
 
         /// <summary>
         /// LowIndicatorTextContentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LowIndicatorTextContentProperty = BindableProperty.Create(nameof(LowIndicatorTextContent), typeof(string), typeof(Slider), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LowIndicatorTextContentProperty = null;
+        internal static void SetInternalLowIndicatorTextContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalLowIndicatorTextContent = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLowIndicatorTextContentProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalLowIndicatorTextContent;
-        });
+        }
 
         /// <summary>
         /// HighIndicatorTextContentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HighIndicatorTextContentProperty = BindableProperty.Create(nameof(HighIndicatorTextContent), typeof(string), typeof(Slider), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HighIndicatorTextContentProperty = null;
+        internal static void SetInternalHighIndicatorTextContentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalHighIndicatorTextContent = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalHighIndicatorTextContentProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalHighIndicatorTextContent;
-        });
+        }
 
         /// <summary>
         /// LowIndicatorSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LowIndicatorSizeProperty = BindableProperty.Create(nameof(LowIndicatorSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LowIndicatorSizeProperty = null;
+        internal static void SetInternalLowIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue as Size is var nVal && nVal != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalLowIndicatorSize = nVal;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLowIndicatorSizeProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalLowIndicatorSize;
-        });
+        }
 
         /// <summary>
         /// HighIndicatorSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HighIndicatorSizeProperty = BindableProperty.Create(nameof(HighIndicatorSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HighIndicatorSizeProperty = null;
+        internal static void SetInternalHighIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue as Size is var nVal && nVal != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalHighIndicatorSize = nVal;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalHighIndicatorSizeProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalHighIndicatorSize;
-        });
+        }
 
         /// <summary>
         /// ValueIndicatorSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueIndicatorSizeProperty = BindableProperty.Create(nameof(ValueIndicatorSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueIndicatorSizeProperty = null;
+        internal static void SetInternalValueIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue as Size is var nVal && nVal != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalValueIndicatorSize = nVal;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalValueIndicatorSizeProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalValueIndicatorSize;
-        });
+        }
 
         /// <summary>
         /// ValueIndicatorUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueIndicatorUrlProperty = BindableProperty.Create(nameof(ValueIndicatorUrl), typeof(string), typeof(Slider), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueIndicatorUrlProperty = null;
+        internal static void SetInternalValueIndicatorUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalValueIndicatorUrl = newValue as string;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalValueIndicatorUrlProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalValueIndicatorUrl;
-        });
+        }
 
         /// <summary>
         /// IsDiscreteProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsDiscreteProperty = BindableProperty.Create(nameof(IsDiscrete), typeof(bool), typeof(Slider), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsDiscreteProperty = null;
+        internal static void SetInternalIsDiscreteProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalIsDiscrete = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIsDiscreteProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalIsDiscrete;
-        });
+        }
 
         /// <summary>
         /// DiscreteValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DiscreteValueProperty = BindableProperty.Create(nameof(DiscreteValue), typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DiscreteValueProperty = null;
+        internal static void SetInternalDiscreteValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Slider)bindable;
             if (newValue != null)
             {
+                var instance = (Slider)bindable;
                 instance.InternalDiscreteValue = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDiscreteValueProperty(BindableObject bindable)
         {
             var instance = (Slider)bindable;
             return instance.InternalDiscreteValue;
-        });
-
+        }
     }
 }

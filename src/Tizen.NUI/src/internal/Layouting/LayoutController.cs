@@ -263,12 +263,12 @@ namespace Tizen.NUI
         private float GetLengthSize(float size, LayoutDimension layoutDimension)
         {
             // exact size provided so match width exactly
-            return layoutDimension.IsFixedValue ? layoutDimension.GetValue() : size;
+            return layoutDimension.IsFixedValue ? layoutDimension : size;
         }
 
         private MeasureSpecification.ModeType GetMode(LayoutDimension layoutDimension)
         {
-            if (layoutDimension.IsFixedValue || layoutDimension == LayoutDimensionMode.MatchParent)
+            if (layoutDimension.IsFixedValue || layoutDimension == LayoutDimension.MatchParent)
             {
                 return MeasureSpecification.ModeType.Exactly;
             }

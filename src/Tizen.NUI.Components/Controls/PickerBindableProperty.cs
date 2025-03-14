@@ -12,9 +12,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty CurrentValueProperty = null;
         internal static void SetInternalCurrentValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Picker)bindable;
             if (newValue != null)
             {
+                var instance = (Picker)bindable;
                 instance.InternalCurrentValue = (int)newValue;
             }
         }
@@ -31,9 +31,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty MaxValueProperty = null;
         internal static void SetInternalMaxValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Picker)bindable;
             if (newValue != null)
             {
+                var instance = (Picker)bindable;
                 instance.InternalMaxValue = (int)newValue;
             }
         }
@@ -50,9 +50,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty MinValueProperty = null;
         internal static void SetInternalMinValueProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Picker)bindable;
             if (newValue != null)
             {
+                var instance = (Picker)bindable;
                 instance.InternalMinValue = (int)newValue;
             }
         }

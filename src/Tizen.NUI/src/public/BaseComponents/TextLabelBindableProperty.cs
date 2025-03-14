@@ -36,21 +36,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalTranslatableTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<string> selector)
             {
                 textLabel.TranslatableTextSelector = selector;
             }
             else
             {
-                textLabel.selectorData?.TranslatableText?.Reset(textLabel);
-                textLabel.SetTranslatableText((string)newValue);
+                textLabel.SetInternalTranslatableText((string)newValue);
             }
         }
         internal static object GetInternalTranslatableTextProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            return textLabel.translatableText;
+            return textLabel.GetInternalTranslatableText();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -59,23 +57,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<string> selector)
             {
                 textLabel.TextSelector = selector;
             }
             else
             {
-                textLabel.selectorData?.Text?.Reset(textLabel);
-                textLabel.SetText((string)newValue);
+                textLabel.SetInternalText((string)newValue);
             }
         }
         internal static object GetInternalTextProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            // Do not try to get string if we know that previous text was empty.
-            return textLabel.textIsEmpty ? "" : Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.TEXT);
+            return textLabel.GetInternalText();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -84,7 +78,6 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalFontFamilyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<string> selector)
             {
                 textLabel.FontFamilySelector = selector;
@@ -106,19 +99,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty FontStyleProperty = null;
         internal static void SetInternalFontStyleProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontStyle, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-                textLabel.RequestLayout();
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalFontStyle((PropertyMap)newValue);
             }
         }
         internal static object GetInternalFontStyleProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontStyle).Get(temp);
-            return temp;
+            return textLabel.GetInternalFontStyle();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -127,22 +117,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalPointSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<float?> selector)
             {
                 textLabel.PointSizeSelector = selector;
             }
             else
             {
-                textLabel.selectorData?.PointSize?.Reset(textLabel);
-                textLabel.SetPointSize((float?)newValue);
+                textLabel.SetInternalPointSize((float)newValue);
             }
         }
         internal static object GetInternalPointSizeProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.PointSize);
+            return textLabel.GetInternalPointSize();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -150,19 +137,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty MultiLineProperty = null;
         internal static void SetInternalMultiLineProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MultiLine, (bool)newValue);
-                textLabel.RequestLayout();
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalMultiLine((bool)newValue);
             }
         }
         internal static object GetInternalMultiLineProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MultiLine);
+            return textLabel.GetInternalMultiLine();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -170,36 +154,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty HorizontalAlignmentProperty = null;
         internal static void SetInternalHorizontalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalHorizontalAlignment((HorizontalAlignment)newValue);
             }
         }
         internal static object GetInternalHorizontalAlignmentProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            string temp;
-
-            temp = Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment);
-            if (System.String.IsNullOrEmpty(temp))
-            {
-                return HorizontalAlignment.Begin; // Return default value.
-            }
-
-            if (temp.Equals("BEGIN"))
-            {
-                return HorizontalAlignment.Begin;
-            }
-            else if (temp.Equals("CENTER"))
-            {
-                return HorizontalAlignment.Center;
-            }
-            else
-            {
-                return HorizontalAlignment.End;
-            }
+            return textLabel.GetInternalHorizontalAlignment();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -207,36 +171,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty VerticalAlignmentProperty = null;
         internal static void SetInternalVerticalAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalVerticalAlignment((VerticalAlignment)newValue);
             }
         }
         internal static object GetInternalVerticalAlignmentProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            string temp;
-
-            temp = Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment);
-            if (System.String.IsNullOrEmpty(temp))
-            {
-                return VerticalAlignment.Top; // Return default value.
-            }
-
-            if (temp.Equals("TOP"))
-            {
-                return VerticalAlignment.Top;
-            }
-            else if (temp.Equals("CENTER"))
-            {
-                return VerticalAlignment.Center;
-            }
-            else
-            {
-                return VerticalAlignment.Bottom;
-            }
+            return textLabel.GetInternalVerticalAlignment();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -245,71 +189,51 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalTextColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<Color> selector)
             {
                 textLabel.TextColorSelector = selector;
             }
             else
             {
-                textLabel.selectorData?.TextColor?.Reset(textLabel);
-                textLabel.SetTextColor((Color)newValue);
+                textLabel.SetInternalTextColor((Color)newValue);
             }
         }
         internal static object GetInternalTextColorProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            if (textLabel.internalTextColor == null)
-            {
-                textLabel.internalTextColor = new Color(0, 0, 0, 0);
-            }
-            Object.InternalRetrievingPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.TextColor, textLabel.internalTextColor.SwigCPtr);
-            return textLabel.internalTextColor;
+            return textLabel.GetInternalTextColor();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AnchorColorProperty = null;
         internal static void SetInternalAnchorColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.AnchorColor, ((Color)newValue).SwigCPtr);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAnchorColor((Color)newValue);
             }
         }
         internal static object GetInternalAnchorColorProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            if (textLabel.internalAnchorColor == null)
-            {
-                textLabel.internalAnchorColor = new Color(0, 0, 0, 0);
-            }
-            Object.InternalRetrievingPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.TextColor, textLabel.internalAnchorColor.SwigCPtr);
-            return textLabel.internalAnchorColor;
+            return textLabel.GetInternalAnchorColor();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AnchorClickedColorProperty = null;
         internal static void SetInternalAnchorClickedColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.AnchorClickedColor, ((Color)newValue).SwigCPtr);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAnchorClickedColor((Color)newValue);
             }
         }
         internal static object GetInternalAnchorClickedColorProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            if (textLabel.internalAnchorClickedColor == null)
-            {
-                textLabel.internalAnchorClickedColor = new Color(0, 0, 0, 0);
-            }
-            Object.InternalRetrievingPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.TextColor, textLabel.internalAnchorClickedColor.SwigCPtr);
-            return textLabel.internalAnchorClickedColor;
+            return textLabel.GetInternalAnchorClickedColor();
         }
 
         /// <summary>
@@ -319,17 +243,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty RemoveFrontInsetProperty = null;
         internal static void SetInternalRemoveFrontInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveFrontInset, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalRemoveFrontInset((bool)newValue);
             }
         }
         internal static object GetInternalRemoveFrontInsetProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveFrontInset);
+            return textLabel.GetInternalRemoveFrontInset();
         }
 
         /// <summary>
@@ -339,17 +262,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty RemoveBackInsetProperty = null;
         internal static void SetInternalRemoveBackInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveBackInset, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalRemoveBackInset((bool)newValue);
             }
         }
         internal static object GetInternalRemoveBackInsetProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveBackInset);
+            return textLabel.GetInternalRemoveBackInset();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -357,18 +279,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty EnableMarkupProperty = null;
         internal static void SetInternalEnableMarkupProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableMarkup, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalEnableMarkup((bool)newValue);
             }
         }
         internal static object GetInternalEnableMarkupProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableMarkup);
+            return textLabel.GetInternalEnableMarkup();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -376,18 +296,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty EnableAutoScrollProperty = null;
         internal static void SetInternalEnableAutoScrollProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalEnableAutoScroll((bool)newValue);
             }
         }
         internal static object GetInternalEnableAutoScrollProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll);
+            return textLabel.GetInternalEnableAutoScroll();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -395,18 +313,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty AutoScrollSpeedProperty = null;
         internal static void SetInternalAutoScrollSpeedProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAutoScrollSpeed((int)newValue);
             }
         }
         internal static object GetInternalAutoScrollSpeedProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed);
+            return textLabel.GetInternalAutoScrollSpeed();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -414,18 +330,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty AutoScrollLoopCountProperty = null;
         internal static void SetInternalAutoScrollLoopCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAutoScrollLoopCount((int)newValue);
             }
         }
         internal static object GetInternalAutoScrollLoopCountProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount);
+            return textLabel.GetInternalAutoScrollLoopCount();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -433,18 +347,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty AutoScrollGapProperty = null;
         internal static void SetInternalAutoScrollGapProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap, (float)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAutoScrollGap((float)newValue);
             }
         }
         internal static object GetInternalAutoScrollGapProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap);
+            return textLabel.GetInternalAutoScrollGap();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -452,37 +364,32 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty LineSpacingProperty = null;
         internal static void SetInternalLineSpacingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.LineSpacing, (float)newValue);
-                textLabel.RequestLayout();
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalLineSpacing((float)newValue);
             }
         }
         internal static object GetInternalLineSpacingProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.LineSpacing);
+            return textLabel.GetInternalLineSpacing();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty RelativeLineHeightProperty = null;
         internal static void SetInternalRelativeLineHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight, (float)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalRelativeLineHeight((float)newValue);
             }
         }
         internal static object GetInternalRelativeLineHeightProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight);
+            return textLabel.GetInternalRelativeLineHeight();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -490,18 +397,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty UnderlineProperty = null;
         internal static void SetInternalUnderlineProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.UNDERLINE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalUnderline((PropertyMap)newValue);
             }
         }
         internal static object GetInternalUnderlineProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.UNDERLINE).Get(temp);
-            return temp;
+            return textLabel.GetInternalUnderline();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -509,18 +414,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ShadowProperty = null;
         internal static void SetInternalShadowProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.SHADOW, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalShadow((PropertyMap)newValue);
             }
         }
         internal static object GetInternalShadowProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.SHADOW).Get(temp);
-            return temp;
+            return textLabel.GetInternalShadow();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -529,23 +432,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalTextShadowProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<TextShadow> selector)
             {
                 textLabel.TextShadowSelector = selector;
             }
             else
             {
-                textLabel.selectorData?.TextShadow?.Reset(textLabel);
-                textLabel.SetTextShadow((TextShadow)newValue);
+                textLabel.SetInternalTextShadow((TextShadow)newValue);
             }
         }
         internal static object GetInternalTextShadowProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.SHADOW).Get(temp);
-            return temp.Empty() ? null : new TextShadow(temp);
+            return textLabel.GetInternalTextShadow();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -553,18 +452,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty EmbossProperty = null;
         internal static void SetInternalEmbossProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyString(textLabel.SwigCPtr, TextLabel.Property.EMBOSS, (string)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalEmboss((string)newValue);
             }
         }
         internal static object GetInternalEmbossProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.EMBOSS);
+            return textLabel.GetInternalEmboss();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -572,18 +469,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty OutlineProperty = null;
         internal static void SetInternalOutlineProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.OUTLINE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalOutline((PropertyMap)newValue);
             }
         }
         internal static object GetInternalOutlineProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.OUTLINE).Get(temp);
-            return temp;
+            return textLabel.GetInternalOutline();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -592,22 +487,19 @@ namespace Tizen.NUI.BaseComponents
         internal static void SetInternalPixelSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
-
             if (newValue is Selector<float?> selector)
             {
                 textLabel.PixelSizeSelector = selector;
             }
             else
             {
-                textLabel.selectorData?.PixelSize?.Reset(textLabel);
-                textLabel.SetPixelSize((float?)newValue);
+                textLabel.SetInternalPixelSize((float)newValue);
             }
         }
         internal static object GetInternalPixelSizeProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.PixelSize);
+            return textLabel.GetInternalPixelSize();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -615,18 +507,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty EllipsisProperty = null;
         internal static void SetInternalEllipsisProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalEllipsis((bool)newValue);
             }
         }
         internal static object GetInternalEllipsisProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS);
+            return textLabel.GetInternalEllipsis();
         }
 
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -634,18 +524,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty EllipsisPositionProperty = null;
         internal static void SetInternalEllipsisPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalEllipsisPosition((EllipsisPosition)newValue);
             }
         }
         internal static object GetInternalEllipsisPositionProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return (EllipsisPosition)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition);
+            return textLabel.GetInternalEllipsisPosition();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -653,18 +541,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty AutoScrollLoopDelayProperty = null;
         internal static void SetInternalAutoScrollLoopDelayProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay, (float)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAutoScrollLoopDelay((float)newValue);
             }
         }
         internal static object GetInternalAutoScrollLoopDelayProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay);
+            return textLabel.GetInternalAutoScrollLoopDelay();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -672,20 +558,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty AutoScrollStopModeProperty = null;
         internal static void SetInternalAutoScrollStopModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalAutoScrollStopMode((AutoScrollStopMode)newValue);
             }
         }
         internal static object GetInternalAutoScrollStopModeProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            string temp;
-
-            temp = Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode);
-            return temp.GetValueByDescription<AutoScrollStopMode>();
+            return textLabel.GetInternalAutoScrollStopMode();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -693,18 +575,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty LineWrapModeProperty = null;
         internal static void SetInternalLineWrapModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.LineWrapMode, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalLineWrapMode((LineWrapMode)newValue);
             }
         }
         internal static object GetInternalLineWrapModeProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return (LineWrapMode)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.LineWrapMode);
+            return textLabel.GetInternalLineWrapMode();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -712,18 +592,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty VerticalLineAlignmentProperty = null;
         internal static void SetInternalVerticalLineAlignmentProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment, (int)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalVerticalLineAlignment((VerticalLineAlignment)newValue);
             }
         }
         internal static object GetInternalVerticalLineAlignmentProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return (VerticalLineAlignment)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment);
+            return textLabel.GetInternalVerticalLineAlignment();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -731,18 +609,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = null;
         internal static void SetInternalMatchSystemLanguageDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalMatchSystemLanguageDirection((bool)newValue);
             }
         }
         internal static object GetInternalMatchSystemLanguageDirectionProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection);
+            return textLabel.GetInternalMatchSystemLanguageDirection();
         }
 
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -750,18 +626,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CharacterSpacingProperty = null;
         internal static void SetInternalCharacterSpacingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing, (float)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalCharacterSpacing((float)newValue);
             }
         }
         internal static object GetInternalCharacterSpacingProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing);
+            return textLabel.GetInternalCharacterSpacing();
         }
 
         /// Only for XAML. No need of public API. Make hidden as inhouse API.
@@ -769,18 +643,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty TextFitProperty = null;
         internal static void SetInternalTextFitProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TextFit, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalTextFit((PropertyMap)newValue);
             }
         }
         internal static object GetInternalTextFitProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TextFit).Get(temp);
-            return temp;
+            return textLabel.GetInternalTextFit();
         }
 
         /// Only for XAML. No need of public API. Make hidden as inhouse API.
@@ -788,28 +660,25 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty MinLineSizeProperty = null;
         internal static void SetInternalMinLineSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.MinLineSize, (float)newValue);
-                textLabel.RequestLayout();
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalMinLineSize((float)newValue);
             }
         }
         internal static object GetInternalMinLineSizeProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.MinLineSize);
+            return textLabel.GetInternalMinLineSize();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FontSizeScaleProperty = null;
         internal static void SetInternalFontSizeScaleProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
+                var textLabel = (TextLabel)bindable;
                 textLabel.InternalFontSizeScale = (float)newValue;
             }
         }
@@ -823,19 +692,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty EnableFontSizeScaleProperty = null;
         internal static void SetInternalEnableFontSizeScaleProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale, (bool)newValue);
-                textLabel.RequestLayout();
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalEnableFontSizeScale((bool)newValue);
             }
         }
         internal static object GetInternalEnableFontSizeScaleProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale);
+            return textLabel.GetInternalEnableFontSizeScale();
         }
 
         /// <summary>
@@ -845,15 +711,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ShadowOffsetProperty = null;
         internal static void SetInternalShadowOffsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
             {
-                instance.InternalShadowOffset = (Tizen.NUI.Vector2)newValue;
+                var instance = (TextLabel)bindable;
+                instance.InternalShadowOffset = (Vector2)newValue;
             }
         }
         internal static object GetInternalShadowOffsetProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            var instance = (TextLabel)bindable;
             return instance.InternalShadowOffset;
         }
 
@@ -864,15 +730,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ShadowColorProperty = null;
         internal static void SetInternalShadowColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
             {
-                instance.InternalShadowColor = (Tizen.NUI.Vector4)newValue;
+                var instance = (TextLabel)bindable;
+                instance.InternalShadowColor = (Vector4)newValue;
             }
         }
         internal static object GetInternalShadowColorProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            var instance = (TextLabel)bindable;
             return instance.InternalShadowColor;
         }
 
@@ -883,15 +749,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty UnderlineEnabledProperty = null;
         internal static void SetInternalUnderlineEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
             {
+                var instance = (TextLabel)bindable;
                 instance.InternalUnderlineEnabled = (bool)newValue;
             }
         }
         internal static object GetInternalUnderlineEnabledProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            var instance = (TextLabel)bindable;
             return instance.InternalUnderlineEnabled;
         }
 
@@ -902,15 +768,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty UnderlineColorProperty = null;
         internal static void SetInternalUnderlineColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
             {
-                instance.InternalUnderlineColor = (Tizen.NUI.Vector4)newValue;
+                var instance = (TextLabel)bindable;
+                instance.InternalUnderlineColor = (Vector4)newValue;
             }
         }
         internal static object GetInternalUnderlineColorProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            var instance = (TextLabel)bindable;
             return instance.InternalUnderlineColor;
         }
 
@@ -921,15 +787,15 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty UnderlineHeightProperty = null;
         internal static void SetInternalUnderlineHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
             {
+                var instance = (TextLabel)bindable;
                 instance.InternalUnderlineHeight = (float)newValue;
             }
         }
         internal static object GetInternalUnderlineHeightProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            var instance = (TextLabel)bindable;
             return instance.InternalUnderlineHeight;
         }
 
@@ -940,17 +806,16 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty CutoutProperty = null;
         internal static void SetInternalCutoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout, (bool)newValue);
+                var textLabel = (TextLabel)bindable;
+                textLabel.SetInternalCutout((bool)newValue);
             }
         }
         internal static object GetInternalCutoutProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout);
+            return textLabel.GetInternalCutout();
         }
 
         internal Selector<string> TranslatableTextSelector
@@ -1081,7 +946,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-                InternalFontFamily = (string)value;
+                InternalFontFamily = value;
             }
         }
 
@@ -1089,7 +954,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-
                 Object.InternalSetPropertyVector4(SwigCPtr, TextLabel.Property.TextColor, value.SwigCPtr);
             }
         }
@@ -1098,7 +962,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-
                 Object.InternalSetPropertyFloat(SwigCPtr, TextLabel.Property.PointSize, (float)value);
                 RequestLayout();
             }
