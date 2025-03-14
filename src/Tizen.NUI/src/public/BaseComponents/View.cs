@@ -6460,7 +6460,21 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Gets and Sets hint of partial update area.
+        /// </summary>
+        /// <remarks>
+        /// The property format applied as below logics.
+        /// Vector4(offsetX, offsetY, width, height).
+        /// - offsetX : Offset of the center of partial update area's X axis position from the center of View.
+        /// - offsetY : Offset of the center of partial update area's X axis position from the center of View.
+        /// - width   : Width of partial update area.
+        /// - height  : Height of partial update area.
+        ///
+        /// Special case - If we set Vector4.Zero, it will be used Vector4(0.0f, 0.0f, SizeWidth, SizeHeight) automatically.
+        ///
+        /// This update area give efforts for all Renderer and Visuals.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 UpdateAreaHint
         {
