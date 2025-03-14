@@ -20,7 +20,7 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-    public class DaliVector4 : Disposable
+    internal class DaliVector4 : Disposable
     {
         public DaliVector4() : base(Interop.Vector4.NewVector4(), true)
         {
