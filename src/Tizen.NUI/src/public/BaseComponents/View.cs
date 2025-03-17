@@ -6290,11 +6290,7 @@ namespace Tizen.NUI.BaseComponents
 
                         // The calculation of the native size of the text component requires padding.
                         // Don't overwrite the zero padding.
-                        bool isTextLayout = (value is Tizen.NUI.BaseComponents.TextLabel.TextLabelLayout) ||
-                                            (value is Tizen.NUI.BaseComponents.TextField.TextFieldLayout) ||
-                                            (value is Tizen.NUI.BaseComponents.TextEditor.TextEditorLayout);
-
-                        if (!isTextLayout && (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0))
+                        if (!value.IsPaddingHandledByNative() && (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0))
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;

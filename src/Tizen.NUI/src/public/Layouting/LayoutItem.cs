@@ -663,5 +663,21 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        /// <summary>
+        /// Indicates if padding is handled by native.
+        /// By default, padding is not handled by native if layout is set to view.
+        /// Instead, padding is handled by layout if layout is set to view.
+        /// If padding is not handled by native, then view padding is copied to layout padding and
+        /// view padding is initialized to zero not to make native handle padding.
+        /// If padding is handled by native, then view padding is preserved and padding is handled
+        /// by native.
+        /// </summary>
+        /// <return>True if padding is handled by native, otherwise false.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool IsPaddingHandledByNative()
+        {
+            return false;
+        }
     }
 }
