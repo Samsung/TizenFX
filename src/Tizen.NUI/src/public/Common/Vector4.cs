@@ -20,30 +20,38 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-    internal class DaliVector4 : Disposable
+    internal class DaliVector4 : IDisposable
     {
-        public DaliVector4() : base(Interop.Vector4.NewVector4(), true)
+        private System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        public DaliVector4()
         {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.Vector4.NewVector4());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetValues(float r, float g, float b, float a)
         {
-            Interop.Vector4.RSet(SwigCPtr, r);
-            Interop.Vector4.GSet(SwigCPtr, g);
-            Interop.Vector4.BSet(SwigCPtr, b);
-            Interop.Vector4.ASet(SwigCPtr, a);
+            Interop.Vector4.RSet(swigCPtr, r);
+            Interop.Vector4.GSet(swigCPtr, g);
+            Interop.Vector4.BSet(swigCPtr, b);
+            Interop.Vector4.ASet(swigCPtr, a);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
         }
 
         public void GetValues(out float r, out float g, out float b, out float a)
         {
-            r = Interop.Vector4.RGet(SwigCPtr);
-            g = Interop.Vector4.GGet(SwigCPtr);
-            b = Interop.Vector4.BGet(SwigCPtr);
-            a = Interop.Vector4.AGet(SwigCPtr);
+            r = Interop.Vector4.RGet(swigCPtr);
+            g = Interop.Vector4.GGet(swigCPtr);
+            b = Interop.Vector4.BGet(swigCPtr);
+            a = Interop.Vector4.AGet(swigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+        }
+
+        public void Dispose()
+        {
+            Interop.Vector4.DeleteVector4(swigCPtr);
         }
     }
 
