@@ -53,6 +53,8 @@ namespace Tizen.NUI
         {
             Interop.Vector4.DeleteVector4(swigCPtr);
         }
+
+        public System.Runtime.InteropServices.HandleRef SwigCPtr => swigCPtr;
     }
 
     /// <summary>
