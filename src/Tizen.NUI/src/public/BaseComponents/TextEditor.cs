@@ -5144,6 +5144,13 @@ namespace Tizen.NUI.BaseComponents
                 SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
                                       ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
             }
+
+            /// <inheritdoc/>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public override bool IsPaddingHandledByNative()
+            {
+                return true;
+            }
         }
     }
 }
