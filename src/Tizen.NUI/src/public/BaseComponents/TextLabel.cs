@@ -1931,15 +1931,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsScrolling
         {
-            get
-            {
-                bool isScrolling = false;
-                using (var propertyValue = GetProperty(TextLabel.Property.IsScrolling))
-                {
-                    propertyValue.Get(out isScrolling);
-                }
-                return isScrolling;
-            }
+            get => Object.InternalGetPropertyBool(SwigCPtr, Property.IsScrolling);
         }
 
         /// <summary>
@@ -2013,15 +2005,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public int LineCount
         {
-            get
-            {
-                int lineCount = 0;
-                using (var propertyValue = GetProperty(TextLabel.Property.LineCount))
-                {
-                    propertyValue.Get(out lineCount);
-                }
-                return lineCount;
-            }
+            get => Object.InternalGetPropertyInt(SwigCPtr, Property.LineCount);
         }
 
         /// <summary>
@@ -2063,15 +2047,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextDirection TextDirection
         {
-            get
-            {
-                int textDirection = 0;
-                using (var propertyValue = GetProperty(TextLabel.Property.TextDirection))
-                {
-                    propertyValue.Get(out textDirection);
-                }
-                return (TextDirection)textDirection;
-            }
+            get => (TextDirection)Object.InternalGetPropertyInt(SwigCPtr, Property.TextDirection);
         }
 
         /// <summary>
@@ -2738,15 +2714,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ManualRendered
         {
-            get
-            {
-                bool manualRendered = false;
-                using (var propertyValue = GetProperty(TextLabel.Property.ManualRendered))
-                {
-                    propertyValue.Get(out manualRendered);
-                }
-                return manualRendered;
-            }
+            get => Object.InternalGetPropertyBool(SwigCPtr, Property.ManualRendered);
         }
 
         /// <summary>
@@ -2765,15 +2733,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int AsyncLineCount
         {
-            get
-            {
-                int asyncLineCount = 0;
-                using (var propertyValue = GetProperty(TextLabel.Property.AsyncLineCount))
-                {
-                    propertyValue.Get(out asyncLineCount);
-                }
-                return asyncLineCount;
-            }
+            get => Object.InternalGetPropertyInt(SwigCPtr, Property.AsyncLineCount);
         }
 
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
