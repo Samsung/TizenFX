@@ -39,6 +39,15 @@ namespace NUILayout
             };
             Add(background);
 
+            var origin = new View()
+            {
+                Layout = new AbsoluteLayout(),
+                WidthSpecification = 100,
+                HeightSpecification = 100,
+                BackgroundColor = Color.LightBlue,
+            };
+            Add(origin);
+
             var view = new View()
             {
                 Layout = new AbsoluteLayout(),
@@ -56,7 +65,7 @@ namespace NUILayout
 
             var contentPage = new ContentPage()
             {
-                AppBar = new AppBar() { Title = "Pos", BackgroundColor = Color.White },
+                AppBar = new AppBar() { Title = "Position", BackgroundColor = Color.White },
                 Content = this,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,

@@ -21,9 +21,9 @@ using Tizen.NUI.Components;
 
 namespace NUILayout
 {
-    internal class AbsolutePMarginPaddingPos : View, IExample
+    internal class AbsolutePosPMarginPaddingMargin : View, IExample
     {
-        public AbsolutePMarginPaddingPos()
+        public AbsolutePosPMarginPaddingMargin()
         {
             Layout = new AbsoluteLayout();
             WidthSpecification = LayoutParamPolicies.MatchParent;
@@ -41,6 +41,16 @@ namespace NUILayout
             };
             Add(background);
 
+            var origin = new View()
+            {
+                Layout = new AbsoluteLayout(),
+                WidthSpecification = 100,
+                HeightSpecification = 100,
+                BackgroundColor = Color.LightBlue,
+                Margin = 100,
+            };
+            Add(origin);
+
             var view = new View()
             {
                 Layout = new AbsoluteLayout(),
@@ -48,6 +58,7 @@ namespace NUILayout
                 HeightSpecification = 100,
                 Position = new Position(100, 100),
                 BackgroundColor = Color.Blue,
+                Margin = 100,
             };
             Add(view);
         }
@@ -58,7 +69,7 @@ namespace NUILayout
 
             var contentPage = new ContentPage()
             {
-                AppBar = new AppBar() { Title = "ParentMargin Padding Pos", BackgroundColor = Color.White },
+                AppBar = new AppBar() { Title = "Position ParentMargin Padding Margin", BackgroundColor = Color.White },
                 Content = this,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,

@@ -21,15 +21,16 @@ using Tizen.NUI.Components;
 
 namespace NUILayout
 {
-    internal class AbsolutePivotCenterPMargin : View, IExample
+    internal class AbsoluteMatchPMarginPaddingMargin : View, IExample
     {
-        public AbsolutePivotCenterPMargin()
+        public AbsoluteMatchPMarginPaddingMargin()
         {
             Layout = new AbsoluteLayout();
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
             BackgroundColor = Color.Gray;
             Margin = 100;
+            Padding = 100;
 
             var background = new View()
             {
@@ -43,12 +44,10 @@ namespace NUILayout
             var view = new View()
             {
                 Layout = new AbsoluteLayout(),
-                WidthSpecification = 100,
-                HeightSpecification = 100,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = Color.Blue,
-                PositionUsesPivotPoint = true,
-                PivotPoint = new Position(0.5f, 0.5f),
-                ParentOrigin = new Position(0.5f, 0.5f),
+                Margin = 100,
             };
             Add(view);
         }
@@ -59,7 +58,7 @@ namespace NUILayout
 
             var contentPage = new ContentPage()
             {
-                AppBar = new AppBar() { Title = "PivotCenter ParentMargin", BackgroundColor = Color.White },
+                AppBar = new AppBar() { Title = "MatchParent ParentMargin Padding Margin", BackgroundColor = Color.White },
                 Content = this,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
