@@ -59,7 +59,7 @@ namespace NUILayout
 
             var contentPage = new ContentPage()
             {
-                AppBar = new AppBar() { Title = "PivotBottomEnd PMargin", BackgroundColor = Color.White },
+                AppBar = new AppBar() { Title = "PivotBottomEnd ParentMargin", BackgroundColor = Color.White },
                 Content = this,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
