@@ -60,6 +60,14 @@ namespace NUILayout
                 Margin = 100,
             };
             Add(view);
+
+            var timer = new Tizen.NUI.Timer(1000);
+            timer.Tick += (o, e) =>
+            {
+                view.Layout.RequestLayout(); // Test if AbsoluteLayout position is updated unexpectedly.
+                return true;
+            };
+            timer.Start();
         }
 
         public void Activate()
