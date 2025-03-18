@@ -4918,7 +4918,7 @@ namespace Tizen.NUI.BaseComponents
                 if (layoutExtraData != null && extents is Extents newPadding)
                     SetPadding(new UIExtents(newPadding.Start, newPadding.End, newPadding.Top, newPadding.Bottom), false);
 
-                if (Layout != null)
+                if (Layout != null && !Layout.IsPaddingHandledByNative())
                 {
                     Layout.Padding = new Extents((Extents)extents);
                     if ((Padding.Start != 0) || (Padding.End != 0) || (Padding.Top != 0) || (Padding.Bottom != 0))
