@@ -147,12 +147,14 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
+
                 Extents childMargin = childLayout.Margin;
                 var rect = GetLayoutBounds(childLayout.Owner);
                 var flags = GetLayoutFlags(childLayout.Owner);
 
-                // If child view positions with using pivot point, then padding and margin are not used.
-                if (childLayout.Owner.PositionUsesPivotPoint)
+                // If child view does not use bounds, then padding and margin are not used.
+                if (!isBoundsSet)
                 {
                     MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                 }
@@ -206,8 +208,8 @@ namespace Tizen.NUI
                 float childRight;
                 float childBottom;
 
-                // If child view positions with using pivot point, then padding and margin are not used.
-                if (childLayout.Owner.PositionUsesPivotPoint)
+                // If child view does not use bounds, then padding and margin are not used.
+                if (!isBoundsSet)
                 {
                     childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
                     childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
@@ -267,6 +269,8 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
+
                 Extents childMargin = childLayout.Margin;
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
@@ -275,8 +279,8 @@ namespace Tizen.NUI
                 LayoutLength childLeft;
                 LayoutLength childTop;
 
-                // If child view positions with using pivot point, then padding and margin are not used.
-                if (childLayout.Owner.PositionUsesPivotPoint)
+                // If child view does not use bounds, then padding and margin are not used.
+                if (!isBoundsSet)
                 {
                     childLeft = new LayoutLength(childLayout.Owner.PositionX);
                     childTop = new LayoutLength(childLayout.Owner.PositionY);
@@ -284,18 +288,17 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
                     var rect = GetLayoutBounds(childLayout.Owner);
                     var flags = GetLayoutFlags(childLayout.Owner);
                     var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
                     var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
 
-                    var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
+                    var childX = MeasureBoundsPosition(rect.X, isXProportional,
                                 MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End),
                                 childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
                                 Padding.Start, childMargin.Start);
 
-                    var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
+                    var childY = MeasureBoundsPosition(rect.Y, isYProportional,
                                 MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom),
                                 childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
                                 Padding.Top, childMargin.Bottom);
@@ -334,19 +337,6 @@ namespace Tizen.NUI
             else
             {
                 return paddingBegin + boundsValue + marginBegin;
-            }
-        }
-
-        private float MeasurePosition(bool isBoundsSet, float position, float boundsValue, bool proportional, float constraint, float sizeWithMargin, float paddingBegin, float marginBegin)
-        {
-            // If user sets LayoutBounds, use LayoutBounds. Otherwise, use Position property.
-            if (isBoundsSet)
-            {
-                return MeasureBoundsPosition(boundsValue, proportional, constraint, sizeWithMargin, paddingBegin, marginBegin);
-            }
-            else
-            {
-                return paddingBegin + position + marginBegin;
             }
         }
 
