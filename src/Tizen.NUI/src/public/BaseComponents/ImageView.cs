@@ -1679,7 +1679,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _desired_width = value;
                     using PropertyValue setValue = new PropertyValue(value);
-                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue, false);
+                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue);
                 }
             }
         }
@@ -1739,7 +1739,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _desired_height = value;
                     using PropertyValue setValue = new PropertyValue(value);
-                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue, false);
+                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue);
                 }
             }
         }
