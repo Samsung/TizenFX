@@ -30,14 +30,14 @@ namespace NUILayout
             HeightSpecification = LayoutParamPolicies.MatchParent;
             BackgroundColor = Color.Gray;
 
-            var background = new View()
+            var absoluteLayout = new View()
             {
                 Layout = new AbsoluteLayout(),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = Color.DarkGray,
             };
-            Add(background);
+            Add(absoluteLayout);
 
             var origin = new View()
             {
@@ -46,7 +46,7 @@ namespace NUILayout
                 HeightSpecification = 100,
                 BackgroundColor = Color.LightBlue,
             };
-            Add(origin);
+            absoluteLayout.Add(origin);
 
             var view = new View()
             {
@@ -56,7 +56,7 @@ namespace NUILayout
                 Position = new Position(100, 100),
                 BackgroundColor = Color.Blue,
             };
-            Add(view);
+            absoluteLayout.Add(view);
 
             var timer = new Tizen.NUI.Timer(1000);
             timer.Tick += (o, e) =>
