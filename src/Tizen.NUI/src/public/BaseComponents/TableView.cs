@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents
     /// in a grid without loosing their depth scaling.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// need to be deprecated.
     public class TableView : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
