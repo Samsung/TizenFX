@@ -658,4 +658,68 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         ConnectionCancelled = -0x01C60000 | 0x10
     }
+
+    /// <summary>
+    /// Enumeration for Wi-Fi frame type.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum WiFiDirectVsieFrame
+    {
+        /// <summary>
+        /// P2P probe request frame.
+        /// </summary>
+        P2P_PROBE_REQ,
+        /// <summary>
+        /// P2P probe response frame.
+        /// </summary>
+        P2P_PROBE_RESP,
+        /// <summary>
+        ///P2P group owner probe response frame.
+        /// </summary>
+        P2P_GO_PROBE_RESP,
+        /// <summary>
+        /// P2P probe request frame.
+        /// </summary>
+        P2P_GO_BEACON,
+        /// <summary>
+        /// P2P provision discovery request frame.
+        /// </summary>
+        P2P_PD_REQ,
+        /// <summary>
+        /// P2P provision discovery response frame.
+        /// </summary>
+        P2P_PD_RESP,
+        /// <summary>
+        /// P2P probe request frame.
+        /// </summary>
+        P2P_GO_NEG_REQ,
+        /// <summary>
+        /// P2P group owner negotiation response frame.
+        /// </summary>
+        P2P_GO_NEG_RESP,
+        /// <summary>
+        /// P2P group owner negotiation confirmation frame.
+        /// </summary>
+        P2P_GO_NEG_CONF,
+        /// <summary>
+        /// P2P invitation request frame.
+        /// </summary>
+        P2P_INV_REQ,
+        /// <summary>
+        /// P2P invitation response frame.
+        /// </summary>
+        P2P_INV_RESP,
+        /// <summary>
+        /// P2P association request frame.
+        /// </summary>
+        P2P_ASSOC_REQ,
+        /// <summary>
+        /// P2P association response frame.
+        /// </summary>
+        P2P_ASSOC_RESP,
+        /// <summary>
+        /// Association request frame.
+        /// </summary>
+        ASSOC_REQ
+    }
 }

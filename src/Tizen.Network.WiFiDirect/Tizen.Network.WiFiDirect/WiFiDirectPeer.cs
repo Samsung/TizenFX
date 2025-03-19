@@ -427,6 +427,33 @@ namespace Tizen.Network.WiFiDirect
                 }
             }
         }
+
+        /// <summary>
+        /// The vendor specific information element (VSIE) of a peer
+        /// </summary>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// If there is any error, null will be returned.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        public string Vsie
+        {
+            get
+            {
+                if (Globals.IsActivated)
+                {
+                    string vsie = string.Empty;
+                    //Todo
+                    return vsie;
+                }
+
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         /// <summary>
         /// The ConnectionStateChanged event is raised when the connection state of the peer device changes.
         /// </summary>
