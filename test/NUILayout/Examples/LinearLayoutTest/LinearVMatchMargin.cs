@@ -41,6 +41,8 @@ namespace NUILayout
                 BackgroundColor = Color.DarkGray,
                 Margin = 50,
             };
+            // This allows AbsoluteLayout to apply margin of its child view.
+            AbsoluteLayout.SetLayoutBounds(linearLayout, new UIRect(0, 0, AbsoluteLayout.LayoutBoundsAutoSized, AbsoluteLayout.LayoutBoundsAutoSized));
             Add(linearLayout);
 
             var views = new View[LayoutChildren.Count];
