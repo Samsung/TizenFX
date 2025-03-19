@@ -158,7 +158,7 @@ namespace Tizen.Applications.Notifications
         SecondButton,
         ThirdButton,
         ClickOnIcon = 6,
-        ClockOnThumbnail = 7,
+        ClickOnThumbnail = 7,
         ClickOnTextInputButton = 8,
         HiddenByUser = 100,
         HiddenByTimeout = 101,
@@ -184,6 +184,8 @@ namespace Tizen.Applications.Notifications
         FirstSubText,
         SecondMainText,
         SecondSubText,
+        GroupTitle = 10,
+        GroupContent = 11,
         FirstButton = 13,
         SeceondButton = 14,
         ThirdButton = 15,
@@ -204,6 +206,7 @@ namespace Tizen.Applications.Notifications
         SecondButton,
         ThirdButton,
         TextInputButton = 18,
+        Extension = 19,
     }
 
     internal enum LaunchOption
