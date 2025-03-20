@@ -133,6 +133,20 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
+            var widthSpecSize = widthMeasureSpec.GetSize().AsDecimal();
+            var newWidthSpecSize = Math.Max(Math.Min(widthSpecSize, Owner.GetMaximumWidth()), Owner.GetMinimumWidth());
+            if (widthSpecSize != newWidthSpecSize)
+            {
+                widthMeasureSpec.SetSize(new LayoutLength(newWidthSpecSize));
+            }
+
+            var heightSpecSize = heightMeasureSpec.GetSize().AsDecimal();
+            var newHeightSpecSize = Math.Max(Math.Min(heightSpecSize, Owner.GetMaximumHeight()), Owner.GetMinimumHeight());
+            if (heightSpecSize != newHeightSpecSize)
+            {
+                heightMeasureSpec.SetSize(new LayoutLength(newHeightSpecSize));
+            }
+
             // Ensure layout respects it's given minimum size
             float maxWidth = SuggestedMinimumWidth.AsDecimal();
             float maxHeight = SuggestedMinimumHeight.AsDecimal();
@@ -165,10 +179,14 @@ namespace Tizen.NUI
 
                     var measuredWidth = MeasureBoundsSize(rect.Width, isWidthProportional,
                                             widthMeasureSpec.GetSize().AsDecimal() - (Padding.Start + Padding.End),
-                                            childMargin.Start + childMargin.End);
+                                            childMargin.Start + childMargin.End,
+                                            childLayout.Owner.GetMinimumWidth(),
+                                            childLayout.Owner.GetMaximumWidth());
                     var measuredHeight = MeasureBoundsSize(rect.Height, isHeightProportional,
                                             heightMeasureSpec.GetSize().AsDecimal() - (Padding.Top + Padding.Bottom),
-                                            childMargin.Top + childMargin.Bottom);
+                                            childMargin.Top + childMargin.Bottom,
+                                            childLayout.Owner.GetMinimumHeight(),
+                                            childLayout.Owner.GetMaximumHeight());
 
                     MeasureSpecification childWidthSpec;
                     if (rect.Width >= 0)
@@ -182,7 +200,7 @@ namespace Tizen.NUI
                                 new LayoutLength(widthMeasureSpec.Size) - (childMargin.Start + childMargin.End),
                                 widthMeasureSpec.Mode),
                             new LayoutLength(Padding.Start + Padding.End),
-                            new LayoutLength(childLayout.Owner.LayoutWidth));
+                            new LayoutLength(CalculateChildSpecSizeWidth(childLayout.Owner)));
                     }
 
                     MeasureSpecification childHeightSpec;
@@ -197,7 +215,7 @@ namespace Tizen.NUI
                                 new LayoutLength(heightMeasureSpec.Size) - (childMargin.Top + childMargin.Bottom),
                                 heightMeasureSpec.Mode),
                             new LayoutLength(Padding.Top + Padding.End),
-                            new LayoutLength(childLayout.Owner.LayoutHeight));
+                            new LayoutLength(CalculateChildSpecSizeHeight(childLayout.Owner)));
                     }
 
                     childLayout.Measure(childWidthSpec, childHeightSpec);
@@ -244,6 +262,10 @@ namespace Tizen.NUI
                     childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
             }
+
+            // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+            maxWidth = Math.Max(Math.Min(maxWidth, Owner.GetMaximumWidth()), Owner.GetMinimumWidth());
+            maxHeight = Math.Max(Math.Min(maxHeight, Owner.GetMaximumHeight()), Owner.GetMinimumHeight());
 
             SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(maxWidth), widthMeasureSpec, childWidthState),
                                   ResolveSizeAndState(new LayoutLength(maxHeight), heightMeasureSpec, childHeightState));
@@ -311,7 +333,7 @@ namespace Tizen.NUI
             }
         }
 
-        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum)
+        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum, float min, float max)
         {
             if (boundsValue < 0)
             {
@@ -320,7 +342,8 @@ namespace Tizen.NUI
 
             if (proportional)
             {
-                return Math.Max(0, constraint * boundsValue - marginSum);
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                return Math.Max(Math.Min(Math.Max(0, constraint * boundsValue - marginSum), max), min);
             }
 
             // Margin does not affect to the fixed size set by user.
