@@ -210,15 +210,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_GetStopperActor")]
             public static extern global::System.IntPtr GetStopperView(global::System.Runtime.InteropServices.HandleRef nuiRenderTask);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_FinishedSignal")]
-            public static extern global::System.IntPtr FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RenderTaskSignal")]
-            public static extern global::System.IntPtr NewRenderTaskSignal();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RenderTaskSignal")]
-            public static extern void DeleteRenderTaskSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

@@ -363,13 +363,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal RenderTaskSignal FinishedSignal()
-        {
-            RenderTaskSignal ret = new RenderTaskSignal(Interop.RenderTask.FinishedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <since_tizen> 3 </since_tizen>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707: Identifiers should not contain underscores")]
         public enum RefreshRate
