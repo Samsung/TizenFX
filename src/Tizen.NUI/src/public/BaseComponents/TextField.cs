@@ -5087,8 +5087,10 @@ namespace Tizen.NUI.BaseComponents
                 // Padding will be automatically applied by DALi TextField.
                 var totalWidth = widthMeasureSpec.Size.AsDecimal();
                 var totalHeight = heightMeasureSpec.Size.AsDecimal();
-                var minSize = Owner.MinimumSize;
-                var maxSize = Owner.MaximumSize;
+                var minWidth = Owner.GetMinimumWidth();
+                var minHeight = Owner.GetMinimumHeight();
+                var maxWidth = Owner.GetMaximumWidth();
+                var maxHeight = Owner.GetMaximumHeight();
                 var naturalSize = Owner.GetNaturalSize();
 
                 if (((TextField)Owner).Text.Length == 0)
@@ -5122,13 +5124,15 @@ namespace Tizen.NUI.BaseComponents
                 if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
                     float width = naturalSize != null ? naturalSize.Width : 0;
-                    totalWidth = Math.Min(Math.Max(width, minSize.Width), maxSize.Width);
+                    // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                    totalWidth = Math.Max(Math.Min(width, maxWidth), minWidth);
                 }
 
                 if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
                     float height = naturalSize != null ? naturalSize.Height : 0;
-                    totalHeight = Math.Min(Math.Max(height, minSize.Height), maxSize.Height);
+                    // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                    totalHeight = Math.Max(Math.Min(height, maxHeight), minHeight);
                 }
 
                 widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);

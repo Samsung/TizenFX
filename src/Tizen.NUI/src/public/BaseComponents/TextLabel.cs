@@ -51,23 +51,27 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    var minSize = Owner.MinimumSize;
-                    var maxSize = Owner.MaximumSize;
+                    var minWidth = Owner.GetMinimumWidth();
+                    var minHeight = Owner.GetMinimumHeight();
+                    var maxWidth = Owner.GetMaximumWidth();
+                    var maxHeight = Owner.GetMaximumHeight();
                     var naturalSize = Owner.GetNaturalSize();
 
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
                         float width = naturalSize != null ? naturalSize.Width : 0;
-                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                        totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
                         float width = naturalSize != null ? naturalSize.Width : 0;
                         float height = naturalSize != null ? naturalSize.Height : 0;
-                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
-                        totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
+                        // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                        totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
+                        totalHeight = Math.Max(Math.Min(height, maxHeight < 0 ? Int32.MaxValue : maxHeight), minHeight);
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
