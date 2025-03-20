@@ -34,7 +34,6 @@ namespace Tizen.NUI.BaseComponents
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
         static private string defaultFontFamily = "TizenSans";
-        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textEditorTextSid = null;
         private string textEditorPlaceHolderTextSid = null;
         private InputMethodContext inputMethodContext = null;
@@ -3744,11 +3743,7 @@ namespace Tizen.NUI.BaseComponents
             internalTextColor?.Dispose();
             internalGrabHandleColor?.Dispose();
 
-            if (hasSystemLanguageChanged)
-            {
-                systemLocaleLanguageChanged.Remove(SystemSettings_LocaleLanguageChanged);
-            }
-
+            RemoveSystemSettingsLocaleLanguageChanged();
             RemoveSystemSettingsFontTypeChanged();
             RemoveSystemSettingsFontSizeChanged();
 
@@ -3817,24 +3812,21 @@ namespace Tizen.NUI.BaseComponents
         private string SetTranslatable(string textEditorSid)
         {
             string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textEditorSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textEditorSid, new CultureInfo(SystemLocaleLanguageChangedManager.LocaleLanguage.Replace("_", "-")));
             if (translatableText != null)
             {
-                if (hasSystemLanguageChanged == false)
-                {
-                    systemLocaleLanguageChanged.Add(SystemSettings_LocaleLanguageChanged);
-                    hasSystemLanguageChanged = true;
-                }
+                AddSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
             else
             {
                 translatableText = "";
+                RemoveSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
         }
 
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        private void SystemSettingsLocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             if (textEditorTextSid != null)
             {
@@ -3843,6 +3835,40 @@ namespace Tizen.NUI.BaseComponents
             if (textEditorPlaceHolderTextSid != null)
             {
                 PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textEditorPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        private void AddSystemSettingsLocaleLanguageChanged()
+        {
+            if (!hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemLanguageChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsLocaleLanguageChanged()
+        {
+            if (hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemLanguageChanged = true;
+                }
             }
         }
 
