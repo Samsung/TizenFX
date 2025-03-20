@@ -3321,7 +3321,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.PlaceholderTextColor, color.SwigCPtr);
+                using var vector = new Vector4(color.R, color.G, color.B, color.A);
+                Object.InternalSetPropertyVector4(SwigCPtr, Property.PlaceholderTextColor, vector.SwigCPtr);
             }
         }
 
@@ -3331,7 +3332,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalPlaceholderTextColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.PlaceholderTextColor, internalPlaceholderTextColor.SwigCPtr);
+
+            using var vector = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.PlaceholderTextColor, vector.SwigCPtr);
+            internalPlaceholderTextColor.ResetValue(vector.R, vector.G, vector.B, vector.A);
             return internalPlaceholderTextColor;
         }
 
@@ -3666,7 +3670,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.GrabHandleColor, color.SwigCPtr);
+                using var vector = new Vector4(color.R, color.G, color.B, color.A);
+                Object.InternalSetPropertyVector4(SwigCPtr, Property.GrabHandleColor, vector.SwigCPtr);
             }
         }
 
@@ -3676,7 +3681,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalGrabHandleColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.GrabHandleColor, internalGrabHandleColor.SwigCPtr);
+
+            using var vector = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.GrabHandleColor, vector.SwigCPtr);
+            internalGrabHandleColor.ResetValue(vector.R, vector.G, vector.B, vector.A);
             return internalGrabHandleColor;
         }
 
