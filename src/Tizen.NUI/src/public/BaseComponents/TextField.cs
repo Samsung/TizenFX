@@ -32,7 +32,6 @@ namespace Tizen.NUI.BaseComponents
     public partial class TextField : View
     {
         static private string defaultFontFamily = "TizenSans";
-        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private string textFieldPlaceHolderTextFocusedSid = null;
@@ -2503,11 +2502,7 @@ namespace Tizen.NUI.BaseComponents
             internalTextColor?.Dispose();
             internalGrabHandleColor?.Dispose();
 
-            if (hasSystemLanguageChanged)
-            {
-                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
-            }
-
+            RemoveSystemSettingsLocaleLanguageChanged();
             RemoveSystemSettingsFontTypeChanged();
             RemoveSystemSettingsFontSizeChanged();
 
@@ -2582,19 +2577,16 @@ namespace Tizen.NUI.BaseComponents
         private string SetTranslatable(string textFieldSid)
         {
             string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemLocaleLanguageChangedManager.LocaleLanguage.Replace("_", "-")));
             if (translatableText != null)
             {
-                if (hasSystemLanguageChanged == false)
-                {
-                    systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
-                    hasSystemLanguageChanged = true;
-                }
+                AddSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
             else
             {
                 translatableText = "";
+                RemoveSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
         }
@@ -2612,6 +2604,40 @@ namespace Tizen.NUI.BaseComponents
             if (textFieldPlaceHolderTextFocusedSid != null)
             {
                 PlaceholderTextFocused = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextFocusedSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        private void AddSystemSettingsLocaleLanguageChanged()
+        {
+            if (!hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemLanguageChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsLocaleLanguageChanged()
+        {
+            if (hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemLanguageChanged = true;
+                }
             }
         }
 
