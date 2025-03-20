@@ -228,7 +228,6 @@ namespace Tizen.NUI.BaseComponents
             // Do nothing. Just call for load static values.
         }
 
-        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
         static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
@@ -452,19 +451,16 @@ namespace Tizen.NUI.BaseComponents
                 }
                 string translatableText = null;
                 textLabelSid = value;
-                translatableText = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+                translatableText = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(SystemLocaleLanguageChangedManager.LocaleLanguage.Replace("_", "-")));
                 if (translatableText != null)
                 {
                     Text = translatableText;
-                    if (hasSystemLanguageChanged == false)
-                    {
-                        systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
-                        hasSystemLanguageChanged = true;
-                    }
+                    AddSystemSettingsLocaleLanguageChanged();
                 }
                 else
                 {
                     Text = "";
+                    RemoveSystemSettingsLocaleLanguageChanged();
                 }
                 NotifyPropertyChanged();
             }
@@ -2772,11 +2768,7 @@ namespace Tizen.NUI.BaseComponents
             internalAnchorColor?.Dispose();
             internalAnchorClickedColor?.Dispose();
 
-            if (hasSystemLanguageChanged)
-            {
-                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
-            }
-
+            RemoveSystemSettingsLocaleLanguageChanged();
             RemoveSystemSettingsFontTypeChanged();
             RemoveSystemSettingsFontSizeChanged();
 
@@ -2854,6 +2846,40 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettingsLocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
+        }
+
+        private void AddSystemSettingsLocaleLanguageChanged()
+        {
+            if (!hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemLanguageChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsLocaleLanguageChanged()
+        {
+            if (hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemLanguageChanged = true;
+                }
+            }
         }
 
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
