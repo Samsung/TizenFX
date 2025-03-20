@@ -638,7 +638,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} Exception caught.", e);
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                         newFontFamily = defaultFontFamily;
                     }
                     AddSystemSettingsFontTypeChanged();
@@ -3607,7 +3607,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} Exception caught.", e);
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                         systemSettingsFontSize = SystemSettingsFontSize.Normal;
                     }
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
@@ -3936,8 +3936,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemLanguageChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -3953,8 +3952,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemLanguageChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -3967,7 +3965,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void AddSystemSettingsFontSizeChanged()
         {
-            if (hasSystemFontSizeChanged != true)
+            if (!hasSystemFontSizeChanged)
             {
                 try
                 {
@@ -3976,15 +3974,14 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontSizeChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
 
         private void RemoveSystemSettingsFontSizeChanged()
         {
-            if (hasSystemFontSizeChanged == true)
+            if (hasSystemFontSizeChanged)
             {
                 try
                 {
@@ -3993,8 +3990,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontSizeChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -4015,8 +4011,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontTypeChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -4032,8 +4027,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontTypeChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
