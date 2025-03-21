@@ -1150,6 +1150,82 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
+        internal void AddVsie(WiFiDirectVsieFrame frameId, string vsie)
+        {
+            int ret = Interop.WiFiDirect.AddVsie(frameId, vsie);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to add vsie, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal string GetVsie(WiFiDirectVsieFrame frameId)
+        {
+            string vsie;
+            int ret = Interop.WiFiDirect.GetVsie(frameId, out vsie);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get vsie, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+                vsie = null;
+            }
+
+            return vsie;
+        }
+
+        internal void RemoveVsie(WiFiDirectVsieFrame frameId, string vsie)
+        {
+            int ret = Interop.WiFiDirect.RemoveVsie(frameId, vsie);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to remove vsie, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal WiFiDirectPeer GetConnectingPeer()
+        {
+            IntPtr peer;
+            int ret = Interop.WiFiDirect.GetConnectingPeerInfo(out peer);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get connecting peer info, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+                return null;
+            }
+
+            DiscoveredPeerStruct peerStruct = (DiscoveredPeerStruct)Marshal.PtrToStructure(peer, typeof(DiscoveredPeerStruct));
+
+            return WiFiDirectUtils.ConvertStructToDiscoveredPeer(peerStruct);
+        }
+
+        internal void AcceptConnection(string peerMacAddress)
+        {
+            int ret = Interop.WiFiDirect.AcceptConnection(peerMacAddress);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal void RejectConnection(string peerMacAddress)
+        {
+            int ret = Interop.WiFiDirect.RejectConnection(peerMacAddress);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to reject connection, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
         internal static WiFiDirectManagerImpl Instance
         {
             get

@@ -1733,7 +1733,7 @@ namespace Tizen.Network.WiFiDirect
         {
             if (Globals.IsActivated)
             {
-                //Todo
+                WiFiDirectManagerImpl.Instance.AddVsie(frameId, vsie);
             }
 
             else
@@ -1765,7 +1765,7 @@ namespace Tizen.Network.WiFiDirect
         {
             if (Globals.IsActivated)
             {
-                //Todo
+                WiFiDirectManagerImpl.Instance.GetVsie(frameId);
                 return null;
             }
 
@@ -1799,7 +1799,7 @@ namespace Tizen.Network.WiFiDirect
         {
             if (Globals.IsActivated)
             {
-                //Todo
+                WiFiDirectManagerImpl.Instance.RemoveVsie(frameId, vsie);
             }
 
             else
@@ -1830,8 +1830,7 @@ namespace Tizen.Network.WiFiDirect
         {
             if (Globals.IsActivated)
             {
-                //Todo
-                return null;
+                return WiFiDirectManagerImpl.Instance.GetConnectingPeer();
             }
 
             else
@@ -1862,7 +1861,7 @@ namespace Tizen.Network.WiFiDirect
         {
             if (Globals.IsActivated)
             {
-                //Todo
+                WiFiDirectManagerImpl.Instance.AcceptConnection(peerMacAddress);
             }
 
             else
@@ -1894,7 +1893,7 @@ namespace Tizen.Network.WiFiDirect
         {
             if (Globals.IsActivated)
             {
-                //Todo
+                WiFiDirectManagerImpl.Instance.RejectConnection(peerMacAddress);
             }
 
             else

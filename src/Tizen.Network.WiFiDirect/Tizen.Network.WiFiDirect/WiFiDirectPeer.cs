@@ -442,15 +442,18 @@ namespace Tizen.Network.WiFiDirect
             {
                 if (Globals.IsActivated)
                 {
-                    string vsie = string.Empty;
-                    //Todo
+                    string vsie;
+                    int ret = Interop.WiFiDirect.GetPeerVsie(_peerMacAddress, out vsie);
+
+                    if (ret != (int)WiFiDirectError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to get the peer VSIE, Error - " + (WiFiDirectError)ret);
+                        return null;
+                    }
+
                     return vsie;
                 }
-
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
 
