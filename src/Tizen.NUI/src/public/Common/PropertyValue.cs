@@ -556,7 +556,8 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Color)))
             {
-                value = Interop.PropertyValue.NewPropertyValueVector4(Color.getCPtr((Color)obj));
+                var color = obj as Color;
+                value = Interop.PropertyValue.NewPropertyValueVector4Componentwise(color.R, color.G, color.B, color.A);
             }
             else if (type.Equals(typeof(Rotation)))
             {
@@ -685,7 +686,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Get(Color vectorValue)
         {
-            bool ret = Interop.PropertyValue.GetVector4(SwigCPtr, Color.getCPtr(vectorValue));
+            if (null == vectorValue)
+            {
+                throw new ArgumentNullException(nameof(vectorValue));
+            }
+
+            bool ret = Interop.PropertyValue.PropertyValueGetVector4Componentwise(SwigCPtr, out var r, out var g, out var b, out var a);
+            vectorValue.ResetValue(r, g, b, a);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
