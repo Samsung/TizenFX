@@ -158,6 +158,33 @@ namespace Tizen.NUI.WindowSystem
                     palmCoverGrabbed = false;
                 }
             }
+            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "G" || e.Key.KeyPressedName == "g"))
+            {
+                if (edgeSwipeG == IntPtr.Zero)
+                    edgeSwipeG = inputGesture.CreateEdgeSwipeData(1, GestureEdge.Left);
+
+                if (edgeSwipeG == IntPtr.Zero)
+                {
+                    centerLabel.Text = "'G' Key Pressed. edgeSwipeG NULL!!";
+                    return;
+                }
+
+                if (!edgeSwipeGrabbed)
+                {
+                    inputGesture.SetGestureGrabMode(edgeSwipeG, GestureGrabMode.Shared);
+                    inputGesture.GrabGesture(edgeSwipeG);
+                    centerLabel.Text = "'G' Key Pressed. edgeSwipe Shared Grabbed";
+
+                    inputGesture.EdgeSwipeEventHandler += _edgeSwipeEventHandler;
+                    edgeSwipeGrabbed = true;
+                }
+                else
+                {
+                    inputGesture.UngrabGesture(edgeSwipeG);
+                    centerLabel.Text = "'G' Key Pressed. edgeSwipe Ungrabbed";
+                    edgeSwipeGrabbed = false;
+                }
+            }
         }
 
         private bool OnTouchEvent(object sender, View.TouchEventArgs e)
