@@ -230,11 +230,11 @@ internal static partial class Interop
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_auto_group_removal")]
         internal static extern int SetAutoGroupRemoval(bool enable);
         [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_add_vsie")]
-        internal static extern int AddVsie(WiFiDirectVsieFrame frameId, string vsie);
+        internal static extern int AddVsie(WiFiDirectVsieFrameType frameType, string vsie);
         [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_vsie")]
-        internal static extern int GetVsie(WiFiDirectVsieFrame frameId, out string vsie);
+        internal static extern int GetVsie(WiFiDirectVsieFrameType frameType, out string vsie);
         [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_remove_vsie")]
-        internal static extern int RemoveVsie(WiFiDirectVsieFrame frameId, string vsie);
+        internal static extern int RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie);
         [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_connecting_peer_info")]
         internal static extern int GetConnectingPeerInfo(out IntPtr peer);
         [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_peer_vsie")]

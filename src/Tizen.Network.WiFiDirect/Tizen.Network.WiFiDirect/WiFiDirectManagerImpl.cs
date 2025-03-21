@@ -1150,9 +1150,9 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
-        internal void AddVsie(WiFiDirectVsieFrame frameId, string vsie)
+        internal void AddVsie(WiFiDirectVsieFrameType frameType, string vsie)
         {
-            int ret = Interop.WiFiDirect.AddVsie(frameId, vsie);
+            int ret = Interop.WiFiDirect.AddVsie(frameType, vsie);
 
             if (ret != (int)WiFiDirectError.None)
             {
@@ -1161,10 +1161,10 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
-        internal string GetVsie(WiFiDirectVsieFrame frameId)
+        internal string GetVsie(WiFiDirectVsieFrameType frameType)
         {
             string vsie;
-            int ret = Interop.WiFiDirect.GetVsie(frameId, out vsie);
+            int ret = Interop.WiFiDirect.GetVsie(frameType, out vsie);
 
             if (ret != (int)WiFiDirectError.None)
             {
@@ -1176,9 +1176,9 @@ namespace Tizen.Network.WiFiDirect
             return vsie;
         }
 
-        internal void RemoveVsie(WiFiDirectVsieFrame frameId, string vsie)
+        internal void RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie)
         {
-            int ret = Interop.WiFiDirect.RemoveVsie(frameId, vsie);
+            int ret = Interop.WiFiDirect.RemoveVsie(frameType, vsie);
 
             if (ret != (int)WiFiDirectError.None)
             {

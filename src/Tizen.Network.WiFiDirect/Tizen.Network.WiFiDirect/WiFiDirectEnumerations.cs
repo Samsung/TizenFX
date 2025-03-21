@@ -663,63 +663,63 @@ namespace Tizen.Network.WiFiDirect
     /// Enumeration for Wi-Fi frame type.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
-    public enum WiFiDirectVsieFrame
+    public enum WiFiDirectVsieFrameType
     {
         /// <summary>
         /// P2P probe request frame.
         /// </summary>
-        P2P_PROBE_REQ,
+        P2PProbeRequest,
         /// <summary>
         /// P2P probe response frame.
         /// </summary>
-        P2P_PROBE_RESP,
+        P2PProbeResponse,
         /// <summary>
         ///P2P group owner probe response frame.
         /// </summary>
-        P2P_GO_PROBE_RESP,
+        P2PGOProbeResponse,
         /// <summary>
         /// P2P probe request frame.
         /// </summary>
-        P2P_GO_BEACON,
+        P2PGOBeacon,
         /// <summary>
         /// P2P provision discovery request frame.
         /// </summary>
-        P2P_PD_REQ,
+        P2PProvisionDiscoveryRequest,
         /// <summary>
         /// P2P provision discovery response frame.
         /// </summary>
-        P2P_PD_RESP,
+        P2PProvisionDiscoveryResponse,
         /// <summary>
         /// P2P probe request frame.
         /// </summary>
-        P2P_GO_NEG_REQ,
+        P2PGONegotiationRequest,
         /// <summary>
         /// P2P group owner negotiation response frame.
         /// </summary>
-        P2P_GO_NEG_RESP,
+        P2PGONegotiationResponse,
         /// <summary>
         /// P2P group owner negotiation confirmation frame.
         /// </summary>
-        P2P_GO_NEG_CONF,
+        P2PGONegotiationConfirmation,
         /// <summary>
         /// P2P invitation request frame.
         /// </summary>
-        P2P_INV_REQ,
+        P2PInvitationRequest,
         /// <summary>
         /// P2P invitation response frame.
         /// </summary>
-        P2P_INV_RESP,
+        P2PInvitationResponse,
         /// <summary>
         /// P2P association request frame.
         /// </summary>
-        P2P_ASSOC_REQ,
+        P2PAssociationRequest,
         /// <summary>
         /// P2P association response frame.
         /// </summary>
-        P2P_ASSOC_RESP,
+        P2PAssociationResponse,
         /// <summary>
         /// Association request frame.
         /// </summary>
-        ASSOC_REQ
+        AssociationRequest
     }
 }

@@ -1713,7 +1713,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// Adds the Wi-Fi Vendor Specific Information Element (VSIE) to specific frame type.
         /// </summary>
-        /// <param name="frameId">frame ID for setting VSIE.</param>
+        /// <param name="frameType">frame type for setting VSIE.</param>
         /// <param name="vsie">VSIE value</param>
         /// <privilege>
         /// http://tizen.org/privilege/wifidirect
@@ -1723,17 +1723,17 @@ namespace Tizen.Network.WiFiDirect
         /// </feature>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
-        /// <paramref name="vsie"/> for <paramref name="frameId"/> will be in effect until Wi-Fi Direct is deactivated
+        /// <paramref name="vsie"/> for <paramref name="frameType"/> will be in effect until Wi-Fi Direct is deactivated.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void AddVsie(WiFiDirectVsieFrame frameId, string vsie)
+        public static void AddVsie(WiFiDirectVsieFrameType frameType, string vsie)
         {
             if (Globals.IsActivated)
             {
-                WiFiDirectManagerImpl.Instance.AddVsie(frameId, vsie);
+                WiFiDirectManagerImpl.Instance.AddVsie(frameType, vsie);
             }
 
             else
@@ -1744,9 +1744,9 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Gets the Wi-Fi Vendor Specific Information Elements (VSIE) from specific frame.
+        /// Gets the Wi-Fi Vendor Specific Information Elements (VSIE) from specific frame type.
         /// </summary>
-        /// <param name="frameId">frame ID for getting VSIE.</param>
+        /// <param name="frameType">frame type for getting VSIE.</param>
         /// <returns>VSIE value if success else null value.</returns>
         /// <privilege>
         /// http://tizen.org/privilege/wifidirect
@@ -1761,12 +1761,11 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static string GetVsie(WiFiDirectVsieFrame frameId)
+        public static string GetVsie(WiFiDirectVsieFrameType frameType)
         {
             if (Globals.IsActivated)
             {
-                WiFiDirectManagerImpl.Instance.GetVsie(frameId);
-                return null;
+                return WiFiDirectManagerImpl.Instance.GetVsie(frameType);
             }
 
             else
@@ -1778,9 +1777,9 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// Removes the Wi-Fi Vendor Specific Information Element (VSIE) from specific frame.
+        /// Removes the Wi-Fi Vendor Specific Information Element (VSIE) from specific frame type.
         /// </summary>
-        /// <param name="frameId">frame ID for removing VSIE.</param>
+        /// <param name="frameType">frame type for removing VSIE.</param>
         /// <param name="vsie">VSIE value</param>
         /// <privilege>
         /// http://tizen.org/privilege/wifidirect
@@ -1795,11 +1794,11 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void RemoveVsie(WiFiDirectVsieFrame frameId, string vsie)
+        public static void RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie)
         {
             if (Globals.IsActivated)
             {
-                WiFiDirectManagerImpl.Instance.RemoveVsie(frameId, vsie);
+                WiFiDirectManagerImpl.Instance.RemoveVsie(frameType, vsie);
             }
 
             else
