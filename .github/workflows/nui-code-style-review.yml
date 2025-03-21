@@ -40,18 +40,16 @@ jobs:
           name: result-file
           path: result.txt
 
-      - name: comment on PR (PR에 리뷰 코멘트 남기기)
-        if: github.event_name == 'pull_request'
+      - name: comment on PR (PR에 리뷰 코멘트 남기기) 문제 있음!
+        if: github.event_name == 'pull_request'  
         uses: actions/github-script@v6
         with:
           script: |
-            const matchedLines = process.env.MATCHED_LINES;
-            const commentBody = `${matchedLines}`;
-            github.rest.issues.createComment({
+            github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "NUI Style check result(결과): " + commentBody + "\n[whole log download](https://github.com/" + context.repo.owner + "/" + context.repo.repo + "/actions/runs/" + process.env.GITHUB_RUN_ID + ")"
+              labels: ["NUI Style check result Find in Action link"]
             })
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
