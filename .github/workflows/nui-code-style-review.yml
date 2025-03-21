@@ -39,17 +39,3 @@ jobs:
         with:
           name: result-file
           path: result.txt
-
-      - name: comment on PR (PR에 리뷰 코멘트 남기기) 문제 있음!
-        if: github.event_name == 'pull_request'  
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ["NUI Style check result Find in Action link"]
-            })
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
