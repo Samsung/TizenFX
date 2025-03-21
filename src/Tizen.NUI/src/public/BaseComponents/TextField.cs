@@ -33,7 +33,6 @@ namespace Tizen.NUI.BaseComponents
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
         static private string defaultFontFamily = "TizenSans";
-        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private string textFieldPlaceHolderTextFocusedSid = null;
@@ -683,7 +682,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} Exception caught.", e);
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                         newFontFamily = defaultFontFamily;
                     }
                     AddSystemSettingsFontTypeChanged();
@@ -4466,7 +4465,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} Exception caught.", e);
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                         systemSettingsFontSize = SystemSettingsFontSize.Normal;
                     }
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
@@ -4702,11 +4701,7 @@ namespace Tizen.NUI.BaseComponents
             internalTextColor?.Dispose();
             internalGrabHandleColor?.Dispose();
 
-            if (hasSystemLanguageChanged)
-            {
-                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
-            }
-
+            RemoveSystemSettingsLocaleLanguageChanged();
             RemoveSystemSettingsFontTypeChanged();
             RemoveSystemSettingsFontSizeChanged();
 
@@ -4781,19 +4776,16 @@ namespace Tizen.NUI.BaseComponents
         private string SetTranslatable(string textFieldSid)
         {
             string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemLocaleLanguageChangedManager.LocaleLanguage.Replace("_", "-")));
             if (translatableText != null)
             {
-                if (hasSystemLanguageChanged == false)
-                {
-                    systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
-                    hasSystemLanguageChanged = true;
-                }
+                AddSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
             else
             {
                 translatableText = "";
+                RemoveSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
         }
@@ -4814,6 +4806,38 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void AddSystemSettingsLocaleLanguageChanged()
+        {
+            if (!hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsLocaleLanguageChanged()
+        {
+            if (hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
+                }
+            }
+        }
+
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
@@ -4822,7 +4846,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void AddSystemSettingsFontSizeChanged()
         {
-            if (hasSystemFontSizeChanged != true)
+            if (!hasSystemFontSizeChanged)
             {
                 try
                 {
@@ -4831,15 +4855,14 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontSizeChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
 
         private void RemoveSystemSettingsFontSizeChanged()
         {
-            if (hasSystemFontSizeChanged == true)
+            if (hasSystemFontSizeChanged)
             {
                 try
                 {
@@ -4848,8 +4871,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontSizeChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -4870,8 +4892,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontTypeChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -4887,8 +4908,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontTypeChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
