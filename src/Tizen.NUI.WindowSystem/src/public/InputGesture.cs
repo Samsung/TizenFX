@@ -453,7 +453,7 @@ namespace Tizen.NUI.WindowSystem
         }
 
         /// <summary>
-        /// Set grab mode of global gesture
+        /// Sets grab mode of global gesture
         /// </summary>
         /// <param name="data">gesture data to grab</param>
         /// <param name="mode"> The mode of gesture grab</param>
