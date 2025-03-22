@@ -133,6 +133,20 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
+            var widthSpecSize = widthMeasureSpec.GetSize().AsDecimal();
+            if (widthSpecSize >= 0)
+            {
+                widthSpecSize = Math.Min(widthSpecSize, Owner.GetMaximumWidth());
+                widthMeasureSpec.SetSize(new LayoutLength(widthSpecSize));
+            }
+
+            var heightSpecSize = heightMeasureSpec.GetSize().AsDecimal();
+            if (heightSpecSize >= 0)
+            {
+                heightSpecSize = Math.Min(heightSpecSize, Owner.GetMaximumHeight());
+                heightMeasureSpec.SetSize(new LayoutLength(heightSpecSize));
+            }
+
             // Ensure layout respects it's given minimum size
             float maxWidth = SuggestedMinimumWidth.AsDecimal();
             float maxHeight = SuggestedMinimumHeight.AsDecimal();
@@ -165,10 +179,14 @@ namespace Tizen.NUI
 
                     var measuredWidth = MeasureBoundsSize(rect.Width, isWidthProportional,
                                             widthMeasureSpec.GetSize().AsDecimal() - (Padding.Start + Padding.End),
-                                            childMargin.Start + childMargin.End);
+                                            childMargin.Start + childMargin.End,
+                                            childLayout.Owner.GetMinimumWidth(),
+                                            childLayout.Owner.GetMaximumWidth());
                     var measuredHeight = MeasureBoundsSize(rect.Height, isHeightProportional,
                                             heightMeasureSpec.GetSize().AsDecimal() - (Padding.Top + Padding.Bottom),
-                                            childMargin.Top + childMargin.Bottom);
+                                            childMargin.Top + childMargin.Bottom,
+                                            childLayout.Owner.GetMinimumHeight(),
+                                            childLayout.Owner.GetMaximumHeight());
 
                     MeasureSpecification childWidthSpec;
                     if (rect.Width >= 0)
@@ -182,7 +200,7 @@ namespace Tizen.NUI
                                 new LayoutLength(widthMeasureSpec.Size) - (childMargin.Start + childMargin.End),
                                 widthMeasureSpec.Mode),
                             new LayoutLength(Padding.Start + Padding.End),
-                            new LayoutLength(childLayout.Owner.LayoutWidth));
+                            new LayoutLength(CalculateChildSpecSize(childLayout.Owner, widthMeasureSpec.GetSize().AsDecimal(), true)));
                     }
 
                     MeasureSpecification childHeightSpec;
@@ -197,7 +215,7 @@ namespace Tizen.NUI
                                 new LayoutLength(heightMeasureSpec.Size) - (childMargin.Top + childMargin.Bottom),
                                 heightMeasureSpec.Mode),
                             new LayoutLength(Padding.Top + Padding.End),
-                            new LayoutLength(childLayout.Owner.LayoutHeight));
+                            new LayoutLength(CalculateChildSpecSize(childLayout.Owner, heightMeasureSpec.GetSize().AsDecimal(), false)));
                     }
 
                     childLayout.Measure(childWidthSpec, childHeightSpec);
@@ -244,6 +262,9 @@ namespace Tizen.NUI
                     childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
             }
+
+            maxWidth = Math.Min(Math.Max(maxWidth, Owner.GetMinimumWidth()), Owner.GetMaximumWidth());
+            maxHeight = Math.Min(Math.Max(maxHeight, Owner.GetMinimumHeight()), Owner.GetMaximumHeight());
 
             SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(maxWidth), widthMeasureSpec, childWidthState),
                                   ResolveSizeAndState(new LayoutLength(maxHeight), heightMeasureSpec, childHeightState));
@@ -311,7 +332,7 @@ namespace Tizen.NUI
             }
         }
 
-        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum)
+        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum, float min, float max)
         {
             if (boundsValue < 0)
             {
@@ -320,7 +341,7 @@ namespace Tizen.NUI
 
             if (proportional)
             {
-                return Math.Max(0, constraint * boundsValue - marginSum);
+                return Math.Min(Math.Min(Math.Max(Math.Max(0, constraint * boundsValue - marginSum), min), max), constraint);
             }
 
             // Margin does not affect to the fixed size set by user.

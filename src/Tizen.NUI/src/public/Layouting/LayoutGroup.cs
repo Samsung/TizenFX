@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding.Internals;
 using static Tizen.NUI.Binding.BindableObject;
@@ -571,12 +570,12 @@ namespace Tizen.NUI
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.LayoutWidth));
+                        new LayoutLength(CalculateChildSpecSize(childOwner, parentWidthMeasureSpec.GetSize().AsDecimal(), true)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
-                        new LayoutLength(childOwner.LayoutHeight));
+                        new LayoutLength(CalculateChildSpecSize(childOwner, parentHeightMeasureSpec.GetSize().AsDecimal(), false)));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
@@ -608,14 +607,14 @@ namespace Tizen.NUI
                             new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (margin.Start + margin.End)),
                             parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.LayoutWidth));
+                        new LayoutLength(CalculateChildSpecSize(childOwner, parentWidthMeasureSpec.GetSize().AsDecimal(), true)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
                             new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (margin.Top + margin.Bottom)),
                             parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
-                        new LayoutLength(childOwner.LayoutHeight));
+                        new LayoutLength(CalculateChildSpecSize(childOwner, parentHeightMeasureSpec.GetSize().AsDecimal(), false)));
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
         }
@@ -642,14 +641,36 @@ namespace Tizen.NUI
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
                         new LayoutLength(0),
-                        new LayoutLength(childOwner.LayoutWidth));
+                        new LayoutLength(CalculateChildSpecSize(childOwner, parentWidthMeasureSpec.GetSize().AsDecimal(), true)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
                         new LayoutLength(0),
-                        new LayoutLength(childOwner.LayoutHeight));
+                        new LayoutLength(CalculateChildSpecSize(childOwner, parentHeightMeasureSpec.GetSize().AsDecimal(), false)));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
+        }
+
+        internal float CalculateChildSpecSize(View child, float constraint, bool isWidth)
+        {
+            if (isWidth)
+            {
+                if (!child.LayoutWidth.IsFixedValue)
+                {
+                    return child.LayoutWidth;
+                }
+
+                return Math.Min(Math.Min(Math.Max(child.LayoutWidth, child.GetMinimumWidth()), child.GetMaximumWidth()), constraint);
+            }
+            else
+            {
+                if (!child.LayoutHeight.IsFixedValue)
+                {
+                    return child.LayoutHeight;
+                }
+
+                return Math.Min(Math.Min(Math.Max(child.LayoutHeight, child.GetMinimumHeight()), child.GetMaximumHeight()), constraint);
+            }
         }
 
         /// <summary>

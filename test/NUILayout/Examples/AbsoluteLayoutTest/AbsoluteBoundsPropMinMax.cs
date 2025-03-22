@@ -51,7 +51,7 @@ namespace NUILayout
             {
                 Layout = new AbsoluteLayout(),
                 BackgroundColor = Color.Blue,
-                MinimumSize = new Size2D(800, 800),
+                MinimumSize = new Size2D(600, 600),
                 MaximumSize = new Size2D(50, 50),
             };
             AbsoluteLayout.SetLayoutBounds(view, new UIRect(0, 0.5f, 1.0f, 0.5f));
