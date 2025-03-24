@@ -1714,7 +1714,7 @@ namespace Tizen.Network.WiFiDirect
         /// Adds the Wi-Fi Vendor Specific Information Element (VSIE) to specific frame type.
         /// </summary>
         /// <param name="frameType">frame type for setting VSIE.</param>
-        /// <param name="vsie">VSIE value</param>
+        /// <param name="vsie">VSIE value. A valid string contains hexadecimal characters i.e. [0-9a-f]</param>
         /// <privilege>
         /// http://tizen.org/privilege/wifidirect
         /// </privilege>
@@ -1724,6 +1724,8 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// Wi-Fi Direct must be activated.
         /// <paramref name="vsie"/> for <paramref name="frameType"/> will be in effect until Wi-Fi Direct is deactivated.
+        /// A valid VSIE value if not already added, will be appended to already added VSIE values. Already present VSIE value will do nothing.
+        /// In case of invalid VSIE, an InvalidOperationException exception will thrown.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -1789,6 +1791,7 @@ namespace Tizen.Network.WiFiDirect
         /// </feature>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
+        /// A VSIE value if already added, will be removed from VSIE value else InvalidOperationException will be thrown.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>

@@ -429,7 +429,7 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The vendor specific information element (VSIE) of a peer
+        /// The vendor specific information element (VSIE) of a peer.
         /// </summary>
         /// <remarks>
         /// Wi-Fi Direct must be activated.
