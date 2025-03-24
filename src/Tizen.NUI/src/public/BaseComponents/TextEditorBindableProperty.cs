@@ -1364,26 +1364,5 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             return textEditor.GetInternalRemoveBackInset();
         }
-
-        /// <summary>
-        /// FontVariationsProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FontVariationsProperty = null;
-        internal static void SetInternalFontVariationsProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var textEditor = (TextEditor)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontVariations, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        }
-        internal static object GetInternalFontVariationsProperty(BindableObject bindable)
-        {
-            var textEditor = (TextEditor)bindable;
-
-            PropertyMap temp = new PropertyMap();
-            return Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontVariations).Get(temp);
-        }
     }
 }

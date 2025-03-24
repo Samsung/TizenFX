@@ -3275,10 +3275,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The font variations property.
+        /// The FontVariations property.
         /// </summary>
         /// <remarks>
-        /// asdfasdfasdfasdf.<br />
+        /// The FontVariations property allows control over different style axes in a variable font, <br />
+        /// such as weight(wght), width(wdth), slant(slnt).
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap FontVariations
