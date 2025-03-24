@@ -458,12 +458,7 @@ namespace Tizen.NUI.Samples
             }
 
             // Update Ruler info.
-            mScrollRulerX = new RulerPtr(new FixedRuler(mPageWidth));
-            mScrollRulerY = new RulerPtr(new DefaultRuler());
-            mScrollRulerX.SetDomain(new RulerDomain(0.0f, (mTotalPages + 1) * stageSize.Width * TABLE_RELATIVE_SIZE.X * 0.5f, true));
-            mScrollRulerY.Disable();
-            mScrollView.SetRulerX(mScrollRulerX);
-            mScrollView.SetRulerY(mScrollRulerY);
+            // TODO : Implement something to make scroll-view stop fixed position here, without Ruler!
         }
 
         private void SetupBackground(View bubbleContainer)
@@ -542,102 +537,116 @@ namespace Tizen.NUI.Samples
         {
             string fragmentShaderPrefix = "#extension GL_OES_standard_derivatives : enable\n";
 
-            string fragmentShader = "varying mediump vec2 vTexCoord;\n" +
+            string fragmentShader = 
+                "//@name DaliTableView.frag\n" +
                 "\n" +
-                "uniform mediump float uGlowBoundary;\n" +
-                "uniform mediump vec2  uOutlineParams;\n" +
-                "uniform lowp vec4  uOutlineColor;\n" +
-                "uniform lowp vec4  uShadowColor;\n" +
-                "uniform mediump vec2  uShadowOffset;\n" +
-                "uniform lowp vec4  uGlowColor;\n" +
-                "uniform lowp    float uDoOutline;\n" +
-                "uniform lowp    float uDoShadow;\n" +
-                "uniform lowp    float uDoGlow;\n" +
+                "//@version 100\n" +
                 "\n" +
-                "uniform sampler2D sTexture;\n" +
-                "uniform lowp vec4 uColor;\n" +
+                "precision highp float;\n" +
+                "\n" +
+                "INPUT highp vec2 vTexCoord;\n" +
+                "\n" +
+                "UNIFORM_BLOCK CustomBlock\n" +
+                "{\n" +
+                "  UNIFORM mediump float uGlowBoundary;\n" +
+                "  UNIFORM mediump vec2  uOutlineParams;\n" +
+                "  UNIFORM lowp vec4  uOutlineColor;\n" +
+                "  UNIFORM lowp vec4  uShadowColor;\n" +
+                "  UNIFORM mediump vec2  uShadowOffset;\n" +
+                "  UNIFORM lowp vec4  uGlowColor;\n" +
+                "  UNIFORM lowp    float uDoOutline;\n" +
+                "  UNIFORM lowp    float uDoShadow;\n" +
+                "  UNIFORM lowp    float uDoGlow;\n" +
+                "};\n" +
+                "\n" +
+                "UNIFORM_BLOCK FragBlock\n"+
+                "{\n" +
+                "  UNIFORM lowp vec4 uColor;\n" +
+                "};\n" +
+                "\n" +
+                "UNIFORM sampler2D sTexture;\n" +
                 "\n" +
                 "void main()\n" +
                 "{\n" +
-                "// sample distance field\n" +
-                "mediump float smoothing = 0.5;\n" +
-
-                "mediump float distance = texture2D(sTexture, vTexCoord).a;\n" +
-                "mediump float smoothWidth = fwidth(distance);\n" +
-                "mediump float alphaFactor = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
-                "lowp    vec4 color;\n" +
-                "if (uDoShadow == 0.0)\n" +
-                "{\n" +
-                "mediump float alpha = uColor.a * alphaFactor;\n" +
-                "lowp    vec4 rgb = uColor;\n" +
+                "  // sample distance field\n" +
+                "  mediump float smoothing = 0.5;\n" +
                 "\n" +
-                "if (uDoOutline > 0.0)\n" +
-                "{\n" +
-                "mediump float outlineWidth = uOutlineParams[1] + smoothWidth;\n" +
-                "mediump float outlineBlend = smoothstep(uOutlineParams[0] - outlineWidth, uOutlineParams[0] + outlineWidth, distance);\n" +
-                "alpha = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
-                "rgb = mix(uOutlineColor, uColor, outlineBlend);\n" +
-                "}\n" +
+                "  mediump float distance = texture2D(sTexture, vTexCoord).a;\n" +
+                "  mediump float smoothWidth = fwidth(distance);\n" +
+                "  mediump float alphaFactor = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
+                "  lowp    vec4 color;\n" +
+                "  if (uDoShadow == 0.0)\n" +
+                "  {\n" +
+                "    mediump float alpha = uColor.a * alphaFactor;\n" +
+                "    lowp    vec4 rgb = uColor;\n" +
                 "\n" +
-                "if (uDoGlow > 0.0)\n" +
-                "{\n" +
-                "rgb = mix(uGlowColor, rgb, alphaFactor);\n" +
-                "alpha = smoothstep(uGlowBoundary, smoothing, distance);\n" +
-                "}\n" +
+                "    if (uDoOutline > 0.0)\n" +
+                "    {\n" +
+                "      mediump float outlineWidth = uOutlineParams[1] + smoothWidth;\n" +
+                "      mediump float outlineBlend = smoothstep(uOutlineParams[0] - outlineWidth, uOutlineParams[0] + outlineWidth, distance);\n" +
+                "      alpha = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
+                "      rgb = mix(uOutlineColor, uColor, outlineBlend);\n" +
+                "    }\n" +
                 "\n" +
-                "// set fragment color\n" +
-                "color = vec4(rgb.rgb, alpha);\n" +
-                "}\n" +
+                "    if (uDoGlow > 0.0)\n" +
+                "    {\n" +
+                "      rgb = mix(uGlowColor, rgb, alphaFactor);\n" +
+                "      alpha = smoothstep(uGlowBoundary, smoothing, distance);\n" +
+                "    }\n" +
                 "\n" +
-                "else // (uDoShadow > 0.0)\n" +
-                "{\n" +
-                "mediump float shadowDistance = texture2D(sTexture, vTexCoord - uShadowOffset).a;\n" +
-                "mediump float inText = alphaFactor;\n" +
-                "mediump float inShadow = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, shadowDistance);\n" +
+                "    // set fragment color\n" +
+                "    color = vec4(rgb.rgb, alpha);\n" +
+                "  }\n" +
                 "\n" +
-                "// inside object, outside shadow\n" +
-                "if (inText == 1.0)\n" +
-                "{\n" +
-                "color = uColor;\n" +
-                "}\n" +
-                "// inside object, outside shadow\n" +
-                "else if ((inText != 0.0) && (inShadow == 0.0))\n" +
-                "{\n" +
-                "color = uColor;\n" +
-                "color.a *= inText;\n" +
-                "}\n" +
-                "// outside object, completely inside shadow\n" +
-                "else if ((inText == 0.0) && (inShadow == 1.0))\n" +
-                "{\n" +
-                "color = uShadowColor;\n" +
-                "}\n" +
-                "// inside object, completely inside shadow\n" +
-                "else if ((inText != 0.0) && (inShadow == 1.0))\n" +
-                "{\n" +
-                "color = mix(uShadowColor, uColor, inText);\n" +
-                "color.a = uShadowColor.a;\n" +
-                "}\n" +
-                "// inside object, inside shadow's border\n" +
-                "else if ((inText != 0.0) && (inShadow != 0.0))\n" +
-                "{\n" +
-                "color = mix(uShadowColor, uColor, inText);\n" +
-                "color.a *= max(inText, inShadow);\n" +
-                "}\n" +
-                "// inside shadow's border\n" +
-                "else if (inShadow != 0.0)\n" +
-                "{\n" +
-                "color = uShadowColor;\n" +
-                "color.a *= inShadow;\n" +
-                "}\n" +
-                "// outside shadow and object\n" +
-                "else \n" +
-                "{\n" +
-                "color.a = 0.0;\n" +
-                "}\n" +
+                "  else // (uDoShadow > 0.0)\n" +
+                "  {\n" +
+                "    mediump float shadowDistance = texture2D(sTexture, vTexCoord - uShadowOffset).a;\n" +
+                "    mediump float inText = alphaFactor;\n" +
+                "    mediump float inShadow = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, shadowDistance);\n" +
                 "\n" +
-                "}\n" +
+                "    // inside object, outside shadow\n" +
+                "    if (inText == 1.0)\n" +
+                "    {\n" +
+                "      color = uColor;\n" +
+                "    }\n" +
+                "    // inside object, outside shadow\n" +
+                "    else if ((inText != 0.0) && (inShadow == 0.0))\n" +
+                "    {\n" +
+                "      color = uColor;\n" +
+                "      color.a *= inText;\n" +
+                "    }\n" +
+                "    // outside object, completely inside shadow\n" +
+                "    else if ((inText == 0.0) && (inShadow == 1.0))\n" +
+                "    {\n" +
+                "      color = uShadowColor;\n" +
+                "    }\n" +
+                "    // inside object, completely inside shadow\n" +
+                "    else if ((inText != 0.0) && (inShadow == 1.0))\n" +
+                "    {\n" +
+                "      color = mix(uShadowColor, uColor, inText);\n" +
+                "      color.a = uShadowColor.a;\n" +
+                "    }\n" +
+                "    // inside object, inside shadow's border\n" +
+                "    else if ((inText != 0.0) && (inShadow != 0.0))\n" +
+                "    {\n" +
+                "      color = mix(uShadowColor, uColor, inText);\n" +
+                "      color.a *= max(inText, inShadow);\n" +
+                "    }\n" +
+                "    // inside shadow's border\n" +
+                "    else if (inShadow != 0.0)\n" +
+                "    {\n" +
+                "      color = uShadowColor;\n" +
+                "      color.a *= inShadow;\n" +
+                "    }\n" +
+                "    // outside shadow and object\n" +
+                "    else \n" +
+                "    {\n" +
+                "      color.a = 0.0;\n" +
+                "    }\n" +
                 "\n" +
-                "gl_FragColor = color;\n" +
+                "  }\n" +
+                "\n" +
+                "  gl_FragColor = color;\n" +
                 "\n" +
                 "}";
 
@@ -732,8 +741,6 @@ namespace Tizen.NUI.Samples
         private Animation mPressedAnimation;         //  Button press scaling animation.
         private ScrollView mScrollView;               //  ScrollView container (for all Examples)
         private ScrollViewPagePathEffect mScrollViewEffect;         //  Effect to be applied to the scroll view
-        private RulerPtr mScrollRulerX;             //  ScrollView X (horizontal) ruler
-        private RulerPtr mScrollRulerY;             //  ScrollView Y (vertical) ruler
         private View mPressedActor;             //  The currently pressed actor.
         private Timer mAnimationTimer;           //  Timer used to turn off animation after a specific time period
 

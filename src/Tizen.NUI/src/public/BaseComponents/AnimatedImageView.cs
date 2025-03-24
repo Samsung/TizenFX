@@ -107,7 +107,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalBatchSizeProperty(this);
+                    return InternalBatchSize;
                 }
             }
             set
@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBatchSizeProperty(this, null, value);
+                    InternalBatchSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -163,7 +163,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalCacheSizeProperty(this);
+                    return InternalCacheSize;
                 }
             }
             set
@@ -174,7 +174,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCacheSizeProperty(this, null, value);
+                    InternalCacheSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -218,7 +218,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalFrameDelayProperty(this);
+                    return InternalFrameDelay;
                 }
             }
             set
@@ -229,7 +229,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFrameDelayProperty(this, null, value);
+                    InternalFrameDelay = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -269,7 +269,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalLoopCountProperty(this);
+                    return InternalLoopCount;
                 }
             }
             set
@@ -280,7 +280,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLoopCountProperty(this, null, value);
+                    InternalLoopCount = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -319,7 +319,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (StopBehaviorType)GetInternalStopBehaviorProperty(this);
+                    return InternalStopBehavior;
                 }
             }
             set
@@ -330,7 +330,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalStopBehaviorProperty(this, null, value);
+                    InternalStopBehavior = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -411,7 +411,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
+                    using PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))
@@ -441,7 +441,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalCurrentFrameProperty(this);
+                    return InternalCurrentFrame;
                 }
             }
             set
@@ -452,7 +452,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCurrentFrameProperty(this, null, value);
+                    InternalCurrentFrame = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -465,7 +465,7 @@ namespace Tizen.NUI.BaseComponents
                 // Sync as current properties
                 UpdateImage();
 
-                DoAction(ImageView.Property.IMAGE, ActionJumpTo, new PropertyValue(value));
+                DoAction(Property.IMAGE, ActionJumpTo, new PropertyValue(value));
             }
             get
             {
@@ -473,7 +473,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
+                    using PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))

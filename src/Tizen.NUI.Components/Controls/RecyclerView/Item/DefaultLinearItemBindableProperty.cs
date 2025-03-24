@@ -13,9 +13,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconProperty = null;
         internal static void SetInternalIconProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultLinearItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultLinearItem)bindable;
                 instance.InternalIcon = newValue as View;
             }
         }
@@ -32,9 +32,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextProperty = null;
         internal static void SetInternalTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultLinearItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultLinearItem)bindable;
                 instance.InternalText = newValue as string;
             }
         }
@@ -51,9 +51,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SubTextProperty = null;
         internal static void SetInternalSubTextProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultLinearItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultLinearItem)bindable;
                 instance.InternalSubText = newValue as string;
             }
         }
@@ -70,9 +70,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ExtraProperty = null;
         internal static void SetInternalExtraProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DefaultLinearItem)bindable;
             if (newValue != null)
             {
+                var instance = (DefaultLinearItem)bindable;
                 instance.InternalExtra = newValue as View;
             }
         }

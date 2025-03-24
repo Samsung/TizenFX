@@ -1341,7 +1341,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalUrlProperty(this);
+                    return GetInternalUrl();
                 }
             }
             set
@@ -1352,10 +1352,27 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalUrlProperty(this, null, value);
+                    SetInternalUrl(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalUrl(string newValue)
+        {
+            if (newValue != null)
+            {
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.Url, pv);
+            }
+        }
+
+        private string GetInternalUrl()
+        {
+            string temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.Url);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -1372,7 +1389,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (CacheModel)GetInternalCacheModelProperty(this);
+                    return InternalCacheModel;
                 }
             }
             set
@@ -1383,7 +1400,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCacheModelProperty(this, null, value);
+                    InternalCacheModel = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1415,7 +1432,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (CookieAcceptPolicy)GetInternalCookieAcceptPolicyProperty(this);
+                    return InternalCookieAcceptPolicy;
                 }
             }
             set
@@ -1426,7 +1443,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCookieAcceptPolicyProperty(this, null, value);
+                    InternalCookieAcceptPolicy = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1458,7 +1475,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalUserAgentProperty(this);
+                    return GetInternalUserAgent();
                 }
             }
             set
@@ -1469,10 +1486,27 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalUserAgentProperty(this, null, value);
+                    SetInternalUserAgent(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalUserAgent(string newValue)
+        {
+            if (newValue != null)
+            {
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.UserAgent, pv);
+            }
+        }
+
+        private string GetInternalUserAgent()
+        {
+            string temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.UserAgent);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -1489,7 +1523,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableJavaScriptProperty(this);
+                    return InternalEnableJavaScript;
                 }
             }
             set
@@ -1500,7 +1534,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalEnableJavaScriptProperty(this, null, value);
+                    InternalEnableJavaScript = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1532,7 +1566,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalLoadImagesAutomaticallyProperty(this);
+                    return InternalLoadImagesAutomatically;
                 }
             }
             set
@@ -1543,7 +1577,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLoadImagesAutomaticallyProperty(this, null, value);
+                    InternalLoadImagesAutomatically = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1576,7 +1610,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalDefaultTextEncodingNameProperty(this) as string;
+                    return InternalDefaultTextEncodingName;
                 }
             }
             set
@@ -1587,7 +1621,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDefaultTextEncodingNameProperty(this, null, value);
+                    InternalDefaultTextEncodingName = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1619,7 +1653,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalDefaultFontSizeProperty(this);
+                    return InternalDefaultFontSize;
                 }
             }
             set
@@ -1630,7 +1664,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDefaultFontSizeProperty(this, null, value);
+                    InternalDefaultFontSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1662,7 +1696,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalScrollPositionProperty(this) as Position;
+                    return GetInternalScrollPosition();
                 }
             }
             set
@@ -1673,28 +1707,27 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScrollPositionProperty(this, null, value);
+                    SetInternalScrollPosition(value);
                 }
             }
         }
 
-        private Position InternalScrollPosition
+        private void SetInternalScrollPosition(Position pos)
         {
-            get
+            if (pos != null)
             {
-                Vector2 pv = (Vector2)GetValue(ScrollPositionProperty);
-                return new Position(pv.X, pv.Y);
+                using var v2 = new Vector2(pos.X, pos.Y);
+                using var pv = new PropertyValue(v2);
+                Object.SetProperty(SwigCPtr, Property.ScrollPosition, pv);
             }
-            set
-            {
-                if (value != null)
-                {
-                    Position pv = value;
-                    Vector2 vpv = new Vector2(pv.X, pv.Y);
-                    SetValue(ScrollPositionProperty, vpv);
-                    NotifyPropertyChanged();
-                }
-            }
+        }
+
+        private Position GetInternalScrollPosition()
+        {
+            using Vector2 temp = new Vector2(0.0f, 0.0f);
+            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollPosition);
+            prop.Get(temp);
+            return new Position(temp.X, temp.Y);
         }
 
         /// <summary>
@@ -1705,17 +1738,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector2 sv;
                 if (NUIApplication.IsUsingXaml)
                 {
-                    sv = (Vector2)GetValue(ScrollSizeProperty);
+                    Vector2 sv = (Vector2)GetValue(ScrollSizeProperty);
+                    return new Size(sv.Width, sv.Height);
                 }
                 else
                 {
-                    sv = (Vector2)GetInternalScrollSizeProperty(this);
+                    using Vector2 sv = GetInternalScrollSize();
+                    return new Size(sv.Width, sv.Height);
                 }
-                return new Size(sv.Width, sv.Height);
             }
+        }
+
+        private Vector2 GetInternalScrollSize()
+        {
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollSize);
+            prop.Get(temp);
+            return temp;
         }
 
         /// <summary>
@@ -1726,17 +1769,27 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector2 sv;
                 if (NUIApplication.IsUsingXaml)
                 {
-                    sv = (Vector2)GetValue(ContentSizeProperty);
+                    Vector2 sv = (Vector2)GetValue(ContentSizeProperty);
+                    return new Size(sv.Width, sv.Height);
                 }
                 else
                 {
-                    sv = (Vector2)GetInternalContentSizeProperty(this);
+                    using Vector2 sv = GetInternalContentSize();
+                    return new Size(sv.Width, sv.Height);
                 }
-                return new Size(sv.Width, sv.Height);
             }
+        }
+
+        private Vector2 GetInternalContentSize()
+        {
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            using var prop = Object.GetProperty(SwigCPtr, Property.ContentSize);
+            prop.Get(temp);
+            return temp;
         }
 
         /// <summary>
@@ -1753,7 +1806,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalVideoHoleEnabledProperty(this);
+                    return GetInternalVideoHoleEnabled();
                 }
             }
             set
@@ -1764,10 +1817,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalVideoHoleEnabledProperty(this, null, value);
+                    SetInternalVideoHoleEnabled(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalVideoHoleEnabled(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.VideoHoleEnabled, pv);
+        }
+
+        private bool GetInternalVideoHoleEnabled()
+        {
+            bool temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.VideoHoleEnabled);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -1784,7 +1851,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                     return (bool)GetInternalMouseEventsEnabledProperty(this);
+                     return GetInternalMouseEventsEnabled();
                 }
             }
             set
@@ -1795,10 +1862,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalMouseEventsEnabledProperty(this, null, value);
+                    SetInternalMouseEventsEnabled(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalMouseEventsEnabled(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.MouseEventsEnabled, pv);
+        }
+
+        private bool GetInternalMouseEventsEnabled()
+        {
+            bool temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.MouseEventsEnabled);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -1815,7 +1896,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalKeyEventsEnabledProperty(this);
+                    return GetInternalKeyEventsEnabled();
                 }
             }
             set
@@ -1826,10 +1907,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalKeyEventsEnabledProperty(this, null, value);
+                    SetInternalKeyEventsEnabled(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalKeyEventsEnabled(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.KeyEventsEnabled, pv);
+        }
+
+        private bool GetInternalKeyEventsEnabled()
+        {
+            bool temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.KeyEventsEnabled);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -1847,7 +1942,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Color)GetInternalContentBackgroundColorProperty(this);
+                    return GetInternalContentBackgroundColor();
                 }
             }
             set
@@ -1858,10 +1953,25 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalContentBackgroundColorProperty(this, null, value);
+                    SetInternalContentBackgroundColor(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalContentBackgroundColor(Color newValue)
+        {
+            if (newValue != null)
+            {
+                contentBackgroundColor = newValue;
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.DocumentBackgroundColor, pv);
+            }
+        }
+
+        private Color GetInternalContentBackgroundColor()
+        {
+            return contentBackgroundColor;
         }
 
         /// <summary>
@@ -1878,7 +1988,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalTilesClearedWhenHiddenProperty(this);
+                    return GetInternalTilesClearedWhenHidden();
                 }
             }
             set
@@ -1889,10 +1999,22 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalTilesClearedWhenHiddenProperty(this, null, value);
+                    SetInternalTilesClearedWhenHidden(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalTilesClearedWhenHidden(bool newValue)
+        {
+            tilesClearedWhenHidden = newValue;
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.TilesClearedWhenHidden, pv);
+        }
+
+        private bool GetInternalTilesClearedWhenHidden()
+        {
+            return tilesClearedWhenHidden;
         }
 
         /// <summary>
@@ -1909,7 +2031,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalTileCoverAreaMultiplierProperty(this);
+                    return GetInternalTileCoverAreaMultiplier();
                 }
             }
             set
@@ -1920,10 +2042,22 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalTileCoverAreaMultiplierProperty(this, null, value);
+                    SetInternalTileCoverAreaMultiplier(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalTileCoverAreaMultiplier(float newValue)
+        {
+            tileCoverAreaMultiplier = newValue;
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.TileCoverAreaMultiplier, pv);
+        }
+
+        private float GetInternalTileCoverAreaMultiplier()
+        {
+            return tileCoverAreaMultiplier;
         }
 
         /// <summary>
@@ -1940,7 +2074,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalCursorEnabledByClientProperty(this);
+                    return GetInternalCursorEnabledByClient();
                 }
             }
             set
@@ -1951,10 +2085,22 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCursorEnabledByClientProperty(this, null, value);
+                    SetInternalCursorEnabledByClient(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalCursorEnabledByClient(bool newValue)
+        {
+            cursorEnabledByClient = newValue;
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.CursorEnabledByClient, pv);
+        }
+
+        private bool GetInternalCursorEnabledByClient()
+        {
+            return cursorEnabledByClient;
         }
 
         /// <summary>
@@ -1971,9 +2117,17 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalSelectedTextProperty(this);
+                    return GetInternalSelectedText();
                 }
             }
+        }
+
+        private string GetInternalSelectedText()
+        {
+            string text;
+            using var prop = Object.GetProperty(SwigCPtr, Property.SelectedText);
+            prop.Get(out text);
+            return text;
         }
 
         /// <summary>
@@ -1990,9 +2144,17 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalTitleProperty(this);
+                    return GetInternalTitle();
                 }
             }
+        }
+
+        private string GetInternalTitle()
+        {
+            string title;
+            using var prop = Object.GetProperty(SwigCPtr, Property.Title);
+            prop.Get(out title);
+            return title;
         }
 
         /// <summary>
@@ -2024,7 +2186,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalPageZoomFactorProperty(this);
+                    return GetInternalPageZoomFactor();
                 }
             }
             set
@@ -2035,10 +2197,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPageZoomFactorProperty(this, null, value);
+                    SetInternalPageZoomFactor(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalPageZoomFactor(float newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.PageZoomFactor, pv);
+        }
+
+        private float GetInternalPageZoomFactor()
+        {
+            float temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.PageZoomFactor);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -2055,7 +2231,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalTextZoomFactorProperty(this);
+                    return GetInternalTextZoomFactor();
                 }
             }
             set
@@ -2066,10 +2242,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalTextZoomFactorProperty(this, null, value);
+                    SetInternalTextZoomFactor(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalTextZoomFactor(float newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.TextZoomFactor, pv);
+        }
+
+        private float GetInternalTextZoomFactor()
+        {
+            float temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.TextZoomFactor);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -2086,9 +2276,17 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalLoadProgressPercentageProperty(this);
+                    return GetInternalLoadProgressPercentage();
                 }
             }
+        }
+
+        private float GetInternalLoadProgressPercentage()
+        {
+            float percentage;
+            using var prop = Object.GetProperty(SwigCPtr, Property.LoadProgressPercentage);
+            prop.Get(out percentage);
+            return percentage;
         }
 
         internal static new class Property
@@ -2110,280 +2308,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PageZoomFactor = Interop.WebView.PageZoomFactorGet();
             internal static readonly int TextZoomFactor = Interop.WebView.TextZoomFactorGet();
             internal static readonly int LoadProgressPercentage = Interop.WebView.LoadProgressPercentageGet();
-        }
-
-        private static readonly BindableProperty UrlProperty = null;
-        
-        internal static void SetInternalUrlProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.Url, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        }
-        
-        internal static object GetInternalUrlProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Url).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty UserAgentProperty = null;
-        
-        internal static void SetInternalUserAgentProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty((HandleRef)webview.SwigCPtr, WebView.Property.UserAgent, new Tizen.NUI.PropertyValue((string)newValue));
-            }
-        }
-        
-        internal static object GetInternalUserAgentProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty((HandleRef)webview.SwigCPtr, WebView.Property.UserAgent).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty ScrollPositionProperty = null;
-        
-        internal static void SetInternalScrollPositionProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        }
-        
-        internal static object GetInternalScrollPositionProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty ScrollSizeProperty = null;
-        
-        internal static object GetInternalScrollSizeProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty ContentSizeProperty = null;
-
-        internal static object GetInternalContentSizeProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty TitleProperty = null;
-
-        internal static object GetInternalTitleProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            string title;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Title).Get(out title);
-            return title;
-        }
-
-        private static readonly BindableProperty VideoHoleEnabledProperty = null;
-        
-        internal static void SetInternalVideoHoleEnabledProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        }
-        
-        internal static object GetInternalVideoHoleEnabledProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty MouseEventsEnabledProperty = null;
-        
-        internal static void SetInternalMouseEventsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        }
-        
-        internal static object GetInternalMouseEventsEnabledProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty KeyEventsEnabledProperty = null;
-        
-        internal static void SetInternalKeyEventsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        }
-        
-        internal static object GetInternalKeyEventsEnabledProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            bool temp;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty ContentBackgroundColorProperty = null;
-        
-        internal static void SetInternalContentBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                webview.contentBackgroundColor = (Color)newValue;
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Color)newValue));
-            }
-        }
-        
-        internal static object GetInternalContentBackgroundColorProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            return webview.contentBackgroundColor;
-        }
-
-        private static readonly BindableProperty TilesClearedWhenHiddenProperty = null;
-        
-        internal static void SetInternalTilesClearedWhenHiddenProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                webview.tilesClearedWhenHidden = (bool)newValue;
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TilesClearedWhenHidden, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        }
-        
-        internal static object GetInternalTilesClearedWhenHiddenProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            return webview.tilesClearedWhenHidden;
-        }
-
-        private static readonly BindableProperty TileCoverAreaMultiplierProperty = null;
-        
-        internal static void SetInternalTileCoverAreaMultiplierProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                webview.tileCoverAreaMultiplier = (float)newValue;
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TileCoverAreaMultiplier, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        }
-        
-        internal static object GetInternalTileCoverAreaMultiplierProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            return webview.tileCoverAreaMultiplier;
-        }
-
-        private static readonly BindableProperty CursorEnabledByClientProperty = null;
-        
-        internal static void SetInternalCursorEnabledByClientProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                webview.cursorEnabledByClient = (bool)newValue;
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.CursorEnabledByClient, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        }
-        
-        internal static object GetInternalCursorEnabledByClientProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            return webview.cursorEnabledByClient;
-        }
-
-        private static readonly BindableProperty SelectedTextProperty = null;
-        
-        internal static object GetInternalSelectedTextProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            string text;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.SelectedText).Get(out text);
-            return text;
-        }
-
-        private static readonly BindableProperty PageZoomFactorProperty = null;
-        
-        internal static void SetInternalPageZoomFactorProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        }
-        
-        internal static object GetInternalPageZoomFactorProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            float temp;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty TextZoomFactorProperty = null;
-        
-        internal static void SetInternalTextZoomFactorProperty(BindableObject bindable, object oldValue, object newValue)
-        {
-            var webview = (WebView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        }
-        
-        internal static object GetInternalTextZoomFactorProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            float temp;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor).Get(out temp);
-            return temp;
-        }
-
-        private static readonly BindableProperty LoadProgressPercentageProperty = null;
-        
-        internal static object GetInternalLoadProgressPercentageProperty(BindableObject bindable)
-        {
-            var webview = (WebView)bindable;
-            float percentage;
-            Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.LoadProgressPercentage).Get(out percentage);
-            return percentage;
         }
 
         // For rooting handlers
@@ -3101,13 +3025,13 @@ namespace Tizen.NUI.BaseComponents
             // Update corner radius properties to webView by ActionUpdateProperty
             if (backgroundExtraData.CornerRadius != null)
             {
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
             }
             if (backgroundExtraData.CornerSquareness != null)
             {
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
             }
-            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
         }
 
         private void OnPageLoadStarted(string pageUrl)

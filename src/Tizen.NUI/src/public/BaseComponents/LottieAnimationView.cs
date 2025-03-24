@@ -161,7 +161,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalURLProperty(this) as string;
+                    return InternalURL;
                 }
             }
             set
@@ -172,7 +172,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalURLProperty(this, null, value);
+                    InternalURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -334,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"< Get!");
 
                 int ret = 0;
-                Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayState, out ret);
+                _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayState, out ret);
 
                 currentStates.playState = (PlayStateType)ret;
                 NUILog.Debug($"gotten play state={currentStates.playState} >");
@@ -355,7 +355,7 @@ namespace Tizen.NUI.BaseComponents
                 int ret = currentStates.totalFrame;
                 if (ret <= 0)
                 {
-                    Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.TotalFrameNumber, out ret);
+                    _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.TotalFrameNumber, out ret);
 
                     currentStates.totalFrame = ret;
                     NUILog.Debug($"TotalFrameNumber get! ret={ret}");
@@ -398,7 +398,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalCurrentFrameProperty(this);
+                    return InternalCurrentFrame;
                 }
             }
             set
@@ -409,7 +409,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCurrentFrameProperty(this, null, value);
+                    InternalCurrentFrame = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -427,7 +427,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = 0;
 
-                Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.CurrentFrameNumber, out ret);
+                _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.CurrentFrameNumber, out ret);
 
                 NUILog.Debug($"CurrentFrameNumber get! val={ret}");
                 return ret;
@@ -448,7 +448,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (LoopingModeType)GetInternalLoopingModeProperty(this);
+                    return InternalLoopingMode;
                 }
             }
             set
@@ -459,7 +459,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLoopingModeProperty(this, null, value);
+                    InternalLoopingMode = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -476,7 +476,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
 
-                    Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.LoopingMode, (int)currentStates.loopMode);
+                    _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.LoopingMode, (int)currentStates.loopMode);
                 }
             }
             get
@@ -515,7 +515,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalLoopCountProperty(this);
+                    return InternalLoopCount;
                 }
             }
             set
@@ -526,7 +526,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLoopCountProperty(this, null, value);
+                    InternalLoopCount = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -543,7 +543,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
 
-                    Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.LoopCount, currentStates.loopCount);
+                    _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.LoopCount, currentStates.loopCount);
                 }
             }
             get
@@ -568,7 +568,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (StopBehaviorType)GetInternalStopBehaviorProperty(this);
+                    return InternalStopBehavior;
                 }
             }
             set
@@ -579,7 +579,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalStopBehaviorProperty(this, null, value);
+                    InternalStopBehavior = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -596,7 +596,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}]SET val={currentStates.stopEndAction}>");
 
-                    Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.StopBehavior, (int)currentStates.stopEndAction);
+                    _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.StopBehavior, (int)currentStates.stopEndAction);
                 }
             }
             get
@@ -624,7 +624,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalRedrawInScalingDownProperty(this);
+                    return InternalRedrawInScalingDown;
                 }
             }
             set
@@ -635,7 +635,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRedrawInScalingDownProperty(this, null, value);
+                    InternalRedrawInScalingDown = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -652,7 +652,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
 
-                    Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.RedrawInScalingDown, currentStates.redrawInScalingDown);
+                    _ = Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.RedrawInScalingDown, currentStates.redrawInScalingDown);
                 }
             }
             get
@@ -684,7 +684,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalEnableFrameCacheProperty(this);
+                    return InternalEnableFrameCache;
                 }
             }
             set
@@ -695,7 +695,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalEnableFrameCacheProperty(this, null, value);
+                    InternalEnableFrameCache = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -712,7 +712,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.EnableFrameCache={currentStates.enableFrameCache}>");
 
-                    Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.EnableFrameCache, currentStates.enableFrameCache);
+                    _ = Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.EnableFrameCache, currentStates.enableFrameCache);
                 }
             }
             get
@@ -744,7 +744,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalNotifyAfterRasterizationProperty(this);
+                    return InternalNotifyAfterRasterization;
                 }
             }
             set
@@ -755,7 +755,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalNotifyAfterRasterizationProperty(this, null, value);
+                    InternalNotifyAfterRasterization = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -772,7 +772,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.NotifyAfterRasterization={currentStates.notifyAfterRasterization}>");
 
-                    Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.NotifyAfterRasterization, currentStates.notifyAfterRasterization);
+                    _ = Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.NotifyAfterRasterization, currentStates.notifyAfterRasterization);
                 }
             }
             get
@@ -819,7 +819,7 @@ namespace Tizen.NUI.BaseComponents
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.FrameSpeedFactor={currentStates.frameSpeedFactor}>");
 
-                    Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor);
+                    _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor);
                 }
             }
             get
@@ -851,7 +851,7 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.mark1 = null;
                 currentStates.mark2 = null;
 
-                Interop.View.InternalUpdateVisualPropertyIntPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.framePlayRangeMin, currentStates.framePlayRangeMax);
+                _ = Interop.View.InternalUpdateVisualPropertyIntPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.framePlayRangeMin, currentStates.framePlayRangeMax);
 
                 NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
             }
@@ -1039,11 +1039,11 @@ namespace Tizen.NUI.BaseComponents
 
                 if (string.IsNullOrEmpty(currentStates.mark2))
                 {
-                    Interop.View.InternalUpdateVisualPropertyString(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.mark1);
+                    _ = Interop.View.InternalUpdateVisualPropertyString(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.mark1);
                 }
                 else
                 {
-                    Interop.View.InternalUpdateVisualPropertyStringPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.mark1, currentStates.mark2);
+                    _ = Interop.View.InternalUpdateVisualPropertyStringPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.mark1, currentStates.mark2);
                 }
 
                 NUILog.Debug($"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");

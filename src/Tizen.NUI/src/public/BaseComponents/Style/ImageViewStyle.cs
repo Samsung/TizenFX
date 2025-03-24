@@ -29,8 +29,8 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty BorderOnlyProperty = new StyleProperty<ImageView, bool>((v, o) => v.BorderOnly = o);
         static readonly IStyleProperty SynchronousLoadingProperty = new StyleProperty<ImageView, bool>((v, o) => v.SynchronousLoading = o);
         static readonly IStyleProperty OrientationCorrectionProperty = new StyleProperty<ImageView, bool>((v, o) => v.OrientationCorrection = o);
-        static readonly IStyleProperty ResourceUrlProperty = new StyleProperty<ImageView, Selector<string>>((v, o) => ImageView.SetInternalResourceUrlProperty(v, null, o));
-        static readonly IStyleProperty BorderProperty = new StyleProperty<ImageView, Selector<Rectangle>>((v, o) => ImageView.SetInternalBorderProperty(v, null, o));
+        static readonly IStyleProperty ResourceUrlProperty = new StyleProperty<ImageView, Selector<string>>((v, o) => v.SetInternalResourceUrl(o));
+        static readonly IStyleProperty BorderProperty = new StyleProperty<ImageView, Selector<Rectangle>>((v, o) => v.SetInternalBorder(o));
 
         static ImageViewStyle() { }
 

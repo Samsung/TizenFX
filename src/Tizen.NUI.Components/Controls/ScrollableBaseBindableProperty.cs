@@ -12,9 +12,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollingDirectionProperty = null;
         internal static void SetInternalScrollingDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollingDirection = (Direction)newValue;
             }
         }
@@ -31,9 +31,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollEnabledProperty = null;
         internal static void SetInternalScrollEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollEnabled = (bool)newValue;
             }
         }
@@ -50,9 +50,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SnapToPageProperty = null;
         internal static void SetInternalSnapToPageProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalSnapToPage = (bool)newValue;
             }
         }
@@ -69,9 +69,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollDurationProperty = null;
         internal static void SetInternalScrollDurationProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollDuration = (int)newValue;
             }
         }
@@ -88,9 +88,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollAvailableAreaProperty = null;
         internal static void SetInternalScrollAvailableAreaProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollAvailableArea = newValue as Vector2;
             }
         }
@@ -107,9 +107,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollbarProperty = null;
         internal static void SetInternalScrollbarProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollbar = newValue as ScrollbarBase;
             }
         }
@@ -126,9 +126,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty HideScrollbarProperty = null;
         internal static void SetInternalHideScrollbarProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalHideScrollbar = (bool)newValue;
             }
         }
@@ -145,9 +145,9 @@ namespace Tizen.NUI.Components
         public static readonly new BindableProperty LayoutProperty = null;
         internal static new void SetInternalLayoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalLayout = newValue as LayoutItem;
             }
         }
@@ -164,9 +164,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty DecelerationRateProperty = null;
         internal static void SetInternalDecelerationRateProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalDecelerationRate = (float)newValue;
             }
         }
@@ -183,9 +183,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty DecelerationThresholdProperty = null;
         internal static void SetInternalDecelerationThresholdProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalDecelerationThreshold = (float)newValue;
             }
         }
@@ -202,9 +202,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollingEventThresholdProperty = null;
         internal static void SetInternalScrollingEventThresholdProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollingEventThreshold = (float)newValue;
             }
         }
@@ -221,9 +221,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty PageFlickThresholdProperty = null;
         internal static void SetInternalPageFlickThresholdProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalPageFlickThreshold = (float)newValue;
             }
         }
@@ -240,9 +240,9 @@ namespace Tizen.NUI.Components
         public static readonly new BindableProperty PaddingProperty = null;
         internal static new void SetInternalPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalPadding = newValue as Extents;
             }
         }
@@ -259,9 +259,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ScrollAlphaFunctionProperty = null;
         internal static void SetInternalScrollAlphaFunctionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalScrollAlphaFunction = newValue as AlphaFunction;
             }
         }
@@ -278,9 +278,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty NoticeAnimationEndBeforePositionProperty = null;
         internal static void SetInternalNoticeAnimationEndBeforePositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalNoticeAnimationEndBeforePosition = (float)newValue;
             }
         }
@@ -297,9 +297,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty EnableOverShootingEffectProperty = null;
         internal static void SetInternalEnableOverShootingEffectProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalEnableOverShootingEffect = (bool)newValue;
             }
         }
@@ -316,9 +316,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty StepScrollDistanceProperty = null;
         internal static void SetInternalStepScrollDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.stepScrollDistance = (float)newValue;
             }
         }
@@ -335,9 +335,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty WheelScrollDistanceProperty = null;
         internal static void SetInternalWheelScrollDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.wheelScrollDistance = (float)newValue;
             }
         }
@@ -354,9 +354,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FadeScrollbarProperty = null;
         internal static void SetInternalFadeScrollbarProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (ScrollableBase)bindable;
             if (newValue != null)
             {
+                var instance = (ScrollableBase)bindable;
                 instance.InternalFadeScrollbar = (bool)newValue;
             }
         }

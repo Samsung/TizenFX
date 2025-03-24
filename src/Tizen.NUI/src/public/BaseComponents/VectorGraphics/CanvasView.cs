@@ -34,10 +34,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// ViewBoxProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty ViewBoxProperty = null;
+        public static readonly BindableProperty ViewBoxProperty = null;
         internal static void SetInternalViewBoxProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            var instance = (CanvasView)bindable;
             if (newValue != null)
             {
                 instance.InternalViewBox = (Tizen.NUI.Size2D)newValue;
@@ -45,7 +45,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
         internal static object GetInternalViewBoxProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            var instance = (CanvasView)bindable;
             return instance.InternalViewBox;
         }
 
@@ -53,10 +53,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// SynchronousLoadingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty SynchronousLoadingProperty = null;
+        public static readonly BindableProperty SynchronousLoadingProperty = null;
         internal static void SetInternalSynchronousLoadingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            var instance = (CanvasView)bindable;
             if (newValue != null)
             {
                 instance.InternalSynchronousLoading = (bool)newValue;
@@ -64,7 +64,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
         internal static object GetInternalSynchronousLoadingProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            var instance = (CanvasView)bindable;
             return instance.InternalSynchronousLoading;
         }
 
@@ -72,10 +72,10 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// RasterizationRequestManuallyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty RasterizationRequestManuallyProperty = null;
+        public static readonly BindableProperty RasterizationRequestManuallyProperty = null;
         internal static void SetInternalRasterizationRequestManuallyProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            var instance = (CanvasView)bindable;
             if (newValue != null)
             {
                 instance.InternalRasterizationRequestManually = (bool)newValue;
@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
         internal static object GetInternalRasterizationRequestManuallyProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
+            var instance = (CanvasView)bindable;
             return instance.InternalRasterizationRequestManually;
         }
 
@@ -91,11 +91,11 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             if (NUIApplication.IsUsingXaml)
             {
-                ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null,
+                ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(CanvasView), null,
                   propertyChanged: SetInternalViewBoxProperty, defaultValueCreator: GetInternalViewBoxProperty);
-                SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), true,
+                SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(CanvasView), true,
                   propertyChanged: SetInternalSynchronousLoadingProperty, defaultValueCreator: GetInternalSynchronousLoadingProperty);
-                RasterizationRequestManuallyProperty = BindableProperty.Create(nameof(RasterizationRequestManually), typeof(bool), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), false,
+                RasterizationRequestManuallyProperty = BindableProperty.Create(nameof(RasterizationRequestManually), typeof(bool), typeof(CanvasView), false,
                   propertyChanged: SetInternalRasterizationRequestManuallyProperty, defaultValueCreator: GetInternalRasterizationRequestManuallyProperty);
             }
         }
@@ -175,7 +175,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 else
                 {
-                    return GetInternalViewBoxProperty(this) as Size2D;
+                    return InternalViewBox;
                 }
             }
             set
@@ -186,7 +186,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 else
                 {
-                    SetInternalViewBoxProperty(this, null, value);
+                    InternalViewBox = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -225,7 +225,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 else
                 {
-                    return (bool)GetInternalSynchronousLoadingProperty(this);
+                    return InternalSynchronousLoading;
                 }
             }
             set
@@ -236,7 +236,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 else
                 {
-                    SetInternalSynchronousLoadingProperty(this, null, value);
+                    InternalSynchronousLoading = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -279,7 +279,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 else
                 {
-                    return (bool)GetInternalRasterizationRequestManuallyProperty(this);
+                    return InternalRasterizationRequestManually;
                 }
             }
             set
@@ -290,7 +290,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                 }
                 else
                 {
-                    SetInternalRasterizationRequestManuallyProperty(this, null, value);
+                    InternalRasterizationRequestManually = value;
                 }
                 NotifyPropertyChanged();
             }

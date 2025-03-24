@@ -41,9 +41,20 @@ namespace Tizen.NUI
         /// Constructor from a float
         /// </summary>
         /// <param name="value">Float to initialize with.</param>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public LayoutLength(float value)
         {
+            if (!float.IsFinite(value))
+            {
+                throw new ArgumentException("LayoutLength cannot take non-finite values.");
+            }
+
+            if (value == float.MinValue || value == float.MaxValue)
+            {
+                throw new ArgumentException("LayoutLength cannot take float.MinValue or float.MaxValue. Please use int.MinValue or int.MaxValue.");
+            }
+
             this.value = value;
         }
 
@@ -61,10 +72,21 @@ namespace Tizen.NUI
         /// Constructor from a LayoutDimension
         /// </summary>
         /// <param name="layoutDimension">LayoutSize to initialize with.</param>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength(LayoutDimension layoutDimension)
         {
-            this.value = layoutDimension.IsFixedValue ? layoutDimension.GetValue() : (int)layoutDimension.GetMode();
+            if (!float.IsFinite(layoutDimension))
+            {
+                throw new ArgumentException("LayoutLength cannot take non-finite values.");
+            }
+
+            if (layoutDimension == float.MinValue || layoutDimension == float.MaxValue)
+            {
+                throw new ArgumentException("LayoutLength cannot take float.MinValue or float.MaxValue. Please use int.MinValue or int.MaxValue.");
+            }
+
+            this.value = layoutDimension;
         }
 
         /// <summary>

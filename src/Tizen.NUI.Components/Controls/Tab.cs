@@ -155,7 +155,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalSelectedItemIndexProperty(this);
+                    return InternalSelectedItemIndex;
                 }
             }
             set
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSelectedItemIndexProperty(this, null, value);
+                    InternalSelectedItemIndex = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -202,7 +202,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalUseTextNaturalSizeProperty(this);
+                    return InternalUseTextNaturalSize;
                 }
             }
             set
@@ -213,7 +213,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalUseTextNaturalSizeProperty(this, null, value);
+                    InternalUseTextNaturalSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -249,7 +249,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (int)GetInternalItemSpaceProperty(this);
+                    return InternalItemSpace;
                 }
             }
             set
@@ -260,7 +260,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemSpaceProperty(this, null, value);
+                    InternalItemSpace = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -296,7 +296,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalSpaceProperty(this) as Extents;
+                    return InternalSpace;
                 }
             }
             set
@@ -307,7 +307,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalSpaceProperty(this, null, value);
+                    InternalSpace = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -340,7 +340,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalItemPaddingProperty(this) as Extents;
+                    return InternalItemPadding;
                 }
             }
             set
@@ -351,7 +351,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalItemPaddingProperty(this, null, value);
+                    InternalItemPadding = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -404,7 +404,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalUnderLineSizeProperty(this) as Size;
+                    return InternalUnderLineSize;
                 }
             }
             set
@@ -415,7 +415,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalUnderLineSizeProperty(this, null, value);
+                    InternalUnderLineSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -451,7 +451,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalUnderLineBackgroundColorProperty(this) as Color;
+                    return InternalUnderLineBackgroundColor;
                 }
             }
             set
@@ -462,7 +462,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalUnderLineBackgroundColorProperty(this, null, value);
+                    InternalUnderLineBackgroundColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -498,7 +498,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (float)GetInternalPointSizeProperty(this);
+                    return InternalPointSize;
                 }
             }
             set
@@ -509,7 +509,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalPointSizeProperty(this, null, value);
+                    InternalPointSize = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -545,7 +545,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalFontFamilyProperty(this) as string;
+                    return InternalFontFamily;
                 }
             }
             set
@@ -556,7 +556,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalFontFamilyProperty(this, null, value);
+                    InternalFontFamily = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -592,7 +592,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextColorProperty(this) as Color;
+                    return InternalTextColor;
                 }
             }
             set
@@ -603,7 +603,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextColorProperty(this, null, value);
+                    InternalTextColor = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -640,7 +640,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalTextColorSelectorProperty(this) as ColorSelector;
+                    return InternalTextColorSelector;
                 }
             }
             set
@@ -651,7 +651,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalTextColorSelectorProperty(this, null, value);
+                    InternalTextColorSelector = value;
                 }
                 NotifyPropertyChanged();
             }

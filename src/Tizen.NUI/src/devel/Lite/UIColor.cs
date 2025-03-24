@@ -208,7 +208,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Whether this is token.
         /// </summary>
-        public readonly bool IsToken => _tokenId != string.Empty;
+        public readonly bool IsToken => !string.IsNullOrEmpty(_tokenId);
 
         /// <inheritdoc/>
         readonly UIColor IToken<UIColor>.Value

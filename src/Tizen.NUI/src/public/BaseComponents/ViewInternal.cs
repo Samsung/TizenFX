@@ -355,13 +355,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.LeftFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.LeftFocusableViewId, value);
             }
         }
 
@@ -369,13 +367,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.RightFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.RightFocusableViewId, value);
             }
         }
 
@@ -383,13 +379,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.UpFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.UpFocusableViewId, value);
             }
         }
 
@@ -397,13 +391,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.DownFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.DownFocusableViewId, value);
             }
         }
 
@@ -411,13 +403,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.ClockwiseFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.ClockwiseFocusableViewId, value);
             }
         }
 
@@ -425,13 +415,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-
-                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, Property.CounterClockwiseFocusableViewId);
             }
             set
             {
-
-                Object.InternalSetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, Property.CounterClockwiseFocusableViewId, value);
             }
         }
 
@@ -502,7 +490,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentParentOrigin = new Position(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, internalCurrentParentOrigin.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, internalCurrentParentOrigin.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -526,7 +514,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentAnchorPoint = new Position(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, internalCurrentAnchorPoint.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, internalCurrentAnchorPoint.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -571,7 +559,7 @@ namespace Tizen.NUI.BaseComponents
                 internalTargetSize = new Vector3(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveTargetSize(SwigCPtr, internalTargetSize.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveTargetSize(SwigCPtr, internalTargetSize.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -588,7 +576,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentSize = new Size2D(0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalCurrentSize.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalCurrentSize.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -653,7 +641,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentPosition = new Position(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, internalCurrentPosition.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, internalCurrentPosition.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -669,7 +657,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentWorldPosition = new Vector3(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldPosition, internalCurrentWorldPosition.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldPosition, internalCurrentWorldPosition.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -798,7 +786,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentScale = new Vector3(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.SCALE, internalCurrentScale.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.SCALE, internalCurrentScale.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -815,7 +803,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentWorldScale = new Vector3(0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldScale, internalCurrentWorldScale.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldScale, internalCurrentWorldScale.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -892,7 +880,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentColor = new Vector4(0, 0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Interop.ActorProperty.ColorGet(), internalCurrentColor.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Interop.ActorProperty.ColorGet(), internalCurrentColor.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -916,7 +904,7 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentWorldColor = new Vector4(0, 0, 0, 0);
             }
 
-            Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Property.WorldColor, internalCurrentWorldColor.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Property.WorldColor, internalCurrentWorldColor.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -1084,7 +1072,7 @@ namespace Tizen.NUI.BaseComponents
         internal bool IsBackgroundEmpty()
         {
             int visualType = (int)Visual.Type.Invalid;
-            Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
             return visualType == (int)Visual.Type.Invalid;
         }
 
@@ -1094,7 +1082,7 @@ namespace Tizen.NUI.BaseComponents
         internal bool IsShadowEmpty()
         {
             int visualType = (int)Visual.Type.Invalid;
-            Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.SHADOW, Visual.Property.Type, out visualType);
+            _ = Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.SHADOW, Visual.Property.Type, out visualType);
             return visualType == (int)Visual.Type.Invalid;
         }
 
@@ -1269,25 +1257,25 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (backgroundExtraData.CornerRadius != null)
                 {
-                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
                 if (backgroundExtraData.CornerSquareness != null)
                 {
-                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
                 }
-                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
             if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ShadowCornerRadius))
             {
                 if (backgroundExtraData.CornerRadius != null)
                 {
-                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
                 }
                 if (backgroundExtraData.CornerSquareness != null)
                 {
-                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
                 }
-                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
         }
 
@@ -1310,9 +1298,9 @@ namespace Tizen.NUI.BaseComponents
             // Update borderline properties to background by ActionUpdateProperty
             if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundBorderline))
             {
-                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
-                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+                _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+                _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
             }
         }
 
@@ -1372,8 +1360,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-
-            disposeDebugging(type);
 
             if (SwigCMemOwn && !IsNativeHandleInvalid())
             {
@@ -1949,21 +1935,6 @@ namespace Tizen.NUI.BaseComponents
             if (themeData == null) themeData = new ThemeData();
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
-        }
-
-        [Conditional("NUI_DISPOSE_DEBUG_ON")]
-        private void disposeDebugging(DisposeTypes type)
-        {
-            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
-            if (HasBody())
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
-            }
-            else
-            {
-                DebugFileLogging.Instance.WriteLog($"has no native body!");
-            }
         }
 
         private void NotifyBackgroundChanged()

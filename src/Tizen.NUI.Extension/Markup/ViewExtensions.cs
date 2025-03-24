@@ -86,11 +86,7 @@ namespace Tizen.NUI.Extension
         {
             //FIXME: we need to set UI value type directly without converting reference value.
             view.Color = color.ToReferenceType();
-
-            if (color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.Color, color);
-            }
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.Color, color);
             return view;
         }
 
@@ -138,11 +134,7 @@ namespace Tizen.NUI.Extension
         public static T BackgroundColor<T>(this T view, UIColor color) where T : View
         {
             view.SetBackgroundColor(color);
-
-            if (color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BackgroundColor, color);
-            }
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.BackgroundColor, color);
             return view;
         }
 
@@ -327,12 +319,7 @@ namespace Tizen.NUI.Extension
         public static T BoxShadow<T>(this T view, UIShadow shadow) where T : View
         {
             view.SetBoxShadow(shadow);
-
-            if (shadow.Color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BoxShadowColor, shadow.Color);
-            }
-
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.BoxShadowColor, shadow.Color);
             return view;
         }
 
@@ -424,11 +411,7 @@ namespace Tizen.NUI.Extension
         {
             //FIXME: we need to set UI value type directly without converting reference value.
             view.BorderlineColor = color.ToReferenceType();
-
-            if (color.IsToken)
-            {
-                TokenManager.ColorTable.Bind(view, ViewPropertySetters.BorderlineColor, color);
-            }
+            TokenManager.ColorTable.Bind(view, ViewPropertySetters.BorderlineColor, color);
             return view;
         }
 
@@ -661,8 +644,11 @@ namespace Tizen.NUI.Extension
             {
                 return (UIColor)token;
             }
+
+            var color = view.Color;
+
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.Color);
+            return color != null ? new UIColor(color) : UIColor.Transparent;
         }
 
         /// <summary>
@@ -688,7 +674,8 @@ namespace Tizen.NUI.Extension
         {
             // TODO Do not use Vector4 here
             var corner = view.CornerRadius;
-            return new UICorner(corner.X, corner.Y, corner.Z, corner.W, view.CornerRadiusPolicy == VisualTransformPolicyType.Relative);
+
+            return corner != null ? new UICorner(corner.X, corner.Y, corner.Z, corner.W, view.CornerRadiusPolicy == VisualTransformPolicyType.Relative) : UICorner.Zero;
         }
 
         /// <summary>
@@ -702,122 +689,11 @@ namespace Tizen.NUI.Extension
             {
                 return (UIColor)token;
             }
+
+            var color = view.BorderlineColor;
+
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.BorderlineColor);
-        }
-
-        /// <summary>
-        /// Sets the width of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="layoutWidth">The layout dimension of the width of the view.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T LayoutWidth<T>(this T view, LayoutDimension layoutWidth) where T : View
-        {
-            view.LayoutWidth = layoutWidth;
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the height of the view used to size the view within its parent layout container. It can be set to a fixed value, wrap content, or match parent.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="layoutHeight">The layout dimension of the height of the view.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T LayoutHeight<T>(this T view, LayoutDimension layoutHeight) where T : View
-        {
-            view.LayoutHeight = layoutHeight;
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the minimum width of the view used to size the view within its parent layout container.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="minimumWidth">The minimum width value.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T MinimumWidth<T>(this T view, float minimumWidth) where T : View
-        {
-            view.SetMinimumWidth(minimumWidth, true);
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the minimum height of the view used to size the view within its parent layout container.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="minimumHeight">The minimum height value.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T MinimumHeight<T>(this T view, float minimumHeight) where T : View
-        {
-            view.SetMinimumHeight(minimumHeight, true);
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the maximum width of the view used to size the view within its parent layout container.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="maximumWidth">The maximum width value.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T MaximumWidth<T>(this T view, float maximumWidth) where T : View
-        {
-            view.SetMaximumWidth(maximumWidth, true);
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the maximum height of the view used to size the view within its parent layout container.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="maximumHeight">The maximum height value.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T MaximumHeight<T>(this T view, float maximumHeight) where T : View
-        {
-            view.SetMaximumHeight(maximumHeight, true);
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the margin of the view used to size and position the view within its parent layout container.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="margin">The margin value.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T Margin<T>(this T view, UIExtents margin) where T : View
-        {
-            // FIXME: UIExtents is not supported yet. Instead, Extents is used internally.
-            view.SetMargin(margin, true);
-            return view;
-        }
-
-        /// <summary>
-        /// Sets the padding of the view used to size and position the child views within this layout container.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="padding">The padding value.</param>
-        /// <returns>The view itself.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T Padding<T>(this T view, UIExtents padding) where T : View
-        {
-            // FIXME: UIExtents is not supported yet. Instead, Extents is used internally.
-            view.SetPadding(padding, true);
-            return view;
+            return color != null ? new UIColor(color) : UIColor.Transparent;
         }
     }
 }

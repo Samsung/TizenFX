@@ -197,6 +197,12 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_RENDER_MODE_get")]
             public static extern int RenderModeGet();
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_ELLIPSIS_MODE_get")]
+            public static extern int EllipsisModeGet();
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_IS_SCROLLING_get")]
+            public static extern int IsScrollingGet();
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_MANUAL_RENDERED_get")]
             public static extern int ManualRenderedGet();
 

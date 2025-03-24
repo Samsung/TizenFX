@@ -136,7 +136,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalContentProperty(this) as View;
+                    return InternalContent;
                 }
             }
             set
@@ -147,7 +147,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalContentProperty(this, null, value);
+                    InternalContent =  value;
                 }
                 NotifyPropertyChanged();
             }
@@ -261,7 +261,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalEnableScrimProperty(this);
+                    return InternalEnableScrim;
                 }
             }
             set
@@ -272,7 +272,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalEnableScrimProperty(this, null, value);
+                    InternalEnableScrim = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -320,7 +320,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return (bool)GetInternalEnableDismissOnScrimProperty(this);
+                    return InternalEnableDismissOnScrim;
                 }
             }
             set
@@ -331,7 +331,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalEnableDismissOnScrimProperty(this, null, value);
+                    InternalEnableDismissOnScrim = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -352,7 +352,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return GetInternalScrimColorProperty(this) as Color;
+                    return InternalScrimColor;
                 }
             }
             set
@@ -363,7 +363,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    SetInternalScrimColorProperty(this, null, value);
+                    InternalScrimColor = value;
                 }
                 NotifyPropertyChanged();
             }

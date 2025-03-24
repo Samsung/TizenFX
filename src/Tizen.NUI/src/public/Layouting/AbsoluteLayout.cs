@@ -1,4 +1,4 @@
-/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2019-2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,9 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -23,11 +26,103 @@ namespace Tizen.NUI
     public class AbsoluteLayout : LayoutGroup
     {
         /// <summary>
+        /// A flag indicating that the width or height of the child view should be calculated based on the child view's WidthSpecification and HeightSpecification.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const float LayoutBoundsAutoSized = -1f;
+
+        /// <summary>
         /// The default constructor of AbsoluteLayout class
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public AbsoluteLayout()
         {
+        }
+
+        /// <summary>
+        /// Gets the layout bounds of the child view. The default layout bounds is 0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized.
+        /// LayoutBoundsAutoSized for width and height calculates the child view's width and height based on the child view's WidthSpecification and HeightSpecification.
+        /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The layout bounds of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static UIRect GetLayoutBounds(View view)
+        {
+            if (view == null)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
+
+            return view.GetAttached<LayoutParams>()?.LayoutBounds ?? new UIRect(0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized);
+        }
+
+        /// <summary>
+        /// Sets the layout bounds of the child view. The default layout bounds is 0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized.
+        /// LayoutBoundsAutoSized for width and height calculates the child view's width and height based on the child view's WidthSpecification and HeightSpecification.
+        /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="rect">The layout bounds.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetLayoutBounds(View view, UIRect rect)
+        {
+            if (view == null)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
+
+            var layoutParams = view.GetAttached<LayoutParams>();
+            if (layoutParams != null)
+            {
+                layoutParams.LayoutBounds = rect;
+            }
+            else
+            {
+                view.SetAttached(new LayoutParams() { LayoutBounds = rect });
+            }
+        }
+
+        /// <summary>
+        /// Gets the absolute layout flags of the child view. The default absolute layout flags is <see cref="AbsoluteLayoutFlags.None"/>.
+        /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The absolute layout flags of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AbsoluteLayoutFlags GetLayoutFlags(View view)
+        {
+            if (view == null)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
+
+            return view.GetAttached<LayoutParams>()?.LayoutFlags ?? AbsoluteLayoutFlags.None;
+        }
+
+        /// <summary>
+        /// Sets the absolute layout flags of the child view. The default absolute layout flags is <see cref="AbsoluteLayoutFlags.None"/>.
+        /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="flags">The absolute layout flags.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetLayoutFlags(View view, AbsoluteLayoutFlags flags)
+        {
+            if (view == null)
+            {
+                throw new ArgumentNullException(nameof(view));
+            }
+
+            var layoutParams = view.GetAttached<LayoutParams>();
+            if (layoutParams != null)
+            {
+                layoutParams.LayoutFlags = flags;
+            }
+            else
+            {
+                view.SetAttached(new LayoutParams() { LayoutFlags = flags });
+            }
         }
 
         /// <summary>
@@ -52,13 +147,85 @@ namespace Tizen.NUI
                     continue;
                 }
 
-                // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
-                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                Extents childMargin = childLayout.Margin;
+                var rect = GetLayoutBounds(childLayout.Owner);
+                var flags = GetLayoutFlags(childLayout.Owner);
+
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                }
+                else
+                {
+                    var isWidthProportional = flags.HasFlag(AbsoluteLayoutFlags.WidthProportional);
+                    var isHeightProportional = flags.HasFlag(AbsoluteLayoutFlags.HeightProportional);
+
+                    var measuredWidth = MeasureBoundsSize(rect.Width, isWidthProportional,
+                                            widthMeasureSpec.GetSize().AsDecimal() - (Padding.Start + Padding.End),
+                                            childMargin.Start + childMargin.End);
+                    var measuredHeight = MeasureBoundsSize(rect.Height, isHeightProportional,
+                                            heightMeasureSpec.GetSize().AsDecimal() - (Padding.Top + Padding.Bottom),
+                                            childMargin.Top + childMargin.Bottom);
+
+                    MeasureSpecification childWidthSpec;
+                    if (rect.Width >= 0)
+                    {
+                        childWidthSpec = new MeasureSpecification(new LayoutLength(measuredWidth), MeasureSpecification.ModeType.Exactly);
+                    }
+                    else
+                    {
+                        childWidthSpec = GetChildMeasureSpecification(
+                            new MeasureSpecification(
+                                new LayoutLength(widthMeasureSpec.Size) - (childMargin.Start + childMargin.End),
+                                widthMeasureSpec.Mode),
+                            new LayoutLength(Padding.Start + Padding.End),
+                            new LayoutLength(childLayout.Owner.LayoutWidth));
+                    }
+
+                    MeasureSpecification childHeightSpec;
+                    if (rect.Height >= 0)
+                    {
+                        childHeightSpec = new MeasureSpecification(new LayoutLength(measuredHeight), MeasureSpecification.ModeType.Exactly);
+                    }
+                    else
+                    {
+                        childHeightSpec = GetChildMeasureSpecification(
+                            new MeasureSpecification(
+                                new LayoutLength(heightMeasureSpec.Size) - (childMargin.Top + childMargin.Bottom),
+                                heightMeasureSpec.Mode),
+                            new LayoutLength(Padding.Top + Padding.End),
+                            new LayoutLength(childLayout.Owner.LayoutHeight));
+                    }
+
+                    childLayout.Measure(childWidthSpec, childHeightSpec);
+                }
 
                 // Determine the width and height needed by the children using their given position and size.
                 // Children could overlap so find the right most child.
-                float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
-                float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
+                float childRight;
+                float childBottom;
+
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
+                    childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
+                }
+                // Padding and margin are considered to decide parent size.
+                // Proportional position does not affect the parent size.
+                else
+                {
+                    if (flags.HasFlag(AbsoluteLayoutFlags.XProportional))
+                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + Padding.Start + Padding.End + childMargin.Start + childMargin.End;
+                    else
+                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + Padding.Start + Padding.End + childMargin.Start + childMargin.End + rect.X;
+
+                    if (flags.HasFlag(AbsoluteLayoutFlags.YProportional))
+                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + Padding.Top + Padding.Bottom + childMargin.Top + childMargin.Bottom;
+                    else
+                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + Padding.Top + Padding.Bottom + childMargin.Top + childMargin.Bottom + rect.Y;
+                }
 
                 if (maxWidth < childRight)
                     maxWidth = childRight;
@@ -100,14 +267,116 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                Extents childMargin = childLayout.Margin;
+
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
-                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
+                LayoutLength childLeft;
+                LayoutLength childTop;
 
-                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
+                // If child view positions with using pivot point, then padding and margin are not used.
+                if (childLayout.Owner.PositionUsesPivotPoint)
+                {
+                    childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                    childTop = new LayoutLength(childLayout.Owner.PositionY);
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
+                }
+                else
+                {
+                    var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
+                    var rect = GetLayoutBounds(childLayout.Owner);
+                    var flags = GetLayoutFlags(childLayout.Owner);
+                    var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
+                    var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
+
+                    var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
+                                MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End),
+                                childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
+                                Padding.Start, childMargin.Start);
+
+                    var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
+                                MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom),
+                                childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
+                                Padding.Top, childMargin.Bottom);
+
+                    childLeft = new LayoutLength(childX);
+                    childTop = new LayoutLength(childY);
+
+                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                }
             }
+        }
+
+        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum)
+        {
+            if (boundsValue < 0)
+            {
+                return 0;
+            }
+
+            if (proportional)
+            {
+                return Math.Max(0, constraint * boundsValue - marginSum);
+            }
+
+            // Margin does not affect to the fixed size set by user.
+            // Only relative sizes such as MatchParent, WrapContent, proportional size are affected by margin.
+            return boundsValue;
+        }
+
+        private float MeasureBoundsPosition(float boundsValue, bool proportional, float constraint, float sizeWithMargin, float paddingBegin, float marginBegin)
+        {
+            if (proportional)
+            {
+                return paddingBegin + ((constraint - sizeWithMargin) * boundsValue) + marginBegin;
+            }
+            else
+            {
+                return paddingBegin + boundsValue + marginBegin;
+            }
+        }
+
+        private float MeasurePosition(bool isBoundsSet, float position, float boundsValue, bool proportional, float constraint, float sizeWithMargin, float paddingBegin, float marginBegin)
+        {
+            // If user sets LayoutBounds, use LayoutBounds. Otherwise, use Position property.
+            if (isBoundsSet)
+            {
+                return MeasureBoundsPosition(boundsValue, proportional, constraint, sizeWithMargin, paddingBegin, marginBegin);
+            }
+            else
+            {
+                return paddingBegin + position + marginBegin;
+            }
+        }
+
+        private class LayoutParams
+        {
+            /// <summary>
+            /// Constructs LayoutParams.
+            /// </summary>
+            public LayoutParams()
+            {
+            }
+
+            /// <summary>
+            /// Gets or sets the layout bounds of the view. The default layout bounds is 0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized.
+            /// LayoutBoundsAutoSized for width and height calculates the view's width and height based on the view's WidthSpecification and HeightSpecification.
+            /// </summary>
+            public UIRect LayoutBounds
+            {
+                get;
+                set;
+            } = new UIRect(0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized);
+
+            /// <summary>
+            /// Gets or sets the absolute layout flags of the view. The default absolute layout flags is <see cref="AbsoluteLayoutFlags.None"/>.
+            /// </summary>
+            public AbsoluteLayoutFlags LayoutFlags
+            {
+                get;
+                set;
+            } = AbsoluteLayoutFlags.None;
         }
     }
 } // namespace

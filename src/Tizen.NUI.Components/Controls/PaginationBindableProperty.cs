@@ -6,6 +6,51 @@ namespace Tizen.NUI.Components
 {
     public partial class Pagination
     {
+        /// <summary>The IndicatorSize bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSizeProperty = null;
+        internal static void SetInternalIndicatorSizeProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != null)
+            {
+                var pagination = (Pagination)bindable;
+                pagination.SetInternalIndicatorSize((Size)newValue);
+            }
+        }
+        internal static object GetInternalIndicatorSizeProperty(BindableObject bindable)
+        {
+            var pagination = (Pagination)bindable;
+            return pagination.GetInternalIndicatorSize();
+        }
+
+        /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorImageUrlProperty = null;
+        internal static void SetInternalIndicatorImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var pagination = (Pagination)bindable;
+            pagination.SetInternalIndicatorImageUrl((Selector<string>)newValue);
+        }
+        internal static object GetInternalIndicatorImageUrlProperty(BindableObject bindable)
+        {
+            var pagination = (Pagination)bindable;
+            return pagination.GetInternalIndicatorImageUrl();
+        }
+
+        /// <summary>The IndicatorSpacing bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSpacingProperty = null;
+        internal static void SetInternalIndicatorSpacingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var pagination = (Pagination)bindable;
+            pagination.SetInternalIndicatorSpacing((int)newValue);
+        }
+        internal static object GetInternalIndicatorSpacingProperty(BindableObject bindable)
+        {
+            var pagination = (Pagination)bindable;
+            return pagination.GetInternalIndicatorSpacing();
+        }
+
         /// <summary>
         /// LastIndicatorImageUrlProperty
         /// </summary>
@@ -13,9 +58,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty LastIndicatorImageUrlProperty = null;
         internal static void SetInternalLastIndicatorImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Pagination)bindable;
             if (newValue != null)
             {
+                var instance = (Pagination)bindable;
                 instance.InternalLastIndicatorImageUrl = newValue as Selector<string>;
             }
         }
@@ -32,9 +77,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IndicatorCountProperty = null;
         internal static void SetInternalIndicatorCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Pagination)bindable;
             if (newValue != null)
             {
+                var instance = (Pagination)bindable;
                 instance.InternalIndicatorCount = (int)newValue;
             }
         }
@@ -51,9 +96,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IndicatorColorProperty = null;
         internal static void SetInternalIndicatorColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Pagination)bindable;
             if (newValue != null)
             {
+                var instance = (Pagination)bindable;
                 instance.InternalIndicatorColor = newValue as Color;
             }
         }
@@ -70,9 +115,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SelectedIndicatorColorProperty = null;
         internal static void SetInternalSelectedIndicatorColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Pagination)bindable;
             if (newValue != null)
             {
+                var instance = (Pagination)bindable;
                 instance.InternalSelectedIndicatorColor = newValue as Color;
             }
         }
@@ -89,9 +134,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty SelectedIndexProperty = null;
         internal static void SetInternalSelectedIndexProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Pagination)bindable;
             if (newValue != null)
             {
+                var instance = (Pagination)bindable;
                 instance.InternalSelectedIndex = (int)newValue;
             }
         }

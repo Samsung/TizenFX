@@ -26,12 +26,12 @@ namespace Tizen.NUI
         /// TypeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty TypeProperty = null;
+        public static readonly BindableProperty TypeProperty = null;
         internal static void SetInternalTypeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalType = (string)newValue;
             }
         }
@@ -45,12 +45,12 @@ namespace Tizen.NUI
         /// ProjectionModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty ProjectionModeProperty = null;
+        public static readonly BindableProperty ProjectionModeProperty = null;
         internal static void SetInternalProjectionModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalProjectionMode = (string)newValue;
             }
         }
@@ -64,12 +64,12 @@ namespace Tizen.NUI
         /// FieldOfViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty FieldOfViewProperty = null;
+        public static readonly BindableProperty FieldOfViewProperty = null;
         internal static void SetInternalFieldOfViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalFieldOfView = (float)newValue;
             }
         }
@@ -83,12 +83,12 @@ namespace Tizen.NUI
         /// AspectRatioProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty AspectRatioProperty = null;
+        public static readonly BindableProperty AspectRatioProperty = null;
         internal static void SetInternalAspectRatioProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalAspectRatio = (float)newValue;
             }
         }
@@ -102,12 +102,12 @@ namespace Tizen.NUI
         /// NearPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty NearPlaneDistanceProperty = null;
+        public static readonly BindableProperty NearPlaneDistanceProperty = null;
         internal static void SetInternalNearPlaneDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalNearPlaneDistance = (float)newValue;
             }
         }
@@ -121,12 +121,12 @@ namespace Tizen.NUI
         /// FarPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty FarPlaneDistanceProperty = null;
+        public static readonly BindableProperty FarPlaneDistanceProperty = null;
         internal static void SetInternalFarPlaneDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalFarPlaneDistance = (float)newValue;
             }
         }
@@ -140,12 +140,12 @@ namespace Tizen.NUI
         /// LeftPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty LeftPlaneDistanceProperty = null;
+        public static readonly BindableProperty LeftPlaneDistanceProperty = null;
         internal static void SetInternalLeftPlaneDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalLeftPlaneDistance = (float)newValue;
             }
         }
@@ -159,12 +159,12 @@ namespace Tizen.NUI
         /// RightPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty RightPlaneDistanceProperty = null;
+        public static readonly BindableProperty RightPlaneDistanceProperty = null;
         internal static void SetInternalRightPlaneDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalRightPlaneDistance = (float)newValue;
             }
         }
@@ -178,12 +178,12 @@ namespace Tizen.NUI
         /// TopPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty TopPlaneDistanceProperty = null;
+        public static readonly BindableProperty TopPlaneDistanceProperty = null;
         internal static void SetInternalTopPlaneDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalTopPlaneDistance = (float)newValue;
             }
         }
@@ -197,12 +197,12 @@ namespace Tizen.NUI
         /// BottomPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty BottomPlaneDistanceProperty = null;
+        public static readonly BindableProperty BottomPlaneDistanceProperty = null;
         internal static void SetInternalBottomPlaneDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalBottomPlaneDistance = (float)newValue;
             }
         }
@@ -216,12 +216,12 @@ namespace Tizen.NUI
         /// TargetPositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty TargetPositionProperty = null;
+        public static readonly BindableProperty TargetPositionProperty = null;
         internal static void SetInternalTargetPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalTargetPosition = (Tizen.NUI.Vector3)newValue;
             }
         }
@@ -235,12 +235,12 @@ namespace Tizen.NUI
         /// InvertYAxisProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty InvertYAxisProperty = null;
+        public static readonly BindableProperty InvertYAxisProperty = null;
         internal static void SetInternalInvertYAxisProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
             {
+                var instance = (Tizen.NUI.Camera)bindable;
                 instance.InternalInvertYAxis = (bool)newValue;
             }
         }
