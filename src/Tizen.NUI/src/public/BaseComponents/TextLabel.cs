@@ -412,9 +412,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///
+        /// Registers FontVariationsProperty with string tag.
         /// </summary>
         /// <param name="tag">The tag of font variations.</param>
+        /// <remarks>
+        /// The returned index can be used with animation.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int RegisterFontVariationProperty(string tag)
         {
@@ -3585,11 +3588,11 @@ namespace Tizen.NUI.BaseComponents
         public void SetFontVariation(string axis, float value)
         {
             int index = RegisterFontVariationProperty(axis);
-            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
         public void SetFontVariation(int index, float value)
         {
-            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
     }
 }

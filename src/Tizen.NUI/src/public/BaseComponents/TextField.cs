@@ -5073,11 +5073,11 @@ namespace Tizen.NUI.BaseComponents
         public void SetFontVariation(string axis, float value)
         {
             int index = RegisterFontVariationProperty(axis);
-            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
         public void SetFontVariation(int index, float value)
         {
-            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
 
         internal class TextFieldLayout : LayoutItem
