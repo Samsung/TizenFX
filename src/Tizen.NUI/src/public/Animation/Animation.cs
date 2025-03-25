@@ -72,6 +72,8 @@ namespace Tizen.NUI
         private List<int> startTimeList = null;
         private List<int> endTimeList = null;
 
+        private List<System.Delegate> customAlphaFunctionDelegates = null;
+
         /// <summary>
         /// Creates an initialized animation.<br />
         /// The animation will not loop.<br />
@@ -1346,6 +1348,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
+            ClearCustomAlphaFunctionDelegate();
+
             Interop.Animation.Clear(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1666,6 +1670,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1679,6 +1684,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1692,6 +1698,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1705,6 +1712,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1719,6 +1727,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), relativeValueIntPtr, AlphaFunction.getCPtr(alpha));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1732,6 +1741,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), relativeValueIntPtr, AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1745,6 +1755,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), destinationValueIntPtr, AlphaFunction.getCPtr(alpha));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1758,6 +1769,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), destinationValueIntPtr, AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1771,6 +1783,7 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha)
         {
+            AppendCustomAlphaFunctionDelegate(alpha?.CustomAlphaFunctionDelegate);
             Interop.Animation.AnimateBetweenAlphaFunction(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1783,6 +1796,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1796,6 +1810,7 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period)
         {
+            AppendCustomAlphaFunctionDelegate(alpha?.CustomAlphaFunctionDelegate);
             Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1808,6 +1823,7 @@ namespace Tizen.NUI
             }
             else
             {
+                AppendCustomAlphaFunctionDelegate(alpha.CustomAlphaFunctionDelegate);
                 Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1821,6 +1837,7 @@ namespace Tizen.NUI
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha)
         {
+            AppendCustomAlphaFunctionDelegate(alpha?.CustomAlphaFunctionDelegate);
             Interop.Animation.AnimateAlphaFunction(SwigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1833,6 +1850,7 @@ namespace Tizen.NUI
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
         {
+            AppendCustomAlphaFunctionDelegate(alpha?.CustomAlphaFunctionDelegate);
             Interop.Animation.Animate(SwigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1876,6 +1894,8 @@ namespace Tizen.NUI
                 animationProgressReachedEventCallback = null;
             }
 
+            ClearCustomAlphaFunctionDelegate();
+
             base.Dispose(type);
         }
 
@@ -1889,6 +1909,30 @@ namespace Tizen.NUI
                 return;
             }
             Interop.Animation.DeleteAnimation(swigCPtr);
+        }
+
+        private void AppendCustomAlphaFunctionDelegate(global::System.Delegate customFunction)
+        {
+            if (customFunction == null)
+            {
+                return;
+            }
+
+            if (customAlphaFunctionDelegates == null)
+            {
+                customAlphaFunctionDelegates = new List<System.Delegate>();
+            }
+            customAlphaFunctionDelegates.Add(customFunction);
+        }
+
+        private void ClearCustomAlphaFunctionDelegate()
+        {
+            if (customAlphaFunctionDelegates != null)
+            {
+                // Delete function delegates after 1 frame rendered.
+                RenderThreadObjectHolder.RegisterDelegates(customAlphaFunctionDelegates);
+                customAlphaFunctionDelegates = null;
+            }
         }
 
         private void OnFinished(IntPtr data)
