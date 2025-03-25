@@ -781,10 +781,13 @@ namespace Tizen.NUI.Samples
             finishAnimation.Clear();
             customScrollAlphaFunction = new UserAlphaFunctionDelegate(CustomScrollAlphaFunction);
             finishAnimation.DefaultAlphaFunction = new AlphaFunction(customScrollAlphaFunction);
-            GC.KeepAlive(customScrollAlphaFunction);
             finishAnimation.Duration = (int)finishAnimationDuration;
-            finishAnimation.AnimateTo(controlView, "PositionX", destination);
+            finishAnimation.AnimateTo(controlView, "PositionX", destination, finishAnimation.DefaultAlphaFunction);
             finishAnimation.Play();
+
+            // Remove alpha function now, for test UserAlphaFunctionDelegate alived. 
+            customScrollAlphaFunction = null;
+            finishAnimation.DefaultAlphaFunction?.Dispose();
         }
 
         private float CustomScrollAlphaFunction(float progress)
