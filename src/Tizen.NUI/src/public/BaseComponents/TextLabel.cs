@@ -412,6 +412,21 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Registers FontVariationsProperty with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variations.</param>
+        /// <remarks>
+        /// The returned index can be used with animation.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RegisterFontVariationProperty(string tag)
+        {
+            int index = Interop.TextLabel.RegisterFontVariationProperty(SwigCPtr, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return index;
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -3535,6 +3550,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
+            internal static readonly int FontVariations = Interop.TextLabel.FontVariationsGet();
             internal static readonly int EllipsisMode = Interop.TextLabel.EllipsisModeGet();
             internal static readonly int IsScrolling = Interop.TextLabel.IsScrollingGet();
 
@@ -3568,6 +3584,15 @@ namespace Tizen.NUI.BaseComponents
         private void OnAnchorClickedColorChanged(float r, float g, float b, float a)
         {
             AnchorClickedColor = new Color(r, g, b, a);
+        }
+        public void SetFontVariation(string axis, float value)
+        {
+            int index = RegisterFontVariationProperty(axis);
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+        public void SetFontVariation(int index, float value)
+        {
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
     }
 }
