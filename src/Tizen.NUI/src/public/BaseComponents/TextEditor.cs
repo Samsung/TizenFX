@@ -4733,11 +4733,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(SwigCPtr, Property.RemoveBackInset);
         }
 
-        public void SetProperty(int index, float value)
-        {
-            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
-        }
-
         /// <summary>
         /// The FontVariations property.
         /// </summary>
@@ -4775,6 +4770,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 Object.SetProperty(SwigCPtr, Property.FontVariations, new PropertyValue(newValue));
             }
+        }
+
+        public void SetProperty(int index, float value)
+        {
+            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
         }
 
         /// <summary>
