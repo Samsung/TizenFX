@@ -601,7 +601,10 @@ namespace Tizen.NUI
                     {
                         // If height or width specification is not explicitly defined,
                         // the size of the owner view must be reset even the ExcludeLayouting is true.
-                        if (!Owner.LayoutWidth.IsFixedValue || !Owner.LayoutHeight.IsFixedValue)
+                        // Unlike Width/HeightSpecification, LayoutWidth/Height does not set view size automatically.
+                        // Therefore, view size should be checked if it is same with LayoutWidth/Height.
+                        if (!Owner.LayoutWidth.IsFixedValue || Owner.LayoutWidth != Owner.SizeWidth ||
+                            !Owner.LayoutHeight.IsFixedValue || Owner.LayoutHeight != Owner.SizeHeight)
                         {
                             Owner.SetSize(right - left, bottom - top);
                             Owner.NotifyLayoutUpdated(false);
