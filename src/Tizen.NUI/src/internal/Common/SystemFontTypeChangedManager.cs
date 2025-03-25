@@ -28,6 +28,9 @@ namespace Tizen.NUI
     /// </summary>
     internal static class SystemFontTypeChangedManager
     {
+        private static string fontType = string.Empty;
+        private static WeakEvent<EventHandler<FontTypeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontTypeChangedEventArgs>>();
+
         static SystemFontTypeChangedManager()
         {
             SystemSettings.FontTypeChanged += SystemFontTypeChanged;
@@ -74,8 +77,5 @@ namespace Tizen.NUI
                 return fontType;
             }
         }
-
-        private static string fontType = string.Empty;
-        private static WeakEvent<EventHandler<FontTypeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontTypeChangedEventArgs>>();
     }
 }
