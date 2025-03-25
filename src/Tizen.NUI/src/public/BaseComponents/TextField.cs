@@ -333,6 +333,21 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Registers FontVariationsProperty with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variations.</param>
+        /// <remarks>
+        /// The returned index can be used with animation.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RegisterFontVariationProperty(string tag)
+        {
+            int index = Interop.TextField.RegisterFontVariationProperty(SwigCPtr, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return index;
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -4991,6 +5006,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CharacterSpacing = Interop.TextField.CharacterSpacingGet();
             internal static readonly int RemoveFrontInset = Interop.TextField.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextField.RemoveBackInsetGet();
+            internal static readonly int FontVariations = Interop.TextField.FontVariationsGet();
 
             internal static void Preload()
             {
@@ -5053,6 +5069,15 @@ namespace Tizen.NUI.BaseComponents
         private void OnGrabHandleColorChanged(float r, float g, float b, float a)
         {
             GrabHandleColor = new Color(r, g, b, a);
+        }
+        public void SetFontVariation(string axis, float value)
+        {
+            int index = RegisterFontVariationProperty(axis);
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+        public void SetFontVariation(int index, float value)
+        {
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
 
         internal class TextFieldLayout : LayoutItem

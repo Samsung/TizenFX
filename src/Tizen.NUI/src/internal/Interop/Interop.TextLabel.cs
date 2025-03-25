@@ -208,6 +208,8 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_ASYNC_LINE_COUNT_get")]
             public static extern int AsyncLineCountGet();
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_FONT_VARIATIONS_get")]
+            public static extern int FontVariationsGet();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithFixedSize")]
             public static extern void RequestAsyncRenderWithFixedSize(HandleRef textLabelRef, float width, float height);
@@ -241,6 +243,8 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AsyncHeightForWidthComputedSignal_Disconnect")]
             public static extern void AsyncHeightForWidthComputedDisconnect(HandleRef textLabelRef, HandleRef handler);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RegisterFontVariationProperty")]
+            public static extern int RegisterFontVariationProperty(HandleRef textLabelRef, string pTag);
         }
     }
 }
