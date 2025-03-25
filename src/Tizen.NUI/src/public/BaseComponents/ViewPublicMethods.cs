@@ -121,6 +121,20 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            Insert(Children.Count, child);
+        }
+
+        /// <summary>
+        /// Insert a child view to this view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void Insert(int index, View child)
+        {
+            if (index < 0 || index > Children.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Index must be within the bounds of the children");
+            }
+
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
@@ -146,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Children.Add(child);
+                Children.Insert(index, child);
                 OnChildAdded(child);
 
                 if (ChildAdded != null)

@@ -63,11 +63,16 @@ namespace Tizen.NUI
         /// <param name="childLayout">LayoutItem to add to the layout group.</param>
         public virtual void Add(LayoutItem childLayout)
         {
+            Insert(Owner.Children.IndexOf(childLayout.Owner), childLayout);
+        }
+
+        private void Insert(int index, LayoutItem childLayout)
+        {
             if (null == childLayout)
             {
                 throw new ArgumentNullException(nameof(childLayout));
             }
-            LayoutChildren.Add(childLayout);
+            LayoutChildren.Insert(index, childLayout);
             childLayout.SetParent(this);
             // Child added to use a Add transition.
             childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Add;
