@@ -28,6 +28,9 @@ namespace Tizen.NUI
     /// </summary>
     internal static class SystemLocaleLanguageChangedManager
     {
+        private static string localeLanguage = string.Empty;
+        private static WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>> proxy = new WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>>();
+
         static SystemLocaleLanguageChangedManager()
         {
             SystemSettings.LocaleLanguageChanged += SystemLocaleLanguageChanged;
@@ -74,8 +77,5 @@ namespace Tizen.NUI
                 return localeLanguage;
             }
         }
-
-        private static string localeLanguage = string.Empty;
-        private static WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>> proxy = new WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>>();
     }
 }
