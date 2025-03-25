@@ -55,22 +55,22 @@ namespace Tizen.NUI
             public static extern void Detach(global::System.Runtime.InteropServices.HandleRef visualObject);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_Raise")]
-            public static extern uint Raise(global::System.Runtime.InteropServices.HandleRef visualObject);
+            public static extern void Raise(global::System.Runtime.InteropServices.HandleRef visualObject);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_Lower")]
-            public static extern uint Lower(global::System.Runtime.InteropServices.HandleRef visualObject);
+            public static extern void Lower(global::System.Runtime.InteropServices.HandleRef visualObject);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RaiseToTop")]
-            public static extern uint RaiseToTop(global::System.Runtime.InteropServices.HandleRef visualObject);
+            public static extern void RaiseToTop(global::System.Runtime.InteropServices.HandleRef visualObject);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_LowerToBottom")]
-            public static extern uint LowerToBottom(global::System.Runtime.InteropServices.HandleRef visualObject);
+            public static extern void LowerToBottom(global::System.Runtime.InteropServices.HandleRef visualObject);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RaiseAbove")]
-            public static extern uint RaiseAbove(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef target);
+            public static extern void RaiseAbove(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef target);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_LowerBelow")]
-            public static extern uint LowerBelow(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef target);
+            public static extern void LowerBelow(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef target);
         }
     }
 }
