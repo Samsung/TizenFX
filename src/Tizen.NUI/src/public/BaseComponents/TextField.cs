@@ -333,6 +333,21 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Registers FontVariationsProperty with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variations.</param>
+        /// <remarks>
+        /// The returned index can be used with animation.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RegisterFontVariationProperty(string tag)
+        {
+            int index = Interop.TextField.RegisterFontVariationProperty(SwigCPtr, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return index;
+        }
+
+        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -4678,50 +4693,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The FontVariations property.
-        /// </summary>
-        /// <remarks>
-        /// The FontVariations property allows control over different style axes in a variable font, <br />
-        /// such as weight(wght), width(wdth), slant(slnt).
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap FontVariations
-        {
-            get
-            {
-                return GetInternalFontVariations();
-            }
-            set
-            {
-                SetInternalFontVariations(value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private PropertyMap GetInternalFontVariations()
-        {
-#pragma warning disable CA2000 // Dispose objects before losing scope
-            PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.FontVariations);
-            prop.Get(temp);
-            return temp;
-        }
-
-        private void SetInternalFontVariations(PropertyMap newValue)
-        {
-            if (newValue != null)
-            {
-                Object.SetProperty(SwigCPtr, Property.FontVariations, new PropertyValue(newValue));
-            }
-        }
-
-        public void SetProperty(int index, float value)
-        {
-            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
-        }
-
-        /// <summary>
         /// Dispose.
         /// Releases unmanaged and optionally managed resources.
         /// </summary>
@@ -5098,6 +5069,15 @@ namespace Tizen.NUI.BaseComponents
         private void OnGrabHandleColorChanged(float r, float g, float b, float a)
         {
             GrabHandleColor = new Color(r, g, b, a);
+        }
+        public void SetFontVariation(string axis, float value)
+        {
+            int index = RegisterFontVariationProperty(axis);
+            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
+        }
+        public void SetFontVariation(int index, float value)
+        {
+            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
         }
 
         internal class TextFieldLayout : LayoutItem
