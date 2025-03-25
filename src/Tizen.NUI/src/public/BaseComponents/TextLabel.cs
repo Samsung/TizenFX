@@ -224,9 +224,6 @@ namespace Tizen.NUI.BaseComponents
 
                 CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
                     propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
-
-                FontVariationsProperty = BindableProperty.Create(nameof(FontVariations), typeof(PropertyMap), typeof(TextLabel), null,
-                    propertyChanged: SetInternalFontVariationsProperty, defaultValueCreator: GetInternalFontVariationsProperty);
             }
         }
 
@@ -3286,27 +3283,36 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (PropertyMap)GetValue(FontVariationsProperty);
-                }
-                else
-                {
-                    return (PropertyMap)GetInternalFontVariationsProperty(this);
-                }
+                return GetInternalFontVariations();
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(FontVariationsProperty, value);
-                }
-                else
-                {
-                    SetInternalFontVariationsProperty(this, null, value);
-                }
+                SetInternalFontVariations(value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private PropertyMap GetInternalFontVariations()
+        {
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            PropertyMap temp = new PropertyMap();
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            using var prop = Object.GetProperty(SwigCPtr, Property.FontVariations);
+            prop.Get(temp);
+            return temp;
+        }
+
+        private void SetInternalFontVariations(PropertyMap newValue)
+        {
+            if (newValue != null)
+            {
+                Object.SetProperty(SwigCPtr, Property.FontVariations, new PropertyValue(newValue));
+            }
+        }
+
+        public void SetProperty(int index, float value)
+        {
+            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
         }
 
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());

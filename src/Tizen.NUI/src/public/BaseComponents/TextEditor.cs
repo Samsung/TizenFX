@@ -204,8 +204,6 @@ namespace Tizen.NUI.BaseComponents
                 RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
 
                 RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
-
-                FontVariationsProperty = BindableProperty.Create(nameof(FontVariations), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: SetInternalFontVariationsProperty, defaultValueCreator: GetInternalFontVariationsProperty);
             }
         }
 
@@ -4735,6 +4733,11 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(SwigCPtr, Property.RemoveBackInset);
         }
 
+        public void SetProperty(int index, float value)
+        {
+            Object.SetProperty(SwigCPtr, index, new PropertyValue(value));
+        }
+
         /// <summary>
         /// The FontVariations property.
         /// </summary>
@@ -4747,26 +4750,30 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (PropertyMap)GetValue(FontVariationsProperty);
-                }
-                else
-                {
-                    return (PropertyMap)GetInternalFontVariationsProperty(this);
-                }
+                return GetInternalFontVariations();
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(FontVariationsProperty, value);
-                }
-                else
-                {
-                    SetInternalFontVariationsProperty(this, null, value);
-                }
+                SetInternalFontVariations(value);
                 NotifyPropertyChanged();
+            }
+        }
+
+        private PropertyMap GetInternalFontVariations()
+        {
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            PropertyMap temp = new PropertyMap();
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            using var prop = Object.GetProperty(SwigCPtr, Property.FontVariations);
+            prop.Get(temp);
+            return temp;
+        }
+
+        private void SetInternalFontVariations(PropertyMap newValue)
+        {
+            if (newValue != null)
+            {
+                Object.SetProperty(SwigCPtr, Property.FontVariations, new PropertyValue(newValue));
             }
         }
 
