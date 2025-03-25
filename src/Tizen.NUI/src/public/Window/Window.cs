@@ -21,6 +21,7 @@ using TizenSystemInformation.Tizen.System;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 using Tizen.Common;
@@ -990,6 +991,7 @@ namespace Tizen.NUI
         /// Raises the window to the top of the window stack.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void Raise()
         {
             Interop.Window.Raise(SwigCPtr);
