@@ -57,12 +57,21 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        private static IntPtr NewPropertyValueCPtrByColor(Color color)
+        {
+            if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
+
+            return Interop.PropertyValue.NewPropertyValueVector4Componentwise(color.R, color.G, color.B, color.A);
+        }
         /// <summary>
         /// Creates a Color property value.
         /// </summary>
         /// <param name="vectorValue">Color values.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyValue(Color vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector4(Color.getCPtr(vectorValue)), true)
+        public PropertyValue(Color vectorValue) : this(NewPropertyValueCPtrByColor(vectorValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
