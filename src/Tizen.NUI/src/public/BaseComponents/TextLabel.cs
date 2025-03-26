@@ -412,21 +412,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Registers FontVariationsProperty with string tag.
-        /// </summary>
-        /// <param name="tag">The tag of font variations.</param>
-        /// <remarks>
-        /// The returned index can be used with animation.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int RegisterFontVariationProperty(string tag)
-        {
-            int index = Interop.TextLabel.RegisterFontVariationProperty(SwigCPtr, tag);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return index;
-        }
-
-        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -3300,6 +3285,57 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        /// <summary>
+        /// Registers FontVariationsProperty with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variation.</param>
+        /// <returns>The index of the font variation.</returns>
+        /// <remarks>
+        /// The returned index can be used with setting property or animations.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// TextLabel label = new TextLabel();
+        /// int index = label.RegisterFontVariationProperty("wght");
+        /// Animation anim = new Animation(1000);
+        /// anim.AnimateTo(label, "wght", 900.0f);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RegisterFontVariationProperty(string tag)
+        {
+            int index = Interop.TextLabel.RegisterFontVariationProperty(SwigCPtr, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return index;
+        }
+
+        /// <summary>
+        /// Sets Font Variation with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variation.</param>
+        /// <param name="value">The value of font variation.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontVariation(string tag, float value)
+        {
+            int index = RegisterFontVariationProperty(tag);
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+
+        /// <summary>
+        /// Sets Font Variation with index.
+        /// </summary>
+        /// <param name="index">The index of font variation property.</param>
+        /// <param name="value">The value of font variation.</param>
+        /// <remarks>
+        /// To use the index, RegisterFontVariationProperty must precede it.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontVariation(int index, float value)
+        {
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -3550,7 +3586,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
-            internal static readonly int FontVariations = Interop.TextLabel.FontVariationsGet();
             internal static readonly int EllipsisMode = Interop.TextLabel.EllipsisModeGet();
             internal static readonly int IsScrolling = Interop.TextLabel.IsScrollingGet();
 
@@ -3584,15 +3619,6 @@ namespace Tizen.NUI.BaseComponents
         private void OnAnchorClickedColorChanged(float r, float g, float b, float a)
         {
             AnchorClickedColor = new Color(r, g, b, a);
-        }
-        public void SetFontVariation(string axis, float value)
-        {
-            int index = RegisterFontVariationProperty(axis);
-            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
-        }
-        public void SetFontVariation(int index, float value)
-        {
-            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
     }
 }
