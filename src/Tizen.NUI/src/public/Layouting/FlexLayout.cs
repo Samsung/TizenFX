@@ -105,8 +105,6 @@ namespace Tizen.NUI
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
 
-        private IntPtr _rootFlex;  // Pointer to the unmanaged flex layout class.
-
         internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
 
         internal struct MeasuredSize
@@ -163,7 +161,11 @@ namespace Tizen.NUI
             }
             else
             {
-                return (PositionType)GetInternalFlexPositionTypeProperty(view);
+                _ = view ?? throw new ArgumentNullException(nameof(view));
+                if (view.ExcludeLayouting)
+                    return PositionType.Absolute;
+
+                return PositionType.Relative;
             }
         }
 
@@ -294,10 +296,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= AlignmentType.Auto && value <= AlignmentType.Stretch)
                 {
                     flexAlignmentSelfMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -323,9 +326,10 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= PositionType.Relative && value <= PositionType.Absolute)
                 {
-                    SetInternalFlexPositionTypeProperty(view, null, value);
+                    view.ExcludeLayouting = value == PositionType.Absolute;
                 }
             }
         }
@@ -349,10 +353,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value > 0)
                 {
                     flexAspectRatioMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -377,10 +382,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     flexBasisMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -405,10 +411,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     flexShrinkMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -433,10 +440,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     flexGrowMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -478,7 +486,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            _rootFlex = Interop.FlexLayout.New();
             measureChildDelegate = new ChildMeasureCallback(measureChild);
             if (!NUIApplication.IsUsingXaml)
             {
