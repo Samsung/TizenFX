@@ -337,10 +337,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     columnMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -361,10 +362,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 1)
                 {
                     columnSpanMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -386,10 +388,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     rowMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -410,10 +413,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 1)
                 {
                     rowSpanMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -434,10 +438,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= StretchFlags.None && value <= StretchFlags.ExpandAndFill)
                 {
                     horizontalStretchMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -458,10 +463,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= StretchFlags.None && value <= StretchFlags.ExpandAndFill)
                 {
                     verticalStretchMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -482,10 +488,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= Alignment.Start && value <= Alignment.End)
                 {
                     horizontalAlignmentMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -506,10 +513,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= Alignment.Start && value <= Alignment.End)
                 {
                     verticalAlignmentMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -748,7 +756,7 @@ namespace Tizen.NUI
                     // because the grand children's Measure() is called with the mode type AtMost.
                     var layoutWidth = child.LayoutItem.Owner.LayoutWidth;
                     var layoutHeight = child.LayoutItem.Owner.LayoutHeight;
-                    Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
+                    using Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
 
                     if (needMeasuredWidth)
                     {
