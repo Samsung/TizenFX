@@ -4939,23 +4939,20 @@ namespace Tizen.NUI.BaseComponents
 
         private Extents GetInternalPadding()
         {
-            if ((internalPadding == null) || (Layout != null))
+            if (internalPadding == null || (Layout != null && !Layout.IsPaddingHandledByNative()))
             {
                 ushort start = 0, end = 0, top = 0, bottom = 0;
-                if (Layout != null)
+                if (Layout != null && !Layout.IsPaddingHandledByNative() && Layout.Padding != null)
                 {
-                    if (Layout.Padding != null)
-                    {
-                        start = Layout.Padding.Start;
-                        end = Layout.Padding.End;
-                        top = Layout.Padding.Top;
-                        bottom = Layout.Padding.Bottom;
-                    }
+                    start = Layout.Padding.Start;
+                    end = Layout.Padding.End;
+                    top = Layout.Padding.Top;
+                    bottom = Layout.Padding.Bottom;
                 }
                 internalPadding = new Extents(OnPaddingChanged, start, end, top, bottom);
             }
 
-            if (Layout == null)
+            if (Layout == null || Layout.IsPaddingHandledByNative())
             {
                 var tmp = Object.GetProperty(SwigCPtr, Property.PADDING);
                 tmp?.Get(internalPadding);
