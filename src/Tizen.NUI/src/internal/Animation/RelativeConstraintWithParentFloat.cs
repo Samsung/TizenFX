@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// Specialized Constraint.
     /// Make handle's targetIndex value always equal with handle's parent's parentIndex value
     /// </summary>
-    internal class RelativeConstraintWithParentFloat : Constraint
+    internal sealed class RelativeConstraintWithParentFloat : Constraint
     {
         internal RelativeConstraintWithParentFloat(HandleRef handle, int targetIndex, int parentIndex, float rate)
          : base(Interop.Constraint.NewRelativeConstraintWithParentFloat(handle, targetIndex, parentIndex, rate), true)
