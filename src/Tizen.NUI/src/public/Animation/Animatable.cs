@@ -157,6 +157,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// whether a writable property can be the source of an constraint.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>True if the property is a constraint input.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal bool IsPropertyAConstraintInput(int index)
+        {
+            bool ret = Interop.Handle.IsPropertyAConstraintInput(SwigCPtr, index);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
         /// Queries the type of a property.
         /// </summary>
         /// <param name="index">The index of the property.</param>
