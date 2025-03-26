@@ -214,7 +214,7 @@ namespace Tizen.NUI
                             new MeasureSpecification(
                                 new LayoutLength(heightMeasureSpec.Size) - (childMargin.Top + childMargin.Bottom),
                                 heightMeasureSpec.Mode),
-                            new LayoutLength(Padding.Top + Padding.End),
+                            new LayoutLength(Padding.Top + Padding.Bottom),
                             new LayoutLength(CalculateChildSpecSizeHeight(childLayout.Owner)));
                     }
 
