@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Samples
 {
@@ -100,10 +102,14 @@ namespace Tizen.NUI.Samples
 
         private Window win;
         private View root;
+        private View paletteInfoRoot;
 
-        private static uint numberOfLoaderType = 3u;
+        private static uint numberOfLoaderType = 4u;
         private static uint numberOfImagesPerEachType = 12u;
         private static uint totalSubViewCounts = numberOfLoaderType * numberOfImagesPerEachType;
+
+        private static Geometry geometry;
+        private static Shader shader;
 
         // Per each view
         private View[] subView = new View[totalSubViewCounts];
@@ -140,10 +146,19 @@ namespace Tizen.NUI.Samples
             win.Add(root);
 
             AddViews();
+            string infoText = "1'st : ImageLoaded event.\n" +
+            "2'nd : PixelBufferLoaded event.\n" +
+            "3'rd : PixelBufferLoaded event and change it's own logic.\n" +
+            "4'th : PixelBufferLoaded event and get color picks from Palette class.\n" +
+            "\n" +
+            "Press 1~4 key to load each images.\n" +
+            "Press 0 key to load whole images\n";
             var infoLabel = new TextLabel()
             {
-                Text = "1'st : ImageLoaded event.\n2'nd : PixelBufferLoaded event.\n3'rd : PixelBufferLoaded event and change it's own logic.\n\nPress 1~3 key to load each images.\nPress 0 key to load whole images",
+                Text = infoText,
                 MultiLine = true,
+
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.8f),
             };
             root.Add(infoLabel);
 
@@ -155,6 +170,7 @@ namespace Tizen.NUI.Samples
             imageLoader[0].ImageLoaded += OnImageLoaded;
             imageLoader[1].PixelBufferLoaded += OnPixelBufferLoaded;
             imageLoader[2].PixelBufferLoaded += OnPixelBufferLoadedWithCustom;
+            imageLoader[3].PixelBufferLoaded += OnPixelBufferLoadedWithColorPalette;
         }
 
         public void Deactivate()
@@ -164,7 +180,7 @@ namespace Tizen.NUI.Samples
                 imageLoader[i]?.Dispose();
             }
             root?.Unparent();
-            root?.Dispose();
+            root?.DisposeRecursively();
 
             win.KeyEvent -= WindowKeyEvent;
         }
@@ -186,6 +202,10 @@ namespace Tizen.NUI.Samples
                     if (e.Key.KeyPressedName == "0" || e.Key.KeyPressedName == "3")
                     {
                         RequestLoad(2);
+                    }
+                    if (e.Key.KeyPressedName == "0" || e.Key.KeyPressedName == "4")
+                    {
+                        RequestLoad(3);
                     }
                 }
                 catch(Exception ex)
@@ -209,7 +229,7 @@ namespace Tizen.NUI.Samples
                         SizeWidth = 100.0f,
                         SizeHeight = 100.0f,
                         PositionX = j * 100.0f,
-                        PositionY = i * 250.0f + 50.0f,
+                        PositionY = i * 110.0f + 10.0f,
                     };
 
                     var renderer = GenerateRenderer();
@@ -229,7 +249,7 @@ namespace Tizen.NUI.Samples
 
         private void RequestLoad(uint loaderIndex)
         {
-            if (loaderIndex >= 3)
+            if (loaderIndex >= numberOfLoaderType)
             {
                 throw new ArgumentException($"Invalid subViewIndex comes! {loaderIndex}");
             }
@@ -387,19 +407,162 @@ namespace Tizen.NUI.Samples
             subViewTextureSet[viewIndex].SetTexture(0u, texture);
         }
 
+        private void OnPixelBufferLoadedWithColorPalette(object o, AsyncImageLoader.PixelBufferLoadedEventArgs e)
+        {
+            uint viewIndex = 0u;
+            bool colorPick = false;
+            for (uint j = 0u; j < numberOfImagesPerEachType; ++j)
+            {
+                viewIndex = 3u * numberOfImagesPerEachType + j;
+                if (subViewLoadId[viewIndex] == e.LoadingTaskId)
+                {
+                    if (j == 0u)
+                    {
+                        colorPick = true;
+                    }
+                    break;
+                }
+            }
+
+            if (subViewLoadId[viewIndex] != e.LoadingTaskId)
+            {
+                // Should never comes here!
+                Tizen.Log.Error("NUITest", $"{viewIndex}'th loadId {subViewLoadId[viewIndex]} not matched with callback input {e.LoadingTaskId}!!\n");
+                return;
+            }
+            if (e.PixelBuffers == null || e.PixelBuffers.Count == 0 || e.PixelBuffers[0] == null)
+            {
+                Tizen.Log.Info("NUITest", $"Load Fail {viewIndex}'th loadId {subViewLoadId[viewIndex]}\n");
+
+                subViewLoadId[viewIndex] = InvalidLoadId;
+                return;
+            }
+
+            PixelBuffer pixelBuffer = e.PixelBuffers[0];
+
+            // Copy the pixelData if we need to color picking.
+            PixelData pixelData = colorPick ? pixelBuffer.CreatePixelData() : PixelBuffer.Convert(pixelBuffer);
+
+            var width = pixelData.GetWidth();
+            var height = pixelData.GetHeight();
+            var pixelFormat = pixelData.GetPixelFormat();
+            Tizen.Log.Info("NUITest", $"Complete {viewIndex}'th loadId {subViewLoadId[viewIndex]} : {width}x{height} with format {pixelFormat}\n");
+
+            subViewLoadId[viewIndex] = InvalidLoadId;
+
+            Texture texture = new Texture(TextureType.TEXTURE_2D, pixelFormat, width, height);
+            texture.Upload(pixelData);
+
+            subViewTextureSet[viewIndex].SetTexture(0u, texture);
+
+            if(colorPick)
+            {
+                // We need to create new class due to the PixelBuffer become invalidated after callback finished.
+                RequestPaletteGeneration(new PixelBuffer(pixelBuffer));
+            }
+        }
+
+        private async void RequestPaletteGeneration(PixelBuffer pixelBuffer)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            Task<Palette> task = Palette.GenerateAsync(pixelBuffer);
+            var palette = await task;
+            timer.Stop();
+            Tizen.Log.Info("NUITest", $"Palette time spend {timer.ElapsedMilliseconds} ms\n");
+
+            ShowPaletteInfo(palette);
+        }
+
+        private void ShowPaletteInfo(Palette palette)
+        {
+            paletteInfoRoot?.DisposeRecursively();
+            paletteInfoRoot = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size2D(10, 10),
+                },
+                PivotPoint = Position.PivotPointBottomLeft,
+                ParentOrigin = Position.ParentOriginBottomLeft,
+                PositionUsesPivotPoint = true,
+
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.8f),
+            };
+
+            CreateSwatchLabel("Dominant", palette.GetDominantSwatch());
+            CreateSwatchLabel("LightVibrant", palette.GetLightVibrantSwatch());
+            CreateSwatchLabel("Vibrant", palette.GetVibrantSwatch());
+            CreateSwatchLabel("DarkVibrant", palette.GetDarkVibrantSwatch());
+            CreateSwatchLabel("LightMuted", palette.GetLightMutedSwatch());
+            CreateSwatchLabel("Muted", palette.GetMutedSwatch());
+            CreateSwatchLabel("DarkMuted", palette.GetDarkMutedSwatch());
+
+            win.Add(paletteInfoRoot);
+        }
+
+        private void CreateSwatchLabel(string title, Palette.Swatch swatch)
+        {
+            var swatchInfo = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    CellPadding = new Size2D(5, 5),
+                },
+            };
+
+            var titleLabel = new TextLabel()
+            {
+                Text = title,
+            };
+            swatchInfo.Add(titleLabel);
+
+            var bodyLabel = new TextLabel()
+            {
+                Text = " Invalid",
+            };
+            swatchInfo.Add(bodyLabel);
+
+            if (swatch != null)
+            {
+                Color color = swatch.GetRgb();
+                Color titleColor = swatch.GetTitleTextColor();
+                Color bodyColor = swatch.GetBodyTextColor();
+                bodyLabel.Text = " RGB(" + (int)(color.R * 255) + " " + (int)(color.G * 255) + " " + (int)(color.B * 255) + ")";
+
+                swatchInfo.BackgroundColor = color;
+                titleLabel.TextColor = titleColor;
+                bodyLabel.TextColor = bodyColor;
+            }
+
+            paletteInfoRoot.Add(swatchInfo);
+        }
+
         private Geometry GenerateGeometry()
         {
-            using PropertyBuffer vertexBuffer = CreateQuadPropertyBuffer();
-            Geometry geometry = new Geometry();
-            geometry.AddVertexBuffer(vertexBuffer);
-            geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
+            if (geometry == null)
+            {
+                using PropertyBuffer vertexBuffer = CreateQuadPropertyBuffer();
+                geometry = new Geometry();
+                geometry.AddVertexBuffer(vertexBuffer);
+                geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
+            }
 
             return geometry;
         }
 
         private Shader GenerateShader()
         {
-            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "RendererUpdateAreaTest");
+            if (shader == null)
+            {
+                shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "RendererUpdateAreaTest");
+            }
             return shader;
         }
 
