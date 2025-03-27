@@ -65,15 +65,53 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public RecentApplicationControl Controller { get; private set; }
 
-        internal RecentApplicationInfo(Interop.ApplicationManager.RuaRec record) : base(Marshal.PtrToStringAnsi(record.pkgName))
+        /// <summary>
+        /// Gets the recent application package name.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string PackageName { get; private set; }
+        /// <summary>
+        /// Gets the recent application path.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string ApplicationPath { get; private set; }
+
+        /// <summary>
+        /// Gets the recent icon path.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string IconPath { get; private set; }
+
+        /// <summary>
+        /// Gets the recent image path.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string ImagePath { get; private set; }
+
+        /// <summary>
+        /// Gets the recent component id.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string CompId { get; private set; }
+
+         internal RecentApplicationInfo(Interop.ApplicationManager.RuaRec record) : base(Marshal.PtrToStringAnsi(record.pkgName))
         {
-            InstanceId = Marshal.PtrToStringAnsi(record.instanceId);
-            InstanceName = Marshal.PtrToStringAnsi(record.instanceName);
-            Arg = Marshal.PtrToStringAnsi(record.arg);
-            Uri = Marshal.PtrToStringAnsi(record.uri);
+            
+            InstanceId = record.instanceId != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.instanceId) : string.Empty;
+            InstanceName = record.instanceName != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.instanceName) : string.Empty;
+            Arg = record.arg != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.arg) : string.Empty;
+            Uri = record.uri != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.uri) : string.Empty;
             long seconds = record.launchTime.ToInt64();
+            PackageName = record.pkgName != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.pkgName) : string.Empty;
+            ApplicationPath = record.appPath != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.appPath) : string.Empty;
+            IconPath = record.icon != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.icon) : string.Empty;
+            ImagePath = record.image != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.image) : string.Empty;
+            CompId = record.compId != IntPtr.Zero ? Marshal.PtrToStringAnsi(record.compId) : string.Empty;
             LaunchTime = new DateTime(1970, 1, 1).AddSeconds(seconds);
-            Controller = new RecentApplicationControl(Marshal.PtrToStringAnsi(record.pkgName));
+            
+            Controller = new RecentApplicationControl(PackageName);
         }
+
+
     }
 }
