@@ -41,12 +41,12 @@ namespace Tizen.Content.MediaContent
                 Orientation = InteropHelper.GetValue<Orientation>(imageHandle, Interop.ImageInfo.GetOrientation);
 
                 DateTaken = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetDateTaken);
-                ExposureTime = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetExposureTime);
+                //ExposureTime = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetExposureTime);
 
-                FNumber = InteropHelper.GetValue<double>(imageHandle, Interop.ImageInfo.GetFNumber);
-                Iso = InteropHelper.GetValue<int>(imageHandle, Interop.ImageInfo.GetISO);
+                //FNumber = InteropHelper.GetValue<double>(imageHandle, Interop.ImageInfo.GetFNumber);
+                //Iso = InteropHelper.GetValue<int>(imageHandle, Interop.ImageInfo.GetISO);
 
-                Model = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetModel);
+                //Model = InteropHelper.GetString(imageHandle, Interop.ImageInfo.GetModel);
 
             }
             finally
@@ -88,31 +88,31 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The exposure time from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public string ExposureTime { get; }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public string ExposureTime { get; }
 
         /// <summary>
         /// Gets the FNumber from EXIF.
         /// </summary>
         /// <value>The FNumber from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public double FNumber { get; }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public double FNumber { get; }
 
         /// <summary>
         /// Gets the ISO from EXIF.
         /// </summary>
         /// <value>The iso from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public int Iso { get; }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public int Iso { get; }
 
         /// <summary>
         /// Gets the model from EXIF.
         /// </summary>
         /// <value>The model from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public string Model { get; }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public string Model { get; }
     }
 }

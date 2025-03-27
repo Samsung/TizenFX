@@ -70,6 +70,7 @@ namespace Tizen.Content.MediaContent
         /// <since_tizen> 4 </since_tizen>
         public void Disconnect()
         {
+            Log.Info("Tizen.Content.MediaContent", "[Enter]");
             ValidateNotDisposed();
 
             lock (_lock)
@@ -79,10 +80,14 @@ namespace Tizen.Content.MediaContent
                     throw new InvalidOperationException("The database is not connected.");
                 }
 
+                Log.Info("Tizen.Content.MediaContent", "[Start] Disconnect in Disconnect");
                 Interop.Content.Disconnect().ThrowIfError("Failed to disconnect");
+                Log.Info("Tizen.Content.MediaContent", "[End] Disconnect in Disconnect");
 
                 IsConnected = false;
             }
+
+            Log.Info("Tizen.Content.MediaContent", "[Leave]");
         }
 
         private static readonly Interop.Content.MediaContentDBUpdatedCallback _mediaInfoUpdatedCb = (
@@ -230,11 +235,14 @@ namespace Tizen.Content.MediaContent
         /// <since_tizen> 4 </since_tizen>
         public void ScanFile(string path)
         {
+            Log.Info("Tizen.Content.MediaContent", "[Enter]");
+
             ValidateState();
 
             ValidationUtil.ValidateNotNullOrEmpty(path, nameof(path));
 
             Interop.Content.ScanFile(path).Ignore(MediaContentError.InvalidParameter).ThrowIfError("Failed to scan");
+            Log.Info("Tizen.Content.MediaContent", "[Leave]");
         }
 
         /// <summary>
@@ -452,11 +460,14 @@ namespace Tizen.Content.MediaContent
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
+            Log.Info("Tizen.Content.MediaContent", "[Enter]");
             if (!_disposed)
             {
                 if (IsConnected)
                 {
+                    Log.Info("Tizen.Content.MediaContent", "[Start] Disconnect in Dispose");
                     var disconnectResult = Interop.Content.Disconnect();
+                    Log.Info("Tizen.Content.MediaContent", "[End] Disconnect in Dispose");
 
                     if (disconnectResult != MediaContentError.None)
                     {
@@ -466,6 +477,7 @@ namespace Tizen.Content.MediaContent
 
                 _disposed = true;
             }
+            Log.Info("Tizen.Content.MediaContent", "[Leave]");
         }
 
         /// <summary>

@@ -31,17 +31,17 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_date_taken", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetDateTaken(IntPtr handle, out IntPtr dateTaken);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_exposure_time", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetExposureTime(IntPtr handle, out IntPtr exposureTime); // Deprecated
+        //[DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_exposure_time", CallingConvention = CallingConvention.Cdecl)]
+        //internal static extern MediaContentError GetExposureTime(IntPtr handle, out IntPtr exposureTime); // Deprecated
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_fnumber", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetFNumber(IntPtr handle, out double fNumber); // Deprecated
+        //[DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_fnumber", CallingConvention = CallingConvention.Cdecl)]
+        //internal static extern MediaContentError GetFNumber(IntPtr handle, out double fNumber); // Deprecated
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_iso", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetISO(IntPtr handle, out int iso); // Deprecated
+        //[DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_iso", CallingConvention = CallingConvention.Cdecl)]
+        //internal static extern MediaContentError GetISO(IntPtr handle, out int iso); // Deprecated
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_model", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern MediaContentError GetModel(IntPtr handle, out IntPtr model); // Deprecated
+        //[DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_model", CallingConvention = CallingConvention.Cdecl)]
+        //internal static extern MediaContentError GetModel(IntPtr handle, out IntPtr model); // Deprecated
 
         [DllImport(Libraries.MediaContent, EntryPoint = "image_meta_get_width", CallingConvention = CallingConvention.Cdecl)]
         internal static extern MediaContentError GetWidth(IntPtr handle, out int width);

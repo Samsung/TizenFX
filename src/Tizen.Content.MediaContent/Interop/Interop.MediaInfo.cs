@@ -60,12 +60,12 @@ internal static partial class Interop
         internal static extern MediaContentError ForeachBookmarks(string mediaId, FilterHandle filter,
             Common.ItemCallback callback, IntPtr userData = default); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db")]
-        internal static extern MediaContentError GetFaceCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated
+        //[DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db")]
+        //internal static extern MediaContentError GetFaceCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_face_from_db")]
-        internal static extern MediaContentError ForeachFaces(string mediaId, FilterHandle filter, // Deprecated
-            Common.ItemCallback callback, IntPtr userData = default);
+        //[DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_face_from_db")]
+        //internal static extern MediaContentError ForeachFaces(string mediaId, FilterHandle filter, // Deprecated
+        //    Common.ItemCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_image")]
         internal static extern MediaContentError GetImage(MediaInfoHandle handle, out IntPtr imageHandle);
@@ -148,12 +148,12 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_generate_thumbnail")]
         internal static extern MediaContentError GenerateThumbnail(MediaInfoHandle handle);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_start_face_detection")]
-        internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle, // Deprecated
-            FaceDetectionCompletedCallback callback, IntPtr userData = default);
+        //[DllImport(Libraries.MediaContent, EntryPoint = "media_info_start_face_detection")]
+        //internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle, // Deprecated
+        //    FaceDetectionCompletedCallback callback, IntPtr userData = default);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_cancel_face_detection")]
-        internal static extern MediaContentError CancelFaceDetection(MediaInfoHandle handle); // Deprecated
+        //[DllImport(Libraries.MediaContent, EntryPoint = "media_info_cancel_face_detection")]
+        //internal static extern MediaContentError CancelFaceDetection(MediaInfoHandle handle); // Deprecated
     }
 
     internal sealed class MediaInfoHandle : SafeHandle

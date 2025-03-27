@@ -132,11 +132,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public int CountFaceInfo(string mediaId)
-        {
-            return CountFaceInfo(mediaId, null);
-        }
+        // [Obsolete("Deprecated since API11. Will be removed in API13.")]
+        // public int CountFaceInfo(string mediaId)
+        // {
+        //     return CountFaceInfo(mediaId, null);
+        // }
 
         /// <summary>
         /// Retrieves the number of the face information added to or detected from the media with filter.
@@ -150,15 +150,15 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public int CountFaceInfo(string mediaId, CountArguments arguments)
-        {
-            ValidateDatabase();
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public int CountFaceInfo(string mediaId, CountArguments arguments)
+        //{
+        //    ValidateDatabase();
 
-            ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
+        //    ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
 
-            return CommandHelper.Count(Interop.MediaInfo.GetFaceCount, mediaId, arguments);
-        }
+        //    return CommandHelper.Count(Interop.MediaInfo.GetFaceCount, mediaId, arguments);
+        //}
 
         /// <summary>
         /// Retrieves the face information added to or detected from the media.
@@ -171,11 +171,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId)
-        {
-            return SelectFaceInfo(mediaId, null);
-        }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId)
+        //{
+        //    return SelectFaceInfo(mediaId, null);
+        //}
 
         /// <summary>
         /// Retrieves the face information added to or detected from the media with the <see cref="SelectArguments"/>.
@@ -189,16 +189,16 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId, SelectArguments arguments)
-        {
-            ValidateDatabase();
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId, SelectArguments arguments)
+        //{
+        //    ValidateDatabase();
 
-            ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
+        //    ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
 
-            return CommandHelper.SelectMembers(mediaId, arguments, Interop.MediaInfo.ForeachFaces,
-                FaceInfo.FromHandle);
-        }
+        //    return CommandHelper.SelectMembers(mediaId, arguments, Interop.MediaInfo.ForeachFaces,
+        //        FaceInfo.FromHandle);
+        //}
 
         /// <summary>
         /// Retrieves the number of tags that the media has.
@@ -556,6 +556,7 @@ namespace Tizen.Content.MediaContent
         /// <since_tizen> 4 </since_tizen>
         public bool Delete(string mediaId)
         {
+            Log.Info("Tizen.Content.MediaContent", "[Enter]");
             ValidateDatabase();
 
             ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
@@ -563,23 +564,32 @@ namespace Tizen.Content.MediaContent
             if (CommandHelper.Count(
                 Interop.MediaInfo.GetMediaCount, $"{MediaInfoColumns.Id}='{mediaId}'") == 0)
             {
+                Log.Info("Tizen.Content.MediaContent", "return false");
                 return false;
             }
 
+            Log.Info("Tizen.Content.MediaContent", "1");
             Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).
                 ThrowIfError("Failed to delete MediaInfo.");
 
+            Log.Info("Tizen.Content.MediaContent", "2");
             var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
 
+            Log.Info("Tizen.Content.MediaContent", $"3 : path={path}");
             // If we don't check file existence before calling `ScanFile` method,
             // The inconsistency between DB and file system could be occurred.
             if (File.Exists(path))
             {
+                Log.Info("Tizen.Content.MediaContent", "File still exists in file system. Remove it first.");
                 throw new InvalidOperationException("File still exists in file system. Remove it first.");
             }
 
+            Log.Info("Tizen.Content.MediaContent", "4");
             // Native 'delete' function was deprecated, so we need to use 'scan file' function instead of it.
             Database.ScanFile(path);
+            Log.Info("Tizen.Content.MediaContent", "5");
+
+            Log.Info("Tizen.Content.MediaContent", "[Leave]");
 
             return true;
         }
@@ -965,11 +975,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public Task<int> DetectFaceAsync(string mediaId)
-        {
-            return DetectFaceAsync(mediaId, CancellationToken.None);
-        }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public Task<int> DetectFaceAsync(string mediaId)
+        //{
+        //    return DetectFaceAsync(mediaId, CancellationToken.None);
+        //}
 
         /// <summary>
         /// Creates the thumbnail image for the given media.
@@ -1004,106 +1014,106 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public Task<int> DetectFaceAsync(string mediaId, CancellationToken cancellationToken)
-        {
-            if (Features.IsSupported(Features.FaceRecognition) == false)
-            {
-                throw new NotSupportedException($"The feature({Features.FaceRecognition}) is not supported.");
-            }
+        //[Obsolete("Deprecated since API11. Will be removed in API13.")]
+        //public Task<int> DetectFaceAsync(string mediaId, CancellationToken cancellationToken)
+        //{
+        //    if (Features.IsSupported(Features.FaceRecognition) == false)
+        //    {
+        //        throw new NotSupportedException($"The feature({Features.FaceRecognition}) is not supported.");
+        //    }
 
-            ValidateDatabase();
+        //    ValidateDatabase();
 
-            return cancellationToken.IsCancellationRequested ? Task.FromCanceled<int>(cancellationToken) :
-                DetectFaceAsyncCore(mediaId, cancellationToken);
-        }
+        //    return cancellationToken.IsCancellationRequested ? Task.FromCanceled<int>(cancellationToken) :
+        //        DetectFaceAsyncCore(mediaId, cancellationToken);
+        //}
 
-        private static async Task<int> DetectFaceAsyncCore(string mediaId, CancellationToken cancellationToken)
-        {
-            ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
+        //private static async Task<int> DetectFaceAsyncCore(string mediaId, CancellationToken cancellationToken)
+        //{
+        //    ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
 
-            var tcs = new TaskCompletionSource<int>();
+        //    var tcs = new TaskCompletionSource<int>();
 
-            Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).ThrowIfError("Failed to detect faces");
+        //    Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).ThrowIfError("Failed to detect faces");
 
-            if (handle.IsInvalid)
-            {
-                throw new RecordNotFoundException("Media does not exist.");
-            }
+        //    if (handle.IsInvalid)
+        //    {
+        //        throw new RecordNotFoundException("Media does not exist.");
+        //    }
 
-            using (handle)
-            {
-                if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
-                {
-                    throw new UnsupportedContentException("Only image is supported.");
-                }
+        //    using (handle)
+        //    {
+        //        if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
+        //        {
+        //            throw new UnsupportedContentException("Only image is supported.");
+        //        }
 
-                // Native P/Invoke function also check below case, but it returns invalid operation error.
-                // So we check it here to throw more proper exception.
-                string mimeType = InteropHelper.GetString(handle, Interop.MediaInfo.GetMimeType);
-                if (!mimeType.Equals("image/jpeg") && !mimeType.Equals("image/png") && !mimeType.Equals("image/bmp"))
-                {
-                    throw new UnsupportedContentException($"{mimeType} is not supported. Only JPEG, PNG, BMP is supported.");
-                }
+        //        // Native P/Invoke function also check below case, but it returns invalid operation error.
+        //        // So we check it here to throw more proper exception.
+        //        string mimeType = InteropHelper.GetString(handle, Interop.MediaInfo.GetMimeType);
+        //        if (!mimeType.Equals("image/jpeg") && !mimeType.Equals("image/png") && !mimeType.Equals("image/bmp"))
+        //        {
+        //            throw new UnsupportedContentException($"{mimeType} is not supported. Only JPEG, PNG, BMP is supported.");
+        //        }
 
-                var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+        //        var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
 
-                if (File.Exists(path) == false)
-                {
-                    throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
-                }
+        //        if (File.Exists(path) == false)
+        //        {
+        //            throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
+        //        }
 
-                using (RegisterCancelFaceDetection(cancellationToken, tcs, handle))
-                using (var cbKeeper = ObjectKeeper.Get(GetFaceDetectionCallback(tcs)))
-                {
-                    var ret = Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target);
-                    if (ret == MediaContentError.InvalidParameter)
-                    {
-                        throw new UnsupportedContentException("The media is in external usb storage.");
-                    }
+        //        using (RegisterCancelFaceDetection(cancellationToken, tcs, handle))
+        //        using (var cbKeeper = ObjectKeeper.Get(GetFaceDetectionCallback(tcs)))
+        //        {
+        //            //var ret = Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target);
+        //            if (ret == MediaContentError.InvalidParameter)
+        //            {
+        //                throw new UnsupportedContentException("The media is in external usb storage.");
+        //            }
 
-                    ret.ThrowIfError("Failed to detect faces");
+        //            ret.ThrowIfError("Failed to detect faces");
 
-                    return await tcs.Task;
-                }
-            }
-        }
+        //            return await tcs.Task;
+        //        }
+        //    }
+        //}
 
-        private static Interop.MediaInfo.FaceDetectionCompletedCallback GetFaceDetectionCallback(
-            TaskCompletionSource<int> tcs)
-        {
-            return (error, count, _) =>
-            {
-                if (error != MediaContentError.None)
-                {
-                    tcs.TrySetException(error.AsException("Failed to detect faces"));
-                }
-                else
-                {
-                    tcs.TrySetResult(count);
-                }
-            };
-        }
+        //private static Interop.MediaInfo.FaceDetectionCompletedCallback GetFaceDetectionCallback(
+        //    TaskCompletionSource<int> tcs)
+        //{
+        //    return (error, count, _) =>
+        //    {
+        //        if (error != MediaContentError.None)
+        //        {
+        //            tcs.TrySetException(error.AsException("Failed to detect faces"));
+        //        }
+        //        else
+        //        {
+        //            tcs.TrySetResult(count);
+        //        }
+        //    };
+        //}
 
-        private static IDisposable RegisterCancelFaceDetection(CancellationToken cancellationToken,
-            TaskCompletionSource<int> tcs, Interop.MediaInfoHandle handle)
-        {
-            if (cancellationToken.CanBeCanceled == false)
-            {
-                return null;
-            }
+        //private static IDisposable RegisterCancelFaceDetection(CancellationToken cancellationToken,
+        //    TaskCompletionSource<int> tcs, Interop.MediaInfoHandle handle)
+        //{
+        //    if (cancellationToken.CanBeCanceled == false)
+        //    {
+        //        return null;
+        //    }
 
-            return cancellationToken.Register(() =>
-            {
-                if (tcs.Task.IsCompleted)
-                {
-                    return;
-                }
+        //    return cancellationToken.Register(() =>
+        //    {
+        //        if (tcs.Task.IsCompleted)
+        //        {
+        //            return;
+        //        }
 
-                Interop.MediaInfo.CancelFaceDetection(handle).ThrowIfError("Failed to cancel");
-                tcs.TrySetCanceled();
-            });
-        }
+        //        Interop.MediaInfo.CancelFaceDetection(handle).ThrowIfError("Failed to cancel");
+        //        tcs.TrySetCanceled();
+        //    });
+        //}
         #endregion
     }
 }
