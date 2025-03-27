@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -380,6 +381,7 @@ namespace Tizen.NUI.BaseComponents
         /// Once a raise or lower API is used, that view will then have an exclusive sibling order independent of insertion.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseToTop()
         {
             var parentChildren = GetParent()?.Children;
@@ -798,6 +800,7 @@ namespace Tizen.NUI.BaseComponents
         /// Raise view above the next sibling view.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void Raise()
         {
             var parentChildren = GetParent()?.Children;
@@ -855,6 +858,7 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         /// <param name="target">Will be raised above this view.</param>
         /// <since_tizen> 9 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseAbove(View target)
         {
             var parentChildren = GetParent()?.Children;

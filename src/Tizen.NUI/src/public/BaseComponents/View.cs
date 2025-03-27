@@ -4918,7 +4918,7 @@ namespace Tizen.NUI.BaseComponents
                 if (layoutExtraData != null && extents is Extents newPadding)
                     SetPadding(new UIExtents(newPadding.Start, newPadding.End, newPadding.Top, newPadding.Bottom), false);
 
-                if (Layout != null)
+                if (Layout != null && !Layout.IsPaddingHandledByNative())
                 {
                     Layout.Padding = new Extents((Extents)extents);
                     if ((Padding.Start != 0) || (Padding.End != 0) || (Padding.Top != 0) || (Padding.Bottom != 0))
@@ -4939,23 +4939,20 @@ namespace Tizen.NUI.BaseComponents
 
         private Extents GetInternalPadding()
         {
-            if ((internalPadding == null) || (Layout != null))
+            if (internalPadding == null || (Layout != null && !Layout.IsPaddingHandledByNative()))
             {
                 ushort start = 0, end = 0, top = 0, bottom = 0;
-                if (Layout != null)
+                if (Layout != null && !Layout.IsPaddingHandledByNative() && Layout.Padding != null)
                 {
-                    if (Layout.Padding != null)
-                    {
-                        start = Layout.Padding.Start;
-                        end = Layout.Padding.End;
-                        top = Layout.Padding.Top;
-                        bottom = Layout.Padding.Bottom;
-                    }
+                    start = Layout.Padding.Start;
+                    end = Layout.Padding.End;
+                    top = Layout.Padding.Top;
+                    bottom = Layout.Padding.Bottom;
                 }
                 internalPadding = new Extents(OnPaddingChanged, start, end, top, bottom);
             }
 
-            if (Layout == null)
+            if (Layout == null || Layout.IsPaddingHandledByNative())
             {
                 var tmp = Object.GetProperty(SwigCPtr, Property.PADDING);
                 tmp?.Get(internalPadding);
@@ -6290,11 +6287,7 @@ namespace Tizen.NUI.BaseComponents
 
                         // The calculation of the native size of the text component requires padding.
                         // Don't overwrite the zero padding.
-                        bool isTextLayout = (value is Tizen.NUI.BaseComponents.TextLabel.TextLabelLayout) ||
-                                            (value is Tizen.NUI.BaseComponents.TextField.TextFieldLayout) ||
-                                            (value is Tizen.NUI.BaseComponents.TextEditor.TextEditorLayout);
-
-                        if (!isTextLayout && (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0))
+                        if (!value.IsPaddingHandledByNative() && (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0))
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;
@@ -6464,7 +6457,21 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// Gets and Sets hint of partial update area.
+        /// </summary>
+        /// <remarks>
+        /// The property format applied as below logics.
+        /// Vector4(offsetX, offsetY, width, height).
+        /// - offsetX : Offset of the center of partial update area's X axis position from the center of View.
+        /// - offsetY : Offset of the center of partial update area's X axis position from the center of View.
+        /// - width   : Width of partial update area.
+        /// - height  : Height of partial update area.
+        ///
+        /// Special case - If we set Vector4.Zero, it will be used Vector4(0.0f, 0.0f, SizeWidth, SizeHeight) automatically.
+        ///
+        /// This update area give efforts for all Renderer and Visuals.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 UpdateAreaHint
         {

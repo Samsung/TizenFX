@@ -133,6 +133,20 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
+            var widthSpecSize = widthMeasureSpec.GetSize().AsDecimal();
+            var newWidthSpecSize = Math.Max(Math.Min(widthSpecSize, Owner.GetMaximumWidth()), Owner.GetMinimumWidth());
+            if (widthSpecSize != newWidthSpecSize)
+            {
+                widthMeasureSpec.SetSize(new LayoutLength(newWidthSpecSize));
+            }
+
+            var heightSpecSize = heightMeasureSpec.GetSize().AsDecimal();
+            var newHeightSpecSize = Math.Max(Math.Min(heightSpecSize, Owner.GetMaximumHeight()), Owner.GetMinimumHeight());
+            if (heightSpecSize != newHeightSpecSize)
+            {
+                heightMeasureSpec.SetSize(new LayoutLength(newHeightSpecSize));
+            }
+
             // Ensure layout respects it's given minimum size
             float maxWidth = SuggestedMinimumWidth.AsDecimal();
             float maxHeight = SuggestedMinimumHeight.AsDecimal();
@@ -147,12 +161,14 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
+
                 Extents childMargin = childLayout.Margin;
                 var rect = GetLayoutBounds(childLayout.Owner);
                 var flags = GetLayoutFlags(childLayout.Owner);
 
-                // If child view positions with using pivot point, then padding and margin are not used.
-                if (childLayout.Owner.PositionUsesPivotPoint)
+                // If child view does not use bounds, then padding and margin are not used.
+                if (!isBoundsSet)
                 {
                     MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                 }
@@ -163,10 +179,14 @@ namespace Tizen.NUI
 
                     var measuredWidth = MeasureBoundsSize(rect.Width, isWidthProportional,
                                             widthMeasureSpec.GetSize().AsDecimal() - (Padding.Start + Padding.End),
-                                            childMargin.Start + childMargin.End);
+                                            childMargin.Start + childMargin.End,
+                                            childLayout.Owner.GetMinimumWidth(),
+                                            childLayout.Owner.GetMaximumWidth());
                     var measuredHeight = MeasureBoundsSize(rect.Height, isHeightProportional,
                                             heightMeasureSpec.GetSize().AsDecimal() - (Padding.Top + Padding.Bottom),
-                                            childMargin.Top + childMargin.Bottom);
+                                            childMargin.Top + childMargin.Bottom,
+                                            childLayout.Owner.GetMinimumHeight(),
+                                            childLayout.Owner.GetMaximumHeight());
 
                     MeasureSpecification childWidthSpec;
                     if (rect.Width >= 0)
@@ -180,7 +200,7 @@ namespace Tizen.NUI
                                 new LayoutLength(widthMeasureSpec.Size) - (childMargin.Start + childMargin.End),
                                 widthMeasureSpec.Mode),
                             new LayoutLength(Padding.Start + Padding.End),
-                            new LayoutLength(childLayout.Owner.LayoutWidth));
+                            new LayoutLength(CalculateChildSpecSizeWidth(childLayout.Owner)));
                     }
 
                     MeasureSpecification childHeightSpec;
@@ -194,8 +214,8 @@ namespace Tizen.NUI
                             new MeasureSpecification(
                                 new LayoutLength(heightMeasureSpec.Size) - (childMargin.Top + childMargin.Bottom),
                                 heightMeasureSpec.Mode),
-                            new LayoutLength(Padding.Top + Padding.End),
-                            new LayoutLength(childLayout.Owner.LayoutHeight));
+                            new LayoutLength(Padding.Top + Padding.Bottom),
+                            new LayoutLength(CalculateChildSpecSizeHeight(childLayout.Owner)));
                     }
 
                     childLayout.Measure(childWidthSpec, childHeightSpec);
@@ -206,8 +226,8 @@ namespace Tizen.NUI
                 float childRight;
                 float childBottom;
 
-                // If child view positions with using pivot point, then padding and margin are not used.
-                if (childLayout.Owner.PositionUsesPivotPoint)
+                // If child view does not use bounds, then padding and margin are not used.
+                if (!isBoundsSet)
                 {
                     childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
                     childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
@@ -243,6 +263,10 @@ namespace Tizen.NUI
                 }
             }
 
+            // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+            maxWidth = Math.Max(Math.Min(maxWidth, Owner.GetMaximumWidth()), Owner.GetMinimumWidth());
+            maxHeight = Math.Max(Math.Min(maxHeight, Owner.GetMaximumHeight()), Owner.GetMinimumHeight());
+
             SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(maxWidth), widthMeasureSpec, childWidthState),
                                   ResolveSizeAndState(new LayoutLength(maxHeight), heightMeasureSpec, childHeightState));
         }
@@ -267,6 +291,8 @@ namespace Tizen.NUI
                     continue;
                 }
 
+                var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
+
                 Extents childMargin = childLayout.Margin;
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
@@ -275,8 +301,8 @@ namespace Tizen.NUI
                 LayoutLength childLeft;
                 LayoutLength childTop;
 
-                // If child view positions with using pivot point, then padding and margin are not used.
-                if (childLayout.Owner.PositionUsesPivotPoint)
+                // If child view does not use bounds, then padding and margin are not used.
+                if (!isBoundsSet)
                 {
                     childLeft = new LayoutLength(childLayout.Owner.PositionX);
                     childTop = new LayoutLength(childLayout.Owner.PositionY);
@@ -284,18 +310,17 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
                     var rect = GetLayoutBounds(childLayout.Owner);
                     var flags = GetLayoutFlags(childLayout.Owner);
                     var isXProportional = flags.HasFlag(AbsoluteLayoutFlags.XProportional);
                     var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
 
-                    var childX = MeasurePosition(isBoundsSet, childLayout.Owner.PositionX, rect.X, isXProportional,
+                    var childX = MeasureBoundsPosition(rect.X, isXProportional,
                                 MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End),
                                 childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
                                 Padding.Start, childMargin.Start);
 
-                    var childY = MeasurePosition(isBoundsSet, childLayout.Owner.PositionY, rect.Y, isYProportional,
+                    var childY = MeasureBoundsPosition(rect.Y, isYProportional,
                                 MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom),
                                 childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
                                 Padding.Top, childMargin.Bottom);
@@ -308,7 +333,7 @@ namespace Tizen.NUI
             }
         }
 
-        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum)
+        private float MeasureBoundsSize(float boundsValue, bool proportional, float constraint, float marginSum, float min, float max)
         {
             if (boundsValue < 0)
             {
@@ -317,7 +342,8 @@ namespace Tizen.NUI
 
             if (proportional)
             {
-                return Math.Max(0, constraint * boundsValue - marginSum);
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                return Math.Max(Math.Min(Math.Max(0, constraint * boundsValue - marginSum), max), min);
             }
 
             // Margin does not affect to the fixed size set by user.
@@ -334,19 +360,6 @@ namespace Tizen.NUI
             else
             {
                 return paddingBegin + boundsValue + marginBegin;
-            }
-        }
-
-        private float MeasurePosition(bool isBoundsSet, float position, float boundsValue, bool proportional, float constraint, float sizeWithMargin, float paddingBegin, float marginBegin)
-        {
-            // If user sets LayoutBounds, use LayoutBounds. Otherwise, use Position property.
-            if (isBoundsSet)
-            {
-                return MeasureBoundsPosition(boundsValue, proportional, constraint, sizeWithMargin, paddingBegin, marginBegin);
-            }
-            else
-            {
-                return paddingBegin + position + marginBegin;
             }
         }
 

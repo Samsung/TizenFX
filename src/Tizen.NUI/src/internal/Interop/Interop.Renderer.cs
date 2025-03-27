@@ -108,6 +108,33 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get")]
             public static extern int StencilOperationOnZPassGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_MIX_COLOR_get")]
+            public static extern int MixColorGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_MIX_COLOR_RED_get")]
+            public static extern int MixColorRedGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_MIX_COLOR_GREEN_get")]
+            public static extern int MixColorGreenGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_MIX_COLOR_BLUE_get")]
+            public static extern int MixColorBlueGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_OPACITY_get")]
+            public static extern int MixColorOpacityGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_RENDERING_BEHAVIOR_get")]
+            public static extern int RenderingBehaviorGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_BLEND_EQUATION_get")]
+            public static extern int BlendEquationGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_INSTANCE_COUNT_get")]
+            public static extern int InstanceCountGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_UPDATE_AREA_EXTENTS_get")]
+            public static extern int UpdateAreaExtentsGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_New")]
             public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

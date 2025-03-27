@@ -225,6 +225,10 @@ namespace Tizen.NUI.Samples
                 }
             };
 
+            // Remove alpha function now, for test UserAlphaFunctionDelegate alived. 
+            customSpringAlphaFunction = null;
+            customAlphaFunction?.Dispose();
+
             window.Add(root);
         }
 

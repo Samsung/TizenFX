@@ -1679,7 +1679,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _desired_width = value;
                     using PropertyValue setValue = new PropertyValue(value);
-                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue, false);
+                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue);
                 }
             }
         }
@@ -1739,7 +1739,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _desired_height = value;
                     using PropertyValue setValue = new PropertyValue(value);
-                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue, false);
+                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue);
                 }
             }
         }
@@ -2844,15 +2844,16 @@ namespace Tizen.NUI.BaseComponents
                 float specHeight = heightMeasureSpec.Size.AsDecimal();
                 float naturalWidth = Owner.NaturalSize.Width;
                 float naturalHeight = Owner.NaturalSize.Height;
-                float minWidth = Owner.MinimumSize.Width;
-                float maxWidth = Owner.MaximumSize.Width;
-                float minHeight = Owner.MinimumSize.Height;
-                float maxHeight = Owner.MaximumSize.Height;
+                var minWidth = Owner.GetMinimumWidth();
+                var minHeight = Owner.GetMinimumHeight();
+                var maxWidth = Owner.GetMaximumWidth();
+                var maxHeight = Owner.GetMaximumHeight();
                 float aspectRatio = (naturalWidth > 0) ? (naturalHeight / naturalWidth) : 0;
 
                 // Assume that the new width and height are given from the view's suggested size by default.
-                float newWidth = Math.Min(Math.Max(naturalWidth, minWidth), (maxWidth < 0 ? Int32.MaxValue : maxWidth));
-                float newHeight = Math.Min(Math.Max(naturalHeight, minHeight), (maxHeight < 0 ? Int32.MaxValue : maxHeight));
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                float newWidth = Math.Max(Math.Min(naturalWidth, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
+                float newHeight = Math.Max(Math.Min(naturalHeight, maxHeight < 0 ? Int32.MaxValue : maxHeight), minHeight);
 
                 // The width and height measure specs are going to be used to set measured size.
                 // Mark that the measure specs are changed by default to update measure specs later.
