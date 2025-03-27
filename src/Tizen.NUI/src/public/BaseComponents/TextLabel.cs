@@ -2279,6 +2279,113 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Renders a texture at a specified scale to prevent text rendering quality degradation when scaling up with View.Scale.
+        /// </summary>
+        /// <remarks>
+        /// RenderScale is only available in TextRenderMode.AsyncAuto and TextRenderMode.AsyncManual.<br />
+        /// It is only valid when set to 1.0 or greater.<br />
+        /// This property scales up the point size and texture size to the specified scale.<br />
+        /// For example, the results of the rendered textures below are nearly identical:<br />
+        /// FontSize: 20, RenderScale: 1.5<br />
+        /// FontSize: 20, FontSizeScale: 1.5<br />
+        /// However, the texture rendered with the specified RenderScale is downscaled to the original(1.0 scale) size and applied to the visual transform.<br />
+        /// When the texture is increased by View.Scale, its size becomes 100%, ensuring high-quality rendering.<br />
+        /// To achieve optimal text rendering results when using View.Scale, RenderScale should be set to the same value.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the RenderScale.
+        /// <code>
+        /// label.FocusGained += (s, e) =>
+        /// {
+        ///     float scaleUp = 1.5f;
+        ///     label.RenderScale = scaleUp;
+        ///     scaleAnimation = new Animation(200);
+        ///     scaleAnimation.AnimateTo(label, "scale", new Vector3(scaleUp, scaleUp, 1.0f));
+        ///     scaleAnimation.Play();
+        /// };
+        /// label.FocusLost += (s, e) =>
+        /// {
+        ///     float normalScale = 1.0f;
+        ///     label.RenderScale = normalScale;
+        ///     scaleAnimation = new Animation(200);
+        ///     scaleAnimation.AnimateTo(label, "scale", new Vector3(normalScale, normalScale, 1.0f));
+        ///     scaleAnimation.Play();
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RenderScale
+        {
+            get
+            {
+                return (float)Object.InternalGetPropertyFloat(this.SwigCPtr, Property.RenderScale);
+            }
+            set
+            {
+                Object.InternalSetPropertyFloat(this.SwigCPtr, Property.RenderScale, (float)value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// A factor of pixel snap.
+        /// </summary>
+        /// <remarks>
+        /// It should be 0.0 ~ 1.0.<br />
+        /// Controls the degree of pixel snapping applied to the visual position.<br />
+        /// A value of 0.0 means no snapping is applied (original position is preserved), while 1.0 applies full pixel alignment.<br />
+        /// Intermediate values blend smoothly between the original and snapped positions using linear interpolation (mix) in the vertex shader.<br />
+        /// Typical usage:<br />
+        /// To ensure both smooth animations and sharp visual alignment,<br />
+        /// transition the pixelSnapFactor value gradually from 0.0 to 1.0 during or after animations.<br />
+        /// This allows the snapping to engage seamlessly without visible jitter or popping, maintaining both visual quality and motion fluidity.<br />
+        /// Use 0.0 during animation to avoid snapping artifacts.<br />
+        /// Gradually increase to 1.0 as the animation settles, for crisp pixel alignment.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the PixelSnapFactor with RenderScale.
+        /// <code>
+        /// label.FocusGained += (s, e) =>
+        /// {
+        ///     float scaleUp = 1.5f;
+        ///     label.RenderScale = scaleUp;
+        ///     scaleAnimation = new Animation(200);
+        ///     scaleAnimation.AnimateTo(label, "scale", new Vector3(scaleUp, scaleUp, 1.0f));
+        ///     scaleAnimation.Play();
+        ///
+        ///     pixelSnapAnimation = new Animation(200);
+        ///     pixelSnapAnimation.AnimateTo(label, "pixelSnapFactor", 1.0f);
+        ///     pixelSnapAnimation.Play();
+        /// };
+        /// label.FocusLost += (s, e) =>
+        /// {
+        ///     float normalScale = 1.0f;
+        ///     label.RenderScale = normalScale;
+        ///     scaleAnimation = new Animation(200);
+        ///     scaleAnimation.AnimateTo(label, "scale", new Vector3(normalScale, normalScale, 1.0f));
+        ///     scaleAnimation.Play();
+        ///
+        ///     pixelSnapAnimation = new Animation(200);
+        ///     pixelSnapAnimation.AnimateTo(label, "pixelSnapFactor", 0.0f);
+        ///     pixelSnapAnimation.Play();
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PixelSnapFactor
+        {
+            get
+            {
+                return (float)Object.InternalGetPropertyFloat(this.SwigCPtr, Property.PixelSnapFactor);
+            }
+            set
+            {
+                Object.InternalSetPropertyFloat(this.SwigCPtr, Property.PixelSnapFactor, (float)value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The AutoScrollLoopDelay property.<br />
         /// The amount of time to delay the starting time of auto scrolling and further loops.<br />
         /// </summary>
@@ -3532,6 +3639,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
             internal static readonly int EllipsisMode = Interop.TextLabel.EllipsisModeGet();
             internal static readonly int IsScrolling = Interop.TextLabel.IsScrollingGet();
+            internal static readonly int RenderScale = Interop.TextLabel.RenderScaleGet();
+            internal static readonly int PixelSnapFactor = Interop.TextLabel.PixelSnapFactorGet();
 
 
             internal static void Preload()
