@@ -70,7 +70,6 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="PlaylistColumns"/>
         /// <seealso cref="TagColumns"/>
         /// <seealso cref="BookmarkColumns"/>
-        /// <seealso cref="FaceInfoColumns"/>
         /// <since_tizen> 4 </since_tizen>
         public string FilterExpression
         {
@@ -206,7 +205,6 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="PlaylistColumns"/>
         /// <seealso cref="TagColumns"/>
         /// <seealso cref="BookmarkColumns"/>
-        /// <seealso cref="FaceInfoColumns"/>
         /// <since_tizen> 4 </since_tizen>
         public string SortOrder
         {
