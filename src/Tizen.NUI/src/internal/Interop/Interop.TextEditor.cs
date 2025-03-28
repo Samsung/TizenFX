@@ -343,6 +343,8 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_REMOVE_BACK_INSET_get")]
             public static extern int RemoveBackInsetGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_RegisterFontVariationProperty")]
+            public static extern int RegisterFontVariationProperty(global::System.Runtime.InteropServices.HandleRef textEditorRef, string pTag);
         }
     }
 }

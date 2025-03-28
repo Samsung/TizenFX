@@ -1,0 +1,41 @@
+name: NUI Code Style Review (Roslyn)
+
+on:
+  pull_request:
+    branches:
+      - DevelNUI
+    paths:
+      - 'src/Tizen.NUI/**'  # src 폴더 내 파일 변경 시 실행
+
+  workflow_dispatch:
+
+jobs:
+  NUIStyleReview:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: repository checkout (저장소 체크아웃)
+        uses: actions/checkout@v3
+
+      - name: .NET SDK install (닷넷 설치)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'  # 최신 LTS 버전 사용
+
+      - name: Roslyn Analysis run (로즐린 Analyzer 실행)
+        run: |
+          dotnet build ./src/Tizen.NUI/Tizen.NUI.csproj /p:NuiRoslynAnalysis=true > result.txt 2>&1
+
+      - name: Find the result (워닝 에러 표시를 위해 파일에서 찾기)
+        run: |
+          KEYWORD="Error(s)"  # 검색할 단어
+          FILE_PATH="result.txt"  # 검색할 파일
+          MATCHED_LINES=$(grep -C 1 "$KEYWORD" "$FILE_PATH" || echo "No matches found")
+          echo "MATCHED_LINES<<EOF" >> $GITHUB_ENV
+          echo "$MATCHED_LINES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: upload file as artifact (업로드 파일)
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-file
+          path: result.txt

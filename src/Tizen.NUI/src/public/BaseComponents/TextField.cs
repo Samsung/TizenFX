@@ -33,7 +33,6 @@ namespace Tizen.NUI.BaseComponents
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
         static private string defaultFontFamily = "TizenSans";
-        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private string textFieldPlaceHolderTextFocusedSid = null;
@@ -683,7 +682,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} Exception caught.", e);
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                         newFontFamily = defaultFontFamily;
                     }
                     AddSystemSettingsFontTypeChanged();
@@ -4466,7 +4465,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("{0} Exception caught.", e);
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                         systemSettingsFontSize = SystemSettingsFontSize.Normal;
                     }
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
@@ -4679,6 +4678,57 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Registers FontVariationsProperty with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variation.</param>
+        /// <returns>The index of the font variation.</returns>
+        /// <remarks>
+        /// The returned index can be used with setting property or animations.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// TextField field = new TextField();
+        /// int index = field.RegisterFontVariationProperty("wght");
+        /// Animation anim = new Animation(1000);
+        /// anim.AnimateTo(field, "wght", 900.0f);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RegisterFontVariationProperty(string tag)
+        {
+            int index = Interop.TextField.RegisterFontVariationProperty(SwigCPtr, tag);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return index;
+        }
+
+        /// <summary>
+        /// Sets Font Variation with string tag.
+        /// </summary>
+        /// <param name="tag">The tag of font variation.</param>
+        /// <param name="value">The value of font variation.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontVariation(string tag, float value)
+        {
+            int index = RegisterFontVariationProperty(tag);
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+
+        /// <summary>
+        /// Sets Font Variation with index.
+        /// </summary>
+        /// <param name="index">The index of font variation property.</param>
+        /// <param name="value">The value of font variation.</param>
+        /// <remarks>
+        /// To use the index, RegisterFontVariationProperty must precede it.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontVariation(int index, float value)
+        {
+            Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+
+        /// <summary>
         /// Dispose.
         /// Releases unmanaged and optionally managed resources.
         /// </summary>
@@ -4702,11 +4752,7 @@ namespace Tizen.NUI.BaseComponents
             internalTextColor?.Dispose();
             internalGrabHandleColor?.Dispose();
 
-            if (hasSystemLanguageChanged)
-            {
-                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
-            }
-
+            RemoveSystemSettingsLocaleLanguageChanged();
             RemoveSystemSettingsFontTypeChanged();
             RemoveSystemSettingsFontSizeChanged();
 
@@ -4781,19 +4827,16 @@ namespace Tizen.NUI.BaseComponents
         private string SetTranslatable(string textFieldSid)
         {
             string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemLocaleLanguageChangedManager.LocaleLanguage.Replace("_", "-")));
             if (translatableText != null)
             {
-                if (hasSystemLanguageChanged == false)
-                {
-                    systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
-                    hasSystemLanguageChanged = true;
-                }
+                AddSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
             else
             {
                 translatableText = "";
+                RemoveSystemSettingsLocaleLanguageChanged();
                 return translatableText;
             }
         }
@@ -4814,6 +4857,38 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void AddSystemSettingsLocaleLanguageChanged()
+        {
+            if (!hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsLocaleLanguageChanged()
+        {
+            if (hasSystemLanguageChanged)
+            {
+                try
+                {
+                    SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
+                }
+            }
+        }
+
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
@@ -4822,7 +4897,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void AddSystemSettingsFontSizeChanged()
         {
-            if (hasSystemFontSizeChanged != true)
+            if (!hasSystemFontSizeChanged)
             {
                 try
                 {
@@ -4831,15 +4906,14 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontSizeChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
 
         private void RemoveSystemSettingsFontSizeChanged()
         {
-            if (hasSystemFontSizeChanged == true)
+            if (hasSystemFontSizeChanged)
             {
                 try
                 {
@@ -4848,8 +4922,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontSizeChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -4870,8 +4943,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontTypeChanged = false;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -4887,8 +4959,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("{0} Exception caught.", e);
-                    hasSystemFontTypeChanged = true;
+                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
                 }
             }
         }
@@ -5042,8 +5113,10 @@ namespace Tizen.NUI.BaseComponents
                 // Padding will be automatically applied by DALi TextField.
                 var totalWidth = widthMeasureSpec.Size.AsDecimal();
                 var totalHeight = heightMeasureSpec.Size.AsDecimal();
-                var minSize = Owner.MinimumSize;
-                var maxSize = Owner.MaximumSize;
+                var minWidth = Owner.GetMinimumWidth();
+                var minHeight = Owner.GetMinimumHeight();
+                var maxWidth = Owner.GetMaximumWidth();
+                var maxHeight = Owner.GetMaximumHeight();
                 var naturalSize = Owner.GetNaturalSize();
 
                 if (((TextField)Owner).Text.Length == 0)
@@ -5077,13 +5150,15 @@ namespace Tizen.NUI.BaseComponents
                 if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
                     float width = naturalSize != null ? naturalSize.Width : 0;
-                    totalWidth = Math.Min(Math.Max(width, minSize.Width), maxSize.Width);
+                    // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                    totalWidth = Math.Max(Math.Min(width, maxWidth), minWidth);
                 }
 
                 if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
                     float height = naturalSize != null ? naturalSize.Height : 0;
-                    totalHeight = Math.Min(Math.Max(height, minSize.Height), maxSize.Height);
+                    // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                    totalHeight = Math.Max(Math.Min(height, maxHeight), minHeight);
                 }
 
                 widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
@@ -5094,6 +5169,13 @@ namespace Tizen.NUI.BaseComponents
 
                 SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
                                       ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
+            }
+
+            /// <inheritdoc/>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public override bool IsPaddingHandledByNative()
+            {
+                return true;
             }
         }
     }

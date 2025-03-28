@@ -29,16 +29,16 @@ namespace NUILayout
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
             BackgroundColor = Color.Gray;
-            Margin = 100;
 
-            var background = new View()
+            var absoluteLayout = new View()
             {
                 Layout = new AbsoluteLayout(),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = Color.DarkGray,
+                Margin = 100,
             };
-            Add(background);
+            Add(absoluteLayout);
 
             var view = new View()
             {
@@ -50,7 +50,15 @@ namespace NUILayout
                 PivotPoint = new Position(0.5f, 0.5f),
                 ParentOrigin = new Position(0.5f, 0.5f),
             };
-            Add(view);
+            absoluteLayout.Add(view);
+
+            var timer = new Tizen.NUI.Timer(1000);
+            timer.Tick += (o, e) =>
+            {
+                view.Layout.RequestLayout(); // Test if AbsoluteLayout position is updated unexpectedly.
+                return true;
+            };
+            timer.Start();
         }
 
         public void Activate()
@@ -59,7 +67,7 @@ namespace NUILayout
 
             var contentPage = new ContentPage()
             {
-                AppBar = new AppBar() { Title = "PivotCenter PMargin", BackgroundColor = Color.White },
+                AppBar = new AppBar() { Title = "PivotCenter ParentMargin", BackgroundColor = Color.White },
                 Content = this,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,

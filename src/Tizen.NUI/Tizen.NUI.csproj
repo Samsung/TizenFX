@@ -8,6 +8,21 @@
         <DefineConstants>$(DefineConstants);NUI_DEBUG_OFF;</DefineConstants>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(NuiRoslynAnalysis)' == 'true'">
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    </PropertyGroup>
+
+    <Choose>
+        <When Condition="'$(NuiRoslynAnalysis)' == 'true'">
+            <ItemGroup>
+                <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="*">
+                    <PrivateAssets>all</PrivateAssets>
+                    <IncludeAssets>runtime;build;native;contentfiles;analyzers;buildtransitive</IncludeAssets>
+                </PackageReference>
+            </ItemGroup>
+        </When>
+    </Choose>
+
     <ItemGroup>
         <TizenPreloadFile Include="Tizen.NUI.preload" Sequence="30" />
     </ItemGroup>

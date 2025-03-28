@@ -601,7 +601,10 @@ namespace Tizen.NUI
                     {
                         // If height or width specification is not explicitly defined,
                         // the size of the owner view must be reset even the ExcludeLayouting is true.
-                        if (!Owner.LayoutWidth.IsFixedValue || !Owner.LayoutHeight.IsFixedValue)
+                        // Unlike Width/HeightSpecification, LayoutWidth/Height does not set view size automatically.
+                        // Therefore, view size should be checked if it is same with LayoutWidth/Height.
+                        if (!Owner.LayoutWidth.IsFixedValue || Owner.LayoutWidth != Owner.SizeWidth ||
+                            !Owner.LayoutHeight.IsFixedValue || Owner.LayoutHeight != Owner.SizeHeight)
                         {
                             Owner.SetSize(right - left, bottom - top);
                             Owner.NotifyLayoutUpdated(false);
@@ -662,6 +665,22 @@ namespace Tizen.NUI
                     parent?.ChangeLayoutChildOrder(this, order);
                 }
             }
+        }
+
+        /// <summary>
+        /// Indicates if padding is handled by native.
+        /// By default, padding is not handled by native if layout is set to view.
+        /// Instead, padding is handled by layout if layout is set to view.
+        /// If padding is not handled by native, then view padding is copied to layout padding and
+        /// view padding is initialized to zero not to make native handle padding.
+        /// If padding is handled by native, then view padding is preserved and padding is handled
+        /// by native.
+        /// </summary>
+        /// <return>True if padding is handled by native, otherwise false.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool IsPaddingHandledByNative()
+        {
+            return false;
         }
     }
 }
