@@ -620,62 +620,62 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Adds a renderer to the view.
+        /// Adds a renderable to the view.
         /// </summary>
-        /// <param name="renderer">The renderer to add.</param>
-        /// <returns>The index of the Renderer that was added to the view.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public uint AddRenderer(Renderer renderer)
+        /// <param name="renderable">The renderable to add.</param>
+        /// <returns>The index of the Renderable that was added to the view.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint AddRenderable(Renderable renderable)
         {
-            uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderer.getCPtr(renderer));
+            uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderable.getCPtr(renderable));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         /// <summary>
-        /// Retrieves the renderer at the specified index.
+        /// Retrieves the renderable at the specified index.
         /// </summary>
-        /// <param name="index">The index of the renderer to retrieve.</param>
-        /// <returns>A Renderer object at the specified index.</returns>
+        /// <param name="index">The index of the renderable to retrieve.</param>
+        /// <returns>A Renderable object at the specified index.</returns>
         /// <remarks>
-        /// The index must be between 0 and GetRendererCount()-1
+        /// The index must be between 0 and GetRenderableCount()-1
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
-        public Renderer GetRendererAt(uint index)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Renderable GetRenderableAt(uint index)
         {
             IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
-            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderer;
+            Renderable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderable;
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
             }
             else
             {
-                ret = new Renderer(cPtr, true);
+                ret = new Renderable(cPtr, true);
             }
             NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
         /// <summary>
-        /// Removes the specified renderer from the view.
+        /// Removes the specified renderable from the view.
         /// </summary>
-        /// <param name="renderer">The renderer to remove.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void RemoveRenderer(Renderer renderer)
+        /// <param name="renderable">The renderable to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveRenderable(Renderable renderable)
         {
-            Interop.Actor.RemoveRenderer(SwigCPtr, Renderer.getCPtr(renderer));
+            Interop.Actor.RemoveRenderer(SwigCPtr, Renderable.getCPtr(renderable));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Removes a renderer at the specified index from the view.
+        /// Removes a renderable at the specified index from the view.
         /// </summary>
-        /// <param name="index">The index of the renderer to remove.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void RemoveRenderer(uint index)
+        /// <param name="index">The index of the renderable to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveRenderable(uint index)
         {
             Interop.Actor.RemoveRenderer(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending)

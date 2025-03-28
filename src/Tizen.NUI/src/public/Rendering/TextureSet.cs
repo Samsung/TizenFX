@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,8 @@ namespace Tizen.NUI
     /// The images have to be ordered in the same order they are declared in the shader.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class TextureSet : BaseHandle
+    public partial class TextureSet : BaseHandle
     {
-
         /// <summary>
         /// Create an instance of TextureSet.
         /// </summary>
@@ -38,6 +37,15 @@ namespace Tizen.NUI
 
         internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+        }
+
+        /// <summary>
+        /// Gets texture count.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint TextureCount
+        {
+            get => RetrieveTextureCount();
         }
 
         /// <summary>
@@ -112,8 +120,7 @@ namespace Tizen.NUI
         /// Gets the number of textures present in the TextureSet.
         /// </summary>
         /// <returns>The number of textures in the TextureSet.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public uint GetTextureCount()
+        private uint RetrieveTextureCount()
         {
             uint ret = Interop.TextureSet.GetTextureCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
