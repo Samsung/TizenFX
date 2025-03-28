@@ -1049,7 +1049,9 @@ namespace Tizen.NUI.BaseComponents
             if (visualType == (int)Visual.Type.Color)
             {
                 Object.InternalRetrievingVisualPropertyVector4(SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(internalBackgroundColor));
+                internalBackgroundColor.CopyValuesFromDali();
             }
+
             return internalBackgroundColor;
         }
 
@@ -6015,6 +6017,8 @@ namespace Tizen.NUI.BaseComponents
                 internalColor = new Color(OnColorChanged, 0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(SwigCPtr, View.Property.COLOR, internalColor.SwigCPtr);
+            internalColor.CopyValuesFromDali();
+
             return internalColor;
         }
 
