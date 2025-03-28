@@ -111,6 +111,29 @@ namespace Tizen.NUI.WindowSystem
     }
 
     /// <summary>
+    /// Enumeration of gesture grab modes.
+    /// </summary>
+    /// This enum is need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum GestureGrabMode
+    {
+        /// <summary>
+        /// mode none.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// mode exclusive.
+        /// </summary>
+        Exclusive,
+
+        /// <summary>
+        /// mode shared.
+        /// </summary>
+        Shared,
+    }
+
+    /// <summary>
     /// Class for the Tizen Input Gesture.
     /// </summary>
     /// <privilege>
@@ -427,6 +450,23 @@ namespace Tizen.NUI.WindowSystem
             Interop.InputGesture.ErrorCode res = Interop.InputGesture.GestureGrab(_handler, data);
             ErrorCodeThrow(res);
             Log.Debug(LogTag, "GrabGesture");
+        }
+
+        /// <summary>
+        /// Set grab mode of global gesture
+        /// </summary>
+        /// <param name="data">gesture data to grab</param>
+        /// <param name="mode"> The mode of gesture grab</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void SetGestureGrabMode(IntPtr data, GestureGrabMode mode)
+        {
+            if (data == IntPtr.Zero)
+            {
+                throw new ArgumentException("gesture data is not valid.");
+            }
+            Interop.InputGesture.ErrorCode res = Interop.InputGesture.SetGestureGrabMode(_handler, data, (int)mode);
+            ErrorCodeThrow(res);
+            Log.Debug(LogTag, "SetGestureGrabMode");
         }
 
         /// <summary>
