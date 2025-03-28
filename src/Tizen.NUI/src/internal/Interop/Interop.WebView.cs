@@ -312,6 +312,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterNavigationPolicyDecidedCallback")]
             public static extern void RegisterNavigationPolicyDecidedCallback(HandleRef jarg1, HandleRef jarg2);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterOverScrolledCallback")]
+            public static extern void RegisterOverScrolledCallback(HandleRef jarg1, HandleRef jarg2);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterNewWindowPolicyDecidedCallback")]
             public static extern void RegisterNewWindowPolicyDecidedCallback(HandleRef jarg1, HandleRef jarg2);
 
