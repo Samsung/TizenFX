@@ -7,6 +7,10 @@ on:
         description: 'Branch to deploy'
         required: true
         default: 'master'
+      deploy_to_gpr:
+        description: 'Deploy packages to Github Packages Registry?'
+        required: true
+        default: true
       deploy_to_myget:
         description: 'Deploy packages to MyGet?'
         required: true
@@ -21,12 +25,16 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: ${{ env.TARGET_BRANCH }}
         fetch-depth: 0
+    
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.102'
 
     - name: Git Config
       run: |
@@ -47,7 +55,7 @@ jobs:
       run: |
         VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
         echo VERSION=$VERSION
-        echo "::set-output name=version::$VERSION"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
 
     - name: Build
       env:
@@ -63,16 +71,24 @@ jobs:
         git tag -fa "v$VERSION" -m "Release $VERSION"
         git push -f --tags origin refs/tags/"v$VERSION"
 
+    - name: Deploy NuGet packages to Github Packages Registry
+      if: github.event.inputs.deploy_to_gpr == 'true'
+      env:
+        PACKAGES_SOURCE: https://nuget.pkg.github.com/Samsung/index.json
+        APIKEY: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $PACKAGES_SOURCE -t 3000 --skip-duplicate
+
     - name: Deploy NuGet packages to MyGet
       if: github.event.inputs.deploy_to_myget == 'true'
       env:
         NUGET_SOURCE: https://tizen.myget.org/F/dotnet/api/v2/package
         APIKEY: ${{ secrets.MYGET_APIKEY }}
       run: |
-        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000 --skip-duplicate
 
     - name: Setup SSH private keys
-      uses: webfactory/ssh-agent@v0.5.2
+      uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -83,6 +99,10 @@ jobs:
         GERRIT_BRANCH: ${{ steps.metadata.outputs.tizen-branch }}
         GERRIT_URL: ssh://dotnetbuild@review.tizen.org:29418/platform/core/csapi/tizenfx
       run: |
+        if [ -z "$GERRIT_BRANCH" ]; then
+          echo "## no specified tizen branch"
+          exit 0
+        fi
         git remote add gerrit $GERRIT_URL
         git fetch gerrit $GERRIT_BRANCH
         git checkout -t gerrit/$GERRIT_BRANCH

@@ -16,12 +16,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 3.1.402
 
@@ -29,14 +29,14 @@ jobs:
       run: ./build.sh full
 
     - name: Checkout APITool
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool
 
     - name: Extract API
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 

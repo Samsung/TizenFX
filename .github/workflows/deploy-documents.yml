@@ -8,22 +8,22 @@ on:
 jobs:
 
   build:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-20.04
     container:
-      image: tizendotnet/tizenfx-build-worker:2.0
+      image: tizendotnet/tizenfx-build-worker:2.5
+      options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
 
     - name: Checkout TizenFX sources
       run: |
         ./build.sh clone
-
     - name: Cache DocFX output
       id: cache-site
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: _site
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
@@ -34,31 +34,30 @@ jobs:
         ./build.sh restore
         ./build.sh build
         ./build.sh index
-
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
-
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: documents
         path: site.tar.gz
+        overwrite: true
 
   deploy:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4
       with:
         name: documents
+        overwrite: true
 
     - name: Extract Artifacts
       run: |
         tar xfz site.tar.gz
-
     - name: Deploy GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
