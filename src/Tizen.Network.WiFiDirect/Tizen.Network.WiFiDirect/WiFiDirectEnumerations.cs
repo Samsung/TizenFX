@@ -658,4 +658,68 @@ namespace Tizen.Network.WiFiDirect
         /// </summary>
         ConnectionCancelled = -0x01C60000 | 0x10
     }
+
+    /// <summary>
+    /// Enumeration for Wi-Fi frame type.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum WiFiDirectVsieFrameType
+    {
+        /// <summary>
+        /// P2P probe request frame.
+        /// </summary>
+        P2PProbeRequest,
+        /// <summary>
+        /// P2P probe response frame.
+        /// </summary>
+        P2PProbeResponse,
+        /// <summary>
+        ///P2P group owner probe response frame.
+        /// </summary>
+        P2PGOProbeResponse,
+        /// <summary>
+        /// P2P probe request frame.
+        /// </summary>
+        P2PGOBeacon,
+        /// <summary>
+        /// P2P provision discovery request frame.
+        /// </summary>
+        P2PProvisionDiscoveryRequest,
+        /// <summary>
+        /// P2P provision discovery response frame.
+        /// </summary>
+        P2PProvisionDiscoveryResponse,
+        /// <summary>
+        /// P2P probe request frame.
+        /// </summary>
+        P2PGONegotiationRequest,
+        /// <summary>
+        /// P2P group owner negotiation response frame.
+        /// </summary>
+        P2PGONegotiationResponse,
+        /// <summary>
+        /// P2P group owner negotiation confirmation frame.
+        /// </summary>
+        P2PGONegotiationConfirmation,
+        /// <summary>
+        /// P2P invitation request frame.
+        /// </summary>
+        P2PInvitationRequest,
+        /// <summary>
+        /// P2P invitation response frame.
+        /// </summary>
+        P2PInvitationResponse,
+        /// <summary>
+        /// P2P association request frame.
+        /// </summary>
+        P2PAssociationRequest,
+        /// <summary>
+        /// P2P association response frame.
+        /// </summary>
+        P2PAssociationResponse,
+        /// <summary>
+        /// Association request frame.
+        /// </summary>
+        AssociationRequest
+    }
 }
