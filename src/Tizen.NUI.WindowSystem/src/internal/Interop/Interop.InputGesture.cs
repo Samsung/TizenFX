@@ -52,6 +52,9 @@ namespace Tizen.NUI.WindowSystem
             [DllImport(lib, EntryPoint = "efl_util_gesture_grab")]
             internal static extern ErrorCode GestureGrab(IntPtr gestureHandler, IntPtr gestureData);
 
+            [DllImport(lib, EntryPoint = "efl_util_gesture_grab_mode_set")]
+            internal static extern ErrorCode SetGestureGrabMode(IntPtr gestureHandler, IntPtr gestureData, int mode);
+
             [DllImport(lib, EntryPoint = "efl_util_gesture_ungrab")]
             internal static extern ErrorCode GestureUngrab(IntPtr gestureHandler, IntPtr gestureData);
 
