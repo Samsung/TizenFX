@@ -21,7 +21,7 @@ jobs:
 
     - name: Find Pull Request
       id: pull_request
-      uses: actions/github-script@v2
+      uses: actions/github-script@v6
       env:
         WORKFLOW_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
       with:
@@ -41,7 +41,7 @@ jobs:
 
     - name: Report Error if Failure
       if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-      uses: actions/github-script@v2
+      uses: actions/github-script@v6
       env:
         PR_NUMBER: ${{ steps.pull_request.outputs.number }}
       with:
