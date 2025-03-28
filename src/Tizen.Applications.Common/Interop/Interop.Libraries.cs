@@ -30,6 +30,6 @@ internal static partial class Interop
         public const string Application = "libcapi-appfw-application.so.0";
         public const string BaseUtilsi18n = "libbase-utils-i18n.so.0";
         public const string RpcPort = "librpc-port.so.1";
-        public const string IniParser = "libiniparser.so.1";
+        public const string IniParser = "libiniparser.so.4";
     }
 }
