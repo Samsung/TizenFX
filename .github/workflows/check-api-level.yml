@@ -9,7 +9,7 @@ on:
 
 jobs:
   add-labels:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
 
     - name: Get Branch Metadata
@@ -26,7 +26,7 @@ jobs:
       with:
         script: |
           var metadata = JSON.parse(process.env.BRANCH_METADATA)
-          github.issues.addLabels({
+          github.rest.issues.addLabels({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,

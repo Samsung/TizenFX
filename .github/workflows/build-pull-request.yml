@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
 
@@ -51,7 +51,7 @@ jobs:
 
     - name: Extract API Spec
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
@@ -65,7 +65,7 @@ jobs:
 
   check-api:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
@@ -77,7 +77,7 @@ jobs:
       with:
         name: reports
         path: Artifacts
-        overwrite : true
+        overwrite: true
 
     - name: Checkout to base spec
       uses: actions/checkout@v3
@@ -99,7 +99,7 @@ jobs:
 
     - name: Extract Base API
       run: |
-        dotnet run -p .apitool/ \
+        dotnet run --project .apitool/ \
             -- print --format=json --include-hidden \
             -o Artifacts/base-api.json base/Artifacts/bin/public/
 
@@ -114,4 +114,4 @@ jobs:
       with:
         name: reports
         path: Artifacts/api-comp.json
-        overwrite : true
+        overwrite: true
