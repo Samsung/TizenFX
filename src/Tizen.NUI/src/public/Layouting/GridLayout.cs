@@ -81,20 +81,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int AutoRow = int.MinValue;
 
-        private static Dictionary<View, int> columnMap = null;
-        private static Dictionary<View, int> columnSpanMap = null;
-        private static Dictionary<View, int> rowMap = null;
-        private static Dictionary<View, int> rowSpanMap = null;
-        private static Dictionary<View, StretchFlags> horizontalStretchMap = null;
-        private static Dictionary<View, StretchFlags> verticalStretchMap = null;
-        private static Dictionary<View, Alignment> horizontalAlignmentMap  = null;
-        private static Dictionary<View, Alignment> verticalAlignmentMap = null;
+        private static Dictionary<View, int> columnMap;
+        private static Dictionary<View, int> columnSpanMap;
+        private static Dictionary<View, int> rowMap;
+        private static Dictionary<View, int> rowSpanMap;
+        private static Dictionary<View, StretchFlags> horizontalStretchMap;
+        private static Dictionary<View, StretchFlags> verticalStretchMap;
+        private static Dictionary<View, Alignment> horizontalAlignmentMap;
+        private static Dictionary<View, Alignment> verticalAlignmentMap;
 
         private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
-        private float columnSpacing = 0;
-        private float rowSpacing = 0;
+        private float columnSpacing;
+        private float rowSpacing;
 
         /// <summary>
         /// Enumeration for the direction in which the content is laid out

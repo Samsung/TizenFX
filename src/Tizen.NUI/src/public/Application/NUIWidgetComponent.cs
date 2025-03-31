@@ -26,7 +26,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIWidgetComponent : WidgetComponent
     {
-        private bool defaultWindowSet = false;
+        private bool defaultWindowSet;
         internal NUIWindowProxy NUIWindowProxy
         {
             get;

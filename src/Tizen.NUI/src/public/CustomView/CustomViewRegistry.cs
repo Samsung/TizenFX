@@ -192,7 +192,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ViewRegistry is a singleton.
         /// </summary>
-        private static CustomViewRegistry instance = null;
+        private static CustomViewRegistry instance;
 
         private CreateControlDelegate createCallback;
         private SetPropertyDelegate setPropertyCallback;

@@ -31,8 +31,8 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public class TransitionBase : Disposable
     {
-        private AlphaFunction alphaFunction = null;
-        private TimePeriod timePeriod = null;
+        private AlphaFunction alphaFunction;
+        private TimePeriod timePeriod;
 
         /// <summary>
         /// Default constructor to create a TransitionBase

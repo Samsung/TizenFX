@@ -23,23 +23,23 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ImageVisual : VisualMap
     {
-        private string url = null;
-        private string alphaMaskUrl = null;
-        private string auxiliaryImageUrl = null;
-        private FittingModeType? fittingMode = null;
-        private SamplingModeType? samplingMode = null;
-        private int? desiredWidth = null;
-        private int? desiredHeight = null;
+        private string url;
+        private string alphaMaskUrl;
+        private string auxiliaryImageUrl;
+        private FittingModeType? fittingMode;
+        private SamplingModeType? samplingMode;
+        private int? desiredWidth;
+        private int? desiredHeight;
         private bool? synchronousLoading = false;
-        private bool? borderOnly = null;
-        private Vector4 pixelArea = null;
-        private WrapModeType? wrapModeU = null;
-        private WrapModeType? wrapModeV = null;
-        private float? auxiliaryImageAlpha = null;
-        private float? maskContentScale = null;
-        private bool? cropToMask = null;
-        private ReleasePolicyType? releasePolicy = null;
-        private LoadPolicyType? loadPolicy = null;
+        private bool? borderOnly;
+        private Vector4 pixelArea;
+        private WrapModeType? wrapModeU;
+        private WrapModeType? wrapModeV;
+        private float? auxiliaryImageAlpha;
+        private float? maskContentScale;
+        private bool? cropToMask;
+        private ReleasePolicyType? releasePolicy;
+        private LoadPolicyType? loadPolicy;
         private bool? orientationCorrection = true;
         private bool? atlasing = false;
 

@@ -35,7 +35,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class EncodedImageBuffer : BaseHandle
     {
-        private VectorUnsignedChar mCachedBuffer = null; // cached encoded raw buffer
+        private VectorUnsignedChar mCachedBuffer; // cached encoded raw buffer
 
         /// <summary>
         /// The list of type of encoded image buffer.

@@ -366,7 +366,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void RootIdleCallbackType();
 
-        private RootIdleCallbackType rootIdleCallback = null;
+        private RootIdleCallbackType rootIdleCallback;
         private Dictionary<System.Delegate, bool> idleCallbackMap = new Dictionary<System.Delegate, bool>();
 
         private void RootIdleCallback()

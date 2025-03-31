@@ -27,7 +27,7 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
     public class Position2D : Disposable, ICloneable
     {
-        private Position2DChangedCallback callback = null;
+        private Position2DChangedCallback callback;
 
         /// <summary>
         /// The constructor.

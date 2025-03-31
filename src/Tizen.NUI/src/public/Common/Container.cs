@@ -46,7 +46,7 @@ namespace Tizen.NUI
 
         internal BaseHandle InternalParent;
         private List<View> childViews = new List<View>();
-        private MergedStyle mergedStyle = null;
+        private MergedStyle mergedStyle;
         ResourceDictionary _resources;
         bool IResourcesProvider.IsResourcesCreated => _resources != null;
 

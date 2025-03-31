@@ -320,13 +320,13 @@ namespace Tizen.NUI.Accessibility
         #endregion Event, Enum, Struct, ETC
 
         #region Private
-        private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler;
 
-        private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler;
 
-        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderEnabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderEnabledSignalHandler;
 
-        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler;
 
         private static readonly IReadOnlyDictionary<string, SayFinishedState> sayFinishedStateDictionary = new Dictionary<string, SayFinishedState>
         {

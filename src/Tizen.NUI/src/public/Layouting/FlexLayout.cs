@@ -89,18 +89,18 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexGrowProperty = null;
 
-        private static Dictionary<View, AlignmentType> flexAlignmentSelfMap = null;
-        private static Dictionary<View, float> flexAspectRatioMap = null;
-        private static Dictionary<View, float> flexBasisMap = null;
-        private static Dictionary<View, float> flexShrinkMap = null;
-        private static Dictionary<View, float> flexGrowMap = null;
+        private static Dictionary<View, AlignmentType> flexAlignmentSelfMap;
+        private static Dictionary<View, float> flexAspectRatioMap;
+        private static Dictionary<View, float> flexBasisMap;
+        private static Dictionary<View, float> flexShrinkMap;
+        private static Dictionary<View, float> flexGrowMap;
 
-        private Dictionary<View, HandleRef> childHandleRefMap = null;
+        private Dictionary<View, HandleRef> childHandleRefMap;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn;
         private bool disposed;
-        private bool isDisposeQueued = false;
+        private bool isDisposeQueued;
 
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;

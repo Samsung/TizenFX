@@ -367,7 +367,7 @@ namespace Tizen.NUI.ParticleSystem
 
         // Internal proxy object to be used on the update thread
         internal ParticleEmitterProxy EmitterProxy => mProxy;
-        private ParticleEmitterProxy mProxy = null;
+        private ParticleEmitterProxy mProxy;
     }
     
     /// <summary>

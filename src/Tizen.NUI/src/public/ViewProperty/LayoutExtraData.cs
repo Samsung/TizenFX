@@ -60,12 +60,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the minimum width of the view.
         /// </summary>
-        public float MinimumWidth { get; set; } = 0;
+        public float MinimumWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum height of the view.
         /// </summary>
-        public float MinimumHeight { get; set; } = 0;
+        public float MinimumHeight { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum width of the view.

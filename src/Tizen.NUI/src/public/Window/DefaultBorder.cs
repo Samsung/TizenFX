@@ -67,7 +67,7 @@ namespace Tizen.NUI
 
 
         #region Fields
-        private bool disposed = false;
+        private bool disposed;
         private Color backgroundColor;
         private View borderView;
 
@@ -78,9 +78,8 @@ namespace Tizen.NUI
         private ImageView rightCornerIcon;
 
         private Window.BorderDirection direction = Window.BorderDirection.None;
-        private float preScale = 0;
+        private float preScale;
 
-        private View windowView = null;
         private Timer overlayTimer;
 
         private uint borderLineThickness;
@@ -1058,7 +1057,6 @@ namespace Tizen.NUI
             if (disposing)
             {
                 borderView?.Dispose();
-                windowView?.Dispose();
                 borderPanGestureDetector?.Dispose();
                 backgroundColor?.Dispose();
                 minimalizeIcon?.Dispose();

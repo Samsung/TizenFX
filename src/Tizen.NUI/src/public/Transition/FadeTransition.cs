@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public class FadeTransition : TransitionBase
     {
-        private float opacity = 0.0f;
+        private float opacity;
 
         /// <summary>
         /// Create a FadeTransition for the View pair.

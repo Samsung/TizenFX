@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// </summary>
     public class KeyValue : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         /// <summary>
         /// Int key.
         /// </summary>
@@ -52,9 +52,9 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public PropertyValue TrueValue = null;
 
-        private string key = null;
-        private object originalValue = null;
-        private object originalKey = null;
+        private string key;
+        private object originalValue;
+        private object originalKey;
 
         /// <summary>
         /// The default Constructor of KeyValue class.

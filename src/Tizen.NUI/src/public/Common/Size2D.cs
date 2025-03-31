@@ -28,7 +28,7 @@ namespace Tizen.NUI
     public class Size2D : Disposable, ICloneable
     {
 
-        private Size2DChangedCallback callback = null;
+        private Size2DChangedCallback callback;
 
         /// <summary>
         /// The constructor.
