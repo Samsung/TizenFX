@@ -194,29 +194,29 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Alignment SetPadding.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.SetPadding M")]
+        [Description("Alignment SetAlignmentPadding.")]
+        [Property("SPEC", "Tizen.NUI.Alignment.SetAlignmentPadding M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentSetPadding()
+        public void AlignmentSetAlignmentPadding()
         {
-            tlog.Debug(tag, $"AlignmentSetPadding START");
+            tlog.Debug(tag, $"AlignmentSetAlignmentPadding START");
 
             var testingTarget = new Alignment(Alignment.Type.HorizontalCenter);
             Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
             Assert.IsInstanceOf<Alignment>(testingTarget, "Should be an instance of Alignment type.");
 
-            tlog.Debug(tag, "Alignment.Padding : " + testingTarget.GetPadding());
+            tlog.Debug(tag, "Alignment.Padding : " + testingTarget.GetAlignmentPadding());
 
             using (Alignment.Padding padding = new Alignment.Padding(1.0f, 2.0f, 3.0f, 4.0f))
             {
-                testingTarget.SetPadding(padding);
-                tlog.Debug(tag, "Alignment.Padding : " + testingTarget.GetPadding());
+                testingTarget.SetAlignmentPadding(padding);
+                tlog.Debug(tag, "Alignment.Padding : " + testingTarget.GetAlignmentPadding());
             }
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentSetPadding END (OK)");
+            tlog.Debug(tag, $"AlignmentSetAlignmentPadding END (OK)");
         }
 
         [Test]

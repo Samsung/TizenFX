@@ -166,13 +166,13 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void SetPadding(Alignment.Padding padding)
+        public void SetAlignmentPadding(Alignment.Padding padding)
         {
             Interop.Alignment.SetPadding(SwigCPtr, Alignment.Padding.getCPtr(padding));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Alignment.Padding GetPadding()
+        public Alignment.Padding GetAlignmentPadding()
         {
             Alignment.Padding ret = new Alignment.Padding(Interop.Alignment.GetPadding(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

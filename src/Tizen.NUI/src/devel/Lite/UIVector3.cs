@@ -105,7 +105,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Converts the UIVector3 to Vector3 class implicitly.
         /// </summary>
-        /// <param name="uiVector2">A UIVector3 to be converted to Vector3</param>
+        /// <param name="uiVector3">A UIVector3 to be converted to Vector3</param>
         public static implicit operator Vector3(UIVector3 uiVector3)
         {
             return new Vector3(uiVector3.X, uiVector3.Y, uiVector3.Z);
