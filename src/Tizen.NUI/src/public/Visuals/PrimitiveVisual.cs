@@ -23,18 +23,18 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PrimitiveVisual : VisualMap
     {
-        private PrimitiveVisualShapeType? _shape = null;
-        private Color _mixColorForPrimitiveVisual = null;
-        private int? _slices = null;
-        private int? _stacks = null;
-        private float? _scaleTopRadius = null;
-        private float? _scaleBottomRadius = null;
-        private float? _scaleHeight = null;
-        private float? _scaleRadius = null;
-        private Vector3 _scaleDimensions = null;
-        private float? _bevelPercentage = null;
-        private float? _bevelSmoothness = null;
-        private Vector3 _lightPosition = null;
+        private PrimitiveVisualShapeType? _shape;
+        private Color _mixColorForPrimitiveVisual;
+        private int? _slices;
+        private int? _stacks;
+        private float? _scaleTopRadius;
+        private float? _scaleBottomRadius;
+        private float? _scaleHeight;
+        private float? _scaleRadius;
+        private Vector3 _scaleDimensions;
+        private float? _bevelPercentage;
+        private float? _bevelSmoothness;
+        private Vector3 _lightPosition;
 
         /// <summary>
         /// Default constructor of PrimitiveVisual class.

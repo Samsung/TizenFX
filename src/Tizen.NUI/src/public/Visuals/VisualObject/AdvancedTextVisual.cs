@@ -34,10 +34,10 @@ namespace Tizen.NUI.Visuals
     public class AdvancedTextVisual : Visuals.TextVisual
     {
         #region Internal
-        private string textLabelSid = null;
+        private string textLabelSid;
 
         private static Tizen.NUI.SystemLocaleLanguageChanged systemLocaleLanguageChanged = new Tizen.NUI.SystemLocaleLanguageChanged();
-        private bool hasSystemLanguageChanged = false;
+        private bool hasSystemLanguageChanged;
         #endregion
 
         #region Constructor

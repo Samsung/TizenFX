@@ -25,13 +25,13 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class MeshVisual : VisualMap
     {
-        private string objectURL = null;
-        private string materialURL = null;
-        private string texturesPath = null;
-        private MeshVisualShadingModeValue? shadingMode = null;
-        private bool? useMipmapping = null;
-        private bool? useSoftNormals = null;
-        private Vector3 lightPosition = null;
+        private string objectURL;
+        private string materialURL;
+        private string texturesPath;
+        private MeshVisualShadingModeValue? shadingMode;
+        private bool? useMipmapping;
+        private bool? useSoftNormals;
+        private Vector3 lightPosition;
 
         /// <summary>
         /// Default constructor of MeshVisual class.

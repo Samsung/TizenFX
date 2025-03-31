@@ -23,14 +23,14 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class GradientVisual : VisualMap
     {
-        private Vector2 _startPosition = null;
-        private Vector2 _endPosition = null;
-        private Vector2 _center = null;
-        private float? _radius = null;
-        private PropertyArray _stopOffset = null;
-        private PropertyArray _stopColor = null;
-        private GradientVisualUnitsType? _units = null;
-        private GradientVisualSpreadMethodType? _spreadMethod = null;
+        private Vector2 _startPosition;
+        private Vector2 _endPosition;
+        private Vector2 _center;
+        private float? _radius;
+        private PropertyArray _stopOffset;
+        private PropertyArray _stopColor;
+        private GradientVisualUnitsType? _units;
+        private GradientVisualSpreadMethodType? _spreadMethod;
 
         /// <summary>
         /// Default constructor of GradientVisual.

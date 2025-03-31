@@ -2391,7 +2391,7 @@ namespace Tizen.NUI
 
         private static readonly object locker = new object();
 
-        private static int key = 0;
+        private static int key;
 
         private static FrameCallbackType internalHookFrameCallback = OnInternalHookFrameCallback;
 

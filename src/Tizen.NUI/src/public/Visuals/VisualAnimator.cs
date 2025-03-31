@@ -25,12 +25,12 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualAnimator : VisualMap
     {
-        private string alphaFunction = null;
-        private int startTime = 0;
-        private int endTime = 0;
-        private string target = null;
-        private string propertyIndex = null;
-        private object destinationValue = null;
+        private string alphaFunction;
+        private int startTime;
+        private int endTime;
+        private string target;
+        private string propertyIndex;
+        private object destinationValue;
 
         /// <summary>
         /// Create VisualAnimator object.

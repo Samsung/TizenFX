@@ -167,8 +167,8 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewUserMediaPermissionRequestEventArgs> userMediaPermissionRequestEventHandler;
         private WebViewUserMediaPermissionRequestCallback userMediaPermissionRequestCallback;
 
-        private WebContext webContext = null;
-        private WebCookieManager webCookieManager = null;
+        private WebContext webContext;
+        private WebCookieManager webCookieManager;
 
         /// <summary>
         /// Default constructor to create a WebView.
@@ -2633,7 +2633,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private Dictionary<int, JavaScriptMessageHandler> _evaluateJavaScriptHandlerMap = new Dictionary<int, JavaScriptMessageHandler>();
-        private int _evaluateJavaScriptCallbackId = 0;
+        private int _evaluateJavaScriptCallbackId;
 
         /// <summary>
         /// Evaluates JavaScript code represented as a string.

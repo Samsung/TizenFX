@@ -32,10 +32,10 @@ namespace Tizen.NUI
         private string logTag = "NUI";
         private readonly SafeFrameBrokerHandle handle;
         private Dictionary<int, Interop.FrameBroker.AppControlResultCallback> resultCallbackMaps = new Dictionary<int, Interop.FrameBroker.AppControlResultCallback>();
-        private int resultId = 0;
+        private int resultId;
         private Interop.FrameBroker.FrameContextLifecycleCallbacks callbacks;
         private IntPtr context = IntPtr.Zero;
-        private bool disposed = false;
+        private bool disposed;
 
         private Renderer renderer;
         private TextureSet textureSet;

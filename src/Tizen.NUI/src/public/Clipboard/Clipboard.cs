@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// </remarks>
         public delegate void ClipboardCallback(bool success, ClipEvent clipEvent);
 
-        internal bool hasClipboardDataReceived = false;
+        internal bool hasClipboardDataReceived;
         internal Dictionary<uint, ClipboardCallback> receivedCallbackDictionary = new Dictionary<uint, ClipboardCallback>();
 
         private Clipboard(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

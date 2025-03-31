@@ -51,8 +51,8 @@ namespace Tizen.NUI.Utility
     {
         private struct Axis
         {
-            public static int X = 0;
-            public static int Y = 1;
+            public const int X = 0;
+            public const int Y = 1;
         }
 
         private struct ComputedVelocity
@@ -81,8 +81,8 @@ namespace Tizen.NUI.Utility
             }
         }
 
-        private int mPointerCount = 0;
-        private bool mIsComputed = false;
+        private int mPointerCount;
+        private bool mIsComputed;
         private ComputedVelocity mComputedVelocity;
         private VelocityTrackerStrategy[] mConfiguredStrategies;
 

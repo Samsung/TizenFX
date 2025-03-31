@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualMap : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         /// <summary>
         /// outputVisualMap.
         /// </summary>
@@ -76,11 +76,11 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected VisualFittingModeType? _visualFittingMode = null;
 
-        private Vector4 cornerRadius = null;
-        private VisualTransformPolicyType? cornerRadiusPolicy = null;
-        private float? borderlineWidth = null;
-        private Color borderlineColor = null;
-        private float? borderlineOffset = null;
+        private Vector4 cornerRadius;
+        private VisualTransformPolicyType? cornerRadiusPolicy;
+        private float? borderlineWidth;
+        private Color borderlineColor;
+        private float? borderlineOffset;
 
         /// <summary>
         /// The map for visual.
@@ -90,16 +90,16 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected PropertyMap _commonlyUsedMap = null;
 
-        private Vector2 visualSize = null;
-        private Vector2 visualOffset = null;
-        private Vector2 visualOffsetPolicy = null;
-        private Vector2 visualSizePolicy = null;
-        private Visual.AlignType? visualOrigin = null;
-        private Visual.AlignType? visualAnchorPoint = null;
+        private Vector2 visualSize;
+        private Vector2 visualOffset;
+        private Vector2 visualOffsetPolicy;
+        private Vector2 visualSizePolicy;
+        private Visual.AlignType? visualOrigin;
+        private Visual.AlignType? visualAnchorPoint;
 
-        private PropertyMap visualTransformMap = null;
+        private PropertyMap visualTransformMap;
 
-        private int? depthIndex = null;
+        private int? depthIndex;
 
         /// <summary>
         /// Constructor.
@@ -717,7 +717,7 @@ namespace Tizen.NUI
         /// Suppress UpdateVisual() to update properties to Parent.
         /// If it is set to true, UpdateVisual() is ignored unless it is called with force.
         /// </summary>
-        internal bool SuppressUpdateVisual { get; set; } = false;
+        internal bool SuppressUpdateVisual { get; set; }
 
         internal void UpdateVisual(bool force = false)
         {

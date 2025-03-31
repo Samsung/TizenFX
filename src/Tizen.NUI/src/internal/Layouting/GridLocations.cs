@@ -30,8 +30,8 @@ namespace Tizen.NUI
         private int maxColumnConut;
         private float[] hLocations;
         private float[] vLocations;
-        private int totalHorizontalExpand = 0;
-        private int totalVerticalExpand = 0;
+        private int totalHorizontalExpand;
+        private int totalVerticalExpand;
 
         private List<GridChild> gridChildren = new List<GridChild>();
 

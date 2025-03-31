@@ -75,8 +75,8 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
-        private View internalFocusIndicator = null;
-        private View nullFocusIndicator = null;
+        private View internalFocusIndicator;
+        private View nullFocusIndicator;
 
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br />

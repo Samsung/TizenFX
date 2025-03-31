@@ -39,18 +39,18 @@ namespace Tizen.NUI.Visuals
     public abstract class VisualBase : BaseHandle
     {
         #region Internal And Private
-        internal PropertyMap cachedVisualPropertyMap = null;
-        internal PropertyMap changedPropertyMap = null;
+        internal PropertyMap cachedVisualPropertyMap;
+        internal PropertyMap changedPropertyMap;
 
         internal bool visualCreationRequiredFlag = true; // The first time should create visual.
 
-        internal bool visualCreationManually = false;
+        internal bool visualCreationManually;
 
         private int internalType = (int)Tizen.NUI.Visual.Type.Invalid;
 
-        private bool visualPropertyUpdateProcessAttachedFlag = false;
+        private bool visualPropertyUpdateProcessAttachedFlag;
 
-        private bool visualFittingModeApplied = false; // Whether we use fitting mode, or DontCare.
+        private bool visualFittingModeApplied; // Whether we use fitting mode, or DontCare.
 
         internal class VisualTransformInfo : System.IDisposable
         {

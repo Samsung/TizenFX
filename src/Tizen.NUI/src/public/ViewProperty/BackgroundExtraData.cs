@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// </summary>
     internal class BackgroundExtraData : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         internal BackgroundExtraData()
         {
             BorderlineColor = Tizen.NUI.Color.Black;

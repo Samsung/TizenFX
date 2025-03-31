@@ -63,7 +63,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets a <see cref="UIRect"/> structure with all coordinates and sizes set to zero.
         /// </summary>
-        public static UIRect Zero = new UIRect();
+        public static readonly UIRect Zero;
 
         /// <summary>
         /// Gets the y-coordinate of the top edge of the rectangle.

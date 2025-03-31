@@ -22,7 +22,7 @@ namespace Tizen.NUI.BaseComponents
 {
     public partial class WebView
     {
-        private static readonly BindableProperty UrlProperty = null;
+        private static readonly BindableProperty UrlProperty;
 
         internal static void SetInternalUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -39,7 +39,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalUrl();
         }
 
-        private static readonly BindableProperty UserAgentProperty = null;
+        private static readonly BindableProperty UserAgentProperty;
 
         internal static void SetInternalUserAgentProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -56,7 +56,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalUserAgent();
         }
 
-        private static readonly BindableProperty ScrollPositionProperty = null;
+        private static readonly BindableProperty ScrollPositionProperty;
 
         internal static void SetInternalScrollPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -73,7 +73,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalScrollPosition();
         }
 
-        private static readonly BindableProperty ScrollSizeProperty = null;
+        private static readonly BindableProperty ScrollSizeProperty;
 
         internal static object GetInternalScrollSizeProperty(BindableObject bindable)
         {
@@ -81,7 +81,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalScrollSize();
         }
 
-        private static readonly BindableProperty ContentSizeProperty = null;
+        private static readonly BindableProperty ContentSizeProperty;
 
         internal static object GetInternalContentSizeProperty(BindableObject bindable)
         {
@@ -89,7 +89,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalContentSize();
         }
 
-        private static readonly BindableProperty TitleProperty = null;
+        private static readonly BindableProperty TitleProperty;
 
         internal static object GetInternalTitleProperty(BindableObject bindable)
         {
@@ -97,7 +97,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalTitle();
         }
 
-        private static readonly BindableProperty VideoHoleEnabledProperty = null;
+        private static readonly BindableProperty VideoHoleEnabledProperty;
 
         internal static void SetInternalVideoHoleEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -114,7 +114,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalVideoHoleEnabled();
         }
 
-        private static readonly BindableProperty MouseEventsEnabledProperty = null;
+        private static readonly BindableProperty MouseEventsEnabledProperty;
 
         internal static void SetInternalMouseEventsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -131,7 +131,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalMouseEventsEnabled();
         }
 
-        private static readonly BindableProperty KeyEventsEnabledProperty = null;
+        private static readonly BindableProperty KeyEventsEnabledProperty;
 
         internal static void SetInternalKeyEventsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalKeyEventsEnabled();
         }
 
-        private static readonly BindableProperty ContentBackgroundColorProperty = null;
+        private static readonly BindableProperty ContentBackgroundColorProperty;
 
         internal static void SetInternalContentBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -165,7 +165,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalContentBackgroundColor();
         }
 
-        private static readonly BindableProperty TilesClearedWhenHiddenProperty = null;
+        private static readonly BindableProperty TilesClearedWhenHiddenProperty;
 
         internal static void SetInternalTilesClearedWhenHiddenProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -182,7 +182,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalTilesClearedWhenHidden();
         }
 
-        private static readonly BindableProperty TileCoverAreaMultiplierProperty = null;
+        private static readonly BindableProperty TileCoverAreaMultiplierProperty;
 
         internal static void SetInternalTileCoverAreaMultiplierProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -199,7 +199,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalTileCoverAreaMultiplier();
         }
 
-        private static readonly BindableProperty CursorEnabledByClientProperty = null;
+        private static readonly BindableProperty CursorEnabledByClientProperty;
 
         internal static void SetInternalCursorEnabledByClientProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -216,7 +216,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalCursorEnabledByClient();
         }
 
-        private static readonly BindableProperty SelectedTextProperty = null;
+        private static readonly BindableProperty SelectedTextProperty;
 
         internal static object GetInternalSelectedTextProperty(BindableObject bindable)
         {
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalSelectedText();
         }
 
-        private static readonly BindableProperty PageZoomFactorProperty = null;
+        private static readonly BindableProperty PageZoomFactorProperty;
 
         internal static void SetInternalPageZoomFactorProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -241,7 +241,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalPageZoomFactor();
         }
 
-        private static readonly BindableProperty TextZoomFactorProperty = null;
+        private static readonly BindableProperty TextZoomFactorProperty;
 
         internal static void SetInternalTextZoomFactorProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -258,7 +258,7 @@ namespace Tizen.NUI.BaseComponents
             return webview.GetInternalTextZoomFactor();
         }
 
-        private static readonly BindableProperty LoadProgressPercentageProperty = null;
+        private static readonly BindableProperty LoadProgressPercentageProperty;
 
         internal static object GetInternalLoadProgressPercentageProperty(BindableObject bindable)
         {

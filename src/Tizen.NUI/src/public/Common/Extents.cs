@@ -122,7 +122,7 @@ namespace Tizen.NUI
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
 		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort bottom);
-        private ExtentsChangedCallback callback = null;
+        private ExtentsChangedCallback callback;
 
         /// <summary>
         /// The Start extent.

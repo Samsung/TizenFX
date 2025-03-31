@@ -29,7 +29,7 @@ namespace Tizen.NUI
         private string logTag = "NUI";
         private readonly SafeFrameProviderHandle handle;
         private Interop.FrameProvider.FrameProviderEventCallbacks callbacks;
-        private bool disposed = false;
+        private bool disposed;
 
         /// <summary>
         /// Initializes the FrameProvider class.

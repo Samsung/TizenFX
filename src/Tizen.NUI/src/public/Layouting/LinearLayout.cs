@@ -197,7 +197,7 @@ namespace Tizen.NUI
         /// <since_tizen> 9 </since_tizen>
         public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Top;
 
-        private float totalLength = 0.0f;
+        private float totalLength;
         private Size2D cellPadding = new Size2D(0, 0);
         private Orientation linearOrientation = Orientation.Horizontal;
 

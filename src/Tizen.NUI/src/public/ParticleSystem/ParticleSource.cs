@@ -209,7 +209,7 @@ namespace Tizen.NUI.ParticleSystem
         // private fields
         private static Interop.ParticleSource.ParticleSourceInitInvokerType mOnInitInvoker = OnInitInvoker;
         private static Interop.ParticleSource.ParticleSourceUpdateInvokerType mOnUpdateInvoker = OnUpdateInvoker;
-        private ParticleSourceInterface mInterface = null;
+        private ParticleSourceInterface mInterface;
         private static IntPtr gRefObjectPtr;
     }
 }
