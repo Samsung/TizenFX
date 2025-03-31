@@ -24,63 +24,8 @@ namespace Tizen.NUI
     /// Defines a value type of color.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UIColor : IEquatable<UIColor>, IToken<UIColor>
+    public partial struct UIColor : IEquatable<UIColor>, IToken<UIColor>
     {
-        /// <summary>
-        /// The default color. (This is to distinguish from zero corners)
-        /// </summary>
-        public static readonly UIColor Default = new (-1, -1, -1, -1);
-
-        /// <summary>
-        /// The transparent color.
-        /// </summary>
-        public static readonly UIColor Transparent = new (0, 0, 0, 0);
-
-        /// <summary>
-        /// The transparent color.
-        /// </summary>
-        public static readonly UIColor Black = new (0, 0, 0, 1);
-
-        /// <summary>
-        /// The white color.
-        /// </summary>
-        public static readonly UIColor White = new (1, 1, 1, 1);
-
-        /// <summary>
-        /// The gray color.
-        /// </summary>
-        public static readonly UIColor Gray = new (0.5f, 0.5f, 0.5f, 1);
-
-        /// <summary>
-        /// The red color.
-        /// </summary>
-        public static readonly UIColor Red = new (1, 0, 0, 1);
-
-        /// <summary>
-        /// The green color.
-        /// </summary>
-        public static readonly UIColor Green = new (0, 1, 0, 1);
-
-        /// <summary>
-        /// The blue color.
-        /// </summary>
-        public static readonly UIColor Blue = new (0, 0, 1, 1);
-
-        /// <summary>
-        /// The yellow color.
-        /// </summary>
-        public static readonly UIColor Yellow = new (1, 1, 0, 1);
-
-        /// <summary>
-        /// The cyan color.
-        /// </summary>
-        public static readonly UIColor Cyan = new (0, 1, 1, 1);
-
-        /// <summary>
-        /// The magenta color.
-        /// </summary>
-        public static readonly UIColor Magenta = new (1, 0, 1, 1);
-
         private float _r; // multiply alpha for token
         private float _g; // fixed alpha for token
         private float _b;
