@@ -61,7 +61,7 @@ namespace Tizen.NUI
         private bool registerMe;
 
         //The flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
+        private bool isDisposeQueued;
 
         /// <summary>
         /// Create an instance of BaseHandle.

@@ -1799,7 +1799,7 @@ namespace Tizen.NUI
     /// </summary>
     internal struct FrameworkInformation
     {
-        public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
+        public const string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
     }
 
     /// <summary>

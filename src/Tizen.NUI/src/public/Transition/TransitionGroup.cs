@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionGroup : TransitionBase
     {
-        private List<TransitionBase> transitionList = null;
+        private List<TransitionBase> transitionList;
 
         /// <summary>
         /// Create a FadeTransition for the View pair.

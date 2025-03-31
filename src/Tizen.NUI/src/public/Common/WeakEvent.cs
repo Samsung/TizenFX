@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
         private const int addThreshold = 1000; // Experimetal constant
         private const int listLengthThreshold = 1000; // Experimetal constant
-        private int cleanUpAddCount = 0;
+        private int cleanUpAddCount;
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
         /// <summary>

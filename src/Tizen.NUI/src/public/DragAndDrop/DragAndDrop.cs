@@ -55,8 +55,8 @@ namespace Tizen.NUI
         private Window mDragWindow;
         private int shadowWidth;
         private int shadowHeight;
-        private int dragWindowOffsetX = 0;
-        private int dragWindowOffsetY = 0;
+        private int dragWindowOffsetX;
+        private int dragWindowOffsetY;
 
         private const int MinDragWindowWidth = 100;
         private const int MinDragWindowHeight = 100;

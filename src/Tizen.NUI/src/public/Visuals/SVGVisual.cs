@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class SVGVisual : VisualMap
     {
-        private string url = null;
+        private string url;
 
         /// <summary>
         /// Default constructor of SVGVisual class.

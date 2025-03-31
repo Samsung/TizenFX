@@ -28,7 +28,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WindowData : Disposable
     {
-        private IBorderInterface borderInterface = null;
+        private IBorderInterface borderInterface;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WindowData() : this(Interop.WindowData.New(), true)

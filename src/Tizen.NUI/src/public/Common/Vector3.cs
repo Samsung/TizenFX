@@ -103,7 +103,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal delegate void Vector3ChangedCallback(float x, float y, float z);
-        private Vector3ChangedCallback callback = null;
+        private Vector3ChangedCallback callback;
 
         /// <summary>
         /// Returns a Vector2 instance where both the x and y components are set to 1.0f.

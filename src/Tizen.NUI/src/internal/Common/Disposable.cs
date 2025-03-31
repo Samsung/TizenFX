@@ -40,7 +40,7 @@ namespace Tizen.NUI
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn { get; set; }
-        private bool isDisposeQueued = false;
+        private bool isDisposeQueued;
 
         /// <summary>
         /// Create an instance of Disposable.

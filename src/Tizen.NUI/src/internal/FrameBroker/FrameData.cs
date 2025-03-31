@@ -27,7 +27,7 @@ namespace Tizen.NUI
         private const string logTag = "NUI";
         private readonly IntPtr frame;
         private int fd = -1;
-        private uint size = 0;
+        private uint size;
 
         internal FrameData(IntPtr frame)
         {

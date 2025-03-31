@@ -32,10 +32,10 @@ namespace Tizen.NUI
         protected Application application;
         private string stylesheet = "";
         private NUIApplication.WindowMode windowMode = NUIApplication.WindowMode.Opaque;
-        private Rectangle windowRectangle = null;
+        private Rectangle windowRectangle;
         private WindowType defaultWindowType = WindowType.Normal;
         private ICoreTask coreTask;
-        private WindowData windowData = null;
+        private WindowData windowData;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.

@@ -35,7 +35,7 @@ namespace Tizen.NUI
         private float windowHeight;
         private LayoutTransitionManager transitionManager;
 
-        private int layoutCount = 0;
+        private int layoutCount;
 
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />

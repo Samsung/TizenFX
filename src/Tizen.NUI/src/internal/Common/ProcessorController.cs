@@ -33,8 +33,8 @@ namespace Tizen.NUI
     /// </summary>
     internal sealed class ProcessorController : Disposable
     {
-        private static ProcessorController instance = null;
-        private static bool initialized = false;
+        private static ProcessorController instance;
+        private static bool initialized;
 
         private ProcessorController() : this(true)
         {
@@ -63,7 +63,7 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ProcessorEventHandler();
 
-        private ProcessorEventHandler processorCallback = null;
+        private ProcessorEventHandler processorCallback;
 
         private uint onceEventIndex;
         // Double buffered once event processing

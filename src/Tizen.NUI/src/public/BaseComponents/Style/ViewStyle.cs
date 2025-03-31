@@ -69,9 +69,9 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty IsEnabledProperty = new StyleProperty<View, bool>((v, o) => v.IsEnabled = o);
 
         private Dictionary<IStyleProperty, object> values = new Dictionary<IStyleProperty, object>();
-        private bool disposed = false;
+        private bool disposed;
 
-        private float? sizeDepth = null;
+        private float? sizeDepth;
 
         static ViewStyle() { }
 

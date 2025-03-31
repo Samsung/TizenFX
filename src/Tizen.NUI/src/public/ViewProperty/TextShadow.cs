@@ -26,8 +26,8 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextShadow : ICloneable, IDisposable
     {
-        private bool disposed = false;
-        private readonly PropertyMap propertyMap = null;
+        private bool disposed;
+        private readonly PropertyMap propertyMap;
 
         internal delegate void PropertyChangedCallback(TextShadow instance);
 

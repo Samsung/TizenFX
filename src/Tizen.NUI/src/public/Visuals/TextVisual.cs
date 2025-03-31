@@ -24,19 +24,19 @@ namespace Tizen.NUI
     public class TextVisual : VisualMap
     {
         static private float defaultPointSize = 18;
-        private string text = null;
-        private string fontFamily = null;
-        private PropertyMap fontStyle = null;
+        private string text;
+        private string fontFamily;
+        private PropertyMap fontStyle;
         private float pointSize = defaultPointSize;
-        private bool? multiLine = null;
-        private string horizontalAlignment = null;
-        private string verticalAlignment = null;
-        private Color textColor = null;
-        private bool? enableMarkup = null;
-        private PropertyMap shadow = null;
-        private PropertyMap underline = null;
-        private PropertyMap outline = null;
-        private PropertyMap background = null;
+        private bool? multiLine;
+        private string horizontalAlignment;
+        private string verticalAlignment;
+        private Color textColor;
+        private bool? enableMarkup;
+        private PropertyMap shadow;
+        private PropertyMap underline;
+        private PropertyMap outline;
+        private PropertyMap background;
 
         /// <summary>
         /// Default constructor of TextVisual class.

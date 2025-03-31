@@ -24,11 +24,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class AnimatedImageVisual : VisualMap
     {
-        private List<string> urls = null;
-        private int? batchSize = null;
-        private int? cacheSize = null;
-        private float? frameDelay = null;
-        private float? loopCount = null;
+        private List<string> urls;
+        private int? batchSize;
+        private int? cacheSize;
+        private float? frameDelay;
+        private float? loopCount;
 
         /// <summary>
         /// Default constructor of AnimatedImageVisual class.
