@@ -28,9 +28,9 @@ namespace Tizen.NUI.Visuals
     {
         #region Internal And Private
         internal static readonly int ActionReload = Tizen.NUI.BaseComponents.ImageView.ActionReload;
-        internal bool isResourceUrlValid = false;
+        internal bool isResourceUrlValid;
 
-        private PropertyMap temperalStoredPropertyMap = null; // To store property map when resource url is not valid.
+        private PropertyMap temperalStoredPropertyMap; // To store property map when resource url is not valid.
         #endregion
 
         /// <summary>

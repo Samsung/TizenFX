@@ -27,7 +27,7 @@ namespace Tizen.NUI
     {
         private const int MaxBitWidth = 62;
         private static readonly Dictionary<string, ulong> registeredStates = new Dictionary<string, ulong>();
-        private static int nextBitPosition = 0;
+        private static int nextBitPosition;
 
         /// <summary>
         /// </summary>

@@ -261,7 +261,7 @@ namespace Tizen.NUI
             private const int minGrow = 1;
 
             private int capacity = initialcapacity;
-            private int tail = 0;
+            private int tail;
             private T[] heap = Array.Empty<T>();
 
             public CustomHeap(Comparer<T> comparer)

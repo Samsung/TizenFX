@@ -650,6 +650,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private PositionChangedCallback callback = null;
+        private PositionChangedCallback callback;
     }
 }

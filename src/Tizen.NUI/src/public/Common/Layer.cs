@@ -29,7 +29,7 @@ namespace Tizen.NUI
     public class Layer : Container
     {
         private Window window;
-        private int layoutCount = 0;
+        private int layoutCount;
 
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;

@@ -47,14 +47,14 @@ namespace Tizen.NUI
         /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
-        private static System.Resources.ResourceManager resourceManager = null;
-        private static string currentLoadedXaml = null;
+        private static System.Resources.ResourceManager resourceManager;
+        private static string currentLoadedXaml;
 
         /// <summary>
         /// The border window
         /// </summary>
-        private bool borderEnabled = false;
-        private IBorderInterface borderInterface = null;
+        private bool borderEnabled;
+        private IBorderInterface borderInterface;
 
         private States currentState = States.Invalid;
 

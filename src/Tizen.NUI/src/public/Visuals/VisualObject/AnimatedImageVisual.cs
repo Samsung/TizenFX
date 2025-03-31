@@ -34,7 +34,7 @@ namespace Tizen.NUI.Visuals
 
         internal static readonly int ActionJumpTo = Tizen.NUI.BaseComponents.AnimatedImageView.ActionJumpTo;
 
-        private List<string> resourceUrls = null;
+        private List<string> resourceUrls;
         #endregion
 
         #region Constructor

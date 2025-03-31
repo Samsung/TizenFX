@@ -59,9 +59,9 @@ namespace Tizen.NUI
         private static Theme themeForInitialize; // baseTheme + platformTheme + userTheme. It is used when the component is created.
         private static readonly List<Theme> cachedPlatformThemes = new List<Theme>(); // Themes provided by framework.
         private static readonly List<string> packages = new List<string>();// This is to store base theme creators by packages.
-        private static bool platformThemeEnabled = false;
-        private static bool isInEventProgress = false;
-        private static bool updateThemeDirty = false;
+        private static bool platformThemeEnabled;
+        private static bool isInEventProgress;
+        private static bool updateThemeDirty;
 
         static ThemeManager()
         {
@@ -171,7 +171,7 @@ namespace Tizen.NUI
             }
         }
 
-        internal static bool ApplicationThemeChangeSensitive { get; set; } = false;
+        internal static bool ApplicationThemeChangeSensitive { get; set; }
 
 #if PROFILE_TV
         internal const bool InitialThemeDisabled = true;

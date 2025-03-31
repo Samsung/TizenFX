@@ -55,24 +55,24 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Animation : BaseHandle
     {
-        private static bool? disableAnimation = null;
+        private static bool? disableAnimation;
 
         private AnimationFinishedEventCallbackType animationFinishedEventCallback;
         private System.IntPtr finishedCallbackOfNative;
 
         private AnimationProgressReachedEventCallbackType animationProgressReachedEventCallback;
 
-        private string[] properties = null;
-        private string[] destValue = null;
-        private int[] startTime = null;
-        private int[] endTime = null;
+        private string[] properties;
+        private string[] destValue;
+        private int[] startTime;
+        private int[] endTime;
 
-        private List<string> propertyList = null;
-        private List<string> destValueList = null;
-        private List<int> startTimeList = null;
-        private List<int> endTimeList = null;
+        private List<string> propertyList;
+        private List<string> destValueList;
+        private List<int> startTimeList;
+        private List<int> endTimeList;
 
-        private List<System.Delegate> customAlphaFunctionDelegates = null;
+        private List<System.Delegate> customAlphaFunctionDelegates;
 
         /// <summary>
         /// Creates an initialized animation.<br />

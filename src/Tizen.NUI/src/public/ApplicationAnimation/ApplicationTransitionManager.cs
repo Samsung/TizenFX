@@ -27,7 +27,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ApplicationTransitionManager : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         private FrameProvider frameProvider;
         private DefaultFrameBroker frameBroker;
         private Window mainWindow;

@@ -25,7 +25,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class FrameUpdateCallbackInterface : Disposable
     {
-        private uint onUpdateCallbackVersion = 0u;
+        private uint onUpdateCallbackVersion;
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

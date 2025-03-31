@@ -37,12 +37,12 @@ namespace Tizen.NUI
         private EventThreadCallback eventThreadCallback;
         private EventThreadCallback.CallbackDelegate disposeQueueProcessDisposablesDelegate;
 
-        private bool initialized = false;
-        private bool processorRegistered = false;
-        private bool eventThreadCallbackTriggered = false;
+        private bool initialized;
+        private bool processorRegistered;
+        private bool eventThreadCallbackTriggered;
 
-        private bool incrementalDisposeSupported = false;
-        private bool fullCollectRequested = false;
+        private bool incrementalDisposeSupported;
+        private bool fullCollectRequested;
 
         private DisposeQueue()
         {

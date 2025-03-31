@@ -41,7 +41,7 @@ namespace Tizen.NUI
     public class Theme : BindableObject, IResourcesProvider
     {
         private readonly Dictionary<string, ViewStyle> map;
-        private IEnumerable<KeyValuePair<string, string>> changedResources = null;
+        private IEnumerable<KeyValuePair<string, string>> changedResources;
         private string baseTheme;
         ResourceDictionary resources;
 
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         /// The version of the Theme.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string Version { get; set; } = null;
+        public string Version { get; set; }
 
         /// <summary>
         /// The url of small broken image
@@ -220,7 +220,7 @@ namespace Tizen.NUI
 
         internal int Count => map.Count;
 
-        internal int PackageCount { get; set; } = 0;
+        internal int PackageCount { get; set; }
 
         /// <summary>
         /// Get an enumerator of the theme.

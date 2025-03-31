@@ -86,7 +86,7 @@ namespace Tizen.NUI
         }
 
         internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
-        private RectangleChangedCallback callback = null;
+        private RectangleChangedCallback callback;
 
         /// <summary>
         /// The x position of the rectangle.
