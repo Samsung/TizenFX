@@ -56,12 +56,16 @@ namespace Tizen.NUI.Samples
             View clippedImage = new View();
             clippedImage.ClippingMode = ClippingModeType.ClipChildren;
 
-            // Create the required renderer and add to the clipped image view
+            // Create the required renderable and add to the clipped image view
             Shader shader = CreateShader();
             CreateGeometry();
-            Renderer renderer = new Renderer(geometry, shader);
-            renderer.BlendMode = 2;
-            clippedImage.AddRenderer(renderer);
+            Renderable renderable = new Renderable()
+            {
+                Geometry = geometry,
+                Shader = shader,
+                BlendMode = BlendMode.On,
+            };
+            clippedImage.AddRenderable(renderable);
 
             // Register the property on the clipped image view which will allow animations between a circle and a quad
             int propertyIndex = clippedImage.RegisterProperty("uDelta", new PropertyValue(0.0f));

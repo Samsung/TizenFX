@@ -69,7 +69,7 @@ namespace Tizen.NUI.Samples
             public Vec2 texCoord;
         };
 
-        private Renderer CreateRenderer()
+        private Renderable CreateRenderable()
         {
             TexturedQuadVertex vertex1 = new TexturedQuadVertex();
             TexturedQuadVertex vertex2 = new TexturedQuadVertex();
@@ -106,10 +106,14 @@ namespace Tizen.NUI.Samples
             // Create the shader
             Shader shader = new Shader( VERTEX_SHADER, FRAGMENT_SHADER, "CircularTextShader" );
 
-            // Create the renderer
-            Renderer renderer = new Renderer( geometry, shader );
+            // Create the renderable
+            Renderable renderable = new Renderable()
+            {
+                Geometry = geometry,
+                Shader = shader,
+            };
 
-            return renderer;
+            return renderable;
         }
 
         private uint GetBytesPerPixel(PixelFormat pixelFormat)
@@ -344,8 +348,8 @@ namespace Tizen.NUI.Samples
             embeddedItems.Add(IMAGE2);
 
             TextureSet textureSet = CreateTextureSet( textParameters, embeddedItems );
-            Renderer renderer = CreateRenderer();
-            renderer.SetTextures( textureSet );
+            Renderable renderable = CreateRenderable();
+            renderable.TextureSet = textureSet;
 
             View actor = new View();
             actor.PivotPoint = PivotPoint.TopLeft;
@@ -354,7 +358,7 @@ namespace Tizen.NUI.Samples
             actor.Size = new Size( 360, 360 );
             actor.Color = Color.White;
 
-            actor.AddRenderer( renderer );
+            actor.AddRenderable( renderable );
             root.Add(actor);
         }
 

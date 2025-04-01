@@ -221,7 +221,6 @@ namespace Tizen.NUI.Samples
             {
                 for (uint j = 0u; j < numberOfImagesPerEachType; ++j)
                 {
-                    // View area is red, and additional renderer area is yellow.
                     View view = new View()
                     {
                         Name = $"subView{i}x{j}",
@@ -232,15 +231,15 @@ namespace Tizen.NUI.Samples
                         PositionY = i * 110.0f + 10.0f,
                     };
 
-                    var renderer = GenerateRenderer();
+                    var renderable = GenerateRenderable();
 
-                    view.AddRenderer(renderer);
+                    view.AddRenderable(renderable);
                     root.Add(view);
 
                     uint viewIndex = i * numberOfImagesPerEachType + j;
 
                     subView[viewIndex] = view;
-                    subViewTextureSet[viewIndex] = renderer.GetTextures();
+                    subViewTextureSet[viewIndex] = renderable.TextureSet;
                     subViewLoadId[viewIndex] = InvalidLoadId;
                 }
                 subViewUrlIndex[i] = (uint)(ImageUrlList.Length - 1);
@@ -501,7 +500,7 @@ namespace Tizen.NUI.Samples
             CreateSwatchLabel("Muted", palette.GetMutedSwatch());
             CreateSwatchLabel("DarkMuted", palette.GetDarkMutedSwatch());
 
-            win.Add(paletteInfoRoot);
+            root.Add(paletteInfoRoot);
         }
 
         private void CreateSwatchLabel(string title, Palette.Swatch swatch)
@@ -561,27 +560,25 @@ namespace Tizen.NUI.Samples
         {
             if (shader == null)
             {
-                shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "RendererUpdateAreaTest");
+                shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "AsyncImageLoaderTest");
             }
             return shader;
         }
 
-        private Renderer GenerateRenderer()
+        private Renderable GenerateRenderable()
         {
-            Renderer renderer = new Renderer();
-            Geometry geometry = GenerateGeometry();
-            Shader shader = GenerateShader();
-            TextureSet textureSet = new TextureSet();
+            Renderable renderable = new Renderable()
+            {
+                Geometry = GenerateGeometry(),
+                Shader = GenerateShader(),
+                TextureSet = new TextureSet(),
+            };
 
             // Set some invalid texture so we can ignore rendering.
             Texture texture = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, 1u, 1u);
-            textureSet.SetTexture(0u, texture);
+            renderable.TextureSet.SetTexture(0u, texture);
 
-            renderer.SetGeometry(geometry);
-            renderer.SetShader(shader);
-            renderer.SetTextures(textureSet);
-
-            return renderer;
+            return renderable;
         }
     }
 }
