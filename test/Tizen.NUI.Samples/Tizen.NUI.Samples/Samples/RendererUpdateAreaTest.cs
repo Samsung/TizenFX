@@ -157,7 +157,7 @@ namespace Tizen.NUI.Samples
         {
             for(int i = 0; i < 3; i++)
             {
-                // View area is red, and additional renderer area is yellow.
+                // View area is red, and additional renderable area is yellow.
                 View view = new View()
                 {
                     Color = Color.Yellow,
@@ -168,21 +168,21 @@ namespace Tizen.NUI.Samples
                     PositionY = extraSizeHeight * 0.5f,
                 };
 
-                var renderer = GenerateRenderer();
+                var renderable = GenerateRenderable();
 
                 // Make it draw under the background
-                renderer.DepthIndex = Renderer.Ranges.Background - 1;
+                renderable.DepthIndex = DepthIndexRanges.Background - 1;
 
                 if (i == 1)
                 {
-                    renderer.UpdateArea = new UIExtents(0.0f, extraSizeHeight * 0.5f, 0.0f, extraSizeHeight * 0.5f);
+                    renderable.UpdateArea = new UIExtents(0.0f, extraSizeHeight * 0.5f, 0.0f, extraSizeHeight * 0.5f);
                 }
                 else if (i == 2)
                 {
-                    renderer.UpdateArea = new UIExtents(extraSizeHeight * 0.5f, extraSizeHeight * 0.5f, extraSizeHeight * 0.5f, extraSizeHeight * 0.5f);
+                    renderable.UpdateArea = new UIExtents(extraSizeHeight * 0.5f, extraSizeHeight * 0.5f, extraSizeHeight * 0.5f, extraSizeHeight * 0.5f);
                 }
 
-                view.AddRenderer(renderer);
+                view.AddRenderable(renderable);
 
                 moveXAnimation.AnimateBy(view, "PositionX", 350.0f);
                 moveYAnimation.AnimateBy(view, "PositionY", 200.0f);
@@ -221,18 +221,17 @@ namespace Tizen.NUI.Samples
             return shader;
         }
 
-        private Renderer GenerateRenderer()
+        private Renderable GenerateRenderable()
         {
-            Renderer renderer = new Renderer();
-            Geometry geometry = GenerateGeometry();
-            Shader shader = GenerateShader();
+            Renderable renderable = new Renderable()
+            {
+                Geometry = GenerateGeometry(),
+                Shader = GenerateShader(),
+            };
 
-            renderer.SetGeometry(geometry);
-            renderer.SetShader(shader);
+            renderable.RegisterProperty("uCustomExtraSize", new PropertyValue(new UIVector2(extraSizeWidth, extraSizeHeight)));
 
-            renderer.RegisterProperty("uCustomExtraSize", new PropertyValue(new UIVector2(extraSizeWidth, extraSizeHeight)));
-
-            return renderer;
+            return renderable;
         }
 
         public void Deactivate()
