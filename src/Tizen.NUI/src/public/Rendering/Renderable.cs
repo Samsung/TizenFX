@@ -396,6 +396,40 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets and Sets extents of partial update area.
+        /// </summary>
+        /// <remarks>
+        /// Extents the area - the position and the size - used for the attached View's partial update area calculation.
+        /// This value be appended after calculate all update area, like visual offset.
+        /// Change  <see cref="Tizen.NUI.BaseComponents.View.UpdateAreaHint"/> value if you want to change View's partial update area.
+        /// Warning : Only 0u ~ 65535u integer values are allowed for each parameters.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public UIExtents UpdateArea
+        {
+            get
+            {
+                // TODO : Clean up below logics after implement Object.InternalGetPropertyExtents
+                using Extents temp = new Extents();
+                using var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, RendererProperty.UpdateAreaExtents);
+                pValue.Get(temp);
+
+                if (temp == null)
+                {
+                    return new UIExtents(0.0f);
+                }
+                UIExtents result = new UIExtents((float)temp.Start, (float)temp.End, (float)temp.Top, (float)temp.Bottom);
+                return result;
+            }
+            set
+            {
+                // TODO : Clean up below logics after implement Object.InternalSetPropertyExtents
+                using var temp = new Tizen.NUI.PropertyValue((Extents)value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, RendererProperty.UpdateAreaExtents, temp);
+            }
+        }
+
+        /// <summary>
         /// Gets and Sets Geometry of this Renderable.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
