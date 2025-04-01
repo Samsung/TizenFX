@@ -31,8 +31,8 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> positionPropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
-        private static bool defaultGrabTouchAfterLeave = false;
-        private static bool defaultAllowOnlyOwnTouch = false;
+        private static bool defaultGrabTouchAfterLeave;
+        private static bool defaultAllowOnlyOwnTouch;
 
         internal BackgroundExtraData backgroundExtraData;
         private int widthPolicy = LayoutParamPolicies.WrapContent;
@@ -40,51 +40,59 @@ namespace Tizen.NUI.BaseComponents
         private LayoutExtraData layoutExtraData;
         private ThemeData themeData;
         private Dictionary<Type, object> attached;
-        private bool isThemeChanged = false;
+        private bool isThemeChanged;
 
         // Collection of image-sensitive properties, and need to update C# side cache value.
         private static readonly List<int> cachedNUIViewBackgroundImagePropertyKeyList = new List<int> {
             ImageVisualProperty.URL,
             ImageVisualProperty.SynchronousLoading,
         };
-        private string backgroundImageUrl = null;
-        private bool backgroundImageSynchronousLoading = false;
+        private string backgroundImageUrl;
+        private bool backgroundImageSynchronousLoading;
 
         // List of constraints
-        private Constraint widthConstraint = null;
-        private Constraint heightConstraint = null;
+        private Constraint widthConstraint;
+        private Constraint heightConstraint;
 
-        private Size2D internalMaximumSize = null;
-        private Size2D internalMinimumSize = null;
-        private Extents internalMargin = null;
-        private Extents internalPadding = null;
-        private Vector3 internalSizeModeFactor = null;
-        private Vector2 internalCellIndex = null;
-        private Color internalBackgroundColor = null;
-        private Color internalColor = null;
-        private Position internalPivotPoint = null;
-        private Position internalPosition = null;
-        private Position2D internalPosition2D = null;
-        private Vector3 internalScale = null;
-        private Size internalSize = null;
-        private Size2D internalSize2D = null;
-        private int layoutCount = 0;
+        private float userSizeWidth;
+        private float userSizeHeight;
+
+        private Size2D internalMaximumSize;
+        private Size2D internalMinimumSize;
+        private Extents internalMargin;
+        private Extents internalPadding;
+        private Vector3 internalSizeModeFactor;
+        private Vector2 internalCellIndex;
+        private Color internalBackgroundColor;
+        private Color internalColor;
+        private Position internalPivotPoint;
+        private Position internalPosition;
+        private Position2D internalPosition2D;
+        private Vector3 internalScale;
+        private Size internalSize;
+        private Size2D internalSize2D;
+        private int layoutCount;
         private ControlState propagatableControlStates = ControlState.All;
 
         private string internalName = string.Empty;
-        private Position internalCurrentParentOrigin = null;
-        private Position internalCurrentAnchorPoint = null;
-        private Vector3 internalTargetSize = null;
-        private Size2D internalCurrentSize = null;
-        private Position internalCurrentPosition = null;
-        private Vector3 internalCurrentWorldPosition = null;
-        private Vector3 internalCurrentScale = null;
-        private Vector3 internalCurrentWorldScale = null;
-        private Vector4 internalCurrentColor = null;
-        private Vector4 internalCurrentWorldColor = null;
-        private Vector2 internalCurrentScreenPosition = null;
+        private Position internalCurrentParentOrigin;
+        private Position internalCurrentAnchorPoint;
+        private Vector3 internalTargetSize;
+        private Size2D internalCurrentSize;
+        private Position internalCurrentPosition;
+        private Vector3 internalCurrentWorldPosition;
+        private Vector3 internalCurrentScale;
+        private Vector3 internalCurrentWorldScale;
+        private Vector4 internalCurrentColor;
+        private Vector4 internalCurrentWorldColor;
+        private Vector2 internalCurrentScreenPosition;
 
-        private static int aliveCount = 0;
+        /// <summary>
+        /// Indicates that this View should listen Touch event to handle its ControlState.
+        /// </summary>
+        private bool enableControlState;
+
+        private static int aliveCount;
 
         static View()
         {

@@ -151,9 +151,9 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.FastTrackUploading,
         };
         internal PropertyMap cachedImagePropertyMap;
-        internal bool imagePropertyUpdatedFlag = false;
+        internal bool imagePropertyUpdatedFlag;
 
-        private bool imagePropertyUpdateProcessAttachedFlag = false;
+        private bool imagePropertyUpdateProcessAttachedFlag;
         private Rectangle _border;
 
         // Development Guide : Please make ensure that these 5 values are matched with current image.
@@ -161,7 +161,7 @@ namespace Tizen.NUI.BaseComponents
         private string _alphaMaskUrl = "";
         private int _desired_width = -1;
         private int _desired_height = -1;
-        private bool _fastTrackUploading = false;
+        private bool _fastTrackUploading;
 
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
@@ -1947,7 +1947,7 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
-        private bool adjustViewSize = false;
+        private bool adjustViewSize;
 
         /// <summary>
         /// ImageView PlaceHolderUrl, type string.

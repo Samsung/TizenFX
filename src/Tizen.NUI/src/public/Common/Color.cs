@@ -1083,7 +1083,7 @@ namespace Tizen.NUI
         }
 
         internal delegate void ColorChangedCallback(float r, float g, float b, float a);
-        private ColorChangedCallback callback = null;
+        private ColorChangedCallback callback;
 
         /// <summary>
         /// The red component.
