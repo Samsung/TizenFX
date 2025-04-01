@@ -76,7 +76,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Upload(PixelData pixelData, TextureUploadProperties properties)
         {
-            bool ret = Interop.Texture.Upload(SwigCPtr, PixelData.getCPtr(pixelData), properties.layer, properties.mipmap, properties.xOffset, properties.yOffset, properties.width, properties.height);
+            bool ret = Interop.Texture.Upload(SwigCPtr, PixelData.getCPtr(pixelData), properties.Layer, properties.Mipmap, properties.XOffset, properties.YOffset, properties.Width, properties.Height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
