@@ -45,7 +45,8 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                     {
-                        totalHeight = Owner.GetHeightForWidth(totalWidth);
+                        var padding = Owner.Padding;
+                        totalHeight = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                     }
                 }
@@ -65,8 +66,11 @@ namespace Tizen.NUI.BaseComponents
                     else
                     {
                         float width = naturalSize != null ? naturalSize.Width : 0;
-                        float height = naturalSize != null ? naturalSize.Height : 0;
+                        // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
                         totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+
+                        var padding = Owner.Padding;
+                        float height = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
                         totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
