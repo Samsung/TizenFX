@@ -33,24 +33,24 @@ namespace Tizen.NUI.BaseComponents
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
         static private string defaultFontFamily = "TizenSans";
-        private string textFieldTextSid = null;
-        private string textFieldPlaceHolderTextSid = null;
-        private string textFieldPlaceHolderTextFocusedSid = null;
-        private InputMethodContext inputMethodCotext = null;
+        private string textFieldTextSid;
+        private string textFieldPlaceHolderTextSid;
+        private string textFieldPlaceHolderTextFocusedSid;
+        private InputMethodContext inputMethodCotext;
         private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
-        private bool hasSystemLanguageChanged = false;
-        private bool hasSystemFontSizeChanged = false;
-        private bool hasSystemFontTypeChanged = false;
-        private bool isSettingTextInCSharp = false;
+        private bool hasSystemLanguageChanged;
+        private bool hasSystemFontSizeChanged;
+        private bool hasSystemFontTypeChanged;
+        private bool isSettingTextInCSharp;
 
-        private Vector4 internalPlaceholderTextColor = null;
-        private Vector4 internalPrimaryCursorColor = null;
-        private Vector4 internalSecondaryCursorColor = null;
-        private Vector4 internalSelectionHighlightColor = null;
-        private Vector4 internalInputColor = null;
-        private Color internalTextColor = null;
-        private Color internalGrabHandleColor = null;
+        private Vector4 internalPlaceholderTextColor;
+        private Vector4 internalPrimaryCursorColor;
+        private Vector4 internalSecondaryCursorColor;
+        private Vector4 internalSelectionHighlightColor;
+        private Vector4 internalInputColor;
+        private Color internalTextColor;
+        private Color internalGrabHandleColor;
 
 
         static TextField() 

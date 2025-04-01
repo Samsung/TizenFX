@@ -29,7 +29,7 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         #region Internal and Private
-        private List<Tizen.NUI.Visuals.VisualObjectsContainer> visualContainers = null;
+        private List<Tizen.NUI.Visuals.VisualObjectsContainer> visualContainers;
 
         /// <summary>
         /// Range of visual for the container.
