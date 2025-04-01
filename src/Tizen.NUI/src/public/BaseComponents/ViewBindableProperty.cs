@@ -27,9 +27,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private float userSizeWidth = 0.0f;
-        private float userSizeHeight = 0.0f;
-
         /// <summary>
         /// StyleNameProperty (DALi json)
         /// </summary>
